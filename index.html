@@ -2,20 +2,40 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>This is our title!</title>
+  <title>Study Buddy</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/main.js"></script>
 </head>
-<body>
+<body onload="preparePage()">
   <div class ="container">
     <div class="row">
 
-      <div class="col-md-6">
-          <h1>First column</h1>
+      <div class="col-md-4">
+        <h1>Monday</h1>
+        <ul class="list-of-cards">
+          <li>Coffee</li>
+          <li>Milk</li>
+          <li>OJ</li>
+        </ul>
       </div>
-      <div class="col-md-6">
-          <h1>Second column</h1>
+      <div class="col-md-4">
+        <h1>Tuesday</h1>
+        <ul class="list-of-cards">
+          <li>Chocolate</li>
+          <li>Hamburger</li>
+          <li>Pizza</li>
+        </ul>
       </div>
-
+      <div class="col-md-4">
+        <h1>Wednesday</h1>
+        <ul class="list-of-cards">
+          <li>Martini</li>
+          <li>Cosmo</li>
+          <li>Mohito</li>
+        </ul>
+      </div>
     </div>
 
   </div>
