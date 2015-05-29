@@ -3,7 +3,7 @@
 function preparePage() {
     //set up drag and drop for each list
     $(".list-of-cards").each(function(i, list){
-        Sortable.create(list, {group: "stuff", onEnd: sayHi});
+        Sortable.create(list, {group: "stuff", onEnd: sayHi, animation: 150});
     })
 }
 
