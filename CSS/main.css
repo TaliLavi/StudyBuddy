@@ -6,3 +6,7 @@
 .day {
     border: 1px solid black;
 }
+
+.list-of-cards {
+    min-height: 40px;
+}
