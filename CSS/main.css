@@ -1,26 +1,40 @@
-.list-of-cards li {
-    margin-top: 10px; /*create margin between cards */
+html {
+    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
 }
 
-.day {
-    border: 1px solid black;
+body {
+    background: #3A3A4D;
+    /*padding: 25px;*/
 }
 
-.list-of-cards {
-    min-height: 40px; /*minimal height to ensure cards wcould be added to an empty list*/
-}
-
-.list-of-cards li {
-    padding: 0px; /*to make sure there isn't unnecessary space between <li>s and their nested <a>s*/
-    border: 0px; /*clear <li> border so that only the <a> border will be visible*/
-}
-
-.list-of-cards li a {
-    /*to make sure there isn't unnecessary space between <li>s and their nested <a>s*/
-    margin: 0px;
-    display: block;
+.list {
+    background-color:#242437;
     width: 100%;
-    height: 100%;
+    height:500px;
+    position: relative;
+    display: block;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    padding: 0px;
+    z-index: 0px;
+    min-height: 60px; /*minimal height to ensure cards could be added to an empty list*/
+
+}
+
+
+.tile {
+    color: #efefef;
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    background-color: deepskyblue;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
 }
 
 .sortable-ghost {
