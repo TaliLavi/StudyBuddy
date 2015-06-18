@@ -16,7 +16,12 @@
 <br>
 
 <body onload="preparePage()">
+<button onclick="showSubjects();">Show Subjects</button>
 
+
+<!--========================================================================================================-->
+<!--DAYS OF THE WEEK COLUMNS-->
+<!--========================================================================================================-->
   <div class ="container">
     <div class="row">
 
@@ -68,6 +73,62 @@
     </div>
   </div>
 
+<!--========================================================================================================-->
+<!--SUBJECT COLUMNS-->
+<!--========================================================================================================-->
+<div class ="container" id="subjects">
+  <div class="row">
+
+    <div class="col-md-2 day">
+      <h4>English</h4>
+      <div id="addTileEnglish" class ="button" onclick="addTileSubject($english, englishClass);">Add Tile</div>
+      <ul class="list" id="english">
+
+      </ul>
+    </div>
+
+
+    <div class="col-md-2 day">
+      <h4>French</h4>
+      <div id="addTileFrench" class ="button" onclick="addTileSubject($french, frenchClass);">Add Tile</div>
+      <ul class="list" id="french">
+      </ul>
+    </div>
+
+
+    <div class="col-md-2 day">
+      <h4>History</h4>
+      <div id="addTileHistory" class ="button" onclick="addTileSubject($history, historyClass);">Add Tile</div>
+      <ul class="list" id="history">
+      </ul>
+    </div>
+
+    <div class="col-md-2 day">
+      <h4>Geography</h4>
+      <div id="addTileGeog" class ="button" onclick="addTileSubject($geography, geographyClass);">Add Tile</div>
+      <ul class="list" id="geography">
+      </ul>
+    </div>
+
+    <div class="col-md-2 day">
+      <h4>Maths</h4>
+      <div id="addTileMaths" class ="button" onclick="addTileSubject($maths, mathsClass);">Add Tile</div>
+      <ul class="list" id="maths">
+      </ul>
+    </div>
+
+    <div class="col-md-2 day">
+      <h4>Biology</h4>
+      <div id="addTileBiology" class ="button" onclick="addTileSubject($biology, biologyClass);">Add Tile</div>
+      <ul class="list" id="biology">
+      </ul>
+    </div>
+
+  </div>
+</div>
+  <!--========================================================================================================-->
+  <!--MODAL WINDOW-->
+  <!--========================================================================================================-->
   <div class="modal-bg">
     <div id="modal">
       <span>Sign In<a href="#close" id="close">&#215;</a></span>

@@ -61,11 +61,23 @@ h4{
 }
 
 .tile.french{
-    background-color: royalblue;
+    background-color: steelblue;
 }
 
 .tile.history{
-    background-color: mediumspringgreen;
+    background-color: darkseagreen;
+}
+
+.tile.geography{
+    background-color: deepskyblue;
+}
+
+.tile.maths{
+    background-color: darkslateblue;
+}
+
+.tile.biology{
+    background-color: mediumpurple;
 }
 
 .sortable-ghost {
@@ -176,5 +188,10 @@ input{
 }
 #submit:hover{
     background-color: #0FC491;
+}
+
+#subjects{
+    display: none;
+    background-color: #4E4E5F;
 }
 

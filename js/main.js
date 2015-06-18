@@ -5,6 +5,19 @@ var $thursday = $("#thursday");
 var $friday = $("#friday");
 var $saturday = $("#saturday");
 
+var $english = $("#english");
+var $french = $("#french");
+var $history = $("#history");
+var $geography = $("#geography");
+var $maths = $("#maths");
+var $biology = $("#biology");
+
+var englishClass = "english";
+var frenchClass = "french";
+var historyClass = "history";
+var geographyClass = "geography";
+var mathsClass = "maths";
+var biologyClass = "biology";
 
 var label = 1;
 
@@ -54,6 +67,19 @@ $('#close').click(function(){                                       //When the x
     $('#modal').fadeOut();                                          //Fade out the modal window
     return false;
 });
+
+function addTileSubject(subjectList, subjectClass){
+    var newTile = $("<li></li>").addClass("tile").addClass(subjectClass);
+    subjectList.append(newTile);
+}
+
+//===========================================================================================================
+//SHOW SUBJECTS
+//===========================================================================================================
+
+function showSubjects(){
+    $("#subjects").css("display","block");
+}
 
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
