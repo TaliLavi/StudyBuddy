@@ -42,6 +42,7 @@ function addTile(){
 
 
 function openAddTask(list){
+    document.getElementById("taskInput").value = null;
     $('#modal').css('display','block');                             //Makes the modal window display
     $('.modal-bg').fadeIn();                                        //Fades in the greyed-out background
     dayList = list;

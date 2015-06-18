@@ -65,8 +65,15 @@
     <div id="modal">
       <span>Sign In<a href="#close" id="close">&#215;</a></span>
       <form>
+        <select>
+          <option value="noSubject">Choose Subject</option>
+          <option value="english">English</option>
+          <option value="french">French</option>
+          <option value="history">History</option>
+        </select>
         <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
         <button name="submit" id="submit" type="button" onclick="addTile();">Add Task</button>
+
       </form>
     </div>
   </div>
@@ -78,6 +85,7 @@
 
 </body>
 </html>
+
 
 
 
