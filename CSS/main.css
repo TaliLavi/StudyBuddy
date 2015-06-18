@@ -82,3 +82,82 @@ h3 a:hover {
     width: 70%;
     background-color: #b0e0e6;
 }
+
+/*This is the greyed-out background behind the modal window*/
+.modal-bg{
+    position:fixed;
+    left:0;right:0;
+    top:0;bottom:0;
+    z-index:100;
+    background-color:rgba(50,50,50,0.5);
+}
+
+/*This is the modal window itself*/
+#modal{
+    position:absolute;
+    background-color:#F5F5F6;
+    top:50%;
+    left:50%;
+    z-index:101;
+    width:340px;
+    height:260px;
+    margin-top:-130px;
+    margin-left:-170px;
+    box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+}
+
+/*The span div inside the modal is the coloured bar along the top with the title & the Close button*/
+#modal span{
+    display: block;
+    background:#5DC3A7;
+    padding: 10px;
+    color:#fff;
+    border-radius:3px;
+}
+
+/*This is the close(x) button*/
+#close{
+    float: right;
+    color: #fff;
+    font-family: serif;
+    font-size: 15px;
+}
+#close:hover{
+    color: #000;
+}
+
+form{
+    display:block;
+    margin:30px;
+}
+form *{
+    margin:10px;
+}
+input:focus{
+    border:2px solid #5DC3A7;
+    outline:0;
+}
+input{
+    width:240px;
+    padding:7px;
+    border:2px solid #ccc ;
+    border-radius:3px;
+}
+
+#submit {
+    float: right;
+    padding: 8px 12px;
+    margin-top: 15px;
+    background: #5DC3A7;
+    border: none;
+    color: #fff;
+    /*border-bottom: 3px solid #23AA84;*/
+    /*border-radius: 3px;*/
+    cursor: pointer;
+}
+#submit :active{
+    margin: 18px 10px;
+}
+#submit:hover{
+    background-color: #0FC491;
+}
