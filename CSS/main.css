@@ -21,14 +21,20 @@ h3 a:hover {
     color: deepskyblue;
 }
 
+h4{
+    color: #efefef;
+    display: block;
+    position: static;
+    font-weight: normal;
+
+}
+
 .list {
     background-color:#242437;
     width: 100%;
     height: 100%;
     position: relative;
     display: block;
-    margin-right: 20px;
-    margin-left: 20px;
     margin-top: 5px;
     padding: 0px;
     z-index: 0px;
@@ -73,8 +79,6 @@ h3 a:hover {
     color: darkgray;
     width:100%;
     height:40px;
-    margin-right: 20px;
-    margin-left: 20px;
     border-style: solid;
     border-color: darkcyan;
     font-size: 1em;
@@ -165,8 +169,6 @@ input{
     background: #5DC3A7;
     border: none;
     color: #fff;
-    /*border-bottom: 3px solid #23AA84;*/
-    /*border-radius: 3px;*/
     cursor: pointer;
 }
 #submit :active{
@@ -175,3 +177,4 @@ input{
 #submit:hover{
     background-color: #0FC491;
 }
+
