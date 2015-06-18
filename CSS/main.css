@@ -85,6 +85,7 @@ h3 a:hover {
 
 /*This is the greyed-out background behind the modal window*/
 .modal-bg{
+    display: none;
     position:fixed;
     left:0;right:0;
     top:0;bottom:0;
@@ -96,6 +97,7 @@ h3 a:hover {
 #modal{
     position:absolute;
     background-color:#F5F5F6;
+    display: none;
     top:50%;
     left:50%;
     z-index:101;

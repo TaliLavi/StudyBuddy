@@ -21,39 +21,39 @@
     <div class="row">
 
       <div class="col-md-2 day">
-        <div id="addTileMo" class ="button" onclick="addTile($monday);">Add Tile</div>
+        <div id="addTileMo" class ="button" onclick="openAddTask($monday);">Add Tile</div>
         <ul class="list" id="monday">
         </ul>
       </div>
 
 
       <div class="col-md-2 day">
-        <div id="addTileTu" class ="button" onclick="addTile($tuesday);">Add Tile</div>
+        <div id="addTileTu" class ="button" onclick="openAddTask($tuesday);">Add Tile</div>
         <ul class="list" id="tuesday">
         </ul>
       </div>
 
 
       <div class="col-md-2 day">
-        <div id="addTileWe" class ="button" onclick="addTile($wednesday);">Add Tile</div>
+        <div id="addTileWe" class ="button" onclick="openAddTask($wednesday);">Add Tile</div>
         <ul class="list" id="wednesday">
         </ul>
       </div>
 
       <div class="col-md-2 day">
-        <div id="addTileTh" class ="button" onclick="addTile($thursday);">Add Tile</div>
+        <div id="addTileTh" class ="button" onclick="openAddTask($thursday);">Add Tile</div>
         <ul class="list" id="thursday">
         </ul>
       </div>
 
       <div class="col-md-2 day">
-        <div id="addTileFr" class ="button" onclick="addTile($friday);">Add Tile</div>
+        <div id="addTileFr" class ="button" onclick="openAddTask($friday);">Add Tile</div>
         <ul class="list" id="friday">
         </ul>
       </div>
 
       <div class="col-md-2 day">
-        <div id="addTileSa" class ="button" onclick="addTile($saturday);">Add Tile</div>
+        <div id="addTileSa" class ="button" onclick="openAddTask($saturday);">Add Tile</div>
         <ul class="list" id="saturday">
         </ul>
       </div>
@@ -65,9 +65,8 @@
     <div id="modal">
       <span>Sign In<a href="#close" id="close">&#215;</a></span>
       <form>
-        <input id="subjectInput" name="subjectInput" type="textbox" placeholder="Subject" required>
         <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
-        <button name="submit" id="submit" type="submit">Add Task</button>
+        <button name="submit" id="submit" type="button" onclick="addTile();">Add Task</button>
       </form>
     </div>
   </div>
@@ -79,5 +78,7 @@
 
 </body>
 </html>
+
+
 
 

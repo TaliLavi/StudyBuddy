@@ -29,13 +29,22 @@ function sayHi() {
 //===========================================================================================================
     //CREATE A TILE
 //===========================================================================================================
+var dayList;
 
-function addTile(list){
 
+function addTile(){
+    var userInput = document.getElementById("taskInput").value;     //gets user input of form
+    var newTile = $("<li></li>").addClass("tile").html(userInput);  //Creates a new tile div
+    dayList.append(newTile);                                        //Appends it to the list
+    $('.modal-bg').fadeOut();                                       //Fade out the greyed background
+    $('#modal').fadeOut();                                          //Fade out the modal window
+}
+
+
+function openAddTask(list){
     $('#modal').css('display','block');                             //Makes the modal window display
     $('.modal-bg').fadeIn();                                        //Fades in the greyed-out background
-    //var newTile = $("<li></li>").addClass("tile").html(label++);    //Creates a new tile div
-    //list.append(newTile);                                           //Appends it to the list
+    dayList = list;
 }
 
 $('#close').click(function(){                                       //When the x button on modal is pressed
@@ -43,6 +52,7 @@ $('#close').click(function(){                                       //When the x
     $('#modal').fadeOut();                                          //Fade out the modal window
     return false;
 });
+
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
 //===========================================================================================================
@@ -62,3 +72,4 @@ $('#close').click(function(){                                       //When the x
 //        scale     : 1,
 //    });
 //}
+
