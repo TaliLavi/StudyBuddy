@@ -36,15 +36,6 @@ h3 a:hover {
 
 }
 
-.row{
-    white-space: nowrap;
-    position: absolute;
-}
-
-.row .day{
-    display: inline-block;
-}
-
 .tile {
     color: #efefef;
     font-weight: normal;

@@ -1,12 +1,55 @@
+var $monday = $("#monday");
+var $tuesday = $("#tuesday");
+var $wednesday = $("#wednesday");
+var $thursday = $("#thursday");
+var $friday = $("#friday");
+var $saturday = $("#saturday");
+
+
+var label = 1;
+
+//var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";    //shadow1 is the normal box shadow on the tiles
+//var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
+
+
+
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
     //set up drag and drop for each list
-    $(".list-of-cards").each(function(i, list){
-        Sortable.create(list, {group: "stuff", onEnd: sayHi, animation: 200});
+    $(".list").each(function(i, list){
+        Sortable.create(list, {group: "stuff", onEnd: sayHi, animation: 400, ghostClass: "sortable-ghost"});
     })
 }
 
 function sayHi() {
     console.log("Hi!")
 }
+
+//===========================================================================================================
+    //CREATE A TILE
+//===========================================================================================================
+
+function addTile(list){
+    var newTile = $("<li></li>").addClass("tile").html(label++);
+    list.append(newTile);
+}
+//===========================================================================================================
+    //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
+//===========================================================================================================
+//
+//function shrink(element){
+//    TweenMax.to(element, 0.2, {     //This TweenMax gives the dragTile its shadow and change in size
+//        autoAlpha : 0.75,
+//        boxShadow : shadow2,
+//        scale     : 0.95,
+//    });
+//}
+//
+//function grow(element){
+//    TweenMax.to(element, 0.2, {
+//        autoAlpha : 1,
+//        boxShadow: shadow1,
+//        scale     : 1,
+//    });
+//}
