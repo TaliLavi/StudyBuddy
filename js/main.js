@@ -33,11 +33,12 @@ var dayList;
 
 
 function addTile(){
-    var userInput = document.getElementById("taskInput").value;     //gets user input of form
-    var newTile = $("<li></li>").addClass("tile").html(userInput);  //Creates a new tile div
-    dayList.append(newTile);                                        //Appends it to the list
-    $('.modal-bg').fadeOut();                                       //Fade out the greyed background
-    $('#modal').fadeOut();                                          //Fade out the modal window
+    var subjectInput = document.getElementById("subjectInput").value;
+    var userInput = document.getElementById("taskInput").value;                         //gets user input of form
+    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);                      //Creates a new tile div
+    dayList.append(newTile);                                                            //Appends it to the list
+    $('.modal-bg').fadeOut();                                                           //Fade out the greyed background
+    $('#modal').fadeOut();                                                              //Fade out the modal window
 }
 
 

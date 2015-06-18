@@ -50,6 +50,18 @@ h3 a:hover {
     padding: 0px;
 }
 
+.tile.english{
+    background-color: lightseagreen;
+}
+
+.tile.french{
+    background-color: royalblue;
+}
+
+.tile.history{
+    background-color: mediumspringgreen;
+}
+
 .sortable-ghost {
     visibility: hidden;
 }
