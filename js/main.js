@@ -78,7 +78,7 @@ function addTileSubject(subjectList, subjectClass){
 //===========================================================================================================
 
 function showSubjects(){
-    $("#subjects").css("display","block");
+    $("#subjectsContainer").css("display","block");
 }
 
 //===========================================================================================================
