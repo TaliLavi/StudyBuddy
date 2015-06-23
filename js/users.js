@@ -36,6 +36,10 @@ function displayAllUsers(users) {
         $('<div/>').text(user.email).prepend($('<strong/>').text(user.first_name + ' ' + user.last_name + ': ')).appendTo($('#allUsersDiv'));
         $('#allUsersDiv')[0].scrollTop = $('#allUsersDiv')[0].scrollHeight;
     })
-
-
 };
+
+
+// RETRIEVE AND DISPLAY ALL USERS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
+$(document).ready(function(){
+    fetchAllUsers();
+});

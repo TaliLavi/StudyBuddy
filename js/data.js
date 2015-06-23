@@ -1,6 +1,5 @@
 //GLOBAL VARIABLES
 FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
-USER_ID = null;
 
 //=====================================================================
 //                              USERS
@@ -44,33 +43,23 @@ function fetchAllUsers() {
     });
 }
 
-// RETRIEVE AND DISPLAY ALL USERS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-$(document).ready(function(){
-    var usersRef = new Firebase(FIREBASE_ROOT + '/Users');
-    var users = [];
-    usersRef.once("value", function(snapshot) {
-        $.each(snapshot.val(), function(key, value){
-            users.push(value)
-        });
-        displayAllUsers(users);
-    });
-});
-
-
 //=====================================================================
 //                              SUBJECTS
 //=====================================================================
 
 
-// Right now we are allways working with the same user, so I'm hard coding her user id.
+// Right now we are allways working with the same user, so I'm hard coding Alice's user id.
 // After we'll sort user authentication, we will create the needed functionality to
-// assign USER_ID the id of whichever user happened to login.
-USER_ID = "-JsW00pjdJPb_cDgZuxT";
+// get the current user.
+function getActiveUser() {
+    // TODO: implement authentication
+    return "-JsW00pjdJPb_cDgZuxT"
+}
 
 // ADD NEW USER TO THE DB
-function pushNewSubject(name, colour, study_session_minutes, short_break_minutes, long_break_minutes) {
+function pushNewSubject(userId, name, colour, study_session_minutes, short_break_minutes, long_break_minutes) {
     // CREATE A REFERENCE TO FIREBASE
-    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + USER_ID + '/Subjects');
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects');
 
     //SAVE DATA TO FIREBASE
     // I generated a reference to a new location (e.i. assigned the push into a
@@ -86,16 +75,16 @@ function pushNewSubject(name, colour, study_session_minutes, short_break_minutes
         // (MEANING UNTIL THE USER CREATES THEIR OWN TASKS).
         // ONCE THE USER CREATES A TASK, A PUSH COMMEND SUCH AS
         // tasksRef.push({title: "Read chapter 12"}); WILL OVERIDE THE FALSY VALUE.
-        Tasks:0
+        Tasks:0,
+        is_deleted:0
     });
 };
 
 // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION UPON REQUEST
-function fetchAllSubjects() {
-    var subjectssRef = new Firebase(FIREBASE_ROOT + '/Users/' + USER_ID + '/Subjects');
+function fetchAllSubjects(userId) {
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects');
     var subjects = [];
-    // WE CAN ALWAYS ADD .limitToLast(10) TO usersRef IF WE'D WANT TO DISPLAY JUST THE FIRST 10 USERS.
-    subjectssRef.once("value", function(snapshot) {
+    subjectsRef.once("value", function(snapshot) {
         $.each(snapshot.val(), function(key, value){
             subjects.push(value)
         });
@@ -103,14 +92,29 @@ function fetchAllSubjects() {
     });
 }
 
-// RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-$(document).ready(function(){
-    var subjectssRef = new Firebase(FIREBASE_ROOT + '/Users/' + USER_ID + '/Subjects');
-    var subjects = [];
-    subjectssRef.once("value", function(snapshot) {
-        $.each(snapshot.val(), function(key, value){
-            subjects.push(value)
-        });
-        displayAllSubjects(subjects);
+
+// UPDATE SUBJECT'S NAME
+function changeSubjectName(userId, subjectId, newName){
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects/' + subjectId);
+    subjectsRef.update({
+        "name": newName
     });
-});
+};
+
+
+// UPDATE SUBJECT'S COLOUR
+function changeSubjectColour(userId, subjectId, newColour){
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects/' + subjectId);
+    subjectsRef.update({
+        "colour": newColour
+    });
+};
+
+
+// DELETE SUBJECT
+function deleteSubject(userId, subjectId){
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects/' + subjectId);
+    subjectsRef.update({
+        "is_deleted": 1
+    });
+};
