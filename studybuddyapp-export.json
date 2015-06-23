@@ -1,0 +1,37 @@
+{
+  "Users" : [ null, {
+    "Subjects" : [ null, {
+      "Tasks" : [ null, {
+        "Checklist_Items" : [ null, {
+          "description" : "put your left foot in",
+          "is_complete" : 1
+        }, {
+          "description" : "put your left foot out",
+          "is_complete" : 1
+        } ],
+        "Time_Log" : [ null, {
+          "event_type" : "stopped",
+          "timestamp" : "2015-06-14 20:12:52"
+        } ],
+        "assigned_date" : "2015-10-31",
+        "creation_date" : "2015-06-14 16:14:06",
+        "description" : "Remember to write down all the words I don't know",
+        "status" : "done",
+        "status_change_date" : "2015-06-14 20:01:06",
+        "time_estimation" : 90,
+        "title" : "Read chapter 4"
+      } ],
+      "colour" : "blue",
+      "long_break_minutes" : 15,
+      "name" : "Irish",
+      "short_break_minutes" : 5,
+      "study_session_minutes" : 25
+    } ],
+    "email" : "mickymouse@gmail.com",
+    "first_name" : "Micky",
+    "last_name" : "Mouse",
+    "long_break_minutes" : 15,
+    "short_break_minutes" : 5,
+    "study_session_minutes" : 25
+  } ]
+}
