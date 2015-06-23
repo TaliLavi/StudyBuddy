@@ -7,9 +7,13 @@
   <script src='http://code.jquery.com/jquery-latest.js'></script>
   <script src='../js/data.js'></script>
   <script src='../js/users.js'></script>
+  <script src='../js/subjects.js'></script>
 </head>
 <body>
 
+<!--=====================================================================-->
+                              <!--USERS-->
+<!--=====================================================================-->
   <div>
     <div>
       <h2>Sign Up</h2>
@@ -25,6 +29,28 @@
     <div>
       <h2>Display All Users</h2>
       <div id='allUsersDiv'></div>
+      <hr>
+      <hr>
+    </div>
+  </div>
+
+<!--=====================================================================-->
+                            <!--SUBJECTS-->
+<!--=====================================================================-->
+  <div>
+    <div>
+      <h2>Create a New Subject</h2>
+      <label for="subjectName">Subject Name:</label>
+      <input type='text' id='subjectName' placeholder='enter your subject's name...'><br><br>
+      <label for="subjectColour">Subject Colour:</label>
+      <input type='text' id='subjectColour' placeholder='enter your colour...'><br><br>
+      <input type="button" value="Create New Subject" onclick="createSubject()">
+      <hr>
+    </div>
+    <div>
+      <h2>Display All Subjects for Our Mock User</h2>
+      <div id='allSubjectsDiv'></div>
+      <hr>
       <hr>
     </div>
   </div>
