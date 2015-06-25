@@ -23,6 +23,7 @@
           "title" : "Read chapter 4"
         } ],
         "colour" : "blue",
+        "is_deleted" : 0,
         "long_break_minutes" : 15,
         "name" : "Irish",
         "short_break_minutes" : 5,
@@ -36,7 +37,6 @@
       "study_session_minutes" : 25
     },
     "-JsW00pjdJPb_cDgZuxT" : {
-      "Subjects" : 0,
       "email" : "wonderful@gmail.com",
       "first_name" : "Alice",
       "last_name" : "Wonderland",
@@ -45,7 +45,6 @@
       "study_session_minutes" : 25
     },
     "-JsWS9bWNAPFqhb3t-F5" : {
-      "Subjects" : 0,
       "email" : "kid@gmail.com",
       "first_name" : "new",
       "last_name" : "kid",

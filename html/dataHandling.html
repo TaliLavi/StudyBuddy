@@ -3,56 +3,80 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Minimal Gui for Data Handling</title>
+  <link rel="stylesheet" type="text/css" href="../CSS/Bootstrap/bootstrap.min.css">
   <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-  <script src='http://code.jquery.com/jquery-latest.js'></script>
-  <script src='../js/data.js'></script>
-  <script src='../js/users.js'></script>
-  <script src='../js/subjects.js'></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/subjects.js"></script>
+  <script src="../js/tasks.js"></script>
 </head>
 <body>
 
 <!--=====================================================================-->
                               <!--USERS-->
 <!--=====================================================================-->
-  <div>
-    <div>
-      <h2>Sign Up</h2>
-      <label for="firstNameInput">First Name:</label>
-      <input type='text' id='firstNameInput' placeholder='enter your first name...'><br><br>
-      <label for="lastNameInput">Last Name:</label>
-      <input type='text' id='lastNameInput' placeholder='enter your last name...'><br><br>
-      <label for="emailInput">email:</label>
-      <input type='text' id='emailInput'  placeholder='Type your email...'><br><br>
-      <input type="button" value="Create New User" onclick="createUser()">
-      <hr>
+  <div class ="container">
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <h2>Sign Up</h2>
+        <label for="firstNameInput">First Name:</label>
+        <input type="text" id="firstNameInput" placeholder="enter your first name..."><br><br>
+        <label for="lastNameInput">Last Name:</label>
+        <input type="text" id="lastNameInput" placeholder="enter your last name..."><br><br>
+        <label for="emailInput">email:</label>
+        <input type="text" id="emailInput"  placeholder="Type your email..."><br><br>
+        <input type="button" value="Create New User" onclick="createUser()">
+      </div>
+      <div class="col-md-5">
+        <h2>Display All Users</h2>
+        <div id='allUsersDiv'></div>
+      </div>
     </div>
-    <div>
-      <h2>Display All Users</h2>
-      <div id='allUsersDiv'></div>
-      <hr>
-      <hr>
-    </div>
-  </div>
+    <hr style="border: 1px solid #000">
+
 
 <!--=====================================================================-->
                             <!--SUBJECTS-->
 <!--=====================================================================-->
-  <div>
-    <div>
-      <h2>Create a New Subject</h2>
-      <label for="subjectName">Subject Name:</label>
-      <input type='text' id='subjectName' placeholder='enter your subject's name...'><br><br>
-      <label for="subjectColour">Subject Colour:</label>
-      <input type='text' id='subjectColour' placeholder='enter your colour...'><br><br>
-      <input type="button" value="Create New Subject" onclick="createSubject()">
-      <hr>
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <h2>Create a New Subject for Alice</h2>
+        <label for="subjectName">Subject Name:</label>
+        <input type="text" id="subjectName" placeholder="enter your subject's name..."><br><br>
+        <label for="subjectColour">Subject Colour:</label>
+        <input type="text" id="subjectColour" placeholder="enter your colour..."><br><br>
+        <input type="button" value="Create New Subject" onclick="createSubject()">
+      </div>
+      <div class="col-md-5">
+        <h2>Display All of Alice's Subjects</h2>
+        <div id='allSubjectsDiv'></div>
+      </div>
     </div>
-    <div>
-      <h2>Display All Subjects for Our Mock User</h2>
-      <div id='allSubjectsDiv'></div>
-      <hr>
-      <hr>
+    <hr style="border: 1px solid #000">
+
+
+<!--=====================================================================-->
+                            <!--TASKS-->
+<!--=====================================================================-->
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <h2>Create a New Task for Alice's English subject</h2>
+        <label for="taskTitle">Title:</label>
+        <input type="text" id="taskTitle" placeholder="enter your task's title..."><br><br>
+        <label for="taskDescription">Description:</label>
+        <input type="text" id="taskDescription" placeholder="enter your task's description..."><br><br>
+        <label for="checklistItem">Checklist Item:</label>
+        <input type="text" id="checklistItem" placeholder="enter a checklist item..."><br><br>
+        <input type="button" value="Create New Task" id="-Js_7Wt2WQACk5kSqwAO" onclick="createTask(id)">
+      </div>
+      <!--<div class="col-md-5">-->
+        <!--<h2>Display All Tasks for Our Mock User</h2>-->
+        <!--<div id='allTasksDiv'></div>-->
+      <!--</div>-->
     </div>
+    <hr style="border: 1px solid #000">
   </div>
 
 
