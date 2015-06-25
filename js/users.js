@@ -34,7 +34,6 @@ function displayAllUsers(users) {
 
     users.forEach(function (user){
         $('<div/>').text(user.email).prepend($('<strong/>').text(user.first_name + ' ' + user.last_name + ': ')).appendTo($('#allUsersDiv'));
-        $('#allUsersDiv')[0].scrollTop = $('#allUsersDiv')[0].scrollHeight;
     })
 };
 

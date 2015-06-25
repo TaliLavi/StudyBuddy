@@ -26,16 +26,15 @@ function createSubject() {
 };
 
 // DISPLAY SUBJECTS INFORMATION
-function displayAllSubjects(subjects) {
+function displayAllSubjects(subjectDict) {
     // CLEAR CURRENT DISPLAY OF SUBJECTS
     $('#allSubjectsDiv').text('');
-
-    subjects.forEach(function (subject){
-        $('<div/>').text(subject.name + ' : ' + subject.colour).appendTo($('#allSubjectsDiv'));
-        $('#allSubjectsDiv')[0].scrollTop = $('#allSubjectsDiv')[0].scrollHeight;
-    })
-};
-
+    if (subjectDict !== null) {
+        $.each(subjectDict, function(subjectKey, subjectData){
+            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + '</div>');
+        })
+    }
+}
 
 // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
 $(document).ready(function(){
