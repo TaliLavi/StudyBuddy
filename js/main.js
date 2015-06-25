@@ -47,11 +47,11 @@ var dayList;
 
 function addTile(){
     var subjectInput = document.getElementById("subjectInput").value;
-    var userInput = document.getElementById("taskInput").value;                         //gets user input of form
-    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);                      //Creates a new tile div
-    dayList.append(newTile);                                                            //Appends it to the list
-    $('.modal-bg').fadeOut();                                                           //Fade out the greyed background
-    $('#modal').fadeOut();                                                              //Fade out the modal window
+    var userInput = document.getElementById("taskInput").value;                             //gets user input of form
+    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);   //Creates a new tile div
+    dayList.append(newTile);                                                                //Appends it to the list
+    $('.modal-bg').fadeOut();                                                               //Fade out the greyed background
+    $('#modal').fadeOut();                                                                  //Fade out the modal window
 }
 
 
@@ -80,6 +80,14 @@ function addTileSubject(subjectList, subjectClass){
 function showSubjects(){
     $("#subjectsContainer").css("display","block");
 }
+
+
+//===========================================================================================================
+//TRYING OUT FIREBASE (RÓISIN)
+//===========================================================================================================
+
+new Firebase('https://shining-inferno-9814.firebaseio.com/');       //REFERENCES ROISIN'S FIREBASE DATABASE
+
 
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
