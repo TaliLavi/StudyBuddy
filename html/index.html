@@ -17,8 +17,8 @@
 <br>
 
 <body onload="preparePage()">
-<button onclick="showSubjects();">Show Subjects</button>
-<br><br>
+<button id="showSubjectsButton" onclick="showSubjects();">Show Subjects</button>
+<button id="testDivButton"  onclick="showTestDiv();">Show Test Div</button>
 <button onclick="openAddSubject();">Add a Subject</button>
 <br><br>
 
@@ -130,6 +130,16 @@
 
   </div>
 </div>
+
+<!--========================================================================================================-->
+<!--DIV TO TEST DRAGGING FROM ONE LAYER TO THE OTHER-->
+<!--========================================================================================================-->
+
+  <ul class="list" id="testListDiv">
+    <button id="addTileTestDiv" onclick="addTileSubject($testListDiv, englishClass);">Add Tile</button>
+  </ul>
+
+
   <!--========================================================================================================-->
   <!--MODAL WINDOW (ADD TASK)-->
   <!--========================================================================================================-->

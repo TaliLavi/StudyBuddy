@@ -13,6 +13,7 @@ var $history = $("#history");
 var $geography = $("#geography");
 var $maths = $("#maths");
 var $biology = $("#biology");
+var $testListDiv = $("#testListDiv");
 
 var englishClass = "english";
 var frenchClass = "french";
@@ -99,9 +100,16 @@ function addSubject(){
 //===========================================================================================================
 
 function showSubjects(){
-    $("#subjectsContainer").css("display","block");
+    $("#subjectsContainer").toggle();
 }
 
+//===========================================================================================================
+//TESTING DRAGGING TILE FROM TEST DIV LAYER TO WEEK
+//===========================================================================================================
+
+function showTestDiv(){
+    $('#testListDiv').toggle();
+}
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
 //===========================================================================================================

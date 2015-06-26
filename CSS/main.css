@@ -194,8 +194,31 @@ input{
     background-color: #0FC491;
 }
 
+/*===============================================================================================*/
+/*SUBJECTS CONTAINER*/
+/*===============================================================================================*/
+
 #subjectsContainer{
     display: none;
     background-color: #4E4E5F;
+    z-index: 100;
+    position: absolute;
+    width: 800px;
 }
 
+/*===============================================================================================*/
+/*TESTING LAYERS */
+/*===============================================================================================*/
+
+
+
+#testListDiv{
+    background-color: cadetblue;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    z-index: 200;
+    right: 0px;
+    top: 0px;
+    display:none;
+}
