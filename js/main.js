@@ -27,13 +27,11 @@ var label = 1;
 //var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
 
 
-
-
 //Make these things happen each time the page finishes loading
 function preparePage() {
     //set up drag and drop for each list
     $(".list").each(function(i, list){
-        Sortable.create(list, {group: "stuff", onEnd: sayHi, animation: 400, ghostClass: "sortable-ghost"});
+        Sortable.create(list, {group: "stuff", animation: 400, ghostClass: "sortable-ghost"});
     })
 }
 
@@ -52,23 +50,48 @@ function addTile(){
     $('#modal').fadeOut();                                                                  //Fade out the modal window
 }
 
-
 function openAddTask(list){
-    document.getElementById("taskInput").value = null;
+    document.getElementById("taskInput").value = null;              //Clear the fields of the modal window
     $('#modal').css('display','block');                             //Makes the modal window display
-    $('.modal-bg').fadeIn();                                        //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();                                     //Fades in the greyed-out background
     dayList = list;
 }
-
-$('#close').click(function(){                                       //When the x button on modal is pressed
-    $('.modal-bg').fadeOut();                                       //Fade out the greyed background
-    $('#modal').fadeOut();                                          //Fade out the modal window
-    return false;
-});
 
 function addTileSubject(subjectList, subjectClass){
     var newTile = $("<li></li>").addClass("tile").addClass(subjectClass);
     subjectList.append(newTile);
+}
+
+//===========================================================================================================
+//CANCELLING ANY MODAL WINDOW WITHOUT ADDING ANYTHING
+//===========================================================================================================
+
+$('.closeX').click(function(){                                       //When the x button on modal is pressed
+    $('.modal-bg').fadeOut();                                       //Fade out the greyed background
+    $('.modal').fadeOut();                                          //Fade out the modal window
+    return false;
+});
+
+//===========================================================================================================
+//ADD A NEW SUBJECT
+//===========================================================================================================
+
+function openAddSubject(){
+    document.getElementById("subjectNameInput").value = null;       //Clear the name field of the modal window
+    document.getElementById("subjectColourInput").value = null;     //Clear the colour field of the modal window
+    $('#modalSubject').css('display','block');                      //Makes the modal window display
+    $('#subjectModalBG').fadeIn();                                  //Fades in the greyed-out background
+}
+
+function addSubject(){
+    var subjectName = document.getElementById("subjectNameInput").value;        //gets user input of form
+    var subjectColour = document.getElementById("subjectColourInput").value;    //gets user input of form
+    console.log(subjectName+" "+subjectColour);
+    // put code to append new subject to div here
+    //var newSubjectDiv = $("<div></div>").addClass("col-md-2");
+    //$("#subjectsContainer").append(newSubjectDiv);
+    $('.modal-bg').fadeOut();                                                   //Fade out the greyed background
+    $('#modalSubject').fadeOut();                                               //Fade out the modal window
 }
 
 //===========================================================================================================
@@ -78,55 +101,6 @@ function addTileSubject(subjectList, subjectClass){
 function showSubjects(){
     $("#subjectsContainer").css("display","block");
 }
-
-//===========================================================================================================
-//GETTING TASKS FROM STUDYBUDDY FIREBASE TO CREATE TILES ON LOAD
-//===========================================================================================================
-
-//
-//// DISPLAY TASKS INFORMATION
-//function displayAllTasks(tasks) {
-//    // CLEAR CURRENT DISPLAY OF SUBJECTS
-//    $('#allTasksDiv').text('');
-//
-//    tasks.forEach(function (task){
-//        $('<div/>').text(task.name + ' : ' + task.description).appendTo($('#allTasksDiv'));
-//        $('#allTasksDiv')[0].scrollTop = $('#allTasksDiv')[0].scrollHeight;
-//    })
-//};
-//
-//FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
-//
-//// RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION UPON REQUEST
-//function fetchAllTasks(userId) {
-//    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects');
-//    var tasks = [];
-//
-//    subjectsRef.once("value", function(snapshot) {
-//        if (snapshot.numChildren() > 0) {
-//            $.each(snapshot.val(), function(snapshot){
-//
-//                if (snapshot.numChildren() > 0) {
-//
-//                }
-//
-//                //tasks.push(value)
-//            });
-//        }
-//        displayAllTasks(tasks);
-//    });
-//}
-
-
-
-
-
-//===========================================================================================================
-//TRYING OUT FIREBASE (RÓISIN)
-//===========================================================================================================
-
-new Firebase('https://shining-inferno-9814.firebaseio.com/');       //REFERENCES ROISIN'S FIREBASE DATABASE
-
 
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
@@ -148,4 +122,5 @@ new Firebase('https://shining-inferno-9814.firebaseio.com/');       //REFERENCES
 //    });
 //}
 
-//HELLO!
+
+

@@ -19,7 +19,9 @@
 <body onload="preparePage()">
 <button onclick="showSubjects();">Show Subjects</button>
 <br><br>
-<div id="allTasksDiv" style="color: gainsboro;">All tasks listed here</div>
+<button onclick="openAddSubject();">Add a Subject</button>
+<br><br>
+
 
 
 <!--========================================================================================================-->
@@ -32,7 +34,6 @@
         <h4>Monday</h4>
         <div id="addTileMo" class ="button" onclick="openAddTask($monday);">Add Tile</div>
         <ul class="list" id="monday">
-
         </ul>
       </div>
 
@@ -82,7 +83,7 @@
 <div class ="container" id="subjectsContainer">
   <div class="row">
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>English</h4>
       <div id="addTileEnglish" class ="button" onclick="addTileSubject($english, englishClass);">Add Tile</div>
       <ul class="list" id="english">
@@ -91,7 +92,7 @@
     </div>
 
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>French</h4>
       <div id="addTileFrench" class ="button" onclick="addTileSubject($french, frenchClass);">Add Tile</div>
       <ul class="list" id="french">
@@ -99,28 +100,28 @@
     </div>
 
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>History</h4>
       <div id="addTileHistory" class ="button" onclick="addTileSubject($history, historyClass);">Add Tile</div>
       <ul class="list" id="history">
       </ul>
     </div>
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>Geography</h4>
       <div id="addTileGeog" class ="button" onclick="addTileSubject($geography, geographyClass);">Add Tile</div>
       <ul class="list" id="geography">
       </ul>
     </div>
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>Maths</h4>
       <div id="addTileMaths" class ="button" onclick="addTileSubject($maths, mathsClass);">Add Tile</div>
       <ul class="list" id="maths">
       </ul>
     </div>
 
-    <div class="col-md-2 day">
+    <div class="col-md-2">
       <h4>Biology</h4>
       <div id="addTileBiology" class ="button" onclick="addTileSubject($biology, biologyClass);">Add Tile</div>
       <ul class="list" id="biology">
@@ -132,9 +133,9 @@
   <!--========================================================================================================-->
   <!--MODAL WINDOW (ADD TASK)-->
   <!--========================================================================================================-->
-  <div class="modal-bg">
-    <div id="modal">
-      <span>Sign In<a href="#close" id="close">&#215;</a></span>
+  <div id="taskModalBG" class="modal-bg">
+    <div id="modal" class="modal">
+      <span>New Task<a href="#close" id="close" class="closeX">&#215;</a></span>
       <form>
         <select id ="subjectInput">
           <option value="noSubject">Choose Subject</option>
@@ -150,6 +151,20 @@
       </form>
     </div>
   </div>
+
+<!--========================================================================================================-->
+<!--MODAL WINDOW (ADD SUBJECT)-->
+<!--========================================================================================================-->
+<div id="subjectModalBG" class="modal-bg">
+  <div id="modalSubject" class="modal">
+    <span>New Subject<a href="#close" id="closeModalSubject" class="closeX">&#215;</a></span>
+    <form>
+      <input id="subjectNameInput" name="subjectName" type="textbox" placeholder="Subject name here." required>
+      <input id="subjectColourInput" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+      <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
+    </form>
+  </div>
+</div>
 
   <script src='../js/jquery.js'></script>
   <script src='../js/TweenMax.js'></script>
