@@ -22,7 +22,7 @@ function createSubject() {
     colourField.val('');
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveSubjects(getActiveUser());
+    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
 };
 
 // DISPLAY SUBJECTS INFORMATION
@@ -31,15 +31,15 @@ function displayActiveSubjects(subjectDict) {
     $('#allSubjectsDiv').text('');
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
-            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey + '' +
+            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey +
                                         '<div id="tasks' + subjectKey + '"></div></div>');
             // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
-            fetchActiveTasks(subjectKey);
+            fetchActiveTasks(subjectKey, displayActiveTasks);
         })
     }
 }
 
 // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
 $(document).ready(function(){
-    fetchActiveSubjects(getActiveUser());
+    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
 });

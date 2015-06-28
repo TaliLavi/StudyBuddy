@@ -25,16 +25,16 @@ function pushNewUser(first_name, last_name, email, study_session_minutes, short_
     });
 };
 
-// RETRIEVE AND DISPLAY ALL USERS INFORMATION UPON REQUEST
-function fetchActiveUsers() {
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL USERS' INFORMATION UPON REQUEST
+function fetchActiveUsers(callback) {
     var usersRef = new Firebase(FIREBASE_ROOT + '/Users/active');
     var users = [];
-    // WE CAN ALWAYS ADD .limitToLast(10) TO usersRef IF WE'D WANT TO DISPLAY JUST THE FIRST 10 USERS.
+    // WE CAN ALWAYS ADD .limitToLast(10) TO usersRef IF WE'D WANT TO FETCH JUST THE FIRST 10 USERS.
     usersRef.once("value", function(snapshot) {
         $.each(snapshot.val(), function(key, value){
             users.push(value)
         });
-        displayAllUsers(users);
+        callback(users);
     });
 }
 
@@ -81,11 +81,11 @@ function pushNewSubject(userId, name, colour, study_session_minutes, short_break
     });
 };
 
-// RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION UPON REQUEST
-function fetchActiveSubjects(userId) {
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
+function fetchActiveSubjects(userId, callback) {
     var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId);
     subjectsRef.once("value", function(snapshot) {
-        displayActiveSubjects(snapshot.val());
+        callback(snapshot.val());
     });
 }
 
@@ -145,11 +145,11 @@ function pushNewTask(subjectId, title, description, assigned_date, time_estimati
 };
 
 
-// RETRIEVE AND DISPLAY ALL TASKS INFORMATION UPON REQUEST
-function fetchActiveTasks(subjectId) {
+// RETRIEVE AND  RUNS CALLBACK FUNCTION ON ALL TASKS' INFORMATION UPON REQUEST
+function fetchActiveTasks(subjectId, callback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/active/' + subjectId);
     tasksRef.once("value", function(snapshot) {
-        displayActiveTasks(subjectId, snapshot.val());
+        callback(subjectId, snapshot.val());
     });
 }
 
