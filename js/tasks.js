@@ -1,5 +1,5 @@
 // CREATE NEW TASK
-function createTask(currentSubject) {
+function createTask(subjectId) {
 
     // REGISTER DOM ELEMENTS
     var titleField = $('#taskTitle');
@@ -13,16 +13,15 @@ function createTask(currentSubject) {
     var assigned_date = "16/06/24";
     var time_estimation = 30;
     var creation_date = $.now();
-    var status = "open";
     var status_change_date = creation_date;
 
     // PUSH THEM TO DB
-    pushNewTask(getActiveUser(), currentSubject, title, description, assigned_date, time_estimation, creation_date, status, status_change_date);
+    pushNewTask(subjectId, title, description, assigned_date, time_estimation, creation_date, status_change_date);
 
     // CLEAR INPUT FIELDS
     titleField.val('');
     descriptionField.val('');
 
     //// REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    //fetchAllSubjects(getActiveUser());
+    //fetchActiveTasks();
 };

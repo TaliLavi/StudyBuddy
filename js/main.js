@@ -1,5 +1,3 @@
-//GLOBAL VARIABLES
-
 var $monday = $("#monday");
 var $tuesday = $("#tuesday");
 var $wednesday = $("#wednesday");
@@ -35,6 +33,10 @@ function preparePage() {
     $(".list").each(function(i, list){
         Sortable.create(list, {group: "stuff", onEnd: sayHi, animation: 400, ghostClass: "sortable-ghost"});
     })
+}
+
+function sayHi() {
+    console.log("Hi!")
 }
 
 //===========================================================================================================
@@ -79,50 +81,9 @@ function showSubjects(){
     $("#subjectsContainer").css("display","block");
 }
 
-//===========================================================================================================
-//GETTING TASKS FROM STUDYBUDDY FIREBASE TO CREATE TILES ON LOAD
-//===========================================================================================================
-
-//
-//// DISPLAY TASKS INFORMATION
-//function displayAllTasks(tasks) {
-//    // CLEAR CURRENT DISPLAY OF SUBJECTS
-//    $('#allTasksDiv').text('');
-//
-//    tasks.forEach(function (task){
-//        $('<div/>').text(task.name + ' : ' + task.description).appendTo($('#allTasksDiv'));
-//        $('#allTasksDiv')[0].scrollTop = $('#allTasksDiv')[0].scrollHeight;
-//    })
-//};
-//
-//FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
-//
-//// RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION UPON REQUEST
-//function fetchAllTasks(userId) {
-//    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Users/' + userId + '/Subjects');
-//    var tasks = [];
-//
-//    subjectsRef.once("value", function(snapshot) {
-//        if (snapshot.numChildren() > 0) {
-//            $.each(snapshot.val(), function(snapshot){
-//
-//                if (snapshot.numChildren() > 0) {
-//
-//                }
-//
-//                //tasks.push(value)
-//            });
-//        }
-//        displayAllTasks(tasks);
-//    });
-//}
-
-
-
-
 
 //===========================================================================================================
-//TRYING OUT FIREBASE (RÃ“ISIN)
+//TRYING OUT FIREBASE (RÓISIN)
 //===========================================================================================================
 
 new Firebase('https://shining-inferno-9814.firebaseio.com/');       //REFERENCES ROISIN'S FIREBASE DATABASE

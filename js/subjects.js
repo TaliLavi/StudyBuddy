@@ -22,21 +22,21 @@ function createSubject() {
     colourField.val('');
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchAllSubjects(getActiveUser());
+    fetchActiveSubjects(getActiveUser());
 };
 
 // DISPLAY SUBJECTS INFORMATION
-function displayAllSubjects(subjectDict) {
+function displayActiveSubjects(subjectDict) {
     // CLEAR CURRENT DISPLAY OF SUBJECTS
     $('#allSubjectsDiv').text('');
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
-            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + '</div>');
+            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey + '</div>');
         })
     }
 }
 
 // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
 $(document).ready(function(){
-    fetchAllSubjects(getActiveUser());
+    fetchActiveSubjects(getActiveUser());
 });

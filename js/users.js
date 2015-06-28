@@ -24,7 +24,7 @@ function createUser() {
     emailField.val('');
 
     // REFRESH USERS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchAllUsers();
+    fetchActiveUsers();
 };
 
 // DISPLAY USERS INFORMATION
@@ -40,5 +40,5 @@ function displayAllUsers(users) {
 
 // RETRIEVE AND DISPLAY ALL USERS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
 $(document).ready(function(){
-    fetchAllUsers();
+    fetchActiveUsers();
 });
