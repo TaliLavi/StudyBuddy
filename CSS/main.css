@@ -110,6 +110,10 @@ h4{
     width: 70%;
     background-color: #b0e0e6;
 }
+/*===================================================================================================================*/
+/*MODAL WINDOWS*/
+/*===================================================================================================================*/
+
 
 /*This is the greyed-out background behind the modal window*/
 .modal-bg{
@@ -117,12 +121,12 @@ h4{
     position:fixed;
     left:0;right:0;
     top:0;bottom:0;
-    z-index:100;
+    z-index:0;
     background-color:rgba(50,50,50,0.5);
 }
 
 /*This is the modal window itself*/
-#modal{
+.modal{
     position:absolute;
     background-color:#F5F5F6;
     display: none;
@@ -137,7 +141,7 @@ h4{
 }
 
 /*The span div inside the modal is the coloured bar along the top with the title & the Close button*/
-#modal span{
+.modal span{
     display: block;
     background:#5DC3A7;
     padding: 10px;
@@ -146,13 +150,13 @@ h4{
 }
 
 /*This is the close(x) button*/
-#close{
+.closeX{
     float: right;
     color: #fff;
     font-family: serif;
     font-size: 15px;
 }
-#close:hover{
+.closeX:hover{
     color: #000;
 }
 
@@ -190,8 +194,31 @@ input{
     background-color: #0FC491;
 }
 
+/*===============================================================================================*/
+/*SUBJECTS CONTAINER*/
+/*===============================================================================================*/
+
 #subjectsContainer{
     display: none;
     background-color: #4E4E5F;
+    z-index: 100;
+    position: absolute;
+    width: 800px;
 }
 
+/*===============================================================================================*/
+/*TESTING LAYERS */
+/*===============================================================================================*/
+
+
+
+#testListDiv{
+    background-color: cadetblue;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    z-index: 200;
+    right: 0px;
+    top: 0px;
+    display:none;
+}
