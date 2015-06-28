@@ -31,7 +31,10 @@ function displayActiveSubjects(subjectDict) {
     $('#allSubjectsDiv').text('');
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
-            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey + '</div>');
+            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey + '' +
+                                        '<div id="tasks' + subjectKey + '"></div></div>');
+            // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
+            fetchActiveTasks(subjectKey);
         })
     }
 }

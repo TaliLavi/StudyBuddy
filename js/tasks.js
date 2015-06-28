@@ -25,3 +25,16 @@ function createTask(subjectId) {
     //// REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     //fetchActiveTasks();
 };
+
+// DISPLAY TASKS INFORMATION
+function displayActiveTasks(subjectKey, tasksDict) {
+    // CLEAR CURRENT DISPLAY OF Tasks
+    var subject_div_id = "#tasks" + subjectKey;
+    $(subject_div_id).text('');
+    if (tasksDict !== null) {
+        $.each(tasksDict, function(taskKey, taskData){
+            $(subject_div_id).append('<div>' + taskData.title + '</div>');
+
+        })
+    }
+}

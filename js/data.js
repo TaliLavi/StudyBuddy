@@ -145,6 +145,14 @@ function pushNewTask(subjectId, title, description, assigned_date, time_estimati
 };
 
 
+// RETRIEVE AND DISPLAY ALL TASKS INFORMATION UPON REQUEST
+function fetchActiveTasks(subjectId) {
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/active/' + subjectId);
+    tasksRef.once("value", function(snapshot) {
+        displayActiveTasks(subjectId, snapshot.val());
+    });
+}
+
 //=====================================================================
 //                              CHECKLIST ITEMS
 //=====================================================================
