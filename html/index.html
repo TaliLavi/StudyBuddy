@@ -6,10 +6,15 @@
 
   <link rel="stylesheet" type="text/css" href="../CSS/Bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../CSS/main.css">
-  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
-
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp'>
   <link rel='stylesheet prefetch' href='lang=en'>
+  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/subjects.js"></script>
+  <script src="../js/tasks.js"></script>
+
 </head>
 
 <h3>Sortable Column Using <a href="http://rubaxa.github.io/Sortable/" target="_blank">Rubaxa Library</a></h3>
@@ -17,164 +22,127 @@
 <br>
 
 <body onload="preparePage()">
-<button id="showSubjectsButton" onclick="showSubjects();">Show Subjects</button>
-<button id="testDivButton"  onclick="showTestDiv();">Show Test Div</button>
-<button onclick="openAddSubject();">Add a Subject</button>
-<br><br>
+
+  <button id="showSubjectsButton" onclick="showSubjects();">Show Subjects</button>
+  <button id="testDivButton"  onclick="showTestDiv();">Show Test Div</button>
+  <button onclick="openAddSubject();">Add a Subject</button>
+  <br><br>
+
+  <!--========================================================================================================-->
+  <!--DAYS OF THE WEEK COLUMNS-->
+  <!--========================================================================================================-->
+    <div class ="container">
+      <div class="row">
+
+        <div class="col-md-2 day">
+          <h4>Monday</h4>
+          <div id="addTileMo" class ="button" onclick="openAddTask('monday');">Add Tile</div>
+          <ul class="list" id="monday">
+          </ul>
+        </div>
 
 
+        <div class="col-md-2 day">
+          <h4>Tuesday</h4>
+          <div id="addTileTu" class ="button" onclick="openAddTask('tuesday');">Add Tile</div>
+          <ul class="list" id="tuesday">
+          </ul>
+        </div>
 
-<!--========================================================================================================-->
-<!--DAYS OF THE WEEK COLUMNS-->
-<!--========================================================================================================-->
-  <div class ="container">
+
+        <div class="col-md-2 day">
+          <h4>Wednesday</h4>
+          <div id="addTileWe" class ="button" onclick="openAddTask('wednesday');">Add Tile</div>
+          <ul class="list" id="wednesday">
+          </ul>
+        </div>
+
+        <div class="col-md-2 day">
+          <h4>Thursday</h4>
+          <div id="addTileTh" class ="button" onclick="openAddTask('thursday');">Add Tile</div>
+          <ul class="list" id="thursday">
+          </ul>
+        </div>
+
+        <div class="col-md-2 day">
+          <h4>Friday</h4>
+          <div id="addTileFr" class ="button" onclick="openAddTask('friday');">Add Tile</div>
+          <ul class="list" id="friday">
+          </ul>
+        </div>
+
+        <div class="col-md-2 day">
+          <h4>Saturday</h4>
+          <div id="addTileSa" class ="button" onclick="openAddTask('saturday');">Add Tile</div>
+          <ul class="list" id="saturday">
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  <!--========================================================================================================-->
+  <!--SUBJECT COLUMNS-->
+  <!--========================================================================================================-->
+  <div class ="container" id="subjectsContainer">
     <div class="row">
 
-      <div class="col-md-2 day">
-        <h4>Monday</h4>
-        <div id="addTileMo" class ="button" onclick="openAddTask($monday);">Add Tile</div>
-        <ul class="list" id="monday">
-        </ul>
-      </div>
-
-
-      <div class="col-md-2 day">
-        <h4>Tuesday</h4>
-        <div id="addTileTu" class ="button" onclick="openAddTask($tuesday);">Add Tile</div>
-        <ul class="list" id="tuesday">
-        </ul>
-      </div>
-
-
-      <div class="col-md-2 day">
-        <h4>Wednesday</h4>
-        <div id="addTileWe" class ="button" onclick="openAddTask($wednesday);">Add Tile</div>
-        <ul class="list" id="wednesday">
-        </ul>
-      </div>
-
-      <div class="col-md-2 day">
-        <h4>Thursday</h4>
-        <div id="addTileTh" class ="button" onclick="openAddTask($thursday);">Add Tile</div>
-        <ul class="list" id="thursday">
-        </ul>
-      </div>
-
-      <div class="col-md-2 day">
-        <h4>Friday</h4>
-        <div id="addTileFr" class ="button" onclick="openAddTask($friday);">Add Tile</div>
-        <ul class="list" id="friday">
-        </ul>
-      </div>
-
-      <div class="col-md-2 day">
-        <h4>Saturday</h4>
-        <div id="addTileSa" class ="button" onclick="openAddTask($saturday);">Add Tile</div>
-        <ul class="list" id="saturday">
-        </ul>
+      <div class="col-md-2">
+        <h4>English</h4>
+        <div id="addTileEnglish" class ="button" onclick="addTileSubject('english');">Add Tile</div>
+        <ul class="list" id="english"></ul>
       </div>
 
     </div>
   </div>
 
-<!--========================================================================================================-->
-<!--SUBJECT COLUMNS-->
-<!--========================================================================================================-->
-<div class ="container" id="subjectsContainer">
-  <div class="row">
+  <!--========================================================================================================-->
+  <!--DIV TO TEST DRAGGING FROM ONE LAYER TO THE OTHER-->
+  <!--========================================================================================================-->
 
-    <div class="col-md-2">
-      <h4>English</h4>
-      <div id="addTileEnglish" class ="button" onclick="addTileSubject($english, englishClass);">Add Tile</div>
-      <ul class="list" id="english">
+    <ul class="list" id="testListDiv">
+      <button id="addTileTestDiv" onclick="addTileSubject('english');">Add Tile</button>
+    </ul>
 
-      </ul>
+
+    <!--========================================================================================================-->
+    <!--MODAL WINDOW (ADD TASK)-->
+    <!--========================================================================================================-->
+    <div id="taskModalBG" class="modal-bg">
+      <div id="modalTask" class="modal">
+        <span>
+          New Task for<span id="modalTaskDay"></span>
+          <a href="#close" id="close" class="closeX">&#215;</a>
+        </span>
+        <form>
+          <select id ="subjectInput">
+            <option value="noSubject">Choose Subject</option>
+            <option value="english">English</option>
+            <option value="french">French</option>
+            <option value="history">History</option>
+            <option value="geography">Geography</option>
+            <option value="maths">Maths</option>
+            <option value="biology">Biology</option>
+          </select>
+          <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
+          <button name="submit" id="submit" type="button" onclick="addTile();">Add Task</button>
+        </form>
+      </div>
     </div>
-
-
-    <div class="col-md-2">
-      <h4>French</h4>
-      <div id="addTileFrench" class ="button" onclick="addTileSubject($french, frenchClass);">Add Tile</div>
-      <ul class="list" id="french">
-      </ul>
-    </div>
-
-
-    <div class="col-md-2">
-      <h4>History</h4>
-      <div id="addTileHistory" class ="button" onclick="addTileSubject($history, historyClass);">Add Tile</div>
-      <ul class="list" id="history">
-      </ul>
-    </div>
-
-    <div class="col-md-2">
-      <h4>Geography</h4>
-      <div id="addTileGeog" class ="button" onclick="addTileSubject($geography, geographyClass);">Add Tile</div>
-      <ul class="list" id="geography">
-      </ul>
-    </div>
-
-    <div class="col-md-2">
-      <h4>Maths</h4>
-      <div id="addTileMaths" class ="button" onclick="addTileSubject($maths, mathsClass);">Add Tile</div>
-      <ul class="list" id="maths">
-      </ul>
-    </div>
-
-    <div class="col-md-2">
-      <h4>Biology</h4>
-      <div id="addTileBiology" class ="button" onclick="addTileSubject($biology, biologyClass);">Add Tile</div>
-      <ul class="list" id="biology">
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<!--========================================================================================================-->
-<!--DIV TO TEST DRAGGING FROM ONE LAYER TO THE OTHER-->
-<!--========================================================================================================-->
-
-  <ul class="list" id="testListDiv">
-    <button id="addTileTestDiv" onclick="addTileSubject($testListDiv, englishClass);">Add Tile</button>
-  </ul>
-
 
   <!--========================================================================================================-->
-  <!--MODAL WINDOW (ADD TASK)-->
+  <!--MODAL WINDOW (ADD SUBJECT)-->
   <!--========================================================================================================-->
-  <div id="taskModalBG" class="modal-bg">
-    <div id="modal" class="modal">
-      <span>New Task<a href="#close" id="close" class="closeX">&#215;</a></span>
+  <div id="subjectModalBG" class="modal-bg">
+    <div id="modalSubject" class="modal">
+      <span>New Subject<a href="#close" id="closeModalSubject" class="closeX">&#215;</a></span>
       <form>
-        <select id ="subjectInput">
-          <option value="noSubject">Choose Subject</option>
-          <option value="english">English</option>
-          <option value="french">French</option>
-          <option value="history">History</option>
-          <option value="geography">Geography</option>
-          <option value="maths">Maths</option>
-          <option value="biology">Biology</option>
-        </select>
-        <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
-        <button name="submit" id="submit" type="button" onclick="addTile();">Add Task</button>
+        <input id="subjectNameInput" name="subjectName" type="textbox" placeholder="Subject name here." required>
+        <input id="subjectColourInput" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+        <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
       </form>
     </div>
   </div>
-
-<!--========================================================================================================-->
-<!--MODAL WINDOW (ADD SUBJECT)-->
-<!--========================================================================================================-->
-<div id="subjectModalBG" class="modal-bg">
-  <div id="modalSubject" class="modal">
-    <span>New Subject<a href="#close" id="closeModalSubject" class="closeX">&#215;</a></span>
-    <form>
-      <input id="subjectNameInput" name="subjectName" type="textbox" placeholder="Subject name here." required>
-      <input id="subjectColourInput" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
-      <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
-    </form>
-  </div>
-</div>
 
   <script src='../js/jquery.js'></script>
   <script src='../js/TweenMax.js'></script>

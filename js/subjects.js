@@ -28,10 +28,10 @@ function createSubject() {
 // DISPLAY SUBJECTS INFORMATION
 function displayActiveSubjects(subjectDict) {
     // CLEAR CURRENT DISPLAY OF SUBJECTS
-    $('#allSubjectsDiv').text('');
+    $('#subjectsDiv').text('');
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
-            $('#allSubjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey +
+            $('#subjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey +
                                         '<div id="tasks' + subjectKey + '"></div></div>');
             // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
             fetchActiveTasks(subjectKey, displayActiveTasks);

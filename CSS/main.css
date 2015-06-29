@@ -39,7 +39,6 @@ h4{
     padding: 0px;
     z-index: 0px;
     min-height: 60px; /*minimal height to ensure cards could be added to an empty list*/
-
 }
 
 .tile {
@@ -149,6 +148,10 @@ h4{
     border-radius:3px;
 }
 
+#modalTaskDay{
+    display: inline;
+}
+
 /*This is the close(x) button*/
 .closeX{
     float: right;
@@ -198,13 +201,13 @@ input{
 /*SUBJECTS CONTAINER*/
 /*===============================================================================================*/
 
-#subjectsContainer{
-    display: none;
-    background-color: #4E4E5F;
-    z-index: 100;
-    position: absolute;
-    width: 800px;
-}
+/*#subjectsContainer{*/
+    /*display: none;*/
+    /*background-color: #4E4E5F;*/
+    /*z-index: 100;*/
+    /*position: absolute;*/
+    /*width: 800px;*/
+/*}*/
 
 /*===============================================================================================*/
 /*TESTING LAYERS */
