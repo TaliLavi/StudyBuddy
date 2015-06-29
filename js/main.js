@@ -28,19 +28,27 @@ var dayList;
 
 
 function addTile(){
+    //gets user input of form
     var subjectInput = $('#subjectInput').val();
-    var userInput = $('#taskInput').val();                             //gets user input of form
-    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);   //Creates a new tile div
+    var userInput = $('#taskInput').val();
+    //Creates a new tile div
+    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);
     var day = $('#modalTaskDay').text();
-    $('#'+day).append(newTile);                                                             //Appends it to the list
-    $('.modal-bg').fadeOut();                                                               //Fade out the greyed background
-    $('#modalTask').fadeOut();                                                                  //Fade out the modal window
+    //Appends it to the list
+    $('#'+day).append(newTile);
+    //Fade out the greyed background
+    $('.modal-bg').fadeOut();
+    //Fade out the modal window
+    $('#modalTask').fadeOut();
 }
 
 function openAddTask(day){
-    $('#taskInput').val('');                  //Clear the fields of the modal window
-    $('#modalTask').css('display','block');     //Makes the modal window display
-    $('#taskModalBG').fadeIn();                 //Fades in the greyed-out background
+    //Clear the fields of the modal window
+    $('#taskInput').val('');
+    //Makes the modal window display
+    $('#modalTask').css('display','block');
+    //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();
 
 
     // TODO: This way of passing the name of the day is not ideal.

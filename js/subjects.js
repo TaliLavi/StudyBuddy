@@ -29,10 +29,22 @@ function createSubject() {
 function displayActiveSubjects(subjectDict) {
     // CLEAR CURRENT DISPLAY OF SUBJECTS
     $('#subjectsDiv').text('');
+    $('#subjectInput').text('');
+    $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
+
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
-            $('#subjectsDiv').append('<div id="' + subjectKey + '">' + subjectData.name + ' : ' + subjectData.colour + ' : ' + subjectKey +
-                                        '<div id="tasks' + subjectKey + '"></div></div>');
+            $('#subjectsDiv').append(
+                '<div class="col-md-2">' +
+                    '<h4>' + subjectData.name + '</h4>' +
+                    '<div id="addTileEnglish" class ="button" onclick="addTileSubject(\'' + subjectData.name + '\');">Add Tile</div>' +
+                    '<ul class="list" id="' + subjectKey + '"></ul>' +
+                '</div>'
+            );
+            $('#subjectInput').append(
+                '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
+            )
+
             // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
             fetchActiveTasks(subjectKey, displayActiveTasks);
         })

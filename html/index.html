@@ -85,7 +85,7 @@
   <!--SUBJECT COLUMNS-->
   <!--========================================================================================================-->
   <div class ="container" id="subjectsContainer">
-    <div class="row">
+    <div class="row" id="subjectsDiv">
 
       <div class="col-md-2">
         <h4>English</h4>
@@ -115,15 +115,7 @@
           <a href="#close" id="close" class="closeX">&#215;</a>
         </span>
         <form>
-          <select id ="subjectInput">
-            <option value="noSubject">Choose Subject</option>
-            <option value="english">English</option>
-            <option value="french">French</option>
-            <option value="history">History</option>
-            <option value="geography">Geography</option>
-            <option value="maths">Maths</option>
-            <option value="biology">Biology</option>
-          </select>
+          <select id ="subjectInput"></select>
           <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
           <button name="submit" id="submit" type="button" onclick="addTile();">Add Task</button>
         </form>
