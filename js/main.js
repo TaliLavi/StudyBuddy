@@ -48,7 +48,7 @@ function openAddTask(day){
     $('#modalTask').css('display','block');
     //Fades in the greyed-out background
     $('#taskModalBG').fadeIn();
-    // Clear any old onclick handlers
+    // Clear any old onclick handler
     $('#submitTask').off("click");
     // Set the new onclick handler
     $('#submitTask').on("click", function(){addTile(day)});

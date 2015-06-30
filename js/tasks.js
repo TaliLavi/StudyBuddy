@@ -29,12 +29,13 @@ function createTask(subjectId) {
 // DISPLAY TASKS INFORMATION
 function displayActiveTasks(subjectKey, tasksDict) {
     // CLEAR CURRENT DISPLAY OF Tasks
-    var subject_div_id = "#tasks" + subjectKey;
+    var subject_div_id = "#" + subjectKey;
     $(subject_div_id).text('');
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
-            $(subject_div_id).append('<div>' + taskData.title + '</div>');
-
+            $(subject_div_id).append('<li class="tile">' + taskData.title + '</li>');
         })
     }
 }
+
+

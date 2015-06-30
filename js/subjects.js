@@ -34,6 +34,7 @@ function displayActiveSubjects(subjectDict) {
 
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
+            // create a div for each subject and append it to subjectsDiv
             $('#subjectsDiv').append(
                 '<div class="col-md-2">' +
                     '<h4>' + subjectData.name + '</h4>' +
@@ -41,6 +42,7 @@ function displayActiveSubjects(subjectDict) {
                     '<ul class="list" id="' + subjectKey + '"></ul>' +
                 '</div>'
             );
+            // create an option for each subject and append to the drop down menu on the Add Task modal.
             $('#subjectInput').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             )
