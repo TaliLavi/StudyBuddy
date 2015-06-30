@@ -181,7 +181,7 @@ input{
     border-radius:3px;
 }
 
-#submit {
+#submitTask {
     float: right;
     padding: 8px 12px;
     margin-top: 15px;
@@ -190,10 +190,10 @@ input{
     color: #fff;
     cursor: pointer;
 }
-#submit :active{
+#submitTask:active{
     margin: 18px 10px;
 }
-#submit:hover{
+#submitTask:hover{
     background-color: #0FC491;
 }
 

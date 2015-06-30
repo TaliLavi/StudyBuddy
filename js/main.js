@@ -27,13 +27,12 @@ function preparePage() {
 var dayList;
 
 
-function addTile(){
+function addTile(day){
     //gets user input of form
     var subjectInput = $('#subjectInput').val();
     var userInput = $('#taskInput').val();
     //Creates a new tile div
     var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);
-    var day = $('#modalTaskDay').text();
     //Appends it to the list
     $('#'+day).append(newTile);
     //Fade out the greyed background
@@ -49,12 +48,10 @@ function openAddTask(day){
     $('#modalTask').css('display','block');
     //Fades in the greyed-out background
     $('#taskModalBG').fadeIn();
-
-
-    // TODO: This way of passing the name of the day is not ideal.
-    // It will probably be best to just generate a custom modal div that has that day as the target for its button,
-    // e.g. onclick="addTile('english');"
-    $('#modalTaskDay').text(day);
+    // Clear any old onclick handlers
+    $('#submitTask').off("click");
+    // Set the new onclick handler
+    $('#submitTask').on("click", function(){addTile(day)});
 }
 
 function addTileSubject(subject){
