@@ -1,53 +1,25 @@
-html {
-    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-}
 
-body {
-    background: #3A3A4D;
-    padding: 25px;
-}
-
-h3 {
-    color: #efefef;
-    font-weight: normal;
-    margin-bottom: 30px;
-}
-h3 a {
-    color: darkcyan;
-    text-decoration: none;
-    padding-bottom: 3px;
-}
-h3 a:hover {
-    color: deepskyblue;
-}
-
-h4{
-    color: #efefef;
-    display: block;
-    position: static;
-    font-weight: normal;
-
-}
-
+/*This is the pale gray div that the cards appear in*/
 .list {
-    background-color:#242437;
+    background-color: whitesmoke;
     width: 100%;
     height: 100%;
     position: relative;
     display: block;
     margin-top: 5px;
     padding: 0px;
-    z-index: 0px;
-    min-height: 60px; /*minimal height to ensure cards could be added to an empty list*/
+    z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
+    min-height: 60px;                   /*minimal height to ensure cards could be added to an empty list*/
 }
 
+/*These are the cards*/
 .tile {
     color: #3A3A4D;
     font-weight: normal;
     font-size: 1em;
     display: block;
     position: relative;
-    background-color: deepskyblue;
+    background-color: darkseagreen;
     width: 100%;
     height:60px;
     margin-bottom: 7px;             /*create a margin between cards*/
@@ -55,66 +27,11 @@ h4{
     padding: 0px;
 }
 
-.tile.english{
-    background-color: lightseagreen;
-}
-
-.tile.french{
-    background-color: steelblue;
-}
-
-.tile.history{
-    background-color: darkseagreen;
-}
-
-.tile.geography{
-    background-color: deepskyblue;
-}
-
-.tile.maths{
-    background-color: darkslateblue;
-}
-
-.tile.biology{
-    background-color: mediumpurple;
-}
-
-.sortable-ghost {
-    visibility: hidden;
-}
-
-.button{
-    display: block;
-    position: static;
-    background-color: #3A3A4D;
-    color: darkgray;
-    width:100%;
-    height:40px;
-    border-style: solid;
-    border-color: darkcyan;
-    font-size: 1em;
-    text-align: center;
-    line-height: 32px;
-}
-
-
-.button:hover {
-    background-color: darkcyan;
-    color:whitesmoke;
-}
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    background-color: #b0e0e6;
-}
 /*===================================================================================================================*/
 /*MODAL WINDOWS*/
 /*===================================================================================================================*/
 
-
-/*This is the greyed-out background behind the modal window*/
+/*This is the greyed-out background behind the modal window. It covers the whole screen*/
 .modal-bg{
     display: none;
     position:fixed;
@@ -131,7 +48,7 @@ h4{
     display: none;
     top:50%;
     left:50%;
-    z-index:101;
+    z-index: 1;
     width:340px;
     height:260px;
     margin-top:-130px;
@@ -142,25 +59,16 @@ h4{
 /*The span div inside the modal is the coloured bar along the top with the title & the Close button*/
 .modal span{
     display: block;
-    background:#5DC3A7;
+    background: darkseagreen;
     padding: 10px;
     color:#fff;
-    border-radius:3px;
-}
-
-#modalTaskDay{
-    display: inline;
 }
 
 /*This is the close(x) button*/
 .closeX{
+    color:#fff;
     float: right;
-    color: #fff;
-    font-family: serif;
     font-size: 15px;
-}
-.closeX:hover{
-    color: #000;
 }
 
 form{
@@ -171,7 +79,7 @@ form *{
     margin:10px;
 }
 input:focus{
-    border:2px solid #5DC3A7;
+    border:2px solid darkseagreen;
     outline:0;
 }
 input{
@@ -181,47 +89,18 @@ input{
     border-radius:3px;
 }
 
-#submitTask {
-    float: right;
-    padding: 8px 12px;
-    margin-top: 15px;
-    background: #5DC3A7;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-}
-#submitTask:active{
-    margin: 18px 10px;
-}
-#submitTask:hover{
-    background-color: #0FC491;
-}
-
-/*===============================================================================================*/
-/*SUBJECTS CONTAINER*/
-/*===============================================================================================*/
-
-/*#subjectsContainer{*/
-    /*display: none;*/
-    /*background-color: #4E4E5F;*/
-    /*z-index: 100;*/
-    /*position: absolute;*/
-    /*width: 800px;*/
-/*}*/
-
 /*===============================================================================================*/
 /*TESTING LAYERS */
 /*===============================================================================================*/
-
-
 
 #testListDiv{
     background-color: cadetblue;
     height: 500px;
     width: 500px;
     position: absolute;
-    z-index: 200;
+    z-index: 2;
     right: 0px;
     top: 0px;
     display:none;
+    box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
 }
