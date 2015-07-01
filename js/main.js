@@ -22,19 +22,19 @@ function preparePage() {
 }
 
 //===========================================================================================================
-    //CREATE A TILE
+    //CREATE A TASK CARD
 //===========================================================================================================
 var dayList;
 
 
-function addTile(day){
+function addTask(day){
     //gets user input of form
     var subjectInput = $('#subjectInput').val();
     var userInput = $('#taskInput').val();
-    //Creates a new tile div
-    var newTile = $("<li></li>").addClass("tile").addClass(subjectInput).html(userInput);
+    //Creates a new task card div
+    var newTaskCard = $("<li></li>").addClass("taskCard").addClass(subjectInput).html(userInput);
     //Appends it to the list
-    $('#'+day).append(newTile);
+    $('#'+day).append(newTaskCard);
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
@@ -51,11 +51,11 @@ function openAddTask(day){
     // Clear any old onclick handler
     $('#submitTask').off("click");
     // Set the new onclick handler
-    $('#submitTask').on("click", function(){addTile(day)});
+    $('#submitTask').on("click", function(){addTask(day)});
 }
 
-function addTileSubject(subject){
-    $('#'+subject).append('<li class="tile ' + subject + '"></li>');
+function addTaskSubject(subject){
+    $('#'+subject).append('<li class="taskCard ' + subject + '"></li>');
 }
 
 //===========================================================================================================

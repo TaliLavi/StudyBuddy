@@ -1,4 +1,6 @@
 
+
+
 /*This is the pale gray div that the cards appear in*/
 .list {
     background-color: whitesmoke;
@@ -13,7 +15,7 @@
 }
 
 /*These are the cards*/
-.tile {
+.taskCard {
     color: #3A3A4D;
     font-weight: normal;
     font-size: 1em;
@@ -25,6 +27,11 @@
     margin-bottom: 7px;             /*create a margin between cards*/
     text-align: center;
     padding: 0px;
+}
+
+.day {
+    margin-right: 3%;
+    margin-left: 3%;
 }
 
 /*===================================================================================================================*/
@@ -104,3 +111,45 @@ input{
     display:none;
     box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
 }
+
+
+/*===============================================================================================*/
+/*SEVEN COLUMN GRID / */
+/*===============================================================================================*/
+
+/*The CSS below grid below is generated from http://www.responsivegridsystem.com*/
+/*It allows you to decide the number of columns you want in a row, and set the margin */
+/*you want to use, and then it generates the HTML and CSS to go with it. It's pretty cool!*/
+
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 2%;
+}
+
+/*  COLUMN SETUP  */
+.col {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF SEVEN  */
+
+.day {
+    width: 12.91%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+    .col {  margin: 1% 0 1% 0%; }
+    .day { width: 100%; }
+}
+

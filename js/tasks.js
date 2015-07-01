@@ -33,7 +33,7 @@ function displayActiveTasks(subjectKey, tasksDict) {
     $(subject_div_id).text('');
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
-            $(subject_div_id).append('<li class="tile">' + taskData.title + '</li>');
+            $(subject_div_id).append('<li class="taskCard">' + taskData.title + '</li>');
         })
     }
 }
