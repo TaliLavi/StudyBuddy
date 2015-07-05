@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" type="text/css" href="../CSS/Bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../CSS/main.css">
+  <link rel="stylesheet" href="../CSS/subjectsBottomPanel.css">
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp'>
   <link rel='stylesheet prefetch' href='lang=en'>
   <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
@@ -19,108 +20,119 @@
 
 <body onload="preparePage()">
 
-  <button id="showSubjectsButton" onclick="showSubjects();">Show Subjects</button>
-  <button id="testDivButton"  onclick="showTestDiv();">Show Test Div</button>
-  <button onclick="openAddSubject();">Add a Subject</button>
-  <br>
-
-  <!--========================================================================================================-->
-  <!--DAYS OF THE WEEK COLUMNS-->
-  <!--========================================================================================================-->
-
-        <div class="section group">
-                <div class="col day">
-                    <h4>Monday</h4>
-                    <button onclick="openAddTask('monday');">Add Task</button>
-                    <ul class="list" id="monday">
-                    </ul>
-                </div>
-
-
-                <div class="col day">
-                    <h4>Tuesday</h4>
-                    <button onclick="openAddTask('tuesday');">Add Task</button>
-                    <ul class="list" id="tuesday">
-                    </ul>
-                </div>
-
-
-                <div class="col day">
-                    <h4>Wednesday</h4>
-                    <button onclick="openAddTask('wednesday');">Add Task</button>
-                    <ul class="list" id="wednesday">
-                    </ul>
-                </div>
-
-                <div class="col day">
-                    <h4>Thursday</h4>
-                    <button onclick="openAddTask('thursday');">Add Task</button>
-                    <ul class="list" id="thursday">
-                    </ul>
-                </div>
-
-                <div class="col day">
-                    <h4>Friday</h4>
-                    <button onclick="openAddTask('friday');">Add Task</button>
-                    <ul class="list" id="friday">
-                    </ul>
-                </div>
-
-                <div class="col day">
-                    <h4>Saturday</h4>
-                    <button onclick="openAddTask('saturday');">Add Task</button>
-                    <ul class="list" id="saturday">
-                    </ul>
-                </div>
-
-              <div class="col day">
-                <h4>Sunday</h4>
-                <button onclick="openAddTask('sunday');">Add Task</button>
-                <ul class="list" id="sunday">
-                </ul>
-              </div>
-        </div>
-
-  <!--========================================================================================================-->
-  <!--SUBJECT COLUMNS-->
-  <!--========================================================================================================-->
-  <div class ="container" id="subjectsContainer">
-    <div class="row" id="subjectsDiv">
-
-      <div class="col-md-2">
-        <h4>English</h4>
-        <div class ="button" onclick="addTaskSubject('english');">Add Task</div>
-        <ul class="list" id="english"></ul>
-      </div>
-
+  <div class="container-fluid">
+    <!-- Main navigation -->
+    <div class="row">
+      <button class="col-md-4 mainNav" id="profileButton">Profile</button>
+      <button class="col-md-4 mainNav" id="calendarButton">Calendar</button>
+      <button class="col-md-4 mainNav" id="subjectsButton">Subjects</button>
     </div>
   </div>
 
+  <!-- Profile page -->
+  <div id="profilePage">
+    <div>
+      Content for Profile page
+    </div>
+  </div>
+
+
   <!--========================================================================================================-->
-  <!--DIV TO TEST DRAGGING FROM ONE LAYER TO THE OTHER-->
+  <!--CALENDAR PAGE-->
   <!--========================================================================================================-->
+  <div id="calendarPage">
 
-    <ul class="list" id="testListDiv">
-      <button onclick="addTaskSubject('english');">Add Task</button>
-    </ul>
+    <div class="section group">
+      <div class="col day">
+        <h4>Monday</h4>
+        <button onclick="openAddTask('monday');">Add Task</button>
+        <ul class="list" id="monday">
+        </ul>
+      </div>
 
+      <div class="col day">
+        <h4>Tuesday</h4>
+        <button onclick="openAddTask('tuesday');">Add Task</button>
+        <ul class="list" id="tuesday">
+        </ul>
+      </div>
 
-    <!--========================================================================================================-->
-    <!--MODAL WINDOW (ADD TASK)-->
-    <!--========================================================================================================-->
-    <div id="taskModalBG" class="modal-bg">
-      <div id="modalTask" class="modal">
-        <span>
-          New Task
-          <a href="#close" id="close" class="closeX">&#215;</a>
-        </span>
-        <form>
-          <select id ="subjectInput"></select>
-          <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
-          <button name="submitsubmit" id="submitTask" type="button">Add Task</button>
-        </form>
+      <div class="col day">
+        <h4>Wednesday</h4>
+        <button onclick="openAddTask('wednesday');">Add Task</button>
+        <ul class="list" id="wednesday">
+        </ul>
+      </div>
+
+      <div class="col day">
+        <h4>Thursday</h4>
+        <button onclick="openAddTask('thursday');">Add Task</button>
+        <ul class="list" id="thursday">
+        </ul>
+      </div>
+
+      <div class="col day">
+        <h4>Friday</h4>
+        <button onclick="openAddTask('friday');">Add Task</button>
+        <ul class="list" id="friday">
+        </ul>
+      </div>
+
+      <div class="col day">
+        <h4>Saturday</h4>
+        <button onclick="openAddTask('saturday');">Add Task</button>
+        <ul class="list" id="saturday">
+        </ul>
+      </div>
+
+      <div class="col day">
+        <h4>Sunday</h4>
+        <button onclick="openAddTask('sunday');">Add Task</button>
+        <ul class="list" id="sunday">
+        </ul>
       </div>
     </div>
+
+    <!--========================================================================================================-->
+    <!--SUBJECTS FOOTER-->
+    <!--========================================================================================================-->
+    <footer id="panelWrapper">
+      <div id="flip">Task manager</div>
+      <div id="subjectsPanel">Here are all of your subjects!</div>
+    </footer>
+
+  </div>
+
+  <!--========================================================================================================-->
+  <!--SUBJECT PAGE-->
+  <!--========================================================================================================-->
+  <div id="subjectsPage">
+      <div class ="container" id="subjectsContainer">
+        <div class="row">
+          <div class="row" id="subjectsDiv">
+          </div>
+          <button onclick="openAddSubject();">Add a Subject</button>
+        </div>
+      </div>
+  </div>
+
+
+  <!--========================================================================================================-->
+  <!--MODAL WINDOW (ADD TASK)-->
+  <!--========================================================================================================-->
+  <div id="taskModalBG" class="modal-bg">
+    <div id="modalTask" class="modal">
+      <span>
+        New Task
+        <a href="#close" id="close" class="closeX">&#215;</a>
+      </span>
+      <form>
+        <select id ="subjectInput"></select>
+        <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
+        <button name="submitsubmit" id="submitTask" type="button">Add Task</button>
+      </form>
+    </div>
+  </div>
 
   <!--========================================================================================================-->
   <!--MODAL WINDOW (ADD SUBJECT)-->

@@ -1,4 +1,10 @@
 
+.mainNav {
+    background-color: #e5eecc;
+    text-align: center;
+    padding: 10px;
+    border: solid 1px #c3c3c3;
+}
 
 
 /*This is the pale gray div that the cards appear in*/

@@ -1,0 +1,36 @@
+body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    padding-bottom: 50px;
+    min-height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+}
+
+#panelWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#subjectsPanel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+}
+
+#flip {
+    padding: 20px;
+    cursor: pointer;
+}
+
+#subjectsPanel {
+    padding: 50px;
+    display: none;
+}

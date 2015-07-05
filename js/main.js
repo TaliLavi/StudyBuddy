@@ -21,6 +21,57 @@ function preparePage() {
     })
 }
 
+
+//===========================================================================================================
+    //NAVIGATION PANEL
+//===========================================================================================================
+
+
+// show and hide different pages
+var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"]
+var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"]
+function displayPage(pageId, buttonId) {
+    // hide all pages
+    pageIds.forEach(function(id){
+        $(id).hide();
+    })
+    // enable all nav buttons
+    buttonIds.forEach(function(id){
+        $(id).prop("disabled", false);
+    })
+    // only show current page
+    $(pageId).show();
+    // only disable current nav button
+    $(buttonId).prop("disabled", true);
+}
+
+$(document).ready(function(){
+    // set nav buttons
+    $("#profileButton").click(function(){
+        displayPage("#profilePage", "#profileButton")
+    });
+    $("#calendarButton").click(function(){
+        displayPage("#calendarPage", "#calendarButton")
+    });
+    $("#subjectsButton").click(function(){
+        displayPage("#subjectsPage", "#subjectsButton")
+    });
+    // start the app on the calendar page
+    displayPage("#calendarPage", "#calendarButton")
+});
+
+
+$(document).ready(function(){
+    // toggle the bottom Subjects Panel
+    $("#flip").click(function(){
+        $("#subjectsPanel").slideToggle("slow");
+    });
+});
+
+
+
+
+
 //===========================================================================================================
     //CREATE A TASK CARD
 //===========================================================================================================
@@ -54,9 +105,6 @@ function openAddTask(day){
     $('#submitTask').on("click", function(){addTask(day)});
 }
 
-function addTaskSubject(subject){
-    $('#'+subject).append('<li class="taskCard ' + subject + '"></li>');
-}
 
 //===========================================================================================================
 //CANCELLING ANY MODAL WINDOW WITHOUT ADDING ANYTHING
@@ -90,21 +138,8 @@ function addSubject(){
     $('#modalSubject').fadeOut();                                               //Fade out the modal window
 }
 
-//===========================================================================================================
-//SHOW SUBJECTS
-//===========================================================================================================
 
-function showSubjects(){
-    $("#subjectsContainer").toggle();
-}
 
-//===========================================================================================================
-//TESTING DRAGGING TILE FROM TEST DIV LAYER TO WEEK
-//===========================================================================================================
-
-function showTestDiv(){
-    $('#testListDiv').toggle();
-}
 //===========================================================================================================
     //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
 //===========================================================================================================
