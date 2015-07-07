@@ -44,14 +44,7 @@ function displayTasksSubjectsPage(subjectKey, tasksDict) {
 
 // DISPLAY TASKS ON BOTTOM PANEL
 function displayTasksBottomPanel(subjectKey, tasksDict) {
-    // hide subjects div to allow room for tasks
-    $('#subjectsList').hide();
-
     if (tasksDict !== null) {
-        // append a back button
-        $('#tasksList').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
-        // append subjectKey to indicate whith subject these tasks belond to
-        $('#tasksList').append('<div>Here are you tasks for: ' + subjectKey + '</div><br>');
         // append tasks to the taskList div
         $.each(tasksDict, function(taskKey, taskData){
             // Append tasks to bottom panel.
@@ -62,6 +55,17 @@ function displayTasksBottomPanel(subjectKey, tasksDict) {
     }
     // show tasks div
     $('#tasksList').show();
+}
+
+
+function prepareTasksDiv(subjectName, subjectKey) {
+    // hide subjects div to allow room for tasks
+    $('#subjectsList').hide();
+    // append a back button
+    $('#tasksList').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
+    // append subjectKey to indicate whith subject these tasks belond to
+    $('#tasksList').append('<div>Here are you tasks for <strong>' + subjectName + '</strong></div><br>');
+    fetchActiveTasks(subjectKey, displayTasksBottomPanel);
 }
 
 

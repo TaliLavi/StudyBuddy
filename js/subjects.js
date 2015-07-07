@@ -38,9 +38,11 @@ function displayActiveSubjects(subjectDict) {
         $.each(subjectDict, function(subjectKey, subjectData){
 
             // Populate Subject Footer with subjects names.
-            $('#subjectsList').append(
-                '<button class="subject" id="subject' + subjectKey + '" onclick="fetchActiveTasks(\'' + subjectKey + '\', displayTasksBottomPanel);">'
-                + subjectData.name + '</button>'
+            var button_id = "subject" + subjectKey;
+            var onclick_handler = "prepareTasksDiv('" + subjectData.name + "', '"+ subjectKey + "')";
+            $('#subjectsList').append('<button class="subject" id="' + button_id + '"' +
+                'onclick="' + onclick_handler + '">' +
+                subjectData.name + '</button>'
             );
 
             // create a div for each subject and append it to subjectsDiv
