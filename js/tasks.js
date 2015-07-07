@@ -26,16 +26,47 @@ function createTask(subjectId) {
     //fetchActiveTasks();
 };
 
-// DISPLAY TASKS INFORMATION
-function displayActiveTasks(subjectKey, tasksDict) {
+// DISPLAY TASKS ON SUBJECTS PAGE
+function displayTasksSubjectsPage(subjectKey, tasksDict) {
     // CLEAR CURRENT DISPLAY OF Tasks
     var subject_div_id = "#" + subjectKey;
     $(subject_div_id).text('');
+
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
+            // Append tasks to appropriate subjects on Subjects Page.
             $(subject_div_id).append('<li class="taskCard">' + taskData.title + '</li>');
+
+
         })
     }
 }
 
+// DISPLAY TASKS ON BOTTOM PANEL
+function displayTasksBottomPanel(subjectKey, tasksDict) {
+    // hide subjects div to allow room for tasks
+    $('#subjectsList').hide();
 
+    if (tasksDict !== null) {
+        // append a back button
+        $('#tasksList').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
+        // append subjectKey to indicate whith subject these tasks belond to
+        $('#tasksList').append('<div>Here are you tasks for: ' + subjectKey + '</div><br>');
+        // append tasks to the taskList div
+        $.each(tasksDict, function(taskKey, taskData){
+            // Append tasks to bottom panel.
+            $('#tasksList').append(
+                //todo: maybe I should make use of the existing "taskCard" class instead of the new "task" class I've create?
+                '<div class="task">' + taskData.title + '</div>');
+        })
+    }
+    // show tasks div
+    $('#tasksList').show();
+}
+
+
+function backToSubjects() {
+    $('#tasksList').hide();
+    $('#tasksList').text('');
+    $('#subjectsList').show();
+}

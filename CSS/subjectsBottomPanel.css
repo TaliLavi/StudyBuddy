@@ -34,3 +34,25 @@ html {
     padding: 50px;
     display: none;
 }
+
+#innerWrapper {
+    overflow-x: scroll;
+}
+
+#subjectsList, #tasksList {
+    white-space: nowrap;
+}
+
+#subjectsList .subject{
+    display: inline-block;
+    padding: 10px;
+    margin: 0px 20px;
+    border:1px solid black;
+}
+
+#tasksList .task{
+    display: inline-block;
+    padding: 10px;
+    margin: 0px 20px;
+    border:1px solid black;
+}

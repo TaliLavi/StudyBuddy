@@ -27,13 +27,22 @@ function createSubject() {
 
 // DISPLAY SUBJECTS INFORMATION
 function displayActiveSubjects(subjectDict) {
-    // CLEAR CURRENT DISPLAY OF SUBJECTS
+
+    // Clear current display of subjects
     $('#subjectsDiv').text('');
     $('#subjectInput').text('');
     $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
 
+    // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
         $.each(subjectDict, function(subjectKey, subjectData){
+
+            // Populate Subject Footer with subjects names.
+            $('#subjectsList').append(
+                '<button class="subject" id="subject' + subjectKey + '" onclick="fetchActiveTasks(\'' + subjectKey + '\', displayTasksBottomPanel);">'
+                + subjectData.name + '</button>'
+            );
+
             // create a div for each subject and append it to subjectsDiv
             $('#subjectsDiv').append(
                 '<div class="col-md-2">' +
@@ -42,13 +51,14 @@ function displayActiveSubjects(subjectDict) {
                     '<ul class="list" id="' + subjectKey + '"></ul>' +
                 '</div>'
             );
-            // create an option for each subject and append to the drop down menu on the Add Task modal.
+
+            // Create an option for each subject and append to the drop down menu on the Add Task modal window.
             $('#subjectInput').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             )
 
             // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
-            fetchActiveTasks(subjectKey, displayActiveTasks);
+            fetchActiveTasks(subjectKey, displayTasksSubjectsPage);
         })
     }
 }

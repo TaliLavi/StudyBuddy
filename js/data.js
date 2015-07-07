@@ -90,6 +90,15 @@ function fetchActiveSubjects(userId, callback) {
 }
 
 
+function fetchSubjectName(userId, subjectId) {
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + '/' + subjectId);
+    subjectsRef.once("value", function(snapshot) {
+        var subject = snapshot.val();
+        return subject.name;
+    });
+}
+
+
 // UPDATE SUBJECT'S NAME
 function changeSubjectName(userId, subjectId, newName){
     var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + "/" + subjectId);
