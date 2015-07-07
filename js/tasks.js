@@ -24,7 +24,7 @@ function createTask(subjectId) {
 
     //// REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     //fetchActiveTasks();
-};
+}
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksSubjectsPage(subjectKey, tasksDict) {
@@ -48,13 +48,18 @@ function displayTasksBottomPanel(subjectKey, tasksDict) {
         // append tasks to the taskList div
         $.each(tasksDict, function(taskKey, taskData){
             // Append tasks to bottom panel.
-            $('#tasksList').append(
-                //todo: maybe I should make use of the existing "taskCard" class instead of the new "task" class I've create?
-                '<div class="task">' + taskData.title + '</div>');
+            //$('#tasksList').append(
+            //    //todo: maybe I should make use of the existing "taskCard" class instead of the new "task" class I've create?
+            //    '<div class="task">' + taskData.title + '</div>');
+
+            //Creates a task card div
+            var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
+            //Appends it to the list
+            $('#tasksList').append(taskCard);
         })
     }
     // show tasks div
-    $('#tasksList').show();
+    $('#tasksDiv').show();
 }
 
 
@@ -62,15 +67,16 @@ function prepareTasksDiv(subjectName, subjectKey) {
     // hide subjects div to allow room for tasks
     $('#subjectsList').hide();
     // append a back button
-    $('#tasksList').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
+    $('#panelControls').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
     // append subjectKey to indicate whith subject these tasks belond to
-    $('#tasksList').append('<div>Here are you tasks for <strong>' + subjectName + '</strong></div><br>');
+    $('#panelControls').append('<div>Here are you tasks for <strong>' + subjectName + '</strong></div><br>');
     fetchActiveTasks(subjectKey, displayTasksBottomPanel);
 }
 
 
 function backToSubjects() {
-    $('#tasksList').hide();
+    $('#tasksDiv').hide();
+    $('#panelControls').text('');
     $('#tasksList').text('');
     $('#subjectsList').show();
 }

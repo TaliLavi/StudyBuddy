@@ -66,6 +66,8 @@ $(document).ready(function(){
     $("#flip").click(function(){
         $("#subjectsPanel").slideToggle("slow");
     });
+    // hide tasksDiv in the bottom panel
+    $('#tasksDiv').hide();
 });
 
 

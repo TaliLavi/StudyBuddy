@@ -23,7 +23,7 @@ function createSubject() {
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
-};
+}
 
 // DISPLAY SUBJECTS INFORMATION
 function displayActiveSubjects(subjectDict) {
@@ -57,7 +57,7 @@ function displayActiveSubjects(subjectDict) {
             // Create an option for each subject and append to the drop down menu on the Add Task modal window.
             $('#subjectInput').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
-            )
+            );
 
             // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
             fetchActiveTasks(subjectKey, displayTasksSubjectsPage);
