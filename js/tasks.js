@@ -47,11 +47,6 @@ function displayTasksBottomPanel(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the taskList div
         $.each(tasksDict, function(taskKey, taskData){
-            // Append tasks to bottom panel.
-            //$('#tasksList').append(
-            //    //todo: maybe I should make use of the existing "taskCard" class instead of the new "task" class I've create?
-            //    '<div class="task">' + taskData.title + '</div>');
-
             //Creates a task card div
             var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
             //Appends it to the list
@@ -69,7 +64,7 @@ function prepareTasksDiv(subjectName, subjectKey) {
     // append a back button
     $('#panelControls').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
     // append subjectKey to indicate whith subject these tasks belond to
-    $('#panelControls').append('<div>Here are you tasks for <strong>' + subjectName + '</strong></div><br>');
+    $('#panelControls').append('<div>Here are your unscheduled tasks for <strong>' + subjectName + '</strong></div><br>');
     fetchActiveTasks(subjectKey, displayTasksBottomPanel);
 }
 

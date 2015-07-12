@@ -1,24 +1,35 @@
-//GLOBAL VARIABLES
-
-var $monday = $("#monday");
-var $tuesday = $("#tuesday");
-var $wednesday = $("#wednesday");
-var $thursday = $("#thursday");
-var $friday = $("#friday");
-var $saturday = $("#saturday");
-
-var label = 1;
-
 //var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";    //shadow1 is the normal box shadow on the tiles
 //var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
 
+function moveTask(evt) {
+    var oldListId = evt.from.id;
+    var newListId = evt.item.parentElement.id;
+    console.log('oldList to newList:', [oldListId, newListId]);
+
+    var oldList = evt.from;
+    var newList = evt.item.parentElement;
+
+    if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
+        console.log('Yes');
+
+    } else {
+        console.log('No');
+    }
+}
+
 
 //Make these things happen each time the page finishes loading
+//TODO: Combine this and the $(document).ready functions below in a single place.
 function preparePage() {
     //set up drag and drop for each list
-    $(".list").each(function(i, list){
-        Sortable.create(list, {group: "stuff", animation: 400, ghostClass: "sortable-ghost"});
-    })
+    $(".sortable-task-list").each(function(i, list){
+        Sortable.create(list, {
+            group: "tasks",
+            animation: 400,
+            ghostClass: "sortable-ghost",
+            onAdd: moveTask
+        });
+    });
 }
 
 
@@ -80,21 +91,21 @@ $(document).ready(function(){
 var dayList;
 
 
-function addTask(day){
+function addTask(date){
     //gets user input of form
     var subjectInput = $('#subjectInput').val();
     var userInput = $('#taskInput').val();
     //Creates a new task card div
-    var newTaskCard = $("<li></li>").addClass("taskCard").addClass(subjectInput).html(userInput);
+    var newTaskCard = $('<li></li>').addClass('taskCard').attr('id', subjectInput).html(userInput);
     //Appends it to the list
-    $('#'+day).append(newTaskCard);
+    $('#'+date).append(newTaskCard);
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
     $('#modalTask').fadeOut();
 }
 
-function openAddTask(day){
+function addTaskDialog(date){
     //Clear the fields of the modal window
     $('#taskInput').val('');
     //Makes the modal window display
@@ -104,7 +115,7 @@ function openAddTask(day){
     // Clear any old onclick handler
     $('#submitTask').off("click");
     // Set the new onclick handler
-    $('#submitTask').on("click", function(){addTask(day)});
+    $('#submitTask').on("click", function(){addTask(date)});
 }
 
 

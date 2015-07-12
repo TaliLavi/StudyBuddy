@@ -162,6 +162,16 @@ function fetchActiveTasks(subjectId, callback) {
     });
 }
 
+
+// UPDATE TASK'S ASSIGNED DATE
+function updateAssignedDate(subjectId, taskId, newAssignedDate) {
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/active/' + subjectId + '/' + taskId);
+    tasksRef.update({
+        "assigned_date": newAssignedDate
+    });
+}
+
+
 //=====================================================================
 //                              CHECKLIST ITEMS
 //=====================================================================

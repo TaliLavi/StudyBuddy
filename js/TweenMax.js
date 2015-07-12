@@ -3448,7 +3448,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 
 
 		//transform-related methods and properties
-		CSSPlugin.useSVGTransformAttr = _isSafari || _isFirefox; //Safari and Firefox both have some rendering bugs when applying CSS transforms to SVG elements, so default to using the "transform" attribute instead (users can override this).
+		CSSPlugin.useSVGTransformAttr = _isSafari || _isFirefox; //Safari and Firefox both have some rendering bugs when applying css transforms to SVG elements, so default to using the "transform" attribute instead (users can override this).
 		var _transformProps = ("scaleX,scaleY,scaleZ,x,y,z,skewX,skewY,rotation,rotationX,rotationY,perspective,xPercent,yPercent").split(","),
 			_transformProp = _checkPropPrefix("transform"), //the Javascript (camelCase) transform property, like msTransform, WebkitTransform, MozTransform, or OTransform.
 			_transformPropCSS = _prefixCSS + "transform",
@@ -3474,7 +3474,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 			},
 			_docElement = _doc.documentElement,
 			_forceSVGTransformAttr = (function() {
-				//IE and Android stock don't support CSS transforms on SVG elements, so we must write them to the "transform" attribute. We populate this variable in the _parseTransform() method, and only if/when we come across an SVG element
+				//IE and Android stock don't support css transforms on SVG elements, so we must write them to the "transform" attribute. We populate this variable in the _parseTransform() method, and only if/when we come across an SVG element
 				var force = _ieVers || (/Android/i.test(_agent) && !window.chrome),
 					svg, rect, width;
 				if (_doc.createElementNS && !force) { //IE8 and earlier doesn't support SVG anyway
@@ -3483,7 +3483,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					width = rect.getBoundingClientRect().width;
 					rect.style[_transformOriginProp] = "50% 50%";
 					rect.style[_transformProp] = "scaleX(0.5)";
-					force = (width === rect.getBoundingClientRect().width && !(_isFirefox && _supports3D)); //note: Firefox fails the test even though it does support CSS transforms in 3D. Since we can't push 3D stuff into the transform attribute, we force Firefox to pass the test here (as long as it does truly support 3D).
+					force = (width === rect.getBoundingClientRect().width && !(_isFirefox && _supports3D)); //note: Firefox fails the test even though it does support css transforms in 3D. Since we can't push 3D stuff into the transform attribute, we force Firefox to pass the test here (as long as it does truly support 3D).
 					_docElement.removeChild(svg);
 				}
 				return force;
@@ -3555,7 +3555,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 					}
 					m = e.getAttribute("transform");
 					if (isDefault && m) {
-						if (m.indexOf("matrix") !== -1) { //just in case there's a "transform" value specified as an attribute instead of CSS style. Accept either a matrix() or simple translate() value though.
+						if (m.indexOf("matrix") !== -1) { //just in case there's a "transform" value specified as an attribute instead of css style. Accept either a matrix() or simple translate() value though.
 							s = m;
 							isDefault = 0;
 						} else if (m.indexOf("translate") !== -1) {
@@ -3732,7 +3732,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				//DEBUG: _log("parsed rotation of " + t.getAttribute("id")+": "+(tm.rotationX)+", "+(tm.rotationY)+", "+(tm.rotation)+", scale: "+tm.scaleX+", "+tm.scaleY+", "+tm.scaleZ+", position: "+tm.x+", "+tm.y+", "+tm.z+", perspective: "+tm.perspective+ ", origin: "+ tm.xOrigin+ ","+ tm.yOrigin);
 				if (rec) {
 					t._gsTransform = tm; //record to the object's _gsTransform which we use so that tweens can control individual properties independently (we need all the properties to accurately recompose the matrix in the setRatio() method)
-					if (tm.svg) { //if we're supposed to apply transforms to the SVG element's "transform" attribute, make sure there aren't any CSS transforms applied or they'll override the attribute ones. Also clear the transform attribute if we're using CSS, just to be clean.
+					if (tm.svg) { //if we're supposed to apply transforms to the SVG element's "transform" attribute, make sure there aren't any css transforms applied or they'll override the attribute ones. Also clear the transform attribute if we're using css, just to be clean.
 						if (_useSVGTransformAttr && t.style[_transformProp]) {
 							TweenLite.delayedCall(0.001, function(){ //if we apply this right away (before anything has rendered), we risk there being no transforms for a brief moment and it also interferes with adjusting the transformOrigin in a tween with immediateRender:true (it'd try reading the matrix and it wouldn't have the appropriate data in place because we just removed it).
 								_removeProp(t.style, _transformProp);
@@ -3863,7 +3863,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 						a21 = Math.sin(angle) * sx;
 						a12 = Math.sin(angle - skew) * -sy;
 						a22 = Math.cos(angle - skew) * sy;
-						if (skew && t.skewType === "simple") { //by default, we compensate skewing on the other axis to make it look more natural, but you can set the skewType to "simple" to use the uncompensated skewing that CSS does
+						if (skew && t.skewType === "simple") { //by default, we compensate skewing on the other axis to make it look more natural, but you can set the skewType to "simple" to use the uncompensated skewing that css does
 							t1 = Math.tan(skew);
 							t1 = Math.sqrt(1 + t1 * t1);
 							a12 *= t1;
@@ -3922,7 +3922,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 						angle -= t.skewX * _DEG2RAD;
 						cos = Math.cos(angle);
 						sin = Math.sin(angle);
-						if (t.skewType === "simple") { //by default, we compensate skewing on the other axis to make it look more natural, but you can set the skewType to "simple" to use the uncompensated skewing that CSS does
+						if (t.skewType === "simple") { //by default, we compensate skewing on the other axis to make it look more natural, but you can set the skewType to "simple" to use the uncompensated skewing that css does
 							t1 = Math.tan(t.skewX * _DEG2RAD);
 							t1 = Math.sqrt(1 + t1 * t1);
 							cos *= t1;

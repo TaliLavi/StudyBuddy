@@ -4,17 +4,20 @@
   <meta charset="UTF-8">
   <title>Study Buddy</title>
 
-  <link rel="stylesheet" type="text/css" href="../CSS/Bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../CSS/main.css">
-  <link rel="stylesheet" href="../CSS/subjectsBottomPanel.css">
+  <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/subjectsBottomPanel.css">
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp'>
   <link rel='stylesheet prefetch' href='lang=en'>
-  <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="../js/firebase2.2.7.js"></script>
+  <script src='../js/jquery.js'></script>
+  <script src="../js/Sortable.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/users.js"></script>
   <script src="../js/subjects.js"></script>
   <script src="../js/tasks.js"></script>
+  <script src='../js/TweenMax.js'></script>
+  <script src='../js/main.js'></script>
 
 </head>
 
@@ -43,52 +46,52 @@
   <div id="calendarPage">
 
     <div class="section group">
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Monday</h4>
-        <button onclick="openAddTask('monday');">Add Task</button>
-        <ul class="list" id="monday">
+        <button onclick="addTaskDialog('2016-02-01');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-01">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Tuesday</h4>
-        <button onclick="openAddTask('tuesday');">Add Task</button>
-        <ul class="list" id="tuesday">
+        <button onclick="addTaskDialog('2016-02-02');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-02">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Wednesday</h4>
-        <button onclick="openAddTask('wednesday');">Add Task</button>
-        <ul class="list" id="wednesday">
+        <button onclick="addTaskDialog('2016-02-03');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-03">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Thursday</h4>
-        <button onclick="openAddTask('thursday');">Add Task</button>
-        <ul class="list" id="thursday">
+        <button onclick="addTaskDialog('2016-02-04');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-04">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Friday</h4>
-        <button onclick="openAddTask('friday');">Add Task</button>
-        <ul class="list" id="friday">
+        <button onclick="addTaskDialog('2016-02-05');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-05">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Saturday</h4>
-        <button onclick="openAddTask('saturday');">Add Task</button>
-        <ul class="list" id="saturday">
+        <button onclick="addTaskDialog('2016-02-06');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-06">
         </ul>
       </div>
 
-      <div class="col day">
+      <div class="col dayColumn">
         <h4>Sunday</h4>
-        <button onclick="openAddTask('sunday');">Add Task</button>
-        <ul class="list" id="sunday">
+        <button onclick="addTaskDialog('2016-02-07');">Add Task</button>
+        <ul class="sortable-task-list dayList" id="2016-02-07">
         </ul>
       </div>
     </div>
@@ -119,8 +122,8 @@
             <div id="panelControls">
 
             </div>
-            <div class="col day">
-              <ul class="list" id="tasksList">
+            <div class="col dayColumn">
+              <ul class="sortable-task-list" id="tasksList">
 
               </ul>
             </div>
@@ -175,12 +178,6 @@
       </form>
     </div>
   </div>
-
-  <script src='../js/jquery.js'></script>
-  <script src='../js/TweenMax.js'></script>
-  <script src='../js/main.js'></script>
-  <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
-
 </body>
 </html>
 
