@@ -91,31 +91,42 @@ $(document).ready(function(){
 var dayList;
 
 
-function addTask(date){
-    //gets user input of form
-    var subjectInput = $('#subjectInput').val();
-    var userInput = $('#taskInput').val();
-    //Creates a new task card div
-    var newTaskCard = $('<li></li>').addClass('taskCard').attr('id', subjectInput).html(userInput);
-    //Appends it to the list
-    $('#'+date).append(newTaskCard);
-    //Fade out the greyed background
-    $('.modal-bg').fadeOut();
-    //Fade out the modal window
-    $('#modalTask').fadeOut();
-}
-
-function addTaskDialog(date){
-    //Clear the fields of the modal window
-    $('#taskInput').val('');
+function openAddTaskDialog(date){
     //Makes the modal window display
     $('#modalTask').css('display','block');
     //Fades in the greyed-out background
     $('#taskModalBG').fadeIn();
     // Clear any old onclick handler
-    $('#submitTask').off("click");
+    $('#submitTaskFromCalendar').off("click");
     // Set the new onclick handler
-    $('#submitTask').on("click", function(){addTask(date)});
+    $('#submitTaskFromCalendar').on("click", function(){createTask(date)});
+}
+
+function addTask(date){
+    ////gets user input of form
+    //var subjectInput = $('#subjectInput').val();
+    //var titleInput = $('#titleInput').val();
+    //var descriptionInput = $('#descriptionInput').val();
+    //var timeEstimationInput = $('#timeEstimationInput').val();
+
+    //Creates a new task card div
+    var newTaskCard = $('<li></li>').addClass('taskCard').attr('id', subjectInput).html(titleInput);
+    //Appends it to the list
+    $('#'+date).append(newTaskCard);
+
+    ////Fade out the greyed background
+    //$('.modal-bg').fadeOut();
+    ////Fade out the modal window
+    //$('#modalTask').fadeOut();
+
+    ////Clear the fields of the modal window
+    //$('#titleInput').val('');
+    //$('#descriptionInput').val('');
+    //$('#timeEstimationInput').val('');
+    ////Reset select value to default
+    //$('#subjectInput option').prop('selected', function() {
+    //    return this.defaultSelected;
+    //});
 }
 
 

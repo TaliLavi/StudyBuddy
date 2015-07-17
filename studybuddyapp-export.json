@@ -2,9 +2,15 @@
   "Subjects" : {
     "active" : {
       "-JsqE8CQ9Dg7LE0OKQ2P" : {
-        "-JsqTC_zLHdtolLP2-gL" : {
+        "-JsrUKsdGw5JkFwpLNqD" : {
           "colour" : "Pink",
-          "is_deleted" : 0,
+          "long_break_minutes" : 15,
+          "name" : "English",
+          "short_break_minutes" : 5,
+          "study_session_minutes" : 25
+        },
+        "-JsrUPQNfTDGEn-1yXZ9" : {
+          "colour" : "Green",
           "long_break_minutes" : 15,
           "name" : "Irish",
           "short_break_minutes" : 5,
@@ -27,6 +33,30 @@
   },
   "Tasks" : {
     "active" : {
+      "-JsrUKsdGw5JkFwpLNqD" : {
+        "-JsrVGm6Nxr22sYZ6xpe" : {
+          "assigned_date" : "2015-03-05",
+          "creation_date" : 1435450286527,
+          "description" : "Do it fast",
+          "status_change_date" : 1435450286527,
+          "time_estimation" : 30,
+          "title" : "Do something"
+        },
+        "-JswZwQ4MdeW8LI0xR9b" : {
+          "assigned_date" : "16/06/24",
+          "creation_date" : 1435535395743,
+          "description" : "make sure it's interesting",
+          "status_change_date" : 1435535395743,
+          "time_estimation" : 30,
+          "title" : "Read a book"
+        }
+      },
+      "-JsrUPQNfTDGEn-1yXZ9" : {
+        "3" : {
+          "description" : "Do something Irish",
+          "title" : "I'm an Irish Task!"
+        }
+      },
       "subject1" : {
         "task2" : {
           "Checklist_Items" : [ {

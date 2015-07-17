@@ -1,28 +1,43 @@
 // CREATE NEW TASK
-function createTask(subjectId) {
+function createTask(assigned_date) {
 
     // REGISTER DOM ELEMENTS
-    var titleField = $('#taskTitle');
-    var descriptionField = $('#taskDescription');
+    var subjectInput = $('#subjectInput');
+    var titleInput = $('#titleInput');
+    var descriptionInput = $('#descriptionInput');
+    var timeEstimationInput = $('#timeEstimationInput');
 
     // GET FIELD VALUES
-    var title = titleField.val();
-    var description = descriptionField.val();
+    var subjectId = subjectInput.val();
+    var title = titleInput.val();
+    var description = descriptionInput.val();
+    var time_estimation = timeEstimationInput.val();
 
-    // SET DEFAULT VALUES (FOR SIMPLISITY AT THIS STAGE OF DEVELOPMENT)
-    var assigned_date = "16/06/24";
-    var time_estimation = 30;
+
+    // SET DEFAULT VALUES
     var creation_date = $.now();
     var status_change_date = creation_date;
 
     // PUSH THEM TO DB
     pushNewTask(subjectId, title, description, assigned_date, time_estimation, creation_date, status_change_date);
 
-    // CLEAR INPUT FIELDS
-    titleField.val('');
-    descriptionField.val('');
+    // CLOSE THE ADD TASK DIALOG
+    //Fade out the greyed background
+    $('.modal-bg').fadeOut();
+    //Fade out the modal window
+    $('#modalTask').fadeOut();
 
-    //// REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
+    // CLEAR INPUT FIELDS
+    titleInput.val('');
+    descriptionInput.val('');
+    timeEstimationInput.val('');
+    // Reset select value to default
+    $('#subjectInput option').prop('selected', function() {
+        return this.defaultSelected;
+    });
+
+
+    //// REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     //fetchActiveTasks();
 }
 

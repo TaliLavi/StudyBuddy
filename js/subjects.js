@@ -2,12 +2,12 @@
 function createSubject() {
 
     // REGISTER DOM ELEMENTS
-    var nameField = $('#subjectName');
-    var colourField = $('#subjectColour');
+    var nameInput = $('#subjectName');
+    var colourInput = $('#subjectColour');
 
     // GET FIELD VALUES
-    var name = nameField.val();
-    var colour = colourField.val();
+    var name = nameInput.val();
+    var colour = colourInput.val();
 
     // SET DEFAULT TIME INTERVALS
     var studySessionMinutes = 25;

@@ -48,49 +48,49 @@
     <div class="section group">
       <div class="col dayColumn">
         <h4>Monday</h4>
-        <button onclick="addTaskDialog('2016-02-01');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-01');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-01">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Tuesday</h4>
-        <button onclick="addTaskDialog('2016-02-02');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-02');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-02">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Wednesday</h4>
-        <button onclick="addTaskDialog('2016-02-03');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-03');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-03">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Thursday</h4>
-        <button onclick="addTaskDialog('2016-02-04');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-04');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-04">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Friday</h4>
-        <button onclick="addTaskDialog('2016-02-05');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-05');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-05">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Saturday</h4>
-        <button onclick="addTaskDialog('2016-02-06');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-06');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-06">
         </ul>
       </div>
 
       <div class="col dayColumn">
         <h4>Sunday</h4>
-        <button onclick="addTaskDialog('2016-02-07');">Add Task</button>
+        <button onclick="openAddTaskDialog('2016-02-07');">Add Task</button>
         <ul class="sortable-task-list dayList" id="2016-02-07">
         </ul>
       </div>
@@ -149,7 +149,7 @@
 
 
   <!--========================================================================================================-->
-  <!--MODAL WINDOW (ADD TASK)-->
+  <!--MODAL WINDOW (ADD TASK DIALOG)-->
   <!--========================================================================================================-->
   <div id="taskModalBG" class="modal-bg">
     <div id="modalTask" class="modal">
@@ -159,8 +159,10 @@
       </span>
       <form>
         <select id ="subjectInput"></select>
-        <input id="taskInput" name="taskInput" type="textbox" placeholder="Write your task here." required>
-        <button name="submitsubmit" id="submitTask" type="button">Add Task</button>
+        <input id="titleInput" name="titleInput" type="textbox" placeholder="Write your task here." required>
+        <input id="descriptionInput" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+        <input id="timeEstimationInput" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here." required>
+        <button name="submit" id="submitTaskFromCalendar" type="button">Add Task</button>
       </form>
     </div>
   </div>
@@ -178,6 +180,7 @@
       </form>
     </div>
   </div>
+
 </body>
 </html>
 
