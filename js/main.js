@@ -2,19 +2,22 @@
 //var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
 
 function moveTask(evt) {
-    var oldListId = evt.from.id;
-    var newListId = evt.item.parentElement.id;
-    console.log('oldList to newList:', [oldListId, newListId]);
+    var oldAssignedDate = evt.from.id;
+    var newAssignedDate = evt.item.parentElement.id;
+    console.log('oldAssignedDate to newAssignedDate:', [oldAssignedDate, newAssignedDate]);
 
-    var oldList = evt.from;
-    var newList = evt.item.parentElement;
+    //updateAssignedDate(subjectId, taskId, newAssignedDate);
 
-    if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
-        console.log('Yes');
 
-    } else {
-        console.log('No');
-    }
+    //var oldList = evt.from;
+    //var newList = evt.item.parentElement;
+    //
+    //if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
+    //    console.log('Yes');
+    //
+    //} else {
+    //    console.log('No');
+    //}
 }
 
 
@@ -81,7 +84,24 @@ function displayPage(pageId, buttonId) {
 }
 
 
+//===========================================================================================================
+//OPEN A TASK CARD
+//===========================================================================================================
 
+function displayTask(subjectId, taskId) {
+    console.log('hi');
+    fetchCertainTasks(subjectId, taskId, fillInTaskDetails);
+    //Makes the modal window display
+    $('#taskModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();
+}
+
+function fillInTaskDetails(subjectId, taskId, taskDetails) {
+    console.log(subjectId);
+    console.log(taskId);
+    console.log(taskDetails);
+}
 
 //===========================================================================================================
     //CREATE A TASK CARD
@@ -100,9 +120,9 @@ function openAddTaskDialog(data, dateOrSubject){
     }
 
     //Makes the modal window display
-    $('#modalTask').css('display','block');
+    $('#addTaskModal').css('display','block');
     //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
+    $('#addTaskModalBG').fadeIn();
     // Clear any old onclick handler
     $('#submitNewTask').off("click");
     // Set the new onclick handler

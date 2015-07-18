@@ -154,7 +154,7 @@ function pushNewTask(subjectId, title, description, assigned_date, time_estimati
 };
 
 
-// RETRIEVE AND  RUNS CALLBACK FUNCTION ON ALL TASKS' INFORMATION UPON REQUEST
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS
 function fetchActiveTasks(perSubjectCallback, preparationCallback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     tasksRef.once("value", function(snapshot) {
@@ -170,10 +170,21 @@ function fetchActiveTasks(perSubjectCallback, preparationCallback) {
     });
 }
 
+
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS BELONGING TO A SPECIFIC SUBJECT
 function fetchActiveTasksBySubject(subjectId, callback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId);
     tasksRef.once("value", function(snapshot) {
         callback(subjectId, snapshot.val());
+    });
+}
+
+
+// RETRIEVE AND RUNS CALLBACK FUNCTION  CERTAIN TASKS
+function fetchCertainTasks(subjectId, taskId, callback) {
+    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId);
+    taskRef.once("value", function(snapshot) {
+        callback(subjectId, taskId, snapshot.val());
     });
 }
 

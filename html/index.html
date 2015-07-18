@@ -149,13 +149,28 @@
 
 
   <!--========================================================================================================-->
-  <!--MODAL WINDOW (ADD TASK DIALOG)-->
+  <!--ADD SUBJECT (MODAL WINDOW)-->
   <!--========================================================================================================-->
-  <div id="taskModalBG" class="modal-bg">
-    <div id="modalTask" class="modal">
+  <div id="subjectModalBG" class="modal-bg">
+    <div id="modalSubject" class="modal">
+      <span>New Subject<a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a></span>
+      <form>
+        <input id="subjectNameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+        <input id="subjectColourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+        <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!--========================================================================================================-->
+  <!--ADD TASK DIALOG (MODAL WINDOW)-->
+  <!--========================================================================================================-->
+  <div id="addTaskModalBG" class="modal-bg">
+    <div id="addTaskModal" class="modal">
       <span>
         New Task
-        <a href="#close" id="close" class="closeX" onclick="closeModalWindow();">&#215;</a>
+        <a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a>
       </span>
       <form>
         <select id ="subjectInput"></select>
@@ -168,16 +183,23 @@
     </div>
   </div>
 
+
   <!--========================================================================================================-->
-  <!--MODAL WINDOW (ADD SUBJECT)-->
+  <!--TASK DIALOG (MODAL WINDOW)-->
   <!--========================================================================================================-->
-  <div id="subjectModalBG" class="modal-bg">
-    <div id="modalSubject" class="modal">
-      <span>New Subject<a href="#close" id="closeModalSubject" class="closeX" onclick="closeModalWindow();">&#215;</a></span>
+  <div id="taskModalBG" class="modal-bg">
+    <div id="taskModal" class="modal">
+      <span>
+        Your Task
+        <a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a>
+      </span>
       <form>
-        <input id="subjectNameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-        <input id="subjectColourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
-        <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
+        <select id ="subjectInput"></select>
+        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+        <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here." required>
+        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="Write task's assigned date here." required>
+        <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
       </form>
     </div>
   </div>
