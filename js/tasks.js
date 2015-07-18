@@ -1,17 +1,19 @@
 // CREATE NEW TASK
-function createTask(assigned_date) {
+function createTask() {
 
     // REGISTER DOM ELEMENTS
     var subjectInput = $('#subjectInput');
     var titleInput = $('#titleInput');
     var descriptionInput = $('#descriptionInput');
     var timeEstimationInput = $('#timeEstimationInput');
+    var assignedDateInput = $('#assignedDateInput');
 
     // GET FIELD VALUES
     var subjectId = subjectInput.val();
     var title = titleInput.val();
     var description = descriptionInput.val();
     var time_estimation = timeEstimationInput.val();
+    var assigned_date = assignedDateInput.val();
 
 
     // SET DEFAULT VALUES
@@ -27,7 +29,7 @@ function createTask(assigned_date) {
     //Fade out the modal window
     $('#modalTask').fadeOut();
 
-    // CLEAR INPUT FIELDS
+    // CLEAR INPUT FIELDS ON THE ADD TASK DIALOG
     titleInput.val('');
     descriptionInput.val('');
     timeEstimationInput.val('');

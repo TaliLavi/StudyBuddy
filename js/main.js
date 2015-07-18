@@ -89,15 +89,25 @@ function displayPage(pageId, buttonId) {
 var dayList;
 
 
-function openAddTaskDialog(date){
+function openAddTaskDialog(data, dateOrSubject){
+    
+    if ($(dateOrSubject).hasClass('addTaskFromDate')) {
+        //Automatically fill the assigned date
+        $('#assignedDateInput').val(data);
+    } else if ($(dateOrSubject).hasClass('addTaskFromSubject')) {
+        console.log('is from subject');
+        //Automatically select the subject
+        $('#subjectInput').val(data);
+    }
+
     //Makes the modal window display
     $('#modalTask').css('display','block');
     //Fades in the greyed-out background
     $('#taskModalBG').fadeIn();
     // Clear any old onclick handler
-    $('#submitTaskFromCalendar').off("click");
+    $('#submitNewTask').off("click");
     // Set the new onclick handler
-    $('#submitTaskFromCalendar').on("click", function(){createTask(date)});
+    $('#submitNewTask').on("click", function(){createTask()});
 }
 
 

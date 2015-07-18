@@ -49,7 +49,7 @@ function displayActiveSubjects(subjectDict) {
             $('#subjectsDiv').append(
                 '<div class="col-md-2">' +
                     '<h4>' + subjectData.name + '</h4>' +
-                    '<div id="addTileEnglish" class ="button" onclick="addTileSubject(\'' + subjectData.name + '\');">Add Tile</div>' +
+                    '<div class ="button addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</div>' +
                     '<ul class="list" id="' + subjectKey + '"></ul>' +
                 '</div>'
             );
