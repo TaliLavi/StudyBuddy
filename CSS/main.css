@@ -8,7 +8,7 @@
 
 
 /*This is the pale gray div that the cards appear in*/
-.list {
+.sortable-task-list {
     background-color: whitesmoke;
     width: 100%;
     height: 100%;
@@ -35,7 +35,7 @@
     padding: 0px;
 }
 
-.day {
+.dayColumn {
     margin-right: 3%;
     margin-left: 3%;
 }
@@ -59,11 +59,11 @@
     position:absolute;
     background-color:#F5F5F6;
     display: none;
-    top:50%;
+    top:35%;
     left:50%;
     z-index: 1;
     width:340px;
-    height:260px;
+    height:500px;
     margin-top:-130px;
     margin-left:-170px;
     box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
@@ -123,9 +123,9 @@ input{
 /*SEVEN COLUMN GRID / */
 /*===============================================================================================*/
 
-/*The CSS below grid below is generated from http://www.responsivegridsystem.com*/
+/*The css below grid below is generated from http://www.responsivegridsystem.com*/
 /*It allows you to decide the number of columns you want in a row, and set the margin */
-/*you want to use, and then it generates the HTML and CSS to go with it. It's pretty cool!*/
+/*you want to use, and then it generates the HTML and css to go with it. It's pretty cool!*/
 
 .section {
     clear: both;
@@ -149,13 +149,13 @@ input{
 
 /*  GRID OF SEVEN  */
 
-.day {
+.dayColumn {
     width: 12.91%;
 }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
 @media only screen and (max-width: 480px) {
     .col {  margin: 1% 0 1% 0%; }
-    .day { width: 100%; }
+    .dayColumn { width: 100%; }
 }
 
