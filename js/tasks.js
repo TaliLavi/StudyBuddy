@@ -64,10 +64,14 @@ function displayTasksInBottomPanel(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the taskList div
         $.each(tasksDict, function(taskKey, taskData){
-            //Creates a task card div
-            var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
-            //Appends it to the list
-            $('#tasksList').append(taskCard);
+            // only append tasks that don't have an assigned_date
+            if (taskData.assigned_date == "") {
+                console.log('hi');
+                //Creates a task card div
+                var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
+                //Appends it to the list
+                $('#tasksList').append(taskCard);
+            }
         })
     }
     // show tasks div

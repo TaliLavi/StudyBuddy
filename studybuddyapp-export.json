@@ -50,6 +50,14 @@
             "status_change_date" : 1435535395743,
             "time_estimation" : 30,
             "title" : "Read a book"
+          },
+          "-JuWIwyljjjpEDpak4dx" : {
+            "assigned_date" : "2016-02-04",
+            "creation_date" : 1437225441552,
+            "description" : "sfasd;lkj",
+            "status_change_date" : 1437225441552,
+            "time_estimation" : "50",
+            "title" : "Another English task"
           }
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
@@ -60,6 +68,22 @@
             "status_change_date" : 1437181459030,
             "time_estimation" : "30",
             "title" : "I am an Irish Task"
+          },
+          "-JuWIlrfrU-PHBjqYidT" : {
+            "assigned_date" : "2016-02-04",
+            "creation_date" : 1437225396044,
+            "description" : "blah",
+            "status_change_date" : 1437225396044,
+            "time_estimation" : "8:30",
+            "title" : "Another Irish task"
+          },
+          "-JuWv8nl9tvx1ppBcVlx" : {
+            "assigned_date" : "",
+            "creation_date" : 1437235717452,
+            "description" : "sdgdfg",
+            "status_change_date" : 1437235717452,
+            "time_estimation" : "50",
+            "title" : "Task without an assigned date"
           }
         },
         "subject1" : {
