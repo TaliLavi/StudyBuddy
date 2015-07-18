@@ -37,12 +37,14 @@ function createTask(assigned_date) {
     });
 
 
-    //// REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    //fetchActiveTasks();
+    // REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
+    fetchActiveTasks(displayTasksInSubjectsPage);
+    fetchActiveTasks(displayTasksInCalendar);
 }
 
+
 // DISPLAY TASKS ON SUBJECTS PAGE
-function displayTasksSubjectsPage(subjectKey, tasksDict) {
+function displayTasksInSubjectsPage(subjectKey, tasksDict) {
     // CLEAR CURRENT DISPLAY OF Tasks
     var subject_div_id = "#" + subjectKey;
     $(subject_div_id).text('');
@@ -51,14 +53,12 @@ function displayTasksSubjectsPage(subjectKey, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             // Append tasks to appropriate subjects on Subjects Page.
             $(subject_div_id).append('<li class="taskCard">' + taskData.title + '</li>');
-
-
         })
     }
 }
 
 // DISPLAY TASKS ON BOTTOM PANEL
-function displayTasksBottomPanel(subjectKey, tasksDict) {
+function displayTasksInBottomPanel(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the taskList div
         $.each(tasksDict, function(taskKey, taskData){
@@ -72,6 +72,10 @@ function displayTasksBottomPanel(subjectKey, tasksDict) {
     $('#tasksDiv').show();
 }
 
+function displayTasksInCalendar(subjectKey, tasksDict) {
+
+}
+
 
 function prepareTasksDiv(subjectName, subjectKey) {
     // hide subjects div to allow room for tasks
@@ -80,7 +84,7 @@ function prepareTasksDiv(subjectName, subjectKey) {
     $('#panelControls').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
     // append subjectKey to indicate whith subject these tasks belond to
     $('#panelControls').append('<div>Here are your unscheduled tasks for <strong>' + subjectName + '</strong></div><br>');
-    fetchActiveTasks(subjectKey, displayTasksBottomPanel);
+    fetchActiveTasksBySubject(subjectKey, displayTasksInBottomPanel);
 }
 
 

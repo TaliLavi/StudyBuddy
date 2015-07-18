@@ -19,7 +19,6 @@ function moveTask(evt) {
 
 
 //Make these things happen each time the page finishes loading
-//TODO: Combine this and the $(document).ready functions below in a single place.
 function preparePage() {
     //set up drag and drop for each list
     $(".sortable-task-list").each(function(i, list){
@@ -30,7 +29,32 @@ function preparePage() {
             onAdd: moveTask
         });
     });
+    // set nav buttons
+    $("#profileButton").click(function(){
+        displayPage("#profilePage", "#profileButton")
+    });
+    $("#calendarButton").click(function(){
+        displayPage("#calendarPage", "#calendarButton")
+    });
+    $("#subjectsButton").click(function(){
+        displayPage("#subjectsPage", "#subjectsButton")
+    });
+    // start the app on the calendar page
+    displayPage("#calendarPage", "#calendarButton")
+    // toggle the bottom Subjects Panel
+    $("#flip").click(function(){
+        $("#subjectsPanel").slideToggle("slow");
+    });
+    // hide tasksDiv in the bottom panel
+    $('#tasksDiv').hide();
+
+    // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
+    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
+    // fetch and append all active tasks
+    fetchActiveTasks(displayTasksInSubjectsPage);
+    fetchActiveTasks(displayTasksInCalendar);
 }
+
 
 
 //===========================================================================================================
@@ -55,32 +79,6 @@ function displayPage(pageId, buttonId) {
     // only disable current nav button
     $(buttonId).prop("disabled", true);
 }
-
-$(document).ready(function(){
-    // set nav buttons
-    $("#profileButton").click(function(){
-        displayPage("#profilePage", "#profileButton")
-    });
-    $("#calendarButton").click(function(){
-        displayPage("#calendarPage", "#calendarButton")
-    });
-    $("#subjectsButton").click(function(){
-        displayPage("#subjectsPage", "#subjectsButton")
-    });
-    // start the app on the calendar page
-    displayPage("#calendarPage", "#calendarButton")
-});
-
-
-$(document).ready(function(){
-    // toggle the bottom Subjects Panel
-    $("#flip").click(function(){
-        $("#subjectsPanel").slideToggle("slow");
-    });
-    // hide tasksDiv in the bottom panel
-    $('#tasksDiv').hide();
-});
-
 
 
 

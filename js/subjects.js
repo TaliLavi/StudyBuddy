@@ -58,14 +58,8 @@ function displayActiveSubjects(subjectDict) {
             $('#subjectInput').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             );
-
-            // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subject's div has been created.
-            fetchActiveTasks(subjectKey, displayTasksSubjectsPage);
         })
+        // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subjects divs has been created.
+        fetchActiveTasks(displayTasksInSubjectsPage);
     }
 }
-
-// RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-$(document).ready(function(){
-    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
-});
