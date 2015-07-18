@@ -90,12 +90,11 @@ var dayList;
 
 
 function openAddTaskDialog(data, dateOrSubject){
-    
+
     if ($(dateOrSubject).hasClass('addTaskFromDate')) {
         //Automatically fill the assigned date
         $('#assignedDateInput').val(data);
     } else if ($(dateOrSubject).hasClass('addTaskFromSubject')) {
-        console.log('is from subject');
         //Automatically select the subject
         $('#subjectInput').val(data);
     }
@@ -115,11 +114,19 @@ function openAddTaskDialog(data, dateOrSubject){
 //CANCELLING ANY MODAL WINDOW WITHOUT ADDING ANYTHING
 //===========================================================================================================
 
-$('.closeX').click(function(){                                       //When the x button on modal is pressed
-    $('.modal-bg').fadeOut();                                       //Fade out the greyed background
-    $('.modal').fadeOut();                                          //Fade out the modal window
-    return false;
-});
+function closeModalWindow() {
+    //Fade out the greyed background
+    $('.modal-bg').fadeOut();
+    //Fade out the modal window
+    $('.modal').fadeOut();
+    // Clear input fields
+    $('.inputField').val('');
+    // Reset select value to default
+    $('#subjectInput option').prop('selected', function() {
+        return this.defaultSelected;
+    });
+}
+
 
 //===========================================================================================================
 //ADD A NEW SUBJECT

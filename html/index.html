@@ -155,14 +155,14 @@
     <div id="modalTask" class="modal">
       <span>
         New Task
-        <a href="#close" id="close" class="closeX">&#215;</a>
+        <a href="#close" id="close" class="closeX" onclick="closeModalWindow();">&#215;</a>
       </span>
       <form>
         <select id ="subjectInput"></select>
-        <input id="titleInput" name="titleInput" type="textbox" placeholder="Write your task here." required>
-        <input id="descriptionInput" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="timeEstimationInput" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here." required>
-        <input id="assignedDateInput" name="assignedDateInput" type="textbox" placeholder="Write task's assigned date here." required>
+        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+        <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here." required>
+        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="Write task's assigned date here." required>
         <button name="submit" id="submitNewTask" type="button">Add Task</button>
       </form>
     </div>
@@ -173,10 +173,10 @@
   <!--========================================================================================================-->
   <div id="subjectModalBG" class="modal-bg">
     <div id="modalSubject" class="modal">
-      <span>New Subject<a href="#close" id="closeModalSubject" class="closeX">&#215;</a></span>
+      <span>New Subject<a href="#close" id="closeModalSubject" class="closeX" onclick="closeModalWindow();">&#215;</a></span>
       <form>
-        <input id="subjectNameInput" name="subjectName" type="textbox" placeholder="Subject name here." required>
-        <input id="subjectColourInput" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+        <input id="subjectNameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+        <input id="subjectColourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
         <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
       </form>
     </div>
