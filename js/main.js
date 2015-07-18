@@ -89,7 +89,6 @@ function displayPage(pageId, buttonId) {
 //===========================================================================================================
 
 function displayTask(subjectId, taskId) {
-    console.log('hi');
     fetchCertainTasks(subjectId, taskId, fillInTaskDetails);
     //Makes the modal window display
     $('#taskModal').css('display','block');
@@ -97,11 +96,15 @@ function displayTask(subjectId, taskId) {
     $('#taskModalBG').fadeIn();
 }
 
+// I chose to pass taskId because once we'd implement task editing, we'll need it.
 function fillInTaskDetails(subjectId, taskId, taskDetails) {
-    console.log(subjectId);
-    console.log(taskId);
-    console.log(taskDetails);
+    $('#taskSubject').val(subjectId);
+    $('#taskTitle').val(taskDetails.title);
+    $('#taskDescription').val(taskDetails.description);
+    $('#taskTimeEstimation').val(taskDetails.time_estimation);
+    $('#taskAssignedDate').val(taskDetails.assigned_date);
 }
+
 
 //===========================================================================================================
     //CREATE A TASK CARD

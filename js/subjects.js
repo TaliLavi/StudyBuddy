@@ -32,6 +32,7 @@ function displayActiveSubjects(subjectDict) {
     $('#subjectsDiv').text('');
     $('#subjectInput').text('');
     $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
+    $('#taskSubject').append('<option selected="true" disabled="disabled">Choose Subject</option>');
 
     // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
@@ -56,6 +57,11 @@ function displayActiveSubjects(subjectDict) {
 
             // Create an option for each subject and append to the drop down menu on the Add Task modal window.
             $('#subjectInput').append(
+                '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
+            );
+
+            // Create an option for each subject and append to the drop down menu on the Task modal window.
+            $('#taskSubject').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             );
         })
