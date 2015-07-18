@@ -73,9 +73,24 @@ function displayTasksInBottomPanel(subjectKey, tasksDict) {
 }
 
 function displayTasksInCalendar(subjectKey, tasksDict) {
-
+    if (tasksDict !== null) {
+        // append tasks to the calendar
+        $.each(tasksDict, function(taskKey, taskData){
+            // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
+            if (whetherDateIsDisplayed(taskData.assigned_date)) {
+                //Creates a task card div
+                var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
+                //Appends it to the date
+                $('#'+taskData.assigned_date).append(taskCard);
+            }
+        })
+    }
 }
 
+// checks whether date is displayed in DOM
+function whetherDateIsDisplayed(date) {
+    return date !== null && "2016-02-01" <= date && date <= "2016-02-07" ;
+}
 
 function prepareTasksDiv(subjectName, subjectKey) {
     // hide subjects div to allow room for tasks
