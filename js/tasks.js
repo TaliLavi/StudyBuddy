@@ -54,7 +54,8 @@ function displayTasksInSubjectsPage(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             // Append tasks to appropriate subjects on Subjects Page.
-            $(subject_div_id).append('<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');">' + taskData.title + '</li>');
+            $(subject_div_id).append('<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+                ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>');
         })
     }
 }
@@ -67,7 +68,8 @@ function displayTasksInBottomPanel(subjectKey, tasksDict) {
             // only append tasks that don't have an assigned_date
             if (taskData.assigned_date == "") {
                 //Creates a task card div
-                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');">' + taskData.title + '</li>';
+                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+                    ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
 
                 //Appends it to the list
                 $('#tasksList').append(taskCard);
@@ -90,7 +92,8 @@ function displayTasksInCalendar(subjectKey, tasksDict) {
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date)) {
                 //Creates a task card div
-                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');">' + taskData.title + '</li>';
+                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+                    ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
 
                 //Appends it to the date
                 $('#'+ taskData.assigned_date).append(taskCard);

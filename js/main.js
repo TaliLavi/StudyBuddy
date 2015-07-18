@@ -1,25 +1,6 @@
 //var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";    //shadow1 is the normal box shadow on the tiles
 //var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
 
-function moveTask(evt) {
-    var oldAssignedDate = evt.from.id;
-    var newAssignedDate = evt.item.parentElement.id;
-    console.log('oldAssignedDate to newAssignedDate:', [oldAssignedDate, newAssignedDate]);
-
-    //updateAssignedDate(subjectId, taskId, newAssignedDate);
-
-
-    //var oldList = evt.from;
-    //var newList = evt.item.parentElement;
-    //
-    //if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
-    //    console.log('Yes');
-    //
-    //} else {
-    //    console.log('No');
-    //}
-}
-
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
@@ -56,6 +37,27 @@ function preparePage() {
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
     fetchActiveTasks(displayTasksInCalendar);
+}
+
+
+function moveTask(evt) {
+    var newAssignedDate = evt.item.parentElement.id;
+    var subjectId = evt.item.dataset.subjectid;
+    var taskId = evt.item.dataset.taskid;
+
+    //var oldAssignedDate = evt.from.id;
+    //console.log('oldAssignedDate to newAssignedDate:', [oldAssignedDate, newAssignedDate]);
+
+    updateAssignedDate(subjectId, taskId, newAssignedDate);
+
+
+    //var oldList = evt.from;
+    //var newList = evt.item.parentElement;
+    //if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
+    //    console.log('Yes');
+    //} else {
+    //    console.log('No');
+    //}
 }
 
 
