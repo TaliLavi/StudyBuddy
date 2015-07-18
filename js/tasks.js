@@ -39,7 +39,7 @@ function createTask(assigned_date) {
 
     // REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveTasks(displayTasksInSubjectsPage);
-    fetchActiveTasks(displayTasksInCalendar);
+    fetchActiveTasks(displayTasksInCalendar, clearCalendarTasks);
 }
 
 
@@ -72,6 +72,11 @@ function displayTasksInBottomPanel(subjectKey, tasksDict) {
     $('#tasksDiv').show();
 }
 
+function clearCalendarTasks() {
+    $('.dayList').text('');
+}
+
+
 function displayTasksInCalendar(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the calendar
@@ -81,7 +86,7 @@ function displayTasksInCalendar(subjectKey, tasksDict) {
                 //Creates a task card div
                 var taskCard = $("<li></li>").addClass("taskCard").addClass(subjectKey).html(taskData.title);
                 //Appends it to the date
-                $('#'+taskData.assigned_date).append(taskCard);
+                $('#'+ taskData.assigned_date).append(taskCard);
             }
         })
     }

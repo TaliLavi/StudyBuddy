@@ -155,12 +155,16 @@ function pushNewTask(subjectId, title, description, assigned_date, time_estimati
 
 
 // RETRIEVE AND  RUNS CALLBACK FUNCTION ON ALL TASKS' INFORMATION UPON REQUEST
-function fetchActiveTasks(callback) {
+function fetchActiveTasks(perSubjectCallback, preparationCallback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     tasksRef.once("value", function(snapshot) {
+        // check if we also receive the preparationCallback func.
+        if (typeof preparationCallback !== 'undefined') {
+            preparationCallback();
+        }
         if (snapshot.val() !== null) {
             $.each(snapshot.val(), function (subjectId, tasksDict) {
-                callback(subjectId, tasksDict);
+                perSubjectCallback(subjectId, tasksDict);
             });
         }
     });
