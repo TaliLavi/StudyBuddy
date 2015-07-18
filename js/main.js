@@ -41,23 +41,21 @@ function preparePage() {
 
 
 function moveTask(evt) {
+    //var previousList = evt.from.id;
     var newAssignedDate = evt.item.parentElement.id;
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
 
-    //var oldAssignedDate = evt.from.id;
-    //console.log('oldAssignedDate to newAssignedDate:', [oldAssignedDate, newAssignedDate]);
-
-    updateAssignedDate(subjectId, taskId, newAssignedDate);
+    //console.log('oldAssignedDate to newAssignedDate:', [previousList, newAssignedDate]);
 
 
-    //var oldList = evt.from;
-    //var newList = evt.item.parentElement;
-    //if($(oldList).hasClass('dayList') && $(newList).hasClass('dayList')) {
-    //    console.log('Yes');
-    //} else {
-    //    console.log('No');
-    //}
+    if (newAssignedDate === "tasksList") {
+        updateAssignedDate(subjectId, taskId, "");
+    } else {
+        updateAssignedDate(subjectId, taskId, newAssignedDate);
+    }
+
+
 }
 
 
