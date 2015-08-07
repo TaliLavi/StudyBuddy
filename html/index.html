@@ -142,7 +142,7 @@
         <div class="row">
           <div class="row" id="subjectsDiv">
           </div>
-          <button onclick="openAddSubject();">Add a Subject</button>
+          <button onclick="openAddSubjectDialog();">Add a Subject</button>
         </div>
       </div>
   </div>
@@ -151,13 +151,13 @@
   <!--========================================================================================================-->
   <!--ADD SUBJECT (MODAL WINDOW)-->
   <!--========================================================================================================-->
-  <div id="subjectModalBG" class="modal-bg">
-    <div id="modalSubject" class="modal">
+  <div id="addSubjectModalBG" class="modal-bg">
+    <div id="addSubjectModal" class="modal">
       <span>New Subject<a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a></span>
       <form>
-        <input id="subjectNameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-        <input id="subjectColourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
-        <button name="submit" id="submitSubject" type="button" onclick="addSubject();">Add Subject</button>
+        <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+        <input id="colourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+        <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
       </form>
     </div>
   </div>

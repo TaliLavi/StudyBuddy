@@ -41,21 +41,15 @@ function preparePage() {
 
 
 function moveTask(evt) {
-    //var previousList = evt.from.id;
     var newAssignedDate = evt.item.parentElement.id;
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
-
-    //console.log('oldAssignedDate to newAssignedDate:', [previousList, newAssignedDate]);
-
 
     if (newAssignedDate === "tasksList") {
         updateAssignedDate(subjectId, taskId, "");
     } else {
         updateAssignedDate(subjectId, taskId, newAssignedDate);
     }
-
-
 }
 
 
@@ -152,26 +146,31 @@ function closeModalWindow() {
 
 
 //===========================================================================================================
-//ADD A NEW SUBJECT
+    // CREATE A NEW SUBJECT
 //===========================================================================================================
 
-function openAddSubject(){
-    document.getElementById("subjectNameInput").value = null;       //Clear the name field of the modal window
-    document.getElementById("subjectColourInput").value = null;     //Clear the colour field of the modal window
-    $('#modalSubject').css('display','block');                      //Makes the modal window display
-    $('#subjectModalBG').fadeIn();                                  //Fades in the greyed-out background
+function openAddSubjectDialog(){
+    //Makes the modal window display
+    $('#addSubjectModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#addSubjectModalBG').fadeIn();
+    // Clear any old onclick handler
+    $('#submitNewSubject').off("click");
+    // Set the new onclick handler
+    $('#submitNewSubject').on("click", function(){createSubject()});
+
 }
 
-function addSubject(){
-    var subjectName = document.getElementById("subjectNameInput").value;        //gets user input of form
-    var subjectColour = document.getElementById("subjectColourInput").value;    //gets user input of form
-    console.log(subjectName+" "+subjectColour);
-    // put code to append new subject to div here
-    //var newSubjectDiv = $("<div></div>").addClass("col-md-2");
-    //$("#subjectsContainer").append(newSubjectDiv);
-    $('.modal-bg').fadeOut();                                                   //Fade out the greyed background
-    $('#modalSubject').fadeOut();                                               //Fade out the modal window
-}
+//function addSubject(){
+//    var subjectName = document.getElementById("subjectNameInput").value;        //gets user input of form
+//    var subjectColour = document.getElementById("subjectColourInput").value;    //gets user input of form
+//    console.log(subjectName+" "+subjectColour);
+//    // put code to append new subject to div here
+//    //var newSubjectDiv = $("<div></div>").addClass("col-md-2");
+//    //$("#subjectsContainer").append(newSubjectDiv);
+//    $('.modal-bg').fadeOut();                                                   //Fade out the greyed background
+//    $('#addSubjectModal').fadeOut();                                               //Fade out the modal window
+//}
 
 
 

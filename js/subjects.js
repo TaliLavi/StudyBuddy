@@ -2,8 +2,8 @@
 function createSubject() {
 
     // REGISTER DOM ELEMENTS
-    var nameInput = $('#subjectName');
-    var colourInput = $('#subjectColour');
+    var nameInput = $('#nameInput');
+    var colourInput = $('#colourInput');
 
     // GET FIELD VALUES
     var name = nameInput.val();
@@ -17,9 +17,16 @@ function createSubject() {
     // PUSH THEM TO DB
     pushNewSubject(getActiveUser(), name, colour, studySessionMinutes, shortBreakMinutes, longBreakMinutes);
 
-    // CLEAR INPUT FIELDS
-    nameField.val('');
-    colourField.val('');
+    // CLOSE THE ADD SUBJECT DIALOG
+    //Fade out the greyed background
+    $('.modal-bg').fadeOut();
+    //Fade out the modal window
+    $('#addSubjectModal').fadeOut();
+
+
+    // CLEAR INPUT FIELDS ON THE ADD SUBJECT DIALOG
+    nameInput.val('');
+    colourInput.val('');
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
@@ -29,6 +36,7 @@ function createSubject() {
 function displayActiveSubjects(subjectDict) {
 
     // Clear current display of subjects
+    $('#subjectsList').text('');
     $('#subjectsDiv').text('');
     $('#subjectInput').text('');
     $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
