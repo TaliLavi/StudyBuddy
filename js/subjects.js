@@ -9,9 +9,11 @@ function createSubject() {
     var name = nameInput.val();
     var colour = colourInput.val();
 
+    // SET DEFAULT VALUES
+    var is_deleted = 0;
 
     // PUSH THEM TO DB
-    pushNewSubject(getActiveUser(), name, colour);
+    pushNewSubject(getActiveUser(), name, colour, is_deleted);
 
     // CLOSE THE ADD SUBJECT DIALOG
     //Fade out the greyed background
