@@ -9,13 +9,9 @@ function createSubject() {
     var name = nameInput.val();
     var colour = colourInput.val();
 
-    // SET DEFAULT TIME INTERVALS
-    var studySessionMinutes = 25;
-    var shortBreakMinutes = 5;
-    var longBreakMinutes = 15;
 
     // PUSH THEM TO DB
-    pushNewSubject(getActiveUser(), name, colour, studySessionMinutes, shortBreakMinutes, longBreakMinutes);
+    pushNewSubject(getActiveUser(), name, colour);
 
     // CLOSE THE ADD SUBJECT DIALOG
     //Fade out the greyed background

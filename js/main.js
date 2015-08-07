@@ -161,17 +161,6 @@ function openAddSubjectDialog(){
 
 }
 
-//function addSubject(){
-//    var subjectName = document.getElementById("subjectNameInput").value;        //gets user input of form
-//    var subjectColour = document.getElementById("subjectColourInput").value;    //gets user input of form
-//    console.log(subjectName+" "+subjectColour);
-//    // put code to append new subject to div here
-//    //var newSubjectDiv = $("<div></div>").addClass("col-md-2");
-//    //$("#subjectsContainer").append(newSubjectDiv);
-//    $('.modal-bg').fadeOut();                                                   //Fade out the greyed background
-//    $('#addSubjectModal').fadeOut();                                               //Fade out the modal window
-//}
-
 
 
 //===========================================================================================================
