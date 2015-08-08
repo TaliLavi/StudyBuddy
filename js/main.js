@@ -1,6 +1,3 @@
-//var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";    //shadow1 is the normal box shadow on the tiles
-//var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";    //shadow2 is the bigger shadow for when tiles are being moved
-
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
@@ -162,26 +159,6 @@ function openAddSubjectDialog(){
 }
 
 
-
-//===========================================================================================================
-    //TWEENMAX FUNCTIONS TO CHANGE SIZE/OPACITY OF TILE AS IT IS DRAGGED
-//===========================================================================================================
-//
-//function shrink(element){
-//    TweenMax.to(element, 0.2, {     //This TweenMax gives the dragTile its shadow and change in size
-//        autoAlpha : 0.75,
-//        boxShadow : shadow2,
-//        scale     : 0.95,
-//    });
-//}
-//
-//function grow(element){
-//    TweenMax.to(element, 0.2, {
-//        autoAlpha : 1,
-//        boxShadow: shadow1,
-//        scale     : 1,
-//    });
-//}
 
 
 

@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pomodoro.css">
   <link rel="stylesheet" href="../css/subjectsBottomPanel.css">
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp'>
   <link rel='stylesheet prefetch' href='lang=en'>
@@ -18,6 +19,8 @@
   <script src="../js/tasks.js"></script>
   <script src='../js/TweenMax.js'></script>
   <script src='../js/main.js'></script>
+
+
 
 </head>
 
@@ -189,10 +192,24 @@
   <!--========================================================================================================-->
   <div id="taskModalBG" class="modal-bg">
     <div id="taskModal" class="modal">
-      <span>
+      <span class="cardHead">
         Your Task
         <a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a>
       </span>
+      <div id ="pomodoroDiv">
+        <p id="clock" class="none"><span id =minsDiv>00</span>:<span id =secsDiv>00</span></p>
+        <br>
+        <button onclick="playPause()" id="playPause">  Start Work  </button>
+        <button onclick="stopTimer()" id="stop">  Stop Working  </button>
+        <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
+
+        <p id="timeRecord"></p>
+        <p>You worked for <span id="totalSecondRecord">0</span> seconds in total.</p>
+        <audio id="tone">
+          <source src="pomodoroTone.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
       <form>
         <select id ="taskSubject"></select>
         <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here." required>
@@ -201,9 +218,10 @@
         <input id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here." required>
         <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
       </form>
+
     </div>
   </div>
-
+  <script src='../js/pomodoro.js'></script>
 </body>
 </html>
 

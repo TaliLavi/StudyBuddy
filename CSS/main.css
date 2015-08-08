@@ -1,12 +1,4 @@
 
-.mainNav {
-    background-color: #e5eecc;
-    text-align: center;
-    padding: 10px;
-    border: solid 1px #c3c3c3;
-}
-
-
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
     background-color: whitesmoke;
@@ -62,15 +54,15 @@
     top:35%;
     left:50%;
     z-index: 1;
-    width:340px;
-    height:500px;
+    width:700px;
+    height:400px;
     margin-top:-130px;
     margin-left:-170px;
     box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
 }
 
 /*The span div inside the modal is the coloured bar along the top with the title & the Close button*/
-.modal span{
+.cardHead{
     display: block;
     background: darkseagreen;
     padding: 10px;
@@ -85,8 +77,10 @@
 }
 
 form{
-    display:block;
     margin:30px;
+    /*background-color: #a94442;*/
+    height:300px;
+    width: 300px;
 }
 form *{
     margin:10px;
@@ -100,6 +94,14 @@ input{
     padding:7px;
     border:2px solid #ccc ;
     border-radius:3px;
+}
+
+#pomodoroDiv {
+    margin:30px;
+    background-color: #e5e5e5;
+    height:300px;
+    width: 300px;
+    float: right;
 }
 
 /*===============================================================================================*/
@@ -158,4 +160,3 @@ input{
     .col {  margin: 1% 0 1% 0%; }
     .dayColumn { width: 100%; }
 }
-
