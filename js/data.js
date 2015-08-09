@@ -87,20 +87,10 @@ function fetchActiveSubjects(userId, callback) {
     });
 }
 
-
-function fetchSubjectName(userId, subjectId) {
-    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + '/' + subjectId);
-    subjectsRef.once("value", function(snapshot) {
-        var subject = snapshot.val();
-        return subject.name;
-    });
-}
-
-
 // UPDATE SUBJECT'S NAME
 function changeSubjectName(userId, subjectId, newName){
-    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + "/" + subjectId);
-    subjectsRef.update({
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + "/" + subjectId);
+    subjectRef.update({
         "name": newName
     });
 };
@@ -108,8 +98,8 @@ function changeSubjectName(userId, subjectId, newName){
 
 // UPDATE SUBJECT'S COLOUR
 function changeSubjectColour(userId, subjectId, newColour){
-    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + "/" + subjectId);
-    subjectsRef.update({
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + "/" + subjectId);
+    subjectRef.update({
         "colour": newColour
     });
 };
@@ -162,7 +152,10 @@ function fetchActiveTasks(perSubjectCallback, preparationCallback) {
         }
         if (snapshot.val() !== null) {
             $.each(snapshot.val(), function (subjectId, tasksDict) {
-                perSubjectCallback(subjectId, tasksDict);
+                var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+                subjectRef.once("value", function(subjectSnapshot) {
+                    perSubjectCallback(subjectId, subjectSnapshot.val(), tasksDict);
+                });
             });
         }
     });
@@ -172,8 +165,11 @@ function fetchActiveTasks(perSubjectCallback, preparationCallback) {
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS BELONGING TO A SPECIFIC SUBJECT
 function fetchActiveTasksBySubject(subjectId, callback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId);
-    tasksRef.once("value", function(snapshot) {
-        callback(subjectId, snapshot.val());
+    tasksRef.once("value", function(tasksSnapshot) {
+        var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+        subjectRef.once("value", function(subjectSnapshot) {
+            callback(subjectId, subjectSnapshot.val(), tasksSnapshot.val());
+        });
     });
 }
 

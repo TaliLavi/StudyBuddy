@@ -1,3 +1,11 @@
+$(document).ready(function(){
+    $('.your-class').slick({
+        infinite: true,
+        slidesToShow: 7,
+        slidesToScroll: 7,
+        initialSlide: 7
+    });
+});
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
@@ -80,6 +88,14 @@ function displayPage(pageId, buttonId) {
 //===========================================================================================================
 //CREATE CALENDAR
 //===========================================================================================================
+function swipeCalendar() {
+    //$('#dayColumns').slick({
+    //    infinite: true,
+    //    slidesToShow: 3,
+    //    slidesToScroll: 3,
+    //    //initialSlide: 7
+    //});
+}
 
 function createCalendar() {
     for (var i = 0; i < 7; i++) {
@@ -98,10 +114,8 @@ function createCalendar() {
     $('#currentWeekDates').append(firstDateOfCurrentWeek + ' - ' + lastDateOfCurrentWeek);
 
     fetchActiveTasks(displayTasksInCalendar);
+    swipeCalendar();
 }
-
-
-
 
 
 //===========================================================================================================

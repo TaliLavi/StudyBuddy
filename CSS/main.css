@@ -27,6 +27,50 @@
     padding: 0px;
 }
 
+.blue {
+    background-color: #204d74;
+}
+
+.pink {
+    background-color: hotpink;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.lime {
+    background-color: lime;
+}
+
+.orange {
+    color: orangered;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.brown {
+    background-color: saddlebrown;
+}
+
+.turquoise {
+    background-color: darkturquoise;
+}
+
 .dayColumn {
     margin-right: 3%;
     margin-left: 3%;
