@@ -19,7 +19,7 @@
     font-size: 1em;
     display: block;
     position: relative;
-    background-color: darkseagreen;
+    background-color: lightgray;
     width: 100%;
     height:60px;
     margin-bottom: 7px;             /*create a margin between cards*/
@@ -31,6 +31,77 @@
     margin-right: 3%;
     margin-left: 3%;
 }
+
+.class21324C {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
+    background-color: #21324C;
+    color: #c3c3c3;
+}
+
+.class2A98BB {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
+    background-color: #2A98BB;
+    color: white;
+}
+
+.classA6E1F1 {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
+    background-color: #A6E1F1;
+    color: #2A98BB;
+}
+
+.classB10239 {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
+    background-color: #B10239;
+    color: white;
+}
+
+.class6F011E {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    text-align: center;
+    padding: 0px;
+    background-color: #6F011E;
+    color: #c3c3c3;
+}
+
 
 /*===================================================================================================================*/
 /*MODAL WINDOWS*/

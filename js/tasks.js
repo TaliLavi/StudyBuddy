@@ -33,16 +33,15 @@ function createTask() {
     titleInput.val('');
     descriptionInput.val('');
     timeEstimationInput.val('');
-    // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
-        return this.defaultSelected;
+        return this.defaultSelected;                            // Reset select value to default
     });
-
 
     // REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveTasks(displayTasksInSubjectsPage);
     fetchActiveTasks(displayTasksInCalendar, clearCalendarTasks);
-}
+
+}//end of function createTask
 
 
 // DISPLAY TASKS ON SUBJECTS PAGE
@@ -54,7 +53,7 @@ function displayTasksInSubjectsPage(subjectKey, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             // Append tasks to appropriate subjects on Subjects Page.
-            $(subject_div_id).append('<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+            $(subject_div_id).append('<li class ="class21324C ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
                 ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>');
         })
     }
@@ -68,7 +67,7 @@ function displayTasksInBottomPanel(subjectKey, tasksDict) {
             // only append tasks that don't have an assigned_date
             if (taskData.assigned_date == "") {
                 //Creates a task card div
-                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+                var taskCard = '<li class ="class21324C ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
                     ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
 
                 //Appends it to the list
@@ -92,9 +91,8 @@ function displayTasksInCalendar(subjectKey, tasksDict) {
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date)) {
                 //Creates a task card div
-                var taskCard = '<li class ="taskCard ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
-                    ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
-
+                var taskCard = '<li class ="class6F011E ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
+                ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
                 //Appends it to the date
                 $('#'+ taskData.assigned_date).append(taskCard);
             }

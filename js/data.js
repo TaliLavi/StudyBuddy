@@ -93,6 +93,17 @@ function fetchSubjectName(userId, subjectId) {
     subjectsRef.once("value", function(snapshot) {
         var subject = snapshot.val();
         return subject.name;
+        alert(subject.name);
+    });
+}
+
+
+
+function fetchSubjectClass(userId, subjectId) {
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId + '/' + subjectId);
+    subjectsRef.on("value", function(snapshot) {
+        var subject = snapshot.val();
+        return subject.colour;
     });
 }
 
@@ -112,7 +123,14 @@ function changeSubjectColour(userId, subjectId, newColour){
     subjectsRef.update({
         "colour": newColour
     });
-};
+}
+
+
+changeSubjectColour("-JsqE8CQ9Dg7LE0OKQ2P", "-JsrUKsdGw5JkFwpLNqD", "class21324C");
+changeSubjectColour("-JsqE8CQ9Dg7LE0OKQ2P", "-JsrUPQNfTDGEn-1yXZ9", "class2A98BB");
+changeSubjectColour("-JsqE8CQ9Dg7LE0OKQ2P", "-Jw8mvm4cUeDXF4s02Hg", "classA6E1F1");
+changeSubjectColour("-JsqE8CQ9Dg7LE0OKQ2P", "-Jw8pkIHv5QMpTL7gykN", "classB10239");
+changeSubjectColour("-JsqE8CQ9Dg7LE0OKQ2P", "-JwHLrcSu27GO-8-F9_i", "class6F011E");
 
 
 // MOVE SUBJECT TO DELETED
@@ -216,3 +234,4 @@ function pushNewChecklistItem(userId, subjectId, taskId, description, is_complet
         is_complete: is_complete
     });
 };
+
