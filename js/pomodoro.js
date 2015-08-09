@@ -26,10 +26,12 @@ var longBreakMinsLeft;
 
 var workSessionCount = 0;
 
+var subjectIdForPomo;
+var taskIdForPomo;
+
 
 //Variables for accessing HTML elements
 var tone                = document.getElementById("tone");
-var totalSecondRecord   = document.getElementById("totalSecondRecord");
 var secondsClock        = document.getElementById("secsDiv");
 var minutesClock        = document.getElementById("minsDiv");
 var wholeClock          = document.getElementById("clock");
@@ -44,10 +46,14 @@ var sessRecord          = document.getElementById("timeRecord")
 //===============================================================================================================================
 
 function resetTimeSettings(){
-    workSecsLeft    = userWorkLength;;
+    workSecsLeft    = userWorkLength;
     workMinsLeft    = workSecsLeft/60;
     shortBreakSecsLeft   = userShortBreakLength;
     shortBreakMinsLeft   = shortBreakSecsLeft/60;
+    workPlaying = false;
+    workButtons();
+    minutesClock.innerHTML="00";
+    secondsClock.innerHTML ="00";
 }
 
 //===============================================================================================================================
@@ -59,7 +65,7 @@ var FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
 //Currently hardoded to return Alice's user ID (for development)
 function getActiveUser() {
     // TODO: implement authentication
-    return "-JsqE8CQ9Dg7LE0OKQ2P"
+    return "-JsqE8CQ9Dg7LE0OKQ2P";
 }
 
 //Although the time is stored in the database as minutes, they are used as seconds here for quick testing
@@ -195,31 +201,30 @@ function playPause(){                                       //Runs when play/pau
 //===============================================================================================================================
 
 function stopTimer(){
-    clearInterval(timerVar);                //Stops timer running
+    clearInterval(timerVar);                            //Stops timer running
 
     if(workPlaying){                                    //if the timer had been workPlaying when button pressed,
         totalSecs = totalSecs + secsElapsed;            //the last seconds elapsed need to be added onto total seconds
-        sessRecord.innerHTML="You worked for "+totalSecs+" seconds in total.";
-        displayTotalSeconds();
+        sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     } else {                                            //if the player had been paused, the seconds would have already been added on.
-        sessRecord.innerHTML="You worked for "+totalSecs+" seconds in total.";
-        displayTotalSeconds();
+        sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     }
 
     playPauseButton.className="hide";       //Hides play/pause button
     stopButton.className="hide";            //Hides stop button
-    totalSecs = 0;                          //Resets totalSecs variable
+
+
 }//end of function stopTimer()
 
 //===============================================================================================================================
 //Function displayTotalSeconds() displays all seconds spent working in HTML. Called when work session is stopped or ends.
 //This code needs to be adapted to send the numbers to the database instead of putting in HTML.
 //===============================================================================================================================
-function displayTotalSeconds(){
-    var prevSecs = parseInt(totalSecondRecord.innerHTML);       //Gets contents of html, converts to integer, sets as variable
-    var newTotal = totalSecs + prevSecs;                        //Adds the total seconds of this session to total number stored in html
-    totalSecondRecord.innerHTML= newTotal;                      //Updates html to contain new total
-}//end of function displayTotalSeconds
+//function displayTotalSeconds(){
+//    var prevSecs = parseInt(totalSecondRecord.innerHTML);       //Gets contents of html, converts to integer, sets as variable
+//    var newTotal = totalSecs + prevSecs;                        //Adds the total seconds of this session to total number stored in html
+//    totalSecondRecord.innerHTML= newTotal;                      //Updates html to contain new total
+//}//end of function displayTotalSeconds
 
 //===============================================================================================================================
 //Function endWorkSession() called when work timer runs down.
@@ -228,8 +233,7 @@ function displayTotalSeconds(){
 function endWorkSession(){
     clearInterval(timerVar);                                        //Stops timer
     totalSecs = totalSecs + secsElapsed;                            //the last seconds elapsed are added onto total seconds
-    displayTotalSeconds();                                          //Adds new total seconds to total stored in HTML
-    sessRecord.innerHTML="You worked for "+totalSecs+" seconds this session.";  //Updates html to show total for that session
+    sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     totalSecs = 0;                                                  //Resets total seconds
     if(workSessionCount == 3){                                      //If workSessionCount is 3, there have been four work sessions (only updates at end of session)
         playLongBreakTimer();                                       //Start a long break
@@ -251,7 +255,6 @@ function endBreakSession(){
     resetTimeSettings();                            //Resets time settings left to original amount
     secsElapsed = 0;                                //Resets seconds elapsed
     clearInterval(timerVar);                        //Stops timer
-    workButtons();                                  //Hides skip break, shows play/pause & stop buttons
     playWorkTimer();                                //Starts work timer
     playTone();                                     //Plays tone
 }//end of function endBreakSession()
@@ -263,7 +266,6 @@ function endBreakSession(){
 function skipBreak(){
     resetTimeSettings();                            //Resets time settings left to original amount
     secsElapsed = 0;                                //Resets seconds elapsed
-    workButtons();                                  //Hides skip break, shows play/pause & stop buttons
     clearInterval(timerVar);                        //Stops break timer
     playWorkTimer();                                //Plays work timer
 }//end of function skipBreak()
@@ -290,5 +292,6 @@ function workButtons(){
     skipBreakButton.className="hide";
     stopButton.className="show";
     playPauseButton.className="show";
+    playPauseButton.innerHTML="Play"
 }
 

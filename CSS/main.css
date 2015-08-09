@@ -14,12 +14,10 @@
 
 /*These are the cards*/
 .taskCard {
-    color: #3A3A4D;
     font-weight: normal;
     font-size: 1em;
     display: block;
     position: relative;
-    background-color: darkseagreen;
     width: 100%;
     height:60px;
     margin-bottom: 7px;             /*create a margin between cards*/
@@ -27,54 +25,37 @@
     padding: 0px;
 }
 
-.blue {
-    background-color: #204d74;
+.colour21324C {
+    background-color: #21324C;
+    color: #c3c3c3;
 }
 
-.pink {
-    background-color: hotpink;
+.colour2A98BB {
+    background-color: #2A98BB;
+    color: white;
 }
 
-.red {
-    background-color: red;
+.colourA6E1F1 {
+    background-color: #A6E1F1;
+    color: #2A98BB;
 }
 
-.yellow {
-    background-color: yellow;
+.colourB10239 {
+    background-color: #B10239;
+    color: white;
 }
 
-.green {
-    background-color: green;
+.colour6F011E {
+    background-color: #6F011E;
+    color: #c3c3c3;
 }
 
-.purple {
-    background-color: purple;
-}
-
-.lime {
-    background-color: lime;
-}
-
-.orange {
-    color: orangered;
-}
-
-.gray {
-    background-color: gray;
-}
-
-.brown {
-    background-color: saddlebrown;
-}
-
-.turquoise {
-    background-color: darkturquoise;
-}
 
 .dayColumn {
     margin-right: 3%;
     margin-left: 3%;
 }
+
 
 /*===================================================================================================================*/
 /*MODAL WINDOWS*/

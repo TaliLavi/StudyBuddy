@@ -102,7 +102,7 @@ function changeSubjectColour(userId, subjectId, newColour){
     subjectRef.update({
         "colour": newColour
     });
-};
+}
 
 
 // MOVE SUBJECT TO DELETED

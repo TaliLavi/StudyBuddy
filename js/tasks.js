@@ -33,16 +33,15 @@ function createTask() {
     titleInput.val('');
     descriptionInput.val('');
     timeEstimationInput.val('');
-    // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
-        return this.defaultSelected;
+        return this.defaultSelected;                            // Reset select value to default
     });
-
 
     // REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveTasks(displayTasksInSubjectsPage);
     fetchActiveTasks(displayTasksInCalendar, clearCalendarTasks);
-}
+}//end of function createTask
+
 
 //Creates a task card div
 function createTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
@@ -52,6 +51,7 @@ function createTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
                     taskData.title + '</li>';
     return cardHtml;
 }
+
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
