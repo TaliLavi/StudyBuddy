@@ -1,15 +1,7 @@
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
-    //set up drag and drop for each list
-    $(".sortable-task-list").each(function(i, list){
-        Sortable.create(list, {
-            group: "tasks",
-            animation: 400,
-            ghostClass: "sortable-ghost",
-            onAdd: moveTask
-        });
-    });
+    createCalendar();
     // set nav buttons
     $("#profileButton").click(function(){
         displayPage("#profilePage", "#profileButton")
@@ -33,7 +25,16 @@ function preparePage() {
     fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
-    fetchActiveTasks(displayTasksInCalendar);
+
+    //set up drag and drop for each list
+    $(".sortable-task-list").each(function(i, list){
+        Sortable.create(list, {
+            group: "tasks",
+            animation: 400,
+            ghostClass: "sortable-ghost",
+            onAdd: moveTask
+        });
+    });
 }
 
 
@@ -73,6 +74,34 @@ function displayPage(pageId, buttonId) {
     // only disable current nav button
     $(buttonId).prop("disabled", true);
 }
+
+
+
+//===========================================================================================================
+//CREATE CALENDAR
+//===========================================================================================================
+
+function createCalendar() {
+    for (var i = 0; i < 7; i++) {
+        var currentDate = Date.parse('last monday').addDays(i);
+        var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
+        var currentDay = currentDate.toString('dddd');
+        // Append day
+        $('#dayColumns').append('<div class="col dayColumn"><h4>' + currentDay + '</h4><div>' + currentDateFormatted +
+            '</div><button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
+            currentDateFormatted + '\', this);">Add Task</button><ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul></div>');
+    }
+
+    // Display current week's dates
+    var firstDateOfCurrentWeek = $('#dayColumns div:first-child ul').attr('id')
+    var lastDateOfCurrentWeek = $('#dayColumns div:last-child ul').attr('id')
+    $('#currentWeekDates').append(firstDateOfCurrentWeek + ' - ' + lastDateOfCurrentWeek);
+
+    fetchActiveTasks(displayTasksInCalendar);
+}
+
+
+
 
 
 //===========================================================================================================

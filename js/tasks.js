@@ -86,10 +86,12 @@ function clearCalendarTasks() {
 
 function displayTasksInCalendar(subjectKey, tasksDict) {
     if (tasksDict !== null) {
+        var thisWeeksMonday = Date.parse('last monday');
+        var nextWeeksMonday = Date.parse('next monday');
         // append tasks to the calendar
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
-            if (whetherDateIsDisplayed(taskData.assigned_date)) {
+            if (whetherDateIsDisplayed(taskData.assigned_date, thisWeeksMonday, nextWeeksMonday)) {
                 //Creates a task card div
                 var taskCard = '<li class ="class6F011E ' + subjectKey + '" onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');"' +
                 ' data-subjectId=\'' + subjectKey + '\' data-taskId=\'' + taskKey + '\'>' + taskData.title + '</li>';
@@ -101,8 +103,9 @@ function displayTasksInCalendar(subjectKey, tasksDict) {
 }
 
 // checks whether date is displayed in DOM
-function whetherDateIsDisplayed(date) {
-    return date !== null && "2016-02-01" <= date && date <= "2016-02-07" ;
+function whetherDateIsDisplayed(date_string, thisWeeksMonday, nextWeeksMonday) {
+    var date = Date.parse(date_string);
+    return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
 function prepareTasksDiv(subjectName, subjectKey) {
