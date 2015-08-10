@@ -218,29 +218,36 @@ function pushNewChecklistItem(userId, subjectId, taskId, description, is_complet
 //                              TIME
 //=====================================================================
 
-
-//function updateNumOfBreaksForTask() {
-//    var tasksBreakRef = new Firebase('https://studybuddyapp.firebaseio.com/Tasks/-JsqE8CQ9Dg7LE0OKQ2P/active/-JsrUKsdGw5JkFwpLNqD/-JsrVGm6Nxr22sYZ6xpe/number_of_breaks');
-//    tasksBreakRef.once("value", function(snapshot) {
-//        var newNum = snapshot.val() + 1;
-//        tasksBreakRef.set(newNum);
-//    });
-//}
-//
-
-
-function updateNumOfBreaksForTask(userId, subjectId, taskId, callback) {
-    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + userId + '/active/' + subjectId + '/' + taskId + '/number_of_breaks');
+// add one to task's count of breaks
+function incrementNumOfBreaksForTask(subjectId, taskId) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
-        callback(snapshot.val(), tasksBreakRef);
+        var newNum = snapshot.val() + 1;
+        tasksBreakRef.set(newNum);
     });
 }
 
-
-function updateNumOfBreaksForDate(date, userId, callback) {
-    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + userId + '/number_of_breaks');
+// add one to a date's count of breaks
+function incrementNumOfBreaksForDate(date) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + getActiveUser() + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
-        callback(snapshot.val(), tasksBreakRef);
+        var newNum = snapshot.val() + 1;
+        tasksBreakRef.set(newNum);
     });
 }
 
+// fetch a task's total time studied
+function fetchOldTimeStudiedForTask(subjectId, taskId, additionalTimeStudied, callback) {
+    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/total_seconds_studied');
+    tasksTimeStudiedRef.once("value", function(snapshot) {
+        callback(snapshot.val(), additionalTimeStudied, tasksTimeStudiedRef);
+    });
+}
+
+// fetch a date's total time studied
+function fetchOldTimeStudiedForDate(date, additionalTimeStudied, callback) {
+    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + getActiveUser() + '/time_studied');
+    tasksTimeStudiedRef.once("value", function(snapshot) {
+        callback(snapshot.val(), additionalTimeStudied, tasksTimeStudiedRef);
+    });
+}

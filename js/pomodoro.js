@@ -212,7 +212,8 @@ function stopTimer(){
 
     playPauseButton.className="hide";       //Hides play/pause button
     stopButton.className="hide";            //Hides stop button
-
+    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);
 
 }//end of function stopTimer()
 
@@ -234,6 +235,8 @@ function endWorkSession(){
     clearInterval(timerVar);                                        //Stops timer
     totalSecs = totalSecs + secsElapsed;                            //the last seconds elapsed are added onto total seconds
     sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);
     totalSecs = 0;                                                  //Resets total seconds
     if(workSessionCount == 3){                                      //If workSessionCount is 3, there have been four work sessions (only updates at end of session)
         playLongBreakTimer();                                       //Start a long break
@@ -257,8 +260,8 @@ function endBreakSession(){
     clearInterval(timerVar);                        //Stops timer
     playWorkTimer();                                //Starts work timer
     playTone();                                     //Plays tone
-    var date = Date.today().toString('yyyy-MM-dd');
-    updateNumberOfBreaks(getActiveUser(), subjectIdForPomo, taskIdForPomo, date);
+    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    incrementNumberOfBreaks(subjectIdForPomo, taskIdForPomo, todaysDate);
 }//end of function endBreakSession()
 
 //===============================================================================================================================
@@ -302,15 +305,20 @@ function workButtons(){
 //Updating Time and Breaks
 //===============================================================================================================================
 
-function updateNumberOfBreaks(userId, subjectId, taskId, date) {
-    updateNumOfBreaksForTask(userId, subjectId, taskId, addOne);
-    updateNumOfBreaksForDate(date, userId, addOne);
+// increment number of breaks in the db (in two locations: under the task and under today's date)
+function incrementNumberOfBreaks(subjectId, taskId, todaysDate) {
+    incrementNumOfBreaksForTask(subjectId, taskId);
+    incrementNumOfBreaksForDate(todaysDate);
 }
 
+// update total time studied in the db (in two locations: under the task and under today's date)
+function updateTimeStudied(subjectId, taskId, additionalTimeStudied, date) {
+    fetchOldTimeStudiedForTask(subjectId, taskId, additionalTimeStudied, sumAndUpdateStudyTimes);
+    fetchOldTimeStudiedForDate(date, additionalTimeStudied, sumAndUpdateStudyTimes);
+}
 
-function addOne(numOfBreaks, tasksBreakRef) {
-    console.log(numOfBreaks);
-    numOfBreaks += 1;
-    console.log(numOfBreaks);
-    tasksBreakRef.set(numOfBreaks);
+// sum previously stored time studied and new time studied, and update the db
+function sumAndUpdateStudyTimes(oldTotal, addedTimeStudied, tasksTimeStudiedRef) {
+    var totalTime = oldTotal + addedTimeStudied;
+    tasksTimeStudiedRef.set(totalTime);
 }
