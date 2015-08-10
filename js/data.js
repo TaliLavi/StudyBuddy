@@ -212,3 +212,35 @@ function pushNewChecklistItem(userId, subjectId, taskId, description, is_complet
         is_complete: is_complete
     });
 };
+
+
+//=====================================================================
+//                              TIME
+//=====================================================================
+
+
+//function updateNumOfBreaksForTask() {
+//    var tasksBreakRef = new Firebase('https://studybuddyapp.firebaseio.com/Tasks/-JsqE8CQ9Dg7LE0OKQ2P/active/-JsrUKsdGw5JkFwpLNqD/-JsrVGm6Nxr22sYZ6xpe/number_of_breaks');
+//    tasksBreakRef.once("value", function(snapshot) {
+//        var newNum = snapshot.val() + 1;
+//        tasksBreakRef.set(newNum);
+//    });
+//}
+//
+
+
+function updateNumOfBreaksForTask(userId, subjectId, taskId, callback) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + userId + '/active/' + subjectId + '/' + taskId + '/number_of_breaks');
+    tasksBreakRef.once("value", function(snapshot) {
+        callback(snapshot.val(), tasksBreakRef);
+    });
+}
+
+
+function updateNumOfBreaksForDate(date, userId, callback) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + userId + '/number_of_breaks');
+    tasksBreakRef.once("value", function(snapshot) {
+        callback(snapshot.val(), tasksBreakRef);
+    });
+}
+

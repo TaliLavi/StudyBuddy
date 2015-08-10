@@ -257,6 +257,8 @@ function endBreakSession(){
     clearInterval(timerVar);                        //Stops timer
     playWorkTimer();                                //Starts work timer
     playTone();                                     //Plays tone
+    var date = Date.today().toString('yyyy-MM-dd');
+    updateNumberOfBreaks(getActiveUser(), subjectIdForPomo, taskIdForPomo, date);
 }//end of function endBreakSession()
 
 //===============================================================================================================================
@@ -295,3 +297,20 @@ function workButtons(){
     playPauseButton.innerHTML="Play"
 }
 
+
+//===============================================================================================================================
+//Updating Time and Breaks
+//===============================================================================================================================
+
+function updateNumberOfBreaks(userId, subjectId, taskId, date) {
+    updateNumOfBreaksForTask(userId, subjectId, taskId, addOne);
+    updateNumOfBreaksForDate(date, userId, addOne);
+}
+
+
+function addOne(numOfBreaks, tasksBreakRef) {
+    console.log(numOfBreaks);
+    numOfBreaks += 1;
+    console.log(numOfBreaks);
+    tasksBreakRef.set(numOfBreaks);
+}
