@@ -34,16 +34,30 @@ function preparePage() {
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
 
-    //set up drag and drop for each list
-    $(".sortable-task-list").each(function(i, list){
-        Sortable.create(list, {
-            group: "tasks",
-            animation: 400,
-            ghostClass: "sortable-ghost",
-            onAdd: moveTask,
-            delay: 400
+    if (screen.width > 1000) {
+        //set up drag and drop for each list
+        $(".sortable-task-list").each(function(i, list){
+            Sortable.create(list, {
+                group: "tasks",
+                animation: 400,
+                ghostClass: "sortable-ghost",
+                onAdd: moveTask
+            });
         });
-    });
+    } else {
+        //set up drag and drop for each list, with delay to imitate long-press
+        $(".sortable-task-list").each(function(i, list){
+            Sortable.create(list, {
+                group: "tasks",
+                animation: 400,
+                ghostClass: "sortable-ghost",
+                onAdd: moveTask,
+                delay: 400
+            });
+        });
+    }
+
+
 }
 
 
