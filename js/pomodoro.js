@@ -59,14 +59,6 @@ function resetTimeSettings(){
 //===============================================================================================================================
 //FIREBASE STUFF
 //===============================================================================================================================
-var FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
-
-//This function will get the current active user and return their user id.
-//Currently hardoded to return Alice's user ID (for development)
-function getActiveUser() {
-    // TODO: implement authentication
-    return "-JsqE8CQ9Dg7LE0OKQ2P";
-}
 
 //Although the time is stored in the database as minutes, they are used as seconds here for quick testing
 var userStudyMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getActiveUser() + '/study_session_minutes');
