@@ -94,16 +94,6 @@ userLongBreakMins.on("value", function(snapshot){
     userLongBreakLength = snapshot.val();               //Sets global variable userLongBreakLength as value in database
 });
 
-// Sets work session and short and long break lengths in database. Called when submit is pressed on form.
-function saveToDatabase(){
-    var workInput = document.getElementById("workInput").value;                     //Gets value entered on form
-    var shortBreakInput = document.getElementById("shortBreakInput").value;         //Gets value entered on form
-    var longBreakInput = document.getElementById("longBreakInput").value;           //Gets value entered on form
-    userStudyMins.set(workInput);                                               //Puts into database
-    userShortBreakMins.set(shortBreakInput);                                    //Puts into database
-    userLongBreakMins.set(longBreakInput);                                      //Puts into database
-}// end of function saveToDatabase()
-
 //===============================================================================================================================
 //Function myTimer - Timer counts down minutes and seconds of session, and calls function to end session at end.
 //===============================================================================================================================
@@ -206,8 +196,10 @@ function stopTimer(){
     if(workPlaying){                                    //if the timer had been workPlaying when button pressed,
         totalSecs = totalSecs + secsElapsed;            //the last seconds elapsed need to be added onto total seconds
         sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+        //UPDATE TO DATABASE
     } else {                                            //if the player had been paused, the seconds would have already been added on.
         sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+        //UPDATE TO DATABASE
     }
 
     playPauseButton.className="hide";       //Hides play/pause button
