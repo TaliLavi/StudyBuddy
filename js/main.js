@@ -40,7 +40,8 @@ function preparePage() {
             group: "tasks",
             animation: 400,
             ghostClass: "sortable-ghost",
-            onAdd: moveTask
+            onAdd: moveTask,
+            delay: 400
         });
     });
 }
@@ -89,12 +90,12 @@ function displayPage(pageId, buttonId) {
 //CREATE CALENDAR
 //===========================================================================================================
 function swipeCalendar() {
-    $('#dayColumns').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        //initialSlide: 7
-    });
+    //$('#dayColumns').slick({
+    //    infinite: true,
+    //    slidesToShow: 3,
+    //    slidesToScroll: 3,
+    //    //initialSlide: 7
+    //});
 }
 
 function createCalendar() {
