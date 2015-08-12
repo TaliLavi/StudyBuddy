@@ -59,20 +59,18 @@ function preparePage() {
     //    });
     //}
 
-    $(".sortable-task-list").each(function(i, list){
-        Sortable.create(list, {
-            group: "tasks",
-            animation: 400,
-            ghostClass: "sortable-ghost",
-            onAdd: moveTask
-        });
-    });
-
-    hammerTest();
+    //$(".sortable-task-list").each(function(i, list){
+    //    Sortable.create(list, {
+    //        group: "tasks",
+    //        animation: 400,
+    //        ghostClass: "sortable-ghost",
+    //        onAdd: moveTask
+    //    });
+    //});
 }
 
 
-function hammerTest() {
+function hammerTaskCards() {
     var myElement = document.getElementById('myElement');
     // Create a simple instance. By default, it only adds horizontal recognizers
     var hammeredElement = new Hammer(myElement);
@@ -82,9 +80,18 @@ function hammerTest() {
         console.log(ev);
     });
 
-
+    // Initialize the hammer plugin
     var taskCard = $(".taskCard").hammer();
-    // Create a simple instance. By default, it only adds horizontal recognizers
+    // listen to events...
+    taskCard.on("tap press", function(ev) {
+        console.log(ev.type +" gesture detected.");
+        alert("Tap worked!!");
+    });
+
+
+
+    // Initialize the hammer plugin
+    var taskCard = $(".test").hammer();
     // listen to events...
     taskCard.on("tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
