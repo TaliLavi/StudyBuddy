@@ -5,7 +5,24 @@ $(document).ready(function(){
         slidesToScroll: 7,
         initialSlide: 7
     });
+
+    hammerTest();
 });
+
+
+function hammerTest() {
+    var myElement = document.getElementById('myElement');
+    // Create a simple instance. By default, it only adds horizontal recognizers
+    var hammeredElement = new Hammer(myElement);
+    // listen to events...
+    hammeredElement.on("panleft panright tap press", function(ev) {
+        myElement.textContent = ev.type +" gesture detected.";
+        console.log(ev);
+    });
+
+
+}
+
 
 //Make these things happen each time the page finishes loading
 function preparePage() {
