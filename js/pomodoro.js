@@ -17,6 +17,7 @@ var totalSecs       = 0;                //Declare variable to hold total amount 
 var workSecsLeft;                       //sets amount of seconds in work session. Counts down from this number.
 var workMinsLeft;                       //Amount of minutes in workSecsLeft
 var workPlaying     = false;            //Boolean. False = timer paused. True = timer running
+var workPlayingOrPaused     = false;    //Boolean. False = timer stopped/not started yet/end of work session/during break. True = work playing, work paused.
 
 var shortBreakSecsLeft;                 //sets amount of seconds in break session. Counts down from this number.
 var shortBreakMinsLeft;                 //Amount of minutes in breakSecsLeft
@@ -40,10 +41,6 @@ var stopButton          = document.getElementById("stop");
 var skipBreakButton     = document.getElementById("skipBreak");
 var sessRecord          = document.getElementById("timeRecord")
 
-//===============================================================================================================================
-//Function  getTimeSettings() Gets user input from input form (on submit).
-// This code needs to be replaced by code to get settings from database.
-//===============================================================================================================================
 
 function resetTimeSettings(){
     workSecsLeft    = userWorkLength;
@@ -126,8 +123,8 @@ function playWorkTimer(){
     timerVar = window.setInterval(function(){ myTimer(workSecsLeft, workMinsLeft, endWorkSession) }, 100);    //Runs timer
     workPlaying = true;                                     //Sets workPlaying boolean to true
     wholeClock.className="working";                         //Gives clock class of working (Changes colour to red)
+    workPlayingOrPaused= true;
 }//end of function playWorkTimer()
-
 
 //===============================================================================================================================
 //Function playShortBreakTimer starts the myTimer. It's called when play or resume is pressed.
@@ -188,28 +185,17 @@ function stopTimer(){
     if(workPlaying){                                    //if the timer had been workPlaying when button pressed,
         totalSecs = totalSecs + secsElapsed;            //the last seconds elapsed need to be added onto total seconds
         sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
-        //UPDATE TO DATABASE
     } else {                                            //if the player had been paused, the seconds would have already been added on.
         sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
-        //UPDATE TO DATABASE
     }
 
-    playPauseButton.className="hide";       //Hides play/pause button
-    stopButton.className="hide";            //Hides stop button
-    var todaysDate = Date.today().toString('yyyy-MM-dd');
-    updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);
+    playPauseButton.className="hide";                                               //Hides play/pause button
+    stopButton.className="hide";                                                    //Hides stop button
+    var todaysDate = Date.today().toString('yyyy-MM-dd');                           //Gets date
+    updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);      //Updates database with time studied
+    workPlayingOrPaused = false;
 
 }//end of function stopTimer()
-
-//===============================================================================================================================
-//Function displayTotalSeconds() displays all seconds spent working in HTML. Called when work session is stopped or ends.
-//This code needs to be adapted to send the numbers to the database instead of putting in HTML.
-//===============================================================================================================================
-//function displayTotalSeconds(){
-//    var prevSecs = parseInt(totalSecondRecord.innerHTML);       //Gets contents of html, converts to integer, sets as variable
-//    var newTotal = totalSecs + prevSecs;                        //Adds the total seconds of this session to total number stored in html
-//    totalSecondRecord.innerHTML= newTotal;                      //Updates html to contain new total
-//}//end of function displayTotalSeconds
 
 //===============================================================================================================================
 //Function endWorkSession() called when work timer runs down.
@@ -230,6 +216,7 @@ function endWorkSession(){
         workSessionCount++;                                         //Increases work sessionCount by one
     }
     playTone();                                                     //Plays tone
+    workPlayingOrPaused = false;
 }//end of function endWorkSession()
 
 
@@ -274,7 +261,7 @@ function playTone(){
 function breakButtons(){
     skipBreakButton.className="show";
     playPauseButton.className="hide";
-    stopButton.className="hide";
+
 }
 
 function workButtons(){
@@ -284,6 +271,17 @@ function workButtons(){
     playPauseButton.innerHTML="Play"
 }
 
+//===============================================================================================================================
+//Function to close Pomodoro Window when X is pressed.
+//===============================================================================================================================
+
+function closePomoWindow(){
+    if(workPlayingOrPaused){            //If the timer is in the middle of work session (whether paused or not)
+        stopTimer();                    //Needs to run stop timer
+    }
+    $('.modal-bg').fadeOut();           //Fade out the greyed background
+    $('.modal').fadeOut();              //Fade out the modal window
+}
 
 //===============================================================================================================================
 //Updating Time and Breaks
@@ -306,3 +304,6 @@ function sumAndUpdateStudyTimes(oldTotal, addedTimeStudied, tasksTimeStudiedRef)
     var totalTime = oldTotal + addedTimeStudied;
     tasksTimeStudiedRef.set(totalTime);
 }
+
+
+
