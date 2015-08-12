@@ -155,8 +155,15 @@ function swipeCalendar() {
 }
 
 function createCalendar() {
+    // get this week's Monday
+    if (Date.today().is().monday()) {
+        var mondayOfCurrentWeek = 'today';
+    } else {
+        var mondayOfCurrentWeek = 'last monday';
+    }
+
     for (var i = 0; i < 7; i++) {
-        var currentDate = Date.parse('last monday').addDays(i);
+        var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
         var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
         var currentDay = currentDate.toString('dddd');
         // Append day
