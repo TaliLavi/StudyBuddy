@@ -50,17 +50,26 @@ function createTask(listSelector, subjectKey, subjectDict, taskKey, taskData) {
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         taskData.title + '</li>';
 
-    var taskCard = $(cardHtml).appendTo(listSelector).hammer();
-
-    // listen to touch events
-    taskCard.on('tap', function(ev) {
-        console.log(ev.type +' gesture on "' + taskData.title + '" detected.');
-        displayTask(subjectKey, taskKey);
-    });
-    taskCard.on('press', function(ev) {
-        console.log(ev.type +' gesture on "' + taskData.title + '" detected.');
-    });
+    if ($.browser.mobile) {
+        // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
+        var taskCard = $(cardHtml).appendTo(listSelector).hammer();
+        taskCard.on('tap', function (ev) {
+            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
+            displayTask(subjectKey, taskKey);
+        });
+        taskCard.on('press', function (ev) {
+            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
+        });
+    } else {
+        // if viewed from desktop, append card to list and listen to click events
+        var taskCard = $(cardHtml).appendTo(listSelector);
+        taskCard.on("click", function () {
+            displayTask(subjectKey, taskKey);
+        });
+    }
 }
+
+
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {

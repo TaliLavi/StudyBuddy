@@ -36,25 +36,27 @@ function preparePage() {
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
 
-    if (screen.width > 1000) {
-        //set up drag and drop for each list
-        $(".sortable-task-list").each(function(i, list){
-            Sortable.create(list, {
-                group: "tasks",
-                animation: 400,
-                ghostClass: "sortable-ghost",
-                onAdd: moveTask
-            });
-        });
-    } else {
+    if ($.browser.mobile) {
         //set up drag and drop for each list, with delay to imitate long-press
-        $(".sortable-task-list").each(function(i, list){
+        $(".sortable-task-list").each(function (i, list) {
             Sortable.create(list, {
                 group: "tasks",
                 animation: 400,
                 ghostClass: "sortable-ghost",
                 onAdd: moveTask,
+                onStart: inTheAir,
                 delay: 400
+            });
+        });
+    } else {
+        //set up drag and drop for each list
+        $(".sortable-task-list").each(function (i, list) {
+            Sortable.create(list, {
+                group: "tasks",
+                animation: 400,
+                ghostClass: "sortable-ghost",
+                onStart: inTheAir,
+                onAdd: moveTask
             });
         });
     }
@@ -69,28 +71,7 @@ function preparePage() {
     //});
 }
 
-
-function hammerTaskCards() {
-    var myElement = document.getElementById('myElement');
-    // Create a simple instance. By default, it only adds horizontal recognizers
-    var hammeredElement = new Hammer(myElement);
-    // listen to events...
-    hammeredElement.on("panleft panright tap press", function(ev) {
-        myElement.textContent = ev.type +" gesture detected.";
-        console.log(ev);
-    });
-
-
-    // Initialize the hammer plugin
-    var taskCard = $(".test").hammer();
-    // listen to events...
-    taskCard.on("tap press", function(ev) {
-        console.log(ev.type +" gesture detected.");
-        alert("Tap worked!!");
-    });
-}
-
-
+// when task is moved...
 function moveTask(evt) {
     var newAssignedDate = evt.item.parentElement.id;
     var subjectId = evt.item.dataset.subjectid;
@@ -103,7 +84,10 @@ function moveTask(evt) {
     }
 }
 
-
+function inTheAir(evt) {
+    // horibble flash effect
+  //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
+}
 
 //===========================================================================================================
     //NAVIGATION PANEL
