@@ -61,6 +61,12 @@ function preparePage() {
         });
     }
 
+    if ($.browser.mobile) {
+        $("#calendarPage").addClass("test");
+    } else {
+
+    }
+
     //$(".sortable-task-list").each(function(i, list){
     //    Sortable.create(list, {
     //        group: "tasks",
