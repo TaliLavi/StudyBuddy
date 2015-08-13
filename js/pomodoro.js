@@ -122,7 +122,7 @@ function playWorkTimer(){
     start = new Date().getTime();                           //Return the number of milliseconds since midnight 1970/01/01
     timerVar = window.setInterval(function(){ myTimer(workSecsLeft, workMinsLeft, endWorkSession) }, 100);    //Runs timer
     workPlaying = true;                                     //Sets workPlaying boolean to true
-    wholeClock.className="working";                         //Gives clock class of working (Changes colour to red)
+    wholeClock.className="working";                         //Gives clock class of working (Changes colour to green)
     workPlayingOrPaused= true;
 }//end of function playWorkTimer()
 
@@ -180,6 +180,19 @@ function playPause(){                                       //Runs when play/pau
 //===============================================================================================================================
 
 function stopTimer(){
+    if(workPlayingOrPaused){            //If the timer is in the middle of work session (whether paused or not)
+        stopTimerOnWorkSess();
+    }else{                              //If the timer is in the middle of a break
+        stopTimerOnBreak();
+    }                                   //Resets workSessionCount
+    wholeClock.className="working";     //Resets clock class to working (So next time it opens it's the right colour)
+    minutesClock.innerHTML="00";
+    secondsClock.innerHTML ="00";
+}//end of function stopTimer()
+
+//===============================================================================================================================
+
+function stopTimerOnWorkSess(){
     clearInterval(timerVar);                            //Stops timer running
 
     if(workPlaying){                                    //if the timer had been workPlaying when button pressed,
@@ -189,13 +202,36 @@ function stopTimer(){
         sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     }
 
-    playPauseButton.className="hide";                                               //Hides play/pause button
-    stopButton.className="hide";                                                    //Hides stop button
+    //playPauseButton.className="hide";                                               //Hides play/pause button
+    //stopButton.className="hide";                                                    //Hides stop button
     var todaysDate = Date.today().toString('yyyy-MM-dd');                           //Gets date
     updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);      //Updates database with time studied
     workPlayingOrPaused = false;
+    workSessionCount = 0;                                       //Resets workSessionCount
 
 }//end of function stopTimer()
+
+//===============================================================================================================================
+
+function stopTimerOnBreak(){
+    clearInterval(timerVar);                            //Stops timer running
+    workSessionCount = 0;                               //Resets workSessionCount
+}
+
+//===============================================================================================================================
+//Function to close Pomodoro Window when X is pressed.
+//===============================================================================================================================
+
+function closePomoWindow(){
+    if(workPlayingOrPaused){            //If the timer is in the middle of work session (whether paused or not)
+        stopTimerOnWorkSess();
+    }else{                              //If the timer is in the middle of a break
+        stopTimerOnBreak();
+    }
+    $('.modal-bg').fadeOut();           //Fade out the greyed background
+    $('.modal').fadeOut();              //Fade out the modal window
+    wholeClock.className="working";     //Resets clock class to working (So next time it opens it's the right colour)
+}
 
 //===============================================================================================================================
 //Function endWorkSession() called when work timer runs down.
@@ -271,17 +307,7 @@ function workButtons(){
     playPauseButton.innerHTML="Play"
 }
 
-//===============================================================================================================================
-//Function to close Pomodoro Window when X is pressed.
-//===============================================================================================================================
 
-function closePomoWindow(){
-    if(workPlayingOrPaused){            //If the timer is in the middle of work session (whether paused or not)
-        stopTimer();                    //Needs to run stop timer
-    }
-    $('.modal-bg').fadeOut();           //Fade out the greyed background
-    $('.modal').fadeOut();              //Fade out the modal window
-}
 
 //===============================================================================================================================
 //Updating Time and Breaks
@@ -304,6 +330,13 @@ function sumAndUpdateStudyTimes(oldTotal, addedTimeStudied, tasksTimeStudiedRef)
     var totalTime = oldTotal + addedTimeStudied;
     tasksTimeStudiedRef.set(totalTime);
 }
+
+
+
+
+
+
+
 
 
 
