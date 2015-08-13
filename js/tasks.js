@@ -43,16 +43,24 @@ function createTask() {
 }//end of function createTask
 
 
-//Creates a task card div
-function createTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
+//Create html for task element, append it to the list and apply hammer on it
+function createTask(listSelector, subjectKey, subjectDict, taskKey, taskData) {
     var cardHtml = '<li class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '" ' +
-        'onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');" ' +
+        //'onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');" ' +
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         taskData.title + '</li>';
-    return cardHtml;
+
+    var taskCard = $(cardHtml).appendTo(listSelector).hammer();
+
+    // listen to touch events
+    taskCard.on('tap', function(ev) {
+        console.log(ev.type +' gesture on "' + taskData.title + '" detected.');
+        displayTask(subjectKey, taskKey);
+    });
+    taskCard.on('press', function(ev) {
+        console.log(ev.type +' gesture on "' + taskData.title + '" detected.');
+    });
 }
-
-
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
@@ -63,8 +71,8 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            var taskCard = createTaskHtml(subjectKey, subjectDict, taskKey, taskData);
-            $(subject_div_id).append(taskCard);
+            createTask(subject_div_id, subjectKey, subjectDict, taskKey, taskData);
+
         })
     }
 }
@@ -77,8 +85,7 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
             // only append tasks that don't have an assigned_date
             if (taskData.assigned_date == "") {
                 //Appends the task card html to the date's list
-                var taskCard = createTaskHtml(subjectKey, subjectDict, taskKey, taskData);
-                $('#tasksList').append(taskCard);
+                createTask('#tasksList', subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }
@@ -99,10 +106,7 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date, thisWeeksMonday, nextWeeksMonday)) {
-                //Appends the task card html to the date's list
-                var taskCard = createTaskHtml(subjectKey, subjectDict, taskKey, taskData);
-                $('#'+ taskData.assigned_date).append(taskCard);
-                hammerTaskCards();
+                createTask('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }
