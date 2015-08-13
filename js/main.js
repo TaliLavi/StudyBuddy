@@ -36,7 +36,7 @@ function preparePage() {
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
 
-    if ($.browser.mobile) {
+    if (screen.width < 1000) {
         //set up drag and drop for each list, with delay to imitate long-press
         $(".sortable-task-list").each(function (i, list) {
             Sortable.create(list, {
@@ -61,11 +61,6 @@ function preparePage() {
         });
     }
 
-    if ($.browser.mobile) {
-        $("#calendarPage").addClass("test");
-    } else {
-
-    }
 
     //$(".sortable-task-list").each(function(i, list){
     //    Sortable.create(list, {

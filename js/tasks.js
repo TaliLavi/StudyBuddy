@@ -50,7 +50,7 @@ function createTask(listSelector, subjectKey, subjectDict, taskKey, taskData) {
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         taskData.title + '</li>';
 
-    if ($.browser.mobile) {
+    if (screen.width < 1000) {
         // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
         var taskCard = $(cardHtml).appendTo(listSelector).hammer();
         taskCard.on('tap', function (ev) {
