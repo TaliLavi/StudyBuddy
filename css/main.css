@@ -183,10 +183,9 @@ input{
     .dayColumn { width: 100%; }
 }
 
-
-#myElement {
-    background: silver;
-    height: 300px;
-    text-align: center;
-    font: 30px/300px Helvetica, Arial, sans-serif;
+.sortable-ghost {
+    border-style: solid;
+    /*border-color: #4cae4c;*/
+    border-color: #00ff00;
+    background-color: #aaaaaa;
 }
