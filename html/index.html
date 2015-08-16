@@ -185,11 +185,13 @@
         <a href="#close" class="closeX" onclick="closePomoWindow();">&#215;</a>
       </span>
       <div id ="pomodoroDiv">
-        <p id="clock" class="none"><span id =minsDiv>00</span>:<span id =secsDiv>00</span></p>
+        <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
         <br>
-        <button onclick="playPause()" id="playPause">  Start Work  </button>
-        <button onclick="stopTimer()" id="stop">  Stop Working  </button>
+        <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>
+        <button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>
+        <button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>
         <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
+
 
         <p id="timeRecord"></p>
         <audio id="tone">

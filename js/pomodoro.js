@@ -39,7 +39,8 @@ var wholeClock          = document.getElementById("clock");
 var playPauseButton     = document.getElementById("playPause");
 var stopButton          = document.getElementById("stop");
 var skipBreakButton     = document.getElementById("skipBreak");
-var sessRecord          = document.getElementById("timeRecord")
+var sessRecord          = document.getElementById("timeRecord");
+var startButton         = document.getElementById("startButton");
 
 
 function resetTimeSettings(){
@@ -124,6 +125,7 @@ function playWorkTimer(){
     workPlaying = true;                                     //Sets workPlaying boolean to true
     wholeClock.className="working";                         //Gives clock class of working (Changes colour to green)
     workPlayingOrPaused= true;
+    workButtons();
 }//end of function playWorkTimer()
 
 //===============================================================================================================================
@@ -168,10 +170,10 @@ function pauseTimer(){
 function playPause(){                                       //Runs when play/pause button is pressed
     if(workPlaying){                                        //If already Playing
         pauseTimer();                                       //Pause timer
-        playPauseButton.innerHTML="  Play  ";               //Make play/pause button show play
+        playPauseButton.innerHTML="Resume";                 //Make play/pause button show play
     }else{                                                  //If not workPlaying
         playWorkTimer();                                    //Play the work timer
-        playPauseButton.innerHTML="  Pause ";               //Make play/pause button show pause
+        playPauseButton.innerHTML="Pause";                  //Make play/pause button show pause
     }
 }//end of function playPause()
 
@@ -188,6 +190,7 @@ function stopTimer(){
     wholeClock.className="working";     //Resets clock class to working (So next time it opens it's the right colour)
     minutesClock.innerHTML="00";
     secondsClock.innerHTML ="00";
+    atStartButtons();
 }//end of function stopTimer()
 
 //===============================================================================================================================
@@ -231,6 +234,8 @@ function closePomoWindow(){
     $('.modal-bg').fadeOut();           //Fade out the greyed background
     $('.modal').fadeOut();              //Fade out the modal window
     wholeClock.className="working";     //Resets clock class to working (So next time it opens it's the right colour)
+    atStartButtons();
+
 }
 
 //===============================================================================================================================
@@ -295,19 +300,26 @@ function playTone(){
 //===============================================================================================================================
 
 function breakButtons(){
-    skipBreakButton.className="show";
+    skipBreakButton.className="pomButtonShow";
     playPauseButton.className="hide";
-
+    startButton.className='hide';
 }
 
 function workButtons(){
     skipBreakButton.className="hide";
-    stopButton.className="show";
-    playPauseButton.className="show";
-    playPauseButton.innerHTML="Play"
+    startButton.className='hide';
+    stopButton.className="pomButtonShow";
+    playPauseButton.className="pomButtonShow";
+    playPauseButton.innerHTML="Pause"
+    playPauseButton.disabled = false;
 }
 
-
+function atStartButtons(){
+    startButton.className='pomButtonShow';
+    playPauseButton.innerHTML="Pause"
+    stopButton.className="hide";
+    playPauseButton.disabled = true;
+}
 
 //===============================================================================================================================
 //Updating Time and Breaks

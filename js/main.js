@@ -86,8 +86,9 @@ function moveTask(evt) {
 }
 
 function inTheAir(evt) {
-    // horibble flash effect
+  //  // horibble flash effect
   //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
+
 }
 
 //===========================================================================================================
@@ -168,6 +169,7 @@ function displayTask(subjectId, taskId) {
     subjectIdForPomo = subjectId;           //Lets Pomodoro know which subject is being studied (gl. var.declared in pomodoro.js)
     taskIdForPomo = taskId;                 //Lets Pomodoro know which task is being studied (gl. var. declared in pomodoro.js)
     sessRecord.innerHTML="";                //Resets time record in HTML;
+    atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
 }
 
 // I chose to pass taskId because once we'd implement task editing, we'll need it.
