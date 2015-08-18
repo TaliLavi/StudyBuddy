@@ -157,8 +157,8 @@ function createCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, taskId) {
-    fetchCertainTasks(subjectId, taskId, fillInTaskDetails);
+function displayTask(subjectId, assigned_date, taskId) {
+    fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
     resetTimeSettings();                    //Resets Pomodoro time and makes sure workPlaying is false (function in pomodoro.js)
@@ -170,7 +170,7 @@ function displayTask(subjectId, taskId) {
 }
 
 // I chose to pass taskId because once we'd implement task editing, we'll need it.
-function fillInTaskDetails(subjectId, taskId, taskDetails) {
+function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);

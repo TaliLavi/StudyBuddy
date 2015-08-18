@@ -142,19 +142,26 @@ function pushNewTask(subjectId, startOfWeek, title, description, assigned_date, 
 };
 
 
-// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS
+/// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS
 function fetchActiveTasks(perSubjectCallback, preparationCallback) {
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
-    tasksRef.once("value", function(snapshot) {
+    //console.log("fetchActiveTasks(" + perSubjectCallback.name + ", " + (preparationCallback ? preparationCallback.name : undefined) + ")");
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
+    activeTasksRef.once("value", function(subjects) {
         // check if we also receive the preparationCallback func.
         if (typeof preparationCallback !== 'undefined') {
             preparationCallback();
         }
-        if (snapshot.val() !== null) {
-            $.each(snapshot.val(), function (subjectId, tasksDict) {
+        if (subjects.val() !== null) {
+            subjects.forEach(function(subject) {
+                var subjectId = subject.key();
+                var subjectTasksDict = {};
+                subject.forEach(function(week) {
+                    var weekTaskData = week.val();
+                    $.extend(subjectTasksDict, weekTaskData);
+                });
                 var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
                 subjectRef.once("value", function(subjectSnapshot) {
-                    perSubjectCallback(subjectId, subjectSnapshot.val(), tasksDict);
+                    perSubjectCallback(subjectId, subjectSnapshot.val(), subjectTasksDict);
                 });
             });
         }
@@ -162,28 +169,30 @@ function fetchActiveTasks(perSubjectCallback, preparationCallback) {
 }
 
 
-// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS BELONGING TO A SPECIFIC SUBJECT
-function fetchActiveTasksBySubject(subjectId, callback) {
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId);
-    tasksRef.once("value", function(tasksSnapshot) {
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS BELONGING TO A SPECIFIC SUBJECT
+function fetchUnassignedActiveTasksBySubject(subjectId, callback) {
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/no_assigned_date');
+    tasksRef.once("value", function(unassignedSnapshot) {
+        var tasksDict = unassignedSnapshot.val();
         var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
         subjectRef.once("value", function(subjectSnapshot) {
-            callback(subjectId, subjectSnapshot.val(), tasksSnapshot.val());
+            callback(subjectId, subjectSnapshot.val(), tasksDict);
         });
     });
 }
 
 
-// RETRIEVE AND RUNS CALLBACK FUNCTION  CERTAIN TASKS
-function fetchCertainTasks(subjectId, taskId, callback) {
-    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId);
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
+function fetchSingleTask(subjectId, weekDate, taskId, callback) {
+    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
-        callback(subjectId, taskId, snapshot.val());
+        callback(subjectId, weekDate, taskId, snapshot.val());
     });
 }
 
 
 // UPDATE TASK'S ASSIGNED DATE
+// TODO: add week date to the path
 function updateAssignedDate(subjectId, taskId, newAssignedDate) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId);
     tasksRef.update({
@@ -219,6 +228,7 @@ function pushNewChecklistItem(userId, subjectId, taskId, description, is_complet
 //=====================================================================
 
 // add one to task's count of breaks
+// TODO: add week date to the path
 function incrementNumOfBreaksForTask(subjectId, taskId) {
     var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
@@ -237,6 +247,7 @@ function incrementNumOfBreaksForDate(date) {
 }
 
 // fetch a task's total time studied
+// TODO: add week date to the path
 function fetchOldTimeStudiedForTask(subjectId, taskId, additionalTimeStudied, callback) {
     var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/total_seconds_studied');
     tasksTimeStudiedRef.once("value", function(snapshot) {

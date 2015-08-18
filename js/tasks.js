@@ -1,3 +1,18 @@
+// GET THE DATE FOR MONDAY OF DATE'S WEEK
+// TODO: verify that date is written in an acceptable form (I know '06-Sep-2015' and '09-06-2015' are good).
+function startOfThisWeek(dateString) {
+    var date = Date.parse(dateString);
+    if (date === null) {
+        return 'no_assigned_date';
+    }
+    if (date.is().monday()) {
+        // if the assigned date happens to be a Monday, grab it
+        return date.toString('yyyy-MM-dd');
+    }
+    // else, grab the date for that week's Monday
+    return date.prev().monday().toString('yyyy-MM-dd');
+}
+
 // CREATE NEW TASK
 function createTask() {
 
@@ -15,20 +30,10 @@ function createTask() {
     var time_estimation = timeEstimationInput.val();
     var assigned_date = assignedDateInput.val();
 
-
     // SET DEFAULT VALUES
     var creation_date = $.now();
     var status_change_date = creation_date;
-
-    // GET THE DATE FOR MONDAY OF ASSIGNED_DATE'S WEEK
-    // TODO: verify that assigned_date is written in an acceptable form (I know '06-Sep-2015' and '09-06-2015' are good).
-    if (Date.parse(assigned_date).is().monday()) {
-        // if the assigned date happens to be a Monday, grab it
-        var startOfWeek = Date.parse(assigned_date).toString('yyyy-MM-dd');
-    } else {
-        // else, grab the date for that week's Monday
-        var startOfWeek = Date.parse(assigned_date).prev().monday().toString('yyyy-MM-dd');
-    }
+    var startOfWeek = startOfThisWeek(assigned_date);
 
     // PUSH THEM TO DB
     pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
@@ -60,12 +65,13 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         taskData.title + '</li>';
 
+    var startOfWeek = startOfThisWeek(taskData.assigned_date);
     if (screen.width < 1000) {
         // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
         var taskCard = $(cardHtml).appendTo(listSelector).hammer();
         taskCard.on('tap', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-            displayTask(subjectKey, taskKey);
+            displayTask(subjectKey, startOfWeek, taskKey);
         });
         taskCard.on('press', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
@@ -74,11 +80,10 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
         // if viewed from desktop, append card to list and listen to click events
         var taskCard = $(cardHtml).appendTo(listSelector);
         taskCard.on("click", function () {
-            displayTask(subjectKey, taskKey);
+            displayTask(subjectKey, startOfWeek, taskKey);
         });
     }
 }
-
 
 
 // DISPLAY TASKS ON SUBJECTS PAGE
@@ -144,7 +149,7 @@ function prepareTasksDiv(subjectName, subjectKey) {
     $('#panelControls').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
     // append subjectKey to indicate whith subject these tasks belond to
     $('#panelControls').append('<div>Here are your unscheduled tasks for <strong>' + subjectName + '</strong></div><br>');
-    fetchActiveTasksBySubject(subjectKey, displayTasksInBottomPanel);
+    fetchUnassignedActiveTasksBySubject(subjectKey, displayTasksInBottomPanel);
 }
 
 
