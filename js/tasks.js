@@ -20,8 +20,18 @@ function createTask() {
     var creation_date = $.now();
     var status_change_date = creation_date;
 
+    // GET THE DATE FOR MONDAY OF ASSIGNED_DATE'S WEEK
+    // TODO: verify that assigned_date is written in an acceptable form (I know '06-Sep-2015' and '09-06-2015' are good).
+    if (Date.parse(assigned_date).is().monday()) {
+        // if the assigned date happens to be a Monday, grab it
+        var startOfWeek = Date.parse(assigned_date).toString('yyyy-MM-dd');
+    } else {
+        // else, grab the date for that week's Monday
+        var startOfWeek = Date.parse(assigned_date).prev().monday().toString('yyyy-MM-dd');
+    }
+
     // PUSH THEM TO DB
-    pushNewTask(subjectId, title, description, assigned_date, time_estimation, creation_date, status_change_date);
+    pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
 
     // CLOSE THE ADD TASK DIALOG
     //Fade out the greyed background
@@ -44,7 +54,7 @@ function createTask() {
 
 
 //Create html for task element, append it to the list and apply hammer on it
-function createTask(listSelector, subjectKey, subjectDict, taskKey, taskData) {
+function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData) {
     var cardHtml = '<li class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '" ' +
         //'onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');" ' +
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
@@ -80,7 +90,7 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTask(subject_div_id, subjectKey, subjectDict, taskKey, taskData);
+            createTaskElement(subject_div_id, subjectKey, subjectDict, taskKey, taskData);
 
         })
     }
@@ -94,7 +104,7 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
             // only append tasks that don't have an assigned_date
             if (taskData.assigned_date == "") {
                 //Appends the task card html to the date's list
-                createTask('#tasksList', subjectKey, subjectDict, taskKey, taskData);
+                createTaskElement('#tasksList', subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }
@@ -115,7 +125,7 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date, thisWeeksMonday, nextWeeksMonday)) {
-                createTask('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }

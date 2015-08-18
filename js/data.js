@@ -122,10 +122,10 @@ function deleteSubject(userId, subjectId) {
 
 
 // ADD NEW TASK TO THE DB
-function pushNewTask(subjectId, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
+function pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first task to be pushed, this will create a new Tasks/active node.
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId);
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + startOfWeek);
 
     //SAVE DATA TO FIREBASE
     // I generated a reference to a new location (i.e. assigned the push into a
