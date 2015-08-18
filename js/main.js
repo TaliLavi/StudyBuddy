@@ -62,14 +62,11 @@ function preparePage() {
     }
 
 
-    //$(".sortable-task-list").each(function(i, list){
-    //    Sortable.create(list, {
-    //        group: "tasks",
-    //        animation: 400,
-    //        ghostClass: "sortable-ghost",
-    //        onAdd: moveTask
-    //    });
+    //var wholescreen = $("body").hammer();
+    //wholescreen.on('swiperight panleft', function (ev) {
+    //    console.log(ev.type + ' gesture detected.');
     //});
+
 }
 
 // when task is moved...
