@@ -3,27 +3,27 @@
     "active" : {
       "-JsqE8CQ9Dg7LE0OKQ2P" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "colour" : "class21324C",
+          "colour" : "colour21324C",
           "is_deleted" : 0,
           "name" : "English"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
-          "colour" : "class2A98BB",
+          "colour" : "colour2A98BB",
           "is_deleted" : 0,
           "name" : "Irish"
         },
         "-Jw8mvm4cUeDXF4s02Hg" : {
-          "colour" : "classA6E1F1",
+          "colour" : "colourA6E1F1",
           "is_deleted" : 0,
           "name" : "French"
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
-          "colour" : "classB10239",
+          "colour" : "colourB10239",
           "is_deleted" : 0,
           "name" : "Ancient Latin"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
-          "colour" : "class6F011E",
+          "colour" : "colour6F011E",
           "is_deleted" : 0,
           "name" : "Biology"
         }
@@ -89,7 +89,7 @@
         "-JsrUPQNfTDGEn-1yXZ9" : {
           "2015-08-17" : {
             "-JuTgA3kKlSC3v-fOeVk" : {
-              "assigned_date" : "2015-08-18",
+              "assigned_date" : "2015-08-22",
               "creation_date" : 1437181459030,
               "description" : "This is my Irish description",
               "number_of_breaks" : 2,
@@ -152,20 +152,6 @@
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
           "2015-08-17" : {
-            "-Jw8ukAYOoCUQl1soRzB" : {
-              "Checklist_Items" : [ {
-                "description" : "I am a new checklist item!",
-                "is_complete" : 0
-              } ],
-              "assigned_date" : "2015-08-22",
-              "creation_date" : 1435160059551,
-              "description" : "Highlight everything",
-              "number_of_breaks" : 2,
-              "status_change_date" : 1435160059551,
-              "time_estimation" : 90,
-              "title" : "Read chapter 9",
-              "total_seconds_studied" : 46
-            },
             "-JwY6ztglrWeTjN9Q1eM" : {
               "assigned_date" : "2015-08-19",
               "creation_date" : 1439403343512,
@@ -209,25 +195,25 @@
         },
         "-JwHLrcSu27GO-8-F9_i" : {
           "2015-08-17" : {
-            "-JwHMV3yAGEUSqRA7_5R" : {
-              "assigned_date" : "2015-08-23",
-              "creation_date" : 1439122194840,
-              "description" : "Draw and label diagram.",
-              "number_of_breaks" : 12,
-              "status_change_date" : 1439122194840,
-              "time_estimation" : "",
-              "title" : "The Heart",
-              "total_seconds_studied" : 152
-            },
             "-JwHy3I1HAnDxfK9iXf0" : {
               "assigned_date" : "2015-08-19",
               "creation_date" : 1439132304648,
               "description" : "",
-              "number_of_breaks" : 1,
+              "number_of_breaks" : 5,
               "status_change_date" : 1439132304648,
               "time_estimation" : "",
               "title" : "New biology Task",
-              "total_seconds_studied" : 30
+              "total_seconds_studied" : 55
+            }
+          },
+          "2015-08-24" : {
+            "-Jx0F_Qj1P-UPypbT7YA" : {
+              "assigned_date" : "2015-08-24",
+              "creation_date" : 1439908913409,
+              "description" : "afdsasf",
+              "status_change_date" : 1439908913409,
+              "time_estimation" : "asdfdsaf",
+              "title" : "afddsa"
             }
           }
         }
@@ -336,6 +322,12 @@
       "-JsqE8CQ9Dg7LE0OKQ2P" : {
         "number_of_breaks" : 2,
         "time_studied" : 28
+      }
+    },
+    "2015-08-19" : {
+      "-JsqE8CQ9Dg7LE0OKQ2P" : {
+        "number_of_breaks" : 9,
+        "time_studied" : 57
       }
     }
   }

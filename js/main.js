@@ -71,14 +71,17 @@ function preparePage() {
 
 // when task is moved...
 function moveTask(evt) {
+    var oldAssignedDate = evt.from.id;
+    var oldWeekDate = startOfThisWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
 
     if (newAssignedDate === "tasksList") {
-        updateAssignedDate(subjectId, taskId, "");
+        updateAssignedDate(subjectId, oldWeekDate, 'no_assigned_date', taskId, "");
     } else {
-        updateAssignedDate(subjectId, taskId, newAssignedDate);
+        var newWeekDate = startOfThisWeek(newAssignedDate);
+        updateAssignedDate(subjectId, oldWeekDate, newWeekDate, taskId, newAssignedDate);
     }
 }
 

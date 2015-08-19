@@ -122,10 +122,10 @@ function deleteSubject(userId, subjectId) {
 
 
 // ADD NEW TASK TO THE DB
-function pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
+function pushNewTask(subjectId, weekDate, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first task to be pushed, this will create a new Tasks/active node.
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + startOfWeek);
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate);
 
     //SAVE DATA TO FIREBASE
     // I generated a reference to a new location (i.e. assigned the push into a
@@ -192,12 +192,23 @@ function fetchSingleTask(subjectId, weekDate, taskId, callback) {
 
 
 // UPDATE TASK'S ASSIGNED DATE
-// TODO: add week date to the path
-function updateAssignedDate(subjectId, taskId, newAssignedDate) {
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId);
-    tasksRef.update({
-        "assigned_date": newAssignedDate
-    });
+function updateAssignedDate(subjectId, oldWeekDate, newWeekDate, taskId, newAssignedDate) {
+    var oldTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
+
+    if (newWeekDate === oldWeekDate) {
+        oldTasksRef.update({
+            "assigned_date": newAssignedDate
+        });
+    } else {
+        var newTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+
+        oldTasksRef.once('value', function(snapshot)  {
+            var taskData = snapshot.val();
+            taskData.assigned_date = newAssignedDate;
+            newTasksRef.set(taskData);
+            oldTasksRef.remove();
+        });
+    }
 }
 
 
@@ -228,9 +239,8 @@ function pushNewChecklistItem(userId, subjectId, taskId, description, is_complet
 //=====================================================================
 
 // add one to task's count of breaks
-// TODO: add week date to the path
-function incrementNumOfBreaksForTask(subjectId, taskId) {
-    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/number_of_breaks');
+function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
         tasksBreakRef.set(newNum);
@@ -247,9 +257,8 @@ function incrementNumOfBreaksForDate(date) {
 }
 
 // fetch a task's total time studied
-// TODO: add week date to the path
-function fetchOldTimeStudiedForTask(subjectId, taskId, additionalTimeStudied, callback) {
-    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + taskId + '/total_seconds_studied');
+function fetchOldTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
+    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     tasksTimeStudiedRef.once("value", function(snapshot) {
         callback(snapshot.val(), additionalTimeStudied, tasksTimeStudiedRef);
     });
