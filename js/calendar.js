@@ -23,7 +23,7 @@ function prepareCalendarSlider() {
         var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
         $('#calendarWrapper>div:first').remove();
         $("#calendarWrapper").append(newSlideHTML);
-
+        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksPerWeekAndSubject);
         $('#control_next').attr('disabled', true);
         moveSlide(1, function() {
             $('#control_next').attr('disabled', false);
@@ -36,7 +36,7 @@ function prepareCalendarSlider() {
         var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
         $('#calendarWrapper>div:last').remove();
         $("#calendarWrapper").prepend(newSlideHTML);
-
+        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksPerWeekAndSubject);
         $('#control_prev').attr('disabled', true);
         moveSlide(-1, function() {
             $('#control_prev').attr('disabled', false);
