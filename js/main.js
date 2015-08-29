@@ -109,14 +109,6 @@ function displayPage(pageId, buttonId) {
 //===========================================================================================================
 //CREATE CALENDAR
 //===========================================================================================================
-function swipeCalendar() {
-    //$('#dayColumns').slick({
-    //    infinite: true,
-    //    slidesToShow: 3,
-    //    slidesToScroll: 3,
-    //    //initialSlide: 7
-    //});
-}
 
 function createHtmlForWeekOf(mondayOfCurrentWeek) {
     // Append current week's days to #dayColumns
@@ -135,6 +127,7 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
                     '</div>';
     }
     var weekHtml = '<div class="week">' +
+                     '<h4>This week\'s dates are: <span id="currentWeekDates"></span></h4>' +
                      '<div class="section group" id="week' + mondayOfCurrentWeek + '">' +
                        daysHtml +
                      '</div>' +
@@ -156,8 +149,10 @@ function prepareCalendar() {
     var lastDateOfCurrentWeek = $('#dayColumns div:last-child ul').attr('id')
     $('#currentWeekDates').append(firstDateOfCurrentWeek + ' - ' + lastDateOfCurrentWeek);
 
-    fetchActiveTasks(displayTasksInCalendar);
-    swipeCalendar();
+    fetchActiveTasksByWeek(mondayOfPrevWeek, displayTasksPerWeekAndSubject);
+    fetchActiveTasksByWeek(mondayOfCurrentWeek, displayTasksPerWeekAndSubject);
+    fetchActiveTasksByWeek(mondayOfNextWeek, displayTasksPerWeekAndSubject);
+
 }
 
 

@@ -169,6 +169,30 @@ function fetchActiveTasks(perSubjectCallback, preparationCallback) {
 }
 
 
+function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
+    activeTasksRef.once("value", function(subjects) {
+        if (subjects.val() !== null) {
+            subjects.forEach(function(subject) {
+                $.each(subject.val(), function () {
+                    if (subject.hasChild(startOfWeek)) {
+                        var subjectId = subject.key();
+                        var TasksOfWeekRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + startOfWeek);
+                        TasksOfWeekRef.once("value", function(tasksSnapshot) {
+                            var tasksDict = tasksSnapshot.val();
+                            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+                            subjectRef.once("value", function(subjectSnapshot) {
+                                perSubjectCallback(subjectId, subjectSnapshot.val(), tasksDict);
+                            });
+                        });
+                    }
+                });
+            });
+        }
+    });
+}
+
+
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS BELONGING TO A SPECIFIC SUBJECT
 function fetchUnassignedActiveTasksBySubject(subjectId, callback) {
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/no_assigned_date');

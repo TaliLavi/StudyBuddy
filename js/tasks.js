@@ -139,9 +139,18 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
     }
 }
 
+function displayTasksPerWeekAndSubject(subjectKey, subjectDict, tasksDict) {
+    if (tasksDict !== null) {
+        // append tasks to the calendar
+        $.each(tasksDict, function(taskKey, taskData){
+            createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+        })
+    }
+}
+
 // checks whether date is displayed in DOM
-function whetherDateIsDisplayed(date_string, thisWeeksMonday, nextWeeksMonday) {
-    var date = Date.parse(date_string);
+function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
+    var date = Date.parse(dateString);
     return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
