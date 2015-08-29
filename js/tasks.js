@@ -1,9 +1,12 @@
 // GET THE DATE FOR MONDAY OF DATE'S WEEK
 // TODO: verify that date is written in an acceptable form (I know '06-Sep-2015' and '09-06-2015' are good).
-function startOfThisWeek(dateString) {
+function startOfWeek(dateString, offsetDays) {
     var date = Date.parse(dateString);
     if (date === null) {
         return 'no_assigned_date';
+    }
+    if (offsetDays !== undefined) {
+        date.addDays(offsetDays);
     }
     if (date.is().monday()) {
         // if the assigned date happens to be a Monday, grab it
@@ -33,7 +36,7 @@ function createTask() {
     // SET DEFAULT VALUES
     var creation_date = $.now();
     var status_change_date = creation_date;
-    var startOfWeek = startOfThisWeek(assigned_date);
+    var startOfWeek = startOfWeek(assigned_date);
 
     // PUSH THEM TO DB
     pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
@@ -65,13 +68,13 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
         'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         taskData.title + '</li>';
 
-    var startOfWeek = startOfThisWeek(taskData.assigned_date);
+    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     if (screen.width < 1000) {
         // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
         var taskCard = $(cardHtml).appendTo(listSelector).hammer();
         taskCard.on('tap', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-            displayTask(subjectKey, startOfWeek, taskKey);
+            displayTask(subjectKey, startOfRelevantWeek, taskKey);
         });
         taskCard.on('press', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
@@ -80,7 +83,7 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
         // if viewed from desktop, append card to list and listen to click events
         var taskCard = $(cardHtml).appendTo(listSelector);
         taskCard.on("click", function () {
-            displayTask(subjectKey, startOfWeek, taskKey);
+            displayTask(subjectKey, startOfRelevantWeek, taskKey);
         });
     }
 }

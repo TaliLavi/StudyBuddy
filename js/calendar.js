@@ -1,14 +1,6 @@
-jQuery(document).ready(function () {
-    prepareCalendarSlider();
-});//end of document.ready function
-
-
 function prepareCalendarSlider() {
     var SLIDE_DURATION = 400;
-    var INITIAL_SLIDE = 3;
-
-    var nextSlideNumber = 1;
-    var prevSlideNumber = -1;
+    var INITIAL_SLIDE = 2;
 
     var slideCount = $('.week').length;                                                         //Get amount of slides
     var slideWidth = $('.week').width();                                                        //Store width of slide as a variable
@@ -26,11 +18,11 @@ function prepareCalendarSlider() {
     };//end of moveSlide function
 
     $('#control_next').click(function () {
-        var newSlideHTML = "<div class = 'week'>"+ nextSlideNumber +"</div>";
-        var toRemove = $('#calendarWrapper').find('div').first();
-        toRemove.remove();
+        var latestWeekDate = $('.week:last>div').attr('id').slice('week'.length);
+        var mondayOfNewWeek = startOfWeek(latestWeekDate, 7);
+        var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
+        $('#calendarWrapper>div:first').remove();
         $("#calendarWrapper").append(newSlideHTML);
-        nextSlideNumber ++;
 
         $('#control_next').attr('disabled', true);
         moveSlide(1, function() {
@@ -39,11 +31,11 @@ function prepareCalendarSlider() {
     });//end of next click function
 
     $('#control_prev').click(function () {
-        var newSlideHTML = "<div class = 'week'>"+ prevSlideNumber +"</div>";
-        var toRemove = $('#calendarWrapper').find('div').last();
-        toRemove.remove();
+        var earliestWeekDate = $('.week:first>div').attr('id').slice('week'.length);
+        var mondayOfNewWeek = startOfWeek(earliestWeekDate, -7);
+        var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
+        $('#calendarWrapper>div:last').remove();
         $("#calendarWrapper").prepend(newSlideHTML);
-        prevSlideNumber --;
 
         $('#control_prev').attr('disabled', true);
         moveSlide(-1, function() {
@@ -57,7 +49,6 @@ function getLeftPositionWrapper(){
     var style = window.getComputedStyle(element);
     var left = style.getPropertyValue('left');                  //Get current left position of wrapper
     var parsedLeft = parseInt(left);                            //parse into number
-    console.log("Wrapper Left Position : "+ parsedLeft);
     return parsedLeft;
 }
 
@@ -66,8 +57,6 @@ function getLeftMarginWrapper(){
     var style = window.getComputedStyle(wrap);
     var marginLeft = style.getPropertyValue('margin-left');     //Get current left margin of wrapper
     var parsedMarginLeft = parseInt(marginLeft);                //Parse into a number
-    console.log("Margin Left Wrapper : "+ parsedMarginLeft);
     return parsedMarginLeft;
 }
-
 

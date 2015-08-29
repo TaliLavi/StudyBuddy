@@ -327,14 +327,14 @@ function atStartButtons(){
 
 // increment number of breaks in the db (in two locations: under the task and under today's date)
 function incrementNumberOfBreaks(subjectId, taskId, todaysDate) {
-    var weekDate = startOfThisWeek(todaysDate);
+    var weekDate = startOfWeek(todaysDate);
     incrementNumOfBreaksForTask(subjectId, weekDate, taskId);
     incrementNumOfBreaksForDate(todaysDate);
 }
 
 // update total time studied in the db (in two locations: under the task and under today's date)
 function updateTimeStudied(subjectId, taskId, additionalTimeStudied, date) {
-    var weekDate = startOfThisWeek(date);
+    var weekDate = startOfWeek(date);
     fetchOldTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, sumAndUpdateStudyTimes);
     fetchOldTimeStudiedForDate(date, additionalTimeStudied, sumAndUpdateStudyTimes);
 }
