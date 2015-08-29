@@ -128,23 +128,29 @@ function swipeCalendar() {
     //});
 }
 
-function createHtmlforWeekOf(mondayOfCurrentWeek, weekId) {
+function createHtmlForWeekOf(mondayOfCurrentWeek) {
     // Append current week's days to #dayColumns
+    var weekHtml = "";
     for (var i = 0; i < 7; i++) {
         var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
         var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
         var currentDay = currentDate.toString('dddd');
         // Append day
-        $(weekId).append('<div class="col dayColumn"><h4>' + currentDay + '</h4><div>' + currentDateFormatted +
-            '</div><button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
-            currentDateFormatted + '\', this);">Add Task</button><ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul></div>');
+        weekHtml += '<div class="col dayColumn">' +
+                      '<h4>' + currentDay + '</h4>' +
+                      '<div>' + currentDateFormatted +'</div>' +
+                      '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
+                         currentDateFormatted + '\', this);">Add Task</button>' +
+                      '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
+                    '</div>';
     }
+    return weekHtml;
 }
 
 function createCalendar() {
     // get this week's Monday
     var mondayOfCurrentWeek = startOfThisWeek(Date.today().toString('yyyy-MM-dd'));
-    createHtmlforWeekOf(mondayOfCurrentWeek, '#dayColumns');
+    $('#dayColumns').append(createHtmlForWeekOf(mondayOfCurrentWeek));
 
     // Display current week's dates
     var firstDateOfCurrentWeek = $('#dayColumns div:first-child ul').attr('id')
