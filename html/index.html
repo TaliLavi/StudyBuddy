@@ -25,7 +25,7 @@
   <script src="../js/subjects.js"></script>
   <script src="../js/tasks.js"></script>
   <script src='../js/main.js'></script>
-
+  <script src='../js/calendar.js'></script>
 
 </head>
 
@@ -80,12 +80,29 @@
   <!--========================================================================================================-->
   <!--CALENDAR PAGE-->
   <!--========================================================================================================-->
+<!--        <h4>
+        This week's dates are:
+        <span id="currentWeekDates"></span>
+        </h4>-->
+
+
+
   <div id="calendarPage">
-    <h4>
-      This week's dates are:
-      <span id="currentWeekDates"></span>
-    </h4>
-    <div class="section group" id="dayColumns"></div>
+    <button id="control_prev">Prev</button>
+    <button id="control_next">Next</button>
+    <div id="calendarSlider">
+      <div id="calendarWrapper">
+        <div class="week" id="week2015-08-17">SLIDE 1</div>
+        <div class="week" id="week2015-08-24">SLIDE 2</div>
+        <div class="week" id="week2015-08-31">SLIDE 3
+          <div class="section group" id="dayColumns"></div>
+        </div>
+        <div class="week" id="week2015-09-07">SLIDE 4</div>
+        <div class="week" id="week2015-09-14">SLIDE 5</div>
+      </div>
+    </div>
+
+
 
     <!--========================================================================================================-->
     <!--SUBJECTS FOOTER-->

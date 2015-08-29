@@ -183,3 +183,36 @@ input{
     border-color: #00ff00;
     background-color: #aaaaaa;
 }
+
+/*===============================================================================================*/
+/*CALENDAR SLIDER/ */
+/*===============================================================================================*/
+
+#calendarSlider {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+}
+
+#calendarWrapper {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    left:0;
+}
+
+.week {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    /*background-color: #aaa;*/
+    width: 600px;
+    height: 300px;
+    /*border: indianred solid;*/
+    background: -webkit-linear-gradient(left, #47476B , #6C6C89); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #47476B, #6C6C89); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #47476B, #6C6C89); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #47476B , #6C6C89); /* Standard syntax (must be last) */
+}
