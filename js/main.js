@@ -1,4 +1,30 @@
 //Make these things happen each time the page finishes loading
+function applySortable(selector) {
+    if (screen.width < 1000) {
+        //set up drag and drop for each list, with delay to imitate long-press
+        $(selector).each(function (i, list) {
+            Sortable.create(list, {
+                group: "tasks",
+                animation: 400,
+                ghostClass: "sortable-ghost",
+                onStart: inTheAir,
+                onAdd: moveTask,
+                delay: 400
+            });
+        });
+    } else {
+        //set up drag and drop for each list
+        $(selector).each(function (i, list) {
+            Sortable.create(list, {
+                group: "tasks",
+                animation: 400,
+                ghostClass: "sortable-ghost",
+                onStart: inTheAir,
+                onAdd: moveTask
+            });
+        });
+    }
+}
 function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
@@ -25,33 +51,7 @@ function preparePage() {
     fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
-
-    if (screen.width < 1000) {
-        //set up drag and drop for each list, with delay to imitate long-press
-        $(".sortable-task-list").each(function (i, list) {
-            Sortable.create(list, {
-                group: "tasks",
-                animation: 400,
-                ghostClass: "sortable-ghost",
-                onAdd: moveTask,
-                onStart: inTheAir,
-                delay: 400
-            });
-        });
-    } else {
-        //set up drag and drop for each list
-        $(".sortable-task-list").each(function (i, list) {
-            Sortable.create(list, {
-                group: "tasks",
-                animation: 400,
-                ghostClass: "sortable-ghost",
-                onStart: inTheAir,
-                onAdd: moveTask
-            });
-        });
-    }
-
-
+    applySortable(".sortable-task-list");
     //var wholescreen = $("body").hammer();
     //wholescreen.on('swiperight panleft', function (ev) {
     //    console.log(ev.type + ' gesture detected.');
@@ -149,9 +149,9 @@ function prepareCalendar() {
     var lastDateOfCurrentWeek = $('#dayColumns div:last-child ul').attr('id')
     $('#currentWeekDates').append(firstDateOfCurrentWeek + ' - ' + lastDateOfCurrentWeek);
 
-    fetchActiveTasksByWeek(mondayOfPrevWeek, displayTasksPerWeekAndSubject);
-    fetchActiveTasksByWeek(mondayOfCurrentWeek, displayTasksPerWeekAndSubject);
-    fetchActiveTasksByWeek(mondayOfNextWeek, displayTasksPerWeekAndSubject);
+    fetchActiveTasksByWeek(mondayOfPrevWeek, displayTasksForWeekAndSubject);
+    fetchActiveTasksByWeek(mondayOfCurrentWeek, displayTasksForWeekAndSubject);
+    fetchActiveTasksByWeek(mondayOfNextWeek, displayTasksForWeekAndSubject);
 
 }
 

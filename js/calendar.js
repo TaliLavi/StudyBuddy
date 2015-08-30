@@ -20,10 +20,11 @@ function prepareCalendarSlider() {
     $('#control_next').click(function () {
         var latestWeekDate = $('.week:last>div').attr('id').slice('week'.length);
         var mondayOfNewWeek = startOfWeek(latestWeekDate, 7);
-        var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
+        var newWeekHTML = createHtmlForWeekOf(mondayOfNewWeek);
         $('#calendarWrapper>div:first').remove();
-        $("#calendarWrapper").append(newSlideHTML);
-        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksPerWeekAndSubject);
+        $("#calendarWrapper").append(newWeekHTML);
+        applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
+        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_next').attr('disabled', true);
         moveSlide(1, function() {
             $('#control_next').attr('disabled', false);
@@ -33,10 +34,11 @@ function prepareCalendarSlider() {
     $('#control_prev').click(function () {
         var earliestWeekDate = $('.week:first>div').attr('id').slice('week'.length);
         var mondayOfNewWeek = startOfWeek(earliestWeekDate, -7);
-        var newSlideHTML = createHtmlForWeekOf(mondayOfNewWeek);
+        var newWeekHTML = createHtmlForWeekOf(mondayOfNewWeek);
         $('#calendarWrapper>div:last').remove();
-        $("#calendarWrapper").prepend(newSlideHTML);
-        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksPerWeekAndSubject);
+        $("#calendarWrapper").prepend(newWeekHTML);
+        applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
+        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_prev').attr('disabled', true);
         moveSlide(-1, function() {
             $('#control_prev').attr('disabled', false);

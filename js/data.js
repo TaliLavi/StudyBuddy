@@ -174,19 +174,14 @@ function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
-                $.each(subject.val(), function () {
-                    if (subject.hasChild(startOfWeek)) {
-                        var subjectId = subject.key();
-                        var TasksOfWeekRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + startOfWeek);
-                        TasksOfWeekRef.once("value", function(tasksSnapshot) {
-                            var tasksDict = tasksSnapshot.val();
-                            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
-                            subjectRef.once("value", function(subjectSnapshot) {
-                                perSubjectCallback(subjectId, subjectSnapshot.val(), tasksDict);
-                            });
-                        });
-                    }
-                });
+                if (subject.hasChild(startOfWeek)) {
+                    var subjectId = subject.key();
+                    var weekTasksDict = subject.val()[startOfWeek];
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+                    subjectRef.once("value", function(subjectSnapshot) {
+                        perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict);
+                    });
+                }
             });
         }
     });

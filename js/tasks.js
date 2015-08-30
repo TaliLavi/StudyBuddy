@@ -139,7 +139,7 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
     }
 }
 
-function displayTasksPerWeekAndSubject(subjectKey, subjectDict, tasksDict) {
+function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the calendar
         $.each(tasksDict, function(taskKey, taskData){
