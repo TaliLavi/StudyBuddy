@@ -209,7 +209,7 @@ input{
     padding: 0;
     /*background-color: #aaa;*/
     width: 1000px;
-    height: 350px;
+    height: 500px;
     /*border: indianred solid;*/
     background: -webkit-linear-gradient(left, #47476B , #6C6C89); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #47476B, #6C6C89); /* For Opera 11.1 to 12.0 */

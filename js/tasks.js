@@ -71,7 +71,7 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     if (screen.width < 1000) {
         // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
-        var taskCard = $(cardHtml).appendTo(listSelector).hammer();
+        var taskCard = $(cardHtml).hammer().appendTo(listSelector);
         taskCard.on('tap', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
             displayTask(subjectKey, startOfRelevantWeek, taskKey);
