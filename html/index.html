@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../css/pomodoro.css">
   <link rel="stylesheet" href="../css/subjectsBottomPanel.css">
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="../external/firebase2.2.7.js"></script>
   <script src='../external/jquery.js'></script>
@@ -29,14 +30,13 @@
 
 <body onload="preparePage()">
 
-  <div class="container-fluid">
-    <!-- Main navigation -->
-    <div class="row">
-      <button class="col-md-4 mainNav" id="profileButton">Profile</button>
-      <button class="col-md-4 mainNav" id="calendarButton">Calendar</button>
-      <button class="col-md-4 mainNav" id="subjectsButton">Subjects</button>
-    </div>
+  <div >
+    <button  id="profileButton">Profile</button>
+    <button  id="calendarButton">Calendar</button>
+    <button  id="subjectsButton">Subjects</button>
   </div>
+
+
 
   <!-- Profile page -->
   <div id="profilePage">
@@ -52,13 +52,15 @@
 
 
   <div id="calendarPage">
-    <button id="control_prev">Prev</button>
-    <button id="control_next">Next</button>
+    <div id="calendarControls">
+      <p class="calendarControls" id="control_prev">Prev</p>
+      <p class="weekHeadingOnCalendar calendarControls" id="theWeekHeader">THIS WEEK</p>
+      <p class="calendarControls" id="control_next">Next</p></div>
+    </div>
+
     <div id="calendarSlider">
       <div id="calendarWrapper"></div>
     </div>
-
-
 
     <!--========================================================================================================-->
     <!--SUBJECTS FOOTER-->

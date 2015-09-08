@@ -1,4 +1,67 @@
+*{
+    font-family: Quicksand;
+}
 
+#calendarControls{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    text-align: center;
+}
+
+#control_prev{
+    float: left;
+}
+
+#control_prev:hover {
+    color: lightseagreen;
+}
+
+#control_next:hover {
+    color: lightseagreen;
+}
+
+
+#control_next{
+    float: right;
+}
+
+.weekHeadingOnCalendar{
+    color: darkslategray;
+    font-weight: 400;
+    font-size: 2em;
+    text-align:center;
+    display: inline;
+}
+
+.dayHeadingOnCalendar{
+    color: lightseagreen;
+    font-weight: 400;
+    font-size: 1.2em;
+    text-align:center;
+    margin: auto;
+    padding: 1%;
+}
+
+.dateOnCalendarDay{
+    color: darkgray;
+    font-weight: 300;
+    font-size: .75em;
+    text-align:center;
+    padding: 10%;
+
+}
+
+.addTaskFromDate{
+    background-color: white;
+    width: 100%;
+    padding: 5%;
+    border: none;
+}
+
+.addTaskFromDate:hover{
+    color: lightseagreen;
+}
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
     background-color: whitesmoke;
@@ -14,6 +77,7 @@
 
 /*These are the cards*/
 .taskCard {
+    font-family: Quicksand;
     font-weight: normal;
     font-size: 1em;
     display: block;
@@ -47,9 +111,8 @@
 
 .colour6F011E {
     background-color: #6F011E;
-    color: #c3c3c3;
+    color: white;
 }
-
 
 .dayColumn {
     margin-right: 3%;
@@ -148,14 +211,14 @@ input{
 .section {
     clear: both;
     padding: 0px;
-    margin: 2%;
+    margin: 1%;
 }
 
 /*  COLUMN SETUP  */
 .col {
     display: block;
     float:left;
-    margin: 1% 0 1% 1.6%;
+    margin: 1% 0 1% .6%;
 }
 .col:first-child { margin-left: 0; }
 
@@ -168,7 +231,7 @@ input{
 /*  GRID OF SEVEN  */
 
 .dayColumn {
-    width: 12.91%;
+    width: 13.77%;
 }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
@@ -178,10 +241,8 @@ input{
 }
 
 .sortable-ghost {
-    border-style: solid;
     /*border-color: #4cae4c;*/
-    border-color: #00ff00;
-    background-color: #aaaaaa;
+    background-color: whitesmoke;
 }
 
 /*===============================================================================================*/
@@ -211,8 +272,8 @@ input{
     width: 1000px;
     height: 500px;
     /*border: indianred solid;*/
-    background: -webkit-linear-gradient(left, #47476B , #6C6C89); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #47476B, #6C6C89); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #47476B, #6C6C89); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #47476B , #6C6C89); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left, #fbfaf9, #ffffff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #fbfaf9, #ffffff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #fbfaf9, #ffffff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #fbfaf9 , #ffffff); /* Standard syntax (must be last) */
 }
