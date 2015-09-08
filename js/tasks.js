@@ -36,10 +36,10 @@ function createTask() {
     // SET DEFAULT VALUES
     var creation_date = $.now();
     var status_change_date = creation_date;
-    var startOfWeek = startOfWeek(assigned_date);
+    var mondayOfRelevantWeek = startOfWeek(assigned_date);
 
     // PUSH THEM TO DB
-    pushNewTask(subjectId, startOfWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
+    pushNewTask(subjectId, mondayOfRelevantWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
 
     // CLOSE THE ADD TASK DIALOG
     //Fade out the greyed background
