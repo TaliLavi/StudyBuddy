@@ -9,6 +9,8 @@ function applySortable(selector) {
                 ghostClass: "sortable-ghost",
                 onStart: inTheAir,
                 onAdd: moveTask,
+                forceFallback: true,
+                fallbackClass: "dragged-item",
                 delay: 400
             });
         });
@@ -20,7 +22,9 @@ function applySortable(selector) {
                 animation: 400,
                 ghostClass: "sortable-ghost",
                 onStart: inTheAir,
-                onAdd: moveTask
+                onAdd: moveTask,
+                forceFallback: true,
+                fallbackClass: "dragged-item"
             });
         });
     }
