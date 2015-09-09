@@ -63,10 +63,9 @@ function createTask() {
 
 //Create html for task element, append it to the list and apply hammer on it
 function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData) {
-    var cardHtml = '<li class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '" ' +
-        //'onclick="displayTask(\'' + subjectKey + '\', \'' + taskKey + '\');" ' +
-        'data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        taskData.title + '</li>';
+    var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+        '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '">' + taskData.title +
+        '</div></li>';
 
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     if (screen.width < 1000) {

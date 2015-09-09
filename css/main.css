@@ -62,6 +62,7 @@
 .addTaskFromDate:hover{
     color: lightseagreen;
 }
+
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
     background-color: whitesmoke;
@@ -73,17 +74,18 @@
     padding: 0px;
     z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
     min-height: 60px;                   /*minimal height to ensure cards could be added to an empty list*/
+    list-style-type: none;              /*remove bullet points fron li elements*/
 }
 
 /*This is the dragged image*/
-.dragged-item{
+.dragged-item .taskCard{
     border-radius: 20px;
     border-style: solid;
     border-width: 4px;
     border-color: #b641b8;
 
-    /*-webkit-transform: rotate(20deg); /!* Safari *!/*/
-    /*transform: rotate(7deg);*/
+    -webkit-transform: rotate(7deg); /* Safari */
+    transform: rotate(7deg);
 }
 
 /*These are the cards*/
@@ -256,6 +258,7 @@ input{
 .sortable-ghost {
     /*border-color: #4cae4c;*/
     background-color: #858585;
+    background-color: whitesmoke;
 }
 
 /*===============================================================================================*/
