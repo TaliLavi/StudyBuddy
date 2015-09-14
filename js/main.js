@@ -188,13 +188,18 @@ function displayTask(subjectId, assigned_date, taskId) {
     atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
 }
 
-// I chose to pass taskId because once we'd implement task editing, we'll need it.
 function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
+    var weekDate = startOfWeek(taskDetails.assigned_date)
+    $('#deleteTask').on("click", function(){
+        hideTask(taskId);
+        deleteTask(subjectId, weekDate, taskId);
+        closeModalWindow();
+    });
 }
 
 

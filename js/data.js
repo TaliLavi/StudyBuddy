@@ -230,6 +230,15 @@ function updateAssignedDate(subjectId, oldWeekDate, newWeekDate, taskId, newAssi
     }
 }
 
+// MOVE TASK TO DELETED
+function deleteTask(subjectId, weekDate, taskId) {
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
+    oldRef.once('value', function(snapshot)  {
+        newRef.set(snapshot.val());
+        oldRef.remove();
+    });
+}
 
 //=====================================================================
 //                              CHECKLIST ITEMS

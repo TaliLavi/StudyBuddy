@@ -171,3 +171,8 @@ function backToSubjects() {
     $('#subjectsList').show();
 }
 
+function hideTask(taskId) {
+    // get task by its data attribute
+    $("ul").find("[data-taskid='" + taskId + "']").hide();
+    console.log("hi");
+}
