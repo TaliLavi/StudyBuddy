@@ -100,7 +100,8 @@
   <!--========================================================================================================-->
   <div id="addSubjectModalBG" class="modal-bg">
     <div id="addSubjectModal" class="modal">
-      <span>New Subject<a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a></span>
+      <p class="closeX" onclick="closeModalWindow();">x</p>
+      <p class ="modalHeading">New Subject</p>
       <form>
         <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
         <input id="colourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
@@ -115,16 +116,15 @@
   <!--========================================================================================================-->
   <div id="addTaskModalBG" class="modal-bg">
     <div id="addTaskModal" class="modal">
-      <span>
-        New Task
-        <a href="#close" class="closeX" onclick="closeModalWindow();">&#215;</a>
-      </span>
+      <p class="closeX" onclick="closeModalWindow();">x</p>
+      <p class ="modalHeading">New Task</p>
+
       <form>
         <select id ="subjectInput"></select>
         <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
         <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here." required>
         <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
+        <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here."required>
         <button name="submit" id="submitNewTask" type="button">Add Task</button>
       </form>
     </div>
@@ -136,11 +136,9 @@
   <!--========================================================================================================-->
   <div id="taskModalBG" class="modal-bg">
     <div id="taskModal" class="modal">
-      <span class="cardHead">
-        Your Task
-        <a href="#close" class="closeX" onclick="closePomoWindow();">&#215;</a>
-      </span>
-      <div id ="pomodoroDiv">
+      <p class="closeX" onclick="closePomoWindow();">x</p>
+        <p class ="modalHeading">Your Task</p>
+        <div id ="pomodoroDiv">
         <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
         <br>
         <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>

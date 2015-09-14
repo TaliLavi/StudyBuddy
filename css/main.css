@@ -1,5 +1,8 @@
 *{
-    font-family: Quicksand;
+    font-family: RobotoDraft;
+}
+body{
+    background-color: oldlace;
 }
 
 #calendarControls{
@@ -49,15 +52,9 @@
     font-size: .75em;
     text-align:center;
     padding: 10%;
-
 }
 
-.addTaskFromDate{
-    background-color: white;
-    width: 100%;
-    padding: 5%;
-    border: none;
-}
+
 
 .addTaskFromDate:hover{
     color: lightseagreen;
@@ -93,24 +90,26 @@
 
 /*These are the cards*/
 .taskCard {
-    font-family: Quicksand;
     font-weight: normal;
     border-radius: 2px;
     font-size: .75em;
-    display: block;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 100%;
     height:60px;
     margin-bottom: 7px;             /*create a margin between cards*/
-    /*text-align: center;*/
-    padding: 0px;
     cursor: move;
     cursor: -webkit-grabbing;
     -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-
 
 
 .sortable-ghost {
@@ -127,6 +126,7 @@
 .colour2A98BB {
     background-color: #2A98BB;
     color: white;
+
 }
 
 .colourA6E1F1 {
@@ -142,6 +142,11 @@
 .colour6F011E {
     background-color: #6F011E;
     color: white;
+}
+
+.colourFFE672 {
+    background-color: #FFE672;
+    color: darkslategray;
 }
 
 .dayColumn {
@@ -172,28 +177,37 @@
     z-index: 1;
     width:700px;
     height:400px;
-    margin: auto;
+    margin: 0 auto;
+    top:50%;
+    left:50%;
+    margin:-200px 0 0 -350px;
     box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
 }
 
-/*The span div inside the modal is the coloured bar along the top with the title & the Close button*/
-.cardHead{
-    display: block;
-    background: darkseagreen;
-    padding: 10px;
-    color:#fff;
-}
 
 /*This is the close(x) button*/
 .closeX{
-    color:#fff;
+    display: block;
     float: right;
-    font-size: 15px;
+    color:darkslategray;
+    float: right;
+    font-size: 2em;
+    margin-right: 2%;
+    margin-top: 2%;
+    padding: 1%;
+    decoration: none;
+}
+
+.modalHeading{
+    margin-left: 5%;
+    display: block;
+    color:darkslategray;
+    font-size: 2em;
+    padding: 1%;
 }
 
 form{
     margin:30px;
-    /*background-color: #a94442;*/
     height:300px;
     width: 300px;
 }
@@ -201,13 +215,13 @@ form *{
     margin:10px;
 }
 input:focus{
-    border:2px solid darkseagreen;
+    border:2px solid #ddd;
     outline:0;
 }
 input{
     width:240px;
     padding:7px;
-    border:2px solid #ccc ;
+    border:1px solid #ccc ;
     border-radius:3px;
 }
 
@@ -282,7 +296,6 @@ input{
     float: left;
     margin: 0;
     padding: 0;
-    background-color: oldlace;
     width:1000px;
     height: 500px;
 }
