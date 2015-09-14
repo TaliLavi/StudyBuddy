@@ -142,11 +142,6 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
                     daysHtml +
                     '</div>' +
                     '</div>'
-    //Todo : Get the size of the screen, and make the css width property equal to it
-    //var windowWidth = window.innerWidth;
-    //var windowHeight = window.innerHeight;
-    //console.log("WIndow width : "+windowWidth+"Window height : "+ windowHeight);
-    $('.week').height(window.innerHeight).width(window.innerWidth);
     return weekHtml;
 }
 
