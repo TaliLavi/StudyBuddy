@@ -26,7 +26,7 @@
     float: right;
 }
 
-.weekHeadingOnCalendar{
+#weekHeadingOnCalendar{
     color: darkslategray;
     font-weight: 400;
     font-size: 2em;

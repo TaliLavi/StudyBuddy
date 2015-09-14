@@ -29,6 +29,7 @@ function prepareCalendarSlider() {
         moveSlide(1, function() {
             $('#control_next').attr('disabled', false);
         });
+        createCalendarHeading();
     });//end of next click function
 
     $('#control_prev').click(function () {
@@ -43,8 +44,37 @@ function prepareCalendarSlider() {
         moveSlide(-1, function() {
             $('#control_prev').attr('disabled', false);
         });
+        createCalendarHeading();
     });//end of prev click function
 }
+
+function createCalendarHeading() {
+    // extract the displayed week's monday from the week's id.
+    var displayedmonday = $('.week:nth-child(2)>div').attr('id').slice('week'.length);
+    var currentWeekMonday;
+    var previousWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+    var nextWeekMonday = Date.today().next().monday().toString('yyyy-MM-dd');
+
+    // get this week's monday
+    if (Date.today().is().monday()) {
+        // if today happens to be a Monday, save it as this week's monday
+        currentWeekMonday = Date.today().toString('yyyy-MM-dd');
+    } else {
+        currentWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+    }
+
+    if (displayedmonday === currentWeekMonday) {
+        $('#weekHeadingOnCalendar').text('THIS WEEK');
+    } else if (displayedmonday === previousWeekMonday) {
+        $('#weekHeadingOnCalendar').text('PREVIOUS WEEK');
+    } else if (displayedmonday === nextWeekMonday) {
+        $('#weekHeadingOnCalendar').text('NEXT WEEK');
+    } else {
+        var displayedSunday = Date.parse(displayedmonday).addDays(6).toString('yyyy-MM-dd');
+        $('#weekHeadingOnCalendar').text(displayedmonday + ' - ' + displayedSunday);
+    }
+}
+
 
 function getLeftPositionWrapper(){
     var element = document.getElementById("calendarWrapper");
