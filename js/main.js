@@ -120,11 +120,16 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
     for (var i = 0; i < 7; i++) {
         var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
         var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
+        // date.js doesn't add the suffix for a days (e.g. 16th, 1st), so I made use of the getOrdinal() methos.
+        var suffix = currentDate.getOrdinal();
+        var suffixPlaceHolder = currentDate.toString('dxxx MMM');
+        var currentDateTitle = suffixPlaceHolder.replace("xxx", suffix);
+
         var currentDay = currentDate.toString('dddd');
         // Append day
         daysHtml += '<div class="col dayColumn">' +
                       '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
-                      '<div class="dateOnCalendarDay">' + currentDateFormatted +'</div>' +
+                      '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
                       '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
                          currentDateFormatted + '\', this);">Add Task</button>' +
                       '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
