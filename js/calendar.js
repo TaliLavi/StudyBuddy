@@ -2,9 +2,9 @@ function prepareCalendarSlider() {
     var SLIDE_DURATION = 400;
     var INITIAL_SLIDE = 2;
 
-    var slideCount = $('.week').length;                                                         //Get amount of slides
-    var slideWidth = $('.week').width();                                                        //Store width of slide as a variable
-    var slideHeight = $('.week').height();                                                      //Store height of slide as a variable
+    var slideCount = 3;                                                         //Get amount of slides
+    var slideWidth = window.innerWidth;                                                        //Store width of slide as a variable
+    var slideHeight = window.innerHeight;                                                      //Store height of slide as a variable
     var wrapperWidth = slideCount * slideWidth;                                                 //Make the wrapper wide enough to accommodate all the weeks
     $('#calendarSlider').css({width: slideWidth, height: slideHeight});                                 // make the slider (viewport) as high and as wide as a single week
     $('#calendarWrapper').css({width: wrapperWidth, marginLeft: -(INITIAL_SLIDE - 1) * slideWidth});    // and shift wrapper according to INITIAL_SLIDE

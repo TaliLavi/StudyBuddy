@@ -44,8 +44,8 @@
 }
 
 .dateOnCalendarDay{
-    color: darkgray;
-    font-weight: 300;
+    color: grey;
+    font-weight: 400;
     font-size: .75em;
     text-align:center;
     padding: 10%;
@@ -65,7 +65,7 @@
 
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
-    background-color: whitesmoke;
+    background-color: rgba(255,255,255,0.3);
     width: 100%;
     height: 100%;
     position: relative;
@@ -73,36 +73,51 @@
     margin-top: 5px;
     padding: 0px;
     z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
-    min-height: 60px;                   /*minimal height to ensure cards could be added to an empty list*/
+    min-height: 500px;                   /*minimal height to ensure cards could be added to an empty list*/
     list-style-type: none;              /*remove bullet points fron li elements*/
 }
 
 /*This is the dragged image*/
 .dragged-item .taskCard{
-    border-radius: 20px;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #b641b8;
-
-    -webkit-transform: rotate(7deg); /* Safari */
-    transform: rotate(7deg);
+    width: 110%;
+    height:70px;
+    opacity: 1;
+    border-radius: 2px;
+    /*border: 6px solid plum;*/
+    -webkit-transform: rotate(3deg); /* Safari */
+    transform: rotate(3deg);
+    -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
 }
 
 /*These are the cards*/
 .taskCard {
     font-family: Quicksand;
     font-weight: normal;
-    font-size: 1em;
+    border-radius: 2px;
+    font-size: .75em;
     display: block;
     position: relative;
     width: 100%;
     height:60px;
     margin-bottom: 7px;             /*create a margin between cards*/
-    text-align: center;
+    /*text-align: center;*/
     padding: 0px;
     cursor: move;
     cursor: -webkit-grabbing;
+    -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
+
+
+
+.sortable-ghost {
+    /*border-color: #4cae4c;*/
+    opacity: 0;
+}
+
 
 .colour21324C {
     background-color: #21324C;
@@ -197,24 +212,6 @@ input{
 }
 
 
-
-/*===============================================================================================*/
-/*TESTING LAYERS */
-/*===============================================================================================*/
-
-#testListDiv{
-    background-color: cadetblue;
-    height: 500px;
-    width: 500px;
-    position: absolute;
-    z-index: 2;
-    right: 0px;
-    top: 0px;
-    display:none;
-    box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
-}
-
-
 /*===============================================================================================*/
 /*SEVEN COLUMN GRID / */
 /*===============================================================================================*/
@@ -261,6 +258,7 @@ input{
     background-color: whitesmoke;
 }
 
+
 /*===============================================================================================*/
 /*CALENDAR SLIDER/ */
 /*===============================================================================================*/
@@ -284,12 +282,7 @@ input{
     float: left;
     margin: 0;
     padding: 0;
-    /*background-color: #aaa;*/
-    width: 1000px;
+    background-color: oldlace;
+    width:2000px;
     height: 500px;
-    /*border: indianred solid;*/
-    background: -webkit-linear-gradient(left, #fbfaf9, #ffffff); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #fbfaf9, #ffffff); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #fbfaf9, #ffffff); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #fbfaf9 , #ffffff); /* Standard syntax (must be last) */
 }
