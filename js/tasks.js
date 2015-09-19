@@ -176,3 +176,17 @@ function hideTask(taskId) {
     $("ul").find("[data-taskid='" + taskId + "']").hide();
     console.log("hi");
 }
+
+function applyDatePicker() {
+    var today = Date.today().toString('d');
+    $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        weekStart: 1,
+        startDate: today,
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true
+    });
+}
+
+

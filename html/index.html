@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Study Buddy</title>
 
-  <!--<link rel="stylesheet" type="text/css" href="../external/Bootstrap/bootstrap.min.css">-->
+  <link rel="stylesheet" href="../external/bootstrap-3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../external/bootstrap-datepicker-1.4.0/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/pomodoro.css">
   <link rel="stylesheet" href="../css/subjectsBottomPanel.css">
@@ -13,6 +14,8 @@
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="../external/firebase2.2.7.js"></script>
   <script src='../external/jquery.js'></script>
+  <script src='../external/bootstrap-3.3.5/js/bootstrap.min.js'></script>
+  <script src='../external/bootstrap-datepicker-1.4.0/js/bootstrap-datepicker.min.js'></script>
   <script src="../external/date.js"></script>
   <script src="../external/hammer.min.js"></script>
   <script src="../external/jquery.hammer.js-master/jquery.hammer.js"></script>
@@ -123,7 +126,7 @@
         <select id ="subjectInput"></select>
         <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
         <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
+        <input id="assignedDateInput" class="inputField datepicker" name="assignedDateInput" type="textbox" required>
         <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here."required>
         <button name="submit" id="submitNewTask" type="button">Add Task</button>
       </form>
