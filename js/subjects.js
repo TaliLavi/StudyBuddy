@@ -42,7 +42,7 @@ function displayActiveSubjects(subjectDict) {
 
     // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
-        $('#subjectsList').append('<button class="subject" id="allUnassigendTasks">All</button>');
+        $('#subjectsList').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
         //$('#subjectsList').append('<button class="subject" id="allUnassigendTasks"' +
         //    'onclick="' + onclick_handler + '">All</button>');
 

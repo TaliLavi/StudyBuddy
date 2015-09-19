@@ -156,11 +156,13 @@ function hideTask(taskId) {
 }
 
 function filterTasksInFooter(subjectKey) {
-    var divId = "#footerDivFor" + subjectKey;
-    // select all footer divs which are not this subject's
-    var allOtherSubjects = $("#tasksDivs .col").not(divId);
-    // hide them
-    $(allOtherSubjects).hide();
-    // show only this subject's div
-    $(divId).show();
+    if (subjectKey === "allUnassigendTasks") {
+        $("#tasksDivs .col").show();
+    } else {
+        var divId = "#footerDivFor" + subjectKey;
+        // select all footer divs which are not this subject's, and hide them
+        $("#tasksDivs .col").not(divId).hide();
+        // show only this subject's div
+        $(divId).show();
+    }
 }
