@@ -55,11 +55,14 @@ function preparePage() {
     fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
-    applySortable(".sortable-task-list");
+    // fetch and append all unassigned active tasks to footer
+    fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
+
     //var wholescreen = $("body").hammer();
     //wholescreen.on('swiperight panleft', function (ev) {
     //    console.log(ev.type + ' gesture detected.');
     //});
+
 }
 
 // when task is moved...
@@ -79,13 +82,13 @@ function moveTask(evt) {
 }
 
 function inTheAir(evt) {
-  //  // horibble flash effect
-  //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
+    //  // horibble flash effect
+    //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
 
 }
 
 //===========================================================================================================
-    //NAVIGATION PANEL
+//NAVIGATION PANEL
 //===========================================================================================================
 
 
@@ -118,23 +121,21 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
     var daysHtml = "";
     for (var i = 0; i < 7; i++) {
         var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
-        var currentDateFormattedForDatabase = currentDate.toString('yyyy-MM-dd');
-        var currentDateFormattedForInputField = currentDate.toString('d/M/yyyy');
+        var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
         // date.js doesn't add the suffix for a days (e.g. 16th, 1st), so I made use of the getOrdinal() methos.
         var suffix = currentDate.getOrdinal();
         var suffixPlaceHolder = currentDate.toString('dxxx MMM');
         var currentDateTitle = suffixPlaceHolder.replace("xxx", suffix);
 
         var currentDay = currentDate.toString('dddd');
-
         // Append day
         daysHtml += '<div class="col dayColumn">' +
-                      '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
-                      '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
-                      '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
-                      currentDateFormattedForInputField + '\', this);">Add Task</button>' +
-                      '<ul class="sortable-task-list dayList" id="' + currentDateFormattedForDatabase + '"></ul>' +
-                    '</div>';
+            '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
+            '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
+            '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
+            currentDateFormatted + '\', this);">Add Task</button>' +
+            '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
+            '</div>';
     }
     //Todo : Fix the "this weeks's dates are:" to display the relevant dates OR to display "This Week", "Next week" etc.
     //var weekHtml = '<div class="week">' +
@@ -144,10 +145,10 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
     //                 '</div>' +
     //               '</div>'
     var weekHtml =  '<div class="week">' +
-                    '<div class="section group" id="week' + mondayOfCurrentWeek + '">' +
-                    daysHtml +
-                    '</div>' +
-                    '</div>'
+        '<div class="section group" id="week' + mondayOfCurrentWeek + '">' +
+        daysHtml +
+        '</div>' +
+        '</div>'
     return weekHtml;
 }
 
@@ -159,6 +160,8 @@ function prepareCalendar() {
     $('#calendarWrapper').append(createHtmlForWeekOf(mondayOfPrevWeek));
     $('#calendarWrapper').append(createHtmlForWeekOf(mondayOfCurrentWeek));
     $('#calendarWrapper').append(createHtmlForWeekOf(mondayOfNextWeek));
+
+    applySortable(".sortable-task-list");
 
     // Display current week's dates
     var firstDateOfCurrentWeek = $('#dayColumns div:first-child ul').attr('id')
@@ -205,26 +208,20 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
 
 
 //===========================================================================================================
-    //CREATE A TASK CARD
+//CREATE A TASK CARD
 //===========================================================================================================
 var dayList;
 
 
 function openAddTaskDialog(data, dateOrSubject){
 
-
     if ($(dateOrSubject).hasClass('addTaskFromDate')) {
         //Automatically fill the assigned date
-        //$('#assignedDateInput').val(data);
-        console.log("hi");
-        $('#assignedDateInput').attr("value", data);
-        console.log("bye");
+        $('#assignedDateInput').val(data);
     } else if ($(dateOrSubject).hasClass('addTaskFromSubject')) {
         //Automatically select the subject
         $('#subjectInput').val(data);
     }
-
-    applyDatePicker();
 
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
@@ -256,7 +253,7 @@ function closeModalWindow() {
 
 
 //===========================================================================================================
-    // CREATE A NEW SUBJECT
+// CREATE A NEW SUBJECT
 //===========================================================================================================
 
 function openAddSubjectDialog(){

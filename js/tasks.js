@@ -106,17 +106,13 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
 // DISPLAY TASKS ON BOTTOM PANEL
 function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
-        // append tasks to the taskList div
+        // append tasks to the footer div
         $.each(tasksDict, function(taskKey, taskData){
-            // only append tasks that don't have an assigned_date
-            if (taskData.assigned_date == "") {
-                //Appends the task card html to the date's list
-                createTaskElement('#tasksList', subjectKey, subjectDict, taskKey, taskData);
-            }
+            var subjectDiv = '#unassignedTasksFor' + subjectKey;
+            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            applySortable(subjectDiv);
         })
     }
-    // show tasks div
-    $('#tasksDiv').show();
 }
 
 function clearCalendarTasks() {
@@ -153,40 +149,8 @@ function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
     return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
-function prepareTasksDiv(subjectName, subjectKey) {
-    // hide subjects div to allow room for tasks
-    $('#subjectsList').hide();
-    // append a back button
-    $('#panelControls').append('<button id="back" onclick="backToSubjects()">Back to view all subjects</button><br><br>');
-    // append subjectKey to indicate whith subject these tasks belond to
-    $('#panelControls').append('<div>Here are your unscheduled tasks for <strong>' + subjectName + '</strong></div><br>');
-    fetchUnassignedActiveTasksBySubject(subjectKey, displayTasksInBottomPanel);
-}
-
-
-function backToSubjects() {
-    $('#tasksDiv').hide();
-    $('#panelControls').text('');
-    $('#tasksList').text('');
-    $('#subjectsList').show();
-}
-
 function hideTask(taskId) {
     // get task by its data attribute
     $("ul").find("[data-taskid='" + taskId + "']").hide();
     console.log("hi");
 }
-
-function applyDatePicker() {
-    var today = Date.today().toString('d');
-    $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-        weekStart: 1,
-        startDate: today,
-        todayBtn: "linked",
-        autoclose: true,
-        todayHighlight: true
-    });
-}
-
-

@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>Study Buddy</title>
 
-  <link rel="stylesheet" href="../external/bootstrap-3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../external/bootstrap-datepicker-1.4.0/css/bootstrap-datepicker.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="../external/Bootstrap/bootstrap.min.css">-->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/pomodoro.css">
   <link rel="stylesheet" href="../css/subjectsBottomPanel.css">
@@ -14,8 +13,6 @@
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="../external/firebase2.2.7.js"></script>
   <script src='../external/jquery.js'></script>
-  <script src='../external/bootstrap-3.3.5/js/bootstrap.min.js'></script>
-  <script src='../external/bootstrap-datepicker-1.4.0/js/bootstrap-datepicker.min.js'></script>
   <script src="../external/date.js"></script>
   <script src="../external/hammer.min.js"></script>
   <script src="../external/jquery.hammer.js-master/jquery.hammer.js"></script>
@@ -33,142 +30,140 @@
 
 <body onload="preparePage()">
 
-  <div >
-    <button  id="profileButton">Profile</button>
-    <button  id="calendarButton">Calendar</button>
-    <button  id="subjectsButton">Subjects</button>
+<div >
+  <button  id="profileButton">Profile</button>
+  <button  id="calendarButton">Calendar</button>
+  <button  id="subjectsButton">Subjects</button>
+</div>
+
+
+
+<!-- Profile page -->
+<div id="profilePage">
+  <div>
+    Content for Profile page
+  </div>
+</div>
+
+
+<!--========================================================================================================-->
+<!--CALENDAR PAGE-->
+<!--========================================================================================================-->
+
+
+<div id="calendarPage">
+  <div id="calendarControls">
+    <button class="calendarControls" id="control_prev">Prev</button>
+    <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
+    <button class="calendarControls" id="control_next">Next</button>
   </div>
 
-
-
-  <!-- Profile page -->
-  <div id="profilePage">
-    <div>
-      Content for Profile page
-    </div>
+  <div id="calendarSlider">
+    <div id="calendarWrapper"></div>
   </div>
 
-
   <!--========================================================================================================-->
-  <!--CALENDAR PAGE-->
+  <!--SUBJECTS FOOTER-->
   <!--========================================================================================================-->
-
-
-  <div id="calendarPage">
-    <div id="calendarControls">
-      <button class="calendarControls" id="control_prev">Prev</button>
-      <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
-      <button class="calendarControls" id="control_next">Next</button>
-    </div>
-
-    <div id="calendarSlider">
-      <div id="calendarWrapper"></div>
-    </div>
-
-    <!--========================================================================================================-->
-    <!--SUBJECTS FOOTER-->
-    <!--========================================================================================================-->
-    <footer id="panelWrapper">
-      <div id="flip">Task manager</div>
-      <div id="subjectsPanel">
-        <div id="innerWrapper">
-          <div id="subjectsList"></div>
-          <div id="tasksDiv">
-            <div id="panelControls"></div>
-            <div class="col dayColumn">
-              <ul class="sortable-task-list" id="tasksList"></ul>
-            </div>
-          </div>
+  <footer id="panelWrapper">
+    <div id="flip">Task manager</div>
+    <div id="subjectsPanel">
+      <div id="innerWrapper">
+        <div id="subjectsList">
         </div>
+
+        <div id="tasksDivs"></div>
+
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
+</div>
 
-  <!--========================================================================================================-->
-  <!--SUBJECT PAGE-->
-  <!--========================================================================================================-->
-  <div id="subjectsPage">
-      <div class ="container" id="subjectsContainer">
-        <div class="row">
-          <div class="row" id="subjectsDiv">
-          </div>
-          <button onclick="openAddSubjectDialog();">Add a Subject</button>
-        </div>
+<!--========================================================================================================-->
+<!--SUBJECT PAGE-->
+<!--========================================================================================================-->
+<div id="subjectsPage">
+  <div class ="container" id="subjectsContainer">
+    <div class="row">
+      <div class="row" id="subjectsDiv">
       </div>
-  </div>
-
-
-  <!--========================================================================================================-->
-  <!--ADD SUBJECT (MODAL WINDOW)-->
-  <!--========================================================================================================-->
-  <div id="addSubjectModalBG" class="modal-bg">
-    <div id="addSubjectModal" class="modal">
-      <p class="closeX" onclick="closeModalWindow();">x</p>
-      <p class ="modalHeading">New Subject</p>
-      <form>
-        <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-        <input id="colourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
-        <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
-      </form>
+      <button onclick="openAddSubjectDialog();">Add a Subject</button>
     </div>
   </div>
+</div>
 
 
-  <!--========================================================================================================-->
-  <!--ADD TASK DIALOG (MODAL WINDOW)-->
-  <!--========================================================================================================-->
-  <div id="addTaskModalBG" class="modal-bg">
-    <div id="addTaskModal" class="modal">
-      <p class="closeX" onclick="closeModalWindow();">x</p>
-      <p class ="modalHeading">New Task</p>
-
-      <form>
-        <select id ="subjectInput"></select>
-        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
-        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="assignedDateInput" class="inputField datepicker" name="assignedDateInput" type="textbox" required>
-        <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here."required>
-        <button name="submit" id="submitNewTask" type="button">Add Task</button>
-      </form>
-    </div>
+<!--========================================================================================================-->
+<!--ADD SUBJECT (MODAL WINDOW)-->
+<!--========================================================================================================-->
+<div id="addSubjectModalBG" class="modal-bg">
+  <div id="addSubjectModal" class="modal">
+    <p class="closeX" onclick="closeModalWindow();">x</p>
+    <p class ="modalHeading">New Subject</p>
+    <form>
+      <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+      <input id="colourInput" class="inputField" name="subjectColour" type="textbox" placeholder="Colour hexcode here." required>
+      <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
+    </form>
   </div>
+</div>
 
 
-  <!--========================================================================================================-->
-  <!--TASK DIALOG (MODAL WINDOW)-->
-  <!--========================================================================================================-->
-  <div id="taskModalBG" class="modal-bg">
-    <div id="taskModal" class="modal">
-      <p class="closeX" onclick="closePomoWindow();">x</p>
-        <p class ="modalHeading">Your Task</p>
-        <div id ="pomodoroDiv">
-        <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
-        <br>
-        <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>
-        <button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>
-        <button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>
-        <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
+<!--========================================================================================================-->
+<!--ADD TASK DIALOG (MODAL WINDOW)-->
+<!--========================================================================================================-->
+<div id="addTaskModalBG" class="modal-bg">
+  <div id="addTaskModal" class="modal">
+    <p class="closeX" onclick="closeModalWindow();">x</p>
+    <p class ="modalHeading">New Task</p>
 
-
-        <p id="timeRecord"></p>
-        <audio id="tone">
-          <source src="../pomodoroTone.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-      <form>
-        <select id ="taskSubject"></select>
-        <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
-        <input id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
-        <input id="taskTimeEstimation" name="taskTimeEstimation" type="textbox" placeholder="Write your time estimation here.">
-        <input id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here.">
-        <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
-        <button id="deleteTask">DELETE TASK</button>
-      </form>
-
-    </div>
+    <form>
+      <select id ="subjectInput"></select>
+      <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+      <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+      <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
+      <input id="timeEstimationInput" class="inputField" name="timeEstimationInput" type="textbox" placeholder="Write your time estimation here."required>
+      <button name="submit" id="submitNewTask" type="button">Add Task</button>
+    </form>
   </div>
-  <script src='../js/pomodoro.js'></script>
+</div>
+
+
+<!--========================================================================================================-->
+<!--TASK DIALOG (MODAL WINDOW)-->
+<!--========================================================================================================-->
+<div id="taskModalBG" class="modal-bg">
+  <div id="taskModal" class="modal">
+    <p class="closeX" onclick="closePomoWindow();">x</p>
+    <p class ="modalHeading">Your Task</p>
+    <div id ="pomodoroDiv">
+      <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
+      <br>
+      <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>
+      <button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>
+      <button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>
+      <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
+
+
+      <p id="timeRecord"></p>
+      <audio id="tone">
+        <source src="../pomodoroTone.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    <form>
+      <select id ="taskSubject"></select>
+      <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
+      <input id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
+      <input id="taskTimeEstimation" name="taskTimeEstimation" type="textbox" placeholder="Write your time estimation here.">
+      <input id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here.">
+      <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
+      <button id="deleteTask">DELETE TASK</button>
+    </form>
+
+  </div>
+</div>
+<script src='../js/pomodoro.js'></script>
 </body>
 </html>
 

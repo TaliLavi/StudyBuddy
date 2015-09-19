@@ -201,6 +201,31 @@ function fetchUnassignedActiveTasksBySubject(subjectId, callback) {
 }
 
 
+
+function fetchAllUnassignedActiveTasks(perSubjectCallback) {
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
+    activeTasksRef.once("value", function(subjects) {
+        if (subjects.val() !== null) {
+            subjects.forEach(function(subject) {
+                var subjectId = subject.key();
+
+                //TODO: take the next UI line from this data-handling function
+                $('#tasksDivs').append('<div class="col dayColumn"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
+
+                if (subject.hasChild('no_assigned_date')) {
+                    var unassignedTasksDict = subject.val()['no_assigned_date'];
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+                    subjectRef.once("value", function(subjectSnapshot) {
+                        perSubjectCallback(subjectId, subjectSnapshot.val(), unassignedTasksDict);
+                    });
+                }
+            });
+        }
+    });
+}
+
+
+
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
 function fetchSingleTask(subjectId, weekDate, taskId, callback) {
     var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);

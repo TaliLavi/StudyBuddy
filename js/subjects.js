@@ -42,15 +42,20 @@ function displayActiveSubjects(subjectDict) {
 
     // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
+        $('#subjectsList').append('<button class="subject" id="allUnassigendTasks">All</button>');
+        //$('#subjectsList').append('<button class="subject" id="allUnassigendTasks"' +
+        //    'onclick="' + onclick_handler + '">All</button>');
+
         $.each(subjectDict, function(subjectKey, subjectData){
 
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;
-            var onclick_handler = "prepareTasksDiv('" + subjectData.name + "', '"+ subjectKey + "')";
+            var onclick_handler = "fetchUnassignedActiveTasksBySubject('" + subjectKey + "', displayTasksInBottomPanel)";
             $('#subjectsList').append('<button class="subject" id="' + button_id + '"' +
                 'onclick="' + onclick_handler + '">' +
                 subjectData.name + '</button>'
             );
+
 
             // create a div for each subject and append it to subjectsDiv
             $('#subjectsDiv').append(
