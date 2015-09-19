@@ -188,20 +188,7 @@ function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
 }
 
 
-// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS BELONGING TO A SPECIFIC SUBJECT
-function fetchUnassignedActiveTasksBySubject(subjectId, callback) {
-    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/no_assigned_date');
-    tasksRef.once("value", function(unassignedSnapshot) {
-        var tasksDict = unassignedSnapshot.val();
-        var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
-        subjectRef.once("value", function(subjectSnapshot) {
-            callback(subjectId, subjectSnapshot.val(), tasksDict);
-        });
-    });
-}
-
-
-
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS
 function fetchAllUnassignedActiveTasks(perSubjectCallback) {
     var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
@@ -210,7 +197,9 @@ function fetchAllUnassignedActiveTasks(perSubjectCallback) {
                 var subjectId = subject.key();
 
                 //TODO: take the next UI line from this data-handling function
-                $('#tasksDivs').append('<div class="col dayColumn"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
+                $('#tasksDivs').append(
+                    '<div class="col dayColumn" id="footerDivFor' + subjectId +
+                    '"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
 
                 if (subject.hasChild('no_assigned_date')) {
                     var unassignedTasksDict = subject.val()['no_assigned_date'];

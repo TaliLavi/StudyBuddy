@@ -154,3 +154,13 @@ function hideTask(taskId) {
     $("ul").find("[data-taskid='" + taskId + "']").hide();
     console.log("hi");
 }
+
+function filterTasksInFooter(subjectKey) {
+    var divId = "#footerDivFor" + subjectKey;
+    // select all footer divs which are not this subject's
+    var allOtherSubjects = $("#tasksDivs .col").not(divId);
+    // hide them
+    $(allOtherSubjects).hide();
+    // show only this subject's div
+    $(divId).show();
+}

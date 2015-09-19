@@ -50,7 +50,7 @@ function displayActiveSubjects(subjectDict) {
 
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;
-            var onclick_handler = "fetchUnassignedActiveTasksBySubject('" + subjectKey + "', displayTasksInBottomPanel)";
+            var onclick_handler = "filterTasksInFooter('" + subjectKey + "')";
             $('#subjectsList').append('<button class="subject" id="' + button_id + '"' +
                 'onclick="' + onclick_handler + '">' +
                 subjectData.name + '</button>'
