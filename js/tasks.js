@@ -52,13 +52,10 @@ function createTask() {
     descriptionInput.val('');
     timeEstimationInput.val('');
     $('#subjectInput option').prop('selected', function() {
-        return this.defaultSelected;                            // Reset select value to default
+        // Reset select value to default
+        return this.defaultSelected;
     });
-
-    // REFRESH TASKS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveTasks(displayTasksInSubjectsPage);
-    fetchActiveTasks(displayTasksInCalendar, clearCalendarTasks);
-}//end of function createTask
+}
 
 
 //Create html for task element, append it to the list and apply hammer on it
@@ -87,6 +84,21 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     }
 }
 
+// APPEND NEWLY CREATED TASK TO ALL RELEVANT PLACES IN THE DOM
+function appendNewTask(subjectId, subjectData, taskKey, taskData, assigned_date) {
+    // APPEND TASK TO SUBJECTS PAGE
+    var subjectDiv = '#' + subjectId;
+    createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+    // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
+    if (assigned_date === "") {
+        var subjectDiv = '#unassignedTasksFor' + subjectId;
+        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+        // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
+    } else if ($('#calendarWrapper').children($('#week' + startOfWeek(assigned_date))).length > 0) {
+        var subjectDiv = '#' + assigned_date;
+        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+    }
+}
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
