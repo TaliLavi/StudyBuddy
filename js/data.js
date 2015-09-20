@@ -139,6 +139,23 @@ function pushNewTask(subjectId, weekDate, title, description, assigned_date, tim
         creation_date: creation_date,
         status_change_date: status_change_date
     });
+
+
+
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+    subjectRef.once("value", function(subjectSnapshot) {
+
+        newTaskRef.once('value', function(newTask)  {
+            var taskData = newTask.val();
+            var taskKey = newTask.key();
+
+            // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
+            if (assigned_date === "") {
+                var subjectDiv = '#unassignedTasksFor' + subjectId;
+                createTaskElement(subjectDiv, subjectId, subjectSnapshot.val(), taskKey, taskData);
+            };
+        });
+    });
 };
 
 
