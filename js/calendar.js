@@ -51,22 +51,28 @@ function prepareCalendarSlider() {
 function createCalendarHeading() {
     // extract the displayed week's monday from the week's id.
     var displayedmonday = $('.week:nth-child(2)>div').attr('id').slice('week'.length);
-    var currentWeekMonday;
-    var previousWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+
+    // get previous week's monday and this week's monday
+    if (Date.today().is().monday()) {
+        // if today happens to be a Monday, go to last monday
+        var previousWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+        // if today happens to be a Monday, save it as this week's monday
+        var currentWeekMonday = Date.today().toString('yyyy-MM-dd');
+    } else {
+        // else, grab the date for that week's Monday, and go back 7 days to the previous monday
+        var previousWeekMonday = Date.today().last().monday().addDays(-7).toString('yyyy-MM-dd');
+        // else, go to last monday
+        var currentWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+    }
+
     var nextWeekMonday = Date.today().next().monday().toString('yyyy-MM-dd');
 
-    // get this week's monday
-    if (Date.today().is().monday()) {
-        // if today happens to be a Monday, save it as this week's monday
-        currentWeekMonday = Date.today().toString('yyyy-MM-dd');
-    } else {
-        currentWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
-    }
+    console.log("displayedmonday is: " + displayedmonday + ". currentWeekMonday is: " + currentWeekMonday + ". previousWeekMonday is: " + previousWeekMonday + ". nextWeekMonday is: " + nextWeekMonday);
 
     if (displayedmonday === currentWeekMonday) {
         $('#weekHeadingOnCalendar').text('THIS WEEK');
     } else if (displayedmonday === previousWeekMonday) {
-        $('#weekHeadingOnCalendar').text('PREVIOUS WEEK');
+        $('#weekHeadingOnCalendar').text('LAST WEEK');
     } else if (displayedmonday === nextWeekMonday) {
         $('#weekHeadingOnCalendar').text('NEXT WEEK');
     } else {

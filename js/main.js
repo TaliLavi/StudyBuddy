@@ -137,13 +137,7 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
             '</div>';
     }
-    //Todo : Fix the "this weeks's dates are:" to display the relevant dates OR to display "This Week", "Next week" etc.
-    //var weekHtml = '<div class="week">' +
-    //                 '<h4>This week\'s dates are: <span id="currentWeekDates"></span></h4>' +
-    //                 '<div class="section group" id="week' + mondayOfCurrentWeek + '">' +
-    //                   daysHtml +
-    //                 '</div>' +
-    //               '</div>'
+
     var weekHtml =  '<div class="week">' +
         '<div class="section group" id="week' + mondayOfCurrentWeek + '">' +
         daysHtml +
