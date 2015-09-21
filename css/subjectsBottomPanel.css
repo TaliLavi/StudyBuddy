@@ -40,12 +40,25 @@ html {
     display: none;
 }
 
-#innerWrapper {
+#subjectsInnerWrapper, #tasksInnerWrapper {
     overflow-x: scroll;
+}
+
+#subjectsList, #tasksDivs {
+    white-space: nowrap;
 }
 
 #subjectsList .subject{
     display: inline-block;
     margin: 0px 20px;
-    /*border:1px solid black;*/
+}
+
+#tasksDivs .footerDiv {
+    display: inline-block;
+}
+
+#tasksDivs li {
+    width: 250px;
+    float: left;
+    margin-left: 10px;
 }

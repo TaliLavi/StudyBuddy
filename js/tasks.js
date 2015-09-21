@@ -169,11 +169,11 @@ function hideTask(taskId) {
 
 function filterTasksInFooter(subjectKey) {
     if (subjectKey === "allUnassigendTasks") {
-        $("#tasksDivs .col").show();
+        $("#tasksDivs .footerDiv").show();
     } else {
         var divId = "#footerDivFor" + subjectKey;
         // select all footer divs which are not this subject's, and hide them
-        $("#tasksDivs .col").not(divId).hide();
+        $("#tasksDivs .footerDiv").not(divId).hide();
         // show only this subject's div
         $(divId).show();
     }

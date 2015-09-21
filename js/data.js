@@ -206,7 +206,7 @@ function fetchAllUnassignedActiveTasks(perSubjectCallback) {
 
                 //TODO: take the next UI line from this data-handling function
                 $('#tasksDivs').append(
-                    '<div class="col dayColumn" id="footerDivFor' + subjectId +
+                    '<div class="footerDiv" id="footerDivFor' + subjectId +
                     '"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
 
                 if (subject.hasChild('no_assigned_date')) {
