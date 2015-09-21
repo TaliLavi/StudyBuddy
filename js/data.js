@@ -122,7 +122,7 @@ function deleteSubject(userId, subjectId) {
 
 
 // ADD NEW TASK TO THE DB
-function pushNewTask(subjectId, weekDate, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
+function saveNewTask(subjectId, weekDate, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first task to be pushed, this will create a new Tasks/active node.
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate);
@@ -151,14 +151,10 @@ function pushNewTask(subjectId, weekDate, title, description, assigned_date, tim
 
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS
-function fetchActiveTasks(perSubjectCallback, preparationCallback) {
+function fetchActiveTasks(perSubjectCallback) {
     //console.log("fetchActiveTasks(" + perSubjectCallback.name + ", " + (preparationCallback ? preparationCallback.name : undefined) + ")");
     var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
-        // check if we also receive the preparationCallback func.
-        if (typeof preparationCallback !== 'undefined') {
-            preparationCallback();
-        }
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
                 var subjectId = subject.key();
@@ -197,30 +193,24 @@ function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
 
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS
-function fetchAllUnassignedActiveTasks(perSubjectCallback) {
+function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
     var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
                 var subjectId = subject.key();
-
-                //TODO: take the next UI line from this data-handling function
-                $('#tasksDivs').append(
-                    '<div class="footerDiv" id="footerDivFor' + subjectId +
-                    '"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
-
+                createfooterDivForSubject(subjectId);
                 if (subject.hasChild('no_assigned_date')) {
                     var unassignedTasksDict = subject.val()['no_assigned_date'];
                     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
                     subjectRef.once("value", function(subjectSnapshot) {
-                        perSubjectCallback(subjectId, subjectSnapshot.val(), unassignedTasksDict);
+                        perUnassignedSubjectCallback(subjectId, subjectSnapshot.val(), unassignedTasksDict);
                     });
                 }
             });
         }
     });
 }
-
 
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK

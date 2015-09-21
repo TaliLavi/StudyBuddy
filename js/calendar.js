@@ -67,7 +67,7 @@ function createCalendarHeading() {
 
     var nextWeekMonday = Date.today().next().monday().toString('yyyy-MM-dd');
 
-    console.log("displayedmonday is: " + displayedmonday + ". currentWeekMonday is: " + currentWeekMonday + ". previousWeekMonday is: " + previousWeekMonday + ". nextWeekMonday is: " + nextWeekMonday);
+    //console.log("displayedmonday is: " + displayedmonday + ". currentWeekMonday is: " + currentWeekMonday + ". previousWeekMonday is: " + previousWeekMonday + ". nextWeekMonday is: " + nextWeekMonday);
 
     if (displayedmonday === currentWeekMonday) {
         $('#weekHeadingOnCalendar').text('THIS WEEK');

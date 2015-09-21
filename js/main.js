@@ -263,6 +263,10 @@ function openAddSubjectDialog(){
 }
 
 
-
+function createfooterDivForSubject(subjectId) {
+    $('#tasksDivs').append(
+        '<div class="footerDiv" id="footerDivFor' + subjectId +
+        '"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
+}
 
 

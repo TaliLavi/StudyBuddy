@@ -39,7 +39,7 @@ function createTask() {
     var mondayOfRelevantWeek = startOfWeek(assigned_date);
 
     // PUSH THEM TO DB
-    pushNewTask(subjectId, mondayOfRelevantWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
+    saveNewTask(subjectId, mondayOfRelevantWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
 
     // CLOSE THE ADD TASK DIALOG
     //Fade out the greyed background
@@ -126,11 +126,6 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
         })
     }
 }
-
-function clearCalendarTasks() {
-    $('.dayList').text('');
-}
-
 
 function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
