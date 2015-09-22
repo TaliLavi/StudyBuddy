@@ -199,7 +199,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
                 var subjectId = subject.key();
-                createfooterDivForSubject(subjectId);
+
                 if (subject.hasChild('no_assigned_date')) {
                     var unassignedTasksDict = subject.val()['no_assigned_date'];
                     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);

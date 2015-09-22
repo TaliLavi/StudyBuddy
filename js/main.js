@@ -46,7 +46,7 @@ function preparePage() {
     displayPage("#calendarPage", "#calendarButton")
     // toggle the bottom Subjects Panel
     $("#flip").click(function(){
-        $("#subjectsPanel").slideToggle("slow");
+        $("#footer").slideToggle("slow");
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
@@ -73,7 +73,7 @@ function moveTask(evt) {
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
 
-    if (newAssignedDate === "tasksList") {
+    if (newAssignedDate === "unassignedTasksList") {
         updateAssignedDate(subjectId, oldWeekDate, 'no_assigned_date', taskId, "");
     } else {
         var newWeekDate = startOfWeek(newAssignedDate);
@@ -261,12 +261,3 @@ function openAddSubjectDialog(){
     $('#submitNewSubject').on("click", function(){createSubject()});
 
 }
-
-
-function createfooterDivForSubject(subjectId) {
-    $('#tasksDivs').append(
-        '<div class="footerDiv" id="footerDivFor' + subjectId +
-        '"><ul class="sortable-task-list" id="unassignedTasksFor' + subjectId + '"></ul></div>');
-}
-
-

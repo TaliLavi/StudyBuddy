@@ -91,7 +91,7 @@ function appendNewTask(subjectId, subjectData, taskKey, taskData, assigned_date)
     createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (assigned_date === "") {
-        var subjectDiv = '#unassignedTasksFor' + subjectId;
+        var subjectDiv = '#unassignedTasksList';
         createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
         // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
     } else if ($('#calendarWrapper').children($('#week' + startOfWeek(assigned_date))).length > 0) {
@@ -120,7 +120,7 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the footer div
         $.each(tasksDict, function(taskKey, taskData){
-            var subjectDiv = '#unassignedTasksFor' + subjectKey;
+            var subjectDiv = '#unassignedTasksList';
             createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
             applySortable(subjectDiv);
         })
@@ -163,13 +163,17 @@ function hideTask(taskId) {
 }
 
 function filterTasksInFooter(subjectKey) {
+    $('#unassignedMessage').hide();
     if (subjectKey === "allUnassigendTasks") {
-        $("#tasksDivs .footerDiv").show();
+        $("#unassignedTasksList li").show();
     } else {
-        var divId = "#footerDivFor" + subjectKey;
-        // select all footer divs which are not this subject's, and hide them
-        $("#tasksDivs .footerDiv").not(divId).hide();
-        // show only this subject's div
-        $(divId).show();
+        // select all footer <li>s which do not belong to this subject, and hide them
+        $('#unassignedTasksList li:not([data-subjectid="' + subjectKey + '"])').hide();
+        // show only this subject's <li>s
+        $('#unassignedTasksList li[data-subjectid="' + subjectKey + '"]').show();
+        // if there are no unassigned tasks for a certain subject, display a message
+        if ($('#unassignedTasksList li[data-subjectid="' + subjectKey + '"]').length === 0) {
+            $('#unassignedMessage').show();
+        }
     }
 }

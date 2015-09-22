@@ -11,14 +11,14 @@ html {
     position: relative;
 }
 
-#panelWrapper {
+#footerWrapper {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
 }
 
-#subjectsPanel {
+#footer {
     padding: 5px;
     text-align: center;
     background-color: whitesmoke;
@@ -35,7 +35,7 @@ html {
     z-index: 2;
 }
 
-#subjectsPanel {
+#footer {
     padding: 30px;
     display: none;
 }
@@ -44,8 +44,14 @@ html {
     overflow-x: scroll;
 }
 
-#subjectsList, #tasksDivs {
+#subjectsList, #unassignedTasksList {
     white-space: nowrap;
+}
+
+/*#unassignedTasksList should have a min-height in case it is empty
+and the user wants to drag a task from the calendar to the footer.*/
+#unassignedTasksList {
+    min-height: 70px;
 }
 
 #subjectsList .subject{
@@ -53,12 +59,13 @@ html {
     margin: 0px 20px;
 }
 
-#tasksDivs .footerDiv {
+#unassignedTasksList li {
     display: inline-block;
+    width: 250px;
+    margin-left: 10px;
 }
 
-#tasksDivs li {
-    width: 250px;
-    float: left;
-    margin-left: 10px;
+/*start app with this message being hidden*/
+#unassignedMessage {
+    display: none;
 }
