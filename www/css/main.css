@@ -1,0 +1,307 @@
+*{
+    font-family: RobotoDraft;
+}
+body{
+    background-color: oldlace;
+}
+
+#calendarControls{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    text-align: center;
+}
+
+#control_prev{
+    float: left;
+}
+
+#control_prev:hover {
+    color: lightseagreen;
+}
+
+#control_next:hover {
+    color: lightseagreen;
+}
+
+
+#control_next{
+    float: right;
+}
+
+#weekHeadingOnCalendar{
+    color: darkslategray;
+    font-weight: 400;
+    font-size: 2em;
+    text-align:center;
+    display: inline;
+}
+
+.dayHeadingOnCalendar{
+    color: lightseagreen;
+    font-weight: 400;
+    font-size: 1.2em;
+    text-align:center;
+    margin: auto;
+    padding: 1%;
+}
+
+.dateOnCalendarDay{
+    color: grey;
+    font-weight: 400;
+    font-size: .75em;
+    text-align:center;
+    padding: 10%;
+}
+
+
+
+.addTaskFromDate:hover{
+    color: lightseagreen;
+}
+
+/*This is the pale gray div that the cards appear in*/
+.sortable-task-list {
+    background-color: rgba(255,255,255,0.3);
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    padding: 0px;
+    z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
+    list-style-type: none;              /*remove bullet points fron li elements*/
+}
+
+/*This is the dragged image*/
+.dragged-item .taskCard{
+    width: 110%;
+    height:70px;
+    opacity: 1;
+    border-radius: 2px;
+    /*border: 6px solid plum;*/
+    -webkit-transform: rotate(3deg); /* Safari */
+    transform: rotate(3deg);
+    -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+}
+
+/*These are the cards*/
+.taskCard {
+    font-weight: normal;
+    border-radius: 2px;
+    font-size: .75em;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height:60px;
+    margin-bottom: 7px;             /*create a margin between cards*/
+    cursor: move;
+    cursor: -webkit-grabbing;
+    -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.sortable-ghost {
+    /*border-color: #4cae4c;*/
+    opacity: 0;
+}
+
+
+.colour21324C {
+    background-color: #21324C;
+    color: #c3c3c3;
+}
+
+.colour2A98BB {
+    background-color: #2A98BB;
+    color: white;
+
+}
+
+.colourA6E1F1 {
+    background-color: #A6E1F1;
+    color: #2A98BB;
+}
+
+.colourB10239 {
+    background-color: #B10239;
+    color: white;
+}
+
+.colour6F011E {
+    background-color: #6F011E;
+    color: white;
+}
+
+.colourFFE672 {
+    background-color: #FFE672;
+    color: darkslategray;
+}
+
+.dayColumn {
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+.dayList {
+    width: 100%;
+    min-height: 500px;                   /*minimal height to ensure cards could be added to an empty list*/
+}
+
+/*#tasksList > li {*/
+    /*width: 13.77%;*/
+    /*display: inline;*/
+/*}*/
+
+/*===================================================================================================================*/
+/*MODAL WINDOWS*/
+/*===================================================================================================================*/
+
+/*This is the greyed-out background behind the modal window. It covers the whole screen*/
+.modal-bg{
+    display: none;
+    position:fixed;
+    left:0;right:0;
+    top:0;bottom:0;
+    z-index:0;
+    background-color:rgba(50,50,50,0.5);
+}
+
+/*This is the modal window itself*/
+.modal{
+    position:absolute;
+    background-color:#F5F5F6;
+    display: none;
+    z-index: 1;
+    width:700px;
+    height:400px;
+    margin: 0 auto;
+    top:50%;
+    left:50%;
+    margin:-200px 0 0 -350px;
+    box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+}
+
+
+/*This is the close(x) button*/
+.closeX{
+    display: block;
+    float: right;
+    color:darkslategray;
+    float: right;
+    font-size: 2em;
+    margin-right: 2%;
+    margin-top: 2%;
+    padding: 1%;
+    decoration: none;
+}
+
+.modalHeading{
+    margin-left: 5%;
+    display: block;
+    color:darkslategray;
+    font-size: 2em;
+    padding: 1%;
+}
+
+form{
+    margin:30px;
+    height:300px;
+    width: 300px;
+}
+form *{
+    margin:10px;
+}
+input:focus{
+    border:2px solid #ddd;
+    outline:0;
+}
+input{
+    width:240px;
+    padding:7px;
+    border:1px solid #ccc ;
+    border-radius:3px;
+}
+
+
+/*===============================================================================================*/
+/*SEVEN COLUMN GRID / */
+/*===============================================================================================*/
+
+/*The css below grid below is generated from http://www.responsivegridsystem.com*/
+/*It allows you to decide the number of columns you want in a row, and set the margin */
+/*you want to use, and then it generates the HTML and css to go with it. It's pretty cool!*/
+
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 1%;
+}
+
+/*  COLUMN SETUP  */
+.col {
+    display: block;
+    float:left;
+    margin: 1% 0 1% .6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF SEVEN  */
+
+.dayColumn {
+    width: 13.77%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+    .col {  margin: 1% 0 1% 0%; }
+    .dayColumn { width: 100%; }
+}
+
+.sortable-ghost {
+    /*border-color: #4cae4c;*/
+    background-color: #858585;
+    background-color: whitesmoke;
+}
+
+
+/*===============================================================================================*/
+/*CALENDAR SLIDER/ */
+/*===============================================================================================*/
+
+#calendarSlider {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+}
+
+#calendarWrapper {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    left:0;
+}
+
+.week {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width:1000px;
+    height: 500px;
+}

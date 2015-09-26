@@ -1,0 +1,71 @@
+body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    padding-bottom: 50px;
+    min-height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+}
+
+#footerWrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#footer {
+    padding: 5px;
+    text-align: center;
+    background-color: whitesmoke;
+    color: darkslategray;
+    /*border: solid 1px #c3c3c3;*/
+}
+
+#flip {
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    background-color: lightseagreen;
+    color: white;
+    z-index: 2;
+}
+
+#footer {
+    padding: 30px;
+    display: none;
+}
+
+#subjectsInnerWrapper, #tasksInnerWrapper {
+    overflow-x: scroll;
+}
+
+#subjectsList, #unassignedTasksList {
+    white-space: nowrap;
+}
+
+/*#unassignedTasksList should have a min-height in case it is empty
+and the user wants to drag a task from the calendar to the footer.*/
+#unassignedTasksList {
+    min-height: 70px;
+}
+
+#subjectsList .subject{
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+#unassignedTasksList li {
+    display: inline-block;
+    width: 250px;
+    margin-left: 10px;
+}
+
+/*start app with this message being hidden*/
+#unassignedMessage {
+    display: none;
+}
