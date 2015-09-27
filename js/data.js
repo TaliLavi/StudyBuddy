@@ -249,6 +249,8 @@ function deleteTask(subjectId, weekDate, taskId) {
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
+        removeTaskFromDOM(taskId);
+        closeModalWindow();
     });
 }
 

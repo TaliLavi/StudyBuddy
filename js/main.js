@@ -194,9 +194,7 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date)
     $('#deleteTask').on("click", function(){
-        hideTask(taskId);
         deleteTask(subjectId, weekDate, taskId);
-        closeModalWindow();
     });
 }
 
