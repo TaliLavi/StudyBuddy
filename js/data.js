@@ -122,29 +122,18 @@ function deleteSubject(userId, subjectId) {
 
 
 // ADD NEW TASK TO THE DB
-function saveNewTask(subjectId, weekDate, title, description, assigned_date, time_estimation, creation_date, status_change_date) {
+function saveNewTask(subjectId, weekDate, newTask, postSaveCallback) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first task to be pushed, this will create a new Tasks/active node.
     var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate);
-
     //SAVE DATA TO FIREBASE
-    var newTaskRef =  tasksRef.push({
-        title: title,
-        description: description,
-        assigned_date: assigned_date,
-        time_estimation: time_estimation,
-        creation_date: creation_date,
-        status_change_date: status_change_date
-    });
+    var newTaskRef =  tasksRef.push(newTask);
 
-    // FETCH SUBJECT'S DATA AND APPEND NEWLY CREATED TASK
+    // FETCH SUBJECT'S DATA AND PERFORM POST SAVE ACTIONS
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
     subjectRef.once("value", function(subjectSnapshot) {
         newTaskRef.once('value', function(newTask)  {
-            var taskData = newTask.val();
-            var taskKey = newTask.key();
-            // APPEND TASK TO ALL RELEVANT PLACES IN THE DOM
-            appendNewTask(subjectId, subjectSnapshot.val(), taskKey, taskData, assigned_date)
+            postSaveCallback(subjectId, subjectSnapshot.val(), newTask.key(), newTask.val());
         });
     });
 };
@@ -253,6 +242,7 @@ function deleteTask(subjectId, weekDate, taskId) {
         closeModalWindow();
     });
 }
+
 
 //=====================================================================
 //                              CHECKLIST ITEMS

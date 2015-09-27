@@ -239,6 +239,7 @@ function closeModalWindow() {
     $('.inputField').val('');
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
+        // Reset select value to default
         return this.defaultSelected;
     });
 }
