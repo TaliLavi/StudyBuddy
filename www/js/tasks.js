@@ -156,10 +156,9 @@ function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
     return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
-function hideTask(taskId) {
-    // get task by its data attribute
-    $("ul").find("[data-taskid='" + taskId + "']").hide();
-    console.log("hi");
+function removeTaskFromDOM(taskId) {
+    // get task by its data attribute and remove it from the DOM
+    $('li[data-taskid="' + taskId + '"]').remove();
 }
 
 function filterTasksInFooter(subjectKey) {
