@@ -16,45 +16,42 @@ function startOfWeek(dateString, offsetDays) {
     return date.prev().monday().toString('yyyy-MM-dd');
 }
 
+
 // CREATE NEW TASK
 function createTask() {
-
-    // REGISTER DOM ELEMENTS
-    var subjectInput = $('#subjectInput');
-    var titleInput = $('#titleInput');
-    var descriptionInput = $('#descriptionInput');
-    var timeEstimationInput = $('#timeEstimationInput');
-    var assignedDateInput = $('#assignedDateInput');
-
-    // GET FIELD VALUES
-    var subjectId = subjectInput.val();
-    var title = titleInput.val();
-    var description = descriptionInput.val();
-    var time_estimation = timeEstimationInput.val();
-    var assigned_date = assignedDateInput.val();
-
-    // SET DEFAULT VALUES
-    var creation_date = $.now();
-    var status_change_date = creation_date;
-    var mondayOfRelevantWeek = startOfWeek(assigned_date);
-
+    var subjectId = $('#subjectInput').val();
+    var now = $.now();
+    var newTask = {
+        title: $('#titleInput').val(),
+        description: $('#descriptionInput').val(),
+        assigned_date: $('#assignedDateInput').val(),
+        time_estimation: $('#timeEstimationInput').val(),
+        creation_date: now,
+        status_change_date: now
+    }
+    var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
     // PUSH THEM TO DB
-    saveNewTask(subjectId, mondayOfRelevantWeek, title, description, assigned_date, time_estimation, creation_date, status_change_date);
+    saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
+}
 
-    // CLOSE THE ADD TASK DIALOG
-    //Fade out the greyed background
-    $('.modal-bg').fadeOut();
-    //Fade out the modal window
-    $('#addTaskModal').fadeOut();
+// UPDATE TASK DETAILS
+function updateTask(taskId, oldTaskDict) {
+    var subjectId = $('#taskSubject').val();
+    var updatedTask = {
+        title: $('#taskTitle').val(),
+        description: $('#taskDescription').val(),
+        assigned_date: $('#taskAssignedDate').val(),
+        time_estimation: $('#taskTimeEstimation').val()
+    }
+    saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
+}
 
-    // CLEAR INPUT FIELDS ON THE ADD TASK DIALOG
-    titleInput.val('');
-    descriptionInput.val('');
-    timeEstimationInput.val('');
-    $('#subjectInput option').prop('selected', function() {
-        // Reset select value to default
-        return this.defaultSelected;
-    });
+// if the title or assigned date of the task got updated, change the DOM accordingly
+function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDict){
+    if (oldTaskDict.assigned_date !== newTaskDict.assigned_date || oldTaskDict.title !== newTaskDict.title) {
+        removeTaskFromDOM(taskKey);
+        appendTask(subjectId, subjectData, taskKey, newTaskDict);
+    }
 }
 
 
@@ -84,20 +81,26 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     }
 }
 
-// APPEND NEWLY CREATED TASK TO ALL RELEVANT PLACES IN THE DOM
-function appendNewTask(subjectId, subjectData, taskKey, taskData, assigned_date) {
+// APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
+function appendTask(subjectId, subjectData, taskKey, taskData) {
     // APPEND TASK TO SUBJECTS PAGE
     var subjectDiv = '#' + subjectId;
     createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
-    if (assigned_date === "") {
+    if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
         createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
         // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
-    } else if ($('#calendarWrapper').children($('#week' + startOfWeek(assigned_date))).length > 0) {
-        var subjectDiv = '#' + assigned_date;
+    } else if ($('#calendarWrapper').children($('#week' + startOfWeek(taskData.assigned_date))).length > 0) {
+        var subjectDiv = '#' + taskData.assigned_date;
         createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     }
+}
+
+// APPEND TASK TO ALL RELEVANT PLACES IN THE DOM AND CLOSE MODAL
+function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
+    appendTask(subjectKey, subjectData, taskKey, taskData);
+    closeModalWindow();
 }
 
 // DISPLAY TASKS ON SUBJECTS PAGE
@@ -110,7 +113,6 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
             createTaskElement(subject_div_id, subjectKey, subjectDict, taskKey, taskData);
-
         })
     }
 }

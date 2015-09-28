@@ -68,17 +68,16 @@ function preparePage() {
 // when task is moved...
 function moveTask(evt) {
     var oldAssignedDate = evt.from.id;
-    var oldWeekDate = startOfWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
-
+    var oldTaskDetails = {assigned_date: oldAssignedDate};
     if (newAssignedDate === "unassignedTasksList") {
-        updateAssignedDate(subjectId, oldWeekDate, 'no_assigned_date', taskId, "");
+        var updatedTaskDetails = {assigned_date: ""};
     } else {
-        var newWeekDate = startOfWeek(newAssignedDate);
-        updateAssignedDate(subjectId, oldWeekDate, newWeekDate, taskId, newAssignedDate);
+        var updatedTaskDetails = {assigned_date: newAssignedDate};
     }
+    saveUpdatedTask(subjectId, oldTaskDetails, taskId, updatedTaskDetails);
 }
 
 function inTheAir(evt) {
@@ -193,8 +192,14 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date)
+    // Clear any old onclick handler
+    $('#deleteTask').off("click");
+    $('#updateTask').off("click");
     $('#deleteTask').on("click", function(){
         deleteTask(subjectId, weekDate, taskId);
+    });
+    $('#updateTask').on("click", function(){
+        updateTask(taskId, taskDetails);
     });
 }
 
@@ -239,6 +244,7 @@ function closeModalWindow() {
     $('.inputField').val('');
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
+        // Reset select value to default
         return this.defaultSelected;
     });
 }
