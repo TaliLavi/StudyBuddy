@@ -34,6 +34,26 @@ function createTask() {
     saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
+// UPDATE TASK DETAILS
+function updateTask(taskId, oldTaskDict) {
+    var subjectId = $('#taskSubject').val();
+    var updatedTask = {
+        title: $('#taskTitle').val(),
+        description: $('#taskDescription').val(),
+        assigned_date: $('#taskAssignedDate').val(),
+        time_estimation: $('#taskTimeEstimation').val()
+    }
+    saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
+}
+
+// if the title or assigned date of the task got updated, change the DOM accordingly
+function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDict){
+    if (oldTaskDict.assigned_date !== newTaskDict.assigned_date || oldTaskDict.title !== newTaskDict.title) {
+        removeTaskFromDOM(taskKey);
+        appendTask(subjectId, subjectData, taskKey, newTaskDict);
+    }
+}
+
 
 //Create html for task element, append it to the list and apply hammer on it
 function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData) {
@@ -61,8 +81,8 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     }
 }
 
-// APPEND NEWLY CREATED TASK TO ALL RELEVANT PLACES IN THE DOM
-function appendNewTask(subjectId, subjectData, taskKey, taskData) {
+// APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
+function appendTask(subjectId, subjectData, taskKey, taskData) {
     // APPEND TASK TO SUBJECTS PAGE
     var subjectDiv = '#' + subjectId;
     createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
@@ -79,7 +99,7 @@ function appendNewTask(subjectId, subjectData, taskKey, taskData) {
 
 // APPEND TASK TO ALL RELEVANT PLACES IN THE DOM AND CLOSE MODAL
 function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
-    appendNewTask(subjectKey, subjectData, taskKey, taskData);
+    appendTask(subjectKey, subjectData, taskKey, taskData);
     closeModalWindow();
 }
 
