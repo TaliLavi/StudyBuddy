@@ -57,9 +57,15 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
 
 //Create html for task element, append it to the list and apply hammer on it
 function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData) {
+
+    //var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+    //    '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '">' + taskData.title +
+    //    '</div></li>';
+
     var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '">' + taskData.title +
-        '</div></li>';
+        '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '"><span class="cardText">' + taskData.title +
+        '</span></div></li>';
+
 
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     if (screen.width < 1000) {

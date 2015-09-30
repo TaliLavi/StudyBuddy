@@ -1,5 +1,5 @@
 *{
-    font-family: RobotoDraft;
+    font-family: Raleway;
 }
 body{
     background-color: oldlace;
@@ -54,8 +54,6 @@ body{
     padding: 10%;
 }
 
-
-
 .addTaskFromDate:hover{
     color: lightseagreen;
 }
@@ -86,28 +84,30 @@ body{
 }
 
 /*These are the cards*/
+
+
 .taskCard {
     font-weight: normal;
-    border-radius: 2px;
-    font-size: .75em;
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
+    border-radius: 3px;
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
-    height:60px;
+    height:65px;
     margin-bottom: 7px;             /*create a margin between cards*/
-    cursor: move;
-    cursor: -webkit-grabbing;
-    -webkit-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    cursor: -webkit-grab;
+    -webkit-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
+    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
+    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
 }
 
+.cardText {
+    font-family: 'Raleway', sans-serif;
+    font-size: .8em;
+    color: white;
+    margin: 5%;
+}
 
 .sortable-ghost {
     /*border-color: #4cae4c;*/
@@ -117,33 +117,28 @@ body{
 
 .colour21324C {
     background-color: #21324C;
-    color: #c3c3c3;
 }
 
 .colour2A98BB {
     background-color: #2A98BB;
-    color: white;
 
 }
 
 .colourA6E1F1 {
     background-color: #A6E1F1;
-    color: #2A98BB;
 }
 
 .colourB10239 {
     background-color: #B10239;
-    color: white;
 }
 
 .colour6F011E {
     background-color: #6F011E;
-    color: white;
 }
+
 
 .colourFFE672 {
     background-color: #FFE672;
-    color: darkslategray;
 }
 
 .dayColumn {
@@ -305,3 +300,4 @@ input{
     width:1000px;
     height: 500px;
 }
+
