@@ -301,3 +301,33 @@ input{
     height: 500px;
 }
 
+
+
+/*===============================================================================================*/
+/*SUBJECTS PAGE/ */
+/*===============================================================================================*/
+
+#subjectsPanel {
+    width: 30%;
+    border:2px solid #858585;
+    /*display: inline-block;*/
+    float: left;
+}
+
+#tasksPerSubject {
+    width: 65%;
+    /*display: inline-block;*/
+    float: left;
+}
+
+#tasksPerSubject ul{
+    list-style-type: none;
+}
+
+.subjectArea {
+    display: none;
+}
+
+#defaultSubjectAreaMessage {
+    text-align: center;
+}

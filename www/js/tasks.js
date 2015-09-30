@@ -90,7 +90,7 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
 // APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
 function appendTask(subjectId, subjectData, taskKey, taskData) {
     // APPEND TASK TO SUBJECTS PAGE
-    var subjectDiv = '#' + subjectId;
+    var subjectDiv = '#tasksFor' + subjectId;
     createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
@@ -112,13 +112,13 @@ function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     // CLEAR CURRENT DISPLAY OF Tasks
-    var subject_div_id = "#" + subjectKey;
-    $(subject_div_id).text('');
+    var subjectDiv = "#tasksFor" + subjectKey;
+    $(subjectDiv).text('');
 
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTaskElement(subject_div_id, subjectKey, subjectDict, taskKey, taskData);
+            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
         })
     }
 }
