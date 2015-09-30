@@ -123,6 +123,24 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     }
 }
 
+// DISPLAY COMPLETED TASKS PER SUBJECT ON SUBJECTS PAGE
+function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
+    // CLEAR CURRENT DISPLAY OF Tasks
+    var subjectDiv = "#completedTasksFor" + subjectKey;
+    $(subjectDiv).text('');
+
+    if (tasksDict !== null) {
+        $.each(tasksDict, function(taskKey, taskData){
+            //Appends the task card html to appropriate subjects on Subjects Page.
+            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+        })
+    }
+}
+
+function fetchAndDisplayCompletedTasks(subjectId) {
+    fetchDoneTasksPerSubject(subjectId, displayCompletedTasks);
+}
+
 // DISPLAY TASKS ON BOTTOM PANEL
 function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {

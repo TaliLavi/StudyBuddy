@@ -43,11 +43,8 @@ function displayActiveSubjects(subjectDict) {
     // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
         $('#subjectFilters').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
-        //$('#subjectFilters').append('<button class="subject" id="allUnassigendTasks"' +
-        //    'onclick="' + onclick_handler + '">All</button>');
 
         $.each(subjectDict, function(subjectKey, subjectData){
-
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;
             var onclick_handler = "filterTasksInFooter('" + subjectKey + "')";
@@ -59,13 +56,15 @@ function displayActiveSubjects(subjectDict) {
 
             // create a div for each subject and append it to subjectsList
             $('#subjectsList').append(
-                '<button type="button" onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</button>'
+                '<div class="subjectName" onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
             $('#tasksPerSubject').append(
                 '<div class="subjectArea" id="subjectArea' + subjectKey + '">' +
                 '<h4>' + subjectData.name + '</h4>' +
-                '<div class ="button addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</div>' +
+                '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                 '<ul id="tasksFor' + subjectKey + '"></ul>' +
+                '<button type="button" onclick="fetchAndDisplayCompletedTasks(\'' + subjectKey + '\');">Show completed tasks</button>' +
+                '<ul id="completedTasksFor' + subjectKey + '"></ul>' +
                 '</div>'
             );
 
@@ -86,7 +85,6 @@ function displayActiveSubjects(subjectDict) {
 }
 
 function viewSubjectArea(subjectKey) {
-    $('#defaultSubjectAreaMessage').hide();
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
 }

@@ -89,12 +89,15 @@
 <!--SUBJECT PAGE-->
 <!--========================================================================================================-->
 <div id="subjectsPage">
-  <div id="subjectsPanel">
-    <button onclick="openAddSubjectDialog();">Add a Subject</button>
-    <div id="subjectsList"></div>
-  </div>
-  <div id="tasksPerSubject">
-    <div id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
+  <div id="subjectsPageWrapper">
+    <div id="subjectsPanel">
+      <div id="mySubjectsTitle">My Subjects</div>
+      <div id="subjectsList"></div>
+      <button onclick="openAddSubjectDialog();">Add a new subject</button>
+    </div>
+    <div id="tasksPerSubject">
+      <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
+    </div>
   </div>
 </div>
 
