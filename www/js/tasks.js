@@ -138,7 +138,20 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
 }
 
 function fetchAndDisplayCompletedTasks(subjectId) {
-    fetchDoneTasksPerSubject(subjectId, displayCompletedTasks);
+    // get the Completed Tasks Button that belongs to the relevant subject
+    var completedTasksButton = $('.completedTasksButton', $('#subjectArea' + subjectId))
+
+    if (completedTasksButton.hasClass('closed')) {
+        fetchDoneTasksPerSubject(subjectId, displayCompletedTasks);
+        completedTasksButton.addClass('open');
+        completedTasksButton.removeClass('closed');
+        completedTasksButton.text('Hide completed tasks');
+    } else {
+        $('#completedTasksFor' + subjectId).text('');
+        completedTasksButton.addClass('closed');
+        completedTasksButton.removeClass('open');
+        completedTasksButton.text('Show completed tasks');
+    }
 }
 
 // DISPLAY TASKS ON BOTTOM PANEL
