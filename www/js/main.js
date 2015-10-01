@@ -61,10 +61,8 @@ function preparePage() {
     // fetch and append all unassigned active tasks to footer
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
 
-    //var wholescreen = $("body").hammer();
-    //wholescreen.on('swiperight panleft', function (ev) {
-    //    console.log(ev.type + ' gesture detected.');
-    //});
+    // prepare hour glass timer animation
+    prepareHourGlass();
 }
 
 // when task is moved...
