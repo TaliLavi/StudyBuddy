@@ -11,7 +11,7 @@ function applySortable(selector) {
                 onAdd: moveTask,
                 forceFallback: true,
                 fallbackClass: "dragged-item",
-                delay: 400
+                delay: 200
             });
         });
     } else {
