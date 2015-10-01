@@ -34,37 +34,40 @@ function createSubject() {
 function displayActiveSubjects(subjectDict) {
 
     // Clear current display of subjects
+    $('#subjectFilters').text('');
     $('#subjectsList').text('');
-    $('#subjectsDiv').text('');
     $('#subjectInput').text('');
     $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
     $('#taskSubject').append('<option selected="true" disabled="disabled">Choose Subject</option>');
 
     // Populate Subjects Page with subjects and tasks.
     if (subjectDict !== null) {
-        $('#subjectsList').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
-        //$('#subjectsList').append('<button class="subject" id="allUnassigendTasks"' +
-        //    'onclick="' + onclick_handler + '">All</button>');
+        $('#subjectFilters').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
 
         $.each(subjectDict, function(subjectKey, subjectData){
-
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;
             var onclick_handler = "filterTasksInFooter('" + subjectKey + "')";
-            $('#subjectsList').append('<button class="subject" id="' + button_id + '"' +
+            $('#subjectFilters').append('<button class="subject" id="' + button_id + '"' +
                 'onclick="' + onclick_handler + '">' +
                 subjectData.name + '</button>'
             );
 
 
-            // create a div for each subject and append it to subjectsDiv
-            $('#subjectsDiv').append(
-                '<div class="col-md-2">' +
-                    '<h4>' + subjectData.name + '</h4>' +
-                    '<div class ="button addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</div>' +
-                    '<ul class="list" id="' + subjectKey + '"></ul>' +
+            // create a div for each subject and append it to subjectsList
+            $('#subjectsList').append(
+                '<div class="subjectName" onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
+            );
+            $('#tasksPerSubject').append(
+                '<div class="subjectArea" id="subjectArea' + subjectKey + '">' +
+                '<h4>' + subjectData.name + '</h4>' +
+                '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
+                '<ul id="tasksFor' + subjectKey + '"></ul>' +
+                '<button type="button" onclick="fetchAndDisplayCompletedTasks(\'' + subjectKey + '\');">Show completed tasks</button>' +
+                '<ul id="completedTasksFor' + subjectKey + '"></ul>' +
                 '</div>'
             );
+
 
             // Create an option for each subject and append to the drop down menu on the Add Task modal window.
             $('#subjectInput').append(
@@ -79,4 +82,9 @@ function displayActiveSubjects(subjectDict) {
         // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subjects divs has been created.
         fetchActiveTasks(displayTasksInSubjectsPage);
     }
+}
+
+function viewSubjectArea(subjectKey) {
+    $('.subjectArea').hide();
+    $('#subjectArea' + subjectKey).show();
 }

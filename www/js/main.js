@@ -51,8 +51,11 @@ function preparePage() {
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
 
+    // show the default message in the subjects page
+    $('#defaultSubjectAreaMessage').show();
+
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
+    fetchActiveSubjects(displayActiveSubjects);
     // fetch and append all active tasks
     fetchActiveTasks(displayTasksInSubjectsPage);
     // fetch and append all unassigned active tasks to footer
@@ -62,7 +65,6 @@ function preparePage() {
     //wholescreen.on('swiperight panleft', function (ev) {
     //    console.log(ev.type + ' gesture detected.');
     //});
-
 }
 
 // when task is moved...

@@ -301,3 +301,48 @@ input{
     height: 500px;
 }
 
+
+
+/*===============================================================================================*/
+/*SUBJECTS PAGE/ */
+/*===============================================================================================*/
+
+#subjectsPageWrapper {
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    border:3px solid #858585;
+}
+
+#subjectsPanel {
+    width: 30%;
+    float: left;
+}
+
+#tasksPerSubject {
+    width: 65%;
+    float: left;
+}
+
+#tasksPerSubject ul{
+    list-style-type: none;
+}
+
+#mySubjectsTitle {
+    text-align: center;
+    background-color: #aaaaaa;
+    padding: 20px;
+}
+
+.subjectArea {
+    display: none;
+}
+
+#defaultSubjectAreaMessage {
+    text-align: center;
+}
+
+.subjectName {
+    padding: 20px;
+    border:1px solid #858585;
+}

@@ -44,7 +44,7 @@ html {
     overflow-x: scroll;
 }
 
-#subjectsList, #unassignedTasksList {
+#subjectFilters, #unassignedTasksList {
     white-space: nowrap;
 }
 
@@ -54,7 +54,7 @@ and the user wants to drag a task from the calendar to the footer.*/
     min-height: 70px;
 }
 
-#subjectsList .subject{
+#subjectFilters .subject{
     display: inline-block;
     margin: 0px 20px;
 }

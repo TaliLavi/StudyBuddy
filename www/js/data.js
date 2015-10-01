@@ -80,8 +80,8 @@ function pushNewSubject(userId, name, colour, is_deleted) {
 };
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
-function fetchActiveSubjects(userId, callback) {
-    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + userId);
+function fetchActiveSubjects(callback) {
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser());
     subjectsRef.once("value", function(snapshot) {
         callback(snapshot.val());
     });
@@ -161,6 +161,22 @@ function fetchActiveTasks(perSubjectCallback) {
     });
 }
 
+function fetchDoneTasksPerSubject(subjectId, callback) {
+    var doneTasksPerSubjectRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/done/' + subjectId);
+    doneTasksPerSubjectRef.once("value", function(weeks) {
+        if (weeks.val() !== null) {
+            var tasksDict = {};
+            weeks.forEach(function(week) {
+                var tasksPerWeek = week.val();
+                $.extend(tasksDict, tasksPerWeek);
+            });
+            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+            subjectRef.once("value", function(subjectSnapshot) {
+                callback(subjectId, subjectSnapshot.val(), tasksDict);
+            });
+        }
+    });
+}
 
 function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
     var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
