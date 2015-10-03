@@ -178,7 +178,22 @@ function fetchDoneTasksPerSubject(subjectId, callback) {
     });
 }
 
-function fetchActiveTasksByWeek(startOfWeek, perSubjectCallback) {
+function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
+    var doneTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/done');
+    doneTasksRef.once("value", function(subjects) {
+        if (subjects.val() !== null) {
+            subjects.forEach(function(subject) {
+                if (subject.hasChild(startOfWeek)) {
+                    var subjectId = subject.key();
+                    var weekTasksDict = subject.val()[startOfWeek];
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getActiveUser() + '/' + subjectId);
+                    subjectRef.once("value", function(subjectSnapshot) {
+                        perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict, 'done');
+                    });
+                }
+            });
+        }
+    });
     var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
@@ -277,6 +292,20 @@ function deleteTask(subjectId, weekDate, taskId) {
         closeModalWindow();
     });
 }
+
+
+// MOVE TASK TO DONE
+function completeTask(subjectId, weekDate, taskId) {
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getActiveUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
+    oldRef.once('value', function(snapshot)  {
+        newRef.set(snapshot.val());
+        oldRef.remove();
+        markAsDone(taskId);
+        closeModalWindow();
+    });
+}
+
 
 //=====================================================================
 //                              CHECKLIST ITEMS

@@ -346,11 +346,25 @@ function sumAndUpdateStudyTimes(oldTotal, addedTimeStudied, tasksTimeStudiedRef)
 }
 
 
+//===============================================================================================================================
+//Hourglass animation
+//===============================================================================================================================
 
+var hourGlassTL = new TimelineMax({repeat:2, paused:true, autoRemoveChildren:true, smoothChildTiming: true});
 
+function prepareHourGlass() {
+    hourGlassTL.to($("#topSand"), (25), {width: "1px", left: "50%"});
+    hourGlassTL.to($("#bottomSand"), (25), {width: "335px", left: "0%", bottom: "-3%"}, "-=(25)");
+}
 
+function startTimerTL(){
+    hourGlassTL.play();
+}
 
+function pauseTimerTL(){
+    hourGlassTL.pause();
+}
 
-
-
-
+function restartTimerTL() {
+    hourGlassTL.restart();
+}

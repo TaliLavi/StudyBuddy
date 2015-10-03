@@ -63,7 +63,8 @@ function displayActiveSubjects(subjectDict) {
                 '<h4>' + subjectData.name + '</h4>' +
                 '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                 '<ul id="tasksFor' + subjectKey + '"></ul>' +
-                '<button type="button" onclick="fetchAndDisplayCompletedTasks(\'' + subjectKey + '\');">Show completed tasks</button>' +
+                '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
+                subjectKey + '\');">Show completed tasks</button>' +
                 '<ul id="completedTasksFor' + subjectKey + '"></ul>' +
                 '</div>'
             );

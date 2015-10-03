@@ -18,12 +18,14 @@
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
+  <!--TweenMax.js must appear before date.js-->
+  <script src='external/TweenMax.js'></script>
   <script src="external/date.js"></script>
+  <script src="external/time.js"></script>
   <script src="external/hammer.min.js"></script>
   <script src="external/jquery.hammer.js-master/jquery.hammer.js"></script>
   <script src="external/Sortable.js"></script>
   <script src="external/detectMobileBrowsers.js"></script>
-  <script src='external/TweenMax.js'></script>
   <script src="js/data.js"></script>
   <script src="js/users.js"></script>
   <script src="js/subjects.js"></script>
@@ -42,7 +44,6 @@
 </div>
 
 
-
 <!-- Profile page -->
 <div id="profilePage">
   <div>
@@ -54,6 +55,25 @@
 <!--========================================================================================================-->
 <!--CALENDAR PAGE-->
 <!--========================================================================================================-->
+
+
+<!--<div id="hourGlass" >-->
+  <!--<svg id="glass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
+    <!--<path d="M179.09 261.5L331 517 4 517 155.91 261.5 4 6 331 6 179.09 261.5Z"/>-->
+  <!--</svg>-->
+
+  <!--<svg id="topSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
+    <!--<polygon transform="translate(168.500000, 141.500000) scale(1, -1) translate(-168.500000, -141.500000) " points="167.43 21 308.09 262 30 262 "/>-->
+  <!--</svg>-->
+
+  <!--<svg id="bottomSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
+    <!--<polygon points="168 262 308.66 503 30 503 "/>-->
+  <!--</svg>-->
+<!--</div>-->
+<!--<br/>-->
+<!--<button onclick="startTimerTL()">Start</button>-->
+<!--<button onclick="pauseTimerTL()">Pause</button>-->
+<!--<button onclick="restartTimerTL()">Restart</button>-->
 
 
 <div id="calendarPage">
@@ -169,6 +189,7 @@
       <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
       <button type="button" id="deleteTask">DELETE TASK</button>
       <button type="button" id="updateTask">Save Changes</button>
+      <button type="button" id="completeTask">Done?</button>
     </form>
 
   </div>
