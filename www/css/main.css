@@ -109,6 +109,18 @@ body{
     margin: 5%;
 }
 
+.doneTask {
+    background: repeating-linear-gradient(
+            45deg,
+            #606dbc,
+            #606dbc 10px,
+            #465298 10px,
+            #465298 20px
+    );
+
+    /*border: 2px solid #48e82a;*/
+}
+
 .sortable-ghost {
     /*border-color: #4cae4c;*/
     opacity: 0;

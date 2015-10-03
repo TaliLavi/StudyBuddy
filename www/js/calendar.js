@@ -24,7 +24,7 @@ function prepareCalendarSlider() {
         $('#calendarWrapper>div:first').remove();
         $("#calendarWrapper").append(newWeekHTML);
         applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
-        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
+        fetchTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_next').attr('disabled', true);
         moveSlide(1, function() {
             $('#control_next').attr('disabled', false);
@@ -39,7 +39,7 @@ function prepareCalendarSlider() {
         $('#calendarWrapper>div:last').remove();
         $("#calendarWrapper").prepend(newWeekHTML);
         applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
-        fetchActiveTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
+        fetchTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_prev').attr('disabled', true);
         moveSlide(-1, function() {
             $('#control_prev').attr('disabled', false);

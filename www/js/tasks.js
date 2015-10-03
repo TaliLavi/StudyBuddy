@@ -56,16 +56,19 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
 
 
 //Create html for task element, append it to the list and apply hammer on it
-function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData) {
+function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
 
-    //var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-    //    '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '">' + taskData.title +
-    //    '</div></li>';
-
-    var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '"><span class="cardText">' + taskData.title +
-        '</span></div></li>';
-
+    if (isDone !== undefined) {
+        //create html for done task
+        var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + ' doneTask"><span class="cardText">' + taskData.title +
+            '</span></div></li>';
+    } else {
+        //create html for active task
+        var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '"><span class="cardText">' + taskData.title +
+            '</span></div></li>';
+    }
 
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     if (screen.width < 1000) {
@@ -180,12 +183,19 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
     }
 }
 
-function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict) {
+function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDone) {
     if (tasksDict !== null) {
-        // append tasks to the calendar
-        $.each(tasksDict, function(taskKey, taskData){
-            createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
-        })
+        if (isDone !== undefined) {
+            // append done tasks to the calendar
+            $.each(tasksDict, function(taskKey, taskData){
+                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
+            })
+        } else {
+            // append active tasks to the calendar
+            $.each(tasksDict, function(taskKey, taskData){
+                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+            })
+        }
     }
 }
 
@@ -199,6 +209,20 @@ function removeTaskFromDOM(taskId) {
     // get task by its data attribute and remove it from the DOM
     $('li[data-taskid="' + taskId + '"]').remove();
 }
+
+function markAsDone(taskId) {
+    var today = Date.today().toString('yyyy-MM-dd');
+
+    // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
+    $('#unassignedTasksList li[data-taskid="' + taskId + '"]').prependTo('#' + today);
+
+    // apply class doneTask
+    $('.dayList li[data-taskid="' + taskId + '"] div').addClass("doneTask");
+
+    // in subject's page, remove from list (no need to append to complete b/c the button fetches each time anew)
+    $('.subjectArea li[data-taskid="' + taskId + '"] div').remove();
+}
+
 
 function filterTasksInFooter(subjectKey) {
     $('#unassignedMessage').hide();
