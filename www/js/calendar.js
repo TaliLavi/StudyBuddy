@@ -49,35 +49,35 @@ function prepareCalendarSlider() {
 }
 
 function createCalendarHeading() {
-    // extract the displayed week's monday from the week's id.
-    var displayedmonday = $('.week:nth-child(2)>div').attr('id').slice('week'.length);
 
-    // get previous week's monday and this week's monday
+    // extract the displayed week's monday from the week's id.
+    var displayedmonday = Date.parse($('.week:nth-child(2)>div').attr('id').slice('week'.length));
+
+    // get this week's monday
     if (Date.today().is().monday()) {
-        // if today happens to be a Monday, go to last monday
-        var previousWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
         // if today happens to be a Monday, save it as this week's monday
-        var currentWeekMonday = Date.today().toString('yyyy-MM-dd');
+        var currentWeekMonday = Date.today();
     } else {
-        // else, grab the date for that week's Monday, and go back 7 days to the previous monday
-        var previousWeekMonday = Date.today().last().monday().addDays(-7).toString('yyyy-MM-dd');
         // else, go to last monday
-        var currentWeekMonday = Date.today().last().monday().toString('yyyy-MM-dd');
+        var currentWeekMonday = Date.today().last().monday();
     }
 
-    var nextWeekMonday = Date.today().next().monday().toString('yyyy-MM-dd');
+    // instantiate a TimeSpan object
+    var span = new TimeSpan(displayedmonday - currentWeekMonday);
+    // get number of weeks between displayed week and current week
+    var numOfWeeks = span.days / 7;
 
-    //console.log("displayedmonday is: " + displayedmonday + ". currentWeekMonday is: " + currentWeekMonday + ". previousWeekMonday is: " + previousWeekMonday + ". nextWeekMonday is: " + nextWeekMonday);
 
-    if (displayedmonday === currentWeekMonday) {
+    if (numOfWeeks === 0) {
         $('#weekHeadingOnCalendar').text('THIS WEEK');
-    } else if (displayedmonday === previousWeekMonday) {
+    } else if (numOfWeeks === -1) {
         $('#weekHeadingOnCalendar').text('LAST WEEK');
-    } else if (displayedmonday === nextWeekMonday) {
+    } else if (numOfWeeks === 1) {
         $('#weekHeadingOnCalendar').text('NEXT WEEK');
+    } else if (numOfWeeks > 1) {
+        $('#weekHeadingOnCalendar').text(numOfWeeks + ' WEEKS FROM NOW');
     } else {
-        var displayedSunday = Date.parse(displayedmonday).addDays(6).toString('yyyy-MM-dd');
-        $('#weekHeadingOnCalendar').text(displayedmonday + ' - ' + displayedSunday);
+        $('#weekHeadingOnCalendar').text(-1*numOfWeeks + ' WEEKS AGO');
     }
 }
 
