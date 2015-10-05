@@ -1,3 +1,38 @@
+function preparePage() {
+    prepareCalendar();
+    prepareCalendarSlider();
+    // set nav buttons
+    $("#profileButton").click(function(){
+        displayPage("#profilePage", "#profileButton")
+    });
+    $("#calendarButton").click(function(){
+        displayPage("#calendarPage", "#calendarButton")
+    });
+    $("#subjectsButton").click(function(){
+        displayPage("#subjectsPage", "#subjectsButton")
+    });
+    // start the app on the calendar page
+    displayPage("#calendarPage", "#calendarButton")
+    // toggle the bottom Subjects Panel
+    $("#flip").click(function(){
+        $("#footer").slideToggle("slow");
+    });
+    // hide tasksDiv in the bottom panel
+    $('#tasksDiv').hide();
+
+    // show the default message in the subjects page
+    $('#defaultSubjectAreaMessage').show();
+
+    // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
+    fetchActiveSubjects(displayActiveSubjects);
+
+    // fetch and append all unassigned active tasks to footer
+    fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
+
+    // prepare hour glass timer animation
+    prepareHourGlass();
+}
+
 //Make these things happen each time the page finishes loading
 function applySortable(selector) {
     if (screen.width < 1000) {
@@ -28,41 +63,6 @@ function applySortable(selector) {
             });
         });
     }
-}
-function preparePage() {
-    prepareCalendar();
-    prepareCalendarSlider();
-    // set nav buttons
-    $("#profileButton").click(function(){
-        displayPage("#profilePage", "#profileButton")
-    });
-    $("#calendarButton").click(function(){
-        displayPage("#calendarPage", "#calendarButton")
-    });
-    $("#subjectsButton").click(function(){
-        displayPage("#subjectsPage", "#subjectsButton")
-    });
-    // start the app on the calendar page
-    displayPage("#calendarPage", "#calendarButton")
-    // toggle the bottom Subjects Panel
-    $("#flip").click(function(){
-        $("#footer").slideToggle("slow");
-    });
-    // hide tasksDiv in the bottom panel
-    $('#tasksDiv').hide();
-
-    // show the default message in the subjects page
-    $('#defaultSubjectAreaMessage').show();
-
-    // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-    fetchActiveSubjects(displayActiveSubjects);
-    // fetch and append all active tasks
-    fetchActiveTasks(displayTasksInSubjectsPage);
-    // fetch and append all unassigned active tasks to footer
-    fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
-
-    // prepare hour glass timer animation
-    prepareHourGlass();
 }
 
 // when task is moved...

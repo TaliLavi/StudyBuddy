@@ -75,6 +75,11 @@
               "total_seconds_studied" : 161
             }
           },
+          "2015-08-31" : {
+            "-Jw7y4NhOYxjIs1infTU" : {
+              "total_seconds_studied" : 5
+            }
+          },
           "2015-09-07" : {
             "-JylWZciyj2l--yjvLCI" : {
               "assigned_date" : "2015-09-12",
@@ -104,8 +109,16 @@
             }
           },
           "2015-09-28" : {
+            "-JzfUOM96exnYHtaZHlb" : {
+              "assigned_date" : "2015-10-03",
+              "creation_date" : 1442764920349,
+              "description" : "",
+              "status_change_date" : 1442764920349,
+              "time_estimation" : "",
+              "title" : "Unassigned English Task"
+            },
             "-K-KgUWFlSgx_ZHDTCDZ" : {
-              "assigned_date" : "2015-09-28",
+              "assigned_date" : "2015-09-30",
               "creation_date" : 1443472998206,
               "description" : "",
               "number_of_breaks" : 1,
@@ -123,16 +136,6 @@
               "time_estimation" : "",
               "title" : "Letter of complaint",
               "total_seconds_studied" : 12
-            }
-          },
-          "no_assigned_date" : {
-            "-JzfUOM96exnYHtaZHlb" : {
-              "assigned_date" : "",
-              "creation_date" : 1442764920349,
-              "description" : "",
-              "status_change_date" : 1442764920349,
-              "time_estimation" : "",
-              "title" : "Unassigned English Task"
             }
           }
         },
@@ -176,29 +179,21 @@
               "total_seconds_studied" : 34
             }
           },
-          "2015-09-14" : {
-            "-JzG3M1BkyCFpc6HkMR6" : {
-              "assigned_date" : "2015-09-15",
-              "creation_date" : 1442321624141,
+          "2015-09-21" : {
+            "-JzfTq9tgvmix0BnIgsr" : {
+              "assigned_date" : "2015-09-24",
+              "creation_date" : 1442764776205,
               "description" : "",
               "number_of_breaks" : 1,
-              "status_change_date" : 1442321624141,
+              "status_change_date" : 1442764776205,
               "time_estimation" : "",
-              "title" : "Irish Stuff",
-              "total_seconds_studied" : 10
+              "title" : "another unassigned Irish task",
+              "total_seconds_studied" : 13
             }
           },
           "2015-09-28" : {
-            "-JzfT0RxBg_3P4LdgWDt" : {
-              "assigned_date" : "2015-09-29",
-              "creation_date" : 1442764560306,
-              "description" : "",
-              "status_change_date" : 1442764560306,
-              "time_estimation" : "",
-              "title" : "Unassigned Irish Task"
-            },
             "-K-KglU4bd0YTng0qi1I" : {
-              "assigned_date" : "2015-09-30",
+              "assigned_date" : "2015-10-01",
               "creation_date" : 1443473071798,
               "description" : "",
               "status_change_date" : 1443473071798,
@@ -206,7 +201,7 @@
               "title" : "Learn vocabulary from Nil aon Ni"
             },
             "-K-OgC9-ASUrvZfBoHyt" : {
-              "assigned_date" : "2015-10-02",
+              "assigned_date" : "2015-09-29",
               "creation_date" : 1443540030113,
               "description" : "",
               "status_change_date" : 1443540030113,
@@ -216,13 +211,26 @@
             }
           },
           "no_assigned_date" : {
-            "-JzfTq9tgvmix0BnIgsr" : {
+            "-JzG3M1BkyCFpc6HkMR6" : {
               "assigned_date" : "",
-              "creation_date" : 1442764776205,
+              "creation_date" : 1442321624141,
               "description" : "",
-              "status_change_date" : 1442764776205,
+              "number_of_breaks" : 1,
+              "status_change_date" : 1442321624141,
               "time_estimation" : "",
-              "title" : "another unassigned Irish task"
+              "title" : "Irish Stuff",
+              "total_seconds_studied" : 10
+            },
+            "-JzfT0RxBg_3P4LdgW99" : {
+              "assigned_date" : ""
+            },
+            "-JzfT0RxBg_3P4LdgWDt" : {
+              "assigned_date" : "",
+              "creation_date" : 1442764560306,
+              "description" : "",
+              "status_change_date" : 1442764560306,
+              "time_estimation" : "",
+              "title" : "Unassigned Irish Task"
             }
           }
         },
@@ -292,26 +300,9 @@
               "status_change_date" : 1442763217566,
               "time_estimation" : "",
               "title" : "Testing retrieved key"
-            },
-            "-K-A1_BhfAT_CGeE7Afy" : {
-              "assigned_date" : "2015-09-21",
-              "creation_date" : 1443294237523,
-              "description" : "",
-              "status_change_date" : 1443294237523,
-              "time_estimation" : "",
-              "title" : "New French",
-              "total_seconds_studied" : 1
             }
           },
           "2015-09-28" : {
-            "-Jzfop8PJ460MNJhF-vS" : {
-              "assigned_date" : "2015-10-03",
-              "creation_date" : 1442770539069,
-              "description" : "",
-              "status_change_date" : 1442770539069,
-              "time_estimation" : "",
-              "title" : "Unassigned French Task"
-            },
             "-K-KfrPAd2fzRVN7lSci" : {
               "assigned_date" : "2015-09-29",
               "creation_date" : 1443472833908,
@@ -319,6 +310,16 @@
               "status_change_date" : 1443472833908,
               "time_estimation" : "",
               "title" : "Learn vocabulary 'My Family'"
+            }
+          },
+          "no_assigned_date" : {
+            "-Jzfop8PJ460MNJhF-vS" : {
+              "assigned_date" : "",
+              "creation_date" : 1442770539069,
+              "description" : "",
+              "status_change_date" : 1442770539069,
+              "time_estimation" : "",
+              "title" : "Unassigned French Task"
             }
           }
         },
@@ -373,8 +374,28 @@
             }
           },
           "2015-09-28" : {
+            "-K-OeUDZHB4z3WGLWBwp" : {
+              "assigned_date" : "2015-09-28",
+              "creation_date" : 1443539579850,
+              "description" : "",
+              "status_change_date" : 1443539579850,
+              "time_estimation" : "",
+              "title" : "Latin"
+            }
+          },
+          "2015-10-05" : {
+            "-K-rcXF53YKiYIiBjrw3" : {
+              "assigned_date" : "2015-10-07",
+              "creation_date" : 1444042384398,
+              "description" : "",
+              "status_change_date" : 1444042384398,
+              "time_estimation" : "",
+              "title" : "Notes on the Spanish Armada"
+            }
+          },
+          "no_assigned_date" : {
             "-JwHL-Pk0eb3KH-SeKcs" : {
-              "assigned_date" : "2015-10-02",
+              "assigned_date" : "",
               "creation_date" : 1439121803018,
               "description" : "",
               "number_of_breaks" : 3,
@@ -384,22 +405,14 @@
               "total_seconds_studied" : 17
             },
             "-JwY73YBFFVoOH-jRSMI" : {
-              "assigned_date" : "2015-10-01",
+              "assigned_date" : "",
               "creation_date" : 1439403362552,
               "description" : "",
               "number_of_breaks" : 4,
               "status_change_date" : 1439403362552,
               "time_estimation" : "",
               "title" : "More Latin",
-              "total_seconds_studied" : 44
-            },
-            "-K-OeUDZHB4z3WGLWBwp" : {
-              "assigned_date" : "2015-09-28",
-              "creation_date" : 1443539579850,
-              "description" : "",
-              "status_change_date" : 1443539579850,
-              "time_estimation" : "",
-              "title" : "Latin"
+              "total_seconds_studied" : 53
             }
           }
         },
@@ -435,24 +448,6 @@
             }
           },
           "2015-09-14" : {
-            "-JzFCdu5o_qAqRGzBb3e" : {
-              "assigned_date" : "2015-09-15",
-              "creation_date" : 1442307284703,
-              "description" : "",
-              "number_of_breaks" : 1,
-              "status_change_date" : 1442307284703,
-              "time_estimation" : "",
-              "title" : "Learn lower limb anatomy",
-              "total_seconds_studied" : 10
-            },
-            "-Jzfht290vBkuQssVMvY" : {
-              "assigned_date" : "2015-09-18",
-              "creation_date" : 1442768720082,
-              "description" : "",
-              "status_change_date" : 1442768720082,
-              "time_estimation" : "",
-              "title" : "New Biology Task blah"
-            },
             "-JzfiDY_RiiE06M63mxr" : {
               "assigned_date" : "2015-09-20",
               "creation_date" : 1442768808169,
@@ -462,16 +457,46 @@
               "title" : "Biology biology biology"
             }
           },
+          "2015-09-21" : {
+            "-JzFCdu5o_qAqRGzBb3e" : {
+              "assigned_date" : "2015-09-23",
+              "creation_date" : 1442307284703,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1442307284703,
+              "time_estimation" : "",
+              "title" : "Learn lower limb anatomy",
+              "total_seconds_studied" : 10
+            }
+          },
           "2015-09-28" : {
             "-JzFCdu5o_qAqRGzBb3e" : {
               "total_seconds_studied" : 10
+            },
+            "-Jzfht290vBkuQssVMvY" : {
+              "assigned_date" : "2015-10-02",
+              "creation_date" : 1442768720082,
+              "description" : "",
+              "status_change_date" : 1442768720082,
+              "time_estimation" : "",
+              "title" : "New Biology Task blah"
             },
             "-JzkEG9HtYm_79h2DK8c" : {
               "number_of_breaks" : 2,
               "total_seconds_studied" : 10
             },
-            "-K-Kg2kGpNEocya24tsg" : {
+            "-K-KgICOOfzrV7HZf_P7" : {
               "assigned_date" : "2015-10-03",
+              "creation_date" : 1443472947783,
+              "description" : "Functions of the skeleton question, page 14",
+              "status_change_date" : 1443472947783,
+              "time_estimation" : "",
+              "title" : "The skeletal system"
+            }
+          },
+          "no_assigned_date" : {
+            "-K-Kg2kGpNEocya24tsg" : {
+              "assigned_date" : "",
               "creation_date" : 1443472884478,
               "description" : "",
               "number_of_breaks" : 1,
@@ -479,14 +504,6 @@
               "time_estimation" : "",
               "title" : "Diagram of the heart",
               "total_seconds_studied" : 10
-            },
-            "-K-KgICOOfzrV7HZf_P7" : {
-              "assigned_date" : "2015-09-29",
-              "creation_date" : 1443472947783,
-              "description" : "Functions of the skeleton question, page 14",
-              "status_change_date" : 1443472947783,
-              "time_estimation" : "",
-              "title" : "The skeletal system"
             }
           }
         },
@@ -533,33 +550,36 @@
               "title" : "New Spanish task"
             }
           },
+          "2015-09-21" : {
+            "-JzrDcOhUKO1i2iOsQBT" : {
+              "assigned_date" : "2015-09-25",
+              "creation_date" : 1442961851136,
+              "description" : "",
+              "status_change_date" : 1442961851136,
+              "time_estimation" : "",
+              "title" : "New Spanish task"
+            }
+          },
           "2015-09-28" : {
             "-JzBMRLBZFpKvEL93I2K" : {
-              "assigned_date" : "2015-09-30",
+              "assigned_date" : "2015-10-01",
               "creation_date" : 1442242744475,
               "description" : "",
               "status_change_date" : 1442242744475,
               "time_estimation" : "",
-              "title" : "First Spanish task"
+              "title" : "First Spanish task",
+              "total_seconds_studied" : 1
             },
             "-JzfleuwVudU6Cn2-79s" : {
-              "assigned_date" : "2015-09-29",
+              "assigned_date" : "2015-10-02",
               "creation_date" : 1442769710770,
               "description" : "",
               "status_change_date" : 1442769710770,
               "time_estimation" : "",
               "title" : "Madrid"
             },
-            "-JzrDcOhUKO1i2iOsQBT" : {
-              "assigned_date" : "2015-10-04",
-              "creation_date" : 1442961851136,
-              "description" : "",
-              "status_change_date" : 1442961851136,
-              "time_estimation" : "",
-              "title" : "New Spanish task"
-            },
             "-K-KQY8c80ZLlLUsY_KD" : {
-              "assigned_date" : "2015-09-28",
+              "assigned_date" : "2015-10-04",
               "creation_date" : 1443468554900,
               "description" : "",
               "number_of_breaks" : 3,
@@ -567,14 +587,52 @@
               "time_estimation" : "",
               "title" : "Hola!",
               "total_seconds_studied" : 24
-            },
+            }
+          },
+          "no_assigned_date" : {
             "-K-KfeGpjq1Y7c3gQ4lf" : {
-              "assigned_date" : "2015-10-03",
+              "assigned_date" : "",
               "creation_date" : 1443472780117,
               "description" : "This is the description :)",
               "status_change_date" : 1443472780117,
               "time_estimation" : "",
               "title" : "Practise Spanish verbs"
+            }
+          }
+        },
+        "null" : {
+          "2015-10-05" : {
+            "-K-rc7Zu23Ihr6APlrGa" : {
+              "assigned_date" : "2015-10-07",
+              "creation_date" : 1444042279236,
+              "description" : "",
+              "status_change_date" : 1444042279236,
+              "time_estimation" : "",
+              "title" : "Notes on the Spanish Armada"
+            },
+            "-K-rc8jMGezzwiAQXTgX" : {
+              "assigned_date" : "2015-10-07",
+              "creation_date" : 1444042284002,
+              "description" : "",
+              "status_change_date" : 1444042284002,
+              "time_estimation" : "",
+              "title" : "Notes on the Spanish Armada"
+            },
+            "-K-rcBYDAmCGb198q33N" : {
+              "assigned_date" : "2015-10-07",
+              "creation_date" : 1444042295514,
+              "description" : "",
+              "status_change_date" : 1444042295514,
+              "time_estimation" : "",
+              "title" : "Notes on the Spanish Armada"
+            },
+            "-K-rcP1QuXQwL0F4ALHx" : {
+              "assigned_date" : "2015-10-07",
+              "creation_date" : 1444042350757,
+              "description" : "",
+              "status_change_date" : 1444042350757,
+              "time_estimation" : "",
+              "title" : "Notes on the Spanish Armada"
             }
           }
         }
@@ -703,18 +761,97 @@
         }
       },
       "done" : {
-        "subject1" : {
-          "task3" : {
-            "Checklist_Items" : [ {
-              "description" : "I am a new checklist item!",
-              "is_complete" : 0
-            } ],
-            "assigned_date" : "16/07/24",
-            "creation_date" : 1435160059551,
-            "description" : "highlight everything",
-            "status_change_date" : 1435160059551,
-            "time_estimation" : 90,
-            "title" : "read chapter 9"
+        "-JsrUKsdGw5JkFwpLNqD" : {
+          "2015-09-07" : {
+            "-JylWZciyj2l--yjvL99" : {
+              "assigned_date" : "2015-09-12",
+              "creation_date" : 1441792412184,
+              "description" : "",
+              "status_change_date" : 1441792412184,
+              "time_estimation" : "",
+              "title" : "Read something"
+            },
+            "-JylWp90v0pimRlSjV99" : {
+              "assigned_date" : "2015-09-07",
+              "creation_date" : 1441792479851,
+              "description" : "",
+              "status_change_date" : 1441792479851,
+              "time_estimation" : "",
+              "title" : "Write an English essay"
+            }
+          },
+          "2015-09-28" : {
+            "-K-KgUWFlSgx_ZHDTC99" : {
+              "assigned_date" : "2015-09-28",
+              "creation_date" : 1443472998206,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1443472998206,
+              "time_estimation" : "",
+              "title" : "Some English Task",
+              "total_seconds_studied" : 8
+            },
+            "-K-KhAApSaTRajl5Ab99" : {
+              "assigned_date" : "2015-09-28",
+              "creation_date" : 1443473177062,
+              "description" : "Formal letter to a restaurant about bad service. Half A4 pag.e.",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1443473177062,
+              "time_estimation" : "",
+              "title" : "Another English task",
+              "total_seconds_studied" : 12
+            }
+          }
+        },
+        "-JsrUPQNfTDGEn-1yXZ9" : {
+          "2015-09-14" : {
+            "-JzG3M1BkyCFpc6HkM99" : {
+              "assigned_date" : "2015-09-15",
+              "creation_date" : 1442321624141,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1442321624141,
+              "time_estimation" : "",
+              "title" : "Irish task",
+              "total_seconds_studied" : 10
+            }
+          },
+          "2015-09-28" : {
+            "-JzfT0RxBg_3P4LdgW99" : {
+              "assigned_date" : "2015-09-29",
+              "creation_date" : 1442764560306,
+              "description" : "",
+              "status_change_date" : 1442764560306,
+              "time_estimation" : "",
+              "title" : "Some Irish Task"
+            },
+            "-K-KglU4bd0YTng0qi99" : {
+              "assigned_date" : "2015-09-30",
+              "creation_date" : 1443473071798,
+              "description" : "",
+              "status_change_date" : 1443473071798,
+              "time_estimation" : "",
+              "title" : "Another Irish task"
+            },
+            "-K-OgC9-ASUrvZfBoH99" : {
+              "assigned_date" : "2015-10-02",
+              "creation_date" : 1443540030113,
+              "description" : "",
+              "status_change_date" : 1443540030113,
+              "time_estimation" : "",
+              "title" : "Hi there",
+              "total_seconds_studied" : 8
+            }
+          },
+          "no_assigned_date" : {
+            "-K-cMfH1X9_EPxhMogIs" : {
+              "assigned_date" : "",
+              "creation_date" : 1443786306224,
+              "description" : "",
+              "status_change_date" : 1443786306224,
+              "time_estimation" : "",
+              "title" : "Tiny"
+            }
           }
         }
       }
@@ -847,6 +984,17 @@
       "-JsqE8CQ9Dg7LE0OKQ2P" : {
         "number_of_breaks" : 4,
         "time_studied" : 52
+      }
+    },
+    "2015-10-01" : {
+      "-JsqE8CQ9Dg7LE0OKQ2P" : {
+        "time_studied" : 10
+      }
+    },
+    "2015-10-02" : {
+      "-JsqE8CQ9Dg7LE0OKQ2P" : {
+        "number_of_breaks" : 1,
+        "time_studied" : 13
       }
     }
   }

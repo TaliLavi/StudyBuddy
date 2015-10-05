@@ -59,9 +59,9 @@ function resetTimeSettings(){
 //===============================================================================================================================
 
 //Although the time is stored in the database as minutes, they are used as seconds here for quick testing
-var userStudyMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getActiveUser() + '/study_session_minutes');
-var userShortBreakMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getActiveUser() + '/short_break_minutes');
-var userLongBreakMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getActiveUser() + '/long_break_minutes');
+var userStudyMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser() + '/study_session_minutes');
+var userShortBreakMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser() + '/short_break_minutes');
+var userLongBreakMins = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser() + '/long_break_minutes');
 
 //Getting user settings for length of work session from database. (Update automatically on change).
 userStudyMins.on("value", function(snapshot) {
