@@ -43,8 +43,17 @@ function logInUser(email, password, signUpCallback) {
         password : password
     }, function(error, authData) {
         if (error) {
-            $('#loginErrorMessage').text("Login Failed!", error);
+            console.error("Error logging-in user:", error);
             console.error("Login Failed!", error);
+            if (error.code === "INVALID_USER"){
+                $('#logInEmailErrorMessage').text('The specified user does not exist.');
+            }
+            if (error.code === "INVALID_EMAIL"){
+                $('#logInEmailErrorMessage').text('This does not look like a valid email address.');
+            }
+            if (error.code === "INVALID_PASSWORD"){
+                $('#logInPasswordErrorMessage').text('Oops, wrong password.');
+            }
         } else {
             LOGGED_IN_UID = authData.uid;
             if (signUpCallback !== undefined) {

@@ -1,14 +1,21 @@
 function prepareSignUp() {
     // GET FIELD VALUES
-    var email = $('#signUpEmailInput').val();
-    var password = $('#signUpPasswordInput').val();
     var firstName = $('#firstNameInput').val();
     var lastName = $('#lastNameInput').val();
+    var email = $('#signUpEmailInput').val();
+    var password = $('#signUpPasswordInput').val();
+    var confirmedPassword = $('#confirmPasswordInput').val();
 
-    signUpUser(firstName, lastName, email, password);
-
-    // CLEAR INPUT FIELDS
-    $('#logInPasswordInput').val('');
+    if (password !== confirmedPassword) {
+        $('#signUpPasswordErrorMessage').text('The passwords must be identical.');
+    } else {
+        // CLEAR ERROR MESSAGE FIELDS
+        $('#signUpPasswordInput').val('');
+        $('#confirmPasswordInput').val('');
+        $('#signUpEmailErrorMessage').text('');
+        $('#signUpPasswordErrorMessage').text('');
+        signUpUser(firstName, lastName, email, password);
+    }
 }
 
 
@@ -17,10 +24,12 @@ function prepareLogIn() {
     var email = $('#logInEmailInput').val();
     var password = $('#logInPasswordInput').val();
 
-    logInUser(email, password);
-
     // CLEAR INPUT FIELDS
     $('#logInPasswordInput').val('');
+    $('#logInEmailErrorMessage').text('');
+    $('#logInPasswordErrorMessage').text('');
+
+    logInUser(email, password);
 }
 
 

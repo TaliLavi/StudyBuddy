@@ -46,10 +46,10 @@
     <h3>Start studying the smart way</h3>
     <input type="text" placeholder="First name" id="firstNameInput"><br>
     <input type="text" placeholder="Last Name" id="lastNameInput"><br>
-    <input type="text" placeholder="email" id="signUpEmailInput"><br>
+    <input type="email" placeholder="email" id="signUpEmailInput"><br>
     <div class="errorMessage" id="signUpEmailErrorMessage"></div>
-    <input type="text" placeholder="Password" id="signUpPasswordInput">
-    <input type="text" placeholder="confirmPassword" id="confirmPasswordInput">
+    <input type="password" placeholder="Password" id="signUpPasswordInput">
+    <input type="password" placeholder="confirmPassword" id="confirmPasswordInput">
     <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
     <input type="button" value="Get Started" onclick="prepareSignUp()">
     <button type="button" onclick="showLogIn()">Already have an account?</button>
@@ -64,9 +64,10 @@
   <form>
     <h2>LogIn</h2>
     <h3>Welcome back!</h3>
-    <div id="loginErrorMessage"></div>
-    <input type="text" placeholder="email" id="logInEmailInput"><br>
-    <input type="text" placeholder="Password" id="logInPasswordInput">
+    <input type="email" placeholder="email" id="logInEmailInput"><br>
+    <div class="errorMessage" id="logInEmailErrorMessage"></div>
+    <input type="password" placeholder="Password" id="logInPasswordInput">
+    <div class="errorMessage" id="logInPasswordErrorMessage"></div>
     <button type="button">Forgot password?</button>
     <input type="button" value="Login" onclick="prepareLogIn()">
     <button type="button" onclick="showSignUp()">Create a new account</button>
