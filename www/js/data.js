@@ -38,6 +38,7 @@ function logInUser(email, password) {
         password : password
     }, function(error, authData) {
         if (error) {
+            $('#loginErrorMessage').text("Login Failed!", error);
             console.error("Login Failed!", error);
         } else {
             console.log("Authenticated successfully with payload:", authData);

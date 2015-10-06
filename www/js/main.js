@@ -2,17 +2,8 @@ function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
-    $("#profileButton").click(function(){
-        displayPage("#profilePage", "#profileButton")
-    });
-    $("#calendarButton").click(function(){
-        displayPage("#calendarPage", "#calendarButton")
-    });
-    $("#subjectsButton").click(function(){
-        displayPage("#subjectsPage", "#subjectsButton")
-    });
-    // start the app on the calendar page
-    displayPage("#calendarPage", "#calendarButton")
+    prepareNavigation();
+
     // toggle the bottom Subjects Panel
     $("#flip").click(function(){
         $("#footer").slideToggle("slow");
@@ -30,8 +21,71 @@ function preparePage() {
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
 
     // prepare hour glass timer animation
-    prepareHourGlass();
+    //prepareHourGlass();
 }
+
+
+//===========================================================================================================
+//NAVIGATION PANEL
+//===========================================================================================================
+
+// show and hide different pages
+var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
+var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
+
+
+function prepareNavigation() {
+    $("#profileButton").click(function(){
+        switchToPage("#profilePage", "#profileButton");
+    });
+    $("#calendarButton").click(function(){
+        switchToPage("#calendarPage", "#calendarButton");
+    });
+    $("#subjectsButton").click(function(){
+        switchToPage("#subjectsPage", "#subjectsButton");
+    });
+    // hide login page, reveal app pages and start the app on the calendar page
+    $('#logInPage').hide();
+    $('#appPages').show();
+    switchToPage("#calendarPage", "#calendarButton");
+}
+
+
+function hideAppContent() {
+    $('#appPages').hide();
+    $('#signUpPage').hide();
+}
+
+function showSignUp() {
+    $('#logInPage').hide();
+    $('#signUpPage').show();
+}
+
+function showLogIn() {
+    $('#signUpPage').hide();
+    $('#logInPage').show();
+}
+
+
+function switchToPage(pageId, buttonId) {
+
+    // hide all pages
+    pageIds.forEach(function(id){
+        $(id).hide();
+    })
+    // enable all nav buttons
+    buttonIds.forEach(function(id){
+        $(id).prop("disabled", false);
+    })
+    // only show current page
+    $(pageId).show();
+    // only disable current nav button
+    $(buttonId).prop("disabled", true);
+}
+
+
+
+
 
 //Make these things happen each time the page finishes loading
 function applySortable(selector) {
@@ -85,30 +139,6 @@ function inTheAir(evt) {
     //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
 
 }
-
-//===========================================================================================================
-//NAVIGATION PANEL
-//===========================================================================================================
-
-
-// show and hide different pages
-var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"]
-var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"]
-function displayPage(pageId, buttonId) {
-    // hide all pages
-    pageIds.forEach(function(id){
-        $(id).hide();
-    })
-    // enable all nav buttons
-    buttonIds.forEach(function(id){
-        $(id).prop("disabled", false);
-    })
-    // only show current page
-    $(pageId).show();
-    // only disable current nav button
-    $(buttonId).prop("disabled", true);
-}
-
 
 
 //===========================================================================================================
