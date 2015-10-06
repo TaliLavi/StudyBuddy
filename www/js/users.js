@@ -1,15 +1,9 @@
 // CREATE NEW USER
 function createUser() {
-
-    // REGISTER DOM ELEMENTS
-    var emailField = $('#emailInput');
-    var firstNameField = $('#firstNameInput');
-    var lastNameField = $('#lastNameInput');
-
     // GET FIELD VALUES
-    var firstName = firstNameField.val();
-    var lastName = lastNameField.val();
-    var email = emailField.val();
+    var firstName = $('#firstNameInput').val();
+    var lastName = $('#lastNameInput').val();
+    var email = $('#emailInput').val();
 
     // SET DEFAULT TIME INTERVALS
     var studySessionMinutes = 25;
@@ -19,26 +13,31 @@ function createUser() {
     // PUSH THEM TO DB
     pushNewUser(firstName, lastName, email, studySessionMinutes, shortBreakMinutes, longBreakMinutes);
     // CLEAR INPUT FIELDS
-    firstNameField.val('');
-    lastNameField.val('');
-    emailField.val('');
-
-    // REFRESH USERS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveUsers(displayAllUsers);
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#emailInput').val('');
 };
 
-// DISPLAY USERS INFORMATION
-function displayAllUsers(users) {
-    // CLEAR CURRENT DISPLAY OF USERS
-    $('#allUsersDiv').text('');
+function prepareLogIn() {
+    // GET FIELD VALUES
+    var email = $('#logInEmailInput').val();
+    var password = $('#logInPasswordInput').val();
 
-    users.forEach(function (user){
-        $('<div/>').text(user.email).prepend($('<strong/>').text(user.first_name + ' ' + user.last_name + ': ')).appendTo($('#allUsersDiv'));
-    })
-};
+    logInUser(email, password);
 
+    // CLEAR INPUT FIELDS
+    $('#logInPasswordInput').val('');
+}
 
-// RETRIEVE AND DISPLAY ALL USERS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-$(document).ready(function(){
-    fetchActiveUsers(displayAllUsers);
-});
+function prepareSignUp() {
+    // GET FIELD VALUES
+    var email = $('#signUpEmailInput').val();
+    var password = $('#signUpPasswordInput').val();
+    var fullName = $('#fullNameInput').val();
+
+    signUpUser(fullName, email, password);
+
+    // CLEAR INPUT FIELDS
+    $('#logInEmailInput').val('');
+    $('#logInPasswordInput').val('');
+}

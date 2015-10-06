@@ -13,7 +13,7 @@ function createSubject() {
     var is_deleted = 0;
 
     // PUSH THEM TO DB
-    pushNewSubject(getActiveUser(), name, colour, is_deleted);
+    pushNewSubject(name, colour, is_deleted);
 
     // CLOSE THE ADD SUBJECT DIALOG
     //Fade out the greyed background
@@ -27,11 +27,11 @@ function createSubject() {
     colourInput.val('');
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveSubjects(getActiveUser(), displayActiveSubjects);
+    fetchActiveSubjects(displayActiveSubjects);
 }
 
 // DISPLAY SUBJECTS INFORMATION
-function displayActiveSubjects(subjectDict) {
+function displayActiveSubjects(allSubjectsDict) {
 
     // Clear current display of subjects
     $('#subjectFilters').text('');
@@ -41,10 +41,10 @@ function displayActiveSubjects(subjectDict) {
     $('#taskSubject').append('<option selected="true" disabled="disabled">Choose Subject</option>');
 
     // Populate Subjects Page with subjects and tasks.
-    if (subjectDict !== null) {
+    if (allSubjectsDict !== null) {
         $('#subjectFilters').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
 
-        $.each(subjectDict, function(subjectKey, subjectData){
+        $.each(allSubjectsDict, function(subjectKey, subjectData){
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;
             var onclick_handler = "filterTasksInFooter('" + subjectKey + "')";
@@ -80,7 +80,9 @@ function displayActiveSubjects(subjectDict) {
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             );
         })
-        // By calling fetchActiveTasks() within the callback, we guarantee that it will run only after the subjects divs has been created.
+
+        // fetch and append all active tasks.
+        // We're running this inside the callback to make sure subjects DOM elements have been prepared.
         fetchActiveTasks(displayTasksInSubjectsPage);
     }
 }

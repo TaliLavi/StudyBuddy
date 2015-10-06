@@ -37,89 +37,133 @@
 
 <body>
 
-<div >
-  <button  id="profileButton">Profile</button>
-  <button  id="calendarButton">Calendar</button>
-  <button  id="subjectsButton">Subjects</button>
+<!--========================================================================================================-->
+<!--SIGNUP PAGE-->
+<!--========================================================================================================-->
+<div id="signUpPage">
+  <form>
+    <h2>Create a new acount</h2>
+    <h3>Start studying the smart way</h3>
+    <div id="signUpErrorMessage"></div>
+    <input type="text" placeholder="fullName" id="fullNameInput"><br>
+    <input type="text" placeholder="email" id="signUpEmailInput"><br>
+    <input type="text" placeholder="Password" id="signUpPasswordInput">
+    <input type="text" placeholder="confirmPassword" id="confirmPasswordInput">
+    <input type="button" value="Get Started" onclick="prepareSignUp()">
+    <button type="button" onclick="showLogIn()">Already have an account?</button>
+  </form>
+</div>
+
+<!--========================================================================================================-->
+<!--LOGIN PAGE-->
+<!--========================================================================================================-->
+
+<div id="logInPage">
+  <form>
+    <h2>LogIn</h2>
+    <h3>Welcome back!</h3>
+    <div id="loginErrorMessage"></div>
+    <input type="text" placeholder="email" id="logInEmailInput"><br>
+    <input type="text" placeholder="Password" id="logInPasswordInput">
+    <button type="button">Forgot password?</button>
+    <input type="button" value="Login" onclick="prepareLogIn()">
+    <button type="button" onclick="showSignUp()">Create a new account</button>
+  </form>
 </div>
 
 
-<!-- Profile page -->
-<div id="profilePage">
-  <div>
-    Content for Profile page
+
+<div id="appPages">
+
+  <!--========================================================================================================-->
+  <!--MAIN NAVIGATION-->
+  <!--========================================================================================================-->
+  <div id="navigationMenu">
+    <button  id="profileButton">Profile</button>
+    <button  id="calendarButton">Calendar</button>
+    <button  id="subjectsButton">Subjects</button>
+    <button  id="signoutButton">Sign out</button>
   </div>
-</div>
 
+  <!--========================================================================================================-->
+  <!--PROFILE PAGE-->
+  <!--========================================================================================================-->
+  <div id="profilePage">
+    <div>
+      Content for Profile page
+    </div>
+  </div>
 
-<!--========================================================================================================-->
-<!--CALENDAR PAGE-->
-<!--========================================================================================================-->
+  <!--========================================================================================================-->
+  <!--CALENDAR PAGE-->
+  <!--========================================================================================================-->
 
-
-<!--<div id="hourGlass" >-->
+  <!--<div id="hourGlass" >-->
   <!--<svg id="glass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-    <!--<path d="M179.09 261.5L331 517 4 517 155.91 261.5 4 6 331 6 179.09 261.5Z"/>-->
+  <!--<path d="M179.09 261.5L331 517 4 517 155.91 261.5 4 6 331 6 179.09 261.5Z"/>-->
   <!--</svg>-->
 
   <!--<svg id="topSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-    <!--<polygon transform="translate(168.500000, 141.500000) scale(1, -1) translate(-168.500000, -141.500000) " points="167.43 21 308.09 262 30 262 "/>-->
+  <!--<polygon transform="translate(168.500000, 141.500000) scale(1, -1) translate(-168.500000, -141.500000) " points="167.43 21 308.09 262 30 262 "/>-->
   <!--</svg>-->
 
   <!--<svg id="bottomSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-    <!--<polygon points="168 262 308.66 503 30 503 "/>-->
+  <!--<polygon points="168 262 308.66 503 30 503 "/>-->
   <!--</svg>-->
-<!--</div>-->
-<!--<br/>-->
-<!--<button onclick="startTimerTL()">Start</button>-->
-<!--<button onclick="pauseTimerTL()">Pause</button>-->
-<!--<button onclick="restartTimerTL()">Restart</button>-->
+  <!--</div>-->
+  <!--<br/>-->
+  <!--<button onclick="startTimerTL()">Start</button>-->
+  <!--<button onclick="pauseTimerTL()">Pause</button>-->
+  <!--<button onclick="restartTimerTL()">Restart</button>-->
 
 
-<div id="calendarPage">
-  <div id="calendarControls">
-    <button class="calendarControls" id="control_prev">Prev</button>
-    <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
-    <button class="calendarControls" id="control_next">Next</button>
-  </div>
+  <div id="calendarPage">
+    <div id="calendarControls">
+      <button class="calendarControls" id="control_prev">Prev</button>
+      <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
+      <button class="calendarControls" id="control_next">Next</button>
+    </div>
 
-  <div id="calendarSlider">
-    <div id="calendarWrapper"></div>
-  </div>
+    <div id="calendarSlider">
+      <div id="calendarWrapper"></div>
+    </div>
 
-  <!--========================================================================================================-->
-  <!--SUBJECTS FOOTER-->
-  <!--========================================================================================================-->
-  <footer id="footerWrapper">
-    <div id="flip">Task manager</div>
-    <div id="footer">
-      <div id="subjectsInnerWrapper">
-        <div id="subjectFilters">
+    <!--========================================================================================================-->
+    <!--SUBJECTS FOOTER-->
+    <!--========================================================================================================-->
+    <footer id="footerWrapper">
+      <div id="flip">Task manager</div>
+      <div id="footer">
+        <div id="subjectsInnerWrapper">
+          <div id="subjectFilters">
+          </div>
+        </div>
+        <div id="tasksInnerWrapper">
+          <div id="unassignedMessage">No unassigned tasks here!</div>
+          <ul class="sortable-task-list" id="unassignedTasksList"></ul>
         </div>
       </div>
-      <div id="tasksInnerWrapper">
-        <div id="unassignedMessage">No unassigned tasks here!</div>
-        <ul class="sortable-task-list" id="unassignedTasksList"></ul>
+    </footer>
+  </div>
+
+  <!--========================================================================================================-->
+  <!--SUBJECT PAGE-->
+  <!--========================================================================================================-->
+  <div id="subjectsPage">
+    <div id="subjectsPageWrapper">
+      <div id="subjectsPanel">
+        <div id="mySubjectsTitle">My Subjects</div>
+        <div id="subjectsList"></div>
+        <button onclick="openAddSubjectDialog();">Add a new subject</button>
+      </div>
+      <div id="tasksPerSubject">
+        <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
       </div>
     </div>
-  </footer>
+  </div>
+
 </div>
 
-<!--========================================================================================================-->
-<!--SUBJECT PAGE-->
-<!--========================================================================================================-->
-<div id="subjectsPage">
-  <div id="subjectsPageWrapper">
-    <div id="subjectsPanel">
-      <div id="mySubjectsTitle">My Subjects</div>
-      <div id="subjectsList"></div>
-      <button onclick="openAddSubjectDialog();">Add a new subject</button>
-    </div>
-    <div id="tasksPerSubject">
-      <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
-    </div>
-  </div>
-</div>
 
 
 <!--========================================================================================================-->
@@ -195,9 +239,10 @@
   </div>
 </div>
 <!-- TODO: fix pomodoro initialization code to work only in preparePage.-->
-<script src='js/pomodoro.js'></script>
+<!--<script src='js/pomodoro.js'></script>-->
 <script>
-  document.addEventListener('deviceready', preparePage);
+  // TODO: Get this to run only after successful log-in
+  document.addEventListener('deviceready', hideAppContent);
 </script>
 
 </body>
