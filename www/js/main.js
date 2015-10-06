@@ -44,7 +44,8 @@ function prepareNavigation() {
     $("#subjectsButton").click(function(){
         switchToPage("#subjectsPage", "#subjectsButton");
     });
-    // hide login page, reveal app pages and start the app on the calendar page
+    // hide signup & login pages, reveal app pages and start the app on the calendar page
+    $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
     switchToPage("#calendarPage", "#calendarButton");

@@ -44,11 +44,13 @@
   <form>
     <h2>Create a new acount</h2>
     <h3>Start studying the smart way</h3>
-    <div id="signUpErrorMessage"></div>
-    <input type="text" placeholder="fullName" id="fullNameInput"><br>
+    <input type="text" placeholder="First name" id="firstNameInput"><br>
+    <input type="text" placeholder="Last Name" id="lastNameInput"><br>
     <input type="text" placeholder="email" id="signUpEmailInput"><br>
+    <div class="errorMessage" id="signUpEmailErrorMessage"></div>
     <input type="text" placeholder="Password" id="signUpPasswordInput">
     <input type="text" placeholder="confirmPassword" id="confirmPasswordInput">
+    <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
     <input type="button" value="Get Started" onclick="prepareSignUp()">
     <button type="button" onclick="showLogIn()">Already have an account?</button>
   </form>
