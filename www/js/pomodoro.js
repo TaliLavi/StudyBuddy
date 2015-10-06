@@ -39,7 +39,7 @@ var wholeClock          = document.getElementById("clock");
 var playPauseButton     = document.getElementById("playPause");
 var stopButton          = document.getElementById("stop");
 var skipBreakButton     = document.getElementById("skipBreak");
-var sessRecord          = document.getElementById("timeRecord");
+//var sessRecord          = document.getElementById("timeRecord");
 var startButton         = document.getElementById("startButton");
 
 
@@ -200,9 +200,9 @@ function stopTimerOnWorkSess(){
 
     if(workPlaying){                                    //if the timer had been workPlaying when button pressed,
         totalSecs = totalSecs + secsElapsed;            //the last seconds elapsed need to be added onto total seconds
-        sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+        //sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     } else {                                            //if the player had been paused, the seconds would have already been added on.
-        sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+        //sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID: "+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     }
 
     //playPauseButton.className="hide";                                               //Hides play/pause button
@@ -245,7 +245,7 @@ function closePomoWindow(){
 function endWorkSession(){
     clearInterval(timerVar);                                        //Stops timer
     totalSecs = totalSecs + secsElapsed;                            //the last seconds elapsed are added onto total seconds
-    sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
+    //sessRecord.innerHTML="Seconds worked: "+totalSecs+"<br>"+"Subject ID:"+subjectIdForPomo+"<br>"+"Task ID: "+taskIdForPomo;
     var todaysDate = Date.today().toString('yyyy-MM-dd');
     updateTimeStudied(subjectIdForPomo, taskIdForPomo, totalSecs, todaysDate);
     totalSecs = 0;                                                  //Resets total seconds
