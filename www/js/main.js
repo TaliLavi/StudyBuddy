@@ -44,7 +44,8 @@ function prepareNavigation() {
     $("#subjectsButton").click(function(){
         switchToPage("#subjectsPage", "#subjectsButton");
     });
-    // hide login page, reveal app pages and start the app on the calendar page
+    // hide signup & login pages, reveal app pages and start the app on the calendar page
+    $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
     switchToPage("#calendarPage", "#calendarButton");
@@ -211,7 +212,7 @@ function displayTask(subjectId, assigned_date, taskId) {
     totalSecs = 0;                          //Resets totalSecs global variable (declared in pomodoro.js)
     subjectIdForPomo = subjectId;           //Lets Pomodoro know which subject is being studied (gl. var.declared in pomodoro.js)
     taskIdForPomo = taskId;                 //Lets Pomodoro know which task is being studied (gl. var. declared in pomodoro.js)
-    sessRecord.innerHTML="";                //Resets time record in HTML;
+    //sessRecord.innerHTML="";                //Resets time record in HTML;
     atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
 }
 

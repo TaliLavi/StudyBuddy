@@ -1,43 +1,52 @@
-// CREATE NEW USER
-function createUser() {
+function prepareSignUp() {
     // GET FIELD VALUES
     var firstName = $('#firstNameInput').val();
     var lastName = $('#lastNameInput').val();
-    var email = $('#emailInput').val();
+    var email = $('#signUpEmailInput').val();
+    var password = $('#signUpPasswordInput').val();
+    var confirmedPassword = $('#confirmPasswordInput').val();
 
-    // SET DEFAULT TIME INTERVALS
-    var studySessionMinutes = 25;
-    var shortBreakMinutes = 5;
-    var longBreakMinutes = 15;
+    if (password !== confirmedPassword) {
+        $('#signUpPasswordErrorMessage').text('The passwords must be identical.');
+    } else {
+        // CLEAR ERROR MESSAGE FIELDS
+        $('#signUpPasswordInput').val('');
+        $('#confirmPasswordInput').val('');
+        $('#signUpEmailErrorMessage').text('');
+        $('#signUpPasswordErrorMessage').text('');
+        signUpUser(firstName, lastName, email, password);
+    }
+}
 
-    // PUSH THEM TO DB
-    pushNewUser(firstName, lastName, email, studySessionMinutes, shortBreakMinutes, longBreakMinutes);
-    // CLEAR INPUT FIELDS
-    $('#firstNameInput').val('');
-    $('#lastNameInput').val('');
-    $('#emailInput').val('');
-};
 
 function prepareLogIn() {
     // GET FIELD VALUES
     var email = $('#logInEmailInput').val();
     var password = $('#logInPasswordInput').val();
 
+    // CLEAR INPUT FIELDS
+    $('#logInPasswordInput').val('');
+    $('#logInEmailErrorMessage').text('');
+    $('#logInPasswordErrorMessage').text('');
+
     logInUser(email, password);
-
-    // CLEAR INPUT FIELDS
-    $('#logInPasswordInput').val('');
 }
 
-function prepareSignUp() {
-    // GET FIELD VALUES
-    var email = $('#signUpEmailInput').val();
-    var password = $('#signUpPasswordInput').val();
-    var fullName = $('#fullNameInput').val();
 
-    signUpUser(fullName, email, password);
+// CREATE NEW USER
+function createUser(firstName, lastName, email, password, uid) {
+    var newUser = {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        // SET DEFAULT TIME INTERVALS
+        study_session_minutes: 25,
+        short_break_minutes: 5,
+        long_break_minutes: 15
+    };
 
-    // CLEAR INPUT FIELDS
-    $('#logInEmailInput').val('');
-    $('#logInPasswordInput').val('');
-}
+    // LOG-IN THE USER, AND AFTERWARDS PUSH THEM TO DB
+    logInUser(email, password, function() {
+        saveNewUser(newUser, uid);
+    });
+};
