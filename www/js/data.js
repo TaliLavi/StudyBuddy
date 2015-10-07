@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES
 FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
-var LOGGED_IN_UID = null; // d81360f7-4eec-4e64-afd7-27859337eb60
+var LOGGED_IN_UID = null;
 
 // Do this on errors from firebase
 function firebaseErrorFrom(funcName) {
