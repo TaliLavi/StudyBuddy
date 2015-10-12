@@ -375,3 +375,7 @@ input{
 .errorMessage {
     color: red;
 }
+
+#heightFix {
+    height: 30px;
+}
