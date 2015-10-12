@@ -61,7 +61,7 @@ and the user wants to drag a task from the calendar to the footer.*/
 
 #unassignedTasksList li {
     display: inline-block;
-    width: 250px;
+    width: 200px;
     margin-left: 10px;
 }
 

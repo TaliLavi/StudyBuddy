@@ -81,6 +81,8 @@
   <!--========================================================================================================-->
   <!--MAIN NAVIGATION-->
   <!--========================================================================================================-->
+  <div id="heightFix"></div>
+
   <div id="navigationMenu">
     <button  id="profileButton">Profile</button>
     <button  id="calendarButton">Calendar</button>
@@ -210,7 +212,7 @@
 <!--========================================================================================================-->
 <div id="taskModalBG" class="modal-bg">
   <div id="taskModal" class="modal">
-    <p class="closeX" onclick="closePomoWindow();">x</p>
+    <p class="closeX" onclick="closeModalWindow();">x</p>
     <p class ="modalHeading">Your Task</p>
     <div id ="pomodoroDiv">
       <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>

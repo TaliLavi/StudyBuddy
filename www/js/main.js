@@ -208,12 +208,12 @@ function displayTask(subjectId, assigned_date, taskId) {
     fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
-    resetTimeSettings();                    //Resets Pomodoro time and makes sure workPlaying is false (function in pomodoro.js)
-    totalSecs = 0;                          //Resets totalSecs global variable (declared in pomodoro.js)
-    subjectIdForPomo = subjectId;           //Lets Pomodoro know which subject is being studied (gl. var.declared in pomodoro.js)
-    taskIdForPomo = taskId;                 //Lets Pomodoro know which task is being studied (gl. var. declared in pomodoro.js)
-    //sessRecord.innerHTML="";                //Resets time record in HTML;
-    atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
+    //resetTimeSettings();                    //Resets Pomodoro time and makes sure workPlaying is false (function in pomodoro.js)
+    //totalSecs = 0;                          //Resets totalSecs global variable (declared in pomodoro.js)
+    //subjectIdForPomo = subjectId;           //Lets Pomodoro know which subject is being studied (gl. var.declared in pomodoro.js)
+    //taskIdForPomo = taskId;                 //Lets Pomodoro know which task is being studied (gl. var. declared in pomodoro.js)
+    ////sessRecord.innerHTML="";                //Resets time record in HTML;
+    //atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
 }
 
 function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
