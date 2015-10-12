@@ -251,6 +251,17 @@ input{
     border-radius:3px;
 }
 
+#addTaskForm {
+    position: absolute;
+    top: 20px;
+}
+
+
+#taskCardForm {
+    position: absolute;
+    top: 20px;
+}
+
 
 /*===============================================================================================*/
 /*SEVEN COLUMN GRID / */

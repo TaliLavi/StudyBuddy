@@ -195,7 +195,7 @@
     <p class="closeX" onclick="closeModalWindow();">x</p>
     <p class ="modalHeading">New Task</p>
 
-    <form>
+    <form id="addTaskForm">
       <select id ="subjectInput"></select>
       <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
       <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
@@ -229,7 +229,7 @@
         Your browser does not support the audio element.
       </audio>
     </div>
-    <form>
+    <form id="taskCardForm">
       <select id ="taskSubject"></select>
       <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
       <input id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
