@@ -20,6 +20,9 @@ function preparePage() {
     // fetch and append all unassigned active tasks to footer
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
 
+    // pre-cache session times for pomodoro timer
+    fetchTimeIntervals(function(){});
+
     // prepare hour glass timer animation
     //prepareHourGlass();
 }

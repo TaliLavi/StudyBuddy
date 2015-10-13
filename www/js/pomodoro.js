@@ -4,12 +4,6 @@ var sessionType = 'study_session';
 var numOfStudySessions = 0;
 
 
-$(document).ready(function(){
-    // pre-cache session times
-    fetchTimeIntervals(function(){});
-})
-
-
 function timer(duration, update, complete) {
     INTERVAL_SIZE = 100;
     var start = new Date().getTime();
