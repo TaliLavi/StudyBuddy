@@ -11,10 +11,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
-  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium'>
-  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,200' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Acme|Raleway' rel='stylesheet' type='text/css'>
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
@@ -81,12 +78,23 @@
   <!--========================================================================================================-->
   <!--MAIN NAVIGATION-->
   <!--========================================================================================================-->
-  <div id="heightFix"></div>
+  <div id="iPadStatusBar"></div>
 
-  <div id="navigationMenu">
+  <div id="navBar">
+
+    <button id="subjectsButton" class="navButton">
+      <img class="navIcon" src="images/subjectsIcon.png">
+      <span>Subjects</span>
+    </button>
+
+    <button id="calendarButton" class="navButton">
+      <img  class="navIcon" src="images/weekIcon.png">
+      <span>Week</span>
+    </button>
+
+    <!--<input id="calendarButton" type="image" src="images/weekIcon.png" style="width:40px; height:40px;"/>Week-->
+    <!--<input id="subjectsButton" type="image" src="images/subjectsIcon.png" style="width:40px; height:40px;" />-->
     <button  id="profileButton">Profile</button>
-    <button  id="calendarButton">Calendar</button>
-    <button  id="subjectsButton">Subjects</button>
     <button  id="signoutButton">Sign out</button>
   </div>
 
@@ -124,9 +132,13 @@
 
   <div id="calendarPage">
     <div id="calendarControls">
-      <button class="calendarControls" id="control_prev">Prev</button>
+      <!--<img id="control_prev" class="calendarControls" src="images/leftArrow.png">-->
+      <input type="image" src="images/leftArrow.png" id="control_prev" class="calendarControls"/>
+      <!--<button class="calendarControls" id="control_prev">Prev</button>-->
       <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
-      <button class="calendarControls" id="control_next">Next</button>
+      <input type="image" src="images/rightArrow.png" id="control_next" class="calendarControls"/>
+      <!--<button class="calendarControls" id="control_next">Next</button>-->
+      <!--<img id="control_next" class="calendarControls" src="images/rightArrow.png">-->
     </div>
 
     <div id="calendarSlider">
@@ -137,7 +149,12 @@
     <!--SUBJECTS FOOTER-->
     <!--========================================================================================================-->
     <footer id="footerWrapper">
-      <div id="flip">Task manager</div>
+      <div id="flip">
+        <div id="scheduleMe">
+          <img id = "cardsIcon" src="images/cardsIcon.png">
+          <span id="scheduleText">SCHEDULE ME!</span>
+        </div>
+      </div>
       <div id="footer">
         <div id="subjectsInnerWrapper">
           <div id="subjectFilters">
@@ -195,7 +212,7 @@
     <p class="closeX" onclick="closeModalWindow();">x</p>
     <p class ="modalHeading">New Task</p>
 
-    <form>
+    <form id="addTaskForm">
       <select id ="subjectInput"></select>
       <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
       <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
@@ -214,31 +231,22 @@
   <div id="taskModal" class="modal">
     <p class="closeX" onclick="closeModalWindow();">x</p>
     <p class ="modalHeading">Your Task</p>
-
     <div id ="pomodoroDiv">
-      <h1 id="timerDisplay">00:00</h1>
-      <button type="button" id="playPauseButton" class="notPlaying" onclick="playPauseTimer()">Play</button>
-      <button type="button" id="stopButton" onclick="stopTimer()" disabled>Stop</button>
+      <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
+      <br>
+      <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>
+      <button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>
+      <button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>
+      <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
+
+
+      <!--<p id="timeRecord"></p>-->
       <audio id="tone">
         <source src="pomodoroTone.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
       </audio>
     </div>
-
-    <!--<div id ="pomodoroDiv">-->
-      <!--<p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>-->
-      <!--<br>-->
-      <!--<button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>-->
-      <!--<button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>-->
-      <!--<button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>-->
-      <!--<button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>-->
-      <!--&lt;!&ndash;<p id="timeRecord"></p>&ndash;&gt;-->
-      <!--<audio id="tone">-->
-        <!--<source src="pomodoroTone.mp3" type="audio/mpeg">-->
-        <!--Your browser does not support the audio element.-->
-      <!--</audio>-->
-    <!--</div>-->
-
-    <form>
+    <form id="taskCardForm">
       <select id ="taskSubject"></select>
       <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
       <input id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">

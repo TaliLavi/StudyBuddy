@@ -61,12 +61,12 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     if (isDone !== undefined) {
         //create html for done task
         var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + ' doneTask"><span class="cardText">' + taskData.title +
+            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
             '</span></div></li>';
     } else {
         //create html for active task
         var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.colour + '"><span class="cardText">' + taskData.title +
+            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
             '</span></div></li>';
     }
 
