@@ -85,9 +85,6 @@ function switchToPage(pageId, buttonId) {
 }
 
 
-
-
-
 //Make these things happen each time the page finishes loading
 function applySortable(selector) {
     if (screen.width < 1000) {
