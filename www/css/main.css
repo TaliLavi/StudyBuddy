@@ -10,6 +10,8 @@ body{
 /* NAV BAR, STATUS BAR AND ICONS*/
 /*===================================================================================================================*/
 
+
+
 #iPadStatusBar {
     height: 20px;
     background-color: #607A93;
@@ -34,6 +36,7 @@ body{
     font-weight: 300;
 }
 
+
 .navIcon{
     height: 40px;
     width: 40px;
@@ -43,6 +46,8 @@ body{
 /*===================================================================================================================*/
 /*HEADINGS & CONTROLS*/
 /*===================================================================================================================*/
+/*to get rid of the blue halo around buttons when they are pressed*/
+button:focus {outline:0;}
 
 #calendarControls{
     margin-left: auto;
