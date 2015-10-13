@@ -232,18 +232,11 @@
     <p class="closeX" onclick="closeModalWindow();">x</p>
     <p class ="modalHeading">Your Task</p>
     <div id ="pomodoroDiv">
-      <p id="clock" class="none"><span id ="minsDiv">00</span><span id ="secsDiv">00</span></p>
-      <br>
-      <button onclick="playWorkTimer()" class="pomButtonShow" id="startButton">Start</button>
-      <button onclick="stopTimer()" class="pomButtonShow" id="stop">Finish</button>
-      <button onclick="playPause()" class="pomButtonShow" id="playPause" disabled>Pause</button>
-      <button onclick="skipBreak()" class="hide" id="skipBreak">Skip Break</button>
-
-
-      <!--<p id="timeRecord"></p>-->
+      <h1 id="timerDisplay">00:00</h1>
+      <button type="button" id="playPauseButton" class="notPlaying" onclick="playPauseTimer()">Play</button>
+      <button type="button" id="stopButton" onclick="stopTimer()" disabled>Stop</button>
       <audio id="tone">
         <source src="pomodoroTone.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
       </audio>
     </div>
     <form id="taskCardForm">

@@ -160,8 +160,3 @@ function stopTimer(){
 function resetTimerDisplay() {
     $('#timerDisplay').text('00:00');
 }
-
-
-
-
-
