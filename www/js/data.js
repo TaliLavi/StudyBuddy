@@ -354,36 +354,57 @@ function completeTask(subjectId, weekDate, taskId) {
 //                              TIME
 //=====================================================================
 
-// add one to task's count of breaks
-function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
-    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
-    tasksBreakRef.once("value", function(snapshot) {
-        var newNum = snapshot.val() + 1;
-        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
-    }, firebaseErrorFrom('incrementNumOfBreaksForTask'));
+function fetchTimeIntervals(callback) {
+    if (cachedSessionTimes !== null) {
+        callback(cachedSessionTimes);
+    } else {
+        var timeIntervalsRef = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser());
+        timeIntervalsRef.once("value", function (snapshot) {
+            var sessionTimes = snapshot.val()
+            cachedSessionTimes = {
+                study_session: sessionTimes.study_session_minutes,
+                short_break: sessionTimes.short_break_minutes,
+                long_break: sessionTimes.long_break_minutes
+            }
+            callback(cachedSessionTimes);
+        });
+    }
 }
 
-// add one to a date's count of breaks
-function incrementNumOfBreaksForDate(date) {
-    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + getLoggedInUser() + '/number_of_breaks');
-    tasksBreakRef.once("value", function(snapshot) {
-        var newNum = snapshot.val() + 1;
-        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
-    }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
+
+function incrementNumOfBreaks(subjectId, weekDate, taskId) {
+    incrementNumOfBreaksForTask(subjectId, weekDate, taskId);
+    incrementNumOfBreaksForDate();
 }
 
-// fetch a task's total time studied
-function fetchOldTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
-    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
-    tasksTimeStudiedRef.once("value", function(snapshot) {
-        callback(snapshot.val(), additionalTimeStudied, tasksTimeStudiedRef);
-    }, firebaseErrorFrom('fetchOldTimeStudiedForTask'));
-}
 
-// fetch a date's total time studied
-function fetchOldTimeStudiedForDate(date, additionalTimeStudied, callback) {
-    var tasksTimeStudiedRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + date + '/' + getLoggedInUser() + '/time_studied');
-    tasksTimeStudiedRef.once("value", function(snapshot) {
-        callback(snapshot.val(), additionalTimeStudied, tasksTimeStudiedRef);
-    }, firebaseErrorFrom('fetchOldTimeStudiedForDate'));
+
+
+//function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
+//    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
+//    tasksBreakRef.once("value", function(snapshot) {
+//        var newNum = snapshot.val() + 1;
+//        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
+//    }, firebaseErrorFrom('incrementNumOfBreaksForTask'));
+//}
+//
+//function incrementNumOfBreaksForDate() {
+//    var todaysDate = Date.today().toString('yyyy-MM-dd');
+//    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
+//    tasksBreakRef.once("value", function(snapshot) {
+//        var newNum = snapshot.val() + 1;
+//        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
+//    }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
+//}
+
+
+
+
+
+
+
+
+function updateTimeStudied(timeToLog) {
+    updateTimeStudiedForTask();
+    updateTimeStudiedForDate();
 }
