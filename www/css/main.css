@@ -1,9 +1,29 @@
 *{
     font-family: Raleway;
 }
+
 body{
-    background-color: oldlace;
+    background-color: #E9ECEF;
 }
+
+#iPadStatusBar {
+    height: 20px;
+    background-color: #607A93;
+}
+
+#navBar {
+    height: 80px;
+    background-color: #1B9BAE;
+}
+
+
+
+
+
+
+/*===================================================================================================================*/
+/*HEADINGS & CONTROLS*/
+/*===================================================================================================================*/
 
 #calendarControls{
     margin-left: auto;
@@ -30,12 +50,14 @@ body{
 }
 
 #weekHeadingOnCalendar{
-    color: darkslategray;
+    font-family: acme;
+    color: #607A93;
     font-weight: 400;
     font-size: 2em;
     text-align:center;
     display: inline;
 }
+
 
 .dayHeadingOnCalendar{
     color: lightseagreen;
@@ -58,33 +80,10 @@ body{
     color: lightseagreen;
 }
 
-/*This is the pale gray div that the cards appear in*/
-.sortable-task-list {
-    background-color: rgba(255,255,255,0.3);
-    position: relative;
-    display: block;
-    margin-top: 5px;
-    padding: 0px;
-    z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
-    list-style-type: none;              /*remove bullet points fron li elements*/
-}
 
-/*This is the dragged image*/
-.dragged-item .taskCard{
-    width: 110%;
-    height:70px;
-    opacity: 1;
-    border-radius: 2px;
-    /*border: 6px solid plum;*/
-    -webkit-transform: rotate(3deg); /* Safari */
-    transform: rotate(3deg);
-    -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
-    -moz-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
-    box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
-}
-
-/*These are the cards*/
-
+/*===================================================================================================================*/
+/*TASK CARDS*/
+/*===================================================================================================================*/
 
 .taskCard {
     font-weight: normal;
@@ -102,23 +101,18 @@ body{
     box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
 }
 
-.cardText {
-    font-family: 'Raleway', sans-serif;
-    font-size: .8em;
-    color: white;
-    margin: 5%;
-}
-
-.doneTask {
-    background: repeating-linear-gradient(
-            45deg,
-            #606dbc,
-            #606dbc 10px,
-            #465298 10px,
-            #465298 20px
-    );
-
-    /*border: 2px solid #48e82a;*/
+/*This is the dragged image*/
+.dragged-item .taskCard{
+    width: 110%;
+    height:70px;
+    opacity: 1;
+    border-radius: 2px;
+    /*border: 6px solid plum;*/
+    -webkit-transform: rotate(3deg); /* Safari */
+    transform: rotate(3deg);
+    -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
 }
 
 .sortable-ghost {
@@ -126,23 +120,29 @@ body{
     opacity: 0;
 }
 
-
-
-
-.dayColumn {
-    margin-right: 3%;
-    margin-left: 3%;
+.cardText {
+    font-family: 'Raleway', sans-serif;
+    font-size: .8em;
+    color: white;
+    margin: 5%;
+    line-height: 1.5;
 }
 
-.dayList {
-    width: 100%;
-    min-height: 500px;                   /*minimal height to ensure cards could be added to an empty list*/
+.doneTask {
+    background-image: repeating-linear-gradient(
+            -45deg,
+            rgba(255,255,255,.1),
+            rgba(255,255,255,.1) 10px,
+            rgba(255,255,255,.3) 10px,
+            rgba(255,255,255,.3) 20px
+    );
 }
 
-/*#tasksList > li {*/
-    /*width: 13.77%;*/
-    /*display: inline;*/
-/*}*/
+
+
+
+
+
 
 /*===================================================================================================================*/
 /*MODAL WINDOWS*/
@@ -240,6 +240,32 @@ input{
 
 
 /*===============================================================================================*/
+/*SORTABLE DAYS / */
+/*===============================================================================================*/
+/*  GRID OF SEVEN  */
+.dayColumn {
+    margin-right: 3%;
+    margin-left: 3%;
+    width: 13.77%;
+}
+
+.dayList {
+    width: 100%;
+    min-height: 500px;                   /*minimal height to ensure cards could be added to an empty list*/
+}
+
+/*This is the pale gray div that the cards appear in*/
+.sortable-task-list {
+    background-color: rgba(255,255,255,0.3);
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    padding: 0px;
+    z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
+    list-style-type: none;              /*remove bullet points fron li elements*/
+}
+
+/*===============================================================================================*/
 /*SEVEN COLUMN GRID / */
 /*===============================================================================================*/
 
@@ -267,23 +293,15 @@ input{
 .group:after { clear:both;}
 .group { zoom:1; /* For IE 6/7 */ }
 
-/*  GRID OF SEVEN  */
-
-.dayColumn {
-    width: 13.77%;
-}
-
-/*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 480px) {
-    .col {  margin: 1% 0 1% 0%; }
-    .dayColumn { width: 100%; }
-}
-
 .sortable-ghost {
     /*border-color: #4cae4c;*/
     background-color: #858585;
     background-color: whitesmoke;
 }
+
+/*===============================================================================================*/
+/*COLUMNS FOR DAYS */
+/*===============================================================================================*/
 
 
 /*===============================================================================================*/
@@ -363,9 +381,7 @@ input{
     color: red;
 }
 
-#heightFix {
-    height: 30px;
-}
+
 
 
 /*==================================================================================================*/
