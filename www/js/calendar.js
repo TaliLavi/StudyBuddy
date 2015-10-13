@@ -75,7 +75,7 @@ function createCalendarHeading() {
     } else if (numOfWeeks === 1) {
         $('#weekHeadingOnCalendar').text('NEXT WEEK');
     } else if (numOfWeeks > 1) {
-        $('#weekHeadingOnCalendar').text(numOfWeeks + ' WEEKS FROM NOW');
+        $('#weekHeadingOnCalendar').text(numOfWeeks + ' WEEKS TIME');
     } else {
         $('#weekHeadingOnCalendar').text(-1*numOfWeeks + ' WEEKS AGO');
     }

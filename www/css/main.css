@@ -6,6 +6,10 @@ body{
     background-color: #E9ECEF;
 }
 
+/*===================================================================================================================*/
+/* NAV BAR, STATUS BAR AND ICONS*/
+/*===================================================================================================================*/
+
 #iPadStatusBar {
     height: 20px;
     background-color: #607A93;
@@ -16,9 +20,24 @@ body{
     background-color: #1B9BAE;
 }
 
+.navButton{
+    position: relative;
+    background-color: transparent;
+    border: none;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    color: white;
+    font-size: .8em;
+    margin-left: 5px;
+    line-height: 1.6;
+    font-weight: 300;
+}
 
-
-
+.navIcon{
+    height: 40px;
+    width: 40px;
+}
 
 
 /*===================================================================================================================*/
@@ -30,23 +49,38 @@ body{
     margin-right: auto;
     width: 30%;
     text-align: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 #control_prev{
     float: left;
+    height: 37px;
+    width: 29px;
+    border: none;
 }
-
-#control_prev:hover {
-    color: lightseagreen;
-}
-
-#control_next:hover {
-    color: lightseagreen;
-}
-
 
 #control_next{
     float: right;
+    height: 37px;
+    width: 29px;
+    border: none;
+}
+
+#control_prev:hover {
+    opacity: .7;
+}
+
+#control_next:hover {
+    opacity: .7;
+}
+
+.addTaskFromDate{
+    color: #607A93;
+    border: none;
+    background-color: transparent;
+    font-size: .8em;
+    height: 44px;
 }
 
 #weekHeadingOnCalendar{
@@ -76,9 +110,7 @@ body{
     padding: 10%;
 }
 
-.addTaskFromDate:hover{
-    color: lightseagreen;
-}
+
 
 
 /*===================================================================================================================*/
