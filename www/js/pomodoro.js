@@ -152,8 +152,7 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
     $('#stopButton').addClass('stopped');
     // stop animation
-    // TODO: change the next line so that it would merely reset the animation, without restarting it.
-    hourGlassTL.reset();
+    hourGlassTL.pause(0);
     if (sessionType === 'study_session') {
         // TODO: don't get data directly from cached object
         var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();
@@ -182,4 +181,14 @@ var hourGlassTL = new TimelineMax({repeat:2, paused:true, autoRemoveChildren:tru
 function prepareHourGlass() {
     hourGlassTL.to($("#topSand"), (10), {width: "1px", left: "50%"});
     hourGlassTL.to($("#bottomSand"), (10), {width: "335px", left: "0%", bottom: "-3%"}, "-=(25)");
+
+    //hourGlassTL.to(topSand, (6*5), {width:"300px", left:"5%"});
+    //hourGlassTL.to(topSand, (6*5), {width:"260px", left:"11%"});
+    //hourGlassTL.to(topSand, (6*5), {width:"220px", left:"17%"});
+    //hourGlassTL.to(topSand, (6*5), {width:"150px", left:"27.5%"});
+    //hourGlassTL.to(topSand, (6*4), {left:"41.5%", width:"56px"});
+    //hourGlassTL.to(topSand, (6), {width:"1px", left:"50%"});
+    //hourGlassTL.to(bottomSand, (6*25), {width:"335px", left:"0%" , bottom:"-2%"}, "-=(6*25)");
 }
+
+
