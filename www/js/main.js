@@ -157,11 +157,11 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         var suffixPlaceHolder = currentDate.toString('dxxx MMM');
         var currentDateTitle = suffixPlaceHolder.replace("xxx", suffix);
 
-        var currentDay = currentDate.toString('dddd');
+        var currentDay = currentDate.toString('ddd');
         // Append day
         daysHtml += '<div class="col dayColumn">' +
-            '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
-            '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
+            '<span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
+            '<span class="dateOnCalendarDay">' + currentDateTitle +'</span>' +
             '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
             currentDateFormatted + '\', this);">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
