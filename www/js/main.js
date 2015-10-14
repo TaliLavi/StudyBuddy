@@ -20,8 +20,11 @@ function preparePage() {
     // fetch and append all unassigned active tasks to footer
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
 
+    // pre-cache session times for pomodoro timer
+    fetchTimeIntervals(function(){});
+
     // prepare hour glass timer animation
-    //prepareHourGlass();
+    prepareHourGlass();
 }
 
 
@@ -83,9 +86,6 @@ function switchToPage(pageId, buttonId) {
     // only disable current nav button
     $(buttonId).prop("disabled", true);
 }
-
-
-
 
 
 //Make these things happen each time the page finishes loading
@@ -163,7 +163,7 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
             '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
             '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
             '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
-            currentDateFormatted + '\', this);">Add Task</button>' +
+            currentDateFormatted + '\', this);">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
             '</div>';
     }
@@ -208,12 +208,6 @@ function displayTask(subjectId, assigned_date, taskId) {
     fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
-    //resetTimeSettings();                    //Resets Pomodoro time and makes sure workPlaying is false (function in pomodoro.js)
-    //totalSecs = 0;                          //Resets totalSecs global variable (declared in pomodoro.js)
-    //subjectIdForPomo = subjectId;           //Lets Pomodoro know which subject is being studied (gl. var.declared in pomodoro.js)
-    //taskIdForPomo = taskId;                 //Lets Pomodoro know which task is being studied (gl. var. declared in pomodoro.js)
-    ////sessRecord.innerHTML="";                //Resets time record in HTML;
-    //atStartButtons();                       //Sets correct buttons on Pomodoro (Start button, and greyed-out Pause button)
 }
 
 function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
@@ -222,20 +216,35 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskDescription').val(taskDetails.description);
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
-    var weekDate = startOfWeek(taskDetails.assigned_date)
+    var weekDate = startOfWeek(taskDetails.assigned_date);
     // Clear any old onclick handler
     $('#deleteTask').off("click");
     $('#updateTask').off("click");
+    $('#completeTask').off("click");
+    $('#playPauseButton').off("click");
+    $('#stopButton').off("click");
+    $('#closeTaskModal').off("click");
+
     $('#deleteTask').on("click", function(){
-        deleteTask(subjectId, weekDate, taskId);
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
     });
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
     });
     $('#completeTask').on("click", function(){
-        completeTask(subjectId, weekDate, taskId);
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
+    });
+    $('#playPauseButton').on("click", function(){
+        playPauseTimer(subjectId, weekDate, taskId);
+    });
+    $('#stopButton').on("click", function(){
+        stopTimer(subjectId, weekDate, taskId);
+    });
+    $('#closeTaskModal').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId);
     });
 }
+
 
 
 //===========================================================================================================
@@ -266,9 +275,10 @@ function openAddTaskDialog(data, dateOrSubject){
 
 
 //===========================================================================================================
-//CANCELLING ANY MODAL WINDOW WITHOUT ADDING ANYTHING
+// CLOSING MODAL WINDOWS
 //===========================================================================================================
 
+// FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
@@ -281,6 +291,21 @@ function closeModalWindow() {
         // Reset select value to default
         return this.defaultSelected;
     });
+}
+
+// FOR CLOSING THE TASK DETAILS MODAL
+function closeTaskModal(subjectId, weekDate, taskId, callback) {
+    closeModalWindow();
+
+    // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
+    if (!$('#stopButton').hasClass('stopped')) {
+        stopTimer(subjectId, weekDate, taskId, callback);
+    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+    } else {
+        if (callback !== undefined) {
+            callback(subjectId, weekDate, taskId);
+        }
+    }
 }
 
 
