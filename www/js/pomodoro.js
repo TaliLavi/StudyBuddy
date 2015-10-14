@@ -84,6 +84,8 @@ function setTimer(subjectId, weekDate, taskId) {
 function playPauseTimer(subjectId, weekDate, taskId) {
     // play timer
     if ($('#playPauseButton').hasClass('notPlaying')) {
+        // start animation
+        hourGlassTL.play();
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
         $('#stopButton').removeClass('stopped');
@@ -92,12 +94,16 @@ function playPauseTimer(subjectId, weekDate, taskId) {
 
         // pause timer
     } else {
+        // pause animation
+        hourGlassTL.pause();
         togglePlayPause();
     }
 }
 
 function switchToNextSession(subjectId, weekDate, taskId) {
     playTone();
+    // restart animation
+    hourGlassTL.restart();
     if (sessionType === 'study_session') {
         // increase num of study sessions by one
         numOfStudySessions += 1;
@@ -145,7 +151,9 @@ function togglePlayPause() {
 function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
     $('#stopButton').addClass('stopped');
-
+    // stop animation
+    // TODO: change the next line so that it would merely reset the animation, without restarting it.
+    hourGlassTL.reset();
     if (sessionType === 'study_session') {
         // TODO: don't get data directly from cached object
         var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();
@@ -162,4 +170,16 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
 
 function resetTimerDisplay() {
     $('#timerDisplay').text('00:00');
+}
+
+
+//===============================================================================================================================
+//Hourglass animation
+//===============================================================================================================================
+
+var hourGlassTL = new TimelineMax({repeat:2, paused:true, autoRemoveChildren:true, smoothChildTiming: true});
+
+function prepareHourGlass() {
+    hourGlassTL.to($("#topSand"), (10), {width: "1px", left: "50%"});
+    hourGlassTL.to($("#bottomSand"), (10), {width: "335px", left: "0%", bottom: "-3%"}, "-=(25)");
 }

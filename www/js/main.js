@@ -24,7 +24,7 @@ function preparePage() {
     fetchTimeIntervals(function(){});
 
     // prepare hour glass timer animation
-    //prepareHourGlass();
+    prepareHourGlass();
 }
 
 
