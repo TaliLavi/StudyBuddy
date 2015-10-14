@@ -216,20 +216,35 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#taskDescription').val(taskDetails.description);
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
-    var weekDate = startOfWeek(taskDetails.assigned_date)
+    var weekDate = startOfWeek(taskDetails.assigned_date);
     // Clear any old onclick handler
     $('#deleteTask').off("click");
     $('#updateTask').off("click");
+    $('#completeTask').off("click");
+    $('#playPauseButton').off("click");
+    $('#stopButton').off("click");
+    $('#closeTaskModal').off("click");
+
     $('#deleteTask').on("click", function(){
-        deleteTask(subjectId, weekDate, taskId);
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
     });
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
     });
     $('#completeTask').on("click", function(){
-        completeTask(subjectId, weekDate, taskId);
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
+    });
+    $('#playPauseButton').on("click", function(){
+        playPauseTimer(subjectId, weekDate, taskId);
+    });
+    $('#stopButton').on("click", function(){
+        stopTimer(subjectId, weekDate, taskId);
+    });
+    $('#closeTaskModal').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId);
     });
 }
+
 
 
 //===========================================================================================================
@@ -260,9 +275,10 @@ function openAddTaskDialog(data, dateOrSubject){
 
 
 //===========================================================================================================
-//CANCELLING ANY MODAL WINDOW WITHOUT ADDING ANYTHING
+// CLOSING MODAL WINDOWS
 //===========================================================================================================
 
+// FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
@@ -275,6 +291,21 @@ function closeModalWindow() {
         // Reset select value to default
         return this.defaultSelected;
     });
+}
+
+// FOR CLOSING THE TASK DETAILS MODAL
+function closeTaskModal(subjectId, weekDate, taskId, callback) {
+    closeModalWindow();
+
+    // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
+    if (!$('#stopButton').hasClass('stopped')) {
+        stopTimer(subjectId, weekDate, taskId, callback);
+    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+    } else {
+        if (callback !== undefined) {
+            callback(subjectId, weekDate, taskId);
+        }
+    }
 }
 
 

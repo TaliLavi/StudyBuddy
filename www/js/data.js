@@ -326,28 +326,26 @@ function saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTaskDetails, pos
 
 
 // MOVE TASK TO DELETED
-function deleteTask(subjectId, weekDate, taskId) {
+function moveTaskToDeleted(subjectId, weekDate, taskId) {
     var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
     var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
         removeTaskFromDOM(taskId);
-        closeModalWindow();
-    }, firebaseErrorFrom('deleteTask'));
+    }, firebaseErrorFrom('moveTaskToDeleted'));
 }
 
 
 // MOVE TASK TO DONE
-function completeTask(subjectId, weekDate, taskId) {
+function moveTaskToDone(subjectId, weekDate, taskId) {
     var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
     var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
         markAsDone(taskId);
-        closeModalWindow();
-    }, firebaseErrorFrom('completeTask'));
+    }, firebaseErrorFrom('moveTaskToDone'));
 }
 
 //=====================================================================
@@ -362,9 +360,9 @@ function fetchTimeIntervals(callback) {
         timeIntervalsRef.once("value", function (snapshot) {
             var sessionTimes = snapshot.val()
             cachedSessionTimes = {
-                study_session: sessionTimes.study_session_minutes,
-                short_break: sessionTimes.short_break_minutes,
-                long_break: sessionTimes.long_break_minutes
+                study_session: sessionTimes.study_session_seconds,
+                short_break: sessionTimes.short_break_seconds,
+                long_break: sessionTimes.long_break_seconds
             }
             callback(cachedSessionTimes);
         });
@@ -377,34 +375,46 @@ function incrementNumOfBreaks(subjectId, weekDate, taskId) {
     incrementNumOfBreaksForDate();
 }
 
+function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
+    tasksBreakRef.once("value", function(snapshot) {
+        var newNum = snapshot.val() + 1;
+        tasksBreakRef.set(newNum);
+    }, firebaseErrorFrom('incrementNumOfBreaksForTask'));
+}
+
+function incrementNumOfBreaksForDate() {
+    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
+    tasksBreakRef.once("value", function(snapshot) {
+        var newNum = snapshot.val() + 1;
+        tasksBreakRef.set(newNum);
+    }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
+}
 
 
-
-//function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
-//    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
-//    tasksBreakRef.once("value", function(snapshot) {
-//        var newNum = snapshot.val() + 1;
-//        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
-//    }, firebaseErrorFrom('incrementNumOfBreaksForTask'));
-//}
-//
-//function incrementNumOfBreaksForDate() {
-//    var todaysDate = Date.today().toString('yyyy-MM-dd');
-//    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
-//    tasksBreakRef.once("value", function(snapshot) {
-//        var newNum = snapshot.val() + 1;
-//        tasksBreakRef.set(newNum, firebaseErrorFrom('incrementNumOfBreaksForTask'));
-//    }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
-//}
+function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
+    updateTimeStudiedForTask(subjectId, weekDate, taskId, timeToLog, callback);
+    updateTimeStudiedForDate(timeToLog);
+}
 
 
+function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
+    var totalSecondsStudiedPerTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
+    totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
+        var newTotalTime = snapshot.val() + additionalTimeStudied;
+        totalSecondsStudiedPerTaskRef.set(newTotalTime);
+        if (callback !== undefined) {
+            callback(subjectId, weekDate, taskId);
+        }
+    }, firebaseErrorFrom('updateTimeStudiedForTask'));
+}
 
-
-
-
-
-
-function updateTimeStudied(timeToLog) {
-    updateTimeStudiedForTask();
-    updateTimeStudiedForDate();
+function updateTimeStudiedForDate(additionalTimeStudied) {
+    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    var totalSecondsStudiedPerDateRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/time_studied');
+    totalSecondsStudiedPerDateRef.once("value", function(snapshot) {
+        var newTotalTime = snapshot.val() + additionalTimeStudied;
+        totalSecondsStudiedPerDateRef.set(newTotalTime);
+    }, firebaseErrorFrom('updateTimeStudiedForDate'));
 }

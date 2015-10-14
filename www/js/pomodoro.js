@@ -50,7 +50,7 @@ function convertDisplayedTimeToSeconds() {
 }
 
 
-function setTimer() {
+function setTimer(subjectId, weekDate, taskId) {
     getSessionDuration(function(duration) {
         timer(
             // seconds
@@ -74,21 +74,21 @@ function setTimer() {
             // what to do after
             function() {
                 // change to following session type
-                switchToNextSession();
+                switchToNextSession(subjectId, weekDate, taskId);
             }
         );
     })
 }
 
 
-function playPauseTimer() {
+function playPauseTimer(subjectId, weekDate, taskId) {
     // play timer
     if ($('#playPauseButton').hasClass('notPlaying')) {
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
         $('#stopButton').removeClass('stopped');
 
-        setTimer();
+        setTimer(subjectId, weekDate, taskId);
 
         // pause timer
     } else {
@@ -96,7 +96,7 @@ function playPauseTimer() {
     }
 }
 
-function switchToNextSession() {
+function switchToNextSession(subjectId, weekDate, taskId) {
     playTone();
     if (sessionType === 'study_session') {
         // increase num of study sessions by one
@@ -114,15 +114,17 @@ function switchToNextSession() {
             numOfStudySessions = 0;
         }
 
-        //updateTimeStudied(study_session);
+        var timeToLog = cachedSessionTimes.study_session;
+        updateTimeStudied(subjectId, weekDate, taskId, timeToLog);
 
     } else {
+        incrementNumOfBreaks(subjectId, weekDate, taskId);
+
         // change to study_session
         sessionType = 'study_session';
-        //incrementNumOfBreaks();
     }
 
-    setTimer();
+    setTimer(subjectId, weekDate, taskId);
 
 }
 
@@ -140,15 +142,22 @@ function togglePlayPause() {
     }
 }
 
-function stopTimer(){
+function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
     $('#stopButton').addClass('stopped');
+
+    if (sessionType === 'study_session') {
+        // TODO: don't get data directly from cached object
+        var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();
+        updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback);
+    }
+
     resetTimerDisplay();
+
     if (!$('#playPauseButton').hasClass('notPlaying')) {
         togglePlayPause();
     }
     sessionType = 'study_session';
-    //updateTimeStudied();
 }
 
 function resetTimerDisplay() {

@@ -229,12 +229,12 @@
 <!--========================================================================================================-->
 <div id="taskModalBG" class="modal-bg">
   <div id="taskModal" class="modal">
-    <p class="closeX" onclick="closeModalWindow();">x</p>
+    <p class="closeX" id="closeTaskModal">x</p>
     <p class ="modalHeading">Your Task</p>
-    <div id ="pomodoroDiv">
+    <div id ="pomodoroDiv" data-task-id = 'empty'>
       <h1 id="timerDisplay">00:00</h1>
-      <button type="button" id="playPauseButton" class="notPlaying" onclick="playPauseTimer()">Play</button>
-      <button type="button" id="stopButton" onclick="stopTimer()" disabled>Stop</button>
+      <button type="button" id="playPauseButton" class="notPlaying">Play</button>
+      <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
       <audio id="tone">
         <source src="pomodoroTone.mp3" type="audio/mpeg">
       </audio>
@@ -253,7 +253,6 @@
 
   </div>
 </div>
-<!-- TODO: fix pomodoro initialization code to work only in preparePage.-->
 <script src='js/pomodoro.js'></script>
 <script>
 // TODO: Before publishing:
