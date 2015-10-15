@@ -43,9 +43,13 @@ function prepareNavigation() {
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
+        $('#subjectsHighlight').hide();
+        $('#weekHighlight').show();
     });
     $("#subjectsButton").click(function(){
         switchToPage("#subjectsPage", "#subjectsButton");
+        $('#subjectsHighlight').show();
+        $('#weekHighlight').hide();
     });
     // hide signup & login pages, reveal app pages and start the app on the calendar page
     $('#signUpPage').hide();
@@ -153,15 +157,15 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
         var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
         // date.js doesn't add the suffix for a days (e.g. 16th, 1st), so I made use of the getOrdinal() methos.
-        var suffix = currentDate.getOrdinal();
-        var suffixPlaceHolder = currentDate.toString('dxxx MMM');
-        var currentDateTitle = suffixPlaceHolder.replace("xxx", suffix);
+        //var suffix = currentDate.getOrdinal();
+        var spacePlaceHolder = currentDate.toString('dxxx MMM');
+        var currentDateTitle = spacePlaceHolder.replace("xxx", " ");
 
         var currentDay = currentDate.toString('ddd');
         // Append day
         daysHtml += '<div class="col dayColumn">' +
-            '<span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
-            '<span class="dateOnCalendarDay">' + currentDateTitle +'</span>' +
+            '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
+            '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
             '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
             currentDateFormatted + '\', this);">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +

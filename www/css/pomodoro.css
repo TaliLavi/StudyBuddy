@@ -74,16 +74,16 @@
 #topSand{
     fill:#1ea5a6;
     position: absolute;
-    width: 335px;        /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
-    height: 522px;
+    width: 100%;        /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
+    height: 100%;
     left:0%;               /*It seems like this can be used to move it horizontally. When width is zero, left should be 50% to keep them lined up*/
 }
 
 #bottomSand{
     fill: #1ea5a6;
     position: absolute;
-    width: 1px;          /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
-    height: 522px;
+    width: 1%;          /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
+    height: 100%;
     left:50%;                /*When width is zero, left should be 50% to keep them lined up.*/
     bottom: -48%;
 }

@@ -15,11 +15,14 @@ body{
 #iPadStatusBar {
     height: 20px;
     background-color: #607A93;
+    position: relative;            /* Needs position for z-index to work*/
+    z-index: 2;                     /* Brings it in front of icon highlights*/
 }
 
 #navBar {
     height: 80px;
     background-color: #1B9BAE;
+
 }
 
 .navButton{
@@ -34,14 +37,49 @@ body{
     margin-left: 5px;
     line-height: 1.6;
     font-weight: 300;
+    z-index: 2;
 }
-
 
 .navIcon{
     height: 40px;
     width: 40px;
+    z-index: 2;
 }
 
+.iconHighlight{
+    height: 90px;
+    width: 90px;
+    background-color: white;
+    opacity: .2;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 0;
+}
+
+#weekHighlight{
+    top: 15px;
+    margin-left: 88px;
+}
+
+#subjectsHighlight{
+    top: 15px;
+    margin-left: 0px;
+    display: none;
+}
+
+#profileButton{
+    float: right;
+
+}
+
+#signoutButton{
+    float: right;
+
+}
+
+#settingsButton{
+    float: right;
+}
 
 /*===================================================================================================================*/
 /*HEADINGS & CONTROLS*/
@@ -55,7 +93,6 @@ button:focus {outline:0;}
     width: 30%;
     text-align: center;
     padding-top: 35px;
-    padding-bottom: 35px;
 }
 
 #control_prev{
@@ -83,9 +120,12 @@ button:focus {outline:0;}
 .addTaskFromDate{
     color: #607A93;
     border: none;
-    background-color: transparent;
     font-size: .8em;
     height: 44px;
+    background-color: rgba(255,255,255,0.4);
+    width: 100%;
+    text-align: left;
+    margin-bottom: -5px;
 }
 
 #weekHeadingOnCalendar{
@@ -99,22 +139,28 @@ button:focus {outline:0;}
 
 
 .dayHeadingOnCalendar{
-    color: lightseagreen;
-    font-weight: 400;
+    color: white;
+    font-family: 'Acme';
     font-size: 1.2em;
-    text-align:center;
     margin: auto;
     padding: 1%;
+    text-transform: uppercase;
 }
 
 .dateOnCalendarDay{
-    color: grey;
-    font-weight: 400;
-    font-size: .75em;
-    text-align:center;
-    padding: 10%;
+    color: white;
+    font-family: Acme;
+    opacity: .5;
+    font-size: .8em;
+    padding: 5%;
+    text-transform: uppercase;
 }
 
+.dayDateDiv{
+    width: 100%;
+    background-color: #31A9A8;
+    padding: 3%;
+}
 
 
 
@@ -293,7 +339,7 @@ input{
 
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.4);
     position: relative;
     display: block;
     margin-top: 5px;
