@@ -247,8 +247,10 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#closeTaskModal').on("click", function(){
         closeTaskModal(subjectId, weekDate, taskId);
     });
-}
 
+    // if user clicks outside modal, modal closes.
+    closeWhenClickingOutside(subjectId, weekDate, taskId, $('#taskModal'));
+}
 
 
 //===========================================================================================================
@@ -297,6 +299,7 @@ function closeModalWindow() {
     });
 }
 
+
 // FOR CLOSING THE TASK DETAILS MODAL
 function closeTaskModal(subjectId, weekDate, taskId, callback) {
     closeModalWindow();
@@ -310,8 +313,24 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
             callback(subjectId, weekDate, taskId);
         }
     }
+
+    // prevent document from continueing to listen to clicks outside the modal container.
+    $(document).off('click');
 }
 
+// if user clicks outside modal, modal closes.
+function closeWhenClickingOutside(subjectId, weekDate, taskId, modalWindow) {
+    modalWindow.addClass('displayed');
+    if (modalWindow.hasClass('displayed')) {
+        $(document).click(function (e) {
+            var container = $("#taskModal");
+            // if the target of the click isn't the container, nor a descendant of the container
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                closeTaskModal(subjectId, weekDate, taskId);
+            }
+        });
+    }
+}
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
