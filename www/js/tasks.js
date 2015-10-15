@@ -136,6 +136,7 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
             createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            cardHtml
         })
     }
 }
