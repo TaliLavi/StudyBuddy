@@ -63,9 +63,8 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
 
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="todoTask ' + subjectKey + '"><span class="todoText">' + taskData.title +
+            '<div class ="todoTask ' + subjectKey + '"><span class="todoText ' + subjectDict.text_colour + '">' + taskData.title +
             '</span></div></li>';
-
 
     // create html for:
     // active/done assigned task in the calendar

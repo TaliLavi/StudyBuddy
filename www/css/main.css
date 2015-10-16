@@ -215,7 +215,7 @@ button:focus {outline:0;}
 
 
 .todoTask {
-    background-color: #dd3fd8;
+    background-color: #f7f7f7;
     font-weight: normal;
     border-radius: 3px;
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
@@ -233,7 +233,6 @@ button:focus {outline:0;}
 .todoText {
     font-family: 'Raleway', sans-serif;
     font-size: .8em;
-    color: #3648ff;
     margin: 4%;
     line-height: 1.5;
 }
@@ -494,102 +493,149 @@ input{
 /*COLOURS THEME 1*/
 /*==================================================================================================*/
 
-.theme1Colour1a{
+.theme1TextColour1 {
+    color: #F4A460;
+}
+
+.theme1Colour1a {
     background-color: #F4A460;
 }
 
-.theme1Colour1b{
+.theme1Colour1b {
     background-color: #EEC58F;
 }
 
-.theme1Colour2a{
+.theme1TextColour2 {
+    color: #F3742B;
+}
+
+.theme1Colour2a {
     background-color: #F3742B;
 }
 
-.theme1Colour2b{
+.theme1Colour2b {
     background-color: #F6AE85;
 }
 
-.theme1Colour3a{
+.theme1TextColour3 {
+    color: #C83A0A;
+}
+
+.theme1Colour3a {
     background-color: #C83A0A;
 }
 
-.theme1Colour3b{
+.theme1Colour3b {
     background-color: #E08262;
 }
 
-.theme1Colour4a{
+.theme1TextColour4 {
+    color: #E7867F;
+}
+
+.theme1Colour4a {
     background-color: #E7867F;
 }
 
-.theme1Colour4b{
+.theme1Colour4b {
     background-color: #F1A29C;
 }
 
-.theme1Colour5a{
+.theme1TextColour5 {
+    color: #BC6771;
+}
+
+.theme1Colour5a {
     background-color: #BC6771;
 }
 
-.theme1Colour5b{
+.theme1Colour5b {
     background-color: #CD9FA4;
 }
 
-.theme1Colour6a{
+.theme1TextColour6 {
+    color: #C9304D;
+}
+
+.theme1Colour6a {
     background-color: #C9304D;
 }
 
-.theme1Colour6b{
+.theme1Colour6b {
     background-color: #E1788C;
 }
 
-.theme1Colour7a{
+.theme1TextColour7 {
+    color: #6F4B6F;
+}
+
+.theme1Colour7a {
     background-color: #6F4B6F;
 }
 
-.theme1Colour7b{
+.theme1Colour7b {
     background-color: #9C7F9C;
 }
 
-.theme1Colour8a{
+.theme1TextColour8 {
+    color: #607A93
+}
+
+.theme1Colour8a {
     background-color: #607A93;
 }
 
-.theme1Colour8b{
+.theme1Colour8b {
     background-color: #869CB1;
 }
 
-.theme1Colour9a{
+.theme1TextColour9 {
+    color: #A0AFBE;
+}
+
+.theme1Colour9a {
     background-color: #A0AFBE;
 }
 
-.theme1Colour9b{
+.theme1Colour9b {
     background-color: #C6D2DD;
 }
 
-.theme1Colour10a{
+.theme1TextColour10 {
+    color: #7EC6D5;
+}
+
+.theme1Colour10a {
     background-color: #7EC6D5;
 }
 
-.theme1Colour10b{
+.theme1Colour10b {
     background-color: #BCDBE1;
 }
 
-.theme1Colour11a{
+.theme1TextColour11 {
+    color: #31A9A8;
+}
+
+.theme1Colour11a {
     background-color: #31A9A8;
 }
 
-.theme1Colour11b{
+.theme1Colour11b {
     background-color: #77C9C8;
 }
 
-.theme1Colour12a{
+.theme1TextColour12 {
+    color: #1E7D8A;
+}
+
+.theme1Colour12a {
     background-color: #1E7D8A;
 }
 
-.theme1Colour12b{
+.theme1Colour12b {
     background-color: #97C7CD;
 }
-
 
 .colour21324C {
     background-color: #21324C;
@@ -597,7 +643,6 @@ input{
 
 .colour2A98BB {
     background-color: #2A98BB;
-
 }
 
 .colourA6E1F1 {
@@ -611,7 +656,6 @@ input{
 .colour6F011E {
     background-color: #6F011E;
 }
-
 
 .colourFFE672 {
     background-color: #FFE672;
