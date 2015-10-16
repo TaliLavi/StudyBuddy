@@ -58,33 +58,49 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
 //Create html for task element, append it to the list and apply hammer on it
 function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
 
-    if (isDone !== undefined) {
-        //create html for done task
-        var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
+    // create html for:
+    // active/done task on subject page
+    if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
+
+        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+            '<div class ="todoTask ' + subjectKey + '"><span class="todoText ' + subjectDict.text_colour + '">' + taskData.title +
             '</span></div></li>';
+
+    // create html for:
+    // active/done assigned task in the calendar
+    // or
+    // unassigned task in the footer
     } else {
-        //create html for active task
-        var cardHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="taskCard ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
-            '</span></div></li>';
+        //create html for:
+        // done task in the calendar
+        if (isDone !== undefined) {
+            var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+                '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
+                '</span></div></li>';
+        //create html for:
+        // active task in the calendar
+        // or
+        // unassigned task in the footer
+        } else {
+            var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+                '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
+                '</span></div></li>';
+        }
     }
 
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
+
+    // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
     if (screen.width < 1000) {
-        // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
-        var taskCard = $(cardHtml).appendTo(listSelector).hammer();
-        taskCard.on('tap', function (ev) {
+        var task = $(taskHtml).appendTo(listSelector).hammer();
+        task.on('tap', function (ev) {
             console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
             displayTask(subjectKey, startOfRelevantWeek, taskKey);
         });
-        taskCard.on('press', function (ev) {
-            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-        });
+    // if viewed from desktop, append card to list and listen to click events
     } else {
-        // if viewed from desktop, append card to list and listen to click events
-        var taskCard = $(cardHtml).appendTo(listSelector);
-        taskCard.on("click", function () {
+        var task = $(taskHtml).appendTo(listSelector);
+        task.on("click", function () {
             displayTask(subjectKey, startOfRelevantWeek, taskKey);
         });
     }
@@ -114,7 +130,7 @@ function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
 
 // DISPLAY TASKS ON SUBJECTS PAGE
 function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
-    // CLEAR CURRENT DISPLAY OF Tasks
+    // CLEAR CURRENT DISPLAY OF TASKS
     var subjectDiv = "#tasksFor" + subjectKey;
     $(subjectDiv).text('');
 
@@ -128,7 +144,7 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
 
 // DISPLAY COMPLETED TASKS PER SUBJECT ON SUBJECTS PAGE
 function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
-    // CLEAR CURRENT DISPLAY OF Tasks
+    // CLEAR CURRENT DISPLAY OF TASKS
     var subjectDiv = "#completedTasksFor" + subjectKey;
     $(subjectDiv).text('');
 

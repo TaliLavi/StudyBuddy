@@ -43,9 +43,13 @@ function prepareNavigation() {
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
+        $('#subjectsHighlight').hide();
+        $('#weekHighlight').show();
     });
     $("#subjectsButton").click(function(){
         switchToPage("#subjectsPage", "#subjectsButton");
+        $('#subjectsHighlight').show();
+        $('#weekHighlight').hide();
     });
     // hide signup & login pages, reveal app pages and start the app on the calendar page
     $('#signUpPage').hide();
@@ -153,15 +157,15 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
         var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
         // date.js doesn't add the suffix for a days (e.g. 16th, 1st), so I made use of the getOrdinal() methos.
-        var suffix = currentDate.getOrdinal();
-        var suffixPlaceHolder = currentDate.toString('dxxx MMM');
-        var currentDateTitle = suffixPlaceHolder.replace("xxx", suffix);
+        //var suffix = currentDate.getOrdinal();
+        var spacePlaceHolder = currentDate.toString('dxxx MMM');
+        var currentDateTitle = spacePlaceHolder.replace("xxx", " ");
 
-        var currentDay = currentDate.toString('dddd');
+        var currentDay = currentDate.toString('ddd');
         // Append day
         daysHtml += '<div class="col dayColumn">' +
-            '<p class="dayHeadingOnCalendar">' + currentDay + '</p>' +
-            '<div class="dateOnCalendarDay">' + currentDateTitle +'</div>' +
+            '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
+            '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
             '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
             currentDateFormatted + '\', this);">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
@@ -210,7 +214,7 @@ function displayTask(subjectId, assigned_date, taskId) {
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
 }
 
-function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
+function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);
@@ -225,14 +229,17 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
 
-    $('#deleteTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
-    });
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
     });
+    $('#deleteTask').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
+    });
     $('#completeTask').on("click", function(){
         closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
+    });
+    $('#closeTaskModal').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId);
     });
     $('#playPauseButton').on("click", function(){
         playPauseTimer(subjectId, weekDate, taskId);
@@ -240,11 +247,12 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#stopButton').on("click", function(){
         stopTimer(subjectId, weekDate, taskId);
     });
-    $('#closeTaskModal').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId);
-    });
-}
 
+    $('#taskModal').addClass('displayed');
+
+    // if user clicks outside modal, modal closes.
+    closeWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
+}
 
 
 //===========================================================================================================
@@ -270,7 +278,9 @@ function openAddTaskDialog(data, dateOrSubject){
     // Clear any old onclick handler
     $('#submitNewTask').off("click");
     // Set the new onclick handler
-    $('#submitNewTask').on("click", function(){createTask()});
+    $('#submitNewTask').on("click", createTask);
+
+    closeWhenClickingOutside($('#addTaskModal'));
 }
 
 
@@ -280,6 +290,8 @@ function openAddTaskDialog(data, dateOrSubject){
 
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
+    // prevent document from continueing to listen to clicks outside the modal container.
+    $(document).off('mouseup');
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
@@ -292,6 +304,7 @@ function closeModalWindow() {
         return this.defaultSelected;
     });
 }
+
 
 // FOR CLOSING THE TASK DETAILS MODAL
 function closeTaskModal(subjectId, weekDate, taskId, callback) {
@@ -308,6 +321,20 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
     }
 }
 
+// if user clicks outside modal, modal closes.
+function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
+    $(document).on("mouseup", function (event) {
+        // if the target of the click isn't the modal window, nor a descendant of the modal window
+        if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
+            if ($('#taskModal').hasClass('displayed')) {
+                closeTaskModal(subjectId, weekDate, taskId);
+                $('#taskModal').removeClass('displayed')
+            } else {
+                closeModalWindow();
+            }
+        }
+    });
+}
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
@@ -321,6 +348,7 @@ function openAddSubjectDialog(){
     // Clear any old onclick handler
     $('#submitNewSubject').off("click");
     // Set the new onclick handler
-    $('#submitNewSubject').on("click", function(){createSubject()});
+    $('#submitNewSubject').on("click", createSubject);
 
+    closeWhenClickingOutside($('#addSubjectModal'));
 }

@@ -59,7 +59,8 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectName" onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
             $('#tasksPerSubject').append(
-                '<div class="subjectArea" id="subjectArea' + subjectKey + '">' +
+                '<div class="subjectArea" id="subjectArea' + subjectKey + '" data-main-colour = \'' + subjectData.main_colour + '\' ' +
+                ' data-second-colour = \'' + subjectData.second_colour + '\'>' +
                 '<h4>' + subjectData.name + '</h4>' +
                 '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                 '<ul id="tasksFor' + subjectKey + '"></ul>' +

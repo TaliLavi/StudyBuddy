@@ -7,84 +7,97 @@
           "is_deleted" : 0,
           "main_colour" : "theme1Colour10a",
           "name" : "English",
-          "second_colour" : ".theme1Colour10b"
+          "second_colour" : "theme1Colour10b",
+          "text_colour" : "theme1TextColour10"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
           "colour" : "colour2A98BB",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour11a",
           "name" : "Irish",
-          "second_colour" : "theme1Colour11b"
+          "second_colour" : "theme1Colour11b",
+          "text_colour" : "theme1TextColour11"
         },
         "-Jw8mvm4cUeDXF4s02Hg" : {
           "colour" : "colourA6E1F1",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour7a",
           "name" : "French",
-          "second_colour" : "theme1Colour7b"
+          "second_colour" : "theme1Colour7b",
+          "text_colour" : "theme1TextColour7"
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
           "colour" : "colourB10239",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour6a",
           "name" : "Ancient Latin",
-          "second_colour" : "theme1Colour6b"
+          "second_colour" : "theme1Colour6b",
+          "text_colour" : "theme1TextColour6"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
           "colour" : "colour6F011E",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour12a",
           "name" : "Biology",
-          "second_colour" : "theme1Colour12b"
+          "second_colour" : "theme1Colour12b",
+          "text_colour" : "theme1TextColour12"
         },
         "-JxyYfev8Oq9t8aKUJ8C" : {
           "colour" : "colour459BE7",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour8a",
           "name" : "Irish Dance",
-          "second_colour" : "theme1Colour8b"
+          "second_colour" : "theme1Colour8b",
+          "text_colour" : "theme1TextColour8"
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
           "colour" : "colourFFE672",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour1a",
           "name" : "Spanish",
-          "second_colour" : "theme1Colour1b"
+          "second_colour" : "theme1Colour1b",
+          "text_colour" : "theme1TextColour1"
         },
         "-K0VyDLOSRualpn_m1-Q" : {
           "colour" : "colour",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour5a",
           "name" : "History",
-          "second_colour" : "theme1Colour5b"
+          "second_colour" : "theme1Colour5b",
+          "text_colour" : "theme1TextColour5"
         },
         "-K0Vz6iD4kXN-lpH-q4I" : {
           "colour" : "colour",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour4a",
           "name" : "Geography",
-          "second_colour" : "theme1Colour4b"
+          "second_colour" : "theme1Colour4b",
+          "text_colour" : "theme1TextColour4"
         },
         "-K0VzRdyEJHr6XpWfwzH" : {
           "colour" : "colour",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour9a",
           "name" : "Art",
-          "second_colour" : "theme1Colour9b"
+          "second_colour" : "theme1Colour9b",
+          "text_colour" : "theme1TextColour9"
         },
         "-K0Vznfvhox8u52L9IeM" : {
           "colour" : "colour",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour3a",
           "name" : "Maths",
-          "second_colour" : "theme1Colour3b"
+          "second_colour" : "theme1Colour3b",
+          "text_colour" : "theme1TextColour3"
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
           "colour" : "v",
           "is_deleted" : 0,
           "main_colour" : "theme1Colour2a",
           "name" : "Business",
-          "second_colour" : "theme1Colour2b"
+          "second_colour" : "theme1Colour2b",
+          "text-colour" : "theme1TextColour2",
+          "text_colour" : "theme1TextColour2"
         }
       }
     },
@@ -234,18 +247,6 @@
               "total_seconds_studied" : 8
             }
           },
-          "2015-10-12" : {
-            "-JzG3M1BkyCFpc6HkMR6" : {
-              "assigned_date" : "2015-10-15",
-              "creation_date" : 1442321624141,
-              "description" : "",
-              "number_of_breaks" : 4,
-              "status_change_date" : 1442321624141,
-              "time_estimation" : "",
-              "title" : "Irish Stuff",
-              "total_seconds_studied" : 57
-            }
-          },
           "2015-10-19" : {
             "-JzfT0RxBg_3P4LdgWDt" : {
               "assigned_date" : "2015-10-22",
@@ -265,6 +266,16 @@
               "status_change_date" : 1437225396044,
               "time_estimation" : "8:30",
               "title" : "Another Irish task"
+            },
+            "-JzG3M1BkyCFpc6HkMR6" : {
+              "assigned_date" : "",
+              "creation_date" : 1442321624141,
+              "description" : "",
+              "number_of_breaks" : 6,
+              "status_change_date" : 1442321624141,
+              "time_estimation" : "",
+              "title" : "Irish Stuff",
+              "total_seconds_studied" : 117
             },
             "-JzfT0RxBg_3P4LdgW99" : {
               "assigned_date" : ""
@@ -314,7 +325,7 @@
           },
           "2015-10-12" : {
             "-K-KfrPAd2fzRVN7lSci" : {
-              "assigned_date" : "2015-10-14",
+              "assigned_date" : "2015-10-15",
               "creation_date" : 1443472833908,
               "description" : "",
               "status_change_date" : 1443472833908,
@@ -419,6 +430,22 @@
               "time_estimation" : "",
               "title" : "New biology Task",
               "total_seconds_studied" : 55
+            },
+            "-K-KgICOOfzrV7HZf_P7" : {
+              "assigned_date" : "2015-10-15",
+              "creation_date" : 1443472947783,
+              "description" : "Functions of the skeleton question, page 14",
+              "status_change_date" : 1443472947783,
+              "time_estimation" : "",
+              "title" : "The skeletal system"
+            },
+            "-K0QV3zmAxrzPePpynuC" : {
+              "assigned_date" : "2015-10-13",
+              "creation_date" : 1444644147794,
+              "description" : "",
+              "status_change_date" : 1444644147794,
+              "time_estimation" : "",
+              "title" : "The heart"
             }
           },
           "2015-10-19" : {
@@ -431,24 +458,6 @@
               "time_estimation" : "",
               "title" : "Diagram of the heart",
               "total_seconds_studied" : 10
-            }
-          },
-          "no_assigned_date" : {
-            "-K-KgICOOfzrV7HZf_P7" : {
-              "assigned_date" : "",
-              "creation_date" : 1443472947783,
-              "description" : "Functions of the skeleton question, page 14",
-              "status_change_date" : 1443472947783,
-              "time_estimation" : "",
-              "title" : "The skeletal system"
-            },
-            "-K0QV3zmAxrzPePpynuC" : {
-              "assigned_date" : "",
-              "creation_date" : 1444644147794,
-              "description" : "",
-              "status_change_date" : 1444644147794,
-              "time_estimation" : "",
-              "title" : "The heart"
             }
           }
         },
@@ -545,6 +554,14 @@
               "status_change_date" : 1444737308106,
               "time_estimation" : "",
               "title" : "Essay on Impact of Columbus on Natives"
+            },
+            "-K0W2X8Evwgj4cf5E7HJ" : {
+              "assigned_date" : "2015-10-17",
+              "creation_date" : 1444737327784,
+              "description" : "",
+              "status_change_date" : 1444737327784,
+              "time_estimation" : "",
+              "title" : "Short Questions the Explorations"
             }
           },
           "2015-10-19" : {
@@ -558,14 +575,6 @@
             }
           },
           "no_assigned_date" : {
-            "-K0W2X8Evwgj4cf5E7HJ" : {
-              "assigned_date" : "",
-              "creation_date" : 1444737327784,
-              "description" : "",
-              "status_change_date" : 1444737327784,
-              "time_estimation" : "",
-              "title" : "Short Questions the Explorations"
-            },
             "-K0W2fsG_8jSe_GfexMC" : {
               "assigned_date" : "",
               "creation_date" : 1444737367658,
@@ -1285,8 +1294,8 @@
     },
     "2015-10-14" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
-        "number_of_breaks" : 28,
-        "time_studied" : 203
+        "number_of_breaks" : 30,
+        "time_studied" : 263
       }
     }
   }
