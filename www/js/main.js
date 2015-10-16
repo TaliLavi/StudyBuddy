@@ -214,7 +214,7 @@ function displayTask(subjectId, assigned_date, taskId) {
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
 }
 
-function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
+function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);
@@ -229,14 +229,17 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
 
-    $('#deleteTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
-    });
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
     });
+    $('#deleteTask').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
+    });
     $('#completeTask').on("click", function(){
         closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
+    });
+    $('#closeTaskModal').on("click", function(){
+        closeTaskModal(subjectId, weekDate, taskId);
     });
     $('#playPauseButton').on("click", function(){
         playPauseTimer(subjectId, weekDate, taskId);
@@ -244,12 +247,11 @@ function fillInTaskDetails(subjectId, assigned_date, taskId, taskDetails) {
     $('#stopButton').on("click", function(){
         stopTimer(subjectId, weekDate, taskId);
     });
-    $('#closeTaskModal').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId);
-    });
+
+    $('#taskModal').addClass('displayed');
 
     // if user clicks outside modal, modal closes.
-    closeWhenClickingOutside(subjectId, weekDate, taskId, $('#taskModal'));
+    closeWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
 }
 
 
@@ -276,7 +278,9 @@ function openAddTaskDialog(data, dateOrSubject){
     // Clear any old onclick handler
     $('#submitNewTask').off("click");
     // Set the new onclick handler
-    $('#submitNewTask').on("click", function(){createTask()});
+    $('#submitNewTask').on("click", createTask);
+
+    closeWhenClickingOutside($('#addTaskModal'));
 }
 
 
@@ -286,6 +290,8 @@ function openAddTaskDialog(data, dateOrSubject){
 
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
+    // prevent document from continueing to listen to clicks outside the modal container.
+    $(document).off('mouseup');
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
@@ -313,23 +319,21 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
             callback(subjectId, weekDate, taskId);
         }
     }
-
-    // prevent document from continueing to listen to clicks outside the modal container.
-    $(document).off('click');
 }
 
 // if user clicks outside modal, modal closes.
-function closeWhenClickingOutside(subjectId, weekDate, taskId, modalWindow) {
-    modalWindow.addClass('displayed');
-    if (modalWindow.hasClass('displayed')) {
-        $(document).click(function (e) {
-            var container = $("#taskModal");
-            // if the target of the click isn't the container, nor a descendant of the container
-            if (!container.is(e.target) && container.has(e.target).length === 0) {
+function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
+    $(document).on("mouseup", function (event) {
+        // if the target of the click isn't the modal window, nor a descendant of the modal window
+        if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
+            if ($('#taskModal').hasClass('displayed')) {
                 closeTaskModal(subjectId, weekDate, taskId);
+                $('#taskModal').removeClass('displayed')
+            } else {
+                closeModalWindow();
             }
-        });
-    }
+        }
+    });
 }
 
 //===========================================================================================================
@@ -344,6 +348,7 @@ function openAddSubjectDialog(){
     // Clear any old onclick handler
     $('#submitNewSubject').off("click");
     // Set the new onclick handler
-    $('#submitNewSubject').on("click", function(){createSubject()});
+    $('#submitNewSubject').on("click", createSubject);
 
+    closeWhenClickingOutside($('#addSubjectModal'));
 }
