@@ -89,6 +89,13 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function viewSubjectArea(subjectKey) {
+    // remove previous colour class
+    $('#tasksPerSubject').removeClass();
+
+    // change background colour to subject's colour
+    var secondColour = $('#subjectArea' + subjectKey).data('second-colour');
+    $('#tasksPerSubject').addClass(secondColour);
+
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
 }
