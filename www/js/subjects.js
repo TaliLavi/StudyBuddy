@@ -54,10 +54,12 @@ function displayActiveSubjects(allSubjectsDict) {
             );
 
 
-            // create a div for each subject and append it to subjectsList
+            // In subjects page, create a button (div) for each subject
             $('#subjectsList').append(
-                '<div class="subjectName" onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
+                '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.text_colour + '" ' +
+                'onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
+            // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
                 '<div class="subjectArea" id="subjectArea' + subjectKey + '" data-main-colour = \'' + subjectData.main_colour + '\' ' +
                 ' data-second-colour = \'' + subjectData.second_colour + '\'>' +
@@ -89,12 +91,17 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function viewSubjectArea(subjectKey) {
-    // remove previous colour class
+    // remove previous colour class from #tasksPerSubject
     $('#tasksPerSubject').removeClass();
+    // remove all classes except for .subjectName (used for clearing colour background)
+    // todo: fix problem where it also removes text colours from all subject buttons
+    $('.subjectName').attr('class', 'subjectName');
 
-    // change background colour to subject's colour
+
+    // change colours to subject's colour for subject button and background
     var secondColour = $('#subjectArea' + subjectKey).data('second-colour');
     $('#tasksPerSubject').addClass(secondColour);
+    $('#subjectName' + subjectKey).addClass(secondColour);
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
