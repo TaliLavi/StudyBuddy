@@ -214,30 +214,6 @@ button:focus {outline:0;}
 /*}*/
 
 
-.todoTask {
-    background-color: #f7f7f7;
-    font-weight: normal;
-    border-radius: 3px;
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    position: relative;
-    width: 100%;
-    height:65px;
-    margin-bottom: 7px;             /*create a margin between cards*/
-    cursor: -webkit-grab;
-    -webkit-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
-    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
-    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.25);
-}
-
-
-.todoText {
-    font-family: 'Raleway', sans-serif;
-    font-size: .8em;
-    margin: 4%;
-    line-height: 1.5;
-}
-
-
 .doneTask {
     background-image: repeating-linear-gradient(
             -45deg,

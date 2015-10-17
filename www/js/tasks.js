@@ -54,6 +54,11 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
     }
 }
 
+// collapse accordion
+function close_accordion_section() {
+    $('.accordion .accordion-section-title').removeClass('active');
+    $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+}
 
 //Create html for task element, append it to the list and apply hammer on it
 function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
@@ -62,9 +67,39 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
     // active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
 
-        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="todoTask ' + subjectKey + '"><span class="todoText ' + subjectDict.text_colour + '">' + taskData.title +
-            '</span></div></li>';
+        var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+                            '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+                                '<span class="' + subjectDict.text_colour + '">' + taskData.title +
+                                '</span>' +
+                            '</a>' +
+                            '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
+                                '<div>' +
+                                    '<p>Content content content content content.</p>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<br/>';
+
+        $(taskHtml).appendTo(listSelector);
+
+        $('#accordionTitle' + taskKey).click(function(e) {
+            // Grab current anchor value
+            var currentAttrValue = $(this).attr('href');
+
+            if($(e.target).is('.active')) {
+                close_accordion_section();
+            }else {
+                close_accordion_section();
+
+                // Add active class to section title
+                $(this).addClass('active');
+                // Open up the hidden content panel
+                $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
+            }
+
+            e.preventDefault();
+        });
+
 
     // create html for:
     // active/done assigned task in the calendar
@@ -86,23 +121,22 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
                 '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
                 '</span></div></li>';
         }
-    }
 
-    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-
-    // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
-    if (screen.width < 1000) {
-        var task = $(taskHtml).appendTo(listSelector).hammer();
-        task.on('tap', function (ev) {
-            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-            displayTask(subjectKey, startOfRelevantWeek, taskKey);
-        });
-    // if viewed from desktop, append card to list and listen to click events
-    } else {
-        var task = $(taskHtml).appendTo(listSelector);
-        task.on("click", function () {
-            displayTask(subjectKey, startOfRelevantWeek, taskKey);
-        });
+        var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
+        // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
+        if (isMobile()) {
+            var task = $(taskHtml).appendTo(listSelector).hammer();
+            task.on('tap', function (ev) {
+                console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
+                displayTask(subjectKey, startOfRelevantWeek, taskKey);
+            });
+            // if viewed from desktop, append card to list and listen to click events
+        } else {
+            var task = $(taskHtml).appendTo(listSelector);
+            task.on("click", function () {
+                displayTask(subjectKey, startOfRelevantWeek, taskKey);
+            });
+        }
     }
 }
 
