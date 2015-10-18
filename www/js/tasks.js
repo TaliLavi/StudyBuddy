@@ -25,7 +25,6 @@ function createTask() {
         title: $('#titleInput').val(),
         description: $('#descriptionInput').val(),
         assigned_date: $('#assignedDateInput').val(),
-        time_estimation: $('#timeEstimationInput').val(),
         creation_date: now,
         status_change_date: now
     }
@@ -41,7 +40,6 @@ function updateTask(taskId, oldTaskDict) {
         title: $('#taskTitle').val(),
         description: $('#taskDescription').val(),
         assigned_date: $('#taskAssignedDate').val(),
-        time_estimation: $('#taskTimeEstimation').val()
     }
     saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
 }
@@ -54,105 +52,119 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
     }
 }
 
+//Create html for task element, append it to the list and apply hammer on it
+function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
+
+    // create html for active/done task on subject page
+    if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
+        var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData);
+        $(taskHtml).appendTo(listSelector);
+        setClickForTodoTask(taskKey);
+        // create html for active/done assigned task in the calendar OR for unassigned task in the footer
+    } else {
+        var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
+        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml);
+    }
+}
+
+function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) {
+    //create html for done task in the calendar
+    if (isDone !== undefined) {
+        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
+            '</span></div></li>';
+        //create html for active task in the calendar OR for unassigned task in the footer
+    } else {
+        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
+            '</span></div></li>';
+    }
+
+    return taskHtml;
+}
+
+function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
+    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
+    // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
+    if (isMobile()) {
+        var task = $(taskHtml).appendTo(listSelector).hammer();
+        task.on('tap', function (ev) {
+            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
+            displayTask(subjectKey, startOfRelevantWeek, taskKey);
+        });
+        // if viewed from desktop, append card to list and listen to click events
+    } else {
+        var task = $(taskHtml).appendTo(listSelector);
+        task.on("click", function () {
+            displayTask(subjectKey, startOfRelevantWeek, taskKey);
+        });
+    }
+}
+
+function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
+    if (taskData.assigned_date === "") {
+        var taskAssignedDate = "Set a date";
+    } else {
+        var taskAssignedDate = taskData.assigned_date;
+    }
+
+    var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+        '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+        '<span class="' + subjectDict.text_colour + '">' + taskData.title +
+        '</span>' +
+        '<span class="' + subjectDict.text_colour + '">' + taskAssignedDate +
+        '</span>' +
+        '</a>' +
+        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
+        '<div>' +
+        '<p>' + taskData.description +'</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<br/>';
+
+    return taskHtml;
+}
+
+function setClickForTodoTask(taskKey) {
+    $('#accordionTitle' + taskKey).click(function(e) {
+        // Grab current anchor value
+        var currentAttrValue = $(this).attr('href');
+
+        if($(e.target).is('.active') || $(e.target).parent().is('.active')) {
+            close_accordion_section();
+        } else {
+            close_accordion_section();
+
+            // Add active class to section title
+            $(this).addClass('active');
+            // Open up the hidden content panel
+            $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
+        }
+
+        e.preventDefault();
+    });
+}
+
 // collapse accordion
 function close_accordion_section() {
     $('.accordion .accordion-section-title').removeClass('active');
     $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
 }
 
-//Create html for task element, append it to the list and apply hammer on it
-function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
-
-    // create html for:
-    // active/done task on subject page
-    if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
-
-        var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                            '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-                                '<span class="' + subjectDict.text_colour + '">' + taskData.title +
-                                '</span>' +
-                            '</a>' +
-                            '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
-                                '<div>' +
-                                    '<p>Content content content content content.</p>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<br/>';
-
-        $(taskHtml).appendTo(listSelector);
-
-        $('#accordionTitle' + taskKey).click(function(e) {
-            // Grab current anchor value
-            var currentAttrValue = $(this).attr('href');
-
-            if($(e.target).is('.active')) {
-                close_accordion_section();
-            }else {
-                close_accordion_section();
-
-                // Add active class to section title
-                $(this).addClass('active');
-                // Open up the hidden content panel
-                $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
-            }
-
-            e.preventDefault();
-        });
-
-
-    // create html for:
-    // active/done assigned task in the calendar
-    // or
-    // unassigned task in the footer
-    } else {
-        //create html for:
-        // done task in the calendar
-        if (isDone !== undefined) {
-            var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
-                '</span></div></li>';
-        //create html for:
-        // active task in the calendar
-        // or
-        // unassigned task in the footer
-        } else {
-            var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
-                '</span></div></li>';
-        }
-
-        var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-        // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
-        if (isMobile()) {
-            var task = $(taskHtml).appendTo(listSelector).hammer();
-            task.on('tap', function (ev) {
-                console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-                displayTask(subjectKey, startOfRelevantWeek, taskKey);
-            });
-            // if viewed from desktop, append card to list and listen to click events
-        } else {
-            var task = $(taskHtml).appendTo(listSelector);
-            task.on("click", function () {
-                displayTask(subjectKey, startOfRelevantWeek, taskKey);
-            });
-        }
-    }
-}
-
 // APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
 function appendTask(subjectId, subjectData, taskKey, taskData) {
     // APPEND TASK TO SUBJECTS PAGE
     var subjectDiv = '#tasksFor' + subjectId;
-    createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+    createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
-        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+        createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
         // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
     } else if ($('#calendarWrapper').children($('#week' + startOfWeek(taskData.assigned_date))).length > 0) {
         var subjectDiv = '#' + taskData.assigned_date;
-        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+        createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     }
 }
 
@@ -171,7 +183,7 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
         })
     }
 }
@@ -185,7 +197,7 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
         })
     }
 }
@@ -213,7 +225,7 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
         // append tasks to the footer div
         $.each(tasksDict, function(taskKey, taskData){
             var subjectDiv = '#unassignedTasksList';
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
             applySortable(subjectDiv);
         })
     }
@@ -227,7 +239,7 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date, thisWeeksMonday, nextWeeksMonday)) {
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }
@@ -238,12 +250,12 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
         if (isDone !== undefined) {
             // append done tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
             })
         } else {
             // append active tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             })
         }
     }
