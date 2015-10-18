@@ -25,6 +25,7 @@ function preparePage() {
 
     // prepare hour glass timer animation
     prepareHourGlass();
+
 }
 
 
@@ -93,8 +94,12 @@ function switchToPage(pageId, buttonId) {
 
 
 //Make these things happen each time the page finishes loading
+function isMobile() {
+    return screen.width < 1000;
+}
+
 function applySortable(selector) {
-    if (screen.width < 1000) {
+    if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
         $(selector).each(function (i, list) {
             Sortable.create(list, {

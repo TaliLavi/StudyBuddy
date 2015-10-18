@@ -65,10 +65,10 @@ function displayActiveSubjects(allSubjectsDict) {
                 ' data-second-colour = \'' + subjectData.second_colour + '\'>' +
                 '<h4>' + subjectData.name + '</h4>' +
                 '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
-                '<ul id="tasksFor' + subjectKey + '"></ul>' +
+                '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                 '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                 subjectKey + '\');">Show completed tasks</button>' +
-                '<ul id="completedTasksFor' + subjectKey + '"></ul>' +
+                '<div class="accordion" id="completedTasksFor' + subjectKey + '"></div>' +
                 '</div>'
             );
 
