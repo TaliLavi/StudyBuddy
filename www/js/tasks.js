@@ -52,9 +52,8 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
     }
 }
 
-//Create html for task element, append it to the list and apply hammer on it
+//Create html for task element and append it to the list
 function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
-
     // create html for active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
         var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData);
@@ -71,13 +70,17 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     //create html for done task in the calendar
     if (isDone !== undefined) {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask"><span class="cardText">' + taskData.title +
-            '</span></div></li>';
-        //create html for active task in the calendar OR for unassigned task in the footer
+                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask">' +
+                                '<span class="cardText">' + taskData.title + '</span>' +
+                            '</div>' +
+                        '</li>';
+    //create html for active task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '"><span class="cardText">' + taskData.title +
-            '</span></div></li>';
+                           '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '">' +
+                                '<span class="cardText">' + taskData.title + '</span>' +
+                           '</div>' +
+                       '</li>';
     }
 
     return taskHtml;
@@ -101,19 +104,17 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     }
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-        '<span class="' + subjectDict.text_colour + '">' + taskData.title +
-        '</span>' +
-        '<span class="' + subjectDict.text_colour + '">' + taskAssignedDate +
-        '</span>' +
-        '</a>' +
-        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
-        '<div>' +
-        '<p>' + taskData.description +'</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<br/>';
+                        '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+                            '<span class="' + subjectDict.text_colour + '">' + taskData.title + '</span>' +
+                            '<span class="' + subjectDict.text_colour + '">' + taskAssignedDate + '</span>' +
+                        '</a>' +
+                        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
+                            '<div>' +
+                                '<p>' + taskData.description +'</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<br/>';
 
     return taskHtml;
 }
