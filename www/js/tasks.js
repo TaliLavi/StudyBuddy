@@ -105,8 +105,8 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
                         '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-                            '<span class="' + subjectDict.text_colour + '">' + taskData.title + '</span>' +
-                            '<span class="' + subjectDict.text_colour + '">' + taskAssignedDate + '</span>' +
+                            '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
+                            '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
                         '</a>' +
                         '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
                             '<div>' +
