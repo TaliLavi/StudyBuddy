@@ -5,6 +5,7 @@ a {
 
 .accordion {
     overflow:hidden;
+    width:80%;
 }
 
 /*----- Section Titles -----*/
@@ -12,17 +13,10 @@ a {
     width:100%;
     padding:15px;
     display:inline-block;
-    border-bottom:1px solid #1a1a1a;
     background-color: #f7f7f7;
     transition:all linear 0.15s;
     /* Type */
     font-weight: normal;
-}
-
-.accordion-section-title.active, .accordion-section-title:hover {
-    background: #cdcdcd;
-    /* Type */
-    text-decoration:none;
 }
 
 /*----- Section Content -----*/
@@ -30,5 +24,4 @@ a {
     padding:15px;
     display:none;
     background-color: #f7f7f7;
-    border-bottom:1px solid #1a1a1a;
 }

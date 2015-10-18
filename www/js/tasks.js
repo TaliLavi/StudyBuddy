@@ -104,7 +104,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     }
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                        '<a class="accordion-section-title" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+                        '<a class="accordion-section-title ' +subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
                             '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
                             '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
                         '</a>' +
@@ -124,13 +124,15 @@ function setClickForTodoTask(taskKey) {
         // Grab current anchor value
         var currentAttrValue = $(this).attr('href');
 
-        if($(e.target).is('.active') || $(e.target).parent().is('.active')) {
+        if($(e.target).is('.mainColour') || $(e.target).parent().is('.mainColour')) {
             close_accordion_section();
         } else {
             close_accordion_section();
 
-            // Add active class to section title
-            $(this).addClass('active');
+            // Change task's title's text and background colours
+            $(this).addClass('mainColour');
+            $(this).children("span").addClass('expanded');
+
             // Open up the hidden content panel
             $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
         }
@@ -141,7 +143,10 @@ function setClickForTodoTask(taskKey) {
 
 // collapse accordion
 function close_accordion_section() {
-    $('.accordion .accordion-section-title').removeClass('active');
+    // restore task's title's text and background colours
+    $('.accordion .accordion-section-title').removeClass('mainColour');
+    $('.accordion .accordion-section-title span').removeClass('expanded');
+
     $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
 }
 
