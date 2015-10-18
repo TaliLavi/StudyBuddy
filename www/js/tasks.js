@@ -85,10 +85,10 @@ function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskD
         $('#accordionTitle' + taskKey).click(function(e) {
             // Grab current anchor value
             var currentAttrValue = $(this).attr('href');
-
-            if($(e.target).is('.active')) {
+            
+            if($(e.target).is('.active') || $(e.target).parent().is('.active')) {
                 close_accordion_section();
-            }else {
+            } else {
                 close_accordion_section();
 
                 // Add active class to section title
