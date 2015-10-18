@@ -3,107 +3,70 @@
     "active" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "colour" : "colour21324C",
           "colour_scheme" : "theme1Colour10",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour10a",
-          "name" : "English",
-          "second_colour" : "theme1Colour10b"
+          "name" : "English"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
-          "colour" : "colour2A98BB",
           "colour_scheme" : "theme1Colour11",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour11a",
-          "name" : "Irish",
-          "second_colour" : "theme1Colour11b"
+          "name" : "Irish"
         },
         "-Jw8mvm4cUeDXF4s02Hg" : {
-          "colour" : "colourA6E1F1",
           "colour_scheme" : "theme1Colour7",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour7a",
-          "name" : "French",
-          "second_colour" : "theme1Colour7b"
+          "name" : "French"
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
-          "colour" : "colourB10239",
           "colour_scheme" : "theme1Colour6",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour6a",
-          "name" : "Ancient Latin",
-          "second_colour" : "theme1Colour6b"
+          "name" : "Ancient Latin"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
-          "colour" : "colour6F011E",
           "colour_scheme" : "theme1Colour12",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour12a",
-          "name" : "Biology",
-          "second_colour" : "theme1Colour12b"
+          "name" : "Biology"
         },
         "-JxyYfev8Oq9t8aKUJ8C" : {
-          "colour" : "colour459BE7",
           "colour_scheme" : "theme1Colour8",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour8a",
-          "name" : "Irish Dance",
-          "second_colour" : "theme1Colour8b"
+          "name" : "Irish Dance"
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
-          "colour" : "colourFFE672",
           "colour_scheme" : "theme1Colour1",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour1a",
-          "name" : "Spanish",
-          "second_colour" : "theme1Colour1b"
+          "name" : "Spanish"
         },
         "-K0VyDLOSRualpn_m1-Q" : {
-          "colour" : "colour",
           "colour_scheme" : "theme1Colour5",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour5a",
-          "name" : "History",
-          "second_colour" : "theme1Colour5b"
+          "name" : "History"
         },
         "-K0Vz6iD4kXN-lpH-q4I" : {
-          "colour" : "colour",
           "colour_scheme" : "theme1Colour4",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour4a",
-          "name" : "Geography",
-          "second_colour" : "theme1Colour4b"
+          "name" : "Geography"
         },
         "-K0VzRdyEJHr6XpWfwzH" : {
-          "colour" : "colour",
           "colour_scheme" : "theme1Colour9",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour9a",
-          "name" : "Art",
-          "second_colour" : "theme1Colour9b"
+          "name" : "Art"
         },
         "-K0Vznfvhox8u52L9IeM" : {
-          "colour" : "colour",
           "colour_scheme" : "theme1Colour3",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour3a",
-          "name" : "Maths",
-          "second_colour" : "theme1Colour3b"
+          "name" : "Maths"
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
-          "colour" : "v",
           "colour_scheme" : "theme1Colour2",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour2a",
-          "name" : "Business",
-          "second_colour" : "theme1Colour2b"
+          "name" : "Business"
         }
       }
     },
     "deleted" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsqSRl7pQAo-Z7I4185" : {
-          "colour" : "colour6F011E",
           "is_deleted" : 1,
           "name" : "English"
         }

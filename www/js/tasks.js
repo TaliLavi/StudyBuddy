@@ -70,14 +70,14 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     //create html for done task in the calendar
     if (isDone !== undefined) {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + ' doneTask">' +
+                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
                             '</div>' +
                         '</li>';
     //create html for active task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                           '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.main_colour + '">' +
+                           '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
                            '</div>' +
                        '</li>';

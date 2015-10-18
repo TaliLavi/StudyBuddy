@@ -61,8 +61,7 @@ function displayActiveSubjects(allSubjectsDict) {
             );
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
-                '<div class="subjectArea" id="subjectArea' + subjectKey + '" data-main-colour = \'' + subjectData.main_colour + '\' ' +
-                ' data-second-colour = \'' + subjectData.second_colour + '\'>' +
+                '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<h4>' + subjectData.name + '</h4>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
@@ -91,19 +90,9 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function viewSubjectArea(subjectKey) {
-    // remove previous colour class from #tasksPerSubject
-    $('#tasksPerSubject').removeClass();
-
-    // remove active classe for clearing colour background
+    // remove active class for clearing colour background
     $('.subjectName').removeClass('active');
-
     $('#subjectName' + subjectKey).addClass('active');
-
-
-    // change colours to subject's colour for subject button and background
-    var secondColour = $('#subjectArea' + subjectKey).data('second-colour');
-    $('#tasksPerSubject').addClass(secondColour);
-    //$('#subjectName' + subjectKey).addClass(secondColour);
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
