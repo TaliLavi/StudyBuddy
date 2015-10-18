@@ -85,20 +85,12 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
 
 function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-    // if viewed from mobile, append card to list, apply hammer.js, and listen to touch events
-    if (isMobile()) {
-        var task = $(taskHtml).appendTo(listSelector).hammer();
-        task.on('tap', function (ev) {
-            console.log(ev.type + ' gesture on "' + taskData.title + '" detected.');
-            displayTask(subjectKey, startOfRelevantWeek, taskKey);
-        });
-        // if viewed from desktop, append card to list and listen to click events
-    } else {
-        var task = $(taskHtml).appendTo(listSelector);
-        task.on("click", function () {
-            displayTask(subjectKey, startOfRelevantWeek, taskKey);
-        });
-    }
+    // append card to list
+    var task = $(taskHtml).appendTo(listSelector);
+    // listen to click events
+    task.on("click", function () {
+        displayTask(subjectKey, startOfRelevantWeek, taskKey);
+    });
 }
 
 function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
