@@ -52,9 +52,8 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
     }
 }
 
-//Create html for task element, append it to the list and apply hammer on it
+//Create html for task element and append it to the list
 function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
-
     // create html for active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
         var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData);

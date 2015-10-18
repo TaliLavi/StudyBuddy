@@ -328,6 +328,7 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
 
 // if user clicks outside modal, modal closes.
 function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
+    // todo: mouseup is unrecognized by touch. Try to use something else. (Previously, when tried to use click, it didn't work even with mouse.)
     $(document).on("mouseup", function (event) {
         // if the target of the click isn't the modal window, nor a descendant of the modal window
         if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
