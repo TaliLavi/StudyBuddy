@@ -25,7 +25,6 @@ function createTask() {
         title: $('#titleInput').val(),
         description: $('#descriptionInput').val(),
         assigned_date: $('#assignedDateInput').val(),
-        time_estimation: $('#timeEstimationInput').val(),
         creation_date: now,
         status_change_date: now
     }
@@ -41,7 +40,6 @@ function updateTask(taskId, oldTaskDict) {
         title: $('#taskTitle').val(),
         description: $('#taskDescription').val(),
         assigned_date: $('#taskAssignedDate').val(),
-        time_estimation: $('#taskTimeEstimation').val()
     }
     saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
 }
@@ -55,7 +53,7 @@ function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDi
 }
 
 //Create html for task element, append it to the list and apply hammer on it
-function createTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
+function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
 
     // create html for active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
@@ -158,15 +156,15 @@ function close_accordion_section() {
 function appendTask(subjectId, subjectData, taskKey, taskData) {
     // APPEND TASK TO SUBJECTS PAGE
     var subjectDiv = '#tasksFor' + subjectId;
-    createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+    createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
-        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+        createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
         // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
     } else if ($('#calendarWrapper').children($('#week' + startOfWeek(taskData.assigned_date))).length > 0) {
         var subjectDiv = '#' + taskData.assigned_date;
-        createTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+        createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     }
 }
 
@@ -185,7 +183,7 @@ function displayTasksInSubjectsPage(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
         })
     }
 }
@@ -199,7 +197,7 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
         })
     }
 }
@@ -227,7 +225,7 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
         // append tasks to the footer div
         $.each(tasksDict, function(taskKey, taskData){
             var subjectDiv = '#unassignedTasksList';
-            createTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
             applySortable(subjectDiv);
         })
     }
@@ -241,7 +239,7 @@ function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
             if (whetherDateIsDisplayed(taskData.assigned_date, thisWeeksMonday, nextWeeksMonday)) {
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             }
         })
     }
@@ -252,12 +250,12 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
         if (isDone !== undefined) {
             // append done tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
             })
         } else {
             // append active tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             })
         }
     }
