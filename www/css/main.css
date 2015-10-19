@@ -171,6 +171,7 @@ button:focus {outline:0;}
 .cardTask {
     font-weight: normal;
     border-radius: 3px;
+    display: -webkit-flex;     /* for safari (hopefully?!)*/
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     position: relative;
     width: 100%;
