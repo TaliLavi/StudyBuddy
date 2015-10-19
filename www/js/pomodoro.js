@@ -85,7 +85,7 @@ function playPauseTimer(subjectId, weekDate, taskId) {
     // play timer
     if ($('#playPauseButton').hasClass('notPlaying')) {
         // start animation
-        hourGlassTL.play();
+        trianglesTL.play();
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
         $('#stopButton').removeClass('stopped');
@@ -95,7 +95,7 @@ function playPauseTimer(subjectId, weekDate, taskId) {
         // pause timer
     } else {
         // pause animation
-        hourGlassTL.pause();
+        trianglesTL.pause();
         togglePlayPause();
     }
 }
@@ -103,7 +103,7 @@ function playPauseTimer(subjectId, weekDate, taskId) {
 function switchToNextSession(subjectId, weekDate, taskId) {
     playTone();
     // restart animation
-    hourGlassTL.restart();
+    trianglesTL.restart();
     if (sessionType === 'study_session') {
         // increase num of study sessions by one
         numOfStudySessions += 1;
@@ -152,7 +152,7 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
     $('#stopButton').addClass('stopped');
     // stop animation
-    hourGlassTL.pause(0);
+    trianglesTL.pause(0);
     if (sessionType === 'study_session') {
         // TODO: don't get data directly from cached object
         var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();
@@ -176,19 +176,25 @@ function resetTimerDisplay() {
 //Hourglass animation
 //===============================================================================================================================
 
-var hourGlassTL = new TimelineMax({repeat:2, paused:true, autoRemoveChildren:true, smoothChildTiming: true});
+//var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
+var trianglesTL = new TimelineMax({ paused:true, autoRemoveChildren:true});
 
 function prepareHourGlass() {
-    hourGlassTL.to($("#topSand"), (10), {width: "1px", left: "50%"});
-    hourGlassTL.to($("#bottomSand"), (10), {width: "335px", left: "0%", bottom: "-3%"}, "-=(25)");
+    trianglesTL.to(topTriangle, (6*5), {borderLeft:"88px solid rgba(0,0,0,0)", borderRight:"88px solid rgba(0,0,0,0)", borderTop:"132px solid rgba(49,169,168,1)"});     //20 mins left
+    trianglesTL.to(topTriangle, (6*5), {borderLeft:"73px solid rgba(0,0,0,0)", borderRight:"73px solid rgba(0,0,0,0)", borderTop:"110px solid rgba(49,169,168,1)"});     //15 mins left
+    trianglesTL.to(topTriangle, (6*5), {borderLeft:"54px solid rgba(0,0,0,0)", borderRight:"54px solid rgba(0,0,0,0)", borderTop:"82px solid rgba(49,169,168,1)"});     //10 mins left
+    trianglesTL.to(topTriangle, (6*5), {borderLeft:"35px solid rgba(0,0,0,0)", borderRight:"35px solid rgba(0,0,0,0)", borderTop:"53px solid rgba(49,169,168,1)"});     //5 mins left
+    trianglesTL.to(topTriangle, (6*4), {borderLeft:"13px solid rgba(0,0,0,0)", borderRight:"13px solid rgba(0,0,0,0)", borderTop:"20px solid rgba(49,169,168,1)"});      //1 min left
+    trianglesTL.to(topTriangle, (6*1), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(49,169,168,1)"});             //at zero
+    //
+    //
+    trianglesTL.to(bottomTriangle, (6*5), {borderLeft:"60px solid rgba(0,0,0,0)", borderRight:"60px solid rgba(0,0,0,0)", borderBottom:"30px solid rgba(49,169,168,1)"}, "-=150");     //20 mins left
+    trianglesTL.to(bottomTriangle, (6*5), {borderLeft:"72px solid rgba(0,0,0,0)", borderRight:"72px solid rgba(0,0,0,0)", borderBottom:"48px solid rgba(49,169,168,1)"}, "-=120");     //15 mins left
+    trianglesTL.to(bottomTriangle, (6*5), {borderLeft:"60px solid rgba(0,0,0,0)", borderRight:"60px solid rgba(0,0,0,0)", borderbottom:"70px solid rgba(49,169,168,1)"}, "-=90");     //10 mins left
+    trianglesTL.to(bottomTriangle, (6*5), {borderLeft:"100px solid rgba(0,0,0,0)", borderRight:"100px solid rgba(0,0,0,0)", borderBottom:"80px solid rgba(49,169,168,1)"}, "-=60");     //5 mins let
+    trianglesTL.to(bottomTriangle, (6*4), {borderLeft:"100px solid rgba(0,0,0,0)", borderRight:"100px solid rgba(0,0,0,0)", borderBottom:"140px solid rgba(49,169,168,1)"}, "-=30");      //1 min left
+    trianglesTL.to(bottomTriangle, (6*1), {borderLeft:"100px solid rgba(0,0,0,0)", borderRight:"100px solid rgba(0,0,0,0)", borderBottom:"150px solid rgba(49,169,168,1)"}, "-=24");      //at zero
 
-    //hourGlassTL.to(topSand, (6*5), {width:"300px", left:"5%"});
-    //hourGlassTL.to(topSand, (6*5), {width:"260px", left:"11%"});
-    //hourGlassTL.to(topSand, (6*5), {width:"220px", left:"17%"});
-    //hourGlassTL.to(topSand, (6*5), {width:"150px", left:"27.5%"});
-    //hourGlassTL.to(topSand, (6*4), {left:"41.5%", width:"56px"});
-    //hourGlassTL.to(topSand, (6), {width:"1px", left:"50%"});
-    //hourGlassTL.to(bottomSand, (6*25), {width:"335px", left:"0%" , bottom:"-2%"}, "-=(6*25)");
-}
+}// end of prepareHourGlass
 
 
