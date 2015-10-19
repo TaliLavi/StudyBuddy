@@ -3,108 +3,70 @@
     "active" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "colour" : "colour21324C",
+          "colour_scheme" : "theme1Colour10",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour10a",
-          "name" : "English",
-          "second_colour" : "theme1Colour10b",
-          "text_colour" : "theme1TextColour10"
+          "name" : "English"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
-          "colour" : "colour2A98BB",
+          "colour_scheme" : "theme1Colour11",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour11a",
-          "name" : "Irish",
-          "second_colour" : "theme1Colour11b",
-          "text_colour" : "theme1TextColour11"
+          "name" : "Irish"
         },
         "-Jw8mvm4cUeDXF4s02Hg" : {
-          "colour" : "colourA6E1F1",
+          "colour_scheme" : "theme1Colour7",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour7a",
-          "name" : "French",
-          "second_colour" : "theme1Colour7b",
-          "text_colour" : "theme1TextColour7"
+          "name" : "French"
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
-          "colour" : "colourB10239",
+          "colour_scheme" : "theme1Colour6",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour6a",
-          "name" : "Ancient Latin",
-          "second_colour" : "theme1Colour6b",
-          "text_colour" : "theme1TextColour6"
+          "name" : "Ancient Latin"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
-          "colour" : "colour6F011E",
+          "colour_scheme" : "theme1Colour12",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour12a",
-          "name" : "Biology",
-          "second_colour" : "theme1Colour12b",
-          "text_colour" : "theme1TextColour12"
+          "name" : "Biology"
         },
         "-JxyYfev8Oq9t8aKUJ8C" : {
-          "colour" : "colour459BE7",
+          "colour_scheme" : "theme1Colour8",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour8a",
-          "name" : "Irish Dance",
-          "second_colour" : "theme1Colour8b",
-          "text_colour" : "theme1TextColour8"
+          "name" : "Irish Dance"
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
-          "colour" : "colourFFE672",
+          "colour_scheme" : "theme1Colour1",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour1a",
-          "name" : "Spanish",
-          "second_colour" : "theme1Colour1b",
-          "text_colour" : "theme1TextColour1"
+          "name" : "Spanish"
         },
         "-K0VyDLOSRualpn_m1-Q" : {
-          "colour" : "colour",
+          "colour_scheme" : "theme1Colour5",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour5a",
-          "name" : "History",
-          "second_colour" : "theme1Colour5b",
-          "text_colour" : "theme1TextColour5"
+          "name" : "History"
         },
         "-K0Vz6iD4kXN-lpH-q4I" : {
-          "colour" : "colour",
+          "colour_scheme" : "theme1Colour4",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour4a",
-          "name" : "Geography",
-          "second_colour" : "theme1Colour4b",
-          "text_colour" : "theme1TextColour4"
+          "name" : "Geography"
         },
         "-K0VzRdyEJHr6XpWfwzH" : {
-          "colour" : "colour",
+          "colour_scheme" : "theme1Colour9",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour9a",
-          "name" : "Art",
-          "second_colour" : "theme1Colour9b",
-          "text_colour" : "theme1TextColour9"
+          "name" : "Art"
         },
         "-K0Vznfvhox8u52L9IeM" : {
-          "colour" : "colour",
+          "colour_scheme" : "theme1Colour3",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour3a",
-          "name" : "Maths",
-          "second_colour" : "theme1Colour3b",
-          "text_colour" : "theme1TextColour3"
+          "name" : "Maths"
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
-          "colour" : "v",
+          "colour_scheme" : "theme1Colour2",
           "is_deleted" : 0,
-          "main_colour" : "theme1Colour2a",
-          "name" : "Business",
-          "second_colour" : "theme1Colour2b",
-          "text-colour" : "theme1TextColour2",
-          "text_colour" : "theme1TextColour2"
+          "name" : "Business"
         }
       }
     },
     "deleted" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsqSRl7pQAo-Z7I4185" : {
-          "colour" : "colour6F011E",
           "is_deleted" : 1,
           "name" : "English"
         }
@@ -377,19 +339,12 @@
             }
           },
           "2015-09-28" : {
-            "-JzFCdu5o_qAqRGzBb3e" : {
-              "total_seconds_studied" : 10
-            },
             "-Jzfht290vBkuQssVMvY" : {
               "assigned_date" : "2015-10-02",
               "creation_date" : 1442768720082,
               "description" : "",
               "status_change_date" : 1442768720082,
               "title" : "New Biology Task blah"
-            },
-            "-JzkEG9HtYm_79h2DK8c" : {
-              "number_of_breaks" : 2,
-              "total_seconds_studied" : 10
             }
           },
           "2015-10-12" : {
@@ -515,7 +470,7 @@
               "title" : "Essay on Impact of Columbus on Natives"
             },
             "-K0W2X8Evwgj4cf5E7HJ" : {
-              "assigned_date" : "2015-10-17",
+              "assigned_date" : "2015-10-16",
               "creation_date" : 1444737327784,
               "description" : "",
               "status_change_date" : 1444737327784,

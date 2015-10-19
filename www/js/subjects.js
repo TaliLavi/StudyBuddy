@@ -56,19 +56,18 @@ function displayActiveSubjects(allSubjectsDict) {
 
             // In subjects page, create a button (div) for each subject
             $('#subjectsList').append(
-                '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.text_colour + '" ' +
+                '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.colour_scheme + '" ' +
                 'onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
-                '<div class="subjectArea" id="subjectArea' + subjectKey + '" data-main-colour = \'' + subjectData.main_colour + '\' ' +
-                ' data-second-colour = \'' + subjectData.second_colour + '\'>' +
-                '<h4>' + subjectData.name + '</h4>' +
-                '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
-                '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
-                '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
-                subjectKey + '\');">Show completed tasks</button>' +
-                '<div class="accordion" id="completedTasksFor' + subjectKey + '"></div>' +
+                '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
+                    '<h4>' + subjectData.name + '</h4>' +
+                    '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
+                    '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
+                    '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
+                    subjectKey + '\');">Show completed tasks</button>' +
+                    '<div class="accordion" id="completedTasksFor' + subjectKey + '"></div>' +
                 '</div>'
             );
 
@@ -91,17 +90,9 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function viewSubjectArea(subjectKey) {
-    // remove previous colour class from #tasksPerSubject
-    $('#tasksPerSubject').removeClass();
-    // remove all classes except for .subjectName (used for clearing colour background)
-    // todo: fix problem where it also removes text colours from all subject buttons
-    $('.subjectName').attr('class', 'subjectName');
-
-
-    // change colours to subject's colour for subject button and background
-    var secondColour = $('#subjectArea' + subjectKey).data('second-colour');
-    $('#tasksPerSubject').addClass(secondColour);
-    $('#subjectName' + subjectKey).addClass(secondColour);
+    // remove active class for clearing colour background
+    $('.subjectName').removeClass('active');
+    $('#subjectName' + subjectKey).addClass('active');
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
