@@ -171,6 +171,7 @@ button:focus {outline:0;}
 .cardTask {
     font-weight: normal;
     border-radius: 3px;
+    display: -webkit-flex;     /* for safari (hopefully?!)*/
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     position: relative;
     width: 100%;
@@ -210,7 +211,7 @@ button:focus {outline:0;}
 }
 
 /*.theme1Colour2a {*/
-    /*background-color: #F3742B;*/
+/*background-color: #F3742B;*/
 /*}*/
 
 
@@ -332,7 +333,8 @@ input{
 
 .dayList {
     width: 100%;
-    min-height: 500px;                   /*minimal height to ensure cards could be added to an empty list*/
+    height: 400px;
+    overflow-y: scroll;
 }
 
 /*This is the pale gray div that the cards appear in*/
