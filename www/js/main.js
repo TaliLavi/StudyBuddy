@@ -101,7 +101,7 @@ function applySortable(selector) {
         $(selector).each(function (i, list) {
             Sortable.create(list, {
                 group: "tasks",
-                animation: 800,
+                //animation: 800,
                 ghostClass: "sortable-ghost",
                 onStart: inTheAir,
                 onAdd: moveTask,
@@ -115,7 +115,7 @@ function applySortable(selector) {
         $(selector).each(function (i, list) {
             Sortable.create(list, {
                 group: "tasks",
-                animation: 400,
+                //animation: 1000,
                 ghostClass: "sortable-ghost",
                 onStart: inTheAir,
                 onAdd: moveTask,
