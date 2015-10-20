@@ -281,7 +281,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 function fetchSingleTask(subjectId, weekDate, taskId, callback) {
     var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
-        callback(subjectId, weekDate, taskId, snapshot.val());
+        callback(subjectId, taskId, snapshot.val());
     }, firebaseErrorFrom('fetchSingleTask'));
 }
 
@@ -355,6 +355,7 @@ function moveTaskToDone(subjectId, weekDate, taskId) {
 function fetchTimeIntervals(callback) {
     if (cachedSessionTimes !== null) {
         callback(cachedSessionTimes);
+        workSessionLength = cachedSessionTimes.study_session;
     } else {
         var timeIntervalsRef = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser());
         timeIntervalsRef.once("value", function (snapshot) {
@@ -365,10 +366,11 @@ function fetchTimeIntervals(callback) {
                 long_break: sessionTimes.long_break_seconds
             }
             callback(cachedSessionTimes);
+            workSessionLength = cachedSessionTimes.study_session;
         });
     }
-}
 
+}
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {
     incrementNumOfBreaksForTask(subjectId, weekDate, taskId);
