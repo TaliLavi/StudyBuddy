@@ -3,6 +3,37 @@ var cachedSessionTimes = null;
 var sessionType = 'study_session';
 var numOfStudySessions = 0;
 
+//===============================================================================================================================
+//Hourglass animation
+//===============================================================================================================================
+
+//var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
+var workTL = new TimelineMax({ paused:true});
+
+
+
+function prepareHourGlass() {
+    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)"});     //20 mins left
+    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)"});     //15 mins left
+    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)"});     //10 mins left
+    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)"});     //5 mins left
+    workTL.to($('#topTriangleWork'), (6*4), {borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)"});      //1 min left
+    workTL.to($('#topTriangleWork'), (6*1), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)"});             //at zero
+    ////
+    ////
+    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)"}, "-=150");     //20 mins left
+    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"24px solid rgba(149,202,173,1)"}, "-=120");     //15 mins left
+    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderbottom:"35px solid rgba(149,202,173,1)"}, "-=90");     //10 mins left
+    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"40px solid rgba(149,202,173,1)"}, "-=60");     //5 mins let
+    workTL.to($('#bottomTriangleWork'), (6*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"70px solid rgba(149,202,173,1)"}, "-=30");      //1 min left
+    workTL.to($('#bottomTriangleWork'), (6*1), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)"}, "-=24");      //at zero
+
+}// end of prepareHourGlass
+
+//===============================================================================================================================
+//POMODORO TIMER
+//===============================================================================================================================
+
 
 function timer(duration, update, complete) {
     INTERVAL_SIZE = 100;
@@ -173,31 +204,5 @@ function resetTimerDisplay() {
 }
 
 
-//===============================================================================================================================
-//Hourglass animation
-//===============================================================================================================================
-
-//var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
-var workTL = new TimelineMax({ paused:true, autoRemoveChildren:true});
-
-
-
-function prepareHourGlass() {
-    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)"});     //20 mins left
-    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)"});     //15 mins left
-    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)"});     //10 mins left
-    workTL.to($('#topTriangleWork'), (6*5), {borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)"});     //5 mins left
-    workTL.to($('#topTriangleWork'), (6*4), {borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)"});      //1 min left
-    workTL.to($('#topTriangleWork'), (6*1), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)"});             //at zero
-    ////
-    ////
-    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)"}, "-=150");     //20 mins left
-    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"24px solid rgba(149,202,173,1)"}, "-=120");     //15 mins left
-    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderbottom:"35px solid rgba(149,202,173,1)"}, "-=90");     //10 mins left
-    workTL.to($('#bottomTriangleWork'), (6*5), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"40px solid rgba(149,202,173,1)"}, "-=60");     //5 mins let
-    workTL.to($('#bottomTriangleWork'), (6*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"70px solid rgba(149,202,173,1)"}, "-=30");      //1 min left
-    workTL.to($('#bottomTriangleWork'), (6*1), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)"}, "-=24");      //at zero
-
-}// end of prepareHourGlass
 
 
