@@ -10,8 +10,6 @@ body{
 /* NAV BAR, STATUS BAR AND ICONS*/
 /*===================================================================================================================*/
 
-
-
 #iPadStatusBar {
     height: 20px;
     background-color: #607A93;
@@ -137,7 +135,6 @@ button:focus {outline:0;}
     display: inline;
 }
 
-
 .dayHeadingOnCalendar{
     color: white;
     font-family: 'Acme';
@@ -171,9 +168,7 @@ button:focus {outline:0;}
 .cardTask {
     font-weight: normal;
     border-radius: 3px;
-    /*display: -webkit-flex;     /!* for safari (hopefully?!)*!/*/
     display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    /*justify-content: center;*/
     align-items: center;
     position: relative;
     width: 100%;
@@ -191,7 +186,6 @@ button:focus {outline:0;}
     color: white;
     margin: 5%;
     line-height: 1.5;
-    /*white-space: normal;*/
 }
 
 /*This is the dragged image*/
@@ -200,7 +194,6 @@ button:focus {outline:0;}
     height:70px;
     opacity: 1;
     border-radius: 2px;
-    /*border: 6px solid plum;*/
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
@@ -211,11 +204,6 @@ button:focus {outline:0;}
 .sortable-ghost {
     opacity: 0;
 }
-
-/*.theme1Colour2a {*/
-/*background-color: #F3742B;*/
-/*}*/
-
 
 .doneTask {
     background-image: repeating-linear-gradient(
@@ -254,7 +242,6 @@ button:focus {outline:0;}
     box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
 }
 
-
 /*This is the modal window for the task (with timer)*/
 #taskModal{
     width:50%;
@@ -268,8 +255,6 @@ button:focus {outline:0;}
     height:50%;
     margin-top: 10%;
 }
-
-
 
 /*This is the close(x) button*/
 .closeX{
@@ -383,11 +368,6 @@ input{
 .group:after { clear:both;}
 .group { zoom:1; /* For IE 6/7 */ }
 
-/*.sortable-ghost {*/
-    /*/!*border-color: #4cae4c;*!/*/
-    /*background-color: #858585;*/
-    /*background-color: whitesmoke;*/
-/*}*/
 
 /*===============================================================================================*/
 /*COLUMNS FOR DAYS */
@@ -420,7 +400,6 @@ input{
     width:1000px;
     height: 500px;
 }
-
 
 
 /*===============================================================================================*/
@@ -470,8 +449,6 @@ input{
 .errorMessage {
     color: red;
 }
-
-
 
 
 /*==================================================================================================*/
