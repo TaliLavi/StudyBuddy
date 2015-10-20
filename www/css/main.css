@@ -191,6 +191,7 @@ button:focus {outline:0;}
     color: white;
     margin: 5%;
     line-height: 1.5;
+    /*white-space: normal;*/
 }
 
 /*This is the dragged image*/

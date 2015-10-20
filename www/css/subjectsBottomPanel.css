@@ -87,8 +87,8 @@ html {
 and the user wants to drag a task from the calendar to the footer.*/
 #unassignedTasksList {
     min-height: 70px;
-    /*display: inline-flex;*/
-    /*position: relative;*/
+    display: inline-flex;
+    position: relative;
     margin-top: 14px;
 }
 
@@ -102,6 +102,7 @@ button:focus {outline:0;}
     /*/!*background-color: transparent;*!/*/
     /*/!*border: none;*!/*/
 /*}*/
+
 #subjectFilters .subject{
     display: inline-block;
     /*margin: 0px 20px;*/
@@ -123,8 +124,8 @@ button:focus {outline:0;}
     /*height:65px;*/
     margin-left: 10px;
     /*line-height: 1.5;*/
-    /*white-space: normal;*/
-    /*text-align: left;*/
+    white-space: normal;
+    text-align: left;
 }
 
 /*start app with this message being hidden*/
