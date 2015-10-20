@@ -329,13 +329,19 @@ input{
     margin-right: 3%;
     margin-left: 3%;
     width: 13.77%;
+    overflow-y: hidden;              /*necessary for hiding the scrollbar of .dayList elements*/
 }
 
 .dayList {
-    width: 100%;
+    overflow-y: scroll;              /*creates a scrollbar*/
+    width: 112%;                     /*pushes the scrollbar out of view*/
     height: 400px;
-    overflow-y: scroll;
 }
+
+
+/*.dayList::-webkit-scrollbar {*/
+    /*display: none;*/
+/*}*/
 
 /*This is the pale gray div that the cards appear in*/
 .sortable-task-list {
