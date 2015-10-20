@@ -212,33 +212,26 @@
     <p class="closeX" id="closeTaskModal">x</p>
     <p class ="modalHeading">Your Task</p>
     <div id ="pomodoroDiv" data-task-id = 'empty'>
-      <h1 id="timerDisplay">00:00</h1>
 
-      <!--<div id="hourGlass" >-->
-        <!--<svg id="glass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-          <!--<path d="M179.09 261.5L331 517 4 517 155.91 261.5 4 6 331 6 179.09 261.5Z"/>-->
-        <!--</svg>-->
+        <div id="topContainer">
+          <div id="topTriangleWork"></div>
+          <!--<div id="topTriangleBreak"></div>-->
+        </div>
 
-        <!--<svg id="topSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-          <!--<polygon transform="translate(168.500000, 141.500000) scale(1, -1) translate(-168.500000, -141.500000) " points="167.43 21 308.09 262 30 262 "/>-->
-        <!--</svg>-->
+        <div id="bottomContainer">
+          <br><br>
+          <div id="bottomTriangleWork"></div>
+          <!--<div id="bottomTriangleBreak"></div>-->
+        </div>
+        <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+        <h1 id="timerDisplay">00:00</h1>
 
-        <!--<svg id="bottomSand" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 522" version="1.1">-->
-          <!--<polygon points="168 262 308.66 503 30 503 "/>-->
-        <!--</svg>-->
-      <!--</div>-->
-      <div id="topContainer">
-        <div id="topTriangle"></div>
-      </div>
-
-      <div id="bottomContainer">
-        <br><br>
-        <div id="bottomTriangle"></div>
-      </div>
       <br/>
+      <div id="timerButtons">
+        <button type="button" id="playPauseButton" class="notPlaying">Play</button>
+        <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+      </div>
 
-      <button type="button" id="playPauseButton" class="notPlaying">Play</button>
-      <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
       <audio id="tone">
         <source src="pomodoroTone.mp3" type="audio/mpeg">
       </audio>
