@@ -202,7 +202,7 @@
     display: block;
     position: absolute;
     top: 70px;
-    visibility: hidden;
+    visibility: visible;
 }
 
 #workBreakContainer {
