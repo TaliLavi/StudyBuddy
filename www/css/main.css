@@ -193,7 +193,7 @@ button:focus {outline:0;}
 
 /*This is the dragged image*/
 .dragged-item .cardTask {
-    width: 100%;
+    width: 110%;
     height:70px;
     opacity: 1;
     border-radius: 2px;
@@ -207,7 +207,7 @@ button:focus {outline:0;}
 
 .sortable-ghost {
     /*border-color: #4cae4c;*/
-    opacity: .5;
+    opacity: 0;
 }
 
 /*.theme1Colour2a {*/
@@ -330,16 +330,12 @@ input{
     margin-left: 3%;
     width: 13.77%;
     overflow-y: hidden;              /*necessary for hiding the scrollbar of .dayList elements*/
-
-
 }
 
 .dayList {
     overflow-y: scroll;              /*creates a scrollbar*/
-    overflow-x: hidden;
-    width: 100%;                     /*pushes the scrollbar out of view*/
+    width: 112%;                     /*pushes the scrollbar out of view*/
     height: 400px;
-    position: fixed;
 }
 
 
