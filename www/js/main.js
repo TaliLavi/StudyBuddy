@@ -142,9 +142,7 @@ function moveTask(evt) {
 }
 
 function inTheAir(evt) {
-    //  // horibble flash effect
-    //$(evt.item).fadeIn(100).fadeOut(100).fadeIn(100);
-
+    navigator.vibrate(200);
 }
 
 
@@ -369,3 +367,4 @@ function openAddSubjectDialog(){
 
     closeWhenClickingOutside($('#addSubjectModal'));
 }
+
