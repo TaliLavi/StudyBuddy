@@ -23,9 +23,6 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
-    // prepare hour glass timer animation
-    prepareHourGlass();
-
 }
 
 
