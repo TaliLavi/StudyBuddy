@@ -334,7 +334,7 @@ input{
 
 .dayList {
     overflow-y: scroll;              /*creates a scrollbar*/
-    width: 112%;                     /*pushes the scrollbar out of view*/
+    width: 100%;                     /*pushes the scrollbar out of view*/
     height: 400px;
 }
 
