@@ -202,7 +202,19 @@
     display: block;
     position: absolute;
     top: 70px;
-    visibility: visible;
+    visibility: hidden;
+}
+
+#sleepingRuzoPurple {
+    width: 70%;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    position: absolute;
+    top: 70px;
+    visibility: hidden;
 }
 
 #workBreakContainer {
