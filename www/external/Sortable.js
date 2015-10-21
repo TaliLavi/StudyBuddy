@@ -172,6 +172,10 @@
 	 * @param  {Object}       [options]
 	 */
 	function Sortable(el, options) {
+		if (!(el && el.nodeType && el.nodeType === 1)) {
+			throw 'Sortable: `el` must be HTMLElement, and not ' + {}.toString.call(el);
+		}
+
 		this.el = el; // root element
 		this.options = options = _extend({}, options);
 
@@ -332,6 +336,7 @@
 
 					// Bind the events: dragstart/dragend
 					_this._triggerDragStart(touch);
+					navigator.vibrate(200);
 				};
 
 				// Disable "draggable"
@@ -489,12 +494,13 @@
 			if (!ghostEl) {
 				var rect = dragEl.getBoundingClientRect(),
 					css = _css(dragEl),
+					options = this.options,
 					ghostRect;
 
 				ghostEl = dragEl.cloneNode(true);
 
-				_toggleClass(ghostEl, this.options.ghostClass, false);
-				_toggleClass(ghostEl, this.options.fallbackClass, true);
+				_toggleClass(ghostEl, options.ghostClass, false);
+				_toggleClass(ghostEl, options.fallbackClass, true);
 
 				_css(ghostEl, 'top', rect.top - parseInt(css.marginTop, 10));
 				_css(ghostEl, 'left', rect.left - parseInt(css.marginLeft, 10));
@@ -505,7 +511,7 @@
 				_css(ghostEl, 'zIndex', '100000');
 				_css(ghostEl, 'pointerEvents', 'none');
 
-				this.options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
+				options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
 
 				// Fixing dimensions.
 				ghostRect = ghostEl.getBoundingClientRect();
@@ -661,7 +667,8 @@
 						else if (floating) {
 							var elTop = dragEl.offsetTop,
 								tgTop = target.offsetTop;
-							if (elTop===tgTop) {
+
+							if (elTop === tgTop) {
 								after = (target.previousElementSibling === dragEl) && !isWide || halfway && isWide;
 							} else {
 								after = tgTop > elTop;
@@ -762,7 +769,7 @@
 					if (rootEl !== parentEl) {
 						newIndex = _index(dragEl);
 
-						if (newIndex != -1) {
+						if (newIndex >= 0) {
 							// drag from one list and drop into another
 							_dispatchEvent(null, parentEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
 							_dispatchEvent(this, rootEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
@@ -781,7 +788,8 @@
 						if (dragEl.nextSibling !== nextEl) {
 							// Get the index of the dragged element within its parent
 							newIndex = _index(dragEl);
-							if (newIndex != -1) {
+
+							if (newIndex >= 0) {
 								// drag & drop within the same list
 								_dispatchEvent(this, rootEl, 'update', dragEl, rootEl, oldIndex, newIndex);
 								_dispatchEvent(this, rootEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
@@ -790,7 +798,10 @@
 					}
 
 					if (Sortable.active) {
-						// Drag end event
+						if (newIndex === null || newIndex === -1) {
+							newIndex = oldIndex;
+						}
+
 						_dispatchEvent(this, rootEl, 'end', dragEl, rootEl, oldIndex, newIndex);
 
 						// Save sorting
@@ -1153,20 +1164,22 @@
 
 	/**
 	 * Returns the index of an element within its parent
-	 * @param el
-	 * @returns {number}
-	 * @private
+	 * @param  {HTMLElement} el
+	 * @return {number}
 	 */
-	function _index(/**HTMLElement*/el) {
+	function _index(el) {
+		var index = 0;
+
 		if (!el || !el.parentNode) {
 			return -1;
 		}
-		var index = 0;
+
 		while (el && (el = el.previousElementSibling)) {
 			if (el.nodeName.toUpperCase() !== 'TEMPLATE') {
 				index++;
 			}
 		}
+
 		return index;
 	}
 
@@ -1232,6 +1245,6 @@
 
 
 	// Export
-	Sortable.version = '1.2.2';
+	Sortable.version = '1.4.1';
 	return Sortable;
 });
