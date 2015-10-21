@@ -1,11 +1,16 @@
 *{
     font-family: Raleway;
-    /*prevent selection of text for copying and pasting it*/
+    /*prevents selection of text for copying and pasting it*/
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /*prevent element popout (for disabling appearance of magnifying glass on long press)*/
+    -webkit-touch-callout: none;
+    -moz-touch-callout: none;
+    -ms-touch-callout: none;
+    touch-callout: none;
 }
 
 html {
@@ -24,7 +29,7 @@ body {
 }
 
 input {
-    /*enabling selection of text for input elements (overrides disabling declared for the entire app (see * {})*/
+    /*enables selection of text for input elements (overrides disabling declared for the entire app (see * {})*/
     -webkit-user-select: auto !important;
     -khtml-user-select: auto !important;
     -moz-user-select: auto !important;

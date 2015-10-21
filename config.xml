@@ -20,7 +20,6 @@
     <preference name="disable-cursor" value="false"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="android-installLocation" value="auto"/>
-    <preference name="DisallowOverscroll" value="true" />
 
     <gap:plugin name="org.apache.cordova.battery-status" version="0.2.11"/>
     <gap:plugin name="org.apache.cordova.camera" version="0.3.2"/>
