@@ -1,15 +1,15 @@
-body {
-    height: 100%;
-    margin: 0;
-}
+/*body {*/
+    /*height: 100%;*/
+    /*margin: 0;*/
+/*}*/
 
-html {
-    padding-bottom: 50px;
-    min-height: 100%;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    position: relative;
-}
+/*html {*/
+    /*padding-bottom: 50px;*/
+    /*min-height: 100%;*/
+    /*box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*position: relative;*/
+/*}*/
 
 #footerWrapper {
     position: fixed;

@@ -142,7 +142,7 @@ function moveTask(evt) {
 }
 
 function inTheAir(evt) {
-    navigator.vibrate(200);
+    //add stuff if needed.
 }
 
 
