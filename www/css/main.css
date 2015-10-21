@@ -1,9 +1,35 @@
 *{
     font-family: Raleway;
+    /*prevent selection of text for copying and pasting it*/
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-body{
+html {
+    padding-bottom: 50px;
+    min-height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+}
+
+
+body {
     background-color: #E9ECEF;
+    height: 100%;
+    margin: 0;
+}
+
+input {
+    /*enabling selection of text for input elements (overrides disabling declared for the entire app (see * {})*/
+    -webkit-user-select: auto !important;
+    -khtml-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    user-select: auto !important;
 }
 
 /*===================================================================================================================*/

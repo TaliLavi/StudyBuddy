@@ -336,7 +336,7 @@
 
 					// Bind the events: dragstart/dragend
 					_this._triggerDragStart(touch);
-					navigator.vibrate(200);
+					navigator.vibrate(100);
 				};
 
 				// Disable "draggable"
