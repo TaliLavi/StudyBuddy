@@ -23,6 +23,8 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
+    // indicate which colours are already in use
+    checkIsColourInUse();
 }
 
 
@@ -107,7 +109,7 @@ function applySortable(selector) {
                 onAdd: moveTask,
                 forceFallback: true,
                 fallbackClass: "dragged-item",
-                delay: 200
+                delay: 100
             });
         });
     } else {

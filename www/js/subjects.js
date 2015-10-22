@@ -90,3 +90,26 @@ function setSubjectColour(id) {
     $('.colourOption').removeClass('chosenColour');
     $('#' + id + '').addClass('chosenColour');
 }
+
+
+// RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
+function checkIsColourInUse() {
+    fetchActiveSubjects(function(subjectsDict) {
+        if (subjectsDict !== null) {
+            // we're creating an object instead of an array for easier lookup
+            var colourSchemesDict = {};
+            $.each(subjectsDict, function(subjectKey, subjectData) {
+                // we are setting the value to true, merely because we have to provide some value to each key in an object
+                colourSchemesDict[subjectData.colour_scheme] = true;
+            });
+            console.log(colourSchemesDict);
+            $('.colourOption').each(function() {
+                var colour = $(this).attr('id');
+                // if colour is already in use, set its div with .usedColour
+                if (colourSchemesDict[colour]) {
+                    $(this).addClass('usedColour');
+                }
+            });
+        }
+    });
+}
