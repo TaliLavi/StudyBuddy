@@ -25,13 +25,11 @@
 }
 
 #pomodoroDiv {
-    position: absolute;
-    top: 20px;
-    right: 15px;
-    margin: 15px;
-    height:300px;
-    width: 300px;
-    float: right;
+    display: inline-block;
+    position: relative;
+    height:100%;
+    width: 50%;
+    background-color: lightgreen;
 }
 
 .pomButtonShow {
@@ -57,7 +55,7 @@
 }
 
 #timerButtons{
-    position: absolute;
+
     display: block;
     left:0;
     right:0;
@@ -75,37 +73,6 @@
     float: right;
 }
 
-/*===================================================================================================================*/
-/*HOURGLASS*/
-/*===================================================================================================================*/
-
-#hourGlass{
-    position: relative;
-    width: 335px;
-    height: 522px;
-}
-#topSand{
-    fill:#1ea5a6;
-    position: absolute;
-    width: 100%;        /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
-    height: 100%;
-    left:0%;               /*It seems like this can be used to move it horizontally. When width is zero, left should be 50% to keep them lined up*/
-}
-
-#bottomSand{
-    fill: #1ea5a6;
-    position: absolute;
-    width: 1%;          /*Changing the width here will change the size of the triangle, keeping aspect ratio*/
-    height: 100%;
-    left:50%;                /*When width is zero, left should be 50% to keep them lined up.*/
-    bottom: -48%;
-}
-
-#glass{
-    fill:#D8D8D8;
-    opacity: .7;
-    position: absolute;
-}
 
 /*//////////////////////////////////NEW HOURGLASS WITH TRIANGLE DIVS///////////////////////////////////////////*/
 
@@ -202,7 +169,19 @@
     display: block;
     position: absolute;
     top: 70px;
-    visibility: visible;
+    visibility: hidden;
+}
+
+#sleepingRuzoPurple {
+    width: 70%;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    position: absolute;
+    top: 70px;
+    visibility: hidden;
 }
 
 #workBreakContainer {

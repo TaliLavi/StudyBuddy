@@ -1,30 +1,18 @@
 // CREATE NEW SUBJECT
 function createSubject() {
 
-    // REGISTER DOM ELEMENTS
-    var nameInput = $('#nameInput');
-    var colourInput = $('#colourInput');
-
     // GET FIELD VALUES
-    var name = nameInput.val();
-    var colour = colourInput.val();
+    var name = $('#nameInput').val();
+    var colour_scheme = $('.chosenColour').attr('id');
 
     // SET DEFAULT VALUES
     var is_deleted = 0;
 
     // PUSH THEM TO DB
-    pushNewSubject(name, colour, is_deleted);
+    pushNewSubject(name, colour_scheme, is_deleted);
 
     // CLOSE THE ADD SUBJECT DIALOG
-    //Fade out the greyed background
-    $('.modal-bg').fadeOut();
-    //Fade out the modal window
-    $('#addSubjectModal').fadeOut();
-
-
-    // CLEAR INPUT FIELDS ON THE ADD SUBJECT DIALOG
-    nameInput.val('');
-    colourInput.val('');
+    closeModalWindow();
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveSubjects(displayActiveSubjects);
@@ -96,4 +84,39 @@ function viewSubjectArea(subjectKey) {
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
+}
+
+function setSubjectColour(id) {
+    $('.colourOption').removeClass('chosenColour');
+    $('#' + id + '').addClass('chosenColour');
+    if ($('#' + id + '').hasClass('usedColour')) {
+        var subjectName = $('#' + id + '').data('subject-name');
+        $('#colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
+    } else {
+        $('#colourMessage').text('');
+    }
+}
+
+
+// RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
+function checkIsColourInUse() {
+    fetchActiveSubjects(function(subjectsDict) {
+        if (subjectsDict !== null) {
+            // we're creating an object instead of an array for easier lookup
+            var colourSchemesDict = {};
+            $.each(subjectsDict, function(subjectKey, subjectData) {
+                // we are setting the value to the subject's name, for retaining the option to display it in error message
+                colourSchemesDict[subjectData.colour_scheme] = subjectData.name;
+            });
+            $('.colourOption').each(function() {
+                var colour = $(this).attr('id');
+                // if colour is already in use, set its div with .usedColour
+                if (colourSchemesDict[colour]) {
+                    $(this).addClass('usedColour');
+                    var subjectName = (colourSchemesDict[colour]);
+                    $(this).attr('data-subject-name', subjectName);
+                }
+            });
+        }
+    });
 }

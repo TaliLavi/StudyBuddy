@@ -23,6 +23,8 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
+    // indicate which colours are already in use
+    checkIsColourInUse();
 }
 
 
@@ -107,7 +109,7 @@ function applySortable(selector) {
                 onAdd: moveTask,
                 forceFallback: true,
                 fallbackClass: "dragged-item",
-                delay: 200
+                delay: 100
             });
         });
     } else {
@@ -298,6 +300,10 @@ function closeModalWindow() {
     $('.modal').fadeOut();
     // Clear input fields
     $('.inputField').val('');
+    // Clear colour message
+    $('#colourMessage').text('');
+    // remove selection of colour from colour picker in the Add a Subject modal.
+    $('.colourOption').removeClass('chosenColour');
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
         // Reset select value to default

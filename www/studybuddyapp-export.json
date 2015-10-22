@@ -194,7 +194,7 @@
           },
           "2015-10-19" : {
             "-JzfT0RxBg_3P4LdgWDt" : {
-              "assigned_date" : "2015-10-22",
+              "assigned_date" : "2015-10-24",
               "creation_date" : 1442764560306,
               "description" : "",
               "status_change_date" : 1442764560306,
@@ -276,11 +276,12 @@
           },
           "2015-10-19" : {
             "-Jzfop8PJ460MNJhF-vS" : {
-              "assigned_date" : "2015-10-21",
+              "assigned_date" : "2015-10-23",
               "creation_date" : 1442770539069,
               "description" : "",
               "status_change_date" : 1442770539069,
-              "title" : "Unassigned French Task"
+              "title" : "Unassigned French Task",
+              "total_seconds_studied" : 1
             }
           }
         },
@@ -312,7 +313,7 @@
               "description" : "",
               "number_of_breaks" : 4,
               "status_change_date" : 1439403362552,
-              "title" : "More Latin",
+              "title" : "Less Latin",
               "total_seconds_studied" : 53
             }
           }
@@ -455,8 +456,10 @@
               "assigned_date" : "2015-10-20",
               "creation_date" : 1443472780117,
               "description" : "This is the description :)",
+              "number_of_breaks" : 6,
               "status_change_date" : 1443472780117,
-              "title" : "Practise Spanish verbs"
+              "title" : "Practise Spanish verbs",
+              "total_seconds_studied" : 146
             }
           }
         },
@@ -479,7 +482,7 @@
           },
           "2015-10-19" : {
             "-K0W2NAk44KfwxbcntfJ" : {
-              "assigned_date" : "2015-10-24",
+              "assigned_date" : "2015-10-20",
               "creation_date" : 1444737286985,
               "description" : "",
               "status_change_date" : 1444737286985,
@@ -499,11 +502,12 @@
         "-K0Vz6iD4kXN-lpH-q4I" : {
           "2015-10-19" : {
             "-K0W3FSdXTAvdxc1UnHS" : {
-              "assigned_date" : "2015-10-24",
+              "assigned_date" : "2015-10-23",
               "creation_date" : 1444737517506,
               "description" : "",
               "status_change_date" : 1444737517506,
-              "title" : "Diagram coastal erosion features"
+              "title" : "Diagram coastal erosion features",
+              "total_seconds_studied" : 2
             }
           },
           "no_assigned_date" : {
@@ -549,7 +553,7 @@
           },
           "2015-10-19" : {
             "-K0W2Bbt4sIzLykYK8v6" : {
-              "assigned_date" : "2015-10-25",
+              "assigned_date" : "2015-10-20",
               "creation_date" : 1444737239634,
               "description" : "",
               "status_change_date" : 1444737239634,
@@ -605,7 +609,7 @@
           },
           "2015-10-19" : {
             "-K0W3kBUrxtIK-fBsZFC" : {
-              "assigned_date" : "2015-10-19",
+              "assigned_date" : "2015-10-21",
               "creation_date" : 1444737647480,
               "description" : "",
               "status_change_date" : 1444737647480,
@@ -1037,7 +1041,7 @@
         "last_name" : "Wonderland",
         "long_break_seconds" : 10,
         "short_break_seconds" : 5,
-        "study_session_seconds" : 10
+        "study_session_seconds" : 15
       }
     }
   },
@@ -1161,6 +1165,24 @@
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "number_of_breaks" : 30,
         "time_studied" : 263
+      }
+    },
+    "2015-10-19" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 5,
+        "time_studied" : 700
+      }
+    },
+    "2015-10-20" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 16,
+        "time_studied" : 1945
+      }
+    },
+    "2015-10-21" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 6,
+        "time_studied" : 148
       }
     }
   }
