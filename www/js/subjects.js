@@ -89,6 +89,12 @@ function viewSubjectArea(subjectKey) {
 function setSubjectColour(id) {
     $('.colourOption').removeClass('chosenColour');
     $('#' + id + '').addClass('chosenColour');
+    if ($('#' + id + '').hasClass('usedColour')) {
+        var subjectName = $('#' + id + '').data('subject-name');
+        $('#colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
+    } else {
+        $('#colourMessage').text('');
+    }
 }
 
 
@@ -99,15 +105,16 @@ function checkIsColourInUse() {
             // we're creating an object instead of an array for easier lookup
             var colourSchemesDict = {};
             $.each(subjectsDict, function(subjectKey, subjectData) {
-                // we are setting the value to true, merely because we have to provide some value to each key in an object
-                colourSchemesDict[subjectData.colour_scheme] = true;
+                // we are setting the value to the subject's name, for retaining the option to display it in error message
+                colourSchemesDict[subjectData.colour_scheme] = subjectData.name;
             });
-            console.log(colourSchemesDict);
             $('.colourOption').each(function() {
                 var colour = $(this).attr('id');
                 // if colour is already in use, set its div with .usedColour
                 if (colourSchemesDict[colour]) {
                     $(this).addClass('usedColour');
+                    var subjectName = (colourSchemesDict[colour]);
+                    $(this).attr('data-subject-name', subjectName);
                 }
             });
         }
