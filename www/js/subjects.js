@@ -1,30 +1,18 @@
 // CREATE NEW SUBJECT
 function createSubject() {
 
-    // REGISTER DOM ELEMENTS
-    var nameInput = $('#nameInput');
-    var colourInput = $('#colourInput');
-
     // GET FIELD VALUES
-    var name = nameInput.val();
-    var colour = colourInput.val();
+    var name = $('#nameInput').val();
+    var colour_scheme = $('.chosenColour').attr('id');
 
     // SET DEFAULT VALUES
     var is_deleted = 0;
 
     // PUSH THEM TO DB
-    pushNewSubject(name, colour, is_deleted);
+    pushNewSubject(name, colour_scheme, is_deleted);
 
     // CLOSE THE ADD SUBJECT DIALOG
-    //Fade out the greyed background
-    $('.modal-bg').fadeOut();
-    //Fade out the modal window
-    $('#addSubjectModal').fadeOut();
-
-
-    // CLEAR INPUT FIELDS ON THE ADD SUBJECT DIALOG
-    nameInput.val('');
-    colourInput.val('');
+    closeModalWindow();
 
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveSubjects(displayActiveSubjects);
@@ -96,4 +84,9 @@ function viewSubjectArea(subjectKey) {
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
+}
+
+function setSubjectColour(id) {
+    $('.colourOption').removeClass('chosenColour');
+    $('#' + id + '').addClass('chosenColour');
 }

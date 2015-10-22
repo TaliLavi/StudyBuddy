@@ -497,6 +497,17 @@ button:focus {outline:0;}
     color: red;
 }
 
+.colourOption {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.chosenColour {
+    border:2px solid #fefe6a;
+}
 
 /*==================================================================================================*/
 /*COLOURS THEME 1*/

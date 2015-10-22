@@ -44,6 +44,13 @@ function updateTask(taskId, oldTaskDict) {
     saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
 }
 
+//function updateTaskTitle() {
+//    $("input").blur(function(){
+//        alert("This input field has lost its focus.");
+//    });
+//}
+
+
 // if the title or assigned date of the task got updated, change the DOM accordingly
 function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDict){
     if (oldTaskDict.assigned_date !== newTaskDict.assigned_date || oldTaskDict.title !== newTaskDict.title) {
