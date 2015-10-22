@@ -257,7 +257,7 @@ button:focus {outline:0;}
     position:fixed;
     left:0;right:0;
     top:0;bottom:0;
-    z-index:0;
+    z-index:2;
     background-color:rgba(50,50,50,0.5);
 }
 
@@ -275,9 +275,9 @@ button:focus {outline:0;}
 
 /*This is the modal window for the task (with timer)*/
 #taskModal{
-    width:50%;
-    height:50%;
-    margin-top: 10%;
+    width:58%;
+    height:52%;
+
 }
 
 /*This is the modal window for the adding a task*/
@@ -308,23 +308,12 @@ button:focus {outline:0;}
     padding: 1%;
 }
 
-form{
-    margin:30px;
-    height:300px;
-    width: 300px;
-}
-form *{
-    margin:10px;
-}
-input:focus{
-    border:2px solid #ddd;
-    outline:0;
-}
-input{
-    width:240px;
-    padding:7px;
-    border:1px solid #ccc ;
-    border-radius:3px;
+#leftDivTaskCard{
+    position: relative;
+    background-color: blueviolet;
+    height: 100%;
+    width: 50%;
+    float: left;
 }
 
 #addTaskForm {
@@ -332,12 +321,39 @@ input{
     top: 20px;
 }
 
-
 #taskCardForm {
     position: absolute;
-    top: 20px;
+    height: 70%;
+    width: 80%;
+    line-height: 5%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
+.openTaskCardFormInput {
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.taskCardHeadingDiv {
+    position: absolute;
+    width: 100%;
+    background-color: #330033;
+    height: 20%;
+}
+
+#subjectNameOnOpenCard {
+    color: white;
+    opacity: .6;
+    font-family: Acme;
+    text-transform: uppercase;
+    font-size: 2em;
+    width: 80%;
+    margin:auto;
+}
 
 /*===============================================================================================*/
 /*SORTABLE DAYS / */

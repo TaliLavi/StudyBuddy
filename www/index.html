@@ -208,45 +208,54 @@
 <!--TASK DIALOG (MODAL WINDOW)-->
 <!--========================================================================================================-->
 <div id="taskModalBG" class="modal-bg">
-  <div id="taskModal" class="modal">
-    <p class="closeX" id="closeTaskModal">x</p>
-    <p class ="modalHeading">Your Task</p>
-    <div id ="pomodoroDiv" data-task-id = 'empty'>
+    <div id="taskModal" class="modal">
 
-        <div id="topContainer">
-          <div id="topTriangleWork"></div>
-          <!--<div id="topTriangleBreak"></div>-->
+
+    <div id="leftDivTaskCard">
+        <div class="taskCardHeadingDiv">
+            <p id="subjectNameOnOpenCard">Subject Name</p>
         </div>
 
-        <div id="bottomContainer">
-          <br><br>
-          <div id="bottomTriangleWork"></div>
-          <!--<div id="bottomTriangleBreak"></div>-->
-        </div>
-        <img src="img/sleepingRuzo.png" id="sleepingRuzo">
-      <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
-        <h1 id="timerDisplay">00:00</h1>
-
-      <br/>
-      <div id="timerButtons">
-        <button type="button" id="playPauseButton" class="notPlaying">Play</button>
-        <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
-      </div>
-
-      <audio id="tone">
-        <source src="pomodoroTone.mp3" type="audio/mpeg">
-      </audio>
+          <form id="taskCardForm">
+                <select class="openTaskCardFormInput" id ="taskSubject"></select>
+                <br>
+                <input class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
+                <br>
+                <input class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
+                <br>
+                <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here.">
+                <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
+              <br>
+                <button type="button" id="deleteTask">DELETE TASK</button>
+                <button type="button" id="updateTask">Save Changes</button>
+                <button type="button" id="completeTask">Done?</button>
+          </form>
     </div>
-    <form id="taskCardForm">
-      <select id ="taskSubject"></select>
-      <input id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
-      <input id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
-      <input id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here.">
-      <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
-      <button type="button" id="deleteTask">DELETE TASK</button>
-      <button type="button" id="updateTask">Save Changes</button>
-      <button type="button" id="completeTask">Done?</button>
-    </form>
+
+      <div id ="pomodoroDiv" data-task-id = 'empty'>
+          <p class="closeX" id="closeTaskModal">x</p>
+
+          <div id="topContainer">
+              <div id="topTriangleWork"></div>
+          </div>
+          <div id="bottomContainer">
+              <br><br>
+              <div id="bottomTriangleWork"></div>
+          </div>
+
+          <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+          <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
+          <h1 id="timerDisplay">00:00</h1>
+          <br/>
+          <div id="timerButtons">
+              <button type="button" id="playPauseButton" class="notPlaying">Play</button>
+              <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+          </div>
+
+          <audio id="tone">
+              <source src="pomodoroTone.mp3" type="audio/mpeg">
+          </audio>
+      </div>
 
   </div>
 </div>
