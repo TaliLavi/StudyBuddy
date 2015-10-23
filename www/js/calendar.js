@@ -17,7 +17,7 @@ function prepareCalendarSlider() {
         $('#calendarWrapper').css({width: wrapperWidth, marginLeft: (parsedMarginLeft + howMany*slideWidth)});      //Increase it by the width of a slide
     };//end of moveSlide function
 
-    $('#control_next').click(function () {
+    $('#control_next').on('click touchend', function () {
         var latestWeekDate = $('.week:last>div').attr('id').slice('week'.length);
         var mondayOfNewWeek = startOfWeek(latestWeekDate, 7);
         var newWeekHTML = createHtmlForWeekOf(mondayOfNewWeek);
@@ -32,7 +32,7 @@ function prepareCalendarSlider() {
         createCalendarHeading();
     });//end of next click function
 
-    $('#control_prev').click(function () {
+    $('#control_prev').on('click touchend', function () {
         var earliestWeekDate = $('.week:first>div').attr('id').slice('week'.length);
         var mondayOfNewWeek = startOfWeek(earliestWeekDate, -7);
         var newWeekHTML = createHtmlForWeekOf(mondayOfNewWeek);
