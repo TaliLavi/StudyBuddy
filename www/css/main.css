@@ -28,7 +28,7 @@ body {
     margin: 0;
 }
 
-input {
+input, textarea {
     /*enables selection of text for input elements (overrides disabling declared for the entire app (see * {})*/
     -webkit-user-select: auto !important;
     -khtml-user-select: auto !important;

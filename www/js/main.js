@@ -1,5 +1,5 @@
 function auto_grow(element) {
-    //element.style.height = "5px";
+    element.style.height = "5px";
     element.style.height = (element.scrollHeight)+"px";
 }
 
@@ -216,13 +216,11 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, assigned_date, taskId) {
-    fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
+function displayTask(subjectId, startOfRelevantWeek, taskId) {
+    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
     //make the description box resize to fit the content
-    auto_grow($('#taskDescription'));
-    auto_grow($('#taskTitle'));
 }
 
 function fillInTaskDetails(subjectId, taskId, taskDetails) {
@@ -233,6 +231,10 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
 
+    // get title and description textareas be the right size to fit their contents.
+    autoGrow(document.getElementById("taskDescription"));
+    autoGrow(document.getElementById("taskTitle"));
+
     // Clear any old onclick handler
     $('#deleteTask').off("click");
     $('#updateTask').off("click");
@@ -240,7 +242,6 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#playPauseButton').off("click");
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
-
 
 
     $('#updateTask').on("click", function(){
@@ -268,6 +269,10 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     closeWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
 }
 
+function autoGrow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
 
 //===========================================================================================================
 //CREATE A TASK CARD
@@ -305,7 +310,11 @@ function openAddTaskDialog(data, dateOrSubject){
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
     // prevent document from continueing to listen to clicks outside the modal container.
-    $(document).off('mouseup');
+    if (isMobile()) {
+        $(document).off('touchend');
+    } else {
+        $(document).off('mouseup');
+    }
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
