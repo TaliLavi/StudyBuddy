@@ -3,7 +3,7 @@ function createSubject() {
 
     // GET FIELD VALUES
     var name = $('#nameInput').val();
-    var colour_scheme = $('.chosenColour').attr('id');
+    var colour_scheme = $('.chosenColour').data('colour-scheme');
 
     // SET DEFAULT VALUES
     var is_deleted = 0;
@@ -51,6 +51,7 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<h4>' + subjectData.name + '</h4>' +
+                    '<div id="subjectColour" class="' + subjectData.colour_scheme + ' mainColour" onclick="toggleColourPicker()"></div>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -86,11 +87,11 @@ function viewSubjectArea(subjectKey) {
     $('#subjectArea' + subjectKey).show();
 }
 
-function setSubjectColour(id) {
+function setSubjectColour(clickedColour) {
     $('.colourOption').removeClass('chosenColour');
-    $('#' + id + '').addClass('chosenColour');
-    if ($('#' + id + '').hasClass('usedColour')) {
-        var subjectName = $('#' + id + '').data('subject-name');
+    $(clickedColour).addClass('chosenColour');
+    if ($(clickedColour).hasClass('usedColour')) {
+        var subjectName = $(clickedColour).data('subject-name');
         $('#colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
     } else {
         $('#colourMessage').text('');
@@ -109,7 +110,7 @@ function checkIsColourInUse() {
                 colourSchemesDict[subjectData.colour_scheme] = subjectData.name;
             });
             $('.colourOption').each(function() {
-                var colour = $(this).attr('id');
+                var colour = $(this).data('colour-scheme');
                 // if colour is already in use, set its div with .usedColour
                 if (colourSchemesDict[colour]) {
                     $(this).addClass('usedColour');
@@ -119,4 +120,8 @@ function checkIsColourInUse() {
             });
         }
     });
+}
+
+function toggleColourPicker() {
+
 }
