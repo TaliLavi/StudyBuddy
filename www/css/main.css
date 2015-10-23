@@ -129,6 +129,7 @@ button:focus {outline:0;}
     height: 37px;
     width: 29px;
     border: none;
+    /*background: url(img/leftArrow.png);*/
 }
 
 #control_next{
@@ -136,14 +137,15 @@ button:focus {outline:0;}
     height: 37px;
     width: 29px;
     border: none;
+    /*background: url(img/rightArrow.png);*/
 }
 
 #control_prev:hover {
-    opacity: .7;
+    opacity: .2;
 }
 
 #control_next:hover {
-    opacity: .7;
+    opacity: .2;
 }
 
 .addTaskFromDate{
