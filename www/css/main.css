@@ -328,7 +328,7 @@ button:focus {outline:0;}
     line-height: 5%;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 10px;
     margin: auto;
     -webkit-appearance: none;
 
@@ -369,8 +369,8 @@ button:focus {outline:0;}
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     wrap: soft;
-    font-size: 1em;
-    line-height: 1.2em;
+    font-size: .95em;
+    line-height: 1.75em;
     resize:none;
     overflow:hidden;
     min-height:50px;
@@ -381,8 +381,12 @@ button:focus {outline:0;}
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
-    font-size: 1.4em;
-    line-height: 30px;
+    font-size: 1.2em;
+    line-height: 1.6em;
+    resize:none;
+    overflow:hidden;
+    min-height:50px;
+    max-height: 100px;
 }
 
 #taskAssignedDate{

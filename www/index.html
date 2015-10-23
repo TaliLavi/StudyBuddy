@@ -228,14 +228,14 @@
     <div id="leftDivTaskCard">
         <div class="taskCardHeadingDiv">
             <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
-            <select class="openTaskCardFormInput" id ="taskSubject"></select>
+            <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
         </div>
 
           <form id="taskCardForm">
                 <br>
-                <input class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here.">
+                <textarea class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here." onkeydown="auto_grow(this)"></textarea>
                 <br>
-                <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here."onkeyup="auto_grow(this)"></textarea>
+                <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here." onkeydown="auto_grow(this)"></textarea>
                 <br>
                 <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
                 <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
@@ -285,3 +285,7 @@
 
 </body>
 </html>
+
+<!--DONE-->
+<!--Disabled the select subject dropdown on open task card form so that it just looks like a title.-->
+<!--Added function to resize task description and title when the task is opened. Doesn't work yet, think it needs to be call-back.-->

@@ -1,3 +1,9 @@
+function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+
+
 function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
@@ -214,6 +220,9 @@ function displayTask(subjectId, assigned_date, taskId) {
     fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
+    //make the description box resize to fit the content
+    auto_grow($('#taskDescription'));
+    auto_grow($('#taskTitle'));
 }
 
 function fillInTaskDetails(subjectId, taskId, taskDetails) {
@@ -223,6 +232,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
+
     // Clear any old onclick handler
     $('#deleteTask').off("click");
     $('#updateTask').off("click");
@@ -230,6 +240,8 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#playPauseButton').off("click");
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
+
+
 
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
@@ -374,7 +386,3 @@ function openAddSubjectDialog(){
     closeWhenClickingOutside($('#addSubjectModal'));
 }
 //
-function auto_grow(element) {
-    element.style.height = "5px";
-    element.style.height = (element.scrollHeight)+"px";
-}
