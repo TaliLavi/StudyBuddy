@@ -139,8 +139,6 @@ function playPauseTimer(subjectId, weekDate, taskId) {
 
 function switchToNextSession(subjectId, weekDate, taskId) {
     playTone();
-    // restart animation
-    //workTL.restart();
     // reset animation ready for next time
     workTL.pause(0);
     if (sessionType === 'study_session') {
@@ -152,12 +150,20 @@ function switchToNextSession(subjectId, weekDate, taskId) {
         if (numOfStudySessions < 4) {
             // change to short_break
             sessionType = 'short_break';
+            $('#sleepingRuzo').css('display','block');
+            $('#sleepingRuzoPurple').css('display','none');
+            $('#bottomContainer').css('display','none');
+            $('#topContainer').css('display','none');
             // switch to long_break
         } else {
             // change to long_break
             sessionType = 'long_break';
             // reset count of study sessions
             numOfStudySessions = 0;
+            $('#sleepingRuzoPurple').css('display','block');
+            $('#sleepingRuzo').css('display','none');
+            $('#bottomContainer').css('display','none');
+            $('#topContainer').css('display','none');
         }
 
         var timeToLog = cachedSessionTimes.study_session;
@@ -168,6 +174,10 @@ function switchToNextSession(subjectId, weekDate, taskId) {
 
         // change to study_session
         sessionType = 'study_session';
+        $('#bottomContainer').css('display','block');
+        $('#topContainer').css('display','block');
+        $('#sleepingRuzoPurple').css('display','none');
+        $('#sleepingRuzo').css('display','none');
         workTL.play();
     }
     setTimer(subjectId, weekDate, taskId);

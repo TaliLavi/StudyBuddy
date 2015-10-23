@@ -116,10 +116,14 @@
   <div id="calendarPage">
     <div id="calendarControls">
       <!--<img id="control_prev" class="calendarControls" src="img/leftArrow.png">-->
-      <input type="image" src="img/leftArrow.png" id="control_prev" class="calendarControls"/>
+      <button style="background: url(img/leftArrow.png)" id="control_prev" class="calendarControls">
+        <!--<img src="img/leftArrow.png">-->
+      </button>
       <!--<button class="calendarControls" id="control_prev">Prev</button>-->
       <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
-      <input type="image" src="img/rightArrow.png" id="control_next" class="calendarControls"/>
+      <button style="background: url(img/rightArrow.png)" id="control_next" class="calendarControls">
+        <!--<img src="img/rightArrow.png">-->
+      </button>
       <!--<button class="calendarControls" id="control_next">Next</button>-->
       <!--<img id="control_next" class="calendarControls" src="img/rightArrow.png">-->
     </div>
@@ -248,7 +252,7 @@
 
       <div id ="pomodoroDiv" data-task-id = 'empty'>
           <p class="closeX" id="closeTaskModal">x</p>
-
+        <img src="img/purpleCircle.png" id="purpleCircle">
           <div id="topContainer">
               <div id="topTriangleWork"></div>
           </div>
@@ -285,7 +289,4 @@
 
 </body>
 </html>
-
-<!--DONE-->
-<!--Disabled the select subject dropdown on open task card form so that it just looks like a title.-->
-<!--Added function to resize task description and title when the task is opened. Doesn't work yet, think it needs to be call-back.-->
+<!--A comment-->

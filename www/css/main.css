@@ -129,6 +129,7 @@ button:focus {outline:0;}
     height: 37px;
     width: 29px;
     border: none;
+    /*background: url(img/leftArrow.png);*/
 }
 
 #control_next{
@@ -136,14 +137,15 @@ button:focus {outline:0;}
     height: 37px;
     width: 29px;
     border: none;
+    /*background: url(img/rightArrow.png);*/
 }
 
 #control_prev:hover {
-    opacity: .7;
+    opacity: .2;
 }
 
 #control_next:hover {
-    opacity: .7;
+    opacity: .2;
 }
 
 .addTaskFromDate{
@@ -222,9 +224,8 @@ button:focus {outline:0;}
 /*This is the dragged image*/
 .dragged-item .cardTask {
     width: 110%;
-    height:70px;
+    height: 110%;
     opacity: 1;
-    border-radius: 2px;
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
@@ -371,7 +372,7 @@ button:focus {outline:0;}
     line-height: 1.75em;
     resize:none;
     overflow:hidden;
-    min-height:50px;
+    min-height: 50px;
     max-height: 200px;
 }
 
