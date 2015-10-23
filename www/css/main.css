@@ -115,6 +115,7 @@ input, textarea {
 /*===================================================================================================================*/
 /*to get rid of the blue halo around buttons when they are pressed*/
 button:focus {outline:0;}
+input:focus {outline:0;}
 
 #calendarControls{
     margin-left: auto;
