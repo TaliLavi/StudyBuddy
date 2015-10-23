@@ -227,17 +227,17 @@
 
     <div id="leftDivTaskCard">
         <div class="taskCardHeadingDiv">
-            <p id="subjectNameOnOpenCard">Subject Name</p>
+            <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
+            <select class="openTaskCardFormInput" id ="taskSubject"></select>
         </div>
 
           <form id="taskCardForm">
-                <select class="openTaskCardFormInput" id ="taskSubject"></select>
                 <br>
-                <input class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="textbox" placeholder="Write your task here.">
+                <input class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here.">
                 <br>
-                <input class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textbox" placeholder="Write your description here.">
+                <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here."onkeyup="auto_grow(this)"></textarea>
                 <br>
-                <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="textbox" placeholder="Write task's assigned date here.">
+                <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
                 <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
               <br>
                 <button type="button" id="deleteTask">DELETE TASK</button>

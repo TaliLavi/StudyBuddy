@@ -330,12 +330,23 @@ button:focus {outline:0;}
     right: 0;
     bottom: 0;
     margin: auto;
+    -webkit-appearance: none;
+
 }
 
 .openTaskCardFormInput {
     width: 100%;
-    line-height: 30px;
     margin-bottom: 20px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    font-size: 1em;
+    color: white;
+    -webkit-appearance: none;
+}
+
+.openTaskCardFormInput:focus {
+    background-color: rgba(255,255,255,.3);
+    outline: none;
 }
 
 .taskCardHeadingDiv {
@@ -345,16 +356,40 @@ button:focus {outline:0;}
     height: 20%;
 }
 
-#subjectNameOnOpenCard {
+#taskSubject{
     color: white;
     opacity: .6;
     font-family: Acme;
     text-transform: uppercase;
     font-size: 2em;
-    width: 80%;
-    margin:auto;
 }
 
+#taskDescription{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    wrap: soft;
+    font-size: 1em;
+    line-height: 1.2em;
+    resize:none;
+    overflow:hidden;
+    min-height:50px;
+    max-height: 200px;
+}
+
+#taskTitle{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    font-size: 1.4em;
+    line-height: 30px;
+}
+
+#taskAssignedDate{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+}
 /*===============================================================================================*/
 /*SORTABLE DAYS / */
 /*===============================================================================================*/
