@@ -210,10 +210,11 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, assigned_date, taskId) {
-    fetchSingleTask(subjectId, assigned_date, taskId, fillInTaskDetails);
+function displayTask(subjectId, startOfRelevantWeek, taskId) {
+    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
+    //make the description box resize to fit the content
 }
 
 function fillInTaskDetails(subjectId, taskId, taskDetails) {
@@ -223,6 +224,11 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
+
+    // get title and description textareas be the right size to fit their contents.
+    autoGrow(document.getElementById("taskDescription"));
+    autoGrow(document.getElementById("taskTitle"));
+
     // Clear any old onclick handler
     $('#deleteTask').off("click");
     $('#updateTask').off("click");
@@ -230,6 +236,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#playPauseButton').off("click");
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
+
 
     $('#updateTask').on("click", function(){
         updateTask(taskId, taskDetails);
@@ -256,6 +263,10 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     closeWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
 }
 
+function autoGrow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
 
 //===========================================================================================================
 //CREATE A TASK CARD
@@ -373,4 +384,4 @@ function openAddSubjectDialog(){
 
     closeWhenClickingOutside($('#addSubjectModal'));
 }
-
+//
