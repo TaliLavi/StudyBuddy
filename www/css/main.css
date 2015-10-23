@@ -1,5 +1,5 @@
 *{
-    font-family: Raleway;
+    font-family: Raleway, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
     /*prevents selection of text for copying and pasting it*/
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -92,7 +92,7 @@ input {
 
 #subjectsHighlight{
     top: 15px;
-    margin-left: 0px;
+    margin-left: 0;
     display: none;
 }
 
@@ -158,7 +158,7 @@ button:focus {outline:0;}
 }
 
 #weekHeadingOnCalendar{
-    font-family: acme;
+    font-family: acme, sans-serif;
     color: #607A93;
     font-weight: 400;
     font-size: 2em;
@@ -168,7 +168,7 @@ button:focus {outline:0;}
 
 .dayHeadingOnCalendar{
     color: white;
-    font-family: 'Acme';
+    font-family: 'Acme', sans-serif;
     font-size: 1.2em;
     margin: auto;
     padding: 1%;
@@ -177,7 +177,7 @@ button:focus {outline:0;}
 
 .dateOnCalendarDay{
     color: white;
-    font-family: Acme;
+    font-family: Acme, sans-serif;
     opacity: .5;
     font-size: .8em;
     padding: 5%;
@@ -227,9 +227,9 @@ button:focus {outline:0;}
     border-radius: 2px;
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
-    -webkit-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
-    -moz-box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
-    box-shadow: 0px 1px 22px 3px rgba(0,0,0,0.26);
+    -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
+    box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
 }
 
 .sortable-ghost {
@@ -238,7 +238,7 @@ button:focus {outline:0;}
 
 .doneTask {
     background-image: repeating-linear-gradient(
-            -45deg,
+            125deg,
             rgba(255,255,255,.1),
             rgba(255,255,255,.1) 10px,
             rgba(255,255,255,.3) 10px,
@@ -292,12 +292,10 @@ button:focus {outline:0;}
     display: block;
     float: right;
     color:darkslategray;
-    float: right;
     font-size: 2em;
     margin-right: 2%;
     margin-top: 2%;
     padding: 1%;
-    decoration: none;
 }
 
 .modalHeading{
@@ -359,7 +357,7 @@ button:focus {outline:0;}
 #taskSubject{
     color: white;
     opacity: .6;
-    font-family: Acme;
+    font-family: Acme, sans-serif;
     text-transform: uppercase;
     font-size: 2em;
 }
@@ -421,8 +419,7 @@ button:focus {outline:0;}
     position: relative;
     display: block;
     margin-top: 5px;
-    padding: 0px;
-    z-index: 0px;                       /*z-index is its position in the layers. Higher z-indexes appear on top of lower ones*/
+    padding: 0;
     list-style-type: none;              /*remove bullet points fron li elements*/
 }
 
@@ -436,7 +433,7 @@ button:focus {outline:0;}
 
 .section {
     clear: both;
-    padding: 0px;
+    padding: 0;
     margin: 1%;
 }
 
