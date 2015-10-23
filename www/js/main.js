@@ -304,7 +304,11 @@ function openAddTaskDialog(data, dateOrSubject){
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
     // prevent document from continueing to listen to clicks outside the modal container.
-    $(document).off('mouseup');
+    if (isMobile()) {
+        $(document).off('touchend');
+    } else {
+        $(document).off('mouseup');
+    }
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
