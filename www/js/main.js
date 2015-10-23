@@ -316,7 +316,7 @@ function closeModalWindow() {
     // Clear input fields
     $('.inputField').val('');
     // Clear colour message
-    $('#colourMessage').text('');
+    $('.colourMessage').text('');
     // remove selection of colour from colour picker in the Add a Subject modal.
     $('.colourOption').removeClass('chosenColour');
     // Reset select value to default

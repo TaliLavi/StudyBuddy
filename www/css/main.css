@@ -537,8 +537,15 @@ input:focus {outline:0;}
     float: left;
     width: 30px;
     height: 30px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
+}
+
+#colourPalette {
+    width: 500px;
+    height: 170px;
+    background-color: #ffffff;
+    display: none;
 }
 
 .chosenColour {
@@ -549,12 +556,13 @@ input:focus {outline:0;}
     opacity: 0.2;
 }
 
-#subjectColour {
+.editColour {
     width: 30px;
     height: 30px;
     margin: 10px;
     cursor: pointer;
 }
+
 
 /*==================================================================================================*/
 /*COLOURS THEME 1*/

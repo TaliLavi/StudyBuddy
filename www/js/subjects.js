@@ -51,7 +51,7 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<h4>' + subjectData.name + '</h4>' +
-                    '<div id="subjectColour" class="' + subjectData.colour_scheme + ' mainColour" onclick="toggleColourPicker()"></div>' +
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour"></div>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -72,6 +72,21 @@ function displayActiveSubjects(allSubjectsDict) {
             );
         })
 
+        $('.editColour').click(function (e) {
+            // hide and clear colourPalette
+            $('.colourMessage').text('');
+            $('.colourOption').removeClass('chosenColour');
+
+            // locate colour palette menu next to the editColour button
+            var offset = $(this).offset();
+            $('#colourPalette').css('left',offset.left + 50);
+            $('#colourPalette').css('top',offset.top + 50);
+            $("#colourPalette").css("position", "absolute");
+
+            // toggle show and hide
+            $('#colourPalette').toggle();
+        });
+
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
         fetchActiveTasks(displayTasksInSubjectsPage);
@@ -79,6 +94,11 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function viewSubjectArea(subjectKey) {
+    // hide and clear colourPalette
+    $('#colourPalette').hide();
+    $('.colourMessage').text('');
+    $('.colourOption').removeClass('chosenColour');
+
     // remove active class for clearing colour background
     $('.subjectName').removeClass('active');
     $('#subjectName' + subjectKey).addClass('active');
@@ -92,12 +112,22 @@ function setSubjectColour(clickedColour) {
     $(clickedColour).addClass('chosenColour');
     if ($(clickedColour).hasClass('usedColour')) {
         var subjectName = $(clickedColour).data('subject-name');
-        $('#colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
+        $('.colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
     } else {
-        $('#colourMessage').text('');
+        $('.colourMessage').text('');
     }
 }
 
+function changeSubjectColour(clickedColour) {
+    $('.colourOption').removeClass('chosenColour');
+    $(clickedColour).addClass('chosenColour');
+    if ($(clickedColour).hasClass('usedColour')) {
+        var subjectName = $(clickedColour).data('subject-name');
+        $('.colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
+    } else {
+        $('.colourMessage').text('');
+    }
+}
 
 // RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
 function checkIsColourInUse() {
@@ -120,8 +150,4 @@ function checkIsColourInUse() {
             });
         }
     });
-}
-
-function toggleColourPicker() {
-
 }
