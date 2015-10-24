@@ -306,3 +306,7 @@ function filterTasksInFooter(subjectKey) {
         }
     }
 }
+
+function playPop() {
+    $('#popSound').get(0).play();
+}

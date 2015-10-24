@@ -98,34 +98,29 @@ function isMobile() {
 }
 
 function applySortable(selector) {
+    var sortableOptions = {
+        group: "tasks",
+        //animation: 1000,
+        ghostClass: "sortable-ghost",
+        onStart: inTheAir,
+        onAdd: moveTask,
+        onPickup: pickupCard,
+        forceFallback: true,
+        fallbackClass: "dragged-item"
+    }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
-        $(selector).each(function (i, list) {
-            Sortable.create(list, {
-                group: "tasks",
-                //animation: 800,
-                ghostClass: "sortable-ghost",
-                onStart: inTheAir,
-                onAdd: moveTask,
-                forceFallback: true,
-                fallbackClass: "dragged-item",
-                delay: 100
-            });
-        });
-    } else {
-        //set up drag and drop for each list
-        $(selector).each(function (i, list) {
-            Sortable.create(list, {
-                group: "tasks",
-                //animation: 1000,
-                ghostClass: "sortable-ghost",
-                onStart: inTheAir,
-                onAdd: moveTask,
-                forceFallback: true,
-                fallbackClass: "dragged-item"
-            });
-        });
+        sortableOptions[delay] = 100;
     }
+    $(selector).each(function (i, list) {
+        Sortable.create(list, sortableOptions);
+    });
+}
+
+function pickupCard(evt) {
+    navigator.vibrate(100);
+    console.log("Picked up", evt, evt.oldIndex);
+    playPop();
 }
 
 // when task is moved...

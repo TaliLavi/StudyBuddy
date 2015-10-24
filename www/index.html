@@ -28,6 +28,7 @@
   <script src="js/subjects.js"></script>
   <script src="js/tasks.js"></script>
   <script src='js/calendar.js'></script>
+  <script src='js/pomodoro.js'></script>
   <script src='js/main.js'></script>
   <script src="cordova.js"></script>
 </head>
@@ -291,7 +292,13 @@
 
   </div>
 </div>
-<script src='js/pomodoro.js'></script>
+
+<audio id="popSound">
+  <source src="pop.ogg" type="audio/ogg">
+  <source src="popSound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 <script>
 // TODO: Before publishing:
 // Change the next line from preparePage to hideAppContent.
@@ -301,15 +308,6 @@
   LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
 </script>
 
-<audio id="pop">
-  <source src="pop.ogg" type="audio/ogg">
-  <source src="popSound.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 </div>
 </body>
 </html>
-
-<!--A comment-->
-
-
