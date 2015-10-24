@@ -115,6 +115,7 @@ input, textarea {
 /*===================================================================================================================*/
 /*to get rid of the blue halo around buttons when they are pressed*/
 button:focus {outline:0;}
+input:focus {outline:0;}
 
 #calendarControls{
     margin-left: auto;
@@ -138,13 +139,13 @@ button:focus {outline:0;}
     border: none;
 }
 
-#control_prev:hover {
-    opacity: .7;
-}
+/*#control_prev:hover {*/
+    /*opacity: .2;*/
+/*}*/
 
-#control_next:hover {
-    opacity: .7;
-}
+/*#control_next:hover {*/
+    /*opacity: .2;*/
+/*}*/
 
 .addTaskFromDate{
     color: #607A93;
@@ -550,17 +551,32 @@ button:focus {outline:0;}
     float: left;
     width: 30px;
     height: 30px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
 }
 
+#colourPalette {
+    width: 500px;
+    height: 170px;
+    background-color: #ffffff;
+    display: none;
+}
+
 .chosenColour {
-    border:2px solid #fefe6a;
+    border:3px solid #4a4a4a;
 }
 
 .usedColour {
     opacity: 0.2;
 }
+
+.editColour {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
+}
+
 
 /*==================================================================================================*/
 /*COLOURS THEME 1*/
