@@ -85,7 +85,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 $('#colourPalette').css('top',offset.top + 50);
                 $("#colourPalette").css("position", "absolute");
 
-                //closeWhenClickingOutside($('#colourPalette'));
+                closeWhenClickingOutside($('#colourPalette'));
 
                 // display #colourPalette
                 $('#colourPalette').show();
@@ -106,6 +106,12 @@ function displayActiveSubjects(allSubjectsDict) {
 }
 
 function hideColourPalette() {
+    // prevent document from continueing to listen to clicks outside the modal container.
+    if (isMobile()) {
+        $(document).off('touchend');
+    } else {
+        $(document).off('mouseup');
+    }
     // hide and clear colourPalette
     $('#colourPalette').hide();
     $('.colourMessage').text('');
@@ -113,8 +119,6 @@ function hideColourPalette() {
 }
 
 function viewSubjectArea(subjectKey) {
-
-    hideColourPalette();
 
     // remove active class for clearing colour background
     $('.subjectName').removeClass('active');

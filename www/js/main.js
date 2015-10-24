@@ -351,6 +351,8 @@ function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
                 if ($('#taskModal').hasClass('displayed')) {
                     closeTaskModal(subjectId, weekDate, taskId);
                     $('#taskModal').removeClass('displayed')
+                } else if (modalWindow[0].id === "colourPalette") {
+                    hideColourPalette();
                 } else {
                     closeModalWindow();
                 }
@@ -363,6 +365,8 @@ function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
                 if ($('#taskModal').hasClass('displayed')) {
                     closeTaskModal(subjectId, weekDate, taskId);
                     $('#taskModal').removeClass('displayed')
+                } else if (modalWindow[0].id === "colourPalette") {
+                    hideColourPalette();
                 } else {
                     closeModalWindow();
                 }
