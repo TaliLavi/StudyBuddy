@@ -57,7 +57,15 @@
     display: none;
 }
 
-#subjectsInnerWrapper, #tasksInnerWrapper {
+#subjectsInnerWrapper {
+    overflow-x: scroll;
+}
+
+#tasksInnerWrapper {
+    display: -webkit-box; /*OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
     overflow-x: scroll;
 }
 

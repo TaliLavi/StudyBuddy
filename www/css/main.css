@@ -197,9 +197,12 @@ button:focus {outline:0;}
 /*===================================================================================================================*/
 
 .cardTask {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     font-weight: normal;
     border-radius: 3px;
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
     align-items: center;
     position: relative;
     width: 100%;
@@ -297,17 +300,10 @@ button:focus {outline:0;}
     padding: 1%;
 }
 
-.modalHeading{
-    margin-left: 5%;
-    display: block;
-    color:darkslategray;
-    font-size: 2em;
-    padding: 1%;
-}
 
 #leftDivTaskCard{
     position: relative;
-    background-color: blueviolet;
+    background-color: darkgrey;
     height: 100%;
     width: 50%;
     float: left;
@@ -342,14 +338,14 @@ button:focus {outline:0;}
 }
 
 .openTaskCardFormInput:focus {
-    background-color: rgba(255,255,255,.3);
+    background-color: rgba(255,255,255,.2);
     outline: none;
 }
 
 .taskCardHeadingDiv {
     position: absolute;
     width: 100%;
-    background-color: #330033;
+    background-color: gray;
     height: 20%;
 }
 
@@ -359,6 +355,8 @@ button:focus {outline:0;}
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     font-size: 2em;
+    margin-left: 10%;
+    margin-top: 5%;
 }
 
 #taskDescription{
@@ -390,6 +388,22 @@ button:focus {outline:0;}
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
+}
+
+::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 /*===============================================================================================*/
 /*SORTABLE DAYS / */
