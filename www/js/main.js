@@ -214,6 +214,9 @@ function displayTask(subjectId, startOfRelevantWeek, taskId) {
     fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
     $('#taskModal').css('display','block');                     //Makes the modal window display
     $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
     //make the description box resize to fit the content
 }
 
@@ -286,6 +289,9 @@ function openAddTaskDialog(data, dateOrSubject){
 
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
     //Fades in the greyed-out background
     $('#addTaskModalBG').fadeIn();
     // Clear any old onclick handler
@@ -309,10 +315,15 @@ function closeModalWindow() {
     } else {
         $(document).off('mouseup');
     }
+    $('#calendarPage').removeClass('frostedGlass');
+    $('#iPadStatusBar').removeClass('frostedGlass');
+    $('#navBar').removeClass('frostedGlass');
+    $('#subjectsPage').removeClass('frostedGlass');
     //Fade out the greyed background
     $('.modal-bg').fadeOut();
     //Fade out the modal window
     $('.modal').fadeOut();
+
     // Clear input fields
     $('.inputField').val('');
     // Clear colour message
@@ -385,10 +396,16 @@ function openAddSubjectDialog(){
     $('#addSubjectModal').css('display','block');
     //Fades in the greyed-out background
     $('#addSubjectModalBG').fadeIn();
+    //Add frosted glass to all areas visible in the background
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass')
     // Clear any old onclick handler
     $('#submitNewSubject').off("click");
     // Set the new onclick handler
     $('#submitNewSubject').on("click", createSubject);
+
+
 
     closeWhenClickingOutside($('#addSubjectModal'));
 }

@@ -37,6 +37,7 @@ input, textarea {
     user-select: auto !important;
 }
 
+
 /*===================================================================================================================*/
 /* NAV BAR, STATUS BAR AND ICONS*/
 /*===================================================================================================================*/
@@ -253,15 +254,20 @@ input:focus {outline:0;}
 /*===================================================================================================================*/
 /*MODAL WINDOWS*/
 /*===================================================================================================================*/
+/*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
+.frostedGlass {
+    -webkit-filter: blur(15px);
+    -webket-transition: 0.4s ease;
+}
 
-/*This is the greyed-out background behind the modal window. It covers the whole screen*/
+/*This is the white transparent background behind the modal window. It covers the whole screen*/
 .modal-bg{
     display: none;
     position:fixed;
     left:0;right:0;
     top:0;bottom:0;
     z-index:2;
-    background-color:rgba(50,50,50,0.5);
+    background-color:rgba(0, 0, 0, 0.1);
 }
 
 /*This is the modal window itself (class)*/
@@ -273,7 +279,7 @@ input:focus {outline:0;}
     margin-left: auto;
     margin-right:auto;
     margin-top: 10%;
-    box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 100px 0 rgba(0,0,0,0.4);
 }
 
 /*This is the modal window for the task (with timer)*/
@@ -511,13 +517,15 @@ input:focus {outline:0;}
 }
 
 #subjectsPanel {
-    width: 30%;
+    width: 25%;
     float: left;
 }
 
 #tasksPerSubject {
-    width: 65%;
-    float: left;
+    position: relative;
+    width:75%;
+    float: right;
+    height: 1000px;
 }
 
 #tasksPerSubject ul{
@@ -528,6 +536,15 @@ input:focus {outline:0;}
     text-align: center;
     background-color: #aaaaaa;
     padding: 20px;
+}
+
+.subjectHeaderOnSubjectPage {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 3%;
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    color: white;
 }
 
 .subjectArea {

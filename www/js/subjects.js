@@ -50,7 +50,7 @@ function displayActiveSubjects(allSubjectsDict) {
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
-                    '<h4>' + subjectData.name + '</h4>' +
+                    '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
