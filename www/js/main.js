@@ -119,7 +119,7 @@ function applySortable(selector) {
 
 function pickupCard(evt) {
     navigator.vibrate(100);
-    console.log("Picked up", evt, evt.oldIndex);
+    //console.log("Picked up", evt, evt.oldIndex);
     playPop();
 }
 
@@ -205,10 +205,14 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, startOfRelevantWeek, taskId) {
+function displayTask(subjectId, subjectDict, startOfRelevantWeek, taskId) {
     fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
-    $('#taskModal').css('display','block');                     //Makes the modal window display
-    $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
+    // change heading's background to main colour, and left side's background to secondary colour
+    $('#taskCardHeadingDiv ,#leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    //Makes the modal window display
+    $('#taskModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
@@ -310,6 +314,11 @@ function closeModalWindow() {
     } else {
         $(document).off('mouseup');
     }
+    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
+    $('#taskCardHeadingDiv ,#leftDivTaskCard').removeClass();
+    $('#taskCardHeadingDiv').addClass('mainColour');
+    $('#leftDivTaskCard').addClass('secondaryColour');
+
     $('#calendarPage').removeClass('frostedGlass');
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');

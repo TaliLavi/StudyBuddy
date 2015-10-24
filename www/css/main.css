@@ -312,10 +312,8 @@ input:focus {outline:0;}
     padding: 1%;
 }
 
-
 #leftDivTaskCard{
     position: relative;
-    background-color: darkgrey;
     height: 100%;
     width: 50%;
     float: left;
@@ -336,7 +334,6 @@ input:focus {outline:0;}
     bottom: 10px;
     margin: auto;
     -webkit-appearance: none;
-
 }
 
 .openTaskCardFormInput {
@@ -354,10 +351,9 @@ input:focus {outline:0;}
     outline: none;
 }
 
-.taskCardHeadingDiv {
+#taskCardHeadingDiv {
     position: absolute;
     width: 100%;
-    background-color: gray;
     height: 20%;
 }
 
