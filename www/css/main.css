@@ -549,7 +549,7 @@ input:focus {outline:0;}
 }
 
 .chosenColour {
-    border:2px solid #fefe6a;
+    border:3px solid #4a4a4a;
 }
 
 .usedColour {

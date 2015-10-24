@@ -51,7 +51,7 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<h4>' + subjectData.name + '</h4>' +
-                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour"></div>' +
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -72,19 +72,31 @@ function displayActiveSubjects(allSubjectsDict) {
             );
         })
 
-        $('.editColour').click(function (e) {
-            // hide and clear colourPalette
-            $('.colourMessage').text('');
-            $('.colourOption').removeClass('chosenColour');
+        $('.editColour').click(function () {
+            // if this click will make #colourPalette visible:
+            if ($('#colourPalette').is(':hidden')) {
+                // select this subject's colour by default
+                var subjectColour = $(this).data('colour-scheme');
+                var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
+                $(subjectColourDiv).addClass('chosenColour');
+                // position colour palette menu next to the editColour button
+                var offset = $(this).offset();
+                $('#colourPalette').css('left',offset.left + 50);
+                $('#colourPalette').css('top',offset.top + 50);
+                $("#colourPalette").css("position", "absolute");
 
-            // locate colour palette menu next to the editColour button
-            var offset = $(this).offset();
-            $('#colourPalette').css('left',offset.left + 50);
-            $('#colourPalette').css('top',offset.top + 50);
-            $("#colourPalette").css("position", "absolute");
+                //closeWhenClickingOutside($('#colourPalette'));
 
-            // toggle show and hide
-            $('#colourPalette').toggle();
+                // display #colourPalette
+                $('#colourPalette').show();
+            // if this click will make #colourPalette hidden:
+            } else {
+                // hide and clear colourPalette
+                $('.colourMessage').text('');
+                $('.colourOption').removeClass('chosenColour');
+                // hide #colourPalette
+                $('#colourPalette').hide();
+            }
         });
 
         // fetch and append all active tasks.
@@ -93,11 +105,16 @@ function displayActiveSubjects(allSubjectsDict) {
     }
 }
 
-function viewSubjectArea(subjectKey) {
+function hideColourPalette() {
     // hide and clear colourPalette
     $('#colourPalette').hide();
     $('.colourMessage').text('');
     $('.colourOption').removeClass('chosenColour');
+}
+
+function viewSubjectArea(subjectKey) {
+
+    hideColourPalette();
 
     // remove active class for clearing colour background
     $('.subjectName').removeClass('active');
@@ -108,17 +125,6 @@ function viewSubjectArea(subjectKey) {
 }
 
 function setSubjectColour(clickedColour) {
-    $('.colourOption').removeClass('chosenColour');
-    $(clickedColour).addClass('chosenColour');
-    if ($(clickedColour).hasClass('usedColour')) {
-        var subjectName = $(clickedColour).data('subject-name');
-        $('.colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
-    } else {
-        $('.colourMessage').text('');
-    }
-}
-
-function changeSubjectColour(clickedColour) {
     $('.colourOption').removeClass('chosenColour');
     $(clickedColour).addClass('chosenColour');
     if ($(clickedColour).hasClass('usedColour')) {
