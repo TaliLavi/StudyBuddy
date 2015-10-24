@@ -1,9 +1,3 @@
-function auto_grow(element) {
-    element.style.height = "5px";
-    element.style.height = (element.scrollHeight)+"px";
-}
-
-
 function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
@@ -322,7 +316,7 @@ function closeModalWindow() {
     // Clear input fields
     $('.inputField').val('');
     // Clear colour message
-    $('#colourMessage').text('');
+    $('.colourMessage').text('');
     // remove selection of colour from colour picker in the Add a Subject modal.
     $('.colourOption').removeClass('chosenColour');
     // Reset select value to default
@@ -357,6 +351,8 @@ function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
                 if ($('#taskModal').hasClass('displayed')) {
                     closeTaskModal(subjectId, weekDate, taskId);
                     $('#taskModal').removeClass('displayed')
+                } else if (modalWindow[0].id === "colourPalette") {
+                    hideColourPalette();
                 } else {
                     closeModalWindow();
                 }
@@ -369,6 +365,8 @@ function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
                 if ($('#taskModal').hasClass('displayed')) {
                     closeTaskModal(subjectId, weekDate, taskId);
                     $('#taskModal').removeClass('displayed')
+                } else if (modalWindow[0].id === "colourPalette") {
+                    hideColourPalette();
                 } else {
                     closeModalWindow();
                 }

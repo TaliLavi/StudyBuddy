@@ -174,26 +174,46 @@
     <p class ="modalHeading">New Subject</p>
     <form>
       <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-      <div id="colourPicker">
-        <div id="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this.id)"></div>
-        <div id="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this.id)"></div>
+      <div>
+        <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+        <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
       </div>
-      <div id="colourMessage"></div>
+      <div class="colourMessage"></div>
       <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
     </form>
   </div>
 </div>
 
+
+<!--========================================================================================================-->
+<!--COLOUR PICKER FOR SUBJECT AREA-->
+<!--========================================================================================================-->
+
+<div id="colourPalette">
+  <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+  <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+  <div class="colourMessage"></div>
+</div>
 
 <!--========================================================================================================-->
 <!--ADD TASK DIALOG (MODAL WINDOW)-->
@@ -279,6 +299,15 @@
   LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
 </script>
 
+<audio id="pop">
+  <source src="pop.ogg" type="audio/ogg">
+  <source src="popSound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 </body>
 </html>
+
 <!--A comment-->
+
+
