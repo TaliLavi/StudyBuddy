@@ -14,17 +14,20 @@
 }
 
 html {
-    max-height: 768px;
+    height: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative;
+    overflow: hidden;
+
 }
 
 
 body {
     background-color: #E9ECEF;
-    height: 100%;
+    min-height: 100%;
     margin: 0;
+    overflow: hidden;
 }
 
 input, textarea {
