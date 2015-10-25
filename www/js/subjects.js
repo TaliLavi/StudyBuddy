@@ -186,12 +186,15 @@ function changeSubjectColour(subjectId) {
     $('#subjectArea' + subjectId).addClass(newColour);
     // change accordion tasks' background and font colour
     var titleElements = $('#tasksFor' + subjectId).find('a, span');
-    //var titleText = $('#tasksFor' + subjectId).find('span');
     titleElements.removeClassPrefix('theme');
     titleElements.addClass(newColour);
-
+    // change background colour for card tasks
+    var cardTasks = $('.sortable-task-list').find('[data-subjectid="' + subjectId + '"] > div');
+    cardTasks.removeClassPrefix('theme');
+    cardTasks.addClass(newColour);
 
 
     // hide colour picker widget
     hideColourPalette();
 }
+

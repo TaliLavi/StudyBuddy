@@ -205,10 +205,13 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, subjectDict, startOfRelevantWeek, taskId) {
+function displayTask(subjectId, startOfRelevantWeek, taskId) {
     fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
     // change heading's background to main colour, and left side's background to secondary colour
-    $('#taskCardHeadingDiv ,#leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    fetchAnActiveSubject(subjectId, function(subjectDict) {
+        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    });
+
     //Makes the modal window display
     $('#taskModal').css('display','block');
     //Fades in the greyed-out background

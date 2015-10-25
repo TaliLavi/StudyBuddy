@@ -132,6 +132,14 @@ function fetchActiveSubjects(callback) {
     }, firebaseErrorFrom('fetchActiveSubjects'));
 }
 
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
+function fetchAnActiveSubject(subjectId, callback) {
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    subjectRef.once("value", function(snapshot) {
+        callback(snapshot.val());
+    }, firebaseErrorFrom('fetchAnActiveSubject'));
+}
+
 // UPDATE SUBJECT'S NAME
 function changeSubjectName(subjectId, newName){
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
