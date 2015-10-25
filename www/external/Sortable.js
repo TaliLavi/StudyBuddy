@@ -336,7 +336,9 @@
 
 					// Bind the events: dragstart/dragend
 					_this._triggerDragStart(touch);
-					navigator.vibrate(100);
+
+					// Drag start event
+					_dispatchEvent(this, rootEl, 'pickup', dragEl, rootEl, oldIndex);
 				};
 
 				// Disable "draggable"
