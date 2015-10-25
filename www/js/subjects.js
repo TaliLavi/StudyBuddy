@@ -51,7 +51,7 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
-                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -73,6 +73,7 @@ function displayActiveSubjects(allSubjectsDict) {
         })
 
         $('.editColour').click(function () {
+            var subjectId = $(this).data('subjectid');
             // if this click will make #colourPalette visible:
             if ($('#colourPalette').is(':hidden')) {
                 // select this subject's colour by default
@@ -86,6 +87,10 @@ function displayActiveSubjects(allSubjectsDict) {
                 $("#colourPalette").css("position", "absolute");
 
                 closeWhenClickingOutside($('#colourPalette'));
+
+                $('#changeColourButton').on("click", function(){
+                    changeSubjectColour(subjectId);
+                });
 
                 // display #colourPalette
                 $('#colourPalette').show();
@@ -160,4 +165,11 @@ function checkIsColourInUse() {
             });
         }
     });
+}
+
+
+function changeSubjectColour(subjectId) {
+    var newColour = $('.chosenColour').data('colour-scheme');
+    updateSubjectColour(subjectId, newColour);
+    hideColourPalette();
 }

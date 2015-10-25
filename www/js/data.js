@@ -142,10 +142,10 @@ function changeSubjectName(subjectId, newName){
 
 
 // UPDATE SUBJECT'S COLOUR
-function changeSubjectColour(subjectId, newColour){
+function updateSubjectColour(subjectId, newColour){
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
     subjectRef.update({
-        "colour": newColour
+        "colour_scheme": newColour
     });
 }
 
