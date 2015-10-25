@@ -205,8 +205,8 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, startOfRelevantWeek, taskId) {
-    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
+function displayTask(subjectId, startOfRelevantWeek, taskId, isDone) {
+    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, isDone, fillInTaskDetails);
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);

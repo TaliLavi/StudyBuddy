@@ -69,7 +69,7 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
-        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml);
+        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone);
     }
 }
 
@@ -93,13 +93,13 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     return taskHtml;
 }
 
-function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
+function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone) {
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     // append card to list
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        displayTask(subjectKey, startOfRelevantWeek, taskKey);
+        displayTask(subjectKey, startOfRelevantWeek, taskKey, isDone);
     });
 }
 
