@@ -262,7 +262,6 @@ input:focus {outline:0;}
 /*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
 .frostedGlass {
     -webkit-filter: blur(15px);
-    -webket-transition: 0.4s ease;
 }
 
 /*This is the white transparent background behind the modal window. It covers the whole screen*/

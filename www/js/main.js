@@ -6,7 +6,7 @@ function preparePage() {
 
     // toggle the bottom Subjects Panel
     $("#flip").click(function(){
-        $("#footer").slideToggle("slow");
+        $("#footer").slideToggle("fast", "swing");
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
