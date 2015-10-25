@@ -5,7 +5,8 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
   <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+  <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />-->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
   <title>Study Buddy</title>
 
   <link rel="stylesheet" href="css/main.css">
@@ -27,11 +28,13 @@
   <script src="js/subjects.js"></script>
   <script src="js/tasks.js"></script>
   <script src='js/calendar.js'></script>
+  <script src='js/pomodoro.js'></script>
   <script src='js/main.js'></script>
   <script src="cordova.js"></script>
 </head>
 
 <body>
+<div id="allContent">
 
 <!--========================================================================================================-->
 <!--SIGNUP PAGE-->
@@ -153,8 +156,8 @@
   <div id="subjectsPage">
       <div id="subjectsPanel">
         <div id="mySubjectsTitle">My Subjects</div>
-        <div id="subjectsList"></div>
         <button onclick="openAddSubjectDialog();">Add a new subject</button>
+        <div id="subjectsList"></div>
       </div>
       <div id="tasksPerSubject" class="theme1Colour10b">
         <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
@@ -241,8 +244,8 @@
     <div id="taskModal" class="modal">
 
 
-    <div id="leftDivTaskCard">
-        <div class="taskCardHeadingDiv">
+    <div id="leftDivTaskCard" class="secondaryColour">
+        <div id="taskCardHeadingDiv" class="mainColour">
             <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
             <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
         </div>
@@ -289,7 +292,13 @@
 
   </div>
 </div>
-<script src='js/pomodoro.js'></script>
+
+<audio id="popSound">
+  <source src="pop.ogg" type="audio/ogg">
+  <source src="popSound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 <script>
 // TODO: Before publishing:
 // Change the next line from preparePage to hideAppContent.
@@ -299,15 +308,6 @@
   LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
 </script>
 
-<audio id="pop">
-  <source src="pop.ogg" type="audio/ogg">
-  <source src="popSound.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
+</div>
 </body>
 </html>
-
-<!--A comment-->
-
-

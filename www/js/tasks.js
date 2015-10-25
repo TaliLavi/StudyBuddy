@@ -69,7 +69,7 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
-        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml);
+        setClickForCardTask(listSelector, subjectKey, subjectDict, taskKey, taskData, taskHtml);
     }
 }
 
@@ -93,13 +93,13 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     return taskHtml;
 }
 
-function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
+function setClickForCardTask(listSelector, subjectKey, subjectDict, taskKey, taskData, taskHtml) {
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     // append card to list
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        displayTask(subjectKey, startOfRelevantWeek, taskKey);
+        displayTask(subjectKey, subjectDict, startOfRelevantWeek, taskKey);
     });
 }
 
@@ -305,4 +305,8 @@ function filterTasksInFooter(subjectKey) {
             $('#unassignedMessage').show();
         }
     }
+}
+
+function playPop() {
+    $('#popSound').get(0).play();
 }

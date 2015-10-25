@@ -53,7 +53,6 @@
 }
 
 #footer {
-    padding-top: 30px;
     display: none;
 }
 
@@ -66,6 +65,7 @@
     display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
     display: -webkit-flex; /* NEW - Chrome */
     display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    overflow: auto;
     overflow-x: scroll;
 }
 
@@ -79,7 +79,7 @@ and the user wants to drag a task from the calendar to the footer.*/
     min-height: 70px;
     display: inline-flex;
     position: relative;
-    margin-top: 14px;
+    margin-top: 10px;
 }
 
 button:focus {outline:0;}
@@ -92,7 +92,7 @@ button:focus {outline:0;}
     color: #607A93;
     border: none;
     font-size: .8em;
-    height: 44px;
+    height: 30px;
     background-color: transparent;
 }
 
@@ -107,4 +107,5 @@ button:focus {outline:0;}
 /*start app with this message being hidden*/
 #unassignedMessage {
     display: none;
+    padding: 30px;
 }
