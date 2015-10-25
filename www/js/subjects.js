@@ -79,7 +79,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 // select this subject's colour by default
                 var subjectColour = $(this).data('colour-scheme');
                 var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
-                $(subjectColourDiv).addClass('chosenColour');
+                subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
                 var offset = $(this).offset();
                 $('#colourPalette').css('left',offset.left + 50);
@@ -170,6 +170,28 @@ function checkIsColourInUse() {
 
 function changeSubjectColour(subjectId) {
     var newColour = $('.chosenColour').data('colour-scheme');
+    // update datbase
     updateSubjectColour(subjectId, newColour);
+
+    // change colour picker button's background colour and data attribute
+    var editColourButton = $('#subjectArea' + subjectId).find('.editColour');
+    $(editColourButton).removeClassPrefix('theme');
+    $(editColourButton).addClass(newColour);
+    $(editColourButton).attr('data-colour-scheme', newColour);
+    // change font colour for subject's name on left panel
+    $('#subjectName' + subjectId).removeClassPrefix('theme');
+    $('#subjectName' + subjectId).addClass(newColour);
+    // change nackground colour for subject area
+    $('#subjectArea' + subjectId).removeClassPrefix('theme');
+    $('#subjectArea' + subjectId).addClass(newColour);
+    // change accordion tasks' background and font colour
+    var titleElements = $('#tasksFor' + subjectId).find('a, span');
+    //var titleText = $('#tasksFor' + subjectId).find('span');
+    titleElements.removeClassPrefix('theme');
+    titleElements.addClass(newColour);
+
+
+
+    // hide colour picker widget
     hideColourPalette();
 }
