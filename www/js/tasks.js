@@ -77,17 +77,17 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     //create html for done task in the calendar
     if (isDone !== undefined) {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
-            '<span class="cardText">' + taskData.title + '</span>' +
-            '</div>' +
-            '</li>';
+                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
+                                '<span class="cardText">' + taskData.title + '</span>' +
+                            '</div>' +
+                        '</li>';
         //create html for active task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
-            '<span class="cardText">' + taskData.title + '</span>' +
-            '</div>' +
-            '</li>';
+                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
+                                '<span class="cardText">' + taskData.title + '</span>' +
+                            '</div>' +
+                        '</li>';
     }
 
     return taskHtml;
@@ -111,17 +111,17 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     }
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        '<a class="accordion-section-title ' +subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-        '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
-        '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
-        '</a>' +
-        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
-        '<div>' +
-        '<p>' + taskData.description +'</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<br/>';
+                        '<a class="accordion-section-title ' +subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+                            '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
+                            '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
+                        '</a>' +
+                        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
+                            '<div>' +
+                                '<p>' + taskData.description +'</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<br/>';
 
     return taskHtml;
 }

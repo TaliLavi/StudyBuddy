@@ -110,7 +110,7 @@ function applySortable(selector) {
     }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
-        sortableOptions[delay] = 100;
+        sortableOptions['delay'] = 100;
     }
     $(selector).each(function (i, list) {
         Sortable.create(list, sortableOptions);
