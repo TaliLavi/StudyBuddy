@@ -81,13 +81,13 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
                                 '<span class="cardText">' + taskData.title + '</span>' +
                             '</div>' +
                         '</li>';
-    //create html for active task in the calendar OR for unassigned task in the footer
+        //create html for active task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                           '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
+                            '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
-                           '</div>' +
-                       '</li>';
+                            '</div>' +
+                        '</li>';
     }
 
     return taskHtml;

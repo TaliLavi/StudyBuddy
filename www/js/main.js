@@ -110,7 +110,7 @@ function applySortable(selector) {
     }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
-        sortableOptions[delay] = 100;
+        sortableOptions['delay'] = 100;
     }
     $(selector).each(function (i, list) {
         Sortable.create(list, sortableOptions);
@@ -349,7 +349,7 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
-    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+        // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
     } else {
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId);
