@@ -14,9 +14,9 @@
 }
 
 /*html {*/
-    /*height: 100%;*/
-    /*box-sizing: border-box;*/
-    /*-moz-box-sizing: border-box;*/
+/*height: 100%;*/
+/*box-sizing: border-box;*/
+/*-moz-box-sizing: border-box;*/
 
 
 /*}*/
@@ -146,11 +146,11 @@ input:focus {outline:0;}
 }
 
 /*#control_prev:hover {*/
-    /*opacity: .2;*/
+/*opacity: .2;*/
 /*}*/
 
 /*#control_next:hover {*/
-    /*opacity: .2;*/
+/*opacity: .2;*/
 /*}*/
 
 .addTaskFromDate{
@@ -262,6 +262,7 @@ input:focus {outline:0;}
 /*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
 .frostedGlass {
     -webkit-filter: blur(15px);
+    -webket-transition: 0.4s ease;
 }
 
 /*This is the white transparent background behind the modal window. It covers the whole screen*/
@@ -311,8 +312,10 @@ input:focus {outline:0;}
     padding: 1%;
 }
 
+
 #leftDivTaskCard{
     position: relative;
+    background-color: darkgrey;
     height: 100%;
     width: 50%;
     float: left;
@@ -333,6 +336,7 @@ input:focus {outline:0;}
     bottom: 10px;
     margin: auto;
     -webkit-appearance: none;
+
 }
 
 .openTaskCardFormInput {
@@ -350,9 +354,10 @@ input:focus {outline:0;}
     outline: none;
 }
 
-#taskCardHeadingDiv {
+.taskCardHeadingDiv {
     position: absolute;
     width: 100%;
+    background-color: gray;
     height: 20%;
 }
 

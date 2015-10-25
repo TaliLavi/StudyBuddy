@@ -336,9 +336,7 @@
 
 					// Bind the events: dragstart/dragend
 					_this._triggerDragStart(touch);
-
-					// Drag start event
-					_dispatchEvent(this, rootEl, 'pickup', dragEl, rootEl, oldIndex);
+					navigator.vibrate(100);
 				};
 
 				// Disable "draggable"
@@ -580,11 +578,11 @@
 
 			if (activeGroup && !options.disabled &&
 				(isOwner
-					? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
-					: activeGroup.pull && groupPut && (
-				(activeGroup.name === group.name) || // by Name
-				(groupPut.indexOf && ~groupPut.indexOf(activeGroup.name)) // by Array
-				)
+						? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
+						: activeGroup.pull && groupPut && (
+						(activeGroup.name === group.name) || // by Name
+						(groupPut.indexOf && ~groupPut.indexOf(activeGroup.name)) // by Array
+					)
 				) &&
 				(evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
 			) {
@@ -990,8 +988,8 @@
 			do {
 				if (
 					(tag === '>*' && el.parentNode === ctx) || (
-					(tag === '' || el.nodeName.toUpperCase() == tag) &&
-					(!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length)
+						(tag === '' || el.nodeName.toUpperCase() == tag) &&
+						(!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length)
 					)
 				) {
 					return el;

@@ -6,7 +6,7 @@ function preparePage() {
 
     // toggle the bottom Subjects Panel
     $("#flip").click(function(){
-        $("#footer").slideToggle("fast", "swing");
+        $("#footer").slideToggle("slow");
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
@@ -98,29 +98,34 @@ function isMobile() {
 }
 
 function applySortable(selector) {
-    var sortableOptions = {
-        group: "tasks",
-        //animation: 1000,
-        ghostClass: "sortable-ghost",
-        onStart: inTheAir,
-        onAdd: moveTask,
-        onPickup: pickupCard,
-        forceFallback: true,
-        fallbackClass: "dragged-item"
-    }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
-        sortableOptions[delay] = 100;
+        $(selector).each(function (i, list) {
+            Sortable.create(list, {
+                group: "tasks",
+                //animation: 800,
+                ghostClass: "sortable-ghost",
+                onStart: inTheAir,
+                onAdd: moveTask,
+                forceFallback: true,
+                fallbackClass: "dragged-item",
+                delay: 100
+            });
+        });
+    } else {
+        //set up drag and drop for each list
+        $(selector).each(function (i, list) {
+            Sortable.create(list, {
+                group: "tasks",
+                //animation: 1000,
+                ghostClass: "sortable-ghost",
+                onStart: inTheAir,
+                onAdd: moveTask,
+                forceFallback: true,
+                fallbackClass: "dragged-item"
+            });
+        });
     }
-    $(selector).each(function (i, list) {
-        Sortable.create(list, sortableOptions);
-    });
-}
-
-function pickupCard(evt) {
-    navigator.vibrate(100);
-    //console.log("Picked up", evt, evt.oldIndex);
-    playPop();
 }
 
 // when task is moved...
@@ -205,14 +210,10 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, subjectDict, startOfRelevantWeek, taskId) {
+function displayTask(subjectId, startOfRelevantWeek, taskId) {
     fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
-    // change heading's background to main colour, and left side's background to secondary colour
-    $('#taskCardHeadingDiv ,#leftDivTaskCard').addClass(subjectDict.colour_scheme);
-    //Makes the modal window display
-    $('#taskModal').css('display','block');
-    //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
+    $('#taskModal').css('display','block');                     //Makes the modal window display
+    $('#taskModalBG').fadeIn();                                 //Fades in the greyed-out background
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
@@ -314,11 +315,6 @@ function closeModalWindow() {
     } else {
         $(document).off('mouseup');
     }
-    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv ,#leftDivTaskCard').removeClass();
-    $('#taskCardHeadingDiv').addClass('mainColour');
-    $('#leftDivTaskCard').addClass('secondaryColour');
-
     $('#calendarPage').removeClass('frostedGlass');
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');
@@ -349,7 +345,7 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
-    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+        // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
     } else {
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId);

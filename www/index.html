@@ -28,133 +28,131 @@
   <script src="js/subjects.js"></script>
   <script src="js/tasks.js"></script>
   <script src='js/calendar.js'></script>
-  <script src='js/pomodoro.js'></script>
   <script src='js/main.js'></script>
   <script src="cordova.js"></script>
-
 </head>
 
 <body>
-
-
-<!--========================================================================================================-->
-<!--SIGNUP PAGE-->
-<!--========================================================================================================-->
-<div id="signUpPage">
-  <form>
-    <h2>Create a new acount</h2>
-    <h3>Start studying the smart way</h3>
-    <input type="text" placeholder="First name" id="firstNameInput"><br>
-    <input type="text" placeholder="Last Name" id="lastNameInput"><br>
-    <input type="email" placeholder="email" id="signUpEmailInput"><br>
-    <div class="errorMessage" id="signUpEmailErrorMessage"></div>
-    <input type="password" placeholder="Password" id="signUpPasswordInput">
-    <input type="password" placeholder="confirmPassword" id="confirmPasswordInput">
-    <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
-    <input type="button" value="Get Started" onclick="prepareSignUp()">
-    <button type="button" onclick="showLogIn()">Already have an account?</button>
-  </form>
-</div>
-
-<!--========================================================================================================-->
-<!--LOGIN PAGE-->
-<!--========================================================================================================-->
-
-<div id="logInPage">
-  <form>
-    <h2>LogIn</h2>
-    <h3>Welcome back!</h3>
-    <input type="email" placeholder="email" id="logInEmailInput"><br>
-    <div class="errorMessage" id="logInEmailErrorMessage"></div>
-    <input type="password" placeholder="Password" id="logInPasswordInput">
-    <div class="errorMessage" id="logInPasswordErrorMessage"></div>
-    <button type="button">Forgot password?</button>
-    <input type="button" value="Login" onclick="prepareLogIn()">
-    <button type="button" onclick="showSignUp()">Create a new account</button>
-  </form>
-</div>
-
-
-
-<div id="appPages">
+<div id="allContent">
 
   <!--========================================================================================================-->
-  <!--MAIN NAVIGATION-->
+  <!--SIGNUP PAGE-->
   <!--========================================================================================================-->
-  <div id="iPadStatusBar"></div>
-
-  <div id="navBar">
-
-    <div class="iconHighlight" id="subjectsHighlight"></div>
-    <button id="subjectsButton" class="navButton">
-      <img class="navIcon" src="img/subjectsIcon.png">
-      <span>Subjects</span>
-    </button>
-
-    <div class="iconHighlight" id="weekHighlight"></div>
-    <button id="calendarButton" class="navButton">
-      <img  class="navIcon" src="img/weekIcon.png">
-      <span>Week</span>
-    </button>
-
-    <!--<input id="calendarButton" type="image" src="img/weekIcon.png" style="width:40px; height:40px;"/>Week-->
-    <!--<input id="subjectsButton" type="image" src="img/subjectsIcon.png" style="width:40px; height:40px;" />-->
-    <button  id="profileButton">Profile</button>
-    <button  id="signoutButton">Sign out</button>
-    <button  id="settingsButton">Settings</button>
+  <div id="signUpPage">
+    <form>
+      <h2>Create a new acount</h2>
+      <h3>Start studying the smart way</h3>
+      <input type="text" placeholder="First name" id="firstNameInput"><br>
+      <input type="text" placeholder="Last Name" id="lastNameInput"><br>
+      <input type="email" placeholder="email" id="signUpEmailInput"><br>
+      <div class="errorMessage" id="signUpEmailErrorMessage"></div>
+      <input type="password" placeholder="Password" id="signUpPasswordInput">
+      <input type="password" placeholder="confirmPassword" id="confirmPasswordInput">
+      <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
+      <input type="button" value="Get Started" onclick="prepareSignUp()">
+      <button type="button" onclick="showLogIn()">Already have an account?</button>
+    </form>
   </div>
 
   <!--========================================================================================================-->
-  <!--PROFILE PAGE-->
+  <!--LOGIN PAGE-->
   <!--========================================================================================================-->
-  <div id="profilePage">
-    <div>
-      Content for Profile page
-    </div>
+
+  <div id="logInPage">
+    <form>
+      <h2>LogIn</h2>
+      <h3>Welcome back!</h3>
+      <input type="email" placeholder="email" id="logInEmailInput"><br>
+      <div class="errorMessage" id="logInEmailErrorMessage"></div>
+      <input type="password" placeholder="Password" id="logInPasswordInput">
+      <div class="errorMessage" id="logInPasswordErrorMessage"></div>
+      <button type="button">Forgot password?</button>
+      <input type="button" value="Login" onclick="prepareLogIn()">
+      <button type="button" onclick="showSignUp()">Create a new account</button>
+    </form>
   </div>
 
-  <!--========================================================================================================-->
-  <!--CALENDAR PAGE-->
-  <!--========================================================================================================-->
 
-  <div id="calendarPage">
-    <div id="calendarControls">
-      <input type="image" src="img/leftArrow.png" id="control_prev" class="calendarControls"/>
-      <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
-      <input type="image" src="img/rightArrow.png" id="control_next" class="calendarControls"/>
-    </div>
 
-    <div id="calendarSlider">
-      <div id="calendarWrapper"></div>
+  <div id="appPages">
+
+    <!--========================================================================================================-->
+    <!--MAIN NAVIGATION-->
+    <!--========================================================================================================-->
+    <div id="iPadStatusBar"></div>
+
+    <div id="navBar">
+
+      <div class="iconHighlight" id="subjectsHighlight"></div>
+      <button id="subjectsButton" class="navButton">
+        <img class="navIcon" src="img/subjectsIcon.png">
+        <span>Subjects</span>
+      </button>
+
+      <div class="iconHighlight" id="weekHighlight"></div>
+      <button id="calendarButton" class="navButton">
+        <img  class="navIcon" src="img/weekIcon.png">
+        <span>Week</span>
+      </button>
+
+      <!--<input id="calendarButton" type="image" src="img/weekIcon.png" style="width:40px; height:40px;"/>Week-->
+      <!--<input id="subjectsButton" type="image" src="img/subjectsIcon.png" style="width:40px; height:40px;" />-->
+      <button  id="profileButton">Profile</button>
+      <button  id="signoutButton">Sign out</button>
+      <button  id="settingsButton">Settings</button>
     </div>
 
     <!--========================================================================================================-->
-    <!--SUBJECTS FOOTER-->
+    <!--PROFILE PAGE-->
     <!--========================================================================================================-->
-    <footer id="footerWrapper">
-      <div id="flip">
-        <div id="scheduleMe">
-          <img id = "cardsIcon" src="img/cardsIcon.png">
-          <span id="scheduleText">SCHEDULE ME!</span>
-        </div>
+    <div id="profilePage">
+      <div>
+        Content for Profile page
       </div>
-      <div id="footer">
-        <div id="subjectsInnerWrapper">
-          <div id="subjectFilters">
+    </div>
+
+    <!--========================================================================================================-->
+    <!--CALENDAR PAGE-->
+    <!--========================================================================================================-->
+
+    <div id="calendarPage">
+      <div id="calendarControls">
+        <input type="image" src="img/leftArrow.png" id="control_prev" class="calendarControls"/>
+        <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
+        <input type="image" src="img/rightArrow.png" id="control_next" class="calendarControls"/>
+      </div>
+
+      <div id="calendarSlider">
+        <div id="calendarWrapper"></div>
+      </div>
+
+      <!--========================================================================================================-->
+      <!--SUBJECTS FOOTER-->
+      <!--========================================================================================================-->
+      <footer id="footerWrapper">
+        <div id="flip">
+          <div id="scheduleMe">
+            <img id = "cardsIcon" src="img/cardsIcon.png">
+            <span id="scheduleText">SCHEDULE ME!</span>
           </div>
         </div>
-        <div id="tasksInnerWrapper">
-          <div id="unassignedMessage">No unassigned tasks here!</div>
-          <ul class="sortable-task-list" id="unassignedTasksList"></ul>
+        <div id="footer">
+          <div id="subjectsInnerWrapper">
+            <div id="subjectFilters">
+            </div>
+          </div>
+          <div id="tasksInnerWrapper">
+            <div id="unassignedMessage">No unassigned tasks here!</div>
+            <ul class="sortable-task-list" id="unassignedTasksList"></ul>
+          </div>
         </div>
-      </div>
-    </footer>
-  </div>
+      </footer>
+    </div>
 
-  <!--========================================================================================================-->
-  <!--SUBJECT PAGE-->
-  <!--========================================================================================================-->
-  <div id="subjectsPage">
+    <!--========================================================================================================-->
+    <!--SUBJECT PAGE-->
+    <!--========================================================================================================-->
+    <div id="subjectsPage">
       <div id="subjectsPanel">
         <div id="mySubjectsTitle">My Subjects</div>
         <button onclick="openAddSubjectDialog();">Add a new subject</button>
@@ -163,156 +161,155 @@
       <div id="tasksPerSubject" class="theme1Colour10b">
         <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
       </div>
+    </div>
+
   </div>
 
-</div>
 
 
-
-<!--========================================================================================================-->
-<!--ADD SUBJECT (MODAL WINDOW)-->
-<!--========================================================================================================-->
-<div id="addSubjectModalBG" class="modal-bg">
-  <div id="addSubjectModal" class="modal">
-    <p class="closeX" onclick="closeModalWindow();">x</p>
-    <p class ="modalHeading">New Subject</p>
-    <form>
-      <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-      <div>
-        <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
-        <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
-      </div>
-      <div class="colourMessage"></div>
-      <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
-    </form>
+  <!--========================================================================================================-->
+  <!--ADD SUBJECT (MODAL WINDOW)-->
+  <!--========================================================================================================-->
+  <div id="addSubjectModalBG" class="modal-bg">
+    <div id="addSubjectModal" class="modal">
+      <p class="closeX" onclick="closeModalWindow();">x</p>
+      <p class ="modalHeading">New Subject</p>
+      <form>
+        <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+        <div>
+          <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+          <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+        </div>
+        <div class="colourMessage"></div>
+        <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
+      </form>
+    </div>
   </div>
-</div>
 
 
-<!--========================================================================================================-->
-<!--COLOUR PICKER FOR SUBJECT AREA-->
-<!--========================================================================================================-->
+  <!--========================================================================================================-->
+  <!--COLOUR PICKER FOR SUBJECT AREA-->
+  <!--========================================================================================================-->
 
-<div id="colourPalette">
-  <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
-  <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
-  <div class="colourMessage"></div>
-</div>
-
-<!--========================================================================================================-->
-<!--ADD TASK DIALOG (MODAL WINDOW)-->
-<!--========================================================================================================-->
-<div id="addTaskModalBG" class="modal-bg">
-  <div id="addTaskModal" class="modal">
-    <p class="closeX" onclick="closeModalWindow();">x</p>
-    <p class ="modalHeading">New Task</p>
-
-    <form id="addTaskForm">
-      <select id ="subjectInput"></select>
-      <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
-      <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-      <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
-      <button name="submit" id="submitNewTask" type="button">Add Task</button>
-    </form>
+  <div id="colourPalette">
+    <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+    <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+    <div class="colourMessage"></div>
   </div>
-</div>
+
+  <!--========================================================================================================-->
+  <!--ADD TASK DIALOG (MODAL WINDOW)-->
+  <!--========================================================================================================-->
+  <div id="addTaskModalBG" class="modal-bg">
+    <div id="addTaskModal" class="modal">
+      <p class="closeX" onclick="closeModalWindow();">x</p>
+      <p class ="modalHeading">New Task</p>
+
+      <form id="addTaskForm">
+        <select id ="subjectInput"></select>
+        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
+        <button name="submit" id="submitNewTask" type="button">Add Task</button>
+      </form>
+    </div>
+  </div>
 
 
-<!--========================================================================================================-->
-<!--TASK DIALOG (MODAL WINDOW)-->
-<!--========================================================================================================-->
-<div id="taskModalBG" class="modal-bg">
+  <!--========================================================================================================-->
+  <!--TASK DIALOG (MODAL WINDOW)-->
+  <!--========================================================================================================-->
+  <div id="taskModalBG" class="modal-bg">
     <div id="taskModal" class="modal">
 
 
-    <div id="leftDivTaskCard" class="secondaryColour">
-        <div id="taskCardHeadingDiv" class="mainColour">
-            <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
-            <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
+      <div id="leftDivTaskCard">
+        <div class="taskCardHeadingDiv">
+          <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
+          <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
         </div>
 
-          <form id="taskCardForm">
-                <br>
-                <textarea class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
-                <br>
-                <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
-                <br>
-                <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
-                <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
-              <br>
-                <button type="button" id="deleteTask">DELETE TASK</button>
-                <button type="button" id="updateTask">Save Changes</button>
-                <button type="button" id="completeTask">Done?</button>
-          </form>
-    </div>
-
-      <div id ="pomodoroDiv" data-task-id = 'empty'>
-          <p class="closeX" id="closeTaskModal">x</p>
-        <img src="img/purpleCircle.png" id="purpleCircle">
-          <div id="topContainer">
-              <div id="topTriangleWork"></div>
-          </div>
-          <div id="bottomContainer">
-              <br><br>
-              <div id="bottomTriangleWork"></div>
-          </div>
-
-          <img src="img/sleepingRuzo.png" id="sleepingRuzo">
-          <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
-          <h1 id="timerDisplay">00:00</h1>
-          <br/>
-          <div id="timerButtons">
-              <button type="button" id="playPauseButton" class="notPlaying">Play</button>
-              <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
-          </div>
-
-          <audio id="tone">
-              <source src="pomodoroTone.mp3" type="audio/mpeg">
-          </audio>
+        <form id="taskCardForm">
+          <br>
+          <textarea class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
+          <br>
+          <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <br>
+          <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
+          <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
+          <br>
+          <button type="button" id="deleteTask">DELETE TASK</button>
+          <button type="button" id="updateTask">Save Changes</button>
+          <button type="button" id="completeTask">Done?</button>
+        </form>
       </div>
 
+      <div id ="pomodoroDiv" data-task-id = 'empty'>
+        <p class="closeX" id="closeTaskModal">x</p>
+        <img src="img/purpleCircle.png" id="purpleCircle">
+        <div id="topContainer">
+          <div id="topTriangleWork"></div>
+        </div>
+        <div id="bottomContainer">
+          <br><br>
+          <div id="bottomTriangleWork"></div>
+        </div>
+
+        <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+        <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
+        <h1 id="timerDisplay">00:00</h1>
+        <br/>
+        <div id="timerButtons">
+          <button type="button" id="playPauseButton" class="notPlaying">Play</button>
+          <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+        </div>
+
+        <audio id="tone">
+          <source src="pomodoroTone.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+    </div>
   </div>
+  <script src='js/pomodoro.js'></script>
+  <script>
+    // TODO: Before publishing:
+    // Change the next line from preparePage to hideAppContent.
+    // Also, delete the line after that, which manually assigns a specific uid to LOGGED_IN_UID
+    // Also, change "Rules" in firebase.
+    document.addEventListener('deviceready', preparePage);
+    LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
+  </script>
+
+  <audio id="pop">
+    <source src="pop.ogg" type="audio/ogg">
+    <source src="popSound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </div>
-
-<audio id="popSound">
-  <source src="pop.ogg" type="audio/ogg">
-  <source src="popSound.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<script>
-// TODO: Before publishing:
-// Change the next line from preparePage to hideAppContent.
-// Also, delete the line after that, which manually assigns a specific uid to LOGGED_IN_UID
-// Also, change "Rules" in firebase.
-  document.addEventListener('deviceready', preparePage);
-  LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
-
-
-</script>
-
-
 </body>
-
 </html>
-<!--A Comment-->
+
+<!--A comment-->
+
+
