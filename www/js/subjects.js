@@ -57,7 +57,7 @@ function displayActiveSubjects(allSubjectsDict) {
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
                         '<input class="bulkDate" type="textbox" data-subjectid="' + subjectKey + '">' +
                         '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
-                        '<button onclick="createTaskQuick(\'' + subjectKey + '\')">Add Task</button>' +
+                        '<button class="bulkSubmit" onclick="createTaskQuick(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
