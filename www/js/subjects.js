@@ -117,6 +117,8 @@ function hideColourPalette() {
     } else {
         $(document).off('mouseup');
     }
+    // Clear old onclick handler
+    $('#changeColourButton').off("click");
     // hide and clear colourPalette
     $('#colourPalette').hide();
     $('.colourMessage').text('');
@@ -169,6 +171,7 @@ function checkIsColourInUse() {
 
 
 function changeSubjectColour(subjectId) {
+    console.log(subjectId);
     var newColour = $('.chosenColour').data('colour-scheme');
     // update datbase
     updateSubjectColour(subjectId, newColour);
