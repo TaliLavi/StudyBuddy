@@ -4,9 +4,10 @@ a {
 }
 
 .accordion {
-    overflow:hidden;
-    width:80%;
-    margin: 3%;
+    overflow:auto;
+    width: 80%;
+    margin: auto;
+    height: 100%;
 }
 
 /*----- Section Titles -----*/

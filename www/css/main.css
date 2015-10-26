@@ -519,17 +519,18 @@ input:focus {outline:0;}
 }
 
 #subjectsPanel {
-    overflow: auto;
-    overflow-y: scroll;              /*creates a scrollbar*/
     width: 25%;
     float: left;
+
 }
 
 #tasksPerSubject {
+    overflow: auto;
+    overflow-y: scroll;
     position: relative;
-    width:75%;
+    height: 768px;
+    width: 75%;
     float: right;
-    height: 1000px;
 }
 
 #tasksPerSubject ul{
@@ -537,31 +538,54 @@ input:focus {outline:0;}
 }
 
 #mySubjectsTitle {
+    color: white;
     text-align: center;
-    background-color: #aaaaaa;
+    background-color: #95CAAD;
     padding: 20px;
 }
 
 .subjectHeaderOnSubjectPage {
+    display: inline-block;
     font-size: 2.5em;
-    margin: 0;
-    padding: 3%;
+    margin-left: 10%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
 }
 
 .subjectArea {
+    overflow: auto;
+    overflow-y: scroll;
     display: none;
+    height: 100%;
+}
+
+#subjectsList{
+    overflow: auto;
+    overflow-y:scroll;
+    height: 500px;
+
 }
 
 #defaultSubjectAreaMessage {
     text-align: center;
+    background-color: #BCDBE1;
 }
 
 .subjectName {
-    padding: 20px;
-    border:1px solid #858585;
+    padding: 15px;
+    border-bottom: 1.5px solid #BCDBE1;
+}
+
+#addSubjectButton {
+    color: #607A93;
+    border: none;
+    font-size: 1em;
+    height: 50px;
+    background-color: rgba(255,255,255,0.4);
+    width: 100%;
+    text-align: center;
+    border-bottom: 1.5px solid #BCDBE1;
 }
 
 .errorMessage {
@@ -592,10 +616,12 @@ input:focus {outline:0;}
 }
 
 .editColour {
+    display: inline-block;
     width: 30px;
     height: 30px;
-    margin: 10px;
     cursor: pointer;
+    margin: 5% 10% 5% 5%;
+    float: right;
 }
 
 
