@@ -52,6 +52,8 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
+                    '<img src="img/binIcon.png" class="binIcon">'+
+                    '<img src="img/pencilIcon.png" class="pencilIcon">'+
                     '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
                     '<div id="bulkWrapper">' +
                         '<input id="bulkText" type="textbox" placeholder="Add a new task...">' +

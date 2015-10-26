@@ -652,6 +652,9 @@ input:focus {outline:0;}
 }
 
 .editColour {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -659,6 +662,42 @@ input:focus {outline:0;}
     margin: 5% 10% 5% 5%;
     float: right;
 }
+
+.editColour:hover{
+    border: 2px solid whitesmoke;
+}
+
+.binIcon{
+    height: 30px;
+    width: 23px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-right: -2%;
+    opacity: .5;
+    float: right;
+}
+
+
+.binIcon:hover{
+    opacity:1;
+}
+
+.pencilIcon{
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5%;
+    height: 30px;
+    width: 30px;
+    margin-right: 3%;
+    opacity: .5;
+    float: right;
+}
+
+.pencilIcon:hover{
+    opacity:1;
+}
+
 
 
 /*==================================================================================================*/
