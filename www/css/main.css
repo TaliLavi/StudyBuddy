@@ -573,14 +573,14 @@ input:focus {outline:0;}
 /* ADD TASKS IN BULK */
 /*==================================================================================================*/
 
-#bulkWrapper {
+.bulkWrapper {
     background-color: white;
     width:80%;
     margin: 3%;
 }
 
-#bulkText {
-    width: 85%;
+.bulkText {
+    width: 80%;
     height: 50px;
     padding: 3px 0px;
     border: 0;
@@ -589,12 +589,21 @@ input:focus {outline:0;}
     padding-left: 15px;
 }
 
-#bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
-#bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
-#bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
-#bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
+.bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
+.bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
 
-#calendarImg {
+.bulkDate {
+    width: 50px;
+    border: 0;
+    color: #1E7D8A;
+    font-size: 1.0em;
+    padding-left: 15px;
+}
+
+
+.calendarImg {
     padding-right: 10px;
     vertical-align:middle;
     cursor:pointer;

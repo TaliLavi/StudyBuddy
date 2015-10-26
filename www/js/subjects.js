@@ -52,11 +52,12 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
-                    '<div id="bulkWrapper">' +
-                        '<input id="bulkText" type="textbox" placeholder="Add a new task...">' +
-                        '<img id="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
-                        '<button>Click me!</button>' +
+                    //'<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
+                    '<div class="bulkWrapper">' +
+                        '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
+                        '<input class="bulkDate" type="textbox" data-subjectid="' + subjectKey + '">' +
+                        '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
+                        '<button onclick="createTaskQuick(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
