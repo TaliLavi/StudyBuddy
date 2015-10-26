@@ -106,7 +106,8 @@ function applySortable(selector) {
         onAdd: moveTask,
         onPickup: pickupCard,
         forceFallback: true,
-        fallbackClass: "dragged-item"
+        fallbackClass: "dragged-item",
+        filter: ".doneTask"
     }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
