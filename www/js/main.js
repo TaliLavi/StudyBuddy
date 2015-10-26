@@ -251,7 +251,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
         closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
     });
     $('#completeTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
+        closeTaskModal(subjectId, weekDate, taskId, markAsDone);
     });
     $('#closeTaskModal').on("click", function(){
         closeTaskModal(subjectId, weekDate, taskId);

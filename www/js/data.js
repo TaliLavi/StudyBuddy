@@ -346,13 +346,12 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 
 // MOVE TASK TO DONE
-function moveTaskToDone(subjectId, weekDate, taskId) {
-    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
-    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
+function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
-        markAsDone(taskId);
     }, firebaseErrorFrom('moveTaskToDone'));
 }
 

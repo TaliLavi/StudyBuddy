@@ -277,7 +277,7 @@ function removeTaskFromDOM(taskId) {
     $('li[data-taskid="' + taskId + '"]').remove();
 }
 
-function markAsDone(taskId) {
+function markAsDone(subjectId, originalDate, taskId) {
     var today = Date.today().toString('yyyy-MM-dd');
 
     // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
@@ -288,6 +288,22 @@ function markAsDone(taskId) {
 
     // in subject's page, remove from list (no need to append to complete b/c the button fetches each time anew)
     $('.subjectArea li[data-taskid="' + taskId + '"] div').remove();
+
+    if (originalDate === "no_assigned_date") {
+        // get this week's monday
+        if (Date.today().is().monday()) {
+            // if today happens to be a Monday, save it as this week's monday
+            var currentWeekMonday = (Date.today()).toString('yyyy-MM-dd');
+        } else {
+            // else, go to last monday
+            var currentWeekMonday = (Date.today().last().monday()).toString('yyyy-MM-dd');
+        }
+    } else {
+        var currentWeekMonday = originalDate;
+    }
+
+    moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday);
+
 }
 
 
