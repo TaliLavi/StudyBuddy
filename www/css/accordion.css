@@ -4,7 +4,9 @@ a {
 }
 
 .accordion {
-    overflow:auto;
+    /*overflow:auto;*/
+    /*overflow-y: scroll;*/
+    overflow-x: hidden;
     width: 80%;
     margin: auto;
     height: 100%;

@@ -556,6 +556,7 @@ input:focus {outline:0;}
 .subjectArea {
     overflow: auto;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: none;
     height: 100%;
 }
@@ -563,7 +564,8 @@ input:focus {outline:0;}
 #subjectsList{
     overflow: auto;
     overflow-y:scroll;
-    height: 500px;
+    -webkit-overflow-scrolling: touch;
+    height: 550px;
 
 }
 
