@@ -640,19 +640,19 @@ input:focus {outline:0;}
 /* COLOUR PICKERS */
 /*==================================================================================================*/
 
+#colourPalette {
+    width: 180px;
+    height: 210px;
+    background-color: #ffffff;
+    display: none;
+}
+
 .colourOption {
     float: left;
     width: 30px;
     height: 30px;
     margin: 5px;
     cursor: pointer;
-}
-
-#colourPalette {
-    width: 500px;
-    height: 170px;
-    background-color: #ffffff;
-    display: none;
 }
 
 .chosenColour {
@@ -672,6 +672,9 @@ input:focus {outline:0;}
     float: right;
 }
 
+.colourMessage {
+    display: inline-block;
+}
 
 /*==================================================================================================*/
 /* COLOURS THEME 1 */
