@@ -3,11 +3,16 @@ a {
     text-decoration: none;
 }
 
+
 .accordion {
     overflow-x: hidden;
     width: 80%;
     margin: auto;
     padding-bottom: 60px;
+}
+
+.todo{
+    padding-bottom: 40px;
 }
 
 /*----- Section Titles -----*/

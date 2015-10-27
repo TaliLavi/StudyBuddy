@@ -61,10 +61,10 @@ function displayActiveSubjects(allSubjectsDict) {
                         '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
                         '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
-                    '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
+                    '<div class="accordion todo" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                     subjectKey + '\');">Show completed tasks</button>' +
-                    '<div class="accordion" id="completedTasksFor' + subjectKey + '"></div>' +
+                    '<div class="accordion complete" id="completedTasksFor' + subjectKey + '"></div>' +
                 '</div>'
             );
 
