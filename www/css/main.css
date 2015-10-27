@@ -626,7 +626,7 @@ input:focus {outline:0;}
 }
 
 .bulkText {
-    width: 80%;
+    width: 60%;
     height: 50px;
     padding: 3px 0px;
     border: 0;
@@ -641,7 +641,6 @@ input:focus {outline:0;}
 .bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
 
 .bulkDate {
-    width: 50px;
     border: 0;
     color: #1E7D8A;
     font-size: 1.0em;
