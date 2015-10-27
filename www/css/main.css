@@ -589,6 +589,10 @@ input:focus {outline:0;}
     border-bottom: 1.5px solid #BCDBE1;
 }
 
+.subjectName:last-child {
+    margin-bottom: 50px;                /*This makes sure you can scroll down far enough to see the whole name*/
+}
+
 #addSubjectButton {
     color: #607A93;
     border: none;
