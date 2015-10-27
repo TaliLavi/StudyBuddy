@@ -4,12 +4,9 @@ a {
 }
 
 .accordion {
-    /*overflow:auto;*/
-    /*overflow-y: scroll;*/
     overflow-x: hidden;
     width: 80%;
     margin: auto;
-    height: 100%;
 }
 
 /*----- Section Titles -----*/
@@ -19,7 +16,6 @@ a {
     display:inline-block;
     background-color: #f7f7f7;
     transition:all linear 0.15s;
-    /* Type */
     font-weight: normal;
 }
 
