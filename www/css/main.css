@@ -153,7 +153,7 @@ input:focus {outline:0;}
 /*opacity: .2;*/
 /*}*/
 
-.addTaskFromDate{
+.addTaskFromCalendar {
     color: #607A93;
     border: none;
     font-size: .8em;
@@ -597,14 +597,14 @@ input:focus {outline:0;}
 /* ADD TASKS IN BULK */
 /*==================================================================================================*/
 
-#bulkWrapper {
+.bulkWrapper {
     background-color: white;
     width:80%;
-    margin: 3%;
+    margin: 3% auto;
 }
 
-#bulkText {
-    width: 85%;
+.bulkText {
+    width: 80%;
     height: 50px;
     padding: 3px 0px;
     border: 0;
@@ -613,20 +613,39 @@ input:focus {outline:0;}
     padding-left: 15px;
 }
 
-#bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
-#bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
-#bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
-#bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
+.bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
+.bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
 
-#calendarImg {
-    padding-right: 10px;
+.bulkDate {
+    width: 50px;
+    border: 0;
+    color: #1E7D8A;
+    font-size: 1.0em;
+    padding-left: 15px;
+}
+
+.calendarImg {
+    padding-right: 20px;
     vertical-align:middle;
     cursor:pointer;
+}
+
+.bulkSubmit {
+    /*padding-right: 20px;*/
 }
 
 /*==================================================================================================*/
 /* COLOUR PICKERS */
 /*==================================================================================================*/
+
+#colourPalette {
+    width: 180px;
+    height: 210px;
+    background-color: #ffffff;
+    display: none;
+}
 
 .colourOption {
     float: left;
@@ -634,13 +653,6 @@ input:focus {outline:0;}
     height: 30px;
     margin: 5px;
     cursor: pointer;
-}
-
-#colourPalette {
-    width: 500px;
-    height: 170px;
-    background-color: #ffffff;
-    display: none;
 }
 
 .chosenColour {
@@ -699,6 +711,9 @@ input:focus {outline:0;}
 }
 
 
+.colourMessage {
+    display: inline-block;
+}
 
 /*==================================================================================================*/
 /* COLOURS THEME 1 */

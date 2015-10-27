@@ -52,13 +52,11 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<img src="img/binIcon.png" class="binIcon">'+
-                    '<img src="img/pencilIcon.png" class="pencilIcon">'+
-                    '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
-                    '<div id="bulkWrapper">' +
-                        '<input id="bulkText" type="textbox" placeholder="Add a new task...">' +
-                        '<img id="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
-                        '<button>Click me!</button>' +
+                    '<div class="bulkWrapper">' +
+                        '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
+                        '<input class="bulkDate" type="textbox" data-subjectid="' + subjectKey + '">' +
+                        '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
+                        '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
                     '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -89,7 +87,8 @@ function displayActiveSubjects(allSubjectsDict) {
                 subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
                 var offset = $(this).offset();
-                $('#colourPalette').css('left',offset.left + 50);
+                var halfWidth = $('#colourPalette').width() / 2 - $('.editColour').width() / 2;
+                $('#colourPalette').css('left',offset.left - halfWidth);
                 $('#colourPalette').css('top',offset.top + 50);
                 $("#colourPalette").css("position", "absolute");
 

@@ -33,6 +33,29 @@ function createTask() {
     saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
+// CREATE NEW TASK FROM SUBJECT PAGE
+function createTaskFromSubjectPage(subjectId) {
+    var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
+    var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
+    var now = $.now();
+    if (taskTitle) {
+        var newTask = {
+            title: taskTitle,
+            assigned_date: taskDate,
+            creation_date: now,
+            status_change_date: now
+        }
+        var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
+        // PUSH THEM TO DB
+        saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
+
+        // CLEAR TEXT FIELDS
+        $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val('');
+        $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val('');
+    }
+}
+
+
 // UPDATE TASK DETAILS
 function updateTask(taskId, oldTaskDict) {
     var subjectId = $('#taskSubject').val();
