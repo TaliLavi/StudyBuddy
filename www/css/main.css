@@ -558,7 +558,7 @@ input:focus {outline:0;}
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     display: none;
-    height: 710px;
+    height: 700px;
 }
 
 #subjectsList{
