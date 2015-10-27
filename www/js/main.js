@@ -164,8 +164,8 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         daysHtml += '<div class="col dayColumn">' +
             '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
             '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
-            '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
-            currentDateFormatted + '\', this);">Add a task...</button>' +
+            '<button class="addTaskFromCalendar" onclick="openAddTaskDialog(\'' +
+            currentDateFormatted + '\');">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
             '</div>';
     }
@@ -280,16 +280,9 @@ function autoGrow(element) {
 var dayList;
 
 
-function openAddTaskDialog(data, dateOrSubject){
-
-    if ($(dateOrSubject).hasClass('addTaskFromDate')) {
-        //Automatically fill the assigned date
-        $('#assignedDateInput').val(data);
-    } else if ($(dateOrSubject).hasClass('addTaskFromSubject')) {
-        //Automatically select the subject
-        $('#subjectInput').val(data);
-    }
-
+function openAddTaskDialog(data){
+    //Automatically fill the assigned date
+    $('#assignedDateInput').val(data);
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
     $('#calendarPage').addClass('frostedGlass');

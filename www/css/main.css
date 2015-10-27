@@ -153,7 +153,7 @@ input:focus {outline:0;}
 /*opacity: .2;*/
 /*}*/
 
-.addTaskFromDate{
+.addTaskFromCalendar {
     color: #607A93;
     border: none;
     font-size: .8em;

@@ -33,8 +33,8 @@ function createTask() {
     saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
-// CREATE NEW TASK QUICKLY
-function createTaskQuick(subjectId) {
+// CREATE NEW TASK FROM SUBJECT PAGE
+function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
     var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
     var now = $.now();
