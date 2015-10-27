@@ -558,7 +558,7 @@ input:focus {outline:0;}
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     display: none;
-    height: 700px;
+    height: 668px;
 }
 
 #subjectsList{
@@ -591,11 +591,13 @@ input:focus {outline:0;}
 }
 .completedTasksButton{
     display: block;
-    color: white;
-    font-size: 1em;
-    width: 250px;
-    margin: 0 auto;
     background-color: transparent;
+    color: white;
+    font-size: 1.2em;
+    width: 250px;
+    margin: auto;
+    margin-top:50px;
+    margin-bottom: 50px;
     border: none;
 }
 
