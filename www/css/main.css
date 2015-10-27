@@ -553,6 +553,16 @@ input:focus {outline:0;}
     color: white;
 }
 
+.tasksHeaderOnSubjectPage {
+    display: inline-block;
+    font-size: 1.8em;
+    margin-left: 1%;
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    opacity: .5;
+}
+
 .subjectArea {
     overflow: auto;
     overflow-y: scroll;
@@ -596,7 +606,6 @@ input:focus {outline:0;}
     font-size: 1.2em;
     width: 250px;
     margin: auto;
-    margin-top:50px;
     margin-bottom: 50px;
     border: none;
 }
