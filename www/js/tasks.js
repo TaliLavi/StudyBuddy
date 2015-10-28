@@ -57,22 +57,20 @@ function createTaskFromSubjectPage(subjectId) {
 
 
 function prepareForUpdate(taskId, key, inputField) {
-    var oldValue = $(inputField).data(key);
+    var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
     var newValue = $(inputField).val();
     var subjectId = $('#taskSubject').val();
     var updatedTaskDetail = {};
     updatedTaskDetail[key] = newValue;
-    console.log('updatedTaskDetail is:', updatedTaskDetail);
-    updatedTask(subjectId, taskId, oldValue, updatedTaskDetail, key, updateTaskInDOM);
+    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, key, updateTaskInDOM);
 }
 
 
 // if the title or assigned date of the task got updated, change the DOM accordingly
-function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDict){
-    if (oldTaskDict.assigned_date !== newTaskDict.assigned_date || oldTaskDict.title !== newTaskDict.title) {
-        removeTaskFromDOM(taskKey);
-        appendTask(subjectId, subjectData, taskKey, newTaskDict);
-    }
+function updateTaskInDOM(subjectId, subjectData, taskKey, newTaskDict, newWeekDate){
+    $('#taskAssignedDate').data('date', newWeekDate);
+    removeTaskFromDOM(taskKey);
+    appendTask(subjectId, subjectData, taskKey, newTaskDict);
 }
 
 //Create html for task element and append it to the list

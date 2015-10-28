@@ -180,7 +180,6 @@ function checkIsColourInUse() {
 
 
 function changeSubjectColour(subjectId) {
-    console.log(subjectId);
     var newColour = $('.chosenColour').data('colour-scheme');
     // update datbase
     updateSubjectColour(subjectId, newColour);
