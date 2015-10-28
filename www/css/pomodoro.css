@@ -129,11 +129,21 @@
 }
 
 
-#purpleCircle {
-    width: 100px;
+#backHourglass {
+    width: 170px;
     left:0;
     right:0;
-    top: 25%;
+    top: 10%;
+    margin-left:auto;
+    margin-right:auto;
+    position: absolute;
+}
+
+#frontHourglass {
+    width: 170px;
+    left:0;
+    right:0;
+    top: 10%;
     margin-left:auto;
     margin-right:auto;
     position: absolute;

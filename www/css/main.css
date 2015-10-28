@@ -673,6 +673,7 @@ input:focus {outline:0;}
 }
 
 .colourOption {
+    position: relative;
     float: left;
     width: 30px;
     height: 30px;
@@ -684,8 +685,14 @@ input:focus {outline:0;}
     border:3px solid #4a4a4a;
 }
 
-.usedColour {
-    opacity: 0.2;
+.usedColour:after {
+    font-family: 'FontAwesome';
+    color: white;
+    content: '';
+    font-size: .1em;
+    float: right;
+    margin: 3px;
+    opacity: .6;
 }
 
 .editColour {
