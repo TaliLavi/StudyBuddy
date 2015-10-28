@@ -184,6 +184,11 @@ function changeSubjectColour(subjectId) {
     // update datbase
     updateSubjectColour(subjectId, newColour);
 
+    // if it wasn't already a used colour, make to be one now.
+    if (!$('.chosenColour').hasClass('usedColour')) {
+        $('.chosenColour').addClass('usedColour');
+    }
+
     // change colour picker button's background colour and data attribute
     var editColourButton = $('#subjectArea' + subjectId).find('.editColour');
     $(editColourButton).removeClassPrefix('theme');
