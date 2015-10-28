@@ -227,9 +227,10 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);
-    $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
+
+    $('#taskAssignedDate').data('date', taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
     autoGrow(document.getElementById("taskDescription"));
@@ -237,31 +238,26 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
 
     // Clear any old onclick handler
     $('#deleteTask').off("click");
-    $('#updateTask').off("click");
     $('#completeTask').off("click");
     $('#playPauseButton').off("click");
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
+    $("#taskTitle").off("blur");
+    $("#taskDescription").off("blur");
+    $("#taskAssignedDate").off("blur");
+    $("#taskTitle").off("focus");
+    $("#taskDescription").off("focus");
+    $("#taskAssignedDate").off("focus");
 
+    $("#taskTitle").on("blur", function(){prepareForUpdate(taskId, "title", $(this));});
+    $("#taskDescription").on("blur", function(){prepareForUpdate(taskId, "description", $(this));});
+    $("#taskAssignedDate").on("blur", function(){prepareForUpdate(taskId, "assigned_date", $(this));});
 
-    $('#updateTask').on("click", function(){
-        updateTask(taskId, taskDetails);
-    });
-    $('#deleteTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
-    });
-    $('#completeTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, markAsDone);
-    });
-    $('#closeTaskModal').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId);
-    });
-    $('#playPauseButton').on("click", function(){
-        playPauseTimer(subjectId, weekDate, taskId);
-    });
-    $('#stopButton').on("click", function(){
-        stopTimer(subjectId, weekDate, taskId);
-    });
+    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);});
+    $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, markAsDone);});
+    $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId);});
+    $('#playPauseButton').on("click", function(){playPauseTimer(subjectId, weekDate, taskId);});
+    $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
 
     $('#taskModal').addClass('displayed');
 

@@ -294,42 +294,46 @@ function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
 }
 
 
-// UPDATE TASK'S ASSIGNED DATE
-function saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTaskDetails, postUpdateCallback) {
+function updatedTask(subjectId, taskId, oldValue, updatedTaskDetail, whatToUpdate, postUpdateCallback) {
+
     // PREPARATION
-    var oldWeekDate = startOfWeek(oldTaskDict.assigned_date);
-    // find new week date
-    if (updatedTaskDetails.assigned_date !== undefined) {
-        var newWeekDate = startOfWeek(updatedTaskDetails.assigned_date);
-    } else {
-        var newWeekDate = oldWeekDate;
-    }
+    //TODO - move DOM access to another function
+    var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
     var oldTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
-    var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
 
-    // UPDATE DATABASE
-    if (newWeekDate === oldWeekDate) {
-        // notice that updatedTaskDetails may contain just one detail (e.g. assigned_date), or more.
-        oldTaskRef.update(updatedTaskDetails);
+    // check if change is date
+    if (whatToUpdate !== "assigned_date") {
+        oldTaskRef.update(updatedTaskDetail);
     } else {
-        oldTaskRef.once('value', function(snapshot)  {
-            var oldTaskDict = snapshot.val();
-            // the extend method would update oldTaskDict with the data stored in updatedTaskDetails.
-            var combinedTaskDict = $.extend(oldTaskDict, updatedTaskDetails);
-            newTaskRef.update(combinedTaskDict);
-            oldTaskRef.remove();
-        }, firebaseErrorFrom('saveUpdatedTask'));
+        // find new week date
+        var newWeekDate = startOfWeek(updatedTaskDetail.assigned_date);
+        // check if the new assigned date still belongs to the same week as the old one
+        if (newWeekDate === oldWeekDate) {
+            oldTaskRef.update(updatedTaskDetail);
+        } else {
+            var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+            oldTaskRef.once('value', function(snapshot)  {
+                var oldTaskDict = snapshot.val();
+                // the extend method would update oldTaskDict with the data stored in updatedTaskDetails.
+                var combinedTaskDict = $.extend(oldTaskDict, updatedTaskDetail);
+                newTaskRef.update(combinedTaskDict);
+                oldTaskRef.remove();
+            }, firebaseErrorFrom('updatedTask'));
+            //TODO - move DOM access to another function
+            $('#taskAssignedDate').data('date', newWeekDate);
+        }
     }
 
-    // POST UPDATE: FETCH SUBJECT'S DATA AND PERFORM POST UPDATE ACTIONS
-    if (postUpdateCallback !== undefined) {
-        var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
-        subjectRef.once("value", function(subjectSnapshot) {
-            newTaskRef.once('value', function(updatedTask)  {
-                postUpdateCallback(subjectId, subjectSnapshot.val(), oldTaskDict, updatedTask.key(), updatedTask.val());
-            }, firebaseErrorFrom('saveUpdatedTask'));
-        }, firebaseErrorFrom('saveUpdatedTask'));
-    }
+
+    //// POST UPDATE: FETCH SUBJECT'S DATA AND PERFORM POST UPDATE ACTIONS
+    //if (postUpdateCallback !== undefined) {
+    //    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    //    subjectRef.once("value", function(subjectSnapshot) {
+    //        newTaskRef.once('value', function(updatedTask)  {
+    //            postUpdateCallback(subjectId, subjectSnapshot.val(), oldTaskDict, updatedTask.key(), updatedTask.val());
+    //        }, firebaseErrorFrom('saveUpdatedTask'));
+    //    }, firebaseErrorFrom('saveUpdatedTask'));
+    //}
 }
 
 

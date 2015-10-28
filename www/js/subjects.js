@@ -171,7 +171,7 @@ function checkIsColourInUse() {
                 if (colourSchemesDict[colour]) {
                     $(this).addClass('usedColour');
                     var subjectName = (colourSchemesDict[colour]);
-                    $(this).attr('data-subject-name', subjectName);
+                    $(this).data('subject-name', subjectName);
                 }
             });
         }
@@ -189,11 +189,11 @@ function changeSubjectColour(subjectId) {
     var editColourButton = $('#subjectArea' + subjectId).find('.editColour');
     $(editColourButton).removeClassPrefix('theme');
     $(editColourButton).addClass(newColour);
-    $(editColourButton).attr('data-colour-scheme', newColour);
+    $(editColourButton).data('colour-scheme', newColour);
     // change font colour for subject's name on left panel
     $('#subjectName' + subjectId).removeClassPrefix('theme');
     $('#subjectName' + subjectId).addClass(newColour);
-    // change nackground colour for subject area
+    // change background colour for subject area
     $('#subjectArea' + subjectId).removeClassPrefix('theme');
     $('#subjectArea' + subjectId).addClass(newColour);
     // change accordion tasks' background and font colour

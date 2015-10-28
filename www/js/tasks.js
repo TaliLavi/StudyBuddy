@@ -56,22 +56,15 @@ function createTaskFromSubjectPage(subjectId) {
 }
 
 
-// UPDATE TASK DETAILS
-function updateTask(taskId, oldTaskDict) {
+function prepareForUpdate(taskId, key, inputField) {
+    var oldValue = $(inputField).data(key);
+    var newValue = $(inputField).val();
     var subjectId = $('#taskSubject').val();
-    var updatedTask = {
-        title: $('#taskTitle').val(),
-        description: $('#taskDescription').val(),
-        assigned_date: $('#taskAssignedDate').val(),
-    }
-    saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
+    var updatedTaskDetail = {};
+    updatedTaskDetail[key] = newValue;
+    console.log('updatedTaskDetail is:', updatedTaskDetail);
+    updatedTask(subjectId, taskId, oldValue, updatedTaskDetail, key, updateTaskInDOM);
 }
-
-//function updateTaskTitle() {
-//    $("input").blur(function(){
-//        alert("This input field has lost its focus.");
-//    });
-//}
 
 
 // if the title or assigned date of the task got updated, change the DOM accordingly

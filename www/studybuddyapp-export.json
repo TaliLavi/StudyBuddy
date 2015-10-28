@@ -3,32 +3,32 @@
     "active" : {
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "colour_scheme" : "theme1Colour10",
+          "colour_scheme" : "theme1Colour2",
           "is_deleted" : 0,
           "name" : "English"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
-          "colour_scheme" : "theme1Colour11",
+          "colour_scheme" : "theme1Colour8",
           "is_deleted" : 0,
           "name" : "Irish"
         },
         "-Jw8mvm4cUeDXF4s02Hg" : {
-          "colour_scheme" : "theme1Colour7",
+          "colour_scheme" : "theme1Colour12",
           "is_deleted" : 0,
           "name" : "French"
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
-          "colour_scheme" : "theme1Colour6",
+          "colour_scheme" : "theme1Colour11",
           "is_deleted" : 0,
           "name" : "Ancient Latin"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
-          "colour_scheme" : "theme1Colour12",
+          "colour_scheme" : "theme1Colour7",
           "is_deleted" : 0,
           "name" : "Biology"
         },
         "-JxyYfev8Oq9t8aKUJ8C" : {
-          "colour_scheme" : "theme1Colour8",
+          "colour_scheme" : "theme1Colour6",
           "is_deleted" : 0,
           "name" : "Irish Dance"
         },
@@ -38,7 +38,7 @@
           "name" : "Spanish"
         },
         "-K0VyDLOSRualpn_m1-Q" : {
-          "colour_scheme" : "theme1Colour5",
+          "colour_scheme" : "theme1Colour11",
           "is_deleted" : 0,
           "name" : "History"
         },
@@ -61,6 +61,21 @@
           "colour_scheme" : "theme1Colour2",
           "is_deleted" : 0,
           "name" : "Business"
+        },
+        "-K1d8bbqG4LOmKF65CDn" : {
+          "colour_scheme" : "theme1Colour7",
+          "is_deleted" : 0,
+          "name" : "Dynamite"
+        },
+        "-K1d8jyyK3V7NoXPVY1J" : {
+          "colour_scheme" : "theme1Colour6",
+          "is_deleted" : 0,
+          "name" : "Pearl"
+        },
+        "-K1d8rZRwE3L5IuOsDKf" : {
+          "colour_scheme" : "theme1Colour2",
+          "is_deleted" : 0,
+          "name" : "Charmander"
         }
       }
     },
@@ -143,6 +158,40 @@
               "title" : "Brainstorm short story ideas.",
               "total_seconds_studied" : 8
             }
+          },
+          "2015-10-19" : {
+            "-K1W1yCEK5tLsQNjZEkV" : {
+              "assigned_date" : "2015-10-19",
+              "creation_date" : 1445810921622,
+              "description" : "Some description",
+              "status_change_date" : 1445810921622,
+              "title" : "English task"
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZWvJBYyfNLe4XKqa4" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869368655,
+              "description" : "",
+              "status_change_date" : 1445869368655,
+              "title" : "English",
+              "total_seconds_studied" : 10
+            }
+          },
+          "no_assigned_date" : {
+            "-K1W3_oWTbBhlVvmbUTl" : {
+              "assigned_date" : "",
+              "creation_date" : 1445811346011,
+              "description" : "Some description",
+              "status_change_date" : 1445811346011,
+              "title" : "Unassigned English task"
+            },
+            "-K1cuGfnlGovLXoQrXyd" : {
+              "assigned_date" : "",
+              "creation_date" : 1445942860600,
+              "status_change_date" : 1445942860600,
+              "title" : "Another English Task"
+            }
           }
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
@@ -192,15 +241,6 @@
               "total_seconds_studied" : 8
             }
           },
-          "2015-10-19" : {
-            "-JzfT0RxBg_3P4LdgWDt" : {
-              "assigned_date" : "2015-10-24",
-              "creation_date" : 1442764560306,
-              "description" : "",
-              "status_change_date" : 1442764560306,
-              "title" : "Unassigned Irish Task"
-            }
-          },
           "no_assigned_date" : {
             "-JuWIlrfrU-PHBjqYidT" : {
               "assigned_date" : "",
@@ -218,6 +258,12 @@
               "status_change_date" : 1442321624141,
               "title" : "Irish Stuff",
               "total_seconds_studied" : 117
+            },
+            "-K1aL70AqvaNa-LOPD1_" : {
+              "assigned_date" : "",
+              "creation_date" : 1445899818435,
+              "status_change_date" : 1445899818435,
+              "title" : "New bulk Irish task"
             }
           }
         },
@@ -274,14 +320,21 @@
               "title" : "New french task"
             }
           },
-          "2015-10-19" : {
-            "-Jzfop8PJ460MNJhF-vS" : {
-              "assigned_date" : "2015-10-23",
-              "creation_date" : 1442770539069,
-              "description" : "",
-              "status_change_date" : 1442770539069,
-              "title" : "Unassigned French Task",
-              "total_seconds_studied" : 1
+          "2015-10-26" : {
+            "-K1ZXCg5xUVUePKvkyD6" : {
+              "assigned_date" : "2015-10-26",
+              "creation_date" : 1445869443914,
+              "description" : "French desc",
+              "status_change_date" : 1445869443914,
+              "title" : "French"
+            }
+          },
+          "no_assigned_date" : {
+            "-K1cxpeoQ0MuOFe0gQbr" : {
+              "assigned_date" : "",
+              "creation_date" : 1445943794426,
+              "status_change_date" : 1445943794426,
+              "title" : "New French Task"
             }
           }
         },
@@ -310,11 +363,27 @@
             "-JwY73YBFFVoOH-jRSMI" : {
               "assigned_date" : "2015-10-22",
               "creation_date" : 1439403362552,
-              "description" : "",
-              "number_of_breaks" : 4,
+              "description" : "Hey this text box is growing automatically every time I add some  more text to it - as far as I know it should stop. This is the end of description.",
+              "number_of_breaks" : 9,
               "status_change_date" : 1439403362552,
-              "title" : "Less Latin",
-              "total_seconds_studied" : 53
+              "title" : "Less Latin. This is quite a long task title. ",
+              "total_seconds_studied" : 143
+            },
+            "-K1TATnOTaAyajN3EjUI" : {
+              "assigned_date" : "2015-10-23",
+              "creation_date" : 1445762823995,
+              "description" : "A latin description.",
+              "status_change_date" : 1445762823995,
+              "title" : "Task in Latin"
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZXF6N8BY7CSLxwLFn" : {
+              "assigned_date" : "2015-10-31",
+              "creation_date" : 1445869453851,
+              "description" : "",
+              "status_change_date" : 1445869453851,
+              "title" : "Latin"
             }
           }
         },
@@ -373,26 +442,47 @@
               "title" : "The heart"
             }
           },
-          "2015-10-19" : {
-            "-K-Kg2kGpNEocya24tsg" : {
-              "assigned_date" : "2015-10-21",
-              "creation_date" : 1443472884478,
+          "2015-10-26" : {
+            "-K1ZXHwpjrOn2eO15-PH" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869465464,
               "description" : "",
-              "number_of_breaks" : 1,
-              "status_change_date" : 1443472884478,
-              "title" : "Diagram of the heart",
-              "total_seconds_studied" : 10
+              "status_change_date" : 1445869465464,
+              "title" : "Biology"
             }
           }
         },
         "-JxyYfev8Oq9t8aKUJ8C" : {
-          "no_assigned_date" : {
+          "2015-10-19" : {
             "-K0Qs0gmcJGfsGMZTjkS" : {
-              "assigned_date" : "",
+              "assigned_date" : "2015-10-19",
               "creation_date" : 1444650426540,
               "description" : "",
               "status_change_date" : 1444650426540,
               "title" : "Do homework"
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZXK_ZYiFKJtGOVC7K" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869476264,
+              "description" : "",
+              "status_change_date" : 1445869476264,
+              "title" : "Dance"
+            }
+          },
+          "no_assigned_date" : {
+            "-K1aMYTzFITjtlZ18zMX" : {
+              "assigned_date" : "",
+              "creation_date" : 1445900204071,
+              "status_change_date" : 1445900204071,
+              "title" : "Irish dance bulk"
+            },
+            "-K1aMaV3oKLETc-ofSrs" : {
+              "assigned_date" : "",
+              "creation_date" : 1445900216429,
+              "status_change_date" : 1445900216429,
+              "title" : "Another bulk Irish Dance"
             }
           }
         },
@@ -443,7 +533,7 @@
           },
           "2015-10-12" : {
             "-K0WcLOU8tBzcXjQGb96" : {
-              "assigned_date" : "2015-10-15",
+              "assigned_date" : "2015-10-14",
               "creation_date" : 1444746978962,
               "description" : "",
               "status_change_date" : 1444746978962,
@@ -451,15 +541,24 @@
               "total_seconds_studied" : 3
             }
           },
-          "2015-10-19" : {
+          "2015-10-26" : {
+            "-K1ZXNqGt9RaQod0NHca" : {
+              "assigned_date" : "2015-10-30",
+              "creation_date" : 1445869489621,
+              "description" : "",
+              "status_change_date" : 1445869489621,
+              "title" : "Spanish"
+            }
+          },
+          "no_assigned_date" : {
             "-K-KfeGpjq1Y7c3gQ4lf" : {
-              "assigned_date" : "2015-10-20",
+              "assigned_date" : "",
               "creation_date" : 1443472780117,
-              "description" : "This is the description :)",
-              "number_of_breaks" : 6,
+              "description" : "This is the description. iujdifn fasjddf jdf jasd fjsdkfj asdfj dsfjsd gjdhfgjhsdfjg ldfj kadjf fdadsfdsfd safdsadffadsfasfsafasfsdfsafsdfasadfdsafsafsdfsfsfsfsfsfsafsdasdfsafsadfdsfsfsadf jadhf jk :)",
+              "number_of_breaks" : 7,
               "status_change_date" : 1443472780117,
               "title" : "Practise Spanish verbs",
-              "total_seconds_studied" : 146
+              "total_seconds_studied" : 157
             }
           }
         },
@@ -471,66 +570,84 @@
               "description" : "",
               "status_change_date" : 1444737308106,
               "title" : "Essay on Impact of Columbus on Natives"
-            },
-            "-K0W2X8Evwgj4cf5E7HJ" : {
-              "assigned_date" : "2015-10-16",
-              "creation_date" : 1444737327784,
-              "description" : "",
-              "status_change_date" : 1444737327784,
-              "title" : "Short Questions the Explorations"
             }
           },
           "2015-10-19" : {
             "-K0W2NAk44KfwxbcntfJ" : {
-              "assigned_date" : "2015-10-20",
+              "assigned_date" : "2015-10-24",
               "creation_date" : 1444737286985,
               "description" : "",
+              "number_of_breaks" : 3,
               "status_change_date" : 1444737286985,
-              "title" : "Voyage of columbas"
-            }
-          },
-          "no_assigned_date" : {
+              "title" : "Voyage of columbas",
+              "total_seconds_studied" : 50
+            },
             "-K0W2fsG_8jSe_GfexMC" : {
-              "assigned_date" : "",
+              "assigned_date" : "2015-10-20",
               "creation_date" : 1444737367658,
               "description" : "",
+              "number_of_breaks" : 4,
               "status_change_date" : 1444737367658,
-              "title" : "Paragraph improvements in shipping."
+              "title" : "Paragraph improvements in shipping.",
+              "total_seconds_studied" : 51
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZXQakyMuOd5M4jmbl" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869500915,
+              "description" : "",
+              "status_change_date" : 1445869500915,
+              "title" : "History"
             }
           }
         },
         "-K0Vz6iD4kXN-lpH-q4I" : {
           "2015-10-19" : {
-            "-K0W3FSdXTAvdxc1UnHS" : {
-              "assigned_date" : "2015-10-23",
-              "creation_date" : 1444737517506,
+            "-K0W33s2c49l5JWOhi_x" : {
+              "assigned_date" : "2015-10-25",
+              "creation_date" : 1444737470044,
               "description" : "",
+              "number_of_breaks" : 5,
+              "status_change_date" : 1444737470044,
+              "title" : "Diagram ox-bow lake",
+              "total_seconds_studied" : 63
+            },
+            "-K0W3KM94ZhCy_hw0xN1" : {
+              "assigned_date" : "2015-10-19",
+              "creation_date" : 1444737537571,
+              "description" : "",
+              "status_change_date" : 1444737537571,
+              "title" : "Essay causes and results of erosion"
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZXTh5w1DTsGy7zcrE" : {
+              "assigned_date" : "2015-10-27",
+              "creation_date" : 1445869513609,
+              "description" : "",
+              "status_change_date" : 1445869513609,
+              "title" : "Geography"
+            }
+          },
+          "2015-11-16" : {
+            "-K0W3FSdXTAvdxc1UnHS" : {
+              "assigned_date" : "2015-11-21",
+              "creation_date" : 1444737517506,
+              "description" : "Does this work?jhhdfkjakdfjadhf jasdhfjahdfj sdjfjkadhf ajkdh adjgadhgsdfsjkahd adhjad j gh. End",
+              "number_of_breaks" : 2,
               "status_change_date" : 1444737517506,
-              "title" : "Diagram coastal erosion features",
-              "total_seconds_studied" : 2
+              "title" : "And this?",
+              "total_seconds_studied" : 34
             }
           },
           "no_assigned_date" : {
-            "-K0W33s2c49l5JWOhi_x" : {
-              "assigned_date" : "",
-              "creation_date" : 1444737470044,
-              "description" : "",
-              "status_change_date" : 1444737470044,
-              "title" : "Diagram ox-bow lake"
-            },
             "-K0W37ewKYalIvqIZldk" : {
               "assigned_date" : "",
               "creation_date" : 1444737485588,
               "description" : "",
               "status_change_date" : 1444737485588,
               "title" : "Diagram Waterfall"
-            },
-            "-K0W3KM94ZhCy_hw0xN1" : {
-              "assigned_date" : "",
-              "creation_date" : 1444737537571,
-              "description" : "",
-              "status_change_date" : 1444737537571,
-              "title" : "Essay causes and results of erosion"
             }
           }
         },
@@ -542,32 +659,27 @@
               "description" : "",
               "status_change_date" : 1444737186204,
               "title" : "Prep Sheet for Poster"
-            },
-            "-K0wHnXtbbFltjnVJfSx" : {
-              "assigned_date" : "2015-10-16",
-              "creation_date" : 1445194318903,
-              "description" : "Art description",
-              "status_change_date" : 1445194318903,
-              "title" : "Artsy"
             }
           },
           "2015-10-19" : {
-            "-K0W2Bbt4sIzLykYK8v6" : {
-              "assigned_date" : "2015-10-20",
-              "creation_date" : 1444737239634,
-              "description" : "",
-              "status_change_date" : 1444737239634,
-              "title" : "Practise Final Poster"
-            }
-          },
-          "no_assigned_date" : {
             "-K0W28YAcTiLpnpoikss" : {
-              "assigned_date" : "",
+              "assigned_date" : "2015-10-21",
               "creation_date" : 1444737227044,
               "description" : "",
               "status_change_date" : 1444737227044,
               "title" : "Make templates out of Lettering."
-            },
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZXVp6EP9_cTLCWPvt" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869522315,
+              "description" : "",
+              "status_change_date" : 1445869522315,
+              "title" : "Art"
+            }
+          },
+          "no_assigned_date" : {
             "-K0W2HJcgtJm7H4ChA33" : {
               "assigned_date" : "",
               "creation_date" : 1444737262977,
@@ -578,6 +690,22 @@
           }
         },
         "-K0Vznfvhox8u52L9IeM" : {
+          "2015-10-19" : {
+            "-K0W1szpUswN70OACpQg" : {
+              "assigned_date" : "2015-10-21",
+              "creation_date" : 1444737159246,
+              "description" : "Practice examples in the book on page 45.",
+              "status_change_date" : 1444737159246,
+              "title" : "Time, Distance and Speed."
+            }
+          },
+          "2015-10-26" : {
+            "-K1EhhQtWGy2wI_6z7Ee" : {
+              "assigned_date" : "2015-10-28",
+              "description" : "This is a really long description. joiajfnjkahiufjakndfhalisjdfkdbhfuighajksbdfhjadjskhfbhjagdfjkbahjdfjbadufhkf. End of Description.",
+              "title" : "The maths task name"
+            }
+          },
           "no_assigned_date" : {
             "-K0W1VsG2zbLUlu5ccCo" : {
               "assigned_date" : "",
@@ -586,12 +714,11 @@
               "status_change_date" : 1444737060457,
               "title" : "Pythagorus theorum"
             },
-            "-K0W1szpUswN70OACpQg" : {
+            "-K1aMePTT0ggib6Da6NA" : {
               "assigned_date" : "",
-              "creation_date" : 1444737159246,
-              "description" : "Practice examples in the book on page 45.",
-              "status_change_date" : 1444737159246,
-              "title" : "Time, Distance and Speed."
+              "creation_date" : 1445900232455,
+              "status_change_date" : 1445900232455,
+              "title" : "Here is a Maths task"
             }
           }
         },
@@ -609,28 +736,25 @@
           },
           "2015-10-19" : {
             "-K0W3kBUrxtIK-fBsZFC" : {
-              "assigned_date" : "2015-10-21",
+              "assigned_date" : "2015-10-23",
               "creation_date" : 1444737647480,
               "description" : "",
+              "number_of_breaks" : 3,
               "status_change_date" : 1444737647480,
-              "title" : "Letter of Complaint"
+              "title" : "Letter of Complaint",
+              "total_seconds_studied" : 38
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZX_22etb7KyZLna5h" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869539590,
+              "description" : "",
+              "status_change_date" : 1445869539590,
+              "title" : "Business"
             }
           },
           "no_assigned_date" : {
-            "-K0W3f7KP-oOqI20dAyz" : {
-              "assigned_date" : "",
-              "creation_date" : 1444737626734,
-              "description" : "",
-              "status_change_date" : 1444737626734,
-              "title" : "Consumer Rights"
-            },
-            "-K0W3rSZu8KitQgfeB7n" : {
-              "assigned_date" : "",
-              "creation_date" : 1444737677244,
-              "description" : "",
-              "status_change_date" : 1444737677244,
-              "title" : "The Ombudsman"
-            },
             "-K0W4GCIMSYE3jMzZXDk" : {
               "assigned_date" : "",
               "creation_date" : 1444737782699,
@@ -728,6 +852,13 @@
               "status_change_date" : 1443604124264,
               "title" : ""
             }
+          },
+          "2015-10-19" : {
+            "-K-Kg2kGpNEocya24tsg" : {
+              "assigned_date" : "2015-10-21",
+              "description" : "",
+              "title" : "Diagram of the heart"
+            }
           }
         },
         "-Jw8pkIHv5QMpTL7gykN" : {
@@ -779,6 +910,26 @@
               "status_change_date" : 1443371672673,
               "title" : "Trying to delete this biology task"
             }
+          },
+          "2015-10-19" : {
+            "-K-Kg2kGpNEocya24tsg" : {
+              "assigned_date" : "2015-10-21",
+              "creation_date" : 1443472884478,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1443472884478,
+              "title" : "Diagram of the heart",
+              "total_seconds_studied" : 10
+            }
+          }
+        },
+        "-JxyYfev8Oq9t8aKUJ8C" : {
+          "2015-10-19" : {
+            "-K-Kg2kGpNEocya24tsg" : {
+              "assigned_date" : "2015-10-21",
+              "description" : "",
+              "title" : "Diagram of the heart"
+            }
           }
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
@@ -798,9 +949,49 @@
               "title" : "Learn new Spanish verbs",
               "total_seconds_studied" : 1
             }
+          },
+          "2015-10-19" : {
+            "-K1EhhQtWGy2wI_6z7Ee" : {
+              "assigned_date" : "2015-10-22",
+              "creation_date" : 1445520135999,
+              "description" : "This is a really long description. joiajfnjkahiufjakndfhalisjdfkdbhfuighajksbdfhjadjskhfbhjagdfjkbahjdfjbadufhkf. End of Description.",
+              "number_of_breaks" : 5,
+              "status_change_date" : 1445520135999,
+              "title" : "The task name",
+              "total_seconds_studied" : 66
+            }
+          }
+        },
+        "-K0VzRdyEJHr6XpWfwzH" : {
+          "2015-10-19" : {
+            "-K0W2Bbt4sIzLykYK8v6" : {
+              "assigned_date" : "2015-10-22",
+              "creation_date" : 1444737239634,
+              "description" : "",
+              "status_change_date" : 1444737239634,
+              "title" : "Practise Final Poster"
+            },
+            "-K0wHnXtbbFltjnVJfSx" : {
+              "assigned_date" : "2015-10-23",
+              "creation_date" : 1445194318903,
+              "description" : "Art description blah blah",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1445194318903,
+              "title" : "Artsy",
+              "total_seconds_studied" : 12
+            }
           }
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
+          "2015-10-19" : {
+            "-K0W3f7KP-oOqI20dAyz" : {
+              "assigned_date" : "2015-10-20",
+              "creation_date" : 1444737626734,
+              "description" : "",
+              "status_change_date" : 1444737626734,
+              "title" : "Consumer Rights"
+            }
+          },
           "no_assigned_date" : {
             "-K0W3dA6wLscJ5FQektF" : {
               "assigned_date" : "",
@@ -857,6 +1048,15 @@
               "title" : "Another English task",
               "total_seconds_studied" : 12
             }
+          },
+          "2015-10-19" : {
+            "-K1W2I7LgnluiQy5FYZd" : {
+              "assigned_date" : "2015-10-20",
+              "creation_date" : 1445811007326,
+              "description" : "Some description",
+              "status_change_date" : 1445811007326,
+              "title" : "Done English task"
+            }
           }
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
@@ -895,6 +1095,31 @@
               "total_seconds_studied" : 8
             }
           },
+          "2015-10-12" : {
+            "-JzfT0RxBg_3P4LdgWDt" : {
+              "assigned_date" : "2015-10-16",
+              "creation_date" : 1442764560306,
+              "description" : "Is this  a really long description? We shall see...... aijgiajfiojeflk ajdf aidsjfi ajdiofj diof idjf aijdf asdf  aisdfia df .",
+              "status_change_date" : 1442764560306,
+              "title" : "Unassigned Irish Task"
+            }
+          },
+          "2015-10-19" : {
+            "-JzfT0RxBg_3P4LdgWDt" : {
+              "assigned_date" : "2015-10-24",
+              "description" : "Is this  a really long description? We shall see...... aijgiajfiojeflk ajdf aidsjfi ajdiofj diof idjf aijdf asdf  aisdfia df .",
+              "title" : "Unassigned Irish Task"
+            }
+          },
+          "2015-10-26" : {
+            "-K1ZX24NTFqQzREQYeTn" : {
+              "assigned_date" : "2015-10-28",
+              "creation_date" : 1445869400475,
+              "description" : "",
+              "status_change_date" : 1445869400475,
+              "title" : "Irish"
+            }
+          },
           "no_assigned_date" : {
             "-K-cMfH1X9_EPxhMogIs" : {
               "assigned_date" : "",
@@ -923,6 +1148,17 @@
               "description" : "",
               "status_change_date" : 1441739442130,
               "title" : "Learn irregular verbs"
+            }
+          },
+          "2015-10-26" : {
+            "-Jzfop8PJ460MNJhF-vS" : {
+              "assigned_date" : "",
+              "creation_date" : 1442770539069,
+              "description" : "A description of a french task. End.",
+              "number_of_breaks" : 5,
+              "status_change_date" : 1442770539069,
+              "title" : "A French Task. Mon Dieu!",
+              "total_seconds_studied" : 81
             }
           }
         },
@@ -998,6 +1234,17 @@
             }
           }
         },
+        "-JzBMKMb4hSVJXdpdKKt" : {
+          "2015-10-26" : {
+            "-K1ZWcNMr7kZIGWkL6Cr" : {
+              "assigned_date" : "2015-10-29",
+              "creation_date" : 1445869291098,
+              "description" : "",
+              "status_change_date" : 1445869291098,
+              "title" : "Spanish things"
+            }
+          }
+        },
         "-K0VyDLOSRualpn_m1-Q" : {
           "2015-10-12" : {
             "-K0XGx5aTgMLcw8bPkZa" : {
@@ -1006,6 +1253,15 @@
               "description" : "",
               "status_change_date" : 1444757885396,
               "title" : "Historical Stuff"
+            }
+          },
+          "2015-10-19" : {
+            "-K0W2X8Evwgj4cf5E7HJ" : {
+              "assigned_date" : "2015-10-20",
+              "creation_date" : 1444737327784,
+              "description" : "",
+              "status_change_date" : 1444737327784,
+              "title" : "Short Questions the Explorations"
             }
           }
         },
@@ -1019,6 +1275,17 @@
               "status_change_date" : 1444737088594,
               "title" : "Trigonometry Question 5",
               "total_seconds_studied" : 47
+            }
+          }
+        },
+        "-K0W-ApiAGnfxbpUw0Nv" : {
+          "2015-10-26" : {
+            "-K1Wc7E4WEF7nKGvCHQ5" : {
+              "assigned_date" : "",
+              "creation_date" : 1445820661846,
+              "description" : "",
+              "status_change_date" : 1445820661846,
+              "title" : "Business task"
             }
           }
         }
@@ -1039,9 +1306,9 @@
         "email" : "studybuddy1app@gmail.com",
         "first_name" : "Alice",
         "last_name" : "Wonderland",
-        "long_break_seconds" : 10,
-        "short_break_seconds" : 5,
-        "study_session_seconds" : 15
+        "long_break_seconds" : 7,
+        "short_break_seconds" : 3,
+        "study_session_seconds" : 10
       }
     }
   },
@@ -1183,6 +1450,39 @@
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "number_of_breaks" : 6,
         "time_studied" : 148
+      }
+    },
+    "2015-10-22" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 1,
+        "time_studied" : 30
+      }
+    },
+    "2015-10-23" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 29,
+        "time_studied" : 410
+      }
+    },
+    "2015-10-24" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "number_of_breaks" : 5,
+        "time_studied" : 63
+      }
+    },
+    "2015-10-25" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "time_studied" : 12
+      }
+    },
+    "2015-10-26" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "time_studied" : 1
+      }
+    },
+    "2015-10-27" : {
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "time_studied" : 10
       }
     }
   }
