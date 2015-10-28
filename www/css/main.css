@@ -44,7 +44,7 @@ input, textarea {
 
 
 /*===================================================================================================================*/
-/* NAV BAR, STATUS BAR AND ICONS*/
+/* NAV BAR, STATUS BAR AND ICONS */
 /*===================================================================================================================*/
 
 #iPadStatusBar {
@@ -117,7 +117,7 @@ input, textarea {
 }
 
 /*===================================================================================================================*/
-/*HEADINGS & CONTROLS*/
+/* HEADINGS & CONTROLS */
 /*===================================================================================================================*/
 /*to get rid of the blue halo around buttons when they are pressed*/
 button:focus {outline:0;}
@@ -153,7 +153,7 @@ input:focus {outline:0;}
 /*opacity: .2;*/
 /*}*/
 
-.addTaskFromDate{
+.addTaskFromCalendar {
     color: #607A93;
     border: none;
     font-size: .8em;
@@ -200,7 +200,7 @@ input:focus {outline:0;}
 
 
 /*===================================================================================================================*/
-/*TASK CARDS*/
+/* TASK CARDS */
 /*===================================================================================================================*/
 
 .cardTask {
@@ -257,7 +257,7 @@ input:focus {outline:0;}
 
 
 /*===================================================================================================================*/
-/*MODAL WINDOWS*/
+/* MODAL WINDOWS */
 /*===================================================================================================================*/
 /*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
 .frostedGlass {
@@ -414,7 +414,7 @@ input:focus {outline:0;}
     color: rgba(255, 255, 255, 0.5);
 }
 /*===============================================================================================*/
-/*SORTABLE DAYS / */
+/* SORTABLE DAYS */
 /*===============================================================================================*/
 /*  GRID OF SEVEN  */
 .dayColumn {
@@ -446,7 +446,7 @@ input:focus {outline:0;}
 }
 
 /*===============================================================================================*/
-/*SEVEN COLUMN GRID / */
+/* SEVEN COLUMN GRID */
 /*===============================================================================================*/
 
 /*The css below grid below is generated from http://www.responsivegridsystem.com*/
@@ -475,12 +475,12 @@ input:focus {outline:0;}
 
 
 /*===============================================================================================*/
-/*COLUMNS FOR DAYS */
+/* COLUMNS FOR DAYS */
 /*===============================================================================================*/
 
 
 /*===============================================================================================*/
-/*CALENDAR SLIDER/ */
+/* CALENDAR SLIDER */
 /*===============================================================================================*/
 
 #calendarSlider {
@@ -508,7 +508,7 @@ input:focus {outline:0;}
 
 
 /*===============================================================================================*/
-/*SUBJECTS PAGE/ */
+/* SUBJECTS PAGE */
 /*===============================================================================================*/
 
 #subjectsPageWrapper {
@@ -519,17 +519,18 @@ input:focus {outline:0;}
 }
 
 #subjectsPanel {
-    overflow: auto;
-    overflow-y: scroll;              /*creates a scrollbar*/
     width: 25%;
     float: left;
+
 }
 
 #tasksPerSubject {
+    overflow: auto;
+    overflow-y: scroll;
     position: relative;
-    width:75%;
+    height: 768px;
+    width: 75%;
     float: right;
-    height: 1000px;
 }
 
 #tasksPerSubject ul{
@@ -537,35 +538,138 @@ input:focus {outline:0;}
 }
 
 #mySubjectsTitle {
+    color: white;
     text-align: center;
-    background-color: #aaaaaa;
+    background-color: #95CAAD;
     padding: 20px;
 }
 
 .subjectHeaderOnSubjectPage {
+    display: inline-block;
     font-size: 2.5em;
-    margin: 0;
-    padding: 3%;
+    margin-left: 10%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
 }
 
+.tasksHeaderOnSubjectPage {
+    display: inline-block;
+    font-size: 1.8em;
+    margin-left: 1%;
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    opacity: .5;
+}
+
 .subjectArea {
+    overflow: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: none;
+    height: 668px;
+}
+
+#subjectsList{
+    overflow: auto;
+    overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 550px;
+
 }
 
 #defaultSubjectAreaMessage {
     text-align: center;
+    background-color: #BCDBE1;
 }
 
 .subjectName {
-    padding: 20px;
-    border:1px solid #858585;
+    padding: 15px;
+    border-bottom: 1.5px solid #BCDBE1;
+}
+
+.subjectName:last-child {
+    margin-bottom: 50px;                /*This makes sure you can scroll down far enough to see the whole name*/
+}
+
+#addSubjectButton {
+    color: #607A93;
+    border: none;
+    font-size: 1em;
+    height: 50px;
+    background-color: rgba(255,255,255,0.4);
+    width: 100%;
+    text-align: center;
+    border-bottom: 1.5px solid #BCDBE1;
+}
+.completedTasksButton{
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-size: 1.2em;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 50px;
+    border: none;
 }
 
 .errorMessage {
     color: red;
+}
+
+
+/*==================================================================================================*/
+/* ADD TASKS IN BULK */
+/*==================================================================================================*/
+
+.bulkWrapper {
+    background-color: white;
+    width:80%;
+    margin: 3% auto;
+}
+
+.bulkText {
+    width: 60%;
+    height: 50px;
+    padding: 3px 0px;
+    border: 0;
+    color: #1E7D8A;
+    font-size: 1.0em;
+    padding-left: 15px;
+}
+
+.bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
+.bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
+.bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+
+.bulkDate {
+    border: 0;
+    color: #1E7D8A;
+    font-size: 1.0em;
+    padding-left: 15px;
+}
+
+.calendarImg {
+    padding-right: 20px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+.bulkSubmit {
+    /*padding-right: 20px;*/
+}
+
+/*==================================================================================================*/
+/* COLOUR PICKERS */
+/*==================================================================================================*/
+
+#colourPalette {
+    width: 180px;
+    height: 210px;
+    background-color: #ffffff;
+    display: none;
 }
 
 .colourOption {
@@ -574,13 +678,6 @@ input:focus {outline:0;}
     height: 30px;
     margin: 5px;
     cursor: pointer;
-}
-
-#colourPalette {
-    width: 500px;
-    height: 170px;
-    background-color: #ffffff;
-    display: none;
 }
 
 .chosenColour {
@@ -592,15 +689,59 @@ input:focus {outline:0;}
 }
 
 .editColour {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: inline-block;
     width: 30px;
     height: 30px;
-    margin: 10px;
     cursor: pointer;
+    margin: 5% 10% 5% 5%;
+    float: right;
+}
+
+.editColour:hover{
+    border: 2px solid whitesmoke;
+}
+
+.binIcon{
+    height: 30px;
+    width: 23px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-right: -2%;
+    opacity: .5;
+    float: right;
 }
 
 
+.binIcon:hover{
+    opacity:1;
+}
+
+.pencilIcon{
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5%;
+    height: 30px;
+    width: 30px;
+    margin-right: 3%;
+    opacity: .5;
+    float: right;
+}
+
+.pencilIcon:hover{
+    opacity:1;
+}
+
+
+.colourMessage {
+    display: inline-block;
+}
+
 /*==================================================================================================*/
-/*COLOURS THEME 1*/
+/* COLOURS THEME 1 */
 /*==================================================================================================*/
 
 .theme1Colour1 {color: #F4A460;} /*text colour*/

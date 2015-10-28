@@ -33,30 +33,44 @@ function createTask() {
     saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
-// UPDATE TASK DETAILS
-function updateTask(taskId, oldTaskDict) {
-    var subjectId = $('#taskSubject').val();
-    var updatedTask = {
-        title: $('#taskTitle').val(),
-        description: $('#taskDescription').val(),
-        assigned_date: $('#taskAssignedDate').val(),
+// CREATE NEW TASK FROM SUBJECT PAGE
+function createTaskFromSubjectPage(subjectId) {
+    var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
+    var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
+    var now = $.now();
+    if (taskTitle) {
+        var newTask = {
+            title: taskTitle,
+            assigned_date: taskDate,
+            creation_date: now,
+            status_change_date: now
+        }
+        var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
+        // PUSH THEM TO DB
+        saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
+
+        // CLEAR TEXT FIELDS
+        $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val('');
+        $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val('');
     }
-    saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTask, updateTaskInDOM);
 }
 
-//function updateTaskTitle() {
-//    $("input").blur(function(){
-//        alert("This input field has lost its focus.");
-//    });
-//}
+
+function prepareForUpdate(taskId, key, inputField) {
+    var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
+    var newValue = $(inputField).val();
+    var subjectId = $('#taskSubject').val();
+    var updatedTaskDetail = {};
+    updatedTaskDetail[key] = newValue;
+    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, key, updateTaskInDOM);
+}
 
 
 // if the title or assigned date of the task got updated, change the DOM accordingly
-function updateTaskInDOM(subjectId, subjectData, oldTaskDict, taskKey, newTaskDict){
-    if (oldTaskDict.assigned_date !== newTaskDict.assigned_date || oldTaskDict.title !== newTaskDict.title) {
-        removeTaskFromDOM(taskKey);
-        appendTask(subjectId, subjectData, taskKey, newTaskDict);
-    }
+function updateTaskInDOM(subjectId, subjectData, taskKey, newTaskDict, newWeekDate){
+    $('#taskAssignedDate').data('date', newWeekDate);
+    removeTaskFromDOM(taskKey);
+    appendTask(subjectId, subjectData, taskKey, newTaskDict);
 }
 
 //Create html for task element and append it to the list
@@ -69,7 +83,7 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
-        setClickForCardTask(listSelector, subjectKey, subjectDict, taskKey, taskData, taskHtml);
+        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone);
     }
 }
 
@@ -93,13 +107,13 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     return taskHtml;
 }
 
-function setClickForCardTask(listSelector, subjectKey, subjectDict, taskKey, taskData, taskHtml) {
+function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone) {
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     // append card to list
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        displayTask(subjectKey, subjectDict, startOfRelevantWeek, taskKey);
+        displayTask(subjectKey, startOfRelevantWeek, taskKey, isDone);
     });
 }
 
@@ -111,7 +125,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     }
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                        '<a class="accordion-section-title ' +subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
+                        '<a class="accordion-section-title ' + subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
                             '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
                             '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
                         '</a>' +
@@ -277,7 +291,7 @@ function removeTaskFromDOM(taskId) {
     $('li[data-taskid="' + taskId + '"]').remove();
 }
 
-function markAsDone(taskId) {
+function markAsDone(subjectId, originalDate, taskId) {
     var today = Date.today().toString('yyyy-MM-dd');
 
     // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
@@ -288,6 +302,22 @@ function markAsDone(taskId) {
 
     // in subject's page, remove from list (no need to append to complete b/c the button fetches each time anew)
     $('.subjectArea li[data-taskid="' + taskId + '"] div').remove();
+
+    if (originalDate === "no_assigned_date") {
+        // get this week's monday
+        if (Date.today().is().monday()) {
+            // if today happens to be a Monday, save it as this week's monday
+            var currentWeekMonday = (Date.today()).toString('yyyy-MM-dd');
+        } else {
+            // else, go to last monday
+            var currentWeekMonday = (Date.today().last().monday()).toString('yyyy-MM-dd');
+        }
+    } else {
+        var currentWeekMonday = originalDate;
+    }
+
+    moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday);
+
 }
 
 

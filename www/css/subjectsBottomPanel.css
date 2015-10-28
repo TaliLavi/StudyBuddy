@@ -58,6 +58,11 @@
 
 #subjectsInnerWrapper {
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#subjectsInnerWrapper::-webkit-scrollbar {       /*hides the scrollbar*/
+    display: none;
 }
 
 #tasksInnerWrapper {
@@ -67,6 +72,7 @@
     display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
     overflow: auto;
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #subjectFilters, #unassignedTasksList {

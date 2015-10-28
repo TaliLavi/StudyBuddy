@@ -3,10 +3,16 @@ a {
     text-decoration: none;
 }
 
+
 .accordion {
-    overflow:hidden;
-    width:80%;
-    margin: 3%;
+    overflow-x: hidden;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.todo{
+    padding-bottom: 40px;
 }
 
 /*----- Section Titles -----*/
@@ -16,7 +22,6 @@ a {
     display:inline-block;
     background-color: #f7f7f7;
     transition:all linear 0.15s;
-    /* Type */
     font-weight: normal;
 }
 

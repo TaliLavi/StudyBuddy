@@ -64,8 +64,9 @@ function createCalendarHeading() {
 
     // instantiate a TimeSpan object
     var span = new TimeSpan(displayedmonday - currentWeekMonday);
-    // get number of weeks between displayed week and current week
-    var numOfWeeks = span.days / 7;
+    // get number of weeks between displayed week and current week.
+    // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
+    var numOfWeeks = Math.round(span.days / 7);
 
 
     if (numOfWeeks === 0) {

@@ -21,6 +21,7 @@
   <script src='external/TweenMax.js'></script>
   <script src="external/date.js"></script>
   <script src="external/time.js"></script>
+  <script src="external/gistfile1.js"></script>
   <script src="external/Sortable.js"></script>
   <script src="external/detectMobileBrowsers.js"></script>
   <script src="js/data.js"></script>
@@ -156,7 +157,7 @@
     <div id="subjectsPage">
       <div id="subjectsPanel">
         <div id="mySubjectsTitle">My Subjects</div>
-        <button onclick="openAddSubjectDialog();">Add a new subject</button>
+        <button id="addSubjectButton" onclick="openAddSubjectDialog();">Add a subject...</button>
         <div id="subjectsList"></div>
       </div>
       <div id="tasksPerSubject" class="theme1Colour10b">
@@ -216,6 +217,7 @@
     <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
     <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
     <div class="colourMessage"></div>
+    <button id="changeColourButton" type="button">All set!</button>
   </div>
 
   <!--========================================================================================================-->
@@ -260,7 +262,6 @@
           <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
           <br>
           <button type="button" id="deleteTask">DELETE TASK</button>
-          <button type="button" id="updateTask">Save Changes</button>
           <button type="button" id="completeTask">Done?</button>
         </form>
       </div>
@@ -294,7 +295,7 @@
   </div>
 
   <audio id="popSound">
-    <source src="pop.ogg" type="audio/ogg">
+    <source src="popSound.ogg" type="audio/ogg">
     <source src="popSound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -311,3 +312,4 @@
 </div>
 </body>
 </html>
+

@@ -51,12 +51,20 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
-                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<button type="button" class ="addTaskFromSubject" onclick="openAddTaskDialog(\'' + subjectKey + '\', this);">Add Task</button>' +
-                    '<div class="accordion" id="tasksFor' + subjectKey + '"></div>' +
+                    '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
+                    '<img src="img/binIcon.png" class="binIcon">'+
+                    '<img src="img/pencilIcon.png" class="pencilIcon">'+
+                    '<div class="bulkWrapper">' +
+                        '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
+                        '<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
+                        '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
+                        '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
+                    '</div>' +
+                    '<div class="accordion todo" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                     subjectKey + '\');">Show completed tasks</button>' +
-                    '<div class="accordion" id="completedTasksFor' + subjectKey + '"></div>' +
+                    '<div class="accordion complete" id="completedTasksFor' + subjectKey + '"></div>' +
                 '</div>'
             );
 
@@ -73,19 +81,25 @@ function displayActiveSubjects(allSubjectsDict) {
         })
 
         $('.editColour').click(function () {
+            var subjectId = $(this).data('subjectid');
             // if this click will make #colourPalette visible:
             if ($('#colourPalette').is(':hidden')) {
                 // select this subject's colour by default
                 var subjectColour = $(this).data('colour-scheme');
                 var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
-                $(subjectColourDiv).addClass('chosenColour');
+                subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
                 var offset = $(this).offset();
-                $('#colourPalette').css('left',offset.left + 50);
+                var halfWidth = $('#colourPalette').width() / 2 - $('.editColour').width() / 2;
+                $('#colourPalette').css('left',offset.left - halfWidth);
                 $('#colourPalette').css('top',offset.top + 50);
                 $("#colourPalette").css("position", "absolute");
 
                 closeWhenClickingOutside($('#colourPalette'));
+
+                $('#changeColourButton').on("click", function(){
+                    changeSubjectColour(subjectId);
+                });
 
                 // display #colourPalette
                 $('#colourPalette').show();
@@ -112,6 +126,8 @@ function hideColourPalette() {
     } else {
         $(document).off('mouseup');
     }
+    // Clear old onclick handler
+    $('#changeColourButton').off("click");
     // hide and clear colourPalette
     $('#colourPalette').hide();
     $('.colourMessage').text('');
@@ -155,9 +171,46 @@ function checkIsColourInUse() {
                 if (colourSchemesDict[colour]) {
                     $(this).addClass('usedColour');
                     var subjectName = (colourSchemesDict[colour]);
-                    $(this).attr('data-subject-name', subjectName);
+                    $(this).data('subject-name', subjectName);
                 }
             });
         }
     });
 }
+
+
+function changeSubjectColour(subjectId) {
+    var newColour = $('.chosenColour').data('colour-scheme');
+    // update datbase
+    updateSubjectColour(subjectId, newColour);
+
+    // if it wasn't already a used colour, make to be one now.
+    if (!$('.chosenColour').hasClass('usedColour')) {
+        $('.chosenColour').addClass('usedColour');
+    }
+
+    // change colour picker button's background colour and data attribute
+    var editColourButton = $('#subjectArea' + subjectId).find('.editColour');
+    $(editColourButton).removeClassPrefix('theme');
+    $(editColourButton).addClass(newColour);
+    $(editColourButton).data('colour-scheme', newColour);
+    // change font colour for subject's name on left panel
+    $('#subjectName' + subjectId).removeClassPrefix('theme');
+    $('#subjectName' + subjectId).addClass(newColour);
+    // change background colour for subject area
+    $('#subjectArea' + subjectId).removeClassPrefix('theme');
+    $('#subjectArea' + subjectId).addClass(newColour);
+    // change accordion tasks' background and font colour
+    var titleElements = $('#tasksFor' + subjectId).find('a, span');
+    titleElements.removeClassPrefix('theme');
+    titleElements.addClass(newColour);
+    // change background colour for card tasks
+    var cardTasks = $('.sortable-task-list').find('[data-subjectid="' + subjectId + '"] > div');
+    cardTasks.removeClassPrefix('theme');
+    cardTasks.addClass(newColour);
+
+
+    // hide colour picker widget
+    hideColourPalette();
+}
+

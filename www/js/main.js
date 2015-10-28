@@ -106,7 +106,8 @@ function applySortable(selector) {
         onAdd: moveTask,
         onPickup: pickupCard,
         forceFallback: true,
-        fallbackClass: "dragged-item"
+        fallbackClass: "dragged-item",
+        filter: ".doneTask"
     }
     if (isMobile()) {
         //set up drag and drop for each list, with delay to imitate long-press
@@ -163,8 +164,8 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         daysHtml += '<div class="col dayColumn">' +
             '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
             '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
-            '<button class="addTaskFromDate" onclick="openAddTaskDialog(\'' +
-            currentDateFormatted + '\', this);">Add a task...</button>' +
+            '<button class="addTaskFromCalendar" onclick="openAddTaskDialog(\'' +
+            currentDateFormatted + '\');">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
             '</div>';
     }
@@ -205,10 +206,13 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, subjectDict, startOfRelevantWeek, taskId) {
-    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, fillInTaskDetails);
+function displayTask(subjectId, startOfRelevantWeek, taskId, isDone) {
+    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, isDone, fillInTaskDetails);
     // change heading's background to main colour, and left side's background to secondary colour
-    $('#taskCardHeadingDiv ,#leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    fetchAnActiveSubject(subjectId, function(subjectDict) {
+        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    });
+
     //Makes the modal window display
     $('#taskModal').css('display','block');
     //Fades in the greyed-out background
@@ -223,9 +227,10 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#taskTitle').val(taskDetails.title);
     $('#taskDescription').val(taskDetails.description);
-    $('#taskTimeEstimation').val(taskDetails.time_estimation);
     $('#taskAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
+
+    $('#taskAssignedDate').data('date', taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
     autoGrow(document.getElementById("taskDescription"));
@@ -233,31 +238,26 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
 
     // Clear any old onclick handler
     $('#deleteTask').off("click");
-    $('#updateTask').off("click");
     $('#completeTask').off("click");
     $('#playPauseButton').off("click");
     $('#stopButton').off("click");
     $('#closeTaskModal').off("click");
+    $("#taskTitle").off("blur");
+    $("#taskDescription").off("blur");
+    $("#taskAssignedDate").off("blur");
+    $("#taskTitle").off("focus");
+    $("#taskDescription").off("focus");
+    $("#taskAssignedDate").off("focus");
 
+    $("#taskTitle").on("blur", function(){prepareForUpdate(taskId, "title", $(this));});
+    $("#taskDescription").on("blur", function(){prepareForUpdate(taskId, "description", $(this));});
+    $("#taskAssignedDate").on("blur", function(){prepareForUpdate(taskId, "assigned_date", $(this));});
 
-    $('#updateTask').on("click", function(){
-        updateTask(taskId, taskDetails);
-    });
-    $('#deleteTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);
-    });
-    $('#completeTask').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId, moveTaskToDone);
-    });
-    $('#closeTaskModal').on("click", function(){
-        closeTaskModal(subjectId, weekDate, taskId);
-    });
-    $('#playPauseButton').on("click", function(){
-        playPauseTimer(subjectId, weekDate, taskId);
-    });
-    $('#stopButton').on("click", function(){
-        stopTimer(subjectId, weekDate, taskId);
-    });
+    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);});
+    $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, markAsDone);});
+    $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId);});
+    $('#playPauseButton').on("click", function(){playPauseTimer(subjectId, weekDate, taskId);});
+    $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
 
     $('#taskModal').addClass('displayed');
 
@@ -276,16 +276,9 @@ function autoGrow(element) {
 var dayList;
 
 
-function openAddTaskDialog(data, dateOrSubject){
-
-    if ($(dateOrSubject).hasClass('addTaskFromDate')) {
-        //Automatically fill the assigned date
-        $('#assignedDateInput').val(data);
-    } else if ($(dateOrSubject).hasClass('addTaskFromSubject')) {
-        //Automatically select the subject
-        $('#subjectInput').val(data);
-    }
-
+function openAddTaskDialog(data){
+    //Automatically fill the assigned date
+    $('#assignedDateInput').val(data);
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
     $('#calendarPage').addClass('frostedGlass');

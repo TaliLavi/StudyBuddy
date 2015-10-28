@@ -132,6 +132,14 @@ function fetchActiveSubjects(callback) {
     }, firebaseErrorFrom('fetchActiveSubjects'));
 }
 
+// RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
+function fetchAnActiveSubject(subjectId, callback) {
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    subjectRef.once("value", function(snapshot) {
+        callback(snapshot.val());
+    }, firebaseErrorFrom('fetchAnActiveSubject'));
+}
+
 // UPDATE SUBJECT'S NAME
 function changeSubjectName(subjectId, newName){
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
@@ -142,10 +150,10 @@ function changeSubjectName(subjectId, newName){
 
 
 // UPDATE SUBJECT'S COLOUR
-function changeSubjectColour(subjectId, newColour){
+function updateSubjectColour(subjectId, newColour){
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
     subjectRef.update({
-        "colour": newColour
+        "colour_scheme": newColour
     });
 }
 
@@ -278,50 +286,50 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
-function fetchSingleTask(subjectId, weekDate, taskId, callback) {
-    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
+    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
         callback(subjectId, taskId, snapshot.val());
     }, firebaseErrorFrom('fetchSingleTask'));
 }
 
 
-// UPDATE TASK'S ASSIGNED DATE
-function saveUpdatedTask(subjectId, oldTaskDict, taskId, updatedTaskDetails, postUpdateCallback) {
+function updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, whatToUpdate, postUpdateCallback) {
+
     // PREPARATION
-    var oldWeekDate = startOfWeek(oldTaskDict.assigned_date);
-    // find new week date
-    if (updatedTaskDetails.assigned_date !== undefined) {
-        var newWeekDate = startOfWeek(updatedTaskDetails.assigned_date);
-    } else {
-        var newWeekDate = oldWeekDate;
-    }
     var oldTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
-    var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
 
-    // UPDATE DATABASE
-    if (newWeekDate === oldWeekDate) {
-        // notice that updatedTaskDetails may contain just one detail (e.g. assigned_date), or more.
-        oldTaskRef.update(updatedTaskDetails);
+    // check if change is date
+    if (whatToUpdate !== "assigned_date") {
+        oldTaskRef.update(updatedTaskDetail);
     } else {
-        oldTaskRef.once('value', function(snapshot)  {
-            var oldTaskDict = snapshot.val();
-            // the extend method would update oldTaskDict with the data stored in updatedTaskDetails.
-            var combinedTaskDict = $.extend(oldTaskDict, updatedTaskDetails);
-            newTaskRef.update(combinedTaskDict);
-            oldTaskRef.remove();
-        }, firebaseErrorFrom('saveUpdatedTask'));
+        // find new week date
+        var newWeekDate = startOfWeek(updatedTaskDetail.assigned_date);
+        var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+        // check if the new assigned date still belongs to the same week as the old one
+        if (newWeekDate === oldWeekDate) {
+            oldTaskRef.update(updatedTaskDetail);
+        } else {
+            oldTaskRef.once('value', function(snapshot)  {
+                var oldTaskDict = snapshot.val();
+                // the extend method would update oldTaskDict with the data stored in updatedTaskDetails.
+                var combinedTaskDict = $.extend(oldTaskDict, updatedTaskDetail);
+                newTaskRef.update(combinedTaskDict);
+                oldTaskRef.remove();
+            }, firebaseErrorFrom('updateTask'));
+        }
     }
 
+    // TODO: turn the next lines into a function, to be called 3 times (after lines: 304, 311, 318)
     // POST UPDATE: FETCH SUBJECT'S DATA AND PERFORM POST UPDATE ACTIONS
-    if (postUpdateCallback !== undefined) {
-        var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
-        subjectRef.once("value", function(subjectSnapshot) {
-            newTaskRef.once('value', function(updatedTask)  {
-                postUpdateCallback(subjectId, subjectSnapshot.val(), oldTaskDict, updatedTask.key(), updatedTask.val());
-            }, firebaseErrorFrom('saveUpdatedTask'));
-        }, firebaseErrorFrom('saveUpdatedTask'));
-    }
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    subjectRef.once('value', function(subjectSnapshot) {
+        newTaskRef.once('value', function(updatedTask)  {
+            console.log(updatedTask.val());
+            console.log(updatedTask);
+            //postUpdateCallback(subjectId, subjectSnapshot.val(), updatedTask.key(), updatedTask.val(), newWeekDate);
+        }, firebaseErrorFrom('updateTask'));
+    }, firebaseErrorFrom('updateTask'));
 }
 
 
@@ -338,13 +346,12 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 
 // MOVE TASK TO DONE
-function moveTaskToDone(subjectId, weekDate, taskId) {
-    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
-    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
+function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
-        markAsDone(taskId);
     }, firebaseErrorFrom('moveTaskToDone'));
 }
 
