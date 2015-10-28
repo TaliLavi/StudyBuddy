@@ -325,8 +325,6 @@ function updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, whatToUpd
     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once('value', function(subjectSnapshot) {
         newTaskRef.once('value', function(updatedTask)  {
-            console.log(updatedTask.val());
-            console.log(updatedTask);
             //postUpdateCallback(subjectId, subjectSnapshot.val(), updatedTask.key(), updatedTask.val(), newWeekDate);
         }, firebaseErrorFrom('updateTask'));
     }, firebaseErrorFrom('updateTask'));

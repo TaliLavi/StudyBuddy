@@ -127,16 +127,18 @@ function pickupCard(evt) {
 // when task is moved...
 function moveTask(evt) {
     var oldAssignedDate = evt.from.id;
+    var oldWeekDate = startOfWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
+    //var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
     var oldTaskDetails = {assigned_date: oldAssignedDate};
     if (newAssignedDate === "unassignedTasksList") {
-        var updatedTaskDetails = {assigned_date: ""};
+        var updatedTaskDetail = {assigned_date: ""};
     } else {
-        var updatedTaskDetails = {assigned_date: newAssignedDate};
+        var updatedTaskDetail = {assigned_date: newAssignedDate};
     }
-    saveUpdatedTask(subjectId, oldTaskDetails, taskId, updatedTaskDetails);
+    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, "assigned_date", updateTaskInDOM);
 }
 
 function inTheAir(evt) {
