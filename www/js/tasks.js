@@ -55,22 +55,44 @@ function createTaskFromSubjectPage(subjectId) {
     }
 }
 
+//=====================================================================
+//                       UPDATING TASK DETAILS
+//=====================================================================
 
-function prepareForUpdate(taskId, key, inputField) {
-    var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
-    var newValue = $(inputField).val();
+function submitTaskChanges(taskId) {
+    var oldWeekDate = startOfWeek($('#cardAssignedDate').data('date'));
     var subjectId = $('#taskSubject').val();
-    var updatedTaskDetail = {};
-    updatedTaskDetail[key] = newValue;
-    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, key, updateTaskInDOM);
+
+    var updatedTask = {
+        title: $('#cardTitle').val(),
+        description: $('#cardDescription').val(),
+        assigned_date: $('#cardAssignedDate').val()
+    }
+
+    updateTask(subjectId, taskId, oldWeekDate, updatedTask, updateTaskFieldsAndMoveCard);
 }
 
-
 // if the title or assigned date of the task got updated, change the DOM accordingly
-function updateTaskInDOM(subjectId, subjectData, taskKey, newTaskDict, newWeekDate){
-    $('#taskAssignedDate').data('date', newWeekDate);
-    removeTaskFromDOM(taskKey);
-    appendTask(subjectId, subjectData, taskKey, newTaskDict);
+function updateTaskFields(subjectId, subjectData, taskId, taskData){
+    var newWeekDate = startOfWeek(taskData.assigned_date);
+    $('#cardAssignedDate').data('date', newWeekDate);
+
+    // change the description of the todotask.
+    $('#todoDescriptionFor' + taskId).val(taskData.description);
+    // change the title of the todotask.
+    $('#todoTitleFor' + taskId).val(taskData.title);
+    // change the title of the card.
+    $('li[data-taskid="' + taskId + '"] > div > span').text(taskData.title);
+
+    // change the date of the todotask.
+    $('#todoAssignedDateFor' + taskId).val(taskData.assigned_date);
+}
+
+function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, taskData){
+    updateTaskFields(subjectId, subjectData, taskId, taskData);
+
+    removeTaskFromDOM(taskId);
+    appendTask(subjectId, subjectData, taskId, taskData);
 }
 
 //Create html for task element and append it to the list
@@ -119,19 +141,20 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
 
 function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     if (taskData.assigned_date === "") {
-        var taskAssignedDate = "Set a date";
+        var cardAssignedDate = "Set a date";
     } else {
-        var taskAssignedDate = taskData.assigned_date;
+        var cardAssignedDate = taskData.assigned_date;
     }
 
     var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
                         '<a class="accordion-section-title ' + subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-                            '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
-                            '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
+                            '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
+                            '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
                         '</a>' +
                         '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
                             '<div>' +
-                                '<p>' + taskData.description +'</p>' +
+                                '<textarea id="todoDescriptionFor' + taskKey + '" type="textarea" placeholder="Write your description here.">'
+                                    + taskData.description +'</textarea>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +

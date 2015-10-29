@@ -255,14 +255,15 @@
 
         <form id="taskCardForm">
           <br>
-          <textarea class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
           <br>
-          <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
           <br>
-          <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
+          <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
           <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
           <br>
           <button type="button" id="deleteTask">DELETE TASK</button>
+          <button type="button" id="updateTask">Save Changes</button>
           <button type="button" id="completeTask">Done?</button>
         </form>
       </div>

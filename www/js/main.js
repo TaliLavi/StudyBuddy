@@ -103,7 +103,7 @@ function applySortable(selector) {
         //animation: 1000,
         ghostClass: "sortable-ghost",
         onStart: inTheAir,
-        onAdd: moveTask,
+        onAdd: dragTask,
         onPickup: pickupCard,
         forceFallback: true,
         fallbackClass: "dragged-item",
@@ -124,21 +124,22 @@ function pickupCard(evt) {
     playPop();
 }
 
-// when task is moved...
-function moveTask(evt) {
+// when card is dragged-and-dropped in Sortable
+function dragTask(evt) {
+    var subjectId = evt.item.dataset.subjectid;
+    var taskId = evt.item.dataset.taskid;
+
     var oldAssignedDate = evt.from.id;
     var oldWeekDate = startOfWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
-    //var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
-    var subjectId = evt.item.dataset.subjectid;
-    var taskId = evt.item.dataset.taskid;
-    var oldTaskDetails = {assigned_date: oldAssignedDate};
+
     if (newAssignedDate === "unassignedTasksList") {
         var updatedTaskDetail = {assigned_date: ""};
     } else {
         var updatedTaskDetail = {assigned_date: newAssignedDate};
     }
-    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, "assigned_date", updateTaskInDOM);
+
+    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
 }
 
 function inTheAir(evt) {
@@ -227,38 +228,29 @@ function displayTask(subjectId, startOfRelevantWeek, taskId, isDone) {
 
 function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
-    $('#taskTitle').val(taskDetails.title);
-    $('#taskDescription').val(taskDetails.description);
-    $('#taskAssignedDate').val(taskDetails.assigned_date);
+    $('#cardTitle').val(taskDetails.title);
+    $('#cardDescription').val(taskDetails.description);
+    $('#cardAssignedDate').val(taskDetails.assigned_date);
     var weekDate = startOfWeek(taskDetails.assigned_date);
 
-    $('#taskAssignedDate').data('date', taskDetails.assigned_date);
+    $('#cardAssignedDate').data('date', taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
-    autoGrow(document.getElementById("taskDescription"));
-    autoGrow(document.getElementById("taskTitle"));
+    autoGrow(document.getElementById("cardDescription"));
+    autoGrow(document.getElementById("cardTitle"));
 
-    // Clear any old onclick handler
+    // Clear old onclick handlers and set new ones
+    $('#updateTask').off("click");
+    $('#updateTask').on("click", function(){submitTaskChanges(taskId);});
     $('#deleteTask').off("click");
-    $('#completeTask').off("click");
-    $('#playPauseButton').off("click");
-    $('#stopButton').off("click");
-    $('#closeTaskModal').off("click");
-    $("#taskTitle").off("blur");
-    $("#taskDescription").off("blur");
-    $("#taskAssignedDate").off("blur");
-    $("#taskTitle").off("focus");
-    $("#taskDescription").off("focus");
-    $("#taskAssignedDate").off("focus");
-
-    $("#taskTitle").on("blur", function(){prepareForUpdate(taskId, "title", $(this));});
-    $("#taskDescription").on("blur", function(){prepareForUpdate(taskId, "description", $(this));});
-    $("#taskAssignedDate").on("blur", function(){prepareForUpdate(taskId, "assigned_date", $(this));});
-
     $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);});
+    $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, markAsDone);});
+    $('#closeTaskModal').off("click");
     $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId);});
+    $('#playPauseButton').off("click");
     $('#playPauseButton').on("click", function(){playPauseTimer(subjectId, weekDate, taskId);});
+    $('#stopButton').off("click");
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
 
     $('#taskModal').addClass('displayed');
@@ -352,7 +344,7 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
     }
 }
 
-// if user clicks outside modal, modal closes.
+// when user clicks outside modal, modal closes.
 function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
     if (isMobile()) {
         $(document).on("touchend", function (event) {

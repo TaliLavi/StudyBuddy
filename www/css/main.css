@@ -367,7 +367,7 @@ input:focus {outline:0;}
     margin-top: 5%;
 }
 
-#taskDescription{
+#cardDescription{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
@@ -380,7 +380,7 @@ input:focus {outline:0;}
     max-height: 200px;
 }
 
-#taskTitle{
+#cardTitle{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
@@ -392,7 +392,7 @@ input:focus {outline:0;}
     max-height: 100px;
 }
 
-#taskAssignedDate{
+#cardAssignedDate{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
