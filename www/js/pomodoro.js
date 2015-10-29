@@ -17,20 +17,20 @@ function prepareHourGlass() {
     console.log(cachedSessionTimes.study_session);
     //
     //
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)"});     //20 mins left
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)"});     //15 mins left
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)"});     //10 mins left
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)"});     //5 mins left
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*16), {ease: Power0.easeNone, borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)"});      //1 min left
-    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*4), {ease: Power0.easeNone, borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)"});             //at zero
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //10 mins left
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //5 mins left
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*16), {borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)", ease: Power0.easeNone});      //1 min left
+    workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*4), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)", ease: Power0.easeNone});             //at zero
     ////
     //////
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session);     //20 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"24px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session/100*80);     //15 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"38px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session/100*60);     //10 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {ease: Power0.easeNone, borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"50px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session/100*40);     //5 mins let
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*16), {ease: Power0.easeNone, borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session/100*16);      //1 min left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*4), {ease: Power0.easeNone, borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"65px solid rgba(149,202,173,1)"}, "-="+cachedSessionTimes.study_session/100*4);      //at zero
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session);     //20 mins left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"24px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*80);     //15 mins left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"38px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*60);     //10 mins left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"50px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*40);     //5 mins let
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*16), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*16);      //1 min left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"65px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*4);      //at zero
 
 }// end of prepareHourGlass
 
@@ -202,6 +202,13 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').addClass('stopped');
     // stop animation
     workTL.pause(0);
+    $('#sleepingRuzoPurple').css('display','none');
+    $('#sleepingRuzo').css('display','none');
+    $('#bottomContainer').css('display','block');
+    $('#topContainer').css('display','block');
+
+    //If stopped on a break get rid of ruzo.
+
     if (sessionType === 'study_session') {
         // TODO: don't get data directly from cached object
         var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();

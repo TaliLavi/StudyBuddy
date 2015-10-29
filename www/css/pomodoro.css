@@ -112,22 +112,20 @@
 
 #topContainer{
     position: relative;
-    border: 1px solid grey;
     height: 80px;
     width: 100px;
     display: block;
     margin: auto;
-    margin-top: 25%;
+    margin-top: 75px;
 }
 
 #bottomContainer{
     position: relative;
-    border: 1px solid grey;
     height: 80px;
     width: 100px;
     display: block;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 25px;
 }
 
 
