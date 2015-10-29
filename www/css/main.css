@@ -306,12 +306,12 @@ input:focus {outline:0;}
 /*This is the close(x) button*/
 .closeX{
     display: block;
-    float: right;
-    color:darkslategray;
+    position: absolute;
+    color: lightgray;
+    font-weight: 300;
     font-size: 2em;
-    margin-right: 2%;
-    margin-top: 2%;
-    padding: 1%;
+    right: 10px;
+    top: 0px;
 }
 
 #leftDivTaskCard{
@@ -797,8 +797,8 @@ input:focus {outline:0;}
 
 .theme1Colour8 {color: #607A93} /*text colour*/
 .theme1Colour8.mainColour {background-color: #607A93;}
-.theme1Colour8.secondaryColour {background-color: #869CB1;}
-.theme1Colour8.active {background-color: #869CB1;} /*active subject button colour*/
+.theme1Colour8.secondaryColour {background-color: #baccd9;}
+.theme1Colour8.active {background-color: #baccd9;} /*active subject button colour*/
 .theme1Colour8.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
 .theme1Colour9 {color: #A0AFBE;} /*text colour*/

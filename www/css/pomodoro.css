@@ -75,11 +75,15 @@
     border-radius: 5px;
     width: 80px;
     height: 35px;
-    background-color: rgba(149,202,173, .7);
+    background-color: rgb(149,202,173);
     font-size: 1em;
     margin-bottom: 20px;
     margin-left: 6px;
     -webkit-tap-highlight-color: transparent;
+}
+
+#stopButton:disabled{
+    background-color: rgba(149,202,173, .6);
 }
 
 #playPauseButton{
@@ -90,13 +94,11 @@
     border-radius: 5px;
     width: 80px;
     height: 35px;
-    background-color: rgba(149,202,173, .7);
+    background-color: rgb(149,202,173);
     font-size: 1em;
     margin-bottom: 20px;
     margin-right: 6px;
 }
-
-
 
 #minsDiv {
     float: left;
