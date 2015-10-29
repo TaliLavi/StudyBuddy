@@ -193,7 +193,7 @@ function togglePlayPause() {
         $('#playPauseButton').text('Pause');
     } else {
         $('#playPauseButton').addClass('notPlaying');
-        $('#playPauseButton').text('Play');
+        $('#playPauseButton').text('Resume');
     }
 }
 
@@ -221,6 +221,7 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
         togglePlayPause();
     }
     sessionType = 'study_session';
+    $('#playPauseButton').text('Start');
 }
 
 function resetTimerDisplay() {
