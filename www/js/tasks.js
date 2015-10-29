@@ -142,17 +142,10 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         var cardAssignedDate = taskData.assigned_date;
     }
 
-    var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                        '<a class="accordion-section-title ' + subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-                            '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
-                            '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
-                        '</a>' +
-                        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
-                            '<div>' +
-                                '<textarea id="todoDescriptionFor' + taskKey + '" type="textarea" placeholder="Write your description here.">'
-                                    + taskData.description +'</textarea>' +
-                            '</div>' +
-                        '</div>' +
+    var taskHtml = '<div class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+                        '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
+                        '<input id="todoDescriptionFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
+                        '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
                     '</div>' +
                     '<br/>';
 
@@ -160,34 +153,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 }
 
 function setClickForTodoTask(taskKey) {
-    $('#accordionTitle' + taskKey).click(function(e) {
-        // Grab current anchor value
-        var currentAttrValue = $(this).attr('href');
-
-        if($(e.target).is('.mainColour') || $(e.target).parent().is('.mainColour')) {
-            close_accordion_section();
-        } else {
-            close_accordion_section();
-
-            // Change task's title's text and background colours
-            $(this).addClass('mainColour');
-            $(this).children("span").addClass('expanded');
-
-            // Open up the hidden content panel
-            $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
-        }
-
-        e.preventDefault();
-    });
-}
-
-// collapse accordion
-function close_accordion_section() {
-    // restore task's title's text and background colours
-    $('.accordion .accordion-section-title').removeClass('mainColour');
-    $('.accordion .accordion-section-title span').removeClass('expanded');
-
-    $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+    // this should open the task modal!
 }
 
 // APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER

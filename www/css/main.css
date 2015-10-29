@@ -257,6 +257,26 @@ input:focus {outline:0;}
     );
 }
 
+/*===================================================================================================================*/
+/* TODOTASK CARDS */
+/*===================================================================================================================*/
+
+.todoWrapper {
+    overflow-x: hidden;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.todoTask {
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    background-color: #f7f7f7;
+    transition:all linear 0.15s;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
 
 /*===================================================================================================================*/
 /* MODAL WINDOWS */
