@@ -68,24 +68,32 @@
 }
 
 #stopButton {
-    color: darkgrey;
-    border: 3px solid rgb(149,202,173);
-    border-radius: 2px;
-    width: 100px;
-    height: 40px;
-    background-color: transparent;
-    font-size: .9em;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 80px;
+    height: 35px;
+    background-color: rgba(149,202,173, .7);
+    font-size: 1em;
+    margin-bottom: 20px;
+    margin-left: 6px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #playPauseButton{
-    color: darkgrey;
-    border: 3px solid rgb(149,202,173);
-    border-radius: 2px;
-    width: 100px;
-    height: 40px;
-    background-color: transparent;
-    font-size: .9em;
-
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 80px;
+    height: 35px;
+    background-color: rgba(149,202,173, .7);
+    font-size: 1em;
+    margin-bottom: 20px;
+    margin-right: 6px;
 }
 
 

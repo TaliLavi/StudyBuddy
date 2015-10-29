@@ -11,6 +11,8 @@
     -moz-touch-callout: none;
     -ms-touch-callout: none;
     touch-callout: none;
+    /*prevents the grey highlight when anything is tapped on the iPad*/
+    -webkit-tap-highlight-color: transparent;
 }
 
 /*html {*/
