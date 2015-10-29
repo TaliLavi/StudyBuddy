@@ -9,9 +9,9 @@ var numOfStudySessions = 0;
 //===============================================================================================================================
 
 //var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
-var workTL = new TimelineMax({ paused:true});
+var workTL = new TimelineMax({paused:true});
 
-
+workTL.yoyo( false ); //sets yoyo to false
 
 function prepareHourGlass() {
     console.log(cachedSessionTimes.study_session);
@@ -26,11 +26,11 @@ function prepareHourGlass() {
     ////
     //////
     workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session);     //20 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"24px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*80);     //15 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"38px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*60);     //10 mins left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"50px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*40);     //5 mins let
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*16), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*16);      //1 min left
-    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"65px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*4);      //at zero
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"30px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*80);     //15 mins left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"45px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*60);     //10 mins left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*40);     //5 mins let
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*16), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"70px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*16);      //1 min left
+    workTL.to($('#bottomTriangleWork'), (cachedSessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+cachedSessionTimes.study_session/100*4);      //at zero
 
 }// end of prepareHourGlass
 
@@ -138,9 +138,9 @@ function playPauseTimer(subjectId, weekDate, taskId) {
 }
 
 function switchToNextSession(subjectId, weekDate, taskId) {
-    playTone();
     // reset animation ready for next time
-    workTL.pause(0);
+
+    playTone();
     if (sessionType === 'study_session') {
         // increase num of study sessions by one
         numOfStudySessions += 1;
@@ -154,6 +154,7 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             $('#sleepingRuzoPurple').css('display','none');
             $('#bottomContainer').css('display','none');
             $('#topContainer').css('display','none');
+            workTL.pause(0);
             // switch to long_break
         } else {
             // change to long_break
@@ -164,6 +165,7 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             $('#sleepingRuzo').css('display','none');
             $('#bottomContainer').css('display','none');
             $('#topContainer').css('display','none');
+            workTL.pause(0);
         }
 
         var timeToLog = cachedSessionTimes.study_session;
