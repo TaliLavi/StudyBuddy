@@ -239,24 +239,22 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     autoGrow(document.getElementById("cardDescription"));
     autoGrow(document.getElementById("cardTitle"));
 
+    $('#taskModal').addClass('displayed');
+
     // Clear old onclick handlers and set new ones
-    $('#updateTask').off("click");
-    $('#updateTask').on("click", function(){submitTaskChanges(taskId);});
     $('#deleteTask').off("click");
     $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);});
     $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, markAsDone);});
-    $('#closeTaskModal').off("click");
-    $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId);});
     $('#playPauseButton').off("click");
     $('#playPauseButton').on("click", function(){playPauseTimer(subjectId, weekDate, taskId);});
     $('#stopButton').off("click");
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
+    $('#closeTaskModal').off("click");
+    $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);})});
 
-    $('#taskModal').addClass('displayed');
-
-    // if user clicks outside modal, modal closes.
-    closeWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
+    // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
+    setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
 }
 
 function autoGrow(element) {
@@ -285,7 +283,7 @@ function openAddTaskDialog(data){
     // Set the new onclick handler
     $('#submitNewTask').on("click", createTask);
 
-    closeWhenClickingOutside($('#addTaskModal'));
+    setCloseWhenClickingOutside($('#addTaskModal'));
 }
 
 
@@ -295,14 +293,14 @@ function openAddTaskDialog(data){
 
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
-    // prevent document from continueing to listen to clicks outside the modal container.
+    // prevent document from continuing to listen to clicks outside the modal container.
     if (isMobile()) {
         $(document).off('touchend');
     } else {
         $(document).off('mouseup');
     }
     // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv ,#leftDivTaskCard').removeClass();
+    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftDivTaskCard').addClass('secondaryColour');
 
@@ -344,37 +342,26 @@ function closeTaskModal(subjectId, weekDate, taskId, callback) {
     }
 }
 
-// when user clicks outside modal, modal closes.
-function closeWhenClickingOutside(modalWindow, subjectId, weekDate, taskId) {
-    if (isMobile()) {
-        $(document).on("touchend", function (event) {
-            // if the target of the click isn't the modal window, nor a descendant of the modal window
-            if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
-                if ($('#taskModal').hasClass('displayed')) {
-                    closeTaskModal(subjectId, weekDate, taskId);
-                    $('#taskModal').removeClass('displayed')
-                } else if (modalWindow[0].id === "colourPalette") {
-                    hideColourPalette();
-                } else {
-                    closeModalWindow();
-                }
+// set event handler for closing the modal when user clicks outside modal.
+function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, callback) {
+    var eventType = isMobile()? "touchend" : "mouseup";
+    $(document).off(eventType);
+    $(document).on(eventType, function (event) {
+        // if the target of the click isn't the modal window, nor a descendant of the modal window
+        if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
+            // if the modal window we're closing is the task modal
+            if ($('#taskModal').hasClass('displayed')) {
+                closeTaskModal(subjectId, weekDate, taskId, callback);
+                $('#taskModal').removeClass('displayed')
+            // if the modal window we're closing is the colour picker widget
+            } else if (modalWindow[0].id === "colourPalette") {
+                hideColourPalette();
+            // if the modal window we're closing is either the Add Task or the Add Subject modals
+            } else {
+                closeModalWindow();
             }
-        });
-    } else {
-        $(document).on("mouseup", function (event) {
-            // if the target of the click isn't the modal window, nor a descendant of the modal window
-            if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
-                if ($('#taskModal').hasClass('displayed')) {
-                    closeTaskModal(subjectId, weekDate, taskId);
-                    $('#taskModal').removeClass('displayed')
-                } else if (modalWindow[0].id === "colourPalette") {
-                    hideColourPalette();
-                } else {
-                    closeModalWindow();
-                }
-            }
-        });
-    }
+        }
+    });
 }
 
 
@@ -398,6 +385,6 @@ function openAddSubjectDialog(){
 
 
 
-    closeWhenClickingOutside($('#addSubjectModal'));
+    setCloseWhenClickingOutside($('#addSubjectModal'));
 }
 //

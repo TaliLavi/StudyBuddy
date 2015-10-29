@@ -59,10 +59,7 @@ function createTaskFromSubjectPage(subjectId) {
 //                       UPDATING TASK DETAILS
 //=====================================================================
 
-function submitTaskChanges(taskId) {
-    var oldWeekDate = startOfWeek($('#cardAssignedDate').data('date'));
-    var subjectId = $('#taskSubject').val();
-
+function submitTaskChanges(subjectId, oldWeekDate, taskId) {
     var updatedTask = {
         title: $('#cardTitle').val(),
         description: $('#cardDescription').val(),
@@ -90,9 +87,8 @@ function updateTaskFields(subjectId, subjectData, taskId, taskData){
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, taskData){
     updateTaskFields(subjectId, subjectData, taskId, taskData);
-
-    removeTaskFromDOM(taskId);
-    appendTask(subjectId, subjectData, taskId, taskData);
+    removeCardFromDOM(taskId);
+    appendCard(subjectId, subjectData, taskId, taskData);
 }
 
 //Create html for task element and append it to the list
@@ -194,25 +190,29 @@ function close_accordion_section() {
     $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
 }
 
-// APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
-function appendTask(subjectId, subjectData, taskKey, taskData) {
-    // APPEND TASK TO SUBJECTS PAGE
-    var subjectDiv = '#tasksFor' + subjectId;
-    createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+// APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER
+function appendCard(subjectId, subjectData, taskKey, taskData) {
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
         createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
-        // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
+    // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
     } else if ($('#calendarWrapper').children($('#week' + startOfWeek(taskData.assigned_date))).length > 0) {
         var subjectDiv = '#' + taskData.assigned_date;
         createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     }
 }
 
+// APPEND TASK TO SUBJECTS PAGE
+function appendTodoTask(subjectKey, subjectData, taskKey, taskData) {
+    var subjectDiv = '#tasksFor' + subjectKey;
+    createAndAppendTaskElement(subjectDiv, subjectKey, subjectData, taskKey, taskData);
+}
+
 // APPEND TASK TO ALL RELEVANT PLACES IN THE DOM AND CLOSE MODAL
 function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
-    appendTask(subjectKey, subjectData, taskKey, taskData);
+    appendTodoTask(subjectKey, subjectData, taskKey, taskData);
+    appendCard(subjectKey, subjectData, taskKey, taskData);
     closeModalWindow();
 }
 
@@ -309,7 +309,7 @@ function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
     return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
-function removeTaskFromDOM(taskId) {
+function removeCardFromDOM(taskId) {
     // get task by its data attribute and remove it from the DOM
     $('li[data-taskid="' + taskId + '"]').remove();
 }

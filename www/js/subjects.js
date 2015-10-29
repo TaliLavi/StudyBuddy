@@ -96,7 +96,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 $('#colourPalette').css('top',offset.top + 50);
                 $("#colourPalette").css("position", "absolute");
 
-                closeWhenClickingOutside($('#colourPalette'));
+                setCloseWhenClickingOutside($('#colourPalette'));
 
                 $('#changeColourButton').on("click", function(){
                     changeSubjectColour(subjectId);
