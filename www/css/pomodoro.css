@@ -46,13 +46,14 @@
 #timerDisplay{
     position: absolute;
     display: block;
-    left:0;
-    right:0;
-    bottom:0;
-    margin-left:auto;
-    margin-right:auto;
+    left: 0;
+    right: 0;
+    top: 70%;
+    font-size: 2em;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 #timerButtons{
@@ -89,7 +90,7 @@
     right:0;
     margin-left:auto;
     margin-right:auto;
-    bottom:0px;
+    bottom:0;
 }
 
 
@@ -98,9 +99,9 @@
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 0px solid rgba(0,0,0,0);
-    border-right: 0px solid rgba(0,0,0,0);
-    border-bottom: 0px solid rgba(149,202,173,1);
+    border-left: 0 solid rgba(0,0,0,0);
+    border-right: 0 solid rgba(0,0,0,0);
+    border-bottom: 0 solid rgba(149,202,173,1);
     display: block;
     left:0;
     right:0;
@@ -116,7 +117,7 @@
     width: 100px;
     display: block;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 25%;
 }
 
 #bottomContainer{
@@ -126,11 +127,12 @@
     width: 100px;
     display: block;
     margin: auto;
+    margin-top: 10%;
 }
 
 
 #backHourglass {
-    width: 134px;
+    width: 150px;
     left:0;
     right:0;
     top: 10%;
@@ -140,7 +142,7 @@
 }
 
 #frontHourglass {
-    width: 134px;
+    width: 150px;
     left:0;
     right:0;
     top: 10%;
