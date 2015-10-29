@@ -206,7 +206,7 @@ function prepareCalendar() {
 
 
 //===========================================================================================================
-//OPEN A TASK CARD
+//OPEN TASK MODAL
 //===========================================================================================================
 
 function fillInActiveTaskDetails(subjectId, taskId, taskDetails) {
@@ -242,25 +242,66 @@ function fillInActiveTaskDetails(subjectId, taskId, taskDetails) {
     setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
 }
 
-function showTaskModal(subjectId) {
-    // change heading's background to main colour, and left side's background to secondary colour
-    fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
-    });
+function showTaskModal(subjectId, isDone) {
+    if (isDone) {
+        // change heading's background to main colour, and left side's background to secondary colour
+        fetchAnActiveSubject(subjectId, function(subjectDict) {
+            $('#doneTaskCardHeadingDiv, #bodyDoneTaskCard').addClass(subjectDict.colour_scheme);
+        });
+        //Makes the modal window display
+        $('#doneTaskModal').css('display','block');
+        //Fades in the greyed-out background
+        $('#doneTaskModalBG').fadeIn();
+    } else {
+        // change heading's background to main colour, and left side's background to secondary colour
+        fetchAnActiveSubject(subjectId, function(subjectDict) {
+            $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+        });
+        //Makes the modal window display
+        $('#taskModal').css('display','block');
+        //Fades in the greyed-out background
+        $('#taskModalBG').fadeIn();
+    }
 
-    //Makes the modal window display
-    $('#taskModal').css('display','block');
-    //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+//===========================================================================================================
+//OPEN DONE TASK MODAL
+//===========================================================================================================
+
+function fillInDoneTaskDetails(subjectId, taskId, taskDetails) {
+    $('#doneTaskSubject').val(subjectId);
+    $('#doneCardTitle').val(taskDetails.title);
+    $('#doneCardDescription').val(taskDetails.description);
+    var weekDate = startOfWeek(taskDetails.assigned_date);
+
+    $('#cardAssignedDate').data('date', taskDetails.assigned_date);
+
+    // get title and description textareas be the right size to fit their contents.
+    autoGrow(document.getElementById("cardDescription"));
+    autoGrow(document.getElementById("cardTitle"));
+
+    $('#doneTaskModal').addClass('displayed');
+
+    // Clear old onclick handlers and set new ones
+    $('#closeDoneTaskModal').off("click");
+    $('#closeDoneTaskModal').on("click", function(){closeModalWindow();});
+
+    var isDone = true;
+    showTaskModal(subjectId, isDone);
+
+    // set event handler for closing the modal when user clicks outside modal
+    setCloseWhenClickingOutside($('#doneTaskModal'));
 }
 
 function autoGrow(element) {
     element.style.height = "5px";
     element.style.height = (element.scrollHeight)+"px";
 }
+
 
 //===========================================================================================================
 //CREATE A TASK CARD
@@ -293,17 +334,13 @@ function openAddTaskDialog(data){
 
 // FOR HIDING AND RESETING MODALS
 function closeModalWindow() {
+    // ******************** FOR ALL THE MODALS ********************
     // prevent document from continuing to listen to clicks outside the modal container.
     if (isMobile()) {
         $(document).off('touchend');
     } else {
         $(document).off('mouseup');
     }
-    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
-    $('#taskCardHeadingDiv').addClass('mainColour');
-    $('#leftDivTaskCard').addClass('secondaryColour');
-
     $('#calendarPage').removeClass('frostedGlass');
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');
@@ -312,25 +349,40 @@ function closeModalWindow() {
     $('.modal-bg').fadeOut();
     //Fade out the modal window
     $('.modal').fadeOut();
-
     // Clear input fields
     $('.inputField').val('');
+
+    // ******************** FOR COLOUR PICKERS ********************
     // Clear colour message
     $('.colourMessage').text('');
     // remove selection of colour from colour picker in the Add a Subject modal.
     $('.colourOption').removeClass('chosenColour');
+
+
+    // ******************** FOR ADD TASK MODAL ********************
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
         // Reset select value to default
         return this.defaultSelected;
     });
+
+    // ******************** FOR TASK MODAL ********************
+    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
+    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
+    $('#taskCardHeadingDiv').addClass('mainColour');
+    $('#leftDivTaskCard').addClass('secondaryColour');
+
+    // ******************** FOR DONE TASK MODAL ********************
+    // remove all classes from #doneTaskCardHeadingDiv & #bodyDoneTaskCard and then restore the the ones needed for future colour change
+    $('#doneTaskCardHeadingDiv, #bodyDoneTaskCard').removeClass();
+    $('#doneTaskCardHeadingDiv').addClass('mainColour');
+    $('#bodyDoneTaskCard').addClass('secondaryColour');
 }
 
 
 // FOR CLOSING THE TASK DETAILS MODAL
 function closeTaskModal(subjectId, weekDate, taskId, callback) {
     closeModalWindow();
-
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
@@ -356,7 +408,7 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, c
             // if the modal window we're closing is the colour picker widget
             } else if (modalWindow[0].id === "colourPalette") {
                 hideColourPalette();
-            // if the modal window we're closing is either the Add Task or the Add Subject modals
+            // if the modal window we're closing is either the Add Task, Add Subject or Done Task modals
             } else {
                 closeModalWindow();
             }

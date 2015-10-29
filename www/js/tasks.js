@@ -131,8 +131,7 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInActiveTaskDetails);
-        //showTaskModal(subjectKey, startOfRelevantWeek, taskKey, isDone);
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInActiveTaskDetails, fillInDoneTaskDetails);
     });
 }
 
@@ -154,12 +153,9 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 }
 
 function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
-
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-
     $('#todoTaskFor' + taskKey).click(function() {
-        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInActiveTaskDetails);
-        //showTaskModal(subjectKey, startOfRelevantWeek, taskKey, isDone);
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInActiveTaskDetails, fillInDoneTaskDetails);
     });
 }
 

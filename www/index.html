@@ -299,22 +299,23 @@
   <!--========================================================================================================-->
   <!--DONE TASK DIALOG (MODAL WINDOW)-->
   <!--========================================================================================================-->
-  <!--<div id="doneTaskModalBG" class="modal-bg">-->
-    <!--<div id="doneTaskModal" class="modal">-->
-      <!--<div id="leftDivTaskCard" class="secondaryColour">-->
-        <!--<div id="taskCardHeadingDiv" class="mainColour">-->
-          <!--<select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>-->
-        <!--</div>-->
-        <!--<form id="taskCardForm">-->
-          <!--<br>-->
-          <!--<textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>-->
-          <!--<br>-->
-          <!--<textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>-->
-          <!--<br>-->
-        <!--</form>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div id="doneTaskModalBG" class="modal-bg">
+    <div id="doneTaskModal" class="modal">
+      <span class="closeX" id="closeDoneTaskModal">x</span>
+      <div id="bodyDoneTaskCard" class="secondaryColour">
+        <div id="doneTaskCardHeadingDiv" class="mainColour">
+          <select class="openTaskCardFormInput" id ="doneTaskSubject" disabled="disabled"></select>
+        </div>
+        <form id="doneTaskCardForm">
+          <br>
+          <textarea class="openTaskCardFormInput" id="doneCardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
+          <br>
+          <textarea class="openTaskCardFormInput" id="doneCardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <br>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
 
