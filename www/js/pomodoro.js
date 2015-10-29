@@ -227,6 +227,8 @@ function resetTimerDisplay() {
     $('#timerDisplay').text('00:00');
 }
 
-
+$(".play-button").click(function() {
+    $(this).toggleClass("paused");
+});
 
 
