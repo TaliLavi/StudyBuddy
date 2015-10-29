@@ -289,6 +289,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
     var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
+        console.log('inside fetchSingleTask(), snapshot.val() is:', snapshot.val());
         callback(subjectId, taskId, snapshot.val());
     }, firebaseErrorFrom('fetchSingleTask'));
 }

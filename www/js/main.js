@@ -209,24 +209,7 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, startOfRelevantWeek, taskId, isDone) {
-    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, isDone, fillInTaskDetails);
-    // change heading's background to main colour, and left side's background to secondary colour
-    fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
-    });
-
-    //Makes the modal window display
-    $('#taskModal').css('display','block');
-    //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
-    $('#calendarPage').addClass('frostedGlass');
-    $('#iPadStatusBar').addClass('frostedGlass');
-    $('#navBar').addClass('frostedGlass');
-    //make the description box resize to fit the content
-}
-
-function fillInTaskDetails(subjectId, taskId, taskDetails) {
+function fillInActiveTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
@@ -253,8 +236,25 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#closeTaskModal').off("click");
     $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);})});
 
+    showTaskModal(subjectId);
+
     // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
     setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
+}
+
+function showTaskModal(subjectId) {
+    // change heading's background to main colour, and left side's background to secondary colour
+    fetchAnActiveSubject(subjectId, function(subjectDict) {
+        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    });
+
+    //Makes the modal window display
+    $('#taskModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
 }
 
 function autoGrow(element) {
