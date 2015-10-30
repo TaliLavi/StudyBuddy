@@ -129,6 +129,8 @@ function dragTask(evt) {
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
 
+    console.log('evt.item is:', evt.item);
+
     var oldAssignedDate = evt.from.id;
     var oldWeekDate = startOfWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
@@ -226,9 +228,9 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     // Clear old onclick handlers and set new ones
     $('#deleteTask').off("click");
-    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, moveTaskToDeleted);});
+    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveTaskToDeleted);});
     $('#completeTask').off("click");
-    $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, markAsDone);});
+    $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, markAsDone);});
     $('#playPauseButton').off("click");
     $('#playPauseButton').on("click", function(){playPauseTimer(subjectId, weekDate, taskId);});
     $('#stopButton').off("click");
@@ -239,13 +241,13 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     if (!isDone) {
         $('#cardAssignedDate').val(taskDetails.assigned_date);
-        $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);})});
+        $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
         // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);});
     } else {
         $('#closeTaskModal').on("click", function(){closeModalWindow();});
         // set event handler for closing the modal when user clicks outside modal
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
     }
 
 }
@@ -343,22 +345,22 @@ function closeModalWindow() {
 
 
 // FOR CLOSING THE TASK DETAILS MODAL
-function closeTaskModal(subjectId, weekDate, taskId, callback) {
+function closeTaskModal(subjectId, weekDate, taskId, originalTaskDetails, callback) {
     closeModalWindow();
 
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
-        // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
     } else {
         if (callback !== undefined) {
-            callback(subjectId, weekDate, taskId);
+            callback(subjectId, weekDate, taskId, originalTaskDetails);
         }
     }
 }
 
 // set event handler for closing the modal when user clicks outside modal.
-function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, callback) {
+function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, taskDetails, callback) {
     var eventType = isMobile()? "touchend" : "mouseup";
     $(document).off(eventType);
     $(document).on(eventType, function (event) {
@@ -366,7 +368,7 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, c
         if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
             // if the modal window we're closing is the task modal
             if ($('#taskModal').hasClass('displayed')) {
-                closeTaskModal(subjectId, weekDate, taskId, callback);
+                closeTaskModal(subjectId, weekDate, taskId, taskDetails, callback);
             // if the modal window we're closing is the colour picker widget
             } else if (modalWindow[0].id === "colourPalette") {
                 hideColourPalette();

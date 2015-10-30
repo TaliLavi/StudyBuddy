@@ -67,17 +67,20 @@ function createTaskFromSubjectPage(subjectId) {
 //                       UPDATING TASK DETAILS
 //=====================================================================
 
-function submitTaskChanges(subjectId, oldWeekDate, taskId) {
+function submitTaskChanges(subjectId, oldWeekDate, taskId, originalTaskDetails) {
     var updatedTask = {
         title: $('#cardTitle').val(),
         description: $('#cardDescription').val(),
         assigned_date: $('#cardAssignedDate').val()
     }
 
-    updateTask(subjectId, taskId, oldWeekDate, updatedTask, updateTaskFieldsAndMoveCard);
+    // Update task only if a change in title, description or date was made.
+     if (originalTaskDetails.title !== updatedTask.title || originalTaskDetails.description !== updatedTask.description || originalTaskDetails.assigned_date !== updatedTask.assigned_date) {
+         updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updatedTask, updateTaskFieldsAndMoveCard);
+     }
 }
 
-// if the title or assigned date of the task got updated, change the DOM accordingly
+// if any of the task's details got changed, change the DOM accordingly
 function updateTaskFields(subjectId, subjectData, taskId, taskData){
     var newWeekDate = startOfWeek(taskData.assigned_date);
     $('#cardAssignedDate').data('date', newWeekDate);
@@ -93,10 +96,13 @@ function updateTaskFields(subjectId, subjectData, taskId, taskData){
     $('#todoAssignedDateFor' + taskId).val(taskData.assigned_date);
 }
 
-function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, taskData){
-    updateTaskFields(subjectId, subjectData, taskId, taskData);
-    removeCardFromDOM(taskId);
-    appendCard(subjectId, subjectData, taskId, taskData);
+function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
+    updateTaskFields(subjectId, subjectData, taskId, updatedTask);
+    // remove and append task in the DOM only if the task's date was changed
+    if (originalTask.assigned_date !== updatedTask.assigned_date) {
+        removeCardFromDOM(taskId);
+        appendCard(subjectId, subjectData, taskId, updatedTask);
+    }
 }
 
 //Create html for task element and append it to the list
