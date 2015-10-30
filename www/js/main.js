@@ -209,30 +209,13 @@ function prepareCalendar() {
 //OPEN A TASK CARD
 //===========================================================================================================
 
-function displayTask(subjectId, startOfRelevantWeek, taskId, isDone) {
-    fetchSingleTask(subjectId, startOfRelevantWeek, taskId, isDone, fillInTaskDetails);
-    // change heading's background to main colour, and left side's background to secondary colour
-    fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
-    });
+function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
-    //Makes the modal window display
-    $('#taskModal').css('display','block');
-    //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
-    $('#calendarPage').addClass('frostedGlass');
-    $('#iPadStatusBar').addClass('frostedGlass');
-    $('#navBar').addClass('frostedGlass');
-    //make the description box resize to fit the content
-}
-
-function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
-    $('#cardAssignedDate').val(taskDetails.assigned_date);
-    var weekDate = startOfWeek(taskDetails.assigned_date);
 
+    var weekDate = startOfWeek(taskDetails.assigned_date);
     $('#cardAssignedDate').data('date', taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
@@ -251,10 +234,35 @@ function fillInTaskDetails(subjectId, taskId, taskDetails) {
     $('#stopButton').off("click");
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
-    $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);})});
 
-    // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
-    setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
+    showTaskModal(subjectId);
+
+    if (!isDone) {
+        $('#cardAssignedDate').val(taskDetails.assigned_date);
+        $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);})});
+        // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, function(){submitTaskChanges(subjectId, weekDate, taskId);});
+    } else {
+        $('#closeTaskModal').on("click", function(){closeModalWindow();});
+        // set event handler for closing the modal when user clicks outside modal
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId);
+    }
+
+}
+
+function showTaskModal(subjectId) {
+    // change heading's background to main colour, and left side's background to secondary colour
+    fetchAnActiveSubject(subjectId, function(subjectDict) {
+        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+    });
+
+    //Makes the modal window display
+    $('#taskModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#taskModalBG').fadeIn();
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
 }
 
 function autoGrow(element) {
@@ -299,11 +307,8 @@ function closeModalWindow() {
     } else {
         $(document).off('mouseup');
     }
-    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
-    $('#taskCardHeadingDiv').addClass('mainColour');
-    $('#leftDivTaskCard').addClass('secondaryColour');
 
+    $('#taskModal').removeClass('displayed');
     $('#calendarPage').removeClass('frostedGlass');
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');
@@ -315,15 +320,25 @@ function closeModalWindow() {
 
     // Clear input fields
     $('.inputField').val('');
+
+    // ******************** FOR COLOUR PICKERS ********************
     // Clear colour message
     $('.colourMessage').text('');
     // remove selection of colour from colour picker in the Add a Subject modal.
     $('.colourOption').removeClass('chosenColour');
+
+    // ******************** FOR ADD TASK MODAL ********************
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
         // Reset select value to default
         return this.defaultSelected;
     });
+
+    // ******************** FOR TASK MODAL ********************
+    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
+    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
+    $('#taskCardHeadingDiv').addClass('mainColour');
+    $('#leftDivTaskCard').addClass('secondaryColour');
 }
 
 
@@ -352,7 +367,6 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, c
             // if the modal window we're closing is the task modal
             if ($('#taskModal').hasClass('displayed')) {
                 closeTaskModal(subjectId, weekDate, taskId, callback);
-                $('#taskModal').removeClass('displayed')
             // if the modal window we're closing is the colour picker widget
             } else if (modalWindow[0].id === "colourPalette") {
                 hideColourPalette();

@@ -240,7 +240,8 @@ function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
                     var weekTasksDict = subject.val()[startOfWeek];
                     var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
                     subjectRef.once("value", function(subjectSnapshot) {
-                        perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict, 'done');
+                        var isDone = true;
+                        perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict, isDone);
                     }, firebaseErrorFrom('fetchTasksByWeek'));
                 }
             });
@@ -289,7 +290,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
     var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
-        callback(subjectId, taskId, snapshot.val());
+        callback(subjectId, taskId, snapshot.val(), isDone);
     }, firebaseErrorFrom('fetchSingleTask'));
 }
 

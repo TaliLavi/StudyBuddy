@@ -36,11 +36,13 @@ function createTask() {
 // CREATE NEW TASK FROM SUBJECT PAGE
 function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
+    var taskDescription = "";
     var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
     var now = $.now();
     if (taskTitle) {
         var newTask = {
             title: taskTitle,
+            description: taskDescription,
             assigned_date: taskDate,
             creation_date: now,
             status_change_date: now
@@ -95,9 +97,9 @@ function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, taskData){
 function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
     // create html for active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
-        var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData);
+        var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
         $(taskHtml).appendTo(listSelector);
-        setClickForTodoTask(taskKey);
+        setClickForTodoTask(subjectKey, taskKey, taskData, isDone);
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
@@ -131,7 +133,7 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        displayTask(subjectKey, startOfRelevantWeek, taskKey, isDone);
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
     });
 }
 
@@ -142,7 +144,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         var cardAssignedDate = taskData.assigned_date;
     }
 
-    var taskHtml = '<div class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+    var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
                         '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
                         '<input id="todoDescriptionFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
                         '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
@@ -152,8 +154,13 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     return taskHtml;
 }
 
-function setClickForTodoTask(taskKey) {
-    // this should open the task modal!
+function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
+
+    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
+
+    $('#todoTaskFor' + taskKey).click(function() {
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
+    });
 }
 
 // APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER
@@ -202,10 +209,12 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
     var subjectDiv = "#completedTasksFor" + subjectKey;
     $(subjectDiv).text('');
 
+    var isDone = true;
+
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData, isDone);
         })
     }
 }
@@ -258,7 +267,7 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
         if (isDone !== undefined) {
             // append done tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, isDone);
             })
         } else {
             // append active tasks to the calendar
