@@ -19,27 +19,33 @@ function startOfWeek(dateString, offsetDays) {
 
 // CREATE NEW TASK
 function createTask() {
-    var subjectId = $('#subjectInput').val();
-    var now = $.now();
-    var newTask = {
-        title: $('#titleInput').val(),
-        description: $('#descriptionInput').val(),
-        assigned_date: $('#assignedDateInput').val(),
-        creation_date: now,
-        status_change_date: now
+    // create a new task only if a title was written
+    if ($('#titleInput').val()) {
+        var subjectId = $('#subjectInput').val();
+        var now = $.now();
+        var newTask = {
+            title: $('#titleInput').val(),
+            description: $('#descriptionInput').val(),
+            assigned_date: $('#assignedDateInput').val(),
+            creation_date: now,
+            status_change_date: now
+        }
+        var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
+        // PUSH THEM TO DB
+        saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
     }
-    var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
-    // PUSH THEM TO DB
-    saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
 // CREATE NEW TASK FROM SUBJECT PAGE
 function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
-    var taskDescription = "";
-    var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
-    var now = $.now();
+    // create a new task only if a title was written
     if (taskTitle) {
+        console.log(taskTitle);
+        var taskDescription = "";
+        var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
+        var now = $.now();
+
         var newTask = {
             title: taskTitle,
             description: taskDescription,
