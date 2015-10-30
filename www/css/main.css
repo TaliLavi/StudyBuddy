@@ -318,7 +318,7 @@ input:focus {outline:0;}
     font-weight: 300;
     font-size: 2em;
     right: 10px;
-    top: 0px;
+    top: 0;
 }
 
 .modalHeading{
@@ -589,6 +589,70 @@ input:focus {outline:0;}
     color: rgba(96, 122, 147, 0.5);
 }
 
+/*===================================================================================================================*/
+/* MODAL WINDOW FOR ADD SUBJECT */
+/*===================================================================================================================*/
+
+#addSubjectModal{
+    width: 50%;
+    height:460px;
+}
+
+#addSubjectHeadingDiv{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #95CAAD;
+}
+
+#addSubjectContentDiv{
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background-color: #E9ECEF;
+}
+
+#addSubjectForm {
+    position: absolute;
+    height: 70%;
+    width: 80%;
+    left: 0;
+    right: 0;
+    top: 15px;
+    margin: auto;
+    -webkit-appearance: none;
+    border: transparent;
+}
+
+
+#nameInput{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    font-size: .95em;
+    line-height: 1.75em;
+    resize:none;
+    overflow:hidden;
+    width: 100%;
+    min-height:50px;
+    max-height: 100px;
+}
+
+#submitNewSubject{
+    position: absolute;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 150px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    margin-bottom: 20px;
+    margin-right: 6px;
+    float: right;
+}
 
 /*===============================================================================================*/
 /* SORTABLE DAYS */
@@ -849,17 +913,33 @@ input:focus {outline:0;}
     display: none;
 }
 
-.colourOption {
+#colourPaletteAddSubject{
     position: relative;
-    float: left;
-    width: 30px;
-    height: 30px;
-    margin: 5px;
+    width: 100%;
+}
+
+/*.colourOption {*/
+    /*position: relative;*/
+    /*float: left;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*margin: 5px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+
+.colourOptionNew {
+    width: 100%;
+    padding-bottom: 100%;
+    box-sizing: border-box;
     cursor: pointer;
 }
 
 .chosenColour {
-    border:3px solid #4a4a4a;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: 2px solid white;
 }
 
 .usedColour:after {
@@ -868,9 +948,46 @@ input:focus {outline:0;}
     content: '';
     font-size: .1em;
     float: right;
-    margin: 3px;
+    margin-right: 4px;
+    margin-top: 10px;
     opacity: .6;
 }
+
+.colourMessage {
+    display: inline-block;
+}
+/*==================================================================================================*/
+/* COLOUR PICKER COLUMNS */
+/*==================================================================================================*/
+
+/*  SECTIONS  */
+.colourSection {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.colourCol {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+}
+.colourCol:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.colourGroup:before,
+.colourGroup:after { content:""; display:table; }
+.colourGroup:after { clear:both;}
+.colourGroup { zoom:1; /* For IE 6/7 */ }
+
+.span_1_of_6 {
+    width: 15.33%;
+}
+
+/*==================================================================================================*/
+/* EDIT & DELETE ICONS */
+/*==================================================================================================*/
 
 .editColour {
     box-sizing: border-box;
@@ -920,9 +1037,7 @@ input:focus {outline:0;}
 }
 
 
-.colourMessage {
-    display: inline-block;
-}
+
 
 /*==================================================================================================*/
 /* COLOURS THEME 1 */
