@@ -225,16 +225,25 @@
   <!--========================================================================================================-->
   <div id="addTaskModalBG" class="modal-bg">
     <div id="addTaskModal" class="modal">
-      <span class="closeX" onclick="closeModalWindow();">x</span>
-      <p class ="modalHeading">New Task</p>
-
-      <form id="addTaskForm">
-        <select id ="subjectInput"></select>
-        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
-        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="date" placeholder="e.g.: 06-Sep-2015" required>
-        <button name="submit" id="submitNewTask" type="button">Add Task</button>
-      </form>
+        <div id="addTaskCardHeadingDiv">
+            <span class="closeX" onclick="closeModalWindow();">x</span>
+            <p class ="modalHeading">Add a Task</p>
+        </div>
+        <div id="addTaskCardContentDiv">
+            <form id="addTaskForm">
+                <div class="styledSelect">
+                    <select id ="subjectInput" class="inputField"></select>
+                </div>
+                <br>
+                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+                <br>
+                <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+                <br>
+                <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="date" placeholder="e.g.: 06-Sep-2015" required>
+                <br>
+                <button name="submit" id="submitNewTask" type="button">Add Task</button>
+            </form>
+        </div>
     </div>
   </div>
 
@@ -314,4 +323,4 @@
 </div>
 </body>
 </html>
-
+<!--A comment-->

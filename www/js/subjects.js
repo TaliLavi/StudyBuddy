@@ -25,8 +25,8 @@ function displayActiveSubjects(allSubjectsDict) {
     $('#subjectFilters').text('');
     $('#subjectsList').text('');
     $('#subjectInput').text('');
-    $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
-    $('#taskSubject').append('<option selected="true" disabled="disabled">Choose Subject</option>');
+    $('#subjectInput').append('<option selected="true" disabled="disabled">Choose a Subject</option>');
+    $('#taskSubject').append('<option selected="true" disabled="disabled">Choose a Subject</option>');
 
     // Populate Subjects Page with subjects and tasks.
     if (allSubjectsDict !== null) {

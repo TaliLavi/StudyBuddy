@@ -309,29 +309,37 @@ input:focus {outline:0;}
     box-shadow: 0 0 100px 0 rgba(0,0,0,0.4);
 }
 
-/*This is the modal window for the task (with timer)*/
-#taskModal{
-    width:58%;
-    height: 400px;
-
-}
-
-/*This is the modal window for the adding a task*/
-#addTaskModal{
-    width:50%;
-    height:50%;
-    margin-top: 10%;
-}
-
 /*This is the close(x) button*/
 .closeX{
     display: block;
     position: absolute;
-    color: lightgray;
+    color: white;
+    opacity: .5;
     font-weight: 300;
     font-size: 2em;
     right: 10px;
     top: 0px;
+}
+
+.modalHeading{
+    position: absolute;
+    color: white;
+    opacity: .6;
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    margin-left: 10%;
+    margin-top: 4%;
+}
+
+/*===================================================================================================================*/
+/* MODAL WINDOW FOR VIEW TASK */
+/*===================================================================================================================*/
+
+/*This is the modal window for the task (with timer)*/
+#taskModal{
+    width:58%;
+    height: 400px;
 }
 
 #leftDivTaskCard{
@@ -339,11 +347,6 @@ input:focus {outline:0;}
     height: 100%;
     width: 50%;
     float: left;
-}
-
-#addTaskForm {
-    position: absolute;
-    top: 20px;
 }
 
 #taskCardForm {
@@ -414,27 +417,179 @@ input:focus {outline:0;}
     max-height: 100px;
 }
 
+
 #cardAssignedDate{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
 }
 
-::-webkit-input-placeholder {
+#closeTaskModal{
+    display: block;
+    position: absolute;
+    color: lightgray;
+    font-weight: 300;
+    font-size: 2em;
+    right: 10px;
+    top: 0px;
+}
+
+
+.openTaskCardFormInput::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
-:-moz-placeholder { /* Firefox 18- */
+.openTaskCardFormInput:-moz-placeholder { /* Firefox 18- */
     color: rgba(255, 255, 255, 0.5);
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
+.openTaskCardFormInput::-moz-placeholder {  /* Firefox 19+ */
     color: rgba(255, 255, 255, 0.5);
 }
 
-:-ms-input-placeholder {
+.openTaskCardFormInput:-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+/*===================================================================================================================*/
+/* MODAL WINDOW FOR ADD TASK */
+/*===================================================================================================================*/
+
+/*This is the modal window for the adding a task*/
+#addTaskModal{
+    width:45%;
+    height:400px;
+}
+
+
+#addTaskForm {
+    position: absolute;
+    height: 70%;
+    width: 80%;
+    line-height: 5%;
+    left: 0;
+    right: 0;
+    top: 15px;
+    margin: auto;
+    -webkit-appearance: none;
+    border: transparent;
+}
+
+#addTaskCardHeadingDiv{
+    position: relative;
+    width: 100%;
+    height: 20%;
+    background-color: #95CAAD;
+}
+
+#addTaskCardContentDiv{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    background-color: #E9ECEF;
+}
+
+
+.inputField {
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: rgba(255,255,255,.3);
+    font-size: 1em;
+    -webkit-appearance: none;
+    border: none;
+    padding: 10px;
+    color: #607A93;
+
+}
+
+.inputField:focus {
+    background-color: rgba(255,255,255,.6);
+    outline: none;
+}
+
+#subjectInput{
+    width: 50%;
+    height: 30px;
+    padding: 5px;
+    line-height: 1;
+    font-size: 1em;
+    margin-top: 5%;
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: url(../img/dropDownArrow.png) no-repeat right rgba(255,255,255,.3);
+    background-size: 30px 30px;
+}
+
+
+
+#titleInput{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    font-size: .95em;
+    line-height: 1.75em;
+    resize:none;
+    overflow:hidden;
+    width: 100%;
+    min-height:50px;
+    max-height: 100px;
+}
+
+#descriptionInput{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    wrap: soft;
+    font-size: .95em;
+    line-height: 1.75em;
+    resize:none;
+    overflow:hidden;
+    width: 100%;
+    min-height: 50px;
+    max-height: 200px;
+}
+
+#assignedDateInput{
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    height: 30px;
+    width: 50%;
+}
+
+
+#submitNewTask{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    margin-bottom: 20px;
+    margin-right: 6px;
+    float: right;
+}
+
+.inputField::-webkit-input-placeholder {
+    color: rgba(96, 122, 147, 0.5);
+}
+
+.inputField::-moz-placeholder { /* Firefox 18- */
+    color: rgba(96, 122, 147, 0.5);
+}
+
+.inputField::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(96, 122, 147, 0.5);
+}
+
+.inputField:-ms-input-placeholder {
+    color: rgba(96, 122, 147, 0.5);
+}
+
+
 /*===============================================================================================*/
 /* SORTABLE DAYS */
 /*===============================================================================================*/
