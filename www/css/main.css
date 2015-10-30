@@ -456,7 +456,7 @@ input:focus {outline:0;}
 
 /*This is the modal window for the adding a task*/
 #addTaskModal{
-    width:45%;
+    width: 58%;
     height:400px;
 }
 
@@ -564,7 +564,7 @@ input:focus {outline:0;}
     font-family: acme;
     text-transform: uppercase;
     border-radius: 5px;
-    width: 100px;
+    width: 150px;
     height: 35px;
     background-color: rgb(149,202,173);
     font-size: 1em;
