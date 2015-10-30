@@ -36,11 +36,13 @@ function createTask() {
 // CREATE NEW TASK FROM SUBJECT PAGE
 function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
+    var taskDescription = "";
     var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
     var now = $.now();
     if (taskTitle) {
         var newTask = {
             title: taskTitle,
+            description: taskDescription,
             assigned_date: taskDate,
             creation_date: now,
             status_change_date: now
