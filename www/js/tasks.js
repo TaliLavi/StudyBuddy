@@ -19,8 +19,8 @@ function startOfWeek(dateString, offsetDays) {
 
 // CREATE NEW TASK
 function createTask() {
-    // create a new task only if a title was written
-    if ($('#titleInput').val()) {
+    // create a new task only if a title was written and a subject was chosen
+    if ($('#titleInput').val() && $('#subjectInput').val() !== null) {
         var subjectId = $('#subjectInput').val();
         var now = $.now();
         var newTask = {
