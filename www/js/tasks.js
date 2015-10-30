@@ -81,10 +81,9 @@ function submitTaskChanges(subjectId, oldWeekDate, taskId, originalTaskDetails) 
 }
 
 // if any of the task's details got changed, change the DOM accordingly
-function updateTaskFields(subjectId, subjectData, taskId, taskData){
+function updateTaskFields(taskId, taskData){
     var newWeekDate = startOfWeek(taskData.assigned_date);
     $('#cardAssignedDate').data('date', newWeekDate);
-
     // change the description of the todotask.
     $('#todoDescriptionFor' + taskId).val(taskData.description);
     // change the title of the todotask.
@@ -97,7 +96,7 @@ function updateTaskFields(subjectId, subjectData, taskId, taskData){
 }
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
-    updateTaskFields(subjectId, subjectData, taskId, updatedTask);
+    updateTaskFields(taskId, updatedTask);
     // remove and append task in the DOM only if the task's date was changed
     if (originalTask.assigned_date !== updatedTask.assigned_date) {
         removeCardFromDOM(taskId);

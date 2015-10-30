@@ -322,6 +322,28 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
     }, firebaseErrorFrom('updateTask'));
 }
 
+function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateCallback) {
+    var newWeekDate = startOfWeek(updatedDate.assigned_date);
+    var oldTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
+    var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+
+    // if we don't need to change the week, then the update is straightforward
+    if (newWeekDate === oldWeekDate) {
+        oldTaskRef.update(updatedDate);
+        oldTaskRef.once('value', function(updatedTask)  {
+            postUpdateCallback(taskId, updatedTask.val());
+        }, firebaseErrorFrom('updateTask'));
+    } else { // since we need to change the week, we need to move the task to a new location in the database
+        oldTaskRef.once('value', function(snapshot)  {
+            var oldTaskDict = snapshot.val();
+            // the extend method would update oldTaskDict with the data stored in updatedTaskDetails.
+            var combinedTaskDict = $.extend(oldTaskDict, updatedDate);
+            newTaskRef.update(combinedTaskDict);
+            oldTaskRef.remove();
+        }, firebaseErrorFrom('updateTask'));
+    }
+}
+
 // MOVE TASK TO DELETED
 function moveTaskToDeleted(subjectId, weekDate, taskId) {
     var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);

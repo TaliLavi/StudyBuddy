@@ -129,8 +129,6 @@ function dragTask(evt) {
     var subjectId = evt.item.dataset.subjectid;
     var taskId = evt.item.dataset.taskid;
 
-    console.log('evt.item is:', evt.item);
-
     var oldAssignedDate = evt.from.id;
     var oldWeekDate = startOfWeek(oldAssignedDate);
     var newAssignedDate = evt.item.parentElement.id;
@@ -140,8 +138,7 @@ function dragTask(evt) {
     } else {
         var updatedTaskDetail = {assigned_date: newAssignedDate};
     }
-
-    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
+    updateTaskDate(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
 }
 
 function inTheAir(evt) {
