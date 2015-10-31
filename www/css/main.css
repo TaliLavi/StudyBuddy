@@ -233,6 +233,7 @@ input:focus {outline:0;}
 
 /*This is the dragged image*/
 .dragged-item .cardTask {
+    position: relative;
     width: 110%;
     height: 110%;
     opacity: 1;
