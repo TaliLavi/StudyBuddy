@@ -251,11 +251,11 @@ function fetchAndDisplayCompletedTasks(subjectId) {
 function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the footer div
+        var subjectDiv = '#unassignedTasksList';
         $.each(tasksDict, function(taskKey, taskData){
-            var subjectDiv = '#unassignedTasksList';
             createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
-            applySortable(subjectDiv);
         })
+        applySortable(subjectDiv);
     }
 }
 
