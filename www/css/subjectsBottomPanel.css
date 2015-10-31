@@ -113,6 +113,8 @@ button:focus {outline:0;}
     margin-bottom: 0;
     white-space: normal;
     text-align: left;
+    -webkit-transform: translate3d(0,0,0);
+    z-index: 20;
 }
 
 /*start app with this message being hidden*/
