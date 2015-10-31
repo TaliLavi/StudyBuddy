@@ -236,6 +236,7 @@ input:focus {outline:0;}
     width: 110%;
     height: 110%;
     opacity: 1;
+    z-index: 9;
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
@@ -594,7 +595,7 @@ input:focus {outline:0;}
 /*===================================================================================================================*/
 
 #addSubjectModal{
-    width: 50%;
+    width: 40%;
     height:460px;
 }
 
