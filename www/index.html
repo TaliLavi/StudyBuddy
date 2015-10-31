@@ -293,7 +293,7 @@
     <div id="taskModal" class="modal">
 
 
-      <div id="leftDivTaskCard" class="secondaryColour">
+      <div id="leftSideTaskCard" class="secondaryColour">
         <div id="taskCardHeadingDiv" class="mainColour">
           <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
           <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
@@ -313,31 +313,43 @@
         </form>
       </div>
 
-      <div id ="pomodoroDiv" data-task-id = 'empty'>
+      <div id="rightSideTaskCard">
         <span class="closeX" id="closeTaskModal">x</span>
-        <img src="img/backHourglass.png" id="backHourglass">
-        <div id="topContainer">
-          <div id="topTriangleWork"></div>
-        </div>
-        <div id="bottomContainer">
-          <br><br>
-          <div id="bottomTriangleWork"></div>
-        </div>
-        <img src="img/frontHourglass.png" id="frontHourglass">
-        <img src="img/sleepingRuzo.png" id="sleepingRuzo">
-        <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
-        <p id="timerDisplay">00:00</p>
-        <br/>
-        <div id="timerButtons">
-          <!--<input type="image" src="img/playIcon.png" id="playPauseButton" class="notPlaying">-->
-          <button type="button" id="playPauseButton" class="notPlaying">Start</button>
-          <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
-          <!--<input type="image" src="img/stopIcon.png" id="stopButton" class="stopped">-->
+
+        <div id ="pomodoroDiv" data-task-id = 'empty'>
+          <img src="img/backHourglass.png" id="backHourglass">
+          <div id="topContainer">
+            <div id="topTriangleWork"></div>
+          </div>
+          <div id="bottomContainer">
+            <br><br>
+            <div id="bottomTriangleWork"></div>
+          </div>
+          <img src="img/frontHourglass.png" id="frontHourglass">
+          <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+          <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
+          <p id="timerDisplay">00:00</p>
+          <br/>
+          <div id="timerButtons">
+            <!--<input type="image" src="img/playIcon.png" id="playPauseButton" class="notPlaying">-->
+            <button type="button" id="playPauseButton" class="notPlaying">Start</button>
+            <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+            <!--<input type="image" src="img/stopIcon.png" id="stopButton" class="stopped">-->
+          </div>
+
+          <audio id="tone">
+            <source src="pomodoroTone.mp3" type="audio/mpeg">
+          </audio>
         </div>
 
-        <audio id="tone">
-          <source src="pomodoroTone.mp3" type="audio/mpeg">
-        </audio>
+        <div id="doneTaskInfo">
+          Here is some information about this done task.........
+        </div>
+
+
+
+
+
       </div>
 
     </div>

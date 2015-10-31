@@ -353,11 +353,19 @@ input:focus {outline:0;}
     height: 400px;
 }
 
-#leftDivTaskCard{
+#leftSideTaskCard {
     position: relative;
     height: 100%;
     width: 50%;
     float: left;
+}
+
+#rightSideTaskCard {
+    display: inline-block;
+    position: relative;
+    height:100%;
+    width: 50%;
+    background-color: whitesmoke;
 }
 
 #taskCardForm {

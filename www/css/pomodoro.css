@@ -24,14 +24,6 @@
     color: #c3c3c3;
 }
 
-#pomodoroDiv {
-    display: inline-block;
-    position: relative;
-    height:100%;
-    width: 50%;
-    background-color: whitesmoke;
-}
-
 .pomButtonShow {
     width: 40%;
     margin: 4%;

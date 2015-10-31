@@ -234,7 +234,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
 
-    showTaskModal(subjectId);
+    showTaskModal(subjectId, isDone);
 
     if (!isDone) {
         $('#cardAssignedDate').val(taskDetails.assigned_date);
@@ -249,11 +249,20 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
 }
 
-function showTaskModal(subjectId) {
+function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+        $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
     });
+
+    // hide both divs and then only show the relevant one depending if task is done or not.
+    $('#doneTaskInfo').hide();
+    $('#pomodoroDiv').hide();
+    if (isDone) {
+        $('#doneTaskInfo').show();
+    } else {
+        $('#pomodoroDiv').show();
+    }
 
     //Makes the modal window display
     $('#taskModal').css('display','block');
@@ -334,10 +343,10 @@ function closeModalWindow() {
     });
 
     // ******************** FOR TASK MODAL ********************
-    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
+    // remove all classes from #taskCardHeadingDiv & #leftSideTaskCard and then restore the the ones needed for future colour change
+    $('#taskCardHeadingDiv, #leftSideTaskCard').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
-    $('#leftDivTaskCard').addClass('secondaryColour');
+    $('#leftSideTaskCard').addClass('secondaryColour');
 }
 
 
