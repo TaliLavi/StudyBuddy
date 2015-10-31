@@ -338,7 +338,7 @@
 					_this._triggerDragStart(touch);
 
 					// Drag start event
-					_dispatchEvent(_this, rootEl, 'pickup', dragEl, rootEl, oldIndex);
+					_dispatchEvent(null, rootEl, 'pickup', dragEl, rootEl, oldIndex);
 				};
 
 				// Disable "draggable"
