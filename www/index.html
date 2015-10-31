@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
-  <link rel="stylesheet" href="css/accordion.css">
   <link href='https://fonts.googleapis.com/css?family=Acme|Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
@@ -145,7 +144,7 @@
             </div>
           </div>
           <div id="tasksInnerWrapper">
-            <div id="unassignedMessage">No unassigned tasks here!</div>
+            <div id="unassignedMessage">No tasks here!</div>
             <ul class="sortable-task-list" id="unassignedTasksList"></ul>
           </div>
         </div>
@@ -175,27 +174,65 @@
   <!--========================================================================================================-->
   <div id="addSubjectModalBG" class="modal-bg">
     <div id="addSubjectModal" class="modal">
-      <p class="closeX" onclick="closeModalWindow();">x</p>
-      <p class ="modalHeading">New Subject</p>
-      <form>
-        <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-        <div>
-          <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
-          <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+        <div id="addSubjectHeadingDiv">
+            <span class="closeX" onclick="closeModalWindow();">x</span>
+            <p class ="modalHeading">New Subject</p>
         </div>
-        <div class="colourMessage"></div>
-        <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
-      </form>
+        <div id="addSubjectContentDiv">
+            <form id="addSubjectForm">
+                <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
+                <p>Choose a colour</p>
+                <div id="colourPaletteAddSubject">
+                    <div class="colourSection colourGroup">
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour1" class="colourOption colourOptionNew theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour2" class="colourOption colourOptionNew theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour3" class="colourOption colourOptionNew theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour4" class="colourOption colourOptionNew theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour5" class="colourOption colourOptionNew theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour6" class="colourOption colourOptionNew theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                    </div>
+                    <div class="colourSection colourGroup">
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour7" class="colourOption colourOptionNew theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour8" class="colourOption colourOptionNew theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour9" class="colourOption colourOptionNew theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour10" class="colourOption colourOptionNew theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour11" class="colourOption colourOptionNew theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                        <div class="colourCol span_1_of_6">
+                            <div data-colour-scheme="theme1Colour12" class="colourOption colourOptionNew theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="colourMessage"></div>
+                <button name="submit" id="submitNewSubject" type="button">Add Subject</button>
+            </form>
+        </div>
+
+
     </div>
   </div>
 
@@ -226,16 +263,25 @@
   <!--========================================================================================================-->
   <div id="addTaskModalBG" class="modal-bg">
     <div id="addTaskModal" class="modal">
-      <p class="closeX" onclick="closeModalWindow();">x</p>
-      <p class ="modalHeading">New Task</p>
-
-      <form id="addTaskForm">
-        <select id ="subjectInput"></select>
-        <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
-        <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
-        <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="textbox" placeholder="e.g.: 06-Sep-2015" required>
-        <button name="submit" id="submitNewTask" type="button">Add Task</button>
-      </form>
+        <div id="addTaskCardHeadingDiv">
+            <span class="closeX" onclick="closeModalWindow();">x</span>
+            <p class ="modalHeading">Add a Task</p>
+        </div>
+        <div id="addTaskCardContentDiv">
+            <form id="addTaskForm">
+                <div class="styledSelect">
+                    <select id ="subjectInput" class="inputField"></select>
+                </div>
+                <br>
+                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+                <br>
+                <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
+                <br>
+                <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="date" placeholder="e.g.: 06-Sep-2015" required>
+                <br>
+                <button name="submit" id="submitNewTask" type="button">Add Task</button>
+            </form>
+        </div>
     </div>
   </div>
 
@@ -247,7 +293,7 @@
     <div id="taskModal" class="modal">
 
 
-      <div id="leftDivTaskCard" class="secondaryColour">
+      <div id="leftSideTaskCard" class="secondaryColour">
         <div id="taskCardHeadingDiv" class="mainColour">
           <!--<p id="subjectNameOnOpenCard">Subject Name</p>-->
           <select class="openTaskCardFormInput" id ="taskSubject" disabled="disabled"></select>
@@ -255,11 +301,11 @@
 
         <form id="taskCardForm">
           <br>
-          <textarea class="openTaskCardFormInput" id="taskTitle" name="taskTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
           <br>
-          <textarea class="openTaskCardFormInput" id="taskDescription" name="taskDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
           <br>
-          <input class="openTaskCardFormInput" id="taskAssignedDate" name="taskAssignedDate" type="date" placeholder="Write task's assigned date here.">
+          <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
           <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
           <br>
           <button type="button" id="deleteTask">DELETE TASK</button>
@@ -267,29 +313,43 @@
         </form>
       </div>
 
-      <div id ="pomodoroDiv" data-task-id = 'empty'>
-        <p class="closeX" id="closeTaskModal">x</p>
-        <img src="img/backHourglass.png" id="backHourglass">
-        <div id="topContainer">
-          <div id="topTriangleWork"></div>
-        </div>
-        <div id="bottomContainer">
-          <br><br>
-          <div id="bottomTriangleWork"></div>
-        </div>
-        <img src="img/frontHourglass.png" id="frontHourglass">
-        <img src="img/sleepingRuzo.png" id="sleepingRuzo">
-        <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
-        <h1 id="timerDisplay">00:00</h1>
-        <br/>
-        <div id="timerButtons">
-          <button type="button" id="playPauseButton" class="notPlaying">Play</button>
-          <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+      <div id="rightSideTaskCard">
+        <span class="closeX" id="closeTaskModal">x</span>
+
+        <div id ="pomodoroDiv" data-task-id = 'empty'>
+          <img src="img/backHourglass.png" id="backHourglass">
+          <div id="topContainer">
+            <div id="topTriangleWork"></div>
+          </div>
+          <div id="bottomContainer">
+            <br><br>
+            <div id="bottomTriangleWork"></div>
+          </div>
+          <img src="img/frontHourglass.png" id="frontHourglass">
+          <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+          <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
+          <p id="timerDisplay">00:00</p>
+          <br/>
+          <div id="timerButtons">
+            <!--<input type="image" src="img/playIcon.png" id="playPauseButton" class="notPlaying">-->
+            <button type="button" id="playPauseButton" class="notPlaying">Start</button>
+            <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+            <!--<input type="image" src="img/stopIcon.png" id="stopButton" class="stopped">-->
+          </div>
+
+          <audio id="tone">
+            <source src="pomodoroTone.mp3" type="audio/mpeg">
+          </audio>
         </div>
 
-        <audio id="tone">
-          <source src="pomodoroTone.mp3" type="audio/mpeg">
-        </audio>
+        <div id="doneTaskInfo">
+          Here is some information about this done task.........
+        </div>
+
+
+
+
+
       </div>
 
     </div>
@@ -313,4 +373,5 @@
 </div>
 </body>
 </html>
-
+<!--In Schedule Me and inside filtered subject, the list of tasks now stretches the full way across, so that you can place a task anywhere along and it goes in.-->
+<!--The "No unassigned tasks" message is centred in the subject footer.-->

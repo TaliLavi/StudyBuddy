@@ -19,28 +19,36 @@ function startOfWeek(dateString, offsetDays) {
 
 // CREATE NEW TASK
 function createTask() {
-    var subjectId = $('#subjectInput').val();
-    var now = $.now();
-    var newTask = {
-        title: $('#titleInput').val(),
-        description: $('#descriptionInput').val(),
-        assigned_date: $('#assignedDateInput').val(),
-        creation_date: now,
-        status_change_date: now
+    // create a new task only if a title was written and a subject was chosen
+    if ($('#titleInput').val() && $('#subjectInput').val() !== null) {
+        var subjectId = $('#subjectInput').val();
+        var now = $.now();
+        var newTask = {
+            title: $('#titleInput').val(),
+            description: $('#descriptionInput').val(),
+            assigned_date: $('#assignedDateInput').val(),
+            creation_date: now,
+            status_change_date: now
+        }
+        var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
+        // PUSH THEM TO DB
+        saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
     }
-    var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
-    // PUSH THEM TO DB
-    saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
 }
 
 // CREATE NEW TASK FROM SUBJECT PAGE
 function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
-    var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
-    var now = $.now();
+    // create a new task only if a title was written
     if (taskTitle) {
+        console.log(taskTitle);
+        var taskDescription = "";
+        var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
+        var now = $.now();
+
         var newTask = {
             title: taskTitle,
+            description: taskDescription,
             assigned_date: taskDate,
             creation_date: now,
             status_change_date: now
@@ -55,31 +63,54 @@ function createTaskFromSubjectPage(subjectId) {
     }
 }
 
+//=====================================================================
+//                       UPDATING TASK DETAILS
+//=====================================================================
 
-function prepareForUpdate(taskId, key, inputField) {
-    var oldWeekDate = startOfWeek($('#taskAssignedDate').data('date'));
-    var newValue = $(inputField).val();
-    var subjectId = $('#taskSubject').val();
-    var updatedTaskDetail = {};
-    updatedTaskDetail[key] = newValue;
-    updateTask(subjectId, taskId, oldWeekDate, updatedTaskDetail, key, updateTaskInDOM);
+function submitTaskChanges(subjectId, oldWeekDate, taskId, originalTaskDetails) {
+    var updatedTask = {
+        title: $('#cardTitle').val(),
+        description: $('#cardDescription').val(),
+        assigned_date: $('#cardAssignedDate').val()
+    }
+
+    // Update task only if a change in title, description or date was made.
+     if (originalTaskDetails.title !== updatedTask.title || originalTaskDetails.description !== updatedTask.description || originalTaskDetails.assigned_date !== updatedTask.assigned_date) {
+         updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updatedTask, updateTaskFieldsAndMoveCard);
+     }
 }
 
+// if any of the task's details got changed, change the DOM accordingly
+function updateTaskFields(taskId, taskData){
+    var newWeekDate = startOfWeek(taskData.assigned_date);
+    $('#cardAssignedDate').data('date', newWeekDate);
+    // change the description of the todotask.
+    $('#todoDescriptionFor' + taskId).val(taskData.description);
+    // change the title of the todotask.
+    $('#todoTitleFor' + taskId).val(taskData.title);
+    // change the title of the card.
+    $('li[data-taskid="' + taskId + '"] > div > span').text(taskData.title);
 
-// if the title or assigned date of the task got updated, change the DOM accordingly
-function updateTaskInDOM(subjectId, subjectData, taskKey, newTaskDict, newWeekDate){
-    $('#taskAssignedDate').data('date', newWeekDate);
-    removeTaskFromDOM(taskKey);
-    appendTask(subjectId, subjectData, taskKey, newTaskDict);
+    // change the date of the todotask.
+    $('#todoAssignedDateFor' + taskId).val(taskData.assigned_date);
+}
+
+function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
+    updateTaskFields(taskId, updatedTask);
+    // remove and append task in the DOM only if the task's date was changed
+    if (originalTask.assigned_date !== updatedTask.assigned_date) {
+        removeCardFromDOM(taskId);
+        appendCard(subjectId, subjectData, taskId, updatedTask);
+    }
 }
 
 //Create html for task element and append it to the list
 function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskKey, taskData, isDone) {
     // create html for active/done task on subject page
     if (listSelector === "#tasksFor" + subjectKey || listSelector === "#completedTasksFor" + subjectKey) {
-        var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData);
+        var taskHtml = createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
         $(taskHtml).appendTo(listSelector);
-        setClickForTodoTask(taskKey);
+        setClickForTodoTask(subjectKey, taskKey, taskData, isDone);
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
@@ -113,83 +144,59 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
-        displayTask(subjectKey, startOfRelevantWeek, taskKey, isDone);
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
     });
 }
 
 function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     if (taskData.assigned_date === "") {
-        var taskAssignedDate = "Set a date";
+        var cardAssignedDate = "Set a date";
     } else {
-        var taskAssignedDate = taskData.assigned_date;
+        var cardAssignedDate = taskData.assigned_date;
     }
 
-    var taskHtml = '<div class="accordion-section" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                        '<a class="accordion-section-title ' + subjectDict.colour_scheme + '" id="accordionTitle' + taskKey + '" href="#accordion' + taskKey + '">' +
-                            '<span class="' + subjectDict.colour_scheme + '">' + taskData.title + '</span>' +
-                            '<span class="' + subjectDict.colour_scheme + '">' + taskAssignedDate + '</span>' +
-                        '</a>' +
-                        '<div id="accordion' + taskKey + '" class="accordion-section-content">' +
-                            '<div>' +
-                                '<p>' + taskData.description +'</p>' +
-                            '</div>' +
-                        '</div>' +
+    var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+                        '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
+                        '<input id="todoDescriptionFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
+                        '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
                     '</div>' +
                     '<br/>';
 
     return taskHtml;
 }
 
-function setClickForTodoTask(taskKey) {
-    $('#accordionTitle' + taskKey).click(function(e) {
-        // Grab current anchor value
-        var currentAttrValue = $(this).attr('href');
+function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
 
-        if($(e.target).is('.mainColour') || $(e.target).parent().is('.mainColour')) {
-            close_accordion_section();
-        } else {
-            close_accordion_section();
+    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
 
-            // Change task's title's text and background colours
-            $(this).addClass('mainColour');
-            $(this).children("span").addClass('expanded');
-
-            // Open up the hidden content panel
-            $('.accordion ' + currentAttrValue).slideDown(300).addClass('open');
-        }
-
-        e.preventDefault();
+    $('#todoTaskFor' + taskKey).click(function() {
+        fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
     });
 }
 
-// collapse accordion
-function close_accordion_section() {
-    // restore task's title's text and background colours
-    $('.accordion .accordion-section-title').removeClass('mainColour');
-    $('.accordion .accordion-section-title span').removeClass('expanded');
-
-    $('.accordion .accordion-section-content').slideUp(300).removeClass('open');
-}
-
-// APPEND NEWLY CREATED OR UPDATED TASK TO ALL RELEVANT PLACES IN THE DOM
-function appendTask(subjectId, subjectData, taskKey, taskData) {
-    // APPEND TASK TO SUBJECTS PAGE
-    var subjectDiv = '#tasksFor' + subjectId;
-    createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
+// APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER
+function appendCard(subjectId, subjectData, taskKey, taskData) {
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
         createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
-        // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
+    // IF TASK'S WEEK IS IN THE DOM, APPEND TASK TO THE CALENDAR
     } else if ($('#calendarWrapper').children($('#week' + startOfWeek(taskData.assigned_date))).length > 0) {
         var subjectDiv = '#' + taskData.assigned_date;
         createAndAppendTaskElement(subjectDiv, subjectId, subjectData, taskKey, taskData);
     }
 }
 
+// APPEND TASK TO SUBJECTS PAGE
+function appendTodoTask(subjectKey, subjectData, taskKey, taskData) {
+    var subjectDiv = '#tasksFor' + subjectKey;
+    createAndAppendTaskElement(subjectDiv, subjectKey, subjectData, taskKey, taskData);
+}
+
 // APPEND TASK TO ALL RELEVANT PLACES IN THE DOM AND CLOSE MODAL
 function postCreateTask(subjectKey, subjectData, taskKey, taskData) {
-    appendTask(subjectKey, subjectData, taskKey, taskData);
+    appendTodoTask(subjectKey, subjectData, taskKey, taskData);
+    appendCard(subjectKey, subjectData, taskKey, taskData);
     closeModalWindow();
 }
 
@@ -213,10 +220,12 @@ function displayCompletedTasks(subjectKey, subjectDict, tasksDict) {
     var subjectDiv = "#completedTasksFor" + subjectKey;
     $(subjectDiv).text('');
 
+    var isDone = true;
+
     if (tasksDict !== null) {
         $.each(tasksDict, function(taskKey, taskData){
             //Appends the task card html to appropriate subjects on Subjects Page.
-            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
+            createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData, isDone);
         })
     }
 }
@@ -269,7 +278,7 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
         if (isDone !== undefined) {
             // append done tasks to the calendar
             $.each(tasksDict, function(taskKey, taskData){
-                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, 'done');
+                createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData, isDone);
             })
         } else {
             // append active tasks to the calendar
@@ -286,7 +295,7 @@ function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
     return date !== null && thisWeeksMonday <= date && date < nextWeeksMonday;
 }
 
-function removeTaskFromDOM(taskId) {
+function removeCardFromDOM(taskId) {
     // get task by its data attribute and remove it from the DOM
     $('li[data-taskid="' + taskId + '"]').remove();
 }

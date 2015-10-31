@@ -25,8 +25,8 @@ function displayActiveSubjects(allSubjectsDict) {
     $('#subjectFilters').text('');
     $('#subjectsList').text('');
     $('#subjectInput').text('');
-    $('#subjectInput').append('<option selected="true" disabled="disabled">Choose Subject</option>');
-    $('#taskSubject').append('<option selected="true" disabled="disabled">Choose Subject</option>');
+    $('#subjectInput').append('<option selected="true" disabled="disabled">Choose a Subject</option>');
+    $('#taskSubject').append('<option selected="true" disabled="disabled">Choose a Subject</option>');
 
     // Populate Subjects Page with subjects and tasks.
     if (allSubjectsDict !== null) {
@@ -62,10 +62,10 @@ function displayActiveSubjects(allSubjectsDict) {
                         '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
                         '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
-                    '<div class="accordion todo" id="tasksFor' + subjectKey + '"></div>' +
+                    '<div class="todoWrapper" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                     subjectKey + '\');">Show completed tasks</button>' +
-                    '<div class="accordion complete" id="completedTasksFor' + subjectKey + '"></div>' +
+                    '<div class="todoWrapper complete" id="completedTasksFor' + subjectKey + '"></div>' +
                 '</div>'
             );
 
@@ -96,7 +96,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 $('#colourPalette').css('top',offset.top + 50);
                 $("#colourPalette").css("position", "absolute");
 
-                closeWhenClickingOutside($('#colourPalette'));
+                setCloseWhenClickingOutside($('#colourPalette'));
 
                 $('#changeColourButton').on("click", function(){
                     changeSubjectColour(subjectId);
@@ -201,15 +201,6 @@ function changeSubjectColour(subjectId) {
     // change background colour for subject area
     $('#subjectArea' + subjectId).removeClassPrefix('theme');
     $('#subjectArea' + subjectId).addClass(newColour);
-    // change accordion tasks' background and font colour
-    var titleElements = $('#tasksFor' + subjectId).find('a, span');
-    titleElements.removeClassPrefix('theme');
-    titleElements.addClass(newColour);
-    // change background colour for card tasks
-    var cardTasks = $('.sortable-task-list').find('[data-subjectid="' + subjectId + '"] > div');
-    cardTasks.removeClassPrefix('theme');
-    cardTasks.addClass(newColour);
-
 
     // hide colour picker widget
     hideColourPalette();
