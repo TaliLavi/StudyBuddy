@@ -83,9 +83,13 @@
 and the user wants to drag a task from the calendar to the footer.*/
 #unassignedTasksList {
     min-height: 70px;
+    min-width: 100%;
+    margin:auto;
     display: inline-flex;
     position: relative;
     margin-top: 10px;
+    text-align:left;
+    background-color: transparent;
 }
 
 button:focus {outline:0;}
@@ -106,12 +110,17 @@ button:focus {outline:0;}
     display: inline-block;
     width: 135px;
     margin-left: 10px;
+    margin-bottom: 0;
     white-space: normal;
     text-align: left;
 }
 
 /*start app with this message being hidden*/
 #unassignedMessage {
+    color: #607A93;
     display: none;
-    padding: 30px;
+    width: 100px;
+    position: absolute;
+    top: 98px;
+    width: 100%;
 }
