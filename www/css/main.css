@@ -811,6 +811,7 @@ input:focus {outline:0;}
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
+    background-color: transparent;
 }
 
 .tasksHeaderOnSubjectPage {
