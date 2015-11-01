@@ -104,7 +104,7 @@ function applySortable(selector) {
         ghostClass: "sortable-ghost",
         onStart: inTheAir,
         onAdd: dragTask,
-        onPickup: pickupCard,
+        onChoose: pickupCard,
         forceFallback: true,
         fallbackClass: "dragged-item",
         filter: ".doneTask"
