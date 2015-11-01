@@ -54,7 +54,7 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
-                    '<img src="img/pencilIcon.png" class="pencilIcon">'+
+                    '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
                         
@@ -129,13 +129,18 @@ function editSubjectName(subjectId) {
     var originalName = $('#subjectNameTitle' + subjectId).data('subject-name');
     var newName = $('#subjectNameTitle' + subjectId).val();
     if (originalName !== newName) {
-        console.log('You changed the name!');
         // change in the database
         changeSubjectName(subjectId, newName);
         // change data attribute to new name
         $('#subjectNameTitle' + subjectId).data('subject-name', newName);
-        console.log($('#subjectNameTitle' + subjectId).data('subject-name'));
     }
+}
+
+function focusOnTitle(subjectId) {
+    // focus on title's input field
+    $('#subjectNameTitle' + subjectId).focus();
+    // Select input field contents
+    $('#subjectNameTitle' + subjectId).select();
 }
 
 
