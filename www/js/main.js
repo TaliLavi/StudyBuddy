@@ -236,6 +236,8 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     showTaskModal(subjectId, isDone);
 
+    fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
+
     if (!isDone) {
         $('#cardAssignedDate').val(taskDetails.assigned_date);
         $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
@@ -275,6 +277,23 @@ function showTaskModal(subjectId, isDone) {
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
+    $('#totalTimeStudiedActiveTask').text('');
+    var totalTimeFormatted = (new Date).clearTime().addSeconds(totalSecondsStudied).toString('H:m:s');
+    var numOfStudySessions = Math.round(totalSecondsStudied/60/cachedSessionTimes.study_session);
+    if (isDone) {
+        if (totalSecondsStudied === null) {
+            $('#totalTimeStudiedDoneTask').text("Looks like you did not record any time studied for this task.");
+        } else {
+            $('#totalTimeStudiedDoneTask').text("You studied " + totalTimeFormatted + " for this task. That's " + numOfStudySessions + " study sessions. I knew you could do it!");
+        }
+    } else {
+        if (totalSecondsStudied !== null) {
+            $('#totalTimeStudiedActiveTask').text("You studied " + numOfStudySessions + " sessions so far. Keep up the good work!");
+        }
+    }
 }
 
 function autoGrow(element) {
