@@ -258,8 +258,12 @@ function showTaskModal(subjectId, isDone) {
     // hide both divs and then only show the relevant one depending if task is done or not.
     $('#doneTaskInfo').hide();
     $('#pomodoroDiv').hide();
+    $('#deleteTask').show();
+    $('#completeTask').show();
     if (isDone) {
         $('#doneTaskInfo').show();
+        $('#deleteTask').hide();
+        $('#completeTask').hide();
     } else {
         $('#pomodoroDiv').show();
     }
