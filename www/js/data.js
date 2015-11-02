@@ -443,5 +443,5 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
         var totalTimeStudied = snapshot.val();
         callback(totalTimeStudied, isDone);
-    }, firebaseErrorFrom('updateTimeStudiedForTask'));
+    }, firebaseErrorFrom('fetchTimeStudiedForTask'));
 }

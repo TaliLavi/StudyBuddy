@@ -1,3 +1,6 @@
+var timeUponRequest = '';
+var timeUponRetrieval = '';
+
 function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
@@ -255,6 +258,8 @@ function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
+        timeUponRetrieval = $.now();
+        console.log('It took ' + (timeUponRetrieval-timeUponRequest) + ' millisecond from clicking the on card for the colours to appear.');
     });
 
     // hide both divs and then only show the relevant one depending if task is done or not.

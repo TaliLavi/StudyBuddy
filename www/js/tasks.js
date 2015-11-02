@@ -145,6 +145,7 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     // listen to click events
     task.on("click", function () {
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
+        timeUponRequest = $.now();
     });
 }
 
