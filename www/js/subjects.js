@@ -48,10 +48,11 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.colour_scheme + '" ' +
                 'onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
+            var boxLength = (subjectData.name.length)+1;
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
-                    '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
+                    '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" size="'+ boxLength +'"  value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
@@ -141,7 +142,7 @@ function focusOnTitle(subjectId) {
     // focus on title's input field
     $('#subjectNameTitle' + subjectId).focus();
     // Select input field contents
-    $('#subjectNameTitle' + subjectId).select();
+    //$('#subjectNameTitle' + subjectId).select();
 }
 
 

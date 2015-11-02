@@ -275,26 +275,7 @@ input:focus {outline:0;}
 
 
 
-/*===================================================================================================================*/
-/* TODOTASK CARDS */
-/*===================================================================================================================*/
 
-.todoWrapper {
-    overflow-x: hidden;
-    width: 80%;
-    margin: auto;
-    padding-bottom: 60px;
-}
-
-.todoTask {
-    width:100%;
-    padding:15px;
-    display:inline-block;
-    background-color: #f7f7f7;
-    transition:all linear 0.15s;
-    font-weight: normal;
-    margin-bottom: 10px;
-}
 
 /*===================================================================================================================*/
 /* MODAL WINDOWS */
@@ -822,17 +803,25 @@ input:focus {outline:0;}
 .subjectHeaderOnSubjectPage {
     display: inline-block;
     font-size: 2.5em;
-    margin-left: 10%;
+    margin-left: 7.5%;
+    margin-top: 4%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
     background-color: transparent;
+    padding: 0px;
+    border: none;
+}
+
+.subjectHeaderOnSubjectPage:focus {
+    background-color: rgba(255,255,255,.3);
+    outline: none;
+    border-radius: 2px;
 }
 
 .tasksHeaderOnSubjectPage {
     display: inline-block;
     font-size: 1.8em;
-    margin-left: 1%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
@@ -894,6 +883,53 @@ input:focus {outline:0;}
     color: red;
 }
 
+/*===================================================================================================================*/
+/* TODOTASK CARDS ON SUBJECTS PAGE*/
+/*===================================================================================================================*/
+
+.todoWrapper {
+    overflow-x: hidden;
+    width: 85%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.todoTask {
+    position: relative;
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+}
+
+.todoTask input{
+    border: none;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.todoDate{
+    position: absolute;
+    right: 45px;
+    padding: 0px;
+    font-size: 1em;
+    opacity: 1;
+}
+
+.todoDescription {
+    position: absolute;
+    right: 200px;
+    width: 250px;
+    opacity: .8;
+    font-size: .9em;
+}
+
+.todoTitle {
+    font-size: 1em;
+    width: 250px;
+    opacity: 1;
+}
 
 /*==================================================================================================*/
 /* ADD TASKS IN BULK */
@@ -901,7 +937,7 @@ input:focus {outline:0;}
 
 .bulkWrapper {
     background-color: white;
-    width:80%;
+    width:85%;
     margin: 3% auto;
 }
 
@@ -1092,7 +1128,7 @@ input:focus {outline:0;}
 .theme1Colour2.active {background-color: #F6AE85;} /*active subject button colour*/
 .theme1Colour2.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour3 {color: #C83A0A;} /*text colour*/
+.theme1Colour3 {color: #C83A0A; text-transform: uppercase;} /*text colour*/
 .theme1Colour3.mainColour {background-color: #C83A0A;}
 .theme1Colour3.secondaryColour {background-color: #E08262;}
 .theme1Colour3.active {background-color: #E08262;} /*active subject button colour*/

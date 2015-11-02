@@ -156,10 +156,20 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         var cardAssignedDate = taskData.assigned_date;
     }
 
+    var parsedTaskTitle
+    if(taskData.title.length > 28){
+        console.log("The task title"+ taskData.title +"has more than 28 characters");
+        //parsedTaskTitle = "Woops too long!!";
+        parsedTaskTitle =taskData.title.substring(0, 28)+"...";
+    }else{
+        console.log("The task title"+ taskData.title +"has less than or equal to 28 characters");
+        parsedTaskTitle = taskData.title;
+    }
+
     var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-                        '<input id="todoTitleFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.title + '">' +
-                        '<input id="todoDescriptionFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
-                        '<input id="todoAssignedDateFor' + taskKey + '" class="' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
+                        '<input disabled="disabled" id="todoTitleFor' + taskKey + '" class=" todoTitle ' + subjectDict.colour_scheme + '" value="' + parsedTaskTitle + '">' +
+                        '<input disabled="disabled" id="todoDescriptionFor' + taskKey + '" class=" todoDescription ' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
+                        '<input disabled="disabled" size="7" id="todoAssignedDateFor' + taskKey + '" class=" todoDate ' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
                     '</div>' +
                     '<br/>';
 
