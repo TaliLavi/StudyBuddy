@@ -275,26 +275,7 @@ input:focus {outline:0;}
 
 
 
-/*===================================================================================================================*/
-/* TODOTASK CARDS */
-/*===================================================================================================================*/
 
-.todoWrapper {
-    overflow-x: hidden;
-    width: 80%;
-    margin: auto;
-    padding-bottom: 60px;
-}
-
-.todoTask {
-    width:100%;
-    padding:15px;
-    display:inline-block;
-    background-color: #f7f7f7;
-    transition:all linear 0.15s;
-    font-weight: normal;
-    margin-bottom: 10px;
-}
 
 /*===================================================================================================================*/
 /* MODAL WINDOWS */
@@ -823,16 +804,18 @@ input:focus {outline:0;}
     display: inline-block;
     font-size: 2.5em;
     margin-left: 10%;
+    margin-top: 4%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
     background-color: transparent;
+    padding: 0px;
+    border: none;
 }
 
 .tasksHeaderOnSubjectPage {
     display: inline-block;
     font-size: 1.8em;
-    margin-left: 1%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
@@ -894,6 +877,50 @@ input:focus {outline:0;}
     color: red;
 }
 
+/*===================================================================================================================*/
+/* TODOTASK CARDS ON SUBJECTS PAGE*/
+/*===================================================================================================================*/
+
+.todoWrapper {
+    overflow-x: hidden;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.todoTask {
+    position: relative;
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+}
+
+.todoTask input{
+    border: none;
+    background-color: transparent;
+}
+
+.todoDate{
+    position: absolute;
+    right: 45px;
+    padding: 0px;
+    font-size: 1em;
+}
+
+.todoDescription {
+    position: absolute;
+    right: 200px;
+    width: 250px;
+    opacity: .6;
+    font-size: .9em;
+}
+
+.todoTitle {
+    font-size: 1em;
+    width: 250px;
+}
 
 /*==================================================================================================*/
 /* ADD TASKS IN BULK */
