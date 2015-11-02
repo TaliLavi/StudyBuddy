@@ -142,7 +142,7 @@ function focusOnTitle(subjectId) {
     // focus on title's input field
     $('#subjectNameTitle' + subjectId).focus();
     // Select input field contents
-    $('#subjectNameTitle' + subjectId).select();
+    //$('#subjectNameTitle' + subjectId).select();
 }
 
 
