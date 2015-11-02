@@ -14,6 +14,7 @@ function createSubject() {
     // CLOSE THE ADD SUBJECT DIALOG
     closeModalWindow();
 
+
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
     fetchActiveSubjects(displayActiveSubjects);
 }
@@ -150,9 +151,11 @@ function setSubjectColour(clickedColour) {
     $(clickedColour).addClass('chosenColour');
     if ($(clickedColour).hasClass('usedColour')) {
         var subjectName = $(clickedColour).data('subject-name');
-        $('.colourMessage').text('Just letting you know, you\'re already using this colour for ' + subjectName);
+        $('.colourMessage').text('You\'re already using this colour for ' + subjectName + ', is that okay?');
+        $('#submitNewSubject').html("Okay, &nbsp; Add Subject");
     } else {
         $('.colourMessage').text('');
+        $('#submitNewSubject').text("Add Subject");
     }
 }
 

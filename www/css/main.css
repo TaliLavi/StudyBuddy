@@ -233,24 +233,24 @@ input:focus {outline:0;}
 
 /*This is the dragged image*/
 .dragged-item .cardTask {
-    width: 110%;
-    height: 110%;
+    width: 140px;
+    height: 70px;
     opacity: 1;
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
-    transform: translate3d(0,0,0);
 }
 
 .sortable-chosen{
-    -webkit-transform: rotate(3deg); /* Safari */
+    opacity: .8;
+    -webkit-transform: rotate(2deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
-    z-index: 10;
+
 }
 
 .sortable-ghost {
@@ -267,6 +267,13 @@ input:focus {outline:0;}
             rgba(255,255,255,.3) 20px
     );
 }
+
+/*.sortable-task-list li {*/
+    /*background-color: rgba(0,0,0,0);*/
+    /*border-radius: 3px;*/
+/*}*/
+
+
 
 /*===================================================================================================================*/
 /* TODOTASK CARDS */
@@ -647,6 +654,14 @@ input:focus {outline:0;}
     width: 100%;
     min-height:50px;
     max-height: 100px;
+    margin-bottom: 5px;
+}
+
+#chooseColour {
+    color: #607A93;
+    line-height: 1.75em;
+    font-size: .95em;
+    margin-bottom: 0px;
 }
 
 #submitNewSubject{
@@ -656,13 +671,12 @@ input:focus {outline:0;}
     font-family: acme;
     text-transform: uppercase;
     border-radius: 5px;
-    width: 150px;
+    width: 200px;
     height: 35px;
-    background-color: rgb(149,202,173);
+    background-color: rgb(149, 202, 173);
     font-size: 1em;
-    margin-bottom: 20px;
-    margin-right: 6px;
-    float: right;
+    bottom: -80px;
+    right: 0px;
 }
 
 /*===============================================================================================*/
@@ -696,6 +710,7 @@ input:focus {outline:0;}
     padding: 0;
     list-style-type: none;              /*remove bullet points fron li elements*/
 }
+
 
 /*===============================================================================================*/
 /* SEVEN COLUMN GRID */
@@ -966,6 +981,8 @@ input:focus {outline:0;}
 
 .colourMessage {
     display: inline-block;
+    color: #607A93;
+    line-height: 1.75em;
 }
 /*==================================================================================================*/
 /* COLOUR PICKER COLUMNS */

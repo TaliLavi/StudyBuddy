@@ -383,6 +383,7 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
 //===========================================================================================================
 
 function openAddSubjectDialog(){
+    $('#submitNewSubject').text("Add Subject");
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
     //Fades in the greyed-out background
