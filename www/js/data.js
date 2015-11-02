@@ -418,7 +418,6 @@ function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
     updateTimeStudiedForDate(timeToLog);
 }
 
-
 function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
     var totalSecondsStudiedPerTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
@@ -437,4 +436,12 @@ function updateTimeStudiedForDate(additionalTimeStudied) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
         totalSecondsStudiedPerDateRef.set(newTotalTime);
     }, firebaseErrorFrom('updateTimeStudiedForDate'));
+}
+
+function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) {
+    var totalSecondsStudiedPerTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
+    totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
+        var totalTimeStudied = snapshot.val();
+        callback(totalTimeStudied, isDone);
+    }, firebaseErrorFrom('fetchTimeStudiedForTask'));
 }

@@ -51,11 +51,11 @@ function displayActiveSubjects(allSubjectsDict) {
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
-                    '<p class="subjectHeaderOnSubjectPage">' + subjectData.name + '</p>' +
+                    '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
-                    '<img src="img/pencilIcon.png" class="pencilIcon">'+
+                    '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
                         
@@ -70,6 +70,10 @@ function displayActiveSubjects(allSubjectsDict) {
                 '</div>'
             );
 
+            // edit subject's name on input field's blur
+            $('.subjectHeaderOnSubjectPage').blur(function(){
+                editSubjectName(subjectKey);
+            });
 
             // Create an option for each subject and append to the drop down menu on the Add Task modal window.
             $('#subjectInput').append(
@@ -115,11 +119,31 @@ function displayActiveSubjects(allSubjectsDict) {
             }
         });
 
+
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
         fetchActiveTasks(displayTasksInSubjectsPage);
     }
 }
+
+function editSubjectName(subjectId) {
+    var originalName = $('#subjectNameTitle' + subjectId).data('subject-name');
+    var newName = $('#subjectNameTitle' + subjectId).val();
+    if (originalName !== newName) {
+        // change in the database
+        changeSubjectName(subjectId, newName);
+        // change data attribute to new name
+        $('#subjectNameTitle' + subjectId).data('subject-name', newName);
+    }
+}
+
+function focusOnTitle(subjectId) {
+    // focus on title's input field
+    $('#subjectNameTitle' + subjectId).focus();
+    // Select input field contents
+    $('#subjectNameTitle' + subjectId).select();
+}
+
 
 function hideColourPalette() {
     // prevent document from continueing to listen to clicks outside the modal container.

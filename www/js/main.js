@@ -1,3 +1,6 @@
+var timeUponRequest = '';
+var timeUponRetrieval = '';
+
 function preparePage() {
     prepareCalendar();
     prepareCalendarSlider();
@@ -104,7 +107,7 @@ function applySortable(selector) {
         ghostClass: "sortable-ghost",
         onStart: inTheAir,
         onAdd: dragTask,
-        onPickup: pickupCard,
+        onChoose: pickupCard,
         forceFallback: true,
         fallbackClass: "dragged-item",
         filter: ".doneTask"
@@ -234,7 +237,9 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
 
-    showTaskModal(subjectId);
+    showTaskModal(subjectId, isDone);
+
+    fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
 
     if (!isDone) {
         $('#cardAssignedDate').val(taskDetails.assigned_date);
@@ -249,11 +254,26 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
 }
 
-function showTaskModal(subjectId) {
+function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftDivTaskCard').addClass(subjectDict.colour_scheme);
+        $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
+        timeUponRetrieval = $.now();
+        console.log('It took ' + (timeUponRetrieval-timeUponRequest) + ' millisecond from clicking the on card for the colours to appear.');
     });
+
+    // hide both divs and then only show the relevant one depending if task is done or not.
+    $('#doneTaskInfo').hide();
+    $('#pomodoroDiv').hide();
+    $('#deleteTask').show();
+    $('#completeTask').show();
+    if (isDone) {
+        $('#doneTaskInfo').show();
+        $('#deleteTask').hide();
+        $('#completeTask').hide();
+    } else {
+        $('#pomodoroDiv').show();
+    }
 
     //Makes the modal window display
     $('#taskModal').css('display','block');
@@ -262,6 +282,23 @@ function showTaskModal(subjectId) {
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
+    $('#totalTimeStudiedActiveTask').text('');
+    var totalTimeFormatted = (new Date).clearTime().addSeconds(totalSecondsStudied).toString('H:m:s');
+    var numOfStudySessions = Math.round(totalSecondsStudied/60/cachedSessionTimes.study_session);
+    if (isDone) {
+        if (totalSecondsStudied === null) {
+            $('#totalTimeStudiedDoneTask').text("Looks like you did not record any time studied for this task.");
+        } else {
+            $('#totalTimeStudiedDoneTask').text("You studied " + totalTimeFormatted + " for this task. That's " + numOfStudySessions + " study sessions. I knew you could do it!");
+        }
+    } else {
+        if (totalSecondsStudied !== null) {
+            $('#totalTimeStudiedActiveTask').text("You studied " + numOfStudySessions + " sessions so far. Keep up the good work!");
+        }
+    }
 }
 
 function autoGrow(element) {
@@ -334,10 +371,10 @@ function closeModalWindow() {
     });
 
     // ******************** FOR TASK MODAL ********************
-    // remove all classes from #taskCardHeadingDiv & #leftDivTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv, #leftDivTaskCard').removeClass();
+    // remove all classes from #taskCardHeadingDiv & #leftSideTaskCard and then restore the the ones needed for future colour change
+    $('#taskCardHeadingDiv, #leftSideTaskCard').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
-    $('#leftDivTaskCard').addClass('secondaryColour');
+    $('#leftSideTaskCard').addClass('secondaryColour');
 }
 
 

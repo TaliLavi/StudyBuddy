@@ -145,6 +145,7 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     // listen to click events
     task.on("click", function () {
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
+        timeUponRequest = $.now();
     });
 }
 
@@ -251,11 +252,11 @@ function fetchAndDisplayCompletedTasks(subjectId) {
 function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
         // append tasks to the footer div
+        var subjectDiv = '#unassignedTasksList';
         $.each(tasksDict, function(taskKey, taskData){
-            var subjectDiv = '#unassignedTasksList';
             createAndAppendTaskElement(subjectDiv, subjectKey, subjectDict, taskKey, taskData);
-            applySortable(subjectDiv);
         })
+        applySortable(subjectDiv);
     }
 }
 
