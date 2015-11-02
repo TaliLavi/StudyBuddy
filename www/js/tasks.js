@@ -145,7 +145,7 @@ function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHt
     // listen to click events
     task.on("click", function () {
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
-        timeUponRequest = $.now();
+        timeCardWasClicked = $.now();
     });
 }
 
@@ -287,6 +287,8 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
                 createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             })
         }
+        timeCardsAppearOnCalendar = $.now();
+        //console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
     }
 }
 

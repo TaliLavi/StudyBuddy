@@ -1,7 +1,11 @@
-var timeUponRequest = '';
-var timeUponRetrieval = '';
+var timeAppWasLoaded = '';
+var timeCardsAppearOnCalendar = '';
+
+var timeCardWasClicked = '';
+var timeColoursGotDisplayedInTaskModal = '';
 
 function preparePage() {
+    timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
@@ -202,7 +206,6 @@ function prepareCalendar() {
     fetchTasksByWeek(mondayOfPrevWeek, displayTasksForWeekAndSubject);
     fetchTasksByWeek(mondayOfCurrentWeek, displayTasksForWeekAndSubject);
     fetchTasksByWeek(mondayOfNextWeek, displayTasksForWeekAndSubject);
-
 }
 
 
@@ -258,8 +261,8 @@ function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
-        timeUponRetrieval = $.now();
-        console.log('It took ' + (timeUponRetrieval-timeUponRequest) + ' millisecond from clicking the on card for the colours to appear.');
+        timeColoursGotDisplayedInTaskModal = $.now();
+        //console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
 
     // hide both divs and then only show the relevant one depending if task is done or not.
