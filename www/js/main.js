@@ -1,8 +1,8 @@
-var timeAppWasLoaded = '';
-var timeCardsAppearOnCalendar = '';
+var timeAppWasLoaded;
+var timeCardsAppearOnCalendar;
 
-var timeCardWasClicked = '';
-var timeColoursGotDisplayedInTaskModal = '';
+var timeCardWasClicked;
+var timeColoursGotDisplayedInTaskModal;
 
 function preparePage() {
     timeAppWasLoaded = $.now();
@@ -125,9 +125,8 @@ function applySortable(selector) {
     });
 }
 
-function pickupCard(evt) {
+function pickupCard() {
     navigator.vibrate(100);
-    //console.log("Picked up", evt, evt.oldIndex);
     playPop();
 }
 
@@ -289,20 +288,45 @@ function showTaskModal(subjectId, isDone) {
 
 function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
     $('#totalTimeStudiedActiveTask').text('');
-    var totalTimeFormatted = (new Date).clearTime().addSeconds(totalSecondsStudied).toString('H:m:s');
-    var numOfStudySessions = Math.round(totalSecondsStudied/60/cachedSessionTimes.study_session);
+    var hours = Math.floor(totalSecondsStudied/3600);
+    var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
+    var hoursString = "";
+    var minutesString = "";
+
+    if (hours !== 0) {
+        if (hours === 1) {
+            hoursString = hours + " hour ";
+        } else {
+            hoursString = hours + " hours ";
+        }
+    }
+
+    if (minutes !== 0) {
+        if (minutes === 1) {
+            minutesString = minutes + " minute ";
+        } else {
+            minutesString = minutes + " minutes ";
+        }
+    }
+
+    var and = true;
+    if (hours === 0 || minutes === 0) {
+        and = false;
+    }
+
     if (isDone) {
         if (totalSecondsStudied === null) {
-            $('#totalTimeStudiedDoneTask').text("Looks like you did not record any time studied for this task.");
+            $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You studied " + totalTimeFormatted + " for this task. That's " + numOfStudySessions + " study sessions. I knew you could do it!");
+            $('#totalTimeStudiedDoneTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task. I knew you could do it!");
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').text("You studied " + numOfStudySessions + " sessions so far. Keep up the good work!");
+            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far. Way to go!");
         }
     }
 }
+
 
 function autoGrow(element) {
     element.style.height = "5px";
