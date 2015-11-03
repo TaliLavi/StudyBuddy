@@ -221,6 +221,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     var weekDate = startOfWeek(taskDetails.assigned_date);
     $('#cardAssignedDate').data('date', taskDetails.assigned_date);
+    $('#cardAssignedDate').val(taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
     autoGrow(document.getElementById("cardDescription"));
@@ -243,15 +244,18 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
 
-    if (!isDone) {
-        $('#cardAssignedDate').val(taskDetails.assigned_date);
+    if (isDone) {
+        // prevent user from changing assigned date
+        $('#cardAssignedDate').attr('disabled', true);
+        $('#closeTaskModal').on("click", closeModalWindow);
+        // set event handler for closing the modal when user clicks outside modal
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
+    } else {
+        // enable user to edit assigned date
+        $('#cardAssignedDate').attr('disabled', false);
         $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
         // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
         setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);});
-    } else {
-        $('#closeTaskModal').on("click", function(){closeModalWindow();});
-        // set event handler for closing the modal when user clicks outside modal
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
     }
 
 }
