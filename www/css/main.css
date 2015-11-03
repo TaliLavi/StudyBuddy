@@ -956,6 +956,7 @@ input:focus {outline:0;}
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
+    border-radius: 0;
 }
 
 .bulkText {
@@ -993,6 +994,7 @@ input:focus {outline:0;}
     height: 210px;
     background-color: #ffffff;
     display: none;
+    padding: 10px;
 }
 
 #colourPaletteAddSubject{
@@ -1000,14 +1002,11 @@ input:focus {outline:0;}
     width: 100%;
 }
 
-/*.colourOption {*/
-    /*position: relative;*/
-    /*float: left;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*margin: 5px;*/
-    /*cursor: pointer;*/
-/*}*/
+.colourOption {
+    width: 100%;
+    padding-bottom: 100%;
+    box-sizing: border-box;
+    cursor: pointer;}
 
 
 .colourOptionNew {
@@ -1018,10 +1017,9 @@ input:focus {outline:0;}
 }
 
 .chosenColour {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    outline: 2px solid white;
+    -webkit-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    -moz-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
 }
 
 .usedColour:after {
@@ -1057,6 +1055,12 @@ input:focus {outline:0;}
     float:left;
     margin: 1% 0 1% 1.6%;
 }
+
+.colourColChange {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+}
 .colourCol:first-child { margin-left: 0; }
 
 /*  GROUPING  */
@@ -1069,6 +1073,9 @@ input:focus {outline:0;}
     width: 15.33%;
 }
 
+.span_1_of_4 {
+    width: 23.8%;
+}
 /*==================================================================================================*/
 /* EDIT & DELETE ICONS */
 /*==================================================================================================*/
