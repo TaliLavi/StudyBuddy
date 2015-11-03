@@ -900,7 +900,7 @@ input:focus {outline:0;}
     padding:15px;
     display:inline-block;
     background-color: #f7f7f7;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 /*.todoTask input{*/
@@ -919,8 +919,9 @@ input:focus {outline:0;}
 
 .todoDescription {
     position: absolute;
+    text-align: left;
+    width: 40%;
     right: 200px;
-    width: 250px;
     opacity: .8;
     font-size: .9em;
 }

@@ -156,28 +156,22 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         var cardAssignedDate = taskData.assigned_date;
     }
 
-    var parsedTaskTitle
+    var choppedTaskTitle
     if(taskData.title.length > 28){
-        //console.log("The task title"+ taskData.title +"has more than 28 characters");
-        //parsedTaskTitle = "Woops too long!!";
-        parsedTaskTitle =taskData.title.substring(0, 28)+"...";
+        choppedTaskTitle =taskData.title.substring(0, 28)+"...";
     }else{
-        //console.log("The task title"+ taskData.title +"has less than or equal to 28 characters");
-        parsedTaskTitle = taskData.title;
+        choppedTaskTitle = taskData.title;
+    }
+    var choppedTaskDesc
+    if(taskData.description.length > 38){
+        choppedTaskDesc =taskData.description.substring(0, 38)+"...";
+    }else{
+        choppedTaskDesc = taskData.description;
     }
 
-    //var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-    //                    '<input disabled="disabled" id="todoTitleFor' + taskKey + '" class=" todoTitle ' + subjectDict.colour_scheme + '" value="' + parsedTaskTitle + '">' +
-    //                    '<input disabled="disabled" id="todoDescriptionFor' + taskKey + '" class=" todoDescription ' + subjectDict.colour_scheme + '" value="' + taskData.description + '">' +
-    //                    '<input disabled="disabled" size="7" id="todoAssignedDateFor' + taskKey + '" class=" todoDate ' + subjectDict.colour_scheme + '" value="' + cardAssignedDate + '">' +
-    //                '</div>' +
-    //                '<br/>';
-    //
-    //return taskHtml;
-
     var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
-        '<span id="todoTitleFor' + taskKey + '" class= "todoTitle ' + subjectDict.colour_scheme +'">'+ parsedTaskTitle +'</span>' +
-        '<span id="todoDescriptionFor' + taskKey + '" class=" todoDescription ' + subjectDict.colour_scheme +'">' + taskData.description + '</span>' +
+        '<span id="todoTitleFor' + taskKey + '" class= "todoTitle ' + subjectDict.colour_scheme +'">'+ choppedTaskTitle +'</span>' +
+        '<span id="todoDescriptionFor' + taskKey + '" class=" todoDescription ' + subjectDict.colour_scheme +'">' + choppedTaskDesc + '</span>' +
         '<span id="todoAssignedDateFor' + taskKey + '" class=" todoDate ' + subjectDict.colour_scheme + '">' + cardAssignedDate +'</span>'+
         '</div>' +
         '<br/>';
