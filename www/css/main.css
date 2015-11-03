@@ -992,8 +992,8 @@ input:focus {outline:0;}
 #colourPalette {
     position: absolute;
     width: 180px;
-    /*right: 2.5%;*/
-    /*top: 30%;*/
+    right: 2.5%;
+    top: 30%;
     height: 210px;
     background-color: #ffffff;
     display: none;

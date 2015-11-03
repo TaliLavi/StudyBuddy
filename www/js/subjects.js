@@ -95,12 +95,12 @@ function displayActiveSubjects(allSubjectsDict) {
                 var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
                 subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
-                var offset = $(this).offset();
-                var positionEditColour = $('.editColour').offset().left;
-                //console.log(positionEditColour);
-                var leftPositionPalette = positionEditColour - 110;
-                $('#colourPalette').css('left', leftPositionPalette);
-                $('#colourPalette').css('top',offset.top + 80);
+                //var offset = $(this).offset();
+                //var positionEditColour = $('.editColour').offset().left;
+                ////console.log(positionEditColour);
+                //var leftPositionPalette = positionEditColour - 110;
+                //$('#colourPalette').css('left', leftPositionPalette);
+                //$('#colourPalette').css('top',offset.top + 80);
 
                 setCloseWhenClickingOutside($('#colourPalette'));
 
@@ -232,6 +232,9 @@ function changeSubjectColour(subjectId) {
     // change background colour for subject area
     $('#subjectArea' + subjectId).removeClassPrefix('theme');
     $('#subjectArea' + subjectId).addClass(newColour);
+    //// change text colour on tasks in subject area
+    //$('.todoTaskFor' + subjectId).removeClassPrefix('theme');
+    //$('.todoTaskFor' + subjectId).addClass(newColour);
 
     // hide colour picker widget
     hideColourPalette();
