@@ -153,7 +153,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     if (taskData.assigned_date === "") {
         var cardAssignedDate = "Set a date";
     } else {
-        var cardAssignedDate = taskData.assigned_date;
+        var cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM yyyy');
     }
 
     var choppedTaskTitle

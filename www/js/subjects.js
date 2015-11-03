@@ -97,7 +97,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 // position colour palette menu next to the editColour button
                 var offset = $(this).offset();
                 var positionEditColour = $('.editColour').offset().left;
-                console.log(positionEditColour);
+                //console.log(positionEditColour);
                 var leftPositionPalette = positionEditColour - 110;
                 $('#colourPalette').css('left', leftPositionPalette);
                 $('#colourPalette').css('top',offset.top + 80);
