@@ -97,6 +97,7 @@ function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTas
     updateTaskFields(taskId, updatedTask);
     // remove and append task in the DOM only if the task's date was changed
     if (originalTask.assigned_date !== updatedTask.assigned_date) {
+        setClickForTodoTask(subjectId, taskId, updatedTask, false)
         removeCardFromDOM(taskId);
         appendCard(subjectId, subjectData, taskId, updatedTask);
     }
@@ -178,10 +179,9 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 }
 
 function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
-
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-
-    $('#todoTaskFor' + taskKey).click(function() {
+    $('#todoTaskFor' + taskKey).off('click');
+    $('#todoTaskFor' + taskKey).on('click', function() {
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
     });
 }
