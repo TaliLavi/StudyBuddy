@@ -59,8 +59,6 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     //'<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
-                        //'<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
-                        //'<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
                         '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
                     //'</div>' +
                     '<div class="todoWrapper" id="tasksFor' + subjectKey + '"></div>' +

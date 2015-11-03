@@ -43,13 +43,12 @@ function createTaskFromSubjectPage(subjectId) {
     if (taskTitle) {
         console.log(taskTitle);
         var taskDescription = "";
-        var taskDate = $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val();
         var now = $.now();
 
         var newTask = {
             title: taskTitle,
             description: taskDescription,
-            assigned_date: taskDate,
+            assigned_date: "",
             creation_date: now,
             status_change_date: now
         }
@@ -59,7 +58,6 @@ function createTaskFromSubjectPage(subjectId) {
 
         // CLEAR TEXT FIELDS
         $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val('');
-        $('.bulkDate').filter('[data-subjectid="' + subjectId + '"]').val('');
     }
 }
 
