@@ -14,7 +14,7 @@ var workTL = new TimelineMax({paused:true});
 workTL.yoyo( false ); //sets yoyo to false
 
 function prepareHourGlass() {
-    console.log(cachedSessionTimes.study_session);
+    //console.log(cachedSessionTimes.study_session);
     //
     //
     workTL.to($('#topTriangleWork'), (cachedSessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
@@ -169,7 +169,9 @@ function switchToNextSession(subjectId, weekDate, taskId) {
         }
 
         var timeToLog = cachedSessionTimes.study_session;
-        updateTimeStudied(subjectId, weekDate, taskId, timeToLog);
+        updateTimeStudied(subjectId, weekDate, taskId, timeToLog, function(subjectId, weekDate, taskId) {
+            fetchTimeStudiedForTask(subjectId, weekDate, taskId, false, displayTimeStudiedForTask);
+        });
 
     } else {
         incrementNumOfBreaks(subjectId, weekDate, taskId);
@@ -214,7 +216,14 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     if (sessionType === 'study_session') {
         // TODO: don't get data directly from cached object
         var timeToLog = cachedSessionTimes.study_session - convertDisplayedTimeToSeconds();
-        updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback);
+        updateTimeStudied(subjectId, weekDate, taskId, timeToLog, function(subjectId, weekDate, taskId) {
+            // The callback we were passed (if any)
+            if (callback !== undefined) {
+                callback(subjectId, weekDate, taskId);
+            }
+            // Also, in any event, run this function
+            fetchTimeStudiedForTask(subjectId, weekDate, taskId, false, displayTimeStudiedForTask);
+        });
     }
 
     resetTimerDisplay();
