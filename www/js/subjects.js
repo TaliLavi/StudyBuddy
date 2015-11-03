@@ -230,9 +230,10 @@ function changeSubjectColour(subjectId) {
     // change background colour for subject area
     $('#subjectArea' + subjectId).removeClassPrefix('theme');
     $('#subjectArea' + subjectId).addClass(newColour);
-    //// change text colour on tasks in subject area
-    //$('.todoTaskFor' + subjectId).removeClassPrefix('theme');
-    //$('.todoTaskFor' + subjectId).addClass(newColour);
+    // change text colour on tasks in subject area
+    var titleElements = $('#tasksFor' + subjectId).find('span');
+    titleElements.removeClassPrefix('theme');
+    titleElements.addClass(newColour);
 
     // hide colour picker widget
     hideColourPalette();
