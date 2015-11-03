@@ -283,6 +283,7 @@ function showTaskModal(subjectId, isDone) {
     $('#taskModalBG').fadeIn();
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
 }
 
