@@ -83,14 +83,14 @@ function updateTaskFields(taskId, taskData){
     var newWeekDate = startOfWeek(taskData.assigned_date);
     $('#cardAssignedDate').data('date', newWeekDate);
     // change the description of the todotask.
-    $('#todoDescriptionFor' + taskId).val(taskData.description);
+    $('#todoDescriptionFor' + taskId).text(taskData.description);
     // change the title of the todotask.
-    $('#todoTitleFor' + taskId).val(taskData.title);
+    $('#todoTitleFor' + taskId).text(taskData.title);
     // change the title of the card.
     $('li[data-taskid="' + taskId + '"] > div > span').text(taskData.title);
-
     // change the date of the todotask.
-    $('#todoAssignedDateFor' + taskId).val(taskData.assigned_date);
+    var cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
+    $('#todoAssignedDateFor' + taskId).text(cardAssignedDate);
 }
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
