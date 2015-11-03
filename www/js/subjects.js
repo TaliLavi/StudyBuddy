@@ -57,13 +57,12 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
-                    '<div class="bulkWrapper">' +
+                    //'<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
-                        
-                        '<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
-                        '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
+                        //'<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
+                        //'<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
                         '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
-                    '</div>' +
+                    //'</div>' +
                     '<div class="todoWrapper" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                     subjectKey + '\');">Show completed tasks</button>' +
@@ -97,10 +96,11 @@ function displayActiveSubjects(allSubjectsDict) {
                 subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
                 var offset = $(this).offset();
-                var halfWidth = $('#colourPalette').width() / 2 - $('.editColour').width() / 2;
-                $('#colourPalette').css('left',offset.left - halfWidth);
-                $('#colourPalette').css('top',offset.top + 50);
-                $("#colourPalette").css("position", "absolute");
+                var positionEditColour = $('.editColour').offset().left;
+                console.log(positionEditColour);
+                var leftPositionPalette = positionEditColour - 110;
+                $('#colourPalette').css('left', leftPositionPalette);
+                $('#colourPalette').css('top',offset.top + 80);
 
                 setCloseWhenClickingOutside($('#colourPalette'));
 
@@ -156,7 +156,7 @@ function hideColourPalette() {
     // Clear old onclick handler
     $('#changeColourButton').off("click");
     // hide and clear colourPalette
-    $('#colourPalette').hide();
+    $('#colourPalette').hide().css("height", 210);
     $('.colourMessage').text('');
     $('.colourOption').removeClass('chosenColour');
 }
@@ -176,9 +176,12 @@ function setSubjectColour(clickedColour) {
     $(clickedColour).addClass('chosenColour');
     if ($(clickedColour).hasClass('usedColour')) {
         var subjectName = $(clickedColour).data('subject-name');
+        //Put the tween animation here
+        TweenMax.to($('#colourPalette'),.2, {height:280, ease:"Bounce.easeOut"});
         $('.colourMessage').text('You\'re already using this colour for ' + subjectName + ', is that okay?');
         $('#submitNewSubject').html("Okay, &nbsp; Add Subject");
     } else {
+        TweenMax.to($('#colourPalette'),.2, {height:210, ease:"Bounce.easeOut"});
         $('.colourMessage').text('');
         $('#submitNewSubject').text("Add Subject");
     }

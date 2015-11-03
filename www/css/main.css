@@ -919,9 +919,9 @@ input:focus {outline:0;}
 
 .todoDescription {
     position: absolute;
-    text-align: left;
     width: 40%;
-    right: 200px;
+    left: 260px;
+    bottom: 15px;
     opacity: .8;
     font-size: .9em;
 }
@@ -936,39 +936,50 @@ input:focus {outline:0;}
 /* ADD TASKS IN BULK */
 /*==================================================================================================*/
 
-.bulkWrapper {
-    background-color: white;
-    width:85%;
-    margin: 3% auto;
+/*.bulkWrapper {*/
+    /*background-color: white;*/
+    /*width:85%;*/
+    /*margin: 3% auto;*/
+/*}*/
+
+.bulkText {
+    width: 85%;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 50px;
+    border: 0;
+    color: #607A93;
+    background-color: rgba(255, 255, 255, .4);
+    font-size: 1.0em;
+    padding: 15px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    border-radius: 0;
 }
 
 .bulkText {
-    width: 60%;
-    height: 50px;
-    padding: 3px 0px;
-    border: 0;
-    color: #1E7D8A;
-    font-size: 1.0em;
-    padding-left: 15px;
+
 }
 
-.bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
-.bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
-.bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
-.bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
+.bulkText::-webkit-input-placeholder {color: white; margin-left: 15px;}
+.bulkText:-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 18- */
+.bulkText::-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 19+ */
+.bulkText:-ms-input-placeholder {color: white;  margin-left: 15px;}
 
-.bulkDate {
-    border: 0;
-    color: #1E7D8A;
-    font-size: 1.0em;
-    padding-left: 15px;
-}
+/*.bulkDate {*/
+    /*border: 0;*/
+    /*color: #1E7D8A;*/
+    /*font-size: 1.0em;*/
+    /*padding-left: 15px;*/
+/*}*/
 
-.calendarImg {
-    padding-right: 20px;
-    vertical-align:middle;
-    cursor:pointer;
-}
+/*.calendarImg {*/
+    /*padding-right: 20px;*/
+    /*vertical-align:middle;*/
+    /*cursor:pointer;*/
+/*}*/
 
 .bulkSubmit {
     /*padding-right: 20px;*/
@@ -979,10 +990,26 @@ input:focus {outline:0;}
 /*==================================================================================================*/
 
 #colourPalette {
+    position: absolute;
     width: 180px;
+    /*right: 2.5%;*/
+    /*top: 30%;*/
     height: 210px;
     background-color: #ffffff;
     display: none;
+    padding: 10px;
+    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
+}
+
+#point {
+    position: absolute;
+    top: -25px;
+    left: 93px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid white;
 }
 
 #colourPaletteAddSubject{
@@ -990,14 +1017,11 @@ input:focus {outline:0;}
     width: 100%;
 }
 
-/*.colourOption {*/
-    /*position: relative;*/
-    /*float: left;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*margin: 5px;*/
-    /*cursor: pointer;*/
-/*}*/
+.colourOption {
+    width: 100%;
+    padding-bottom: 100%;
+    box-sizing: border-box;
+    cursor: pointer;}
 
 
 .colourOptionNew {
@@ -1008,10 +1032,9 @@ input:focus {outline:0;}
 }
 
 .chosenColour {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    outline: 2px solid white;
+    -webkit-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    -moz-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
 }
 
 .usedColour:after {
@@ -1030,6 +1053,25 @@ input:focus {outline:0;}
     color: #607A93;
     line-height: 1.75em;
 }
+
+#changeColourButton {
+    position: absolute;
+    display: block;
+    right: 0px;
+    left: 0;
+    margin: auto;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    background-color: rgb(149, 202, 173);
+    font-size: 1em;
+    bottom: 20px;
+
+}
 /*==================================================================================================*/
 /* COLOUR PICKER COLUMNS */
 /*==================================================================================================*/
@@ -1047,6 +1089,12 @@ input:focus {outline:0;}
     float:left;
     margin: 1% 0 1% 1.6%;
 }
+
+.colourColChange {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+}
 .colourCol:first-child { margin-left: 0; }
 
 /*  GROUPING  */
@@ -1059,6 +1107,9 @@ input:focus {outline:0;}
     width: 15.33%;
 }
 
+.span_1_of_4 {
+    width: 23.8%;
+}
 /*==================================================================================================*/
 /* EDIT & DELETE ICONS */
 /*==================================================================================================*/
