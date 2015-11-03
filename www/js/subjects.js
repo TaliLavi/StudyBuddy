@@ -156,7 +156,7 @@ function hideColourPalette() {
     // Clear old onclick handler
     $('#changeColourButton').off("click");
     // hide and clear colourPalette
-    $('#colourPalette').hide();
+    $('#colourPalette').hide().css("height", 210);
     $('.colourMessage').text('');
     $('.colourOption').removeClass('chosenColour');
 }
@@ -176,9 +176,12 @@ function setSubjectColour(clickedColour) {
     $(clickedColour).addClass('chosenColour');
     if ($(clickedColour).hasClass('usedColour')) {
         var subjectName = $(clickedColour).data('subject-name');
+        //Put the tween animation here
+        TweenMax.to($('#colourPalette'),.2, {height:280, ease:"Bounce.easeOut"});
         $('.colourMessage').text('You\'re already using this colour for ' + subjectName + ', is that okay?');
         $('#submitNewSubject').html("Okay, &nbsp; Add Subject");
     } else {
+        TweenMax.to($('#colourPalette'),.2, {height:210, ease:"Bounce.easeOut"});
         $('.colourMessage').text('');
         $('#submitNewSubject').text("Add Subject");
     }

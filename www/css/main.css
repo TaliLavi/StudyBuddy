@@ -1055,7 +1055,10 @@ input:focus {outline:0;}
 }
 
 #changeColourButton {
+    position: absolute;
     display: block;
+    right: 0px;
+    left: 0;
     margin: auto;
     color: white;
     border: none;
@@ -1066,8 +1069,8 @@ input:focus {outline:0;}
     height: 35px;
     background-color: rgb(149, 202, 173);
     font-size: 1em;
-    bottom: -80px;
-    right: 0px;
+    bottom: 20px;
+
 }
 /*==================================================================================================*/
 /* COLOUR PICKER COLUMNS */
