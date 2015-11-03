@@ -445,3 +445,20 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
         callback(totalTimeStudied, isDone);
     }, firebaseErrorFrom('fetchTimeStudiedForTask'));
 }
+
+//=====================================================================
+//                              STATS
+//=====================================================================
+
+// RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
+function fetchAllDoneTasks(callback) {
+    var doneTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done');
+    doneTasksRef.once("value", function(doneTasksSnapshot) {
+        if (doneTasksSnapshot.val() !== null) {
+            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser());
+            subjectRef.once("value", function(subjectsSnapshot) {
+                callback(doneTasksSnapshot.val(), subjectsSnapshot.val());
+            }, firebaseErrorFrom('fetchAllDoneTasks'));
+        }
+    }, firebaseErrorFrom('fetchAllDoneTasks'));
+}
