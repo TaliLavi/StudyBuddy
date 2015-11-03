@@ -57,13 +57,12 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
-                    '<div class="bulkWrapper">' +
+                    //'<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '">' +
-                        
-                        '<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
-                        '<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
+                        //'<input class="bulkDate" type="date" data-subjectid="' + subjectKey + '">' +
+                        //'<img class="calendarImg" src="img/calendar.png" alt="Click to popup the clendar!">' +
                         '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
-                    '</div>' +
+                    //'</div>' +
                     '<div class="todoWrapper" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
                     subjectKey + '\');">Show completed tasks</button>' +
