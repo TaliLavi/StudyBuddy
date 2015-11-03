@@ -158,11 +158,11 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 
     var parsedTaskTitle
     if(taskData.title.length > 28){
-        console.log("The task title"+ taskData.title +"has more than 28 characters");
+        //console.log("The task title"+ taskData.title +"has more than 28 characters");
         //parsedTaskTitle = "Woops too long!!";
         parsedTaskTitle =taskData.title.substring(0, 28)+"...";
     }else{
-        console.log("The task title"+ taskData.title +"has less than or equal to 28 characters");
+        //console.log("The task title"+ taskData.title +"has less than or equal to 28 characters");
         parsedTaskTitle = taskData.title;
     }
 
