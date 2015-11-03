@@ -903,11 +903,11 @@ input:focus {outline:0;}
     margin-bottom: 10px;
 }
 
-.todoTask input{
-    border: none;
-    background-color: transparent;
-    opacity: 1;
-}
+/*.todoTask input{*/
+    /*border: none;*/
+    /*background-color: transparent;*/
+    /*opacity: 1;*/
+/*}*/
 
 .todoDate{
     position: absolute;
@@ -1128,7 +1128,7 @@ input:focus {outline:0;}
 .theme1Colour2.active {background-color: #F6AE85;} /*active subject button colour*/
 .theme1Colour2.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour3 {color: #C83A0A; text-transform: uppercase;} /*text colour*/
+.theme1Colour3 {color: #C83A0A;} /*text colour*/
 .theme1Colour3.mainColour {background-color: #C83A0A;}
 .theme1Colour3.secondaryColour {background-color: #E08262;}
 .theme1Colour3.active {background-color: #E08262;} /*active subject button colour*/
