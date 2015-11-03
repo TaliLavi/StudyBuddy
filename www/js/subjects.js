@@ -95,11 +95,11 @@ function displayActiveSubjects(allSubjectsDict) {
                 var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
                 subjectColourDiv.addClass('chosenColour');
                 // position colour palette menu next to the editColour button
-                var offset = $(this).offset();
-                var halfWidth = $('#colourPalette').width() / 2 - $('.editColour').width() / 2;
-                $('#colourPalette').css('left',offset.left - halfWidth);
-                $('#colourPalette').css('top',offset.top + 50);
-                $("#colourPalette").css("position", "absolute");
+                //var offset = $(this).offset();
+                //var halfWidth = $('#colourPalette').width() / 2 - $('.editColour').width() / 2;
+                //$('#colourPalette').css('left',offset.left - halfWidth);
+                //$('#colourPalette').css('top',offset.top + 50);
+                //$("#colourPalette").css("position", "absolute");
 
                 setCloseWhenClickingOutside($('#colourPalette'));
 

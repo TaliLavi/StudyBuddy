@@ -990,11 +990,26 @@ input:focus {outline:0;}
 /*==================================================================================================*/
 
 #colourPalette {
+    position: absolute;
     width: 180px;
+    right: 2.5%;
+    top: 30%;
     height: 210px;
     background-color: #ffffff;
     display: none;
     padding: 10px;
+    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
+}
+
+#point {
+    position: absolute;
+    top: -25px;
+    left: 93px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid white;
 }
 
 #colourPaletteAddSubject{
@@ -1037,6 +1052,22 @@ input:focus {outline:0;}
     display: inline-block;
     color: #607A93;
     line-height: 1.75em;
+}
+
+#changeColourButton {
+    display: block;
+    margin: auto;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    background-color: rgb(149, 202, 173);
+    font-size: 1em;
+    bottom: -80px;
+    right: 0px;
 }
 /*==================================================================================================*/
 /* COLOUR PICKER COLUMNS */
