@@ -296,7 +296,7 @@ function showTaskModal(subjectId, isDone) {
     //Makes the modal window display
     $('#taskModal').css('display','block');
     //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
+    $('#taskModalBG').show();
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#subjectsPage').addClass('frostedGlass');
@@ -365,7 +365,7 @@ function openAddTaskDialog(data){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
     //Fades in the greyed-out background
-    $('#addTaskModalBG').fadeIn();
+    $('#addTaskModalBG').show();
     // Clear any old onclick handler
     $('#submitNewTask').off("click");
     // Set the new onclick handler
@@ -468,7 +468,7 @@ function openAddSubjectDialog(){
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
     //Fades in the greyed-out background
-    $('#addSubjectModalBG').fadeIn();
+    $('#addSubjectModalBG').show();
     //Add frosted glass to all areas visible in the background
     $('#subjectsPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
