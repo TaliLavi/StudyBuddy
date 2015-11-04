@@ -324,7 +324,8 @@ function markAsDone(subjectId, originalDate, taskId) {
     $('.dayList li[data-taskid="' + taskId + '"] div').addClass("doneTask");
 
     // in subject's page, remove from list (no need to append to complete b/c the button fetches each time anew)
-    $('.subjectArea li[data-taskid="' + taskId + '"] div').remove();
+    $('.todoWrapper div[data-taskid="' + taskId + '"]').next().remove();
+    $('.todoWrapper div[data-taskid="' + taskId + '"]').remove();
 
     if (originalDate === "no_assigned_date") {
         // get this week's monday
