@@ -936,19 +936,19 @@ input:focus {outline:0;}
 /* ADD TASKS IN BULK */
 /*==================================================================================================*/
 
-/*.bulkWrapper {*/
-    /*background-color: white;*/
-    /*width:85%;*/
-    /*margin: 3% auto;*/
-/*}*/
-
-.bulkText {
-    width: 85%;
+.bulkWrapper {
+    position: relative;
+    width:85%;
     display: block;
     margin: auto;
     margin-bottom: 20px;
     height: 50px;
+    margin-bottom: 30px;
+}
+
+.bulkText {
     border: 0;
+    width: 100%;
     color: #607A93;
     background-color: rgba(255, 255, 255, .4);
     font-size: 1.0em;
@@ -956,20 +956,28 @@ input:focus {outline:0;}
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
-    border-radius: 0;
 }
 
-.bulkText {
-
-}
 
 .bulkText::-webkit-input-placeholder {color: white; margin-left: 15px;}
 .bulkText:-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 18- */
 .bulkText::-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 19+ */
 .bulkText:-ms-input-placeholder {color: white;  margin-left: 15px;}
 
+
 .bulkSubmit {
-    /*padding-right: 20px;*/
+    position: absolute;
+    right: 7px;
+    top: 19px;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 90px;
+    height: 35px;
+    background-color: white;
+    font-size: 1em;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /*==================================================================================================*/
