@@ -252,6 +252,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
 
+    console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
 
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
