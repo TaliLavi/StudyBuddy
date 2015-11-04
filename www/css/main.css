@@ -425,6 +425,7 @@ input:focus {outline:0;}
 
 #totalTimeStudiedActiveTask{
     line-height: 20px;
+    margin-top: 5%;
 }
 
 #cardAssignedDate{
@@ -459,6 +460,40 @@ input:focus {outline:0;}
 .openTaskCardFormInput:-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+
+.binIconTaskcard{
+    position: absolute;
+    height: 30px;
+    width: 23px;
+    cursor: pointer;
+    bottom: 5%;
+    opacity: .7;
+}
+
+#completeTask{
+    position: absolute;
+    bottom: 3%;
+    right:0;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 50%;
+    height: 35px;
+    background-color: rgba(255, 255, 255, .7);
+    font-size: 1em;
+}
+
+#completeTask:hover{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.binIconTaskcard:hover{
+    opacity: 1;
+}
+
+
+
 /*===================================================================================================================*/
 /* MODAL WINDOW FOR ADD TASK */
 /*===================================================================================================================*/
@@ -971,7 +1006,7 @@ input:focus {outline:0;}
 .bulkSubmit {
     position: absolute;
     right: 8px;
-    top: 14%;
+    top: 15%;
     border: none;
     font-family: acme;
     text-transform: uppercase;
@@ -1049,7 +1084,7 @@ input:focus {outline:0;}
 .colourMessage {
     display: inline-block;
     color: #607A93;
-    line-height: 1.75em;
+    line-height: 1.6em;
 }
 
 #changeColourButton {
