@@ -6,9 +6,9 @@ var timeColoursGotDisplayedInTaskModal;
 
 function preparePage() {
     // Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
-    $(function() {
-        FastClick.attach(document.body);
-    });
+    //$(function() {
+    //    FastClick.attach(document.body);
+    //});
 
     timeAppWasLoaded = $.now();
     prepareCalendar();
@@ -339,7 +339,7 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far. Way to go!");
+            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far.");
         }
     }
 }
