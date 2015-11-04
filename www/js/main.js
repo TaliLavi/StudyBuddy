@@ -277,7 +277,7 @@ function showTaskModal(subjectId, isDone) {
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
         timeColoursGotDisplayedInTaskModal = $.now();
-        //console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
+        console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
 
     // hide both divs and then only show the relevant one depending if task is done or not.
