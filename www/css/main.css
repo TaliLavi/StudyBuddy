@@ -359,7 +359,7 @@ input:focus {outline:0;}
 #taskCardForm {
     position: absolute;
     height: 70%;
-    width: 80%;
+    width: 85%;
     line-height: 5%;
     left: 0;
     right: 0;
@@ -370,7 +370,6 @@ input:focus {outline:0;}
 
 .openTaskCardFormInput {
     width: 100%;
-    margin-bottom: 20px;
     background-color: rgba(0,0,0,0);
     border: none;
     font-size: 1em;
@@ -404,26 +403,29 @@ input:focus {outline:0;}
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     wrap: soft;
-    font-size: .95em;
+    font-size: .9em;
     line-height: 1.75em;
     resize:none;
-    overflow:hidden;
-    min-height: 50px;
-    max-height: 200px;
+    overflow:scroll;
+    min-height: 100px;
+    color: rgba(255, 255, 255, 0.8);
+    /*max-height: 200px;*/
 }
 
-#cardTitle{
+#cardTitle {
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     font-size: 1.2em;
-    line-height: 1.6em;
-    resize:none;
-    overflow:hidden;
-    min-height:50px;
-    max-height: 100px;
+    resize: none;
+    /*line-height: 1.4em;*/
+    /*margin-bottom: 10px;*/
+
 }
 
+#totalTimeStudiedActiveTask{
+    line-height: 20px;
+}
 
 #cardAssignedDate{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
@@ -947,6 +949,7 @@ input:focus {outline:0;}
 }
 
 .bulkText {
+    position: absolute;
     border: 0;
     width: 100%;
     color: #607A93;
@@ -967,14 +970,14 @@ input:focus {outline:0;}
 
 .bulkSubmit {
     position: absolute;
-    right: 7px;
-    top: 19px;
+    right: 8px;
+    top: 14%;
     border: none;
     font-family: acme;
     text-transform: uppercase;
     border-radius: 5px;
-    width: 90px;
-    height: 35px;
+    width: 20%;
+    height: 70%;
     background-color: white;
     font-size: 1em;
     -webkit-tap-highlight-color: transparent;
