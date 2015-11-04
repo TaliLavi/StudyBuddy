@@ -40,14 +40,28 @@ function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
 }
 
 // generate graph for tasks in last 7 days (7*24 hours)
-function fetchAndDisplayBarGraphFor7Days() {
+function fetchAndDisplayBarGraphForLast7Days() {
     $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphFor7Days);
+    fetchAllDoneTasks(generateBarGraphForLast7Days);
 }
-function generateBarGraphFor7Days(subjects, doneTasks) {
+function generateBarGraphForLast7Days(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
         var span = new TimeSpan(Date.now() - Date.parse(taskDate));
         return span.days <= 7;
+    });
+}
+
+// generate graph for tasks in last month
+function fetchAndDisplayBarGraphForLastMonth() {
+    $(".chart").text(""); // clear previous contents
+    fetchAllDoneTasks(generateBarGraphForLastMonth);
+}
+
+function generateBarGraphForLastMonth(subjects, doneTasks) {
+    generateBarGraph(subjects, doneTasks, function(taskDate) {
+        var taskAssignedDate = Date.parse(taskDate);
+        var lastMonth = Date.today().add(-1).months();
+        return taskAssignedDate < lastMonth;
     });
 }
 
