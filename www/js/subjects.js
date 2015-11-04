@@ -234,6 +234,10 @@ function changeSubjectColour(subjectId) {
     var titleElements = $('#tasksFor' + subjectId).find('span');
     titleElements.removeClassPrefix('theme');
     titleElements.addClass(newColour);
+    // change cards colour in the calendar
+    var cards = $('.sortable-task-list').find('[data-subjectid="' + subjectId + '"] > div');
+    cards.removeClassPrefix('theme');
+    cards.addClass(newColour);
 
     // hide colour picker widget
     hideColourPalette();

@@ -306,7 +306,7 @@
                     <select id ="subjectInput" class="inputField"></select>
                 </div>
                 <br>
-                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." maxlength="45" required>
                 <br>
                 <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
                 <br>
@@ -334,7 +334,7 @@
 
         <form id="taskCardForm">
           <br>
-          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here."></textarea>
+          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." maxlength="45"></textarea>
           <br>
           <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here."></textarea>
           <br>
@@ -346,7 +346,6 @@
           <button type="button" id="deleteTask">DELETE TASK</button>
           <button type="button" id="completeTask">Done?</button>
         </form>
-
       </div>
 
       <div id="rightSideTaskCard">
