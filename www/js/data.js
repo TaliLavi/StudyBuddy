@@ -457,7 +457,7 @@ function fetchAllDoneTasks(callback) {
         if (doneTasksSnapshot.val() !== null) {
             var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser());
             subjectRef.once("value", function(subjectsSnapshot) {
-                callback(doneTasksSnapshot.val(), subjectsSnapshot.val());
+                callback(subjectsSnapshot.val(), doneTasksSnapshot.val());
             }, firebaseErrorFrom('fetchAllDoneTasks'));
         }
     }, firebaseErrorFrom('fetchAllDoneTasks'));

@@ -47,6 +47,7 @@ var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
 function prepareNavigation() {
     $("#profileButton").click(function(){
         switchToPage("#profilePage", "#profileButton");
+        fetchAndDisplayBarGraphSinceDawnOfTime();
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");

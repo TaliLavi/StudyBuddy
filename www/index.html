@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
+  <link rel="stylesheet" href="css/progress.css">
   <link href='https://fonts.googleapis.com/css?family=Acme|Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
+  <script src='external/d3.js'></script>
   <!--TweenMax.js must appear before date.js-->
   <script src='external/TweenMax.js'></script>
   <script src="external/date.js"></script>
@@ -109,9 +111,9 @@
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
-      <div>
-        Content for Profile page
-      </div>
+      <svg class="chart"></svg>
+      <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
+      <button onclick="fetchAndDisplayBarGraphFor7Days()">Last 7 days</button>
     </div>
 
     <!--========================================================================================================-->

@@ -1155,76 +1155,74 @@ input:focus {outline:0;}
 /* COLOURS THEME 1 */
 /*==================================================================================================*/
 
-.theme1Colour1 {color: #F4A460;} /*text colour*/
+.theme1Colour1 {color: #F4A460; fill: #F4A460;} /*text and bar fill colour*/
 .theme1Colour1.mainColour {background-color: #F4A460;}
 .theme1Colour1.secondaryColour {background-color: #EEC58F;}
 .theme1Colour1.active {background-color: #EEC58F;} /*active subject button colour*/
 .theme1Colour1.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour2 {color: #F3742B;} /*text colour*/
+.theme1Colour2 {color: #F3742B; fill: #F3742B;} /*text and bar fill colour*/
 .theme1Colour2.mainColour {background-color: #F3742B;}
 .theme1Colour2.secondaryColour {background-color: #F6AE85;}
 .theme1Colour2.active {background-color: #F6AE85;} /*active subject button colour*/
 .theme1Colour2.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour3 {color: #C83A0A;} /*text colour*/
+.theme1Colour3 {color: #C83A0A; fill: #C83A0A;} /*text and bar fill colour*/
 .theme1Colour3.mainColour {background-color: #C83A0A;}
 .theme1Colour3.secondaryColour {background-color: #E08262;}
 .theme1Colour3.active {background-color: #E08262;} /*active subject button colour*/
 .theme1Colour3.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour4 {color: #E7867F;} /*text colour*/
+.theme1Colour4 {color: #E7867F; fill: #E7867F;} /*text and bar fill colour*/
 .theme1Colour4.mainColour {background-color: #E7867F;}
 .theme1Colour4.secondaryColour {background-color: #F1A29C;}
 .theme1Colour4.active {background-color: #F1A29C;} /*active subject button colour*/
 .theme1Colour4.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour5 {color: #BC6771;} /*text colour*/
+.theme1Colour5 {color: #BC6771; fill: #BC6771;} /*text and bar fill colour*/
 .theme1Colour5.mainColour {background-color: #BC6771;}
 .theme1Colour5.secondaryColour {background-color: #CD9FA4;}
 .theme1Colour5.active {background-color: #CD9FA4;} /*active subject button colour*/
 .theme1Colour5.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour6 {color: #C9304D;} /*text colour*/
+.theme1Colour6 {color: #C9304D; fill: #C9304D;} /*text and bar fill colour*/
 .theme1Colour6.mainColour {background-color: #C9304D;}
 .theme1Colour6.secondaryColour {background-color: #E1788C;}
 .theme1Colour6.active {background-color: #E1788C;} /*active subject button colour*/
 .theme1Colour6.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour7 {color: #6F4B6F;} /*text colour*/
+.theme1Colour7 {color: #6F4B6F; fill: #6F4B6F;} /*text and bar fill colour*/
 .theme1Colour7.mainColour {background-color: #6F4B6F;}
 .theme1Colour7.secondaryColour {background-color: #9C7F9C;}
 .theme1Colour7.active {background-color: #9C7F9C;} /*active subject button colour*/
 .theme1Colour7.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour8 {color: #607A93} /*text colour*/
+.theme1Colour8 {color: #607A93; fill: #607A93;}  /*text and bar fill colour*/
 .theme1Colour8.mainColour {background-color: #607A93;}
 .theme1Colour8.secondaryColour {background-color: #baccd9;}
 .theme1Colour8.active {background-color: #baccd9;} /*active subject button colour*/
 .theme1Colour8.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour9 {color: #A0AFBE;} /*text colour*/
+.theme1Colour9 {color: #A0AFBE; fill: #A0AFBE;} /*text and bar fill colour*/
 .theme1Colour9.mainColour {background-color: #A0AFBE;}
 .theme1Colour9.secondaryColour {background-color: #C6D2DD;}
 .theme1Colour9.active {background-color: #C6D2DD;} /*active subject button colour*/
 .theme1Colour9.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour10 {color: #7EC6D5;} /*text colour*/
+.theme1Colour10 {color: #7EC6D5; fill: #7EC6D5;} /*text and bar fill colour*/
 .theme1Colour10.mainColour {background-color: #7EC6D5;}
 .theme1Colour10.secondaryColour {background-color: #BCDBE1;}
 .theme1Colour10.active {background-color: #BCDBE1;} /*active subject button colour*/
 .theme1Colour10.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour11 {color: #31A9A8;} /*text colour*/
+.theme1Colour11 {color: #31A9A8; fill: #31A9A8;} /*text and bar fill colour*/
 .theme1Colour11.mainColour {background-color: #31A9A8;}
 .theme1Colour11.secondaryColour {background-color: #77C9C8;}
 .theme1Colour11.active {background-color: #77C9C8;} /*active subject button colour*/
 .theme1Colour11.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour12 {color: #1E7D8A;} /*text colour*/
+.theme1Colour12 {color: #1E7D8A; fill: #1E7D8A;} /*text and bar fill colour*/
 .theme1Colour12.mainColour {background-color: #1E7D8A;}
 .theme1Colour12.secondaryColour {background-color: #97C7CD;}
 .theme1Colour12.active {background-color: #97C7CD;} /*active subject button colour*/
 .theme1Colour12.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
-
-
