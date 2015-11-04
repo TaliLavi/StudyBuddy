@@ -335,14 +335,14 @@
 
         <form id="taskCardForm">
           <br>
-          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)" maxlength="45"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." maxlength="45"></textarea>
           <br>
-          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here."></textarea>
           <br>
           <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
           <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
           <br>
-          <div id ="totalTimeStudiedActiveTask" class="openTaskCardFormInput"></div>
+            <div id ="totalTimeStudiedActiveTask" ></div>
           <br>
           <button type="button" id="deleteTask">DELETE TASK</button>
           <button type="button" id="completeTask">Done?</button>
@@ -404,5 +404,4 @@
 </div>
 </body>
 </html>
-<!--In Schedule Me and inside filtered subject, the list of tasks now stretches the full way across, so that you can place a task anywhere along and it goes in.-->
-<!--The "No unassigned tasks" message is centred in the subject footer.-->
+

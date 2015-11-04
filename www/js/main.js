@@ -216,6 +216,12 @@ function prepareCalendar() {
 
 function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
+    if (taskDetails.title.length> 30){
+        console.log("The tile has more than 30 characters");
+        $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
+    } else {
+        $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
+    }
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
@@ -225,8 +231,8 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#cardAssignedDate').val(taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
-    autoGrow(document.getElementById("cardDescription"));
-    autoGrow(document.getElementById("cardTitle"));
+    //autoGrow(document.getElementById("cardDescription"));
+    //autoGrow(document.getElementById("cardTitle"));
 
     $('#taskModal').addClass('displayed');
 
