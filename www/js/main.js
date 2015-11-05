@@ -6,9 +6,9 @@ var timeColoursGotDisplayedInTaskModal;
 
 function preparePage() {
     // Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
-    //$(function() {
-    //    FastClick.attach(document.body);
-    //});
+    $(function() {
+        FastClick.attach(document.body);
+    });
 
     timeAppWasLoaded = $.now();
     prepareCalendar();
