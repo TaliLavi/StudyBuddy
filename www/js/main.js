@@ -252,7 +252,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
 
-    //console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
+    console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
 
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
@@ -278,7 +278,7 @@ function showTaskModal(subjectId, isDone) {
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
         timeColoursGotDisplayedInTaskModal = $.now();
-        //console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
+        console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
 
     // hide both divs and then only show the relevant one depending if task is done or not.
