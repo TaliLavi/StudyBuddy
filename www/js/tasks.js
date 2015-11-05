@@ -113,7 +113,7 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
-        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone);
+        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml);
     }
 }
 
@@ -137,12 +137,13 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     return taskHtml;
 }
 
-function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml, isDone) {
+function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
     var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     // append card to list
     var task = $(taskHtml).appendTo(listSelector);
     // listen to click events
     task.on("click", function () {
+        var isDone = $('.sortable-task-list').find('li[data-taskid="' + taskKey + '"] > div').hasClass('doneTask');
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
         timeCardWasClicked = $.now();
     });
@@ -299,7 +300,7 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
             })
         }
         timeCardsAppearOnCalendar = $.now();
-        console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
+        //console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
     }
 }
 
@@ -324,7 +325,8 @@ function markAsDone(subjectId, originalDate, taskId) {
     $('.dayList li[data-taskid="' + taskId + '"] div').addClass("doneTask");
 
     // in subject's page, remove from list (no need to append to complete b/c the button fetches each time anew)
-    $('.subjectArea li[data-taskid="' + taskId + '"] div').remove();
+    $('.todoWrapper div[data-taskid="' + taskId + '"]').next().remove();
+    $('.todoWrapper div[data-taskid="' + taskId + '"]').remove();
 
     if (originalDate === "no_assigned_date") {
         // get this week's monday
