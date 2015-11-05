@@ -300,7 +300,7 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
             })
         }
         timeCardsAppearOnCalendar = $.now();
-        console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
+        //console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
     }
 }
 
