@@ -164,6 +164,7 @@ function dragTask(evt) {
     } else {
         var updatedTaskDetail = {assigned_date: newAssignedDate};
     }
+
     updateTaskDate(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
 }
 

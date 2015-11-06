@@ -79,7 +79,7 @@ function submitTaskChanges(subjectId, oldWeekDate, taskId, originalTaskDetails) 
 }
 
 // if any of the task's details got changed, change the DOM accordingly
-function updateTaskFields(taskId, taskData){
+function updateTaskFields(subjectId, taskId, taskData){
     var newWeekDate = startOfWeek(taskData.assigned_date);
     $('#cardAssignedDate').data('date', newWeekDate);
     // change the description of the todotask.
@@ -88,13 +88,22 @@ function updateTaskFields(taskId, taskData){
     $('#todoTitleFor' + taskId).text(taskData.title);
     // change the title of the card.
     $('li[data-taskid="' + taskId + '"] > div > span').text(taskData.title);
+    // change the date data attribute of the card task
+    $('li[data-taskid="' + taskId + '"]').data('task-date', taskData.assigned_date);
     // change the date of the todotask.
-    var cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
+    var cardAssignedDate;
+    if (taskData.assigned_date === "") {
+        cardAssignedDate = "Set a date";
+    } else {
+        cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
+    }
     $('#todoAssignedDateFor' + taskId).text(cardAssignedDate);
+
+    setClickForCardTask(subjectId, taskId);
 }
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
-    updateTaskFields(taskId, updatedTask);
+    updateTaskFields(subjectId, taskId, updatedTask);
     // remove and append task in the DOM only if the task's date was changed
     if (originalTask.assigned_date !== updatedTask.assigned_date) {
         setClickForTodoTask(subjectId, taskId, updatedTask, false)
@@ -113,21 +122,29 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
         // create html for active/done assigned task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
-        setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml);
+        // append card to list
+        var task = $(taskHtml).appendTo(listSelector);
+        setClickForCardTask(subjectKey, taskKey);
     }
 }
 
 function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) {
+    var taskDate;
+    if (taskData.assigned_date === ""){
+        taskDate = "no_assigned_date";
+    } else {
+        taskDate = taskData.assigned_date;
+    }
     //create html for done task in the calendar
     if (isDone !== undefined) {
-        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '" data-task-date="' + taskDate + '">' +
                             '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
                             '</div>' +
                         '</li>';
         //create html for active task in the calendar OR for unassigned task in the footer
     } else {
-        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
+        var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '" data-task-date="' + taskDate + '">' +
                             '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
                             '</div>' +
@@ -137,12 +154,11 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     return taskHtml;
 }
 
-function setClickForCardTask(listSelector, subjectKey, taskKey, taskData, taskHtml) {
-    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
-    // append card to list
-    var task = $(taskHtml).appendTo(listSelector);
-    // listen to click events
-    task.on("click", function () {
+function setClickForCardTask(subjectKey, taskKey) {
+    // Clear old onclick handler and set new one
+    $('li[data-taskid="' + taskKey + '"]').off("click");
+    $('li[data-taskid="' + taskKey + '"]').on("click", function () {
+        var startOfRelevantWeek = startOfWeek($('li[data-taskid="' + taskKey + '"]').data('task-date'));
         var isDone = $('.sortable-task-list').find('li[data-taskid="' + taskKey + '"] > div').hasClass('doneTask');
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
         timeCardWasClicked = $.now();
@@ -180,9 +196,9 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
 }
 
 function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
-    var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
     $('#todoTaskFor' + taskKey).off('click');
     $('#todoTaskFor' + taskKey).on('click', function() {
+        var startOfRelevantWeek = startOfWeek(taskData.assigned_date);
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
     });
 }

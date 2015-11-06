@@ -331,7 +331,7 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
     if (newWeekDate === oldWeekDate) {
         oldTaskRef.update(updatedDate);
         oldTaskRef.once('value', function(updatedTask)  {
-            postUpdateCallback(taskId, updatedTask.val());
+            postUpdateCallback(subjectId, taskId, updatedTask.val());
         }, firebaseErrorFrom('updateTask'));
     } else { // since we need to change the week, we need to move the task to a new location in the database
         oldTaskRef.once('value', function(snapshot)  {
@@ -340,6 +340,7 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
             var combinedTaskDict = $.extend(oldTaskDict, updatedDate);
             newTaskRef.update(combinedTaskDict);
             oldTaskRef.remove();
+            postUpdateCallback(subjectId, taskId, combinedTaskDict);
         }, firebaseErrorFrom('updateTask'));
     }
 }
