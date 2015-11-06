@@ -406,7 +406,7 @@ input:focus {outline:0;}
     line-height: 1.75em;
     resize:none;
     overflow:scroll;
-    min-height: 100px;
+    min-height: 84px;
     color: rgba(255, 255, 255, 0.8);
     /*max-height: 200px;*/
 }
@@ -433,9 +433,18 @@ input:focus {outline:0;}
 }
 
 #cardAssignedDate{
+    display: inline;
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
+    width: 50%;
+
+}
+
+#dateLabel{
+    display: inline;
+    margin-right: 5px;
+
 }
 
 #closeTaskModal{
@@ -1282,97 +1291,97 @@ input:focus {outline:0;}
 /* RUZO FOR WHEN TASK IS COMPLETE */
 /*==================================================================================================*/
 
-#doneRuzoDiv{
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    background-color: plum;
-}
+/*#doneRuzoDiv{*/
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*right: 0px;*/
+    /*background-color: plum;*/
+/*}*/
 
-#doneCircle{
-    position: absolute;
-    bottom: -100px;
-    right: -80px;
-    height: 20px;
-    width: 20px;
-    background-color: #A0AFBE;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    overflow: hidden;
+/*#doneCircle{*/
+    /*position: absolute;*/
+    /*bottom: -100px;*/
+    /*right: -80px;*/
+    /*height: 20px;*/
+    /*width: 20px;*/
+    /*background-color: #A0AFBE;*/
+    /*-moz-border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    /*border-radius: 50%;*/
+    /*overflow: hidden;*/
 
-    /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
-    /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
-    /*box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
-}
+    /*/!*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*!/*/
+    /*/!*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*!/*/
+    /*/!*box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*!/*/
+/*}*/
 
-#taskDoneMessage{
-    color: white;
-    text-transform: uppercase;
-    font-family: 'Acme', sans-serif;
-    font-size: 2em;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
+/*#taskDoneMessage{*/
+    /*color: white;*/
+    /*text-transform: uppercase;*/
+    /*font-family: 'Acme', sans-serif;*/
+    /*font-size: 2em;*/
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+    /*text-align: center;*/
+/*}*/
 
-#doneMessageCircle{
-    bottom: 72px;
-    right: 136px;
-    height: 0px;
-    width: 0px;
-    background-color: #add;
-    position: absolute;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    display: none;
-    overflow: hidden;
-}
+/*#doneMessageCircle{*/
+    /*bottom: 72px;*/
+    /*right: 136px;*/
+    /*height: 0px;*/
+    /*width: 0px;*/
+    /*background-color: #add;*/
+    /*position: absolute;*/
+    /*-moz-border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    /*border-radius: 50%;*/
+    /*display: none;*/
+    /*overflow: hidden;*/
+/*}*/
 
-#bodyDoneRuzo{
-    position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
-    overflow: hidden;
-}
+/*#bodyDoneRuzo{*/
+    /*position: absolute;*/
+    /*bottom: -5px;*/
+    /*right: -20px;*/
+    /*height: 250px;*/
+    /*overflow: hidden;*/
+/*}*/
 
-#eyesOpenMouthClosedDone{
-    position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
-    -webkit-transform:rotate(-10deg);
-    overflow: hidden;
-}
-
-
-#eyesClosedMouthClosedDone{
-    position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
-    -webkit-transform:rotate(-10deg);
-    overflow: hidden;
-}
-
-#eyesOpenMouthOpenDone{
-    position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
-    opacity: 0;
-    overflow: hidden;
-
-}
+/*#eyesOpenMouthClosedDone{*/
+    /*position: absolute;*/
+    /*bottom: -5px;*/
+    /*right: -20px;*/
+    /*height: 250px;*/
+    /*-webkit-transform:rotate(-10deg);*/
+    /*overflow: hidden;*/
+/*}*/
 
 
-#tailDoneRuzo2{
-    position: absolute;
-    bottom: -11px;
-    right: -18px;
-    height: 250px;
-    overflow: hidden;
-    /*background-color: rgba(200, 0, 0, .5);*/
-}
+/*#eyesClosedMouthClosedDone{*/
+    /*position: absolute;*/
+    /*bottom: -5px;*/
+    /*right: -20px;*/
+    /*height: 250px;*/
+    /*-webkit-transform:rotate(-10deg);*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*#eyesOpenMouthOpenDone{*/
+    /*position: absolute;*/
+    /*bottom: -5px;*/
+    /*right: -20px;*/
+    /*height: 250px;*/
+    /*opacity: 0;*/
+    /*overflow: hidden;*/
+
+/*}*/
+
+
+/*#tailDoneRuzo2{*/
+    /*position: absolute;*/
+    /*bottom: -11px;*/
+    /*right: -18px;*/
+    /*height: 250px;*/
+    /*overflow: hidden;*/
+    /*/!*background-color: rgba(200, 0, 0, .5);*!/*/
+/*}*/
