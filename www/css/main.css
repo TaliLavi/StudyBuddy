@@ -1283,17 +1283,17 @@ input:focus {outline:0;}
 
 #doneCircle{
     position: absolute;
-    bottom: -100px;
-    right: -80px;
+    bottom: 0px;
+    right: 0px;
     height: 20px;
     width: 20px;
     background-color: #A0AFBE;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    -webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);
-    -moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);
-    box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);
+    /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
+    /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
+    /*box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
 }
 
 #taskDoneMessage{
