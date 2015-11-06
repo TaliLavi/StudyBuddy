@@ -1,4 +1,33 @@
+
+
+
+
+var timeAppWasLoaded;
+var timeCardsAppearOnCalendar;
+
+var timeCardWasClicked;
+var timeColoursGotDisplayedInTaskModal;
+
 function preparePage() {
+    // Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
+    //$(function() {
+    //    FastClick.attach(document.body);
+    //});
+
+
+    // FOR TESTING, DELETE WHEN DONE TESTING
+    $('body').on("touchstart", function(){
+        console.log('touchstart detected');
+        }
+    );
+
+    // FOR TESTING, DELETE WHEN DONE TESTING
+    $('body').on("touchend", function(){
+            console.log('touchend detected');
+        }
+    );
+
+    timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
@@ -40,6 +69,7 @@ var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
 function prepareNavigation() {
     $("#profileButton").click(function(){
         switchToPage("#profilePage", "#profileButton");
+        fetchAndDisplayBarGraphSinceDawnOfTime();
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
@@ -118,9 +148,10 @@ function applySortable(selector) {
     });
 }
 
-function pickupCard(evt) {
+function pickupCard() {
     navigator.vibrate(100);
-    //console.log("Picked up", evt, evt.oldIndex);
+    // NEXT LINE IS FOR TESTING, DELETE WHEN DONE TESTING
+    console.log('Sortable: Delay is over, card is effectively picked up and should be movable now');
     playPop();
 }
 
@@ -199,7 +230,6 @@ function prepareCalendar() {
     fetchTasksByWeek(mondayOfPrevWeek, displayTasksForWeekAndSubject);
     fetchTasksByWeek(mondayOfCurrentWeek, displayTasksForWeekAndSubject);
     fetchTasksByWeek(mondayOfNextWeek, displayTasksForWeekAndSubject);
-
 }
 
 
@@ -210,16 +240,23 @@ function prepareCalendar() {
 
 function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
+    if (taskDetails.title.length> 30){
+        //console.log("The tile has more than 30 characters");
+        $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
+    } else {
+        $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
+    }
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
 
     var weekDate = startOfWeek(taskDetails.assigned_date);
     $('#cardAssignedDate').data('date', taskDetails.assigned_date);
+    $('#cardAssignedDate').val(taskDetails.assigned_date);
 
     // get title and description textareas be the right size to fit their contents.
-    autoGrow(document.getElementById("cardDescription"));
-    autoGrow(document.getElementById("cardTitle"));
+    //autoGrow(document.getElementById("cardDescription"));
+    //autoGrow(document.getElementById("cardTitle"));
 
     $('#taskModal').addClass('displayed');
 
@@ -234,17 +271,23 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
 
+    //console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
 
-    if (!isDone) {
-        $('#cardAssignedDate').val(taskDetails.assigned_date);
+    fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
+
+    if (isDone) {
+        // prevent user from changing assigned date
+        $('#cardAssignedDate').attr('disabled', true);
+        $('#closeTaskModal').on("click", closeModalWindow);
+        // set event handler for closing the modal when user clicks outside modal
+        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
+    } else {
+        // enable user to edit assigned date
+        $('#cardAssignedDate').attr('disabled', false);
         $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
         // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
         setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);});
-    } else {
-        $('#closeTaskModal').on("click", function(){closeModalWindow();});
-        // set event handler for closing the modal when user clicks outside modal
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
     }
 
 }
@@ -253,13 +296,20 @@ function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
+        timeColoursGotDisplayedInTaskModal = $.now();
+        console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
+
 
     // hide both divs and then only show the relevant one depending if task is done or not.
     $('#doneTaskInfo').hide();
     $('#pomodoroDiv').hide();
+    $('#deleteTask').show();
+    $('#completeTask').show();
     if (isDone) {
         $('#doneTaskInfo').show();
+        $('#deleteTask').hide();
+        $('#completeTask').hide();
     } else {
         $('#pomodoroDiv').show();
     }
@@ -267,11 +317,54 @@ function showTaskModal(subjectId, isDone) {
     //Makes the modal window display
     $('#taskModal').css('display','block');
     //Fades in the greyed-out background
-    $('#taskModalBG').fadeIn();
+    $('#taskModalBG').show();
     $('#calendarPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
 }
+
+function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
+    $('#totalTimeStudiedActiveTask').text('');
+    var hours = Math.floor(totalSecondsStudied/3600);
+    var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
+    var hoursString = "";
+    var minutesString = "";
+
+    if (hours !== 0) {
+        if (hours === 1) {
+            hoursString = hours + " hour ";
+        } else {
+            hoursString = hours + " hours ";
+        }
+    }
+
+    if (minutes !== 0) {
+        if (minutes === 1) {
+            minutesString = minutes + " minute ";
+        } else {
+            minutesString = minutes + " minutes ";
+        }
+    }
+
+    var and = true;
+    if (hours === 0 || minutes === 0) {
+        and = false;
+    }
+
+    if (isDone) {
+        if (totalSecondsStudied === null) {
+            $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
+        } else {
+            $('#totalTimeStudiedDoneTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task. I knew you could do it!");
+        }
+    } else {
+        if (totalSecondsStudied !== null) {
+            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far.");
+        }
+    }
+}
+
 
 function autoGrow(element) {
     element.style.height = "5px";
@@ -293,7 +386,7 @@ function openAddTaskDialog(data){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
     //Fades in the greyed-out background
-    $('#addTaskModalBG').fadeIn();
+    $('#addTaskModalBG').show();
     // Clear any old onclick handler
     $('#submitNewTask').off("click");
     // Set the new onclick handler
@@ -392,10 +485,11 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
 //===========================================================================================================
 
 function openAddSubjectDialog(){
+    $('#submitNewSubject').text("Add Subject");
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
     //Fades in the greyed-out background
-    $('#addSubjectModalBG').fadeIn();
+    $('#addSubjectModalBG').show();
     //Add frosted glass to all areas visible in the background
     $('#subjectsPage').addClass('frostedGlass');
     $('#iPadStatusBar').addClass('frostedGlass');

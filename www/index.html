@@ -12,13 +12,17 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
+  <link rel="stylesheet" href="css/progress.css">
   <link href='https://fonts.googleapis.com/css?family=Acme|Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
+  <script src='external/d3.js'></script>
+  <script src='external/fastclick.js'></script>
   <!--TweenMax.js must appear before date.js-->
   <script src='external/TweenMax.js'></script>
+    <script src='js/animations.js'></script>
   <script src="external/date.js"></script>
   <script src="external/time.js"></script>
   <script src="external/gistfile1.js"></script>
@@ -30,7 +34,9 @@
   <script src="js/tasks.js"></script>
   <script src='js/calendar.js'></script>
   <script src='js/pomodoro.js'></script>
+  <script src="js/progress.js"></script>
   <script src='js/main.js'></script>
+
   <script src="cordova.js"></script>
 </head>
 
@@ -102,15 +108,18 @@
       <button  id="profileButton">Profile</button>
       <button  id="signoutButton">Sign out</button>
       <button  id="settingsButton">Settings</button>
+        <button onclick="animateRuzoDone()">Animate Ruzo</button>
+        <button onclick="restartRuzoDone()">Restart Ruzo</button>
     </div>
 
     <!--========================================================================================================-->
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
-      <div>
-        Content for Profile page
-      </div>
+      <svg class="chart"></svg>
+      <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
+      <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
+      <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
     </div>
 
     <!--========================================================================================================-->
@@ -167,8 +176,6 @@
 
   </div>
 
-
-
   <!--========================================================================================================-->
   <!--ADD SUBJECT (MODAL WINDOW)-->
   <!--========================================================================================================-->
@@ -181,48 +188,47 @@
         <div id="addSubjectContentDiv">
             <form id="addSubjectForm">
                 <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
-                <p>Choose a colour</p>
+                <p id="chooseColour">Choose a colour...</p>
                 <div id="colourPaletteAddSubject">
                     <div class="colourSection colourGroup">
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour1" class="colourOption colourOptionNew theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour2" class="colourOption colourOptionNew theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour3" class="colourOption colourOptionNew theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour4" class="colourOption colourOptionNew theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour5" class="colourOption colourOptionNew theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
 
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour6" class="colourOption colourOptionNew theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                     </div>
                     <div class="colourSection colourGroup">
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour7" class="colourOption colourOptionNew theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
-
+                            <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour8" class="colourOption colourOptionNew theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour9" class="colourOption colourOptionNew theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour10" class="colourOption colourOptionNew theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour11" class="colourOption colourOptionNew theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                         <div class="colourCol span_1_of_6">
-                            <div data-colour-scheme="theme1Colour12" class="colourOption colourOptionNew theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+                            <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
                         </div>
                     </div>
 
@@ -242,20 +248,51 @@
   <!--========================================================================================================-->
 
   <div id="colourPalette">
-    <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
-    <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+      <div id="point"></div>
+      <div class="colourSection colourGroup">
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour1" class="colourOption theme1Colour1 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour2" class="colourOption theme1Colour2 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour3" class="colourOption theme1Colour3 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour4" class="colourOption theme1Colour4 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+      </div>
+      <div class="colourSection colourGroup">
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour5" class="colourOption theme1Colour5 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour6" class="colourOption theme1Colour6 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour7" class="colourOption theme1Colour7 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour8" class="colourOption theme1Colour8 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+      </div>
+      <div class="colourSection colourGroup">
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour9" class="colourOption theme1Colour9 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour10" class="colourOption theme1Colour10 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour11" class="colourOption theme1Colour11 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+          <div class="colourCol span_1_of_4">
+              <div data-colour-scheme="theme1Colour12" class="colourOption theme1Colour12 mainColour" onclick="setSubjectColour(this)"></div>
+          </div>
+      </div>
     <div class="colourMessage"></div>
-    <button id="changeColourButton" type="button">All set!</button>
+    <button id="changeColourButton" type="button">Okay!</button>
   </div>
 
   <!--========================================================================================================-->
@@ -273,7 +310,7 @@
                     <select id ="subjectInput" class="inputField"></select>
                 </div>
                 <br>
-                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." required>
+                <input id="titleInput" class="inputField" name="titleInput" type="textbox" placeholder="Write your task here." maxlength="45" required>
                 <br>
                 <input id="descriptionInput" class="inputField" name="descriptionInput" type="textbox" placeholder="Write your description here." required>
                 <br>
@@ -301,15 +338,18 @@
 
         <form id="taskCardForm">
           <br>
-          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardTitle" name="cardTitle" type="text" placeholder="Write your task here." maxlength="45"></textarea>
           <br>
-          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here." onkeydown="autoGrow(this)"></textarea>
+          <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here."></textarea>
           <br>
           <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
           <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
           <br>
-          <button type="button" id="deleteTask">DELETE TASK</button>
-          <button type="button" id="completeTask">Done?</button>
+            <div id ="totalTimeStudiedActiveTask" ></div>
+          <br>
+          <!--<button type="button" id="deleteTask">DELETE TASK</button>-->
+          <img src="img/binIcon.png" class="binIconTaskcard" id="deleteTask">
+          <button type="button" id="completeTask">Task Done ?</button>
         </form>
       </div>
 
@@ -343,17 +383,27 @@
         </div>
 
         <div id="doneTaskInfo">
-          Here is some information about this done task.........
+          <div id ="totalTimeStudiedDoneTask"></div>
         </div>
 
-
-
-
-
       </div>
-
     </div>
   </div>
+
+    <!--========================================================================================================-->
+    <!--RUZO FOR WHEN TASK IS COMPLETE-->
+    <!--========================================================================================================-->
+
+        <div id="doneCircle"></span></div>
+        <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
+        <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
+        <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+        <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
+        <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
+        <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
+
+
+
 
   <audio id="popSound">
     <source src="popSound.ogg" type="audio/ogg">
@@ -373,5 +423,5 @@
 </div>
 </body>
 </html>
-<!--In Schedule Me and inside filtered subject, the list of tasks now stretches the full way across, so that you can place a task anywhere along and it goes in.-->
-<!--The "No unassigned tasks" message is centred in the subject footer.-->
+
+<!--A comment-->

@@ -233,24 +233,24 @@ input:focus {outline:0;}
 
 /*This is the dragged image*/
 .dragged-item .cardTask {
-    width: 110%;
-    height: 110%;
+    width: 140px;
+    height: 70px;
     opacity: 1;
     -webkit-transform: rotate(3deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
-    transform: translate3d(0,0,0);
 }
 
 .sortable-chosen{
-    -webkit-transform: rotate(3deg); /* Safari */
+    opacity: .8;
+    -webkit-transform: rotate(2deg); /* Safari */
     transform: rotate(3deg);
     -webkit-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
     box-shadow: 0 1px 22px 3px rgba(0,0,0,0.26);
-    z-index: 10;
+
 }
 
 .sortable-ghost {
@@ -268,26 +268,14 @@ input:focus {outline:0;}
     );
 }
 
-/*===================================================================================================================*/
-/* TODOTASK CARDS */
-/*===================================================================================================================*/
+/*.sortable-task-list li {*/
+    /*background-color: rgba(0,0,0,0);*/
+    /*border-radius: 3px;*/
+/*}*/
 
-.todoWrapper {
-    overflow-x: hidden;
-    width: 80%;
-    margin: auto;
-    padding-bottom: 60px;
-}
 
-.todoTask {
-    width:100%;
-    padding:15px;
-    display:inline-block;
-    background-color: #f7f7f7;
-    transition:all linear 0.15s;
-    font-weight: normal;
-    margin-bottom: 10px;
-}
+
+
 
 /*===================================================================================================================*/
 /* MODAL WINDOWS */
@@ -295,7 +283,6 @@ input:focus {outline:0;}
 /*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
 .frostedGlass {
     -webkit-filter: blur(15px);
-    -webket-transition: 0.4s ease;
 }
 
 /*This is the white transparent background behind the modal window. It covers the whole screen*/
@@ -371,7 +358,7 @@ input:focus {outline:0;}
 #taskCardForm {
     position: absolute;
     height: 70%;
-    width: 80%;
+    width: 85%;
     line-height: 5%;
     left: 0;
     right: 0;
@@ -382,7 +369,6 @@ input:focus {outline:0;}
 
 .openTaskCardFormInput {
     width: 100%;
-    margin-bottom: 20px;
     background-color: rgba(0,0,0,0);
     border: none;
     font-size: 1em;
@@ -416,26 +402,34 @@ input:focus {outline:0;}
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     wrap: soft;
-    font-size: .95em;
+    font-size: .9em;
     line-height: 1.75em;
     resize:none;
-    overflow:hidden;
-    min-height: 50px;
-    max-height: 200px;
+    overflow:scroll;
+    min-height: 100px;
+    color: rgba(255, 255, 255, 0.8);
+    /*max-height: 200px;*/
 }
 
-#cardTitle{
+#cardDescription::-webkit-scrollbar {       /*hides the scrollbar*/
+    display: none;
+}
+
+#cardTitle {
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     font-size: 1.2em;
-    line-height: 1.6em;
-    resize:none;
-    overflow:hidden;
-    min-height:50px;
-    max-height: 100px;
+    resize: none;
+    /*line-height: 1.4em;*/
+    /*margin-bottom: 10px;*/
+
 }
 
+#totalTimeStudiedActiveTask{
+    line-height: 20px;
+    margin-top: 5%;
+}
 
 #cardAssignedDate{
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
@@ -469,6 +463,40 @@ input:focus {outline:0;}
 .openTaskCardFormInput:-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+
+.binIconTaskcard{
+    position: absolute;
+    height: 30px;
+    width: 23px;
+    cursor: pointer;
+    bottom: 5%;
+    opacity: .7;
+}
+
+#completeTask{
+    position: absolute;
+    bottom: 3%;
+    right:0;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 50%;
+    height: 35px;
+    background-color: rgba(255, 255, 255, .7);
+    font-size: 1em;
+}
+
+#completeTask:hover{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.binIconTaskcard:hover{
+    opacity: 1;
+}
+
+
+
 /*===================================================================================================================*/
 /* MODAL WINDOW FOR ADD TASK */
 /*===================================================================================================================*/
@@ -655,6 +683,14 @@ input:focus {outline:0;}
     width: 100%;
     min-height:50px;
     max-height: 100px;
+    margin-bottom: 5px;
+}
+
+#chooseColour {
+    color: #607A93;
+    line-height: 1.75em;
+    font-size: .95em;
+    margin-bottom: 0px;
 }
 
 #submitNewSubject{
@@ -664,13 +700,12 @@ input:focus {outline:0;}
     font-family: acme;
     text-transform: uppercase;
     border-radius: 5px;
-    width: 150px;
+    width: 200px;
     height: 35px;
-    background-color: rgb(149,202,173);
+    background-color: rgb(149, 202, 173);
     font-size: 1em;
-    margin-bottom: 20px;
-    margin-right: 6px;
-    float: right;
+    bottom: -80px;
+    right: 0px;
 }
 
 /*===============================================================================================*/
@@ -704,6 +739,7 @@ input:focus {outline:0;}
     padding: 0;
     list-style-type: none;              /*remove bullet points fron li elements*/
 }
+
 
 /*===============================================================================================*/
 /* SEVEN COLUMN GRID */
@@ -807,16 +843,25 @@ input:focus {outline:0;}
 .subjectHeaderOnSubjectPage {
     display: inline-block;
     font-size: 2.5em;
-    margin-left: 10%;
+    margin-left: 7.5%;
+    margin-top: 4%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
+    background-color: transparent;
+    padding: 0px;
+    border: none;
+}
+
+.subjectHeaderOnSubjectPage:focus {
+    background-color: rgba(255,255,255,.3);
+    outline: none;
+    border-radius: 2px;
 }
 
 .tasksHeaderOnSubjectPage {
     display: inline-block;
     font-size: 1.8em;
-    margin-left: 1%;
     font-family: Acme, sans-serif;
     text-transform: uppercase;
     color: white;
@@ -878,47 +923,102 @@ input:focus {outline:0;}
     color: red;
 }
 
+/*===================================================================================================================*/
+/* TODOTASK CARDS ON SUBJECTS PAGE*/
+/*===================================================================================================================*/
+
+.todoWrapper {
+    overflow-x: hidden;
+    width: 85%;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.todoTask {
+    position: relative;
+    width:100%;
+    padding:15px;
+    display:inline-block;
+    background-color: #f7f7f7;
+    margin-bottom: 6px;
+}
+
+/*.todoTask input{*/
+    /*border: none;*/
+    /*background-color: transparent;*/
+    /*opacity: 1;*/
+/*}*/
+
+.todoDate{
+    position: absolute;
+    right: 45px;
+    padding: 0px;
+    font-size: 1em;
+    opacity: 1;
+}
+
+.todoDescription {
+    position: absolute;
+    width: 40%;
+    left: 260px;
+    bottom: 15px;
+    opacity: .8;
+    font-size: .9em;
+}
+
+.todoTitle {
+    font-size: 1em;
+    width: 250px;
+    opacity: 1;
+}
 
 /*==================================================================================================*/
 /* ADD TASKS IN BULK */
 /*==================================================================================================*/
 
 .bulkWrapper {
-    background-color: white;
-    width:80%;
-    margin: 3% auto;
+    position: relative;
+    width:85%;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 50px;
+    margin-bottom: 30px;
 }
 
 .bulkText {
-    width: 60%;
-    height: 50px;
-    padding: 3px 0px;
+    position: absolute;
     border: 0;
-    color: #1E7D8A;
+    width: 100%;
+    color: #607A93;
+    background-color: rgba(255, 255, 255, .4);
     font-size: 1.0em;
-    padding-left: 15px;
+    padding: 15px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-.bulkText::-webkit-input-placeholder {color: rgba(245, 68, 168, 0.5);}
-.bulkText:-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 18- */
-.bulkText::-moz-placeholder {color: rgba(245, 68, 168, 0.5);} /* Firefox 19+ */
-.bulkText:-ms-input-placeholder {color: rgba(245, 68, 168, 0.5);}
 
-.bulkDate {
-    border: 0;
-    color: #1E7D8A;
-    font-size: 1.0em;
-    padding-left: 15px;
-}
+.bulkText::-webkit-input-placeholder {color: white; margin-left: 15px;}
+.bulkText:-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 18- */
+.bulkText::-moz-placeholder {color: white;  margin-left: 15px;} /* Firefox 19+ */
+.bulkText:-ms-input-placeholder {color: white;  margin-left: 15px;}
 
-.calendarImg {
-    padding-right: 20px;
-    vertical-align:middle;
-    cursor:pointer;
-}
 
 .bulkSubmit {
-    /*padding-right: 20px;*/
+    position: absolute;
+    right: 8px;
+    top: 15%;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 20%;
+    height: 70%;
+    background-color: white;
+    font-size: 1em;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /*==================================================================================================*/
@@ -926,10 +1026,26 @@ input:focus {outline:0;}
 /*==================================================================================================*/
 
 #colourPalette {
+    position: absolute;
     width: 180px;
+    right: 1.5%;
+    top: 28%;
     height: 210px;
     background-color: #ffffff;
     display: none;
+    padding: 10px;
+    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
+}
+
+#point {
+    position: absolute;
+    top: -25px;
+    left: 93px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid white;
 }
 
 #colourPaletteAddSubject{
@@ -937,14 +1053,11 @@ input:focus {outline:0;}
     width: 100%;
 }
 
-/*.colourOption {*/
-    /*position: relative;*/
-    /*float: left;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*margin: 5px;*/
-    /*cursor: pointer;*/
-/*}*/
+.colourOption {
+    width: 100%;
+    padding-bottom: 100%;
+    box-sizing: border-box;
+    cursor: pointer;}
 
 
 .colourOptionNew {
@@ -955,10 +1068,9 @@ input:focus {outline:0;}
 }
 
 .chosenColour {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    outline: 2px solid white;
+    -webkit-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    -moz-box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
+    box-shadow:inset 0px 0px 0px 5px rgba(255, 255, 255, .4);
 }
 
 .usedColour:after {
@@ -974,6 +1086,27 @@ input:focus {outline:0;}
 
 .colourMessage {
     display: inline-block;
+    color: #607A93;
+    line-height: 1.6em;
+}
+
+#changeColourButton {
+    position: absolute;
+    display: block;
+    right: 0px;
+    left: 0;
+    margin: auto;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    background-color: rgb(149, 202, 173);
+    font-size: 1em;
+    bottom: 20px;
+
 }
 /*==================================================================================================*/
 /* COLOUR PICKER COLUMNS */
@@ -992,6 +1125,12 @@ input:focus {outline:0;}
     float:left;
     margin: 1% 0 1% 1.6%;
 }
+
+.colourColChange {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 1.6%;
+}
 .colourCol:first-child { margin-left: 0; }
 
 /*  GROUPING  */
@@ -1004,6 +1143,9 @@ input:focus {outline:0;}
     width: 15.33%;
 }
 
+.span_1_of_4 {
+    width: 23.8%;
+}
 /*==================================================================================================*/
 /* EDIT & DELETE ICONS */
 /*==================================================================================================*/
@@ -1062,76 +1204,174 @@ input:focus {outline:0;}
 /* COLOURS THEME 1 */
 /*==================================================================================================*/
 
-.theme1Colour1 {color: #F4A460;} /*text colour*/
+.theme1Colour1 {color: #F4A460; fill: #F4A460;} /*text and bar fill colour*/
 .theme1Colour1.mainColour {background-color: #F4A460;}
 .theme1Colour1.secondaryColour {background-color: #EEC58F;}
 .theme1Colour1.active {background-color: #EEC58F;} /*active subject button colour*/
 .theme1Colour1.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour2 {color: #F3742B;} /*text colour*/
+.theme1Colour2 {color: #F3742B; fill: #F3742B;} /*text and bar fill colour*/
 .theme1Colour2.mainColour {background-color: #F3742B;}
 .theme1Colour2.secondaryColour {background-color: #F6AE85;}
 .theme1Colour2.active {background-color: #F6AE85;} /*active subject button colour*/
 .theme1Colour2.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour3 {color: #C83A0A;} /*text colour*/
+.theme1Colour3 {color: #C83A0A; fill: #C83A0A;} /*text and bar fill colour*/
 .theme1Colour3.mainColour {background-color: #C83A0A;}
 .theme1Colour3.secondaryColour {background-color: #E08262;}
 .theme1Colour3.active {background-color: #E08262;} /*active subject button colour*/
 .theme1Colour3.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour4 {color: #E7867F;} /*text colour*/
+.theme1Colour4 {color: #E7867F; fill: #E7867F;} /*text and bar fill colour*/
 .theme1Colour4.mainColour {background-color: #E7867F;}
 .theme1Colour4.secondaryColour {background-color: #F1A29C;}
 .theme1Colour4.active {background-color: #F1A29C;} /*active subject button colour*/
 .theme1Colour4.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour5 {color: #BC6771;} /*text colour*/
+.theme1Colour5 {color: #BC6771; fill: #BC6771;} /*text and bar fill colour*/
 .theme1Colour5.mainColour {background-color: #BC6771;}
 .theme1Colour5.secondaryColour {background-color: #CD9FA4;}
 .theme1Colour5.active {background-color: #CD9FA4;} /*active subject button colour*/
 .theme1Colour5.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour6 {color: #C9304D;} /*text colour*/
+.theme1Colour6 {color: #C9304D; fill: #C9304D;} /*text and bar fill colour*/
 .theme1Colour6.mainColour {background-color: #C9304D;}
 .theme1Colour6.secondaryColour {background-color: #E1788C;}
 .theme1Colour6.active {background-color: #E1788C;} /*active subject button colour*/
 .theme1Colour6.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour7 {color: #6F4B6F;} /*text colour*/
+.theme1Colour7 {color: #6F4B6F; fill: #6F4B6F;} /*text and bar fill colour*/
 .theme1Colour7.mainColour {background-color: #6F4B6F;}
 .theme1Colour7.secondaryColour {background-color: #9C7F9C;}
 .theme1Colour7.active {background-color: #9C7F9C;} /*active subject button colour*/
 .theme1Colour7.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour8 {color: #607A93} /*text colour*/
+.theme1Colour8 {color: #607A93; fill: #607A93;}  /*text and bar fill colour*/
 .theme1Colour8.mainColour {background-color: #607A93;}
 .theme1Colour8.secondaryColour {background-color: #baccd9;}
 .theme1Colour8.active {background-color: #baccd9;} /*active subject button colour*/
 .theme1Colour8.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour9 {color: #A0AFBE;} /*text colour*/
+.theme1Colour9 {color: #A0AFBE; fill: #A0AFBE;} /*text and bar fill colour*/
 .theme1Colour9.mainColour {background-color: #A0AFBE;}
 .theme1Colour9.secondaryColour {background-color: #C6D2DD;}
 .theme1Colour9.active {background-color: #C6D2DD;} /*active subject button colour*/
 .theme1Colour9.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour10 {color: #7EC6D5;} /*text colour*/
+.theme1Colour10 {color: #7EC6D5; fill: #7EC6D5;} /*text and bar fill colour*/
 .theme1Colour10.mainColour {background-color: #7EC6D5;}
 .theme1Colour10.secondaryColour {background-color: #BCDBE1;}
 .theme1Colour10.active {background-color: #BCDBE1;} /*active subject button colour*/
 .theme1Colour10.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour11 {color: #31A9A8;} /*text colour*/
+.theme1Colour11 {color: #31A9A8; fill: #31A9A8;} /*text and bar fill colour*/
 .theme1Colour11.mainColour {background-color: #31A9A8;}
 .theme1Colour11.secondaryColour {background-color: #77C9C8;}
 .theme1Colour11.active {background-color: #77C9C8;} /*active subject button colour*/
 .theme1Colour11.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour12 {color: #1E7D8A;} /*text colour*/
+.theme1Colour12 {color: #1E7D8A; fill: #1E7D8A;} /*text and bar fill colour*/
 .theme1Colour12.mainColour {background-color: #1E7D8A;}
 .theme1Colour12.secondaryColour {background-color: #97C7CD;}
 .theme1Colour12.active {background-color: #97C7CD;} /*active subject button colour*/
 .theme1Colour12.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
 
+/*==================================================================================================*/
+/* RUZO FOR WHEN TASK IS COMPLETE */
+/*==================================================================================================*/
+
+#doneRuzoDiv{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: plum;
+}
+
+#doneCircle{
+    position: absolute;
+    bottom: -100px;
+    right: -80px;
+    height: 20px;
+    width: 20px;
+    background-color: #A0AFBE;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+
+    /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
+    /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
+    /*box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
+}
+
+#taskDoneMessage{
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Acme', sans-serif;
+    font-size: 2em;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#doneMessageCircle{
+    bottom: 72px;
+    right: 136px;
+    height: 0px;
+    width: 0px;
+    background-color: #add;
+    position: absolute;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: none;
+    overflow: hidden;
+}
+
+#bodyDoneRuzo{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    overflow: hidden;
+}
+
+#eyesOpenMouthClosedDone{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    -webkit-transform:rotate(-10deg);
+    overflow: hidden;
+}
+
+
+#eyesClosedMouthClosedDone{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    -webkit-transform:rotate(-10deg);
+    overflow: hidden;
+}
+
+#eyesOpenMouthOpenDone{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    opacity: 0;
+    overflow: hidden;
+
+}
+
+
+#tailDoneRuzo2{
+    position: absolute;
+    bottom: -11px;
+    right: -18px;
+    height: 250px;
+    overflow: hidden;
+    /*background-color: rgba(200, 0, 0, .5);*/
+}

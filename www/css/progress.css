@@ -1,0 +1,15 @@
+.axis {
+    font: 10px sans-serif;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.yellow {
+    fill: yellow;
+}
+
+.pink {
+    fill: pink;
+}
