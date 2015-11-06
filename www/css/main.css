@@ -1297,25 +1297,31 @@ input:focus {outline:0;}
 }
 
 #taskDoneMessage{
-    position: absolute;
+
     color: white;
     text-transform: uppercase;
     font-family: 'Acme', sans-serif;
     font-size: 2em;
-    top: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+
 }
 
-/*#doneMessageCircle{*/
-    /*bottom: 24px;*/
-    /*right: 80px;*/
-    /*height: 220px;*/
-    /*width: 220px;*/
-    /*background-color: #add;*/
-    /*position: absolute;*/
-    /*-moz-border-radius: 50%;*/
-    /*-webkit-border-radius: 50%;*/
-    /*border-radius: 50%;*/
-/*}*/
+#doneMessageCircle{
+    bottom: 72px;
+    right: 136px;
+    height: 0px;
+    width: 0px;
+    background-color: #add;
+    position: absolute;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: none;
+
+}
 
 #bodyDoneRuzo{
     position: absolute;
@@ -1330,6 +1336,24 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     -webkit-transform:rotate(-10deg);
+}
+
+
+#eyesClosedMouthClosedDone{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    -webkit-transform:rotate(-10deg);
+}
+
+#eyesOpenMouthOpenDone{
+    position: absolute;
+    bottom: -5px;
+    right: -20px;
+    height: 250px;
+    opacity: 0;
+
 }
 
 
