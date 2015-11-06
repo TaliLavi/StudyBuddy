@@ -14,6 +14,19 @@ function preparePage() {
     //    FastClick.attach(document.body);
     //});
 
+
+    // FOR TESTING, DELETE WHEN DONE TESTING
+    $('body').on("touchstart", function(){
+        console.log('touchstart detected');
+        }
+    );
+
+    // FOR TESTING, DELETE WHEN DONE TESTING
+    $('body').on("touchend", function(){
+            console.log('touchend detected');
+        }
+    );
+
     timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
@@ -137,6 +150,8 @@ function applySortable(selector) {
 
 function pickupCard() {
     navigator.vibrate(100);
+    // NEXT LINE IS FOR TESTING, DELETE WHEN DONE TESTING
+    console.log('Sortable: Delay is over, card is effectively picked up and should be movable now');
     playPop();
 }
 
