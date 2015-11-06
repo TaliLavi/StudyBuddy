@@ -249,10 +249,6 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#cardAssignedDate').data('date', taskDetails.assigned_date);
     $('#cardAssignedDate').val(taskDetails.assigned_date);
 
-    // get title and description textareas be the right size to fit their contents.
-    //autoGrow(document.getElementById("cardDescription"));
-    //autoGrow(document.getElementById("cardTitle"));
-
     $('#taskModal').addClass('displayed');
 
     // Clear old onclick handlers and set new ones
@@ -290,7 +286,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
-        $('#taskCardHeadingDiv, #leftSideTaskCard').addClass(subjectDict.colour_scheme);
+        $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').addClass(subjectDict.colour_scheme);
         timeColoursGotDisplayedInTaskModal = $.now();
         console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
@@ -360,12 +356,6 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
     }
 }
 
-
-function autoGrow(element) {
-    element.style.height = "5px";
-    element.style.height = (element.scrollHeight)+"px";
-}
-
 //===========================================================================================================
 //CREATE A TASK CARD
 //===========================================================================================================
@@ -432,7 +422,7 @@ function closeModalWindow() {
 
     // ******************** FOR TASK MODAL ********************
     // remove all classes from #taskCardHeadingDiv & #leftSideTaskCard and then restore the the ones needed for future colour change
-    $('#taskCardHeadingDiv, #leftSideTaskCard').removeClass();
+    $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
 }
