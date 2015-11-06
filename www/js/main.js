@@ -1,7 +1,3 @@
-
-
-
-
 var timeAppWasLoaded;
 var timeCardsAppearOnCalendar;
 
@@ -14,6 +10,9 @@ function preparePage() {
         FastClick.attach(document.body);
     });
 
+    $('#addSubjectButton').on("click", function(){
+        openAddSubjectDialog();
+    });
 
     // FOR TESTING, DELETE WHEN DONE TESTING
     $('body').on("touchstart", function(){
