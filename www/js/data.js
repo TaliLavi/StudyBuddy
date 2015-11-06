@@ -1,5 +1,5 @@
 //GLOBAL VARIABLES
-var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
+FIREBASE_ROOT = "https://studybuddyapp.firebaseio.com";
 var LOGGED_IN_UID = null;
 
 // Do this on errors from firebase
@@ -15,7 +15,7 @@ function firebaseErrorFrom(funcName) {
 
 // Sign up a new user
 function signUpUser(firstName, lastName, email, password) {
-    var ref = FIREBASE_REF;
+    var ref = new Firebase(FIREBASE_ROOT);
     ref.createUser({
         email: email,
         password: password
@@ -37,7 +37,7 @@ function signUpUser(firstName, lastName, email, password) {
 
 // Log in existing user
 function logInUser(email, password, signUpCallback) {
-    var ref = FIREBASE_REF;
+    var ref = new Firebase(FIREBASE_ROOT);
     ref.authWithPassword({
         email    : email,
         password : password
@@ -81,7 +81,7 @@ function getLoggedInUser() {
 // ADD NEW USER TO THE DB
 function saveNewUser(newUser, uid, callback) {
     // CREATE A REFERENCE TO FIREBASE
-    var newUserRef = FIREBASE_REF.child('/Users/active/' + uid);
+    var newUserRef = new Firebase(FIREBASE_ROOT + '/Users/active/' + uid);
 
     //SAVE USER DATA TO FIREBASE
     newUserRef.set(newUser, function (error) {
@@ -94,8 +94,8 @@ function saveNewUser(newUser, uid, callback) {
 // MOVE USER TO DELETED
 // TODO: decide how this works with the authentication functions
 function deleteUser(userUID) {
-    var oldRef = FIREBASE_REF.child('/Users/active/' + userUID);
-    var newRef = FIREBASE_REF.child('/Users/deleted/' + userUID);
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Users/active/' + userUID);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Users/deleted/' + userUID);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
@@ -111,7 +111,7 @@ function deleteUser(userUID) {
 function pushNewSubject(name, colour_scheme, is_deleted) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first subject to be pushed, this will create a new Subjects/active node.
-    var subjectsRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser());
 
     //SAVE DATA TO FIREBASE
     // I generated a reference to a new location (e.i. assigned the push into a
@@ -126,7 +126,7 @@ function pushNewSubject(name, colour_scheme, is_deleted) {
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
 function fetchActiveSubjects(callback) {
-    var subjectsRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+    var subjectsRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser());
     subjectsRef.once("value", function(snapshot) {
         callback(snapshot.val());
     }, firebaseErrorFrom('fetchActiveSubjects'));
@@ -134,7 +134,7 @@ function fetchActiveSubjects(callback) {
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
 function fetchAnActiveSubject(subjectId, callback) {
-    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once("value", function(snapshot) {
         callback(snapshot.val());
     }, firebaseErrorFrom('fetchAnActiveSubject'));
@@ -142,7 +142,7 @@ function fetchAnActiveSubject(subjectId, callback) {
 
 // UPDATE SUBJECT'S NAME
 function changeSubjectName(subjectId, newName){
-    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
     subjectRef.update({
         "name": newName
     });
@@ -151,7 +151,7 @@ function changeSubjectName(subjectId, newName){
 
 // UPDATE SUBJECT'S COLOUR
 function updateSubjectColour(subjectId, newColour){
-    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
     subjectRef.update({
         "colour_scheme": newColour
     });
@@ -160,8 +160,8 @@ function updateSubjectColour(subjectId, newColour){
 
 // MOVE SUBJECT TO DELETED
 function deleteSubject(subjectId) {
-    var oldRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
-    var newRef = FIREBASE_REF.child('/Subjects/deleted/' + getLoggedInUser() + "/" + subjectId);
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + "/" + subjectId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Subjects/deleted/' + getLoggedInUser() + "/" + subjectId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
@@ -178,12 +178,12 @@ function deleteSubject(subjectId) {
 function saveNewTask(subjectId, weekDate, newTask, postSaveCallback) {
     // CREATE A REFERENCE TO FIREBASE
     // In case this is the first task to be pushed, this will create a new Tasks/active node.
-    var tasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate);
+    var tasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate);
     //SAVE DATA TO FIREBASE
     var newTaskRef =  tasksRef.push(newTask);
 
     // FETCH SUBJECT'S DATA AND PERFORM POST SAVE ACTIONS
-    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once("value", function(subjectSnapshot) {
         newTaskRef.once('value', function(newTask)  {
             postSaveCallback(subjectId, subjectSnapshot.val(), newTask.key(), newTask.val());
@@ -194,7 +194,7 @@ function saveNewTask(subjectId, weekDate, newTask, postSaveCallback) {
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL TASKS
 function fetchActiveTasks(perSubjectCallback) {
-    var activeTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active');
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
@@ -204,7 +204,7 @@ function fetchActiveTasks(perSubjectCallback) {
                     var weekTaskData = week.val();
                     $.extend(subjectTasksDict, weekTaskData);
                 });
-                var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+                var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
                 subjectRef.once("value", function(subjectSnapshot) {
                     perSubjectCallback(subjectId, subjectSnapshot.val(), subjectTasksDict);
                 }, firebaseErrorFrom('fetchActiveTasks'));
@@ -214,7 +214,7 @@ function fetchActiveTasks(perSubjectCallback) {
 }
 
 function fetchDoneTasksPerSubject(subjectId, callback) {
-    var doneTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId);
+    var doneTasksPerSubjectRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId);
     doneTasksPerSubjectRef.once("value", function(weeks) {
         if (weeks.val() !== null) {
             var tasksDict = {};
@@ -222,7 +222,7 @@ function fetchDoneTasksPerSubject(subjectId, callback) {
                 var tasksPerWeek = week.val();
                 $.extend(tasksDict, tasksPerWeek);
             });
-            var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
             subjectRef.once("value", function(subjectSnapshot) {
                 callback(subjectId, subjectSnapshot.val(), tasksDict);
             }, firebaseErrorFrom('fetchDoneTasksPerSubject'));
@@ -231,14 +231,14 @@ function fetchDoneTasksPerSubject(subjectId, callback) {
 }
 
 function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
-    var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
+    var doneTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done');
     doneTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
                 if (subject.hasChild(startOfWeek)) {
                     var subjectId = subject.key();
                     var weekTasksDict = subject.val()[startOfWeek];
-                    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
                     subjectRef.once("value", function(subjectSnapshot) {
                         var isDone = true;
                         perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict, isDone);
@@ -247,14 +247,14 @@ function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
             });
         }
     }, firebaseErrorFrom('fetchTasksByWeek'));
-    var activeTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active');
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
                 if (subject.hasChild(startOfWeek)) {
                     var subjectId = subject.key();
                     var weekTasksDict = subject.val()[startOfWeek];
-                    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
                     subjectRef.once("value", function(subjectSnapshot) {
                         perSubjectCallback(subjectId, subjectSnapshot.val(), weekTasksDict);
                     }, firebaseErrorFrom('fetchTasksByWeek'));
@@ -267,7 +267,7 @@ function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS
 function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
-    var activeTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active');
+    var activeTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active');
     activeTasksRef.once("value", function(subjects) {
         if (subjects.val() !== null) {
             subjects.forEach(function(subject) {
@@ -275,7 +275,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 
                 if (subject.hasChild('no_assigned_date')) {
                     var unassignedTasksDict = subject.val()['no_assigned_date'];
-                    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+                    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
                     subjectRef.once("value", function(subjectSnapshot) {
                         perUnassignedSubjectCallback(subjectId, subjectSnapshot.val(), unassignedTasksDict);
                     }, firebaseErrorFrom('fetchAllUnassignedActiveTasks'));
@@ -288,7 +288,7 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
 function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
-    var taskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
+    var taskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
     taskRef.once("value", function(snapshot) {
         callback(subjectId, taskId, snapshot.val(), isDone);
     }, firebaseErrorFrom('fetchSingleTask'));
@@ -297,8 +297,8 @@ function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
 
 function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updatedTaskDetail, postUpdateCallback) {
     var newWeekDate = startOfWeek(updatedTaskDetail.assigned_date);
-    var oldTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
-    var newTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+    var oldTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
+    var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
 
     // if we don't need to change the week, then the update is straightforward
     if (newWeekDate === oldWeekDate) {
@@ -314,7 +314,7 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
     }
 
     // POST UPDATE: FETCH SUBJECT'S DATA AND PERFORM POST UPDATE ACTIONS
-    var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
+    var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once('value', function(subjectSnapshot) {
         newTaskRef.once('value', function(updatedTask)  {
             postUpdateCallback(subjectId, subjectSnapshot.val(), taskId, originalTaskDetails, updatedTask.val());
@@ -324,8 +324,8 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
 
 function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateCallback) {
     var newWeekDate = startOfWeek(updatedDate.assigned_date);
-    var oldTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
-    var newTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
+    var oldTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + oldWeekDate + '/' + taskId);
+    var newTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + newWeekDate + '/' + taskId);
 
     // if we don't need to change the week, then the update is straightforward
     if (newWeekDate === oldWeekDate) {
@@ -346,8 +346,8 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
 
 // MOVE TASK TO DELETED
 function moveTaskToDeleted(subjectId, weekDate, taskId) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
-    var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
@@ -358,8 +358,8 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 // MOVE TASK TO DONE
 function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
-    var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
+    var oldRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
+    var newRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
@@ -375,7 +375,7 @@ function fetchTimeIntervals(callback) {
         callback(cachedSessionTimes);
         workSessionLength = cachedSessionTimes.study_session;
     } else {
-        var timeIntervalsRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
+        var timeIntervalsRef = new Firebase(FIREBASE_ROOT +'/Users/active/' + getLoggedInUser());
         timeIntervalsRef.once("value", function (snapshot) {
             var sessionTimes = snapshot.val()
             cachedSessionTimes = {
@@ -396,7 +396,7 @@ function incrementNumOfBreaks(subjectId, weekDate, taskId) {
 }
 
 function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
-    var tasksBreakRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
         tasksBreakRef.set(newNum);
@@ -405,7 +405,7 @@ function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
 
 function incrementNumOfBreaksForDate() {
     var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var tasksBreakRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
+    var tasksBreakRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
         tasksBreakRef.set(newNum);
@@ -419,7 +419,7 @@ function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
 }
 
 function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
-    var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
+    var totalSecondsStudiedPerTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
         totalSecondsStudiedPerTaskRef.set(newTotalTime);
@@ -431,7 +431,7 @@ function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStu
 
 function updateTimeStudiedForDate(additionalTimeStudied) {
     var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/time_studied');
+    var totalSecondsStudiedPerDateRef = new Firebase(FIREBASE_ROOT + '/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/time_studied');
     totalSecondsStudiedPerDateRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
         totalSecondsStudiedPerDateRef.set(newTotalTime);
@@ -439,7 +439,7 @@ function updateTimeStudiedForDate(additionalTimeStudied) {
 }
 
 function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) {
-    var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
+    var totalSecondsStudiedPerTaskRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
         var totalTimeStudied = snapshot.val();
         callback(totalTimeStudied, isDone);
@@ -452,10 +452,10 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
 
 // RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
 function fetchAllDoneTasks(callback) {
-    var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
+    var doneTasksRef = new Firebase(FIREBASE_ROOT + '/Tasks/' + getLoggedInUser() + '/done');
     doneTasksRef.once("value", function(doneTasksSnapshot) {
         if (doneTasksSnapshot.val() !== null) {
-            var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+            var subjectRef = new Firebase(FIREBASE_ROOT + '/Subjects/active/' + getLoggedInUser());
             subjectRef.once("value", function(subjectsSnapshot) {
                 callback(subjectsSnapshot.val(), doneTasksSnapshot.val());
             }, firebaseErrorFrom('fetchAllDoneTasks'));
