@@ -59,7 +59,7 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '" maxlength="45">' +
-                        '<button class="bulkSubmit" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
+                        '<button class="bulkSubmit ' + subjectData.colour_scheme + '" onclick="createTaskFromSubjectPage(\'' + subjectKey + '\')">Add Task</button>' +
                     '</div>' +
                     '<div class="todoWrapper" id="tasksFor' + subjectKey + '"></div>' +
                     '<button type="button" class="completedTasksButton closed" onclick="fetchAndDisplayCompletedTasks(\'' +
@@ -230,6 +230,9 @@ function changeSubjectColour(subjectId) {
     // change background colour for subject area
     $('#subjectArea' + subjectId).removeClassPrefix('theme');
     $('#subjectArea' + subjectId).addClass(newColour);
+    // change font colour for the add a task button in subject page
+    $('#subjectArea' + subjectId).find('.bulkSubmit').removeClassPrefix('theme');
+    $('#subjectArea' + subjectId).find('.bulkSubmit').addClass(newColour);
     // change text colour on tasks in subject area
     var titleElements = $('#tasksFor' + subjectId).find('span');
     titleElements.removeClassPrefix('theme');
