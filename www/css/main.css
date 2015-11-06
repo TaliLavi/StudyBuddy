@@ -1329,7 +1329,7 @@ input:focus {outline:0;}
     bottom: -5px;
     right: -20px;
     height: 250px;
-    transform:rotate(-10deg);
+    -webkit-transform:rotate(-10deg);
 }
 
 
