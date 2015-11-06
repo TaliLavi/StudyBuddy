@@ -22,6 +22,7 @@
   <script src='external/fastclick.js'></script>
   <!--TweenMax.js must appear before date.js-->
   <script src='external/TweenMax.js'></script>
+    <script src='js/animations.js'></script>
   <script src="external/date.js"></script>
   <script src="external/time.js"></script>
   <script src="external/gistfile1.js"></script>
@@ -35,6 +36,7 @@
   <script src='js/pomodoro.js'></script>
   <script src="js/progress.js"></script>
   <script src='js/main.js'></script>
+
   <script src="cordova.js"></script>
 </head>
 
@@ -106,6 +108,7 @@
       <button  id="profileButton">Profile</button>
       <button  id="signoutButton">Sign out</button>
       <button  id="settingsButton">Settings</button>
+        <button onclick="animateRuzoDone()">Animate Ruzo</button>
     </div>
 
     <!--========================================================================================================-->
@@ -171,8 +174,6 @@
     </div>
 
   </div>
-
-
 
   <!--========================================================================================================-->
   <!--ADD SUBJECT (MODAL WINDOW)-->
@@ -387,6 +388,17 @@
       </div>
     </div>
   </div>
+
+    <!--========================================================================================================-->
+    <!--RUZO FOR WHEN TASK IS COMPLETE-->
+    <!--========================================================================================================-->
+
+
+    <div id="doneCircle"><span id="taskDoneMessage"></span></div>
+    <!--<div id="doneMessageCircle"></div>-->
+    <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
+    <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+    <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
 
   <audio id="popSound">
     <source src="popSound.ogg" type="audio/ogg">

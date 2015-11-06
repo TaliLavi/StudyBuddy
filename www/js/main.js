@@ -1,3 +1,7 @@
+
+
+
+
 var timeAppWasLoaded;
 var timeCardsAppearOnCalendar;
 
