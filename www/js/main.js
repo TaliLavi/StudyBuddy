@@ -1,7 +1,3 @@
-
-
-
-
 var timeAppWasLoaded;
 var timeCardsAppearOnCalendar;
 
@@ -9,11 +5,14 @@ var timeCardWasClicked;
 var timeColoursGotDisplayedInTaskModal;
 
 function preparePage() {
-    // Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
-    //$(function() {
-    //    FastClick.attach(document.body);
-    //});
+     //Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
+    $(function() {
+        FastClick.attach(document.body);
+    });
 
+    $('#addSubjectButton').on("click", function(){
+        openAddSubjectDialog();
+    });
 
     // FOR TESTING, DELETE WHEN DONE TESTING
     $('body').on("touchstart", function(){
