@@ -1283,8 +1283,8 @@ input:focus {outline:0;}
 
 #doneCircle{
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: -100px;
+    right: -80px;
     height: 20px;
     width: 20px;
     background-color: #A0AFBE;
@@ -1329,7 +1329,7 @@ input:focus {outline:0;}
     bottom: -5px;
     right: -20px;
     height: 250px;
-    transform:rotate(-5deg);
+    transform:rotate(-10deg);
 }
 
 
