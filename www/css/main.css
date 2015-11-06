@@ -429,6 +429,7 @@ input:focus {outline:0;}
 #totalTimeStudiedActiveTask{
     line-height: 20px;
     margin-top: 5%;
+    color: white;
 }
 
 #cardAssignedDate{

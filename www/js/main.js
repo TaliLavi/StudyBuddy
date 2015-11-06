@@ -351,7 +351,9 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far.");
+            $('#totalTimeStudiedActiveTask').text(hoursString + (and? "and " : "") + minutesString);
+        } else {
+            $('#totalTimeStudiedActiveTask').text("No time yet!");
         }
     }
 }
