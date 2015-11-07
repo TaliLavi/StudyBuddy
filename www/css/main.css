@@ -1310,6 +1310,7 @@ input:focus {outline:0;}
 /*==================================================================================================*/
 
 #doneRuzoDiv{
+
     position: absolute;
     bottom: 0;
     right:0;
@@ -1399,7 +1400,7 @@ input:focus {outline:0;}
     bottom: -11px;
     right: -18px;
     height: 250px;
-    overflow: hidden;
+
     /*background-color: rgba(200, 0, 0, .5);*/
 }
 
