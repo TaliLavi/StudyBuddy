@@ -105,6 +105,7 @@ function updateTaskFields(subjectId, taskId, taskData){
 }
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
+    console.log('updatedTask in updateTaskFieldsAndMoveCard() is:', updatedTask)
     updateTaskFields(subjectId, taskId, updatedTask);
     // remove and append task in the DOM only if the task's date was changed
     if (originalTask.assigned_date !== updatedTask.assigned_date) {
@@ -125,7 +126,7 @@ function createAndAppendTaskElement(listSelector, subjectKey, subjectDict, taskK
     } else {
         var taskHtml = createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone);
         // append card to list
-        var task = $(taskHtml).appendTo(listSelector);
+        $(taskHtml).appendTo(listSelector);
         setClickForCardTask(subjectKey, taskKey);
     }
 }
@@ -139,12 +140,14 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     }
     //create html for done task in the calendar
     if (isDone !== undefined) {
+        console.log('taskData.assigned_date in createCardTaskHtml() is:', taskData.assigned_date);
+        console.log('taskDate in createCardTaskHtml() is:', taskDate);
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '" data-task-date="' + taskDate + '">' +
                             '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
                             '</div>' +
                         '</li>';
-        //create html for active task in the calendar OR for unassigned task in the footer
+    //create html for active task in the calendar OR for unassigned task in the footer
     } else {
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '" data-task-date="' + taskDate + '">' +
                             '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour">' +
@@ -207,6 +210,7 @@ function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
 
 // APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER
 function appendCard(subjectId, subjectData, taskKey, taskData) {
+    console.log('taskData.assigned_date in appendCard() is:', appendCard);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';
@@ -338,6 +342,8 @@ function markAsDone(subjectId, originalDate, taskId) {
 
     // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
     $('#unassignedTasksList li[data-taskid="' + taskId + '"]').prependTo('#' + today);
+    // change card's task-date data attribute
+    $('li[data-taskid="' + taskId + '"]').data('task-date', today);
 
     // apply class doneTask
     $('.dayList li[data-taskid="' + taskId + '"] div').addClass("doneTask");
@@ -346,21 +352,8 @@ function markAsDone(subjectId, originalDate, taskId) {
     $('.todoWrapper div[data-taskid="' + taskId + '"]').next().remove();
     $('.todoWrapper div[data-taskid="' + taskId + '"]').remove();
 
-    if (originalDate === "no_assigned_date") {
-        // get this week's monday
-        if (Date.today().is().monday()) {
-            // if today happens to be a Monday, save it as this week's monday
-            var currentWeekMonday = (Date.today()).toString('yyyy-MM-dd');
-        } else {
-            // else, go to last monday
-            var currentWeekMonday = (Date.today().last().monday()).toString('yyyy-MM-dd');
-        }
-    } else {
-        var currentWeekMonday = originalDate;
-    }
-
     playRuzoDone();
-    moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday);
+    moveTaskToDone(subjectId, taskId, originalDate);
 }
 
 

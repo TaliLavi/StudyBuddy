@@ -317,6 +317,7 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
     var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once('value', function(subjectSnapshot) {
         newTaskRef.once('value', function(updatedTask)  {
+            console.log('updatedTask.val() in updateTask() is:', updatedTask.val())
             postUpdateCallback(subjectId, subjectSnapshot.val(), taskId, originalTaskDetails, updatedTask.val());
         }, firebaseErrorFrom('updateTask'));
     }, firebaseErrorFrom('updateTask'));
@@ -358,11 +359,16 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 
 // MOVE TASK TO DONE
-function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
+function moveTaskToDone(subjectId, taskId, originalDate) {
+    var today = Date.today().toString('yyyy-MM-dd');
+    var currentWeekMonday = startOfWeek(today);
     var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
     var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
+        // update task's assigned date to be today's
+        var taskDetails = snapshot.val();
+        taskDetails.assigned_date = today;
+        newRef.set(taskDetails);
         oldRef.remove();
     }, firebaseErrorFrom('moveTaskToDone'));
 }
