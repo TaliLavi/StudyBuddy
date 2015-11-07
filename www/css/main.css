@@ -1314,25 +1314,21 @@ input:focus {outline:0;}
     bottom: 0;
     right:0;
     height: 50%;
-    width: 30%;
+    width: 50%;
     z-index: 10;
     overflow: hidden;
 }
 
 #doneCircle{
     position: absolute;
-    /*bottom: -100px;*/
-    /*right: -80px;*/
-
     bottom: -100px;
     right: -80px;
-    height: 400px;
-    width: 400px;
+    height: 20px;
+    width: 20px;
     background-color: #A0AFBE;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    /*overflow: hidden;*/
 
     /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
     /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
@@ -1353,17 +1349,14 @@ input:focus {outline:0;}
     position: absolute;
     bottom: 72px;
     right: 136px;
-    /*height: 0px;*/
-    /*width: 0px;*/
-    height: 220px;
-    width: 220px;
+    height: 0px;
+    width: 0px;
     background-color: #add;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    /*display: none;*/
-    display: table;
-    overflow: hidden;
+    display: none;
+
 }
 
 #bodyDoneRuzo{
@@ -1371,7 +1364,6 @@ input:focus {outline:0;}
     bottom: -5px;
     right: -20px;
     height: 250px;
-    overflow: hidden;
 }
 
 #eyesOpenMouthClosedDone{
@@ -1380,7 +1372,6 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     -webkit-transform:rotate(-10deg);
-    overflow: hidden;
 }
 
 
@@ -1390,7 +1381,6 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     -webkit-transform:rotate(-10deg);
-    overflow: hidden;
 }
 
 #eyesOpenMouthOpenDone{
@@ -1399,7 +1389,6 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     opacity: 0;
-    overflow: hidden;
 
 }
 
@@ -1409,6 +1398,5 @@ input:focus {outline:0;}
     bottom: -11px;
     right: -18px;
     height: 250px;
-    overflow: hidden;
     /*background-color: rgba(200, 0, 0, .5);*/
 }
