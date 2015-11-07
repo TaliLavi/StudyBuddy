@@ -236,7 +236,7 @@ function prepareCalendar() {
 
 function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
-    if (taskDetails.title.length> 30){
+    if (taskDetails.title.length> 25){
         //console.log("The tile has more than 30 characters");
         $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
     } else {
