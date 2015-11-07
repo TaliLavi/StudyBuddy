@@ -357,6 +357,7 @@ function markAsDone(subjectId, originalDate, taskId) {
         var currentWeekMonday = originalDate;
     }
 
+    playRuzoDone();
     moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday);
 }
 
