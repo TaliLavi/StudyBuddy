@@ -344,14 +344,18 @@
           <br>
           <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here."></textarea>
           <br>
-          <label>Date:</label>
-          <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
-          <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
-          <br>
-            <label id="dateLabel">Date:</label>
-            <div id ="totalTimeStudiedActiveTask" ></div>
-          <br>
-          <!--<button type="button" id="deleteTask">DELETE TASK</button>-->
+          <div id="timeAndDateDiv">
+              <div style="white-space:nowrap">
+                  <label id="dateLabel" for="cardAssignedDate">Date:</label>
+                  <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
+              </div>
+              <br>
+              <div style="white-space:nowrap">
+                  <label id="timeLabel" for="totalTimeStudiedActiveTask">Time Studied:</label>
+                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask">
+              </div>
+          </div>
+            <br>
           <img src="img/binIcon.png" class="binIconTaskcard" id="deleteTask">
           <button type="button" id="completeTask">Task Done ?</button>
         </form>

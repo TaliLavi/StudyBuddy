@@ -408,6 +408,7 @@ input:focus {outline:0;}
     overflow:scroll;
     min-height: 84px;
     color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1%;
     /*max-height: 200px;*/
 }
 
@@ -426,26 +427,43 @@ input:focus {outline:0;}
 
 }
 
-#totalTimeStudiedActiveTask{
-    line-height: 20px;
-    margin-top: 5%;
-    color: white;
+#timeAndDateDiv{
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
 }
 
-#cardAssignedDate{
-    display: inline;
+#totalTimeStudiedActiveTask{
+    display: inline-block;
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
-    width: 50%;
-
+    width: 60%;
+    padding: 2%;
 }
 
 #dateLabel{
-    display: inline;
-    margin-right: 5px;
+    display: inline-block;
+    width: 40%;
+    padding: 2%;
+}
+
+#timeLabel{
+    display: inline-block;
+    width: 40%;
+    padding: 2%;
 
 }
+
+#cardAssignedDate{
+    display: inline-block;
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    width: 60%;
+    padding: 2%;
+}
+
 
 #closeTaskModal{
     display: block;

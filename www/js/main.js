@@ -241,6 +241,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
         $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
     } else {
         $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
+
     }
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
@@ -317,7 +318,7 @@ function showTaskModal(subjectId, isDone) {
 }
 
 function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
-    $('#totalTimeStudiedActiveTask').text('');
+    $('#totalTimeStudiedActiveTask').val('');
     var hours = Math.floor(totalSecondsStudied/3600);
     var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
     var hoursString = "";
@@ -352,9 +353,9 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').text(hoursString + (and? "and " : "") + minutesString);
+            $('#totalTimeStudiedActiveTask').val(hoursString + (and? "and " : "") + minutesString);
         } else {
-            $('#totalTimeStudiedActiveTask').text("No time yet!");
+            $('#totalTimeStudiedActiveTask').val("No time yet!");
         }
     }
 }
