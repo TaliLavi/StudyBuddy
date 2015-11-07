@@ -406,7 +406,7 @@ function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
 
 function incrementNumOfBreaksForDate() {
     var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var tasksBreakRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
+    var tasksBreakRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
         tasksBreakRef.set(newNum);
@@ -432,7 +432,7 @@ function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStu
 
 function updateTimeStudiedForDate(additionalTimeStudied) {
     var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/time_studied');
+    var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/time_studied');
     totalSecondsStudiedPerDateRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
         totalSecondsStudiedPerDateRef.set(newTotalTime);
