@@ -51,6 +51,9 @@ function preparePage() {
 
     // indicate which colours are already in use
     checkIsColourInUse();
+
+    // prepare Done Ruzo animation
+    prepareDoneRuzo();
 }
 
 

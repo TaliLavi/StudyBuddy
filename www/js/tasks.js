@@ -358,7 +358,6 @@ function markAsDone(subjectId, originalDate, taskId) {
     }
 
     moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday);
-
 }
 
 

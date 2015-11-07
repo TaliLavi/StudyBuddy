@@ -146,8 +146,8 @@ function prepareHeatmapData(heatmapSnapshot) {
     //console.log('heatmapSnapshot is:', heatmapSnapshot);
     if (heatmapSnapshot !== null) {
         $.each(heatmapSnapshot, function(date, timeDict){
-            console.log('date is:', date);
-            console.log('timeDict is:', timeDict);
+            //var currentDate = Date.parse(date);
+            //var epochTimestamp = currentDate.format("U");
         })
     }
 }
