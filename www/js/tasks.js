@@ -83,9 +83,11 @@ function updateTaskFields(subjectId, taskId, taskData){
     var newWeekDate = startOfWeek(taskData.assigned_date);
     $('#cardAssignedDate').data('date', newWeekDate);
     // change the description of the todotask.
-    $('#todoDescriptionFor' + taskId).text(taskData.description);
+    var choppedTaskDesc = threeDots(taskData.description, 38);
+    $('#todoDescriptionFor' + taskId).text(choppedTaskDesc);
     // change the title of the todotask.
-    $('#todoTitleFor' + taskId).text(taskData.title);
+    var choppedTaskTitle = threeDots(taskData.title, 28);
+    $('#todoTitleFor' + taskId).text(choppedTaskTitle);
     // change the title of the card.
     $('li[data-taskid="' + taskId + '"] > div > span').text(taskData.title);
     // change the date data attribute of the card task
@@ -172,18 +174,8 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         var cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
     }
 
-    var choppedTaskTitle
-    if(taskData.title.length > 28){
-        choppedTaskTitle =taskData.title.substring(0, 28)+"...";
-    }else{
-        choppedTaskTitle = taskData.title;
-    }
-    var choppedTaskDesc
-    if(taskData.description.length > 38){
-        choppedTaskDesc =taskData.description.substring(0, 38)+"...";
-    }else{
-        choppedTaskDesc = taskData.description;
-    }
+    var choppedTaskTitle = threeDots(taskData.title, 28);
+    var choppedTaskDesc = threeDots(taskData.description, 38);
 
     var taskHtml = '<div id="todoTaskFor' + taskKey + '" class="todoTask ' + subjectDict.colour_scheme + '" data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '">' +
         '<span id="todoTitleFor' + taskKey + '" class= "todoTitle ' + subjectDict.colour_scheme +'">'+ choppedTaskTitle +'</span>' +
@@ -193,6 +185,16 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         '<br/>';
 
     return taskHtml;
+}
+
+function threeDots(userInputString, numOfCharacters) {
+    var choppedString;
+    if(userInputString.length > numOfCharacters){
+        choppedString =userInputString.substring(0, numOfCharacters)+"...";
+    }else{
+        choppedString = userInputString;
+    }
+    return choppedString;
 }
 
 function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
