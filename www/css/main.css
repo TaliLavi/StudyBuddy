@@ -1390,6 +1390,7 @@ input:focus {outline:0;}
     height: 250px;
     opacity: 0;
 
+
 }
 
 
@@ -1398,5 +1399,26 @@ input:focus {outline:0;}
     bottom: -11px;
     right: -18px;
     height: 250px;
+    overflow: hidden;
     /*background-color: rgba(200, 0, 0, .5);*/
 }
+
+
+/*===============================================================================================*/
+/* PROFILE PAGE */
+/*===============================================================================================*/
+
+#profilePage{
+    background-color: red;
+    overflow: auto;
+    overflow-y: scroll;
+    position: relative;
+    height: 768px;
+    width: 100%;
+}
+
+/*#anotherDiv{*/
+    /*background-color: red;*/
+    /*width: 20%;*/
+    /*height: 1000px;*/
+/*}*/

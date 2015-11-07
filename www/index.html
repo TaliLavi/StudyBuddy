@@ -118,10 +118,14 @@
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
-      <svg class="chart"></svg>
-      <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
-      <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
-      <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+        <div id="profileChart">
+            <svg class="chart"></svg>
+            <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
+            <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
+            <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
+            <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+        </div>
+        <!--<div id="anotherDiv"></div>-->
     </div>
 
     <!--========================================================================================================-->
