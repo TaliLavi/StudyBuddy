@@ -1318,6 +1318,7 @@ input:focus {outline:0;}
     width: 50%;
     z-index: 10;
     overflow: hidden;
+    display: none;
 }
 
 #doneCircle{

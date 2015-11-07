@@ -10,7 +10,7 @@ function preparePage() {
         FastClick.attach(document.body);
     });
 
-    //cal.init({});
+    cal.init({});
 
     // FOR TESTING, DELETE WHEN DONE TESTING
     $('body').on("touchstart", function(){
