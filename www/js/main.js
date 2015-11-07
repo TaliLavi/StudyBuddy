@@ -10,8 +10,6 @@ function preparePage() {
         FastClick.attach(document.body);
     });
 
-    cal.init({});
-
     // FOR TESTING, DELETE WHEN DONE TESTING
     $('body').on("touchstart", function(){
         console.log('touchstart detected');
@@ -70,6 +68,8 @@ function prepareNavigation() {
     $("#profileButton").click(function(){
         switchToPage("#profilePage", "#profileButton");
         fetchAndDisplayBarGraphSinceDawnOfTime();
+        // draw the heat-map inside the progress page (in #cal-heatmap)
+        drawHeatmap();
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");

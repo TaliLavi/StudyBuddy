@@ -22,14 +22,13 @@
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
   <script src='external/d3.js'></script>
-  <script src="external/cal-heatmap.min.js"></script>
+  <script src="external/cal-heatmap.js"></script>
   <script src='external/fastclick.js'></script>
   <!--TweenMax.js must appear before date.js-->
   <script src='external/TweenMax.js'></script>
-    <script src='js/animations.js'></script>
+  <script src='js/animations.js'></script>
   <script src="external/date.js"></script>
   <script src="external/time.js"></script>
-  <script src="external/extras.js"></script>
   <script src="external/gistfile1.js"></script>
   <script src="external/Sortable.js"></script>
   <script src="external/detectMobileBrowsers.js"></script>
@@ -119,14 +118,15 @@
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
+      <div id="cal-heatmap"></div>
+      <button onclick="drawHeatmap()">Refreseh heatmap</button>
+
+      <br><br><br>
+
       <svg class="chart"></svg>
       <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
       <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
       <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
-
-      <br><br><br>
-
-      <div id="cal-heatmap"></div>
 
     </div>
 

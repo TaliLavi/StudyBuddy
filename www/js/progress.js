@@ -45,7 +45,7 @@ function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
 
 // generate graph for tasks in last 7 days (7*24 hours)
 function fetchAndDisplayBarGraphForLast7Days() {
-    $(".chart").text(""); // clear previous contents
+    $(".chart").html(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLast7Days);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
@@ -124,30 +124,38 @@ function drawBarGraph(data) {
 /* HEATMAP */
 /*===================================================================================================================*/
 
-var cal = new CalHeatMap();
+function drawHeatmap(){
+    $('#cal-heatmap').html("");
+    fetchHeatmapData(function(heatmapSnapshot) {
+        var heatmapData = prepareHeatmapData(heatmapSnapshot);
+        var cal = new CalHeatMap();
+        cal.init({
+            itemSelector: "#cal-heatmap",
+            domain: "month",
+            subDomain: "day",
+            range: 12,
+            cellSize: 15,
+            start: new Date(2015, 8, 1),
+            data: heatmapData,
+            subDomainTextFormat: "%d"
+        });
+    })
+}
 
-var dataSet = {};
-
-$(document).ready(function(){
-    cal.init({
-        domain: "month",
-        subDomain: "day",
-        range: 12,
-        cellSize: 15,
-        start: new Date(2015, 8, 1),
-        data: dataSet,
-        subDomainTextFormat: "%d"
-    });
-    fetchHeatmapData(prepareHeatmapData);
-});
-
+function convertToEpoch(time) {
+    var d = Date.parse(time);
+    d.addMinutes(d.getTimezoneOffset() * -1);
+    return Math.round(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds()) / 1000);
+};
 
 function prepareHeatmapData(heatmapSnapshot) {
-    //console.log('heatmapSnapshot is:', heatmapSnapshot);
+    var dataSet = {};
     if (heatmapSnapshot !== null) {
         $.each(heatmapSnapshot, function(date, timeDict){
-            //var currentDate = Date.parse(date);
-            //var epochTimestamp = currentDate.format("U");
+            var timestamp = convertToEpoch(date);
+            var value = timeDict.time_studied;
+            dataSet[timestamp] = value;
         })
     }
+    return dataSet
 }

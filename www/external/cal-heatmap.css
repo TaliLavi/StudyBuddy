@@ -2,6 +2,7 @@
 
 .cal-heatmap-container {
 	display: block;
+	width: 100%;
 }
 
 .cal-heatmap-container .graph
