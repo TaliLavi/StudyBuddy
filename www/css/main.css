@@ -1409,7 +1409,7 @@ input:focus {outline:0;}
 /*===============================================================================================*/
 
 #profilePage{
-    background-color: red;
+
     overflow: auto;
     overflow-y: scroll;
     position: relative;
