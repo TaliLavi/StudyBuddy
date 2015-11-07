@@ -1,3 +1,7 @@
+/*===================================================================================================================*/
+/* BAR CHART */
+/*===================================================================================================================*/
+
 // Constants
 BAR_CHART_WIDTH = 960;
 BAR_CHART_HEIGHT = 500;
@@ -114,4 +118,36 @@ function drawBarGraph(data) {
         .attr("x", function(d) { return x(d.subject) + x.rangeBand()/2; }) // we divide by 2 to put the text on the bar's centre
         .attr("y", function(d) { return y(d.doneTasks) - textOffset; })
         .text(function(d) { return d.doneTasks; });
+}
+
+/*===================================================================================================================*/
+/* HEATMAP */
+/*===================================================================================================================*/
+
+var cal = new CalHeatMap();
+
+var dataSet = {};
+
+$(document).ready(function(){
+    cal.init({
+        domain: "month",
+        subDomain: "day",
+        range: 12,
+        cellSize: 15,
+        start: new Date(2015, 8, 1),
+        data: dataSet,
+        subDomainTextFormat: "%d"
+    });
+    fetchHeatmapData(prepareHeatmapData);
+});
+
+
+function prepareHeatmapData(heatmapSnapshot) {
+    //console.log('heatmapSnapshot is:', heatmapSnapshot);
+    if (heatmapSnapshot !== null) {
+        $.each(heatmapSnapshot, function(date, timeDict){
+            console.log('date is:', date);
+            console.log('timeDict is:', timeDict);
+        })
+    }
 }

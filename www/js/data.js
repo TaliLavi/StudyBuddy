@@ -463,3 +463,11 @@ function fetchAllDoneTasks(callback) {
         }
     }, firebaseErrorFrom('fetchAllDoneTasks'));
 }
+
+
+function fetchHeatmapData(callback) {
+    var heatmapRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser());
+    heatmapRef.once("value", function(heatmapSnapshot) {
+        callback(heatmapSnapshot.val());
+    })
+}
