@@ -61,12 +61,15 @@ function preparePage() {
 
 // show and hide different pages
 var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
-var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
+var buttonIds = ["#calendarButton", "#subjectsButton", "#progressButton"];
 
 
 function prepareNavigation() {
-    $("#profileButton").click(function(){
-        switchToPage("#profilePage", "#profileButton");
+    $("#progressButton").click(function(){
+        switchToPage("#profilePage", "#progressButton");
+        $('#subjectsHighlight').hide();
+        $('#weekHighlight').hide();
+        $('#progressHighlight').show();
         var renewCache = true;
         fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
         // draw the heat-map inside the progress page (in #cal-heatmap)
@@ -75,10 +78,12 @@ function prepareNavigation() {
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
         $('#subjectsHighlight').hide();
+        $('#progressHighlight').hide();
         $('#weekHighlight').show();
     });
     $("#subjectsButton").click(function(){
         switchToPage("#subjectsPage", "#subjectsButton");
+        $('#progressHighlight').hide();
         $('#subjectsHighlight').show();
         $('#weekHighlight').hide();
     });
@@ -196,7 +201,7 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         daysHtml += '<div class="col dayColumn">' +
             '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
             '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
-            '<button class="addTaskFromCalendar needsclick" onclick="openAddTaskDialog(\'' +
+            '<button class="addTaskFromCalendar" onclick="openAddTaskDialog(\'' +
             formatDate(currentDate) + '\');">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + formatDate(currentDate) + '"></ul>' +
             '</div>';
@@ -407,9 +412,9 @@ function closeModalWindow() {
     $('#navBar').removeClass('frostedGlass');
     $('#subjectsPage').removeClass('frostedGlass');
     //Fade out the greyed background
-    $('.modal-bg').fadeOut();
+    $('.modal-bg').hide();
     //Fade out the modal window
-    $('.modal').fadeOut();
+    $('.modal').hide();
 
     // Clear input fields
     $('.inputField').val('');
