@@ -504,10 +504,10 @@ function openEmptyModal(){
     $('#testingModal').css('display','block');
     //Fades in the greyed-out background
     $('#testingModalBG').show();
-    ////Add frosted glass to all areas visible in the background
-    //$('#subjectsPage').addClass('frostedGlass');
-    //$('#iPadStatusBar').addClass('frostedGlass');
-    //$('#navBar').addClass('frostedGlass')
+    //Add frosted glass to all areas visible in the background
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass')
 
     //setCloseWhenClickingOutside($('#testingModal'));
 }
