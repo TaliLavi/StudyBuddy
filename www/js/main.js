@@ -499,19 +499,6 @@ function openAddSubjectDialog(){
     setCloseWhenClickingOutside($('#addSubjectModal'));
 }
 
-function openEmptyModal(){
-    //Makes the modal window display
-    $('#testingModal').css('display','block');
-    //Fades in the greyed-out background
-    $('#testingModalBG').show();
-    //Add frosted glass to all areas visible in the background
-    $('#subjectsPage').addClass('frostedGlass');
-    $('#iPadStatusBar').addClass('frostedGlass');
-    $('#navBar').addClass('frostedGlass')
-
-    //setCloseWhenClickingOutside($('#testingModal'));
-}
-
 //Helper functions:
 // GET THE DATE FOR MONDAY OF DATE'S WEEK
 function startOfWeek(dateString, offsetDays) {
