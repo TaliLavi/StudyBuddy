@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <!--FOR REMOTE DEBUGGING ON WINDOWS-->
-  <script src="http://jsconsole.com/remote.js?0E976744-1F3A-47F1-8780-72ACA813CF29"></script>
+  <script src="http://jsconsole.com/remote.js?FD69EA11-06CF-4064-9AE9-58DD631E3D49"></script>
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
   <script src='external/d3.js'></script>
@@ -114,10 +114,6 @@
             <img  class="navIcon" src="img/settingsIcon.png">
             <span>Settings</span>
         </button>
-
-
-
-     
       <!--<button  id="signoutButton">Sign out</button>-->
       <!--<button  id="settingsButton">Settings</button>-->
     </div>
@@ -126,14 +122,20 @@
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
-      <svg class="chart"></svg>
-      <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
-      <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
-      <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+        <div id="subjectsRecordSection">
+            <div id="barHeadingDiv">
+                <div class="barChartHeading">TASKS COMPLETED</div>
+                <button id="dawnTimeButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">All time</button>
+                <button id="lastMonthButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
+                <button id="lastWeekButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+            </div>
 
-      <br><br><br>
-
-      <div id="cal-heatmap"></div>
+            <svg class="chart"></svg>
+            <p id="subjectsThisWeekMessage">Great job with Maths this week Sarah!</p>
+        </div>
+        <div id="heatmapSection">
+            <div id="cal-heatmap"></div>
+        </div>
     </div>
 
     <!--========================================================================================================-->
@@ -181,6 +183,7 @@
       <div id="subjectsPanel">
         <div id="mySubjectsTitle">My Subjects</div>
         <button id="addSubjectButton" onclick="openAddSubjectDialog();">Add a subject...</button>
+        <button type="button" onclick="openEmptyModal();">Open Empty Module</button>
         <div id="subjectsList"></div>
       </div>
       <div id="tasksPerSubject" class="theme1Colour10b">
@@ -338,6 +341,17 @@
 
 
   <!--========================================================================================================-->
+  <!--TESTING DIALOG (MODAL WINDOW)-->
+  <!--========================================================================================================-->
+  <div id="testingModalBG" class="modal-bg">
+    <div id="testingModal" class="modal">
+      <!--<span class="closeX" onclick="closeModalWindow();">x</span>-->
+      <div>Some content</div>
+    </div>
+  </div>
+
+
+  <!--========================================================================================================-->
   <!--TASK DIALOG (MODAL WINDOW)-->
   <!--========================================================================================================-->
   <div id="taskModalBG" class="modal-bg">
@@ -443,5 +457,3 @@
 </div>
 </body>
 </html>
-
-<!--comment-->
