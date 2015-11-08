@@ -406,8 +406,9 @@ input:focus {outline:0;}
     line-height: 1.75em;
     resize:none;
     overflow:scroll;
-    min-height: 100px;
+    min-height: 84px;
     color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1%;
     /*max-height: 200px;*/
 }
 
@@ -426,16 +427,43 @@ input:focus {outline:0;}
 
 }
 
-#totalTimeStudiedActiveTask{
-    line-height: 20px;
-    margin-top: 5%;
+#timeAndDateDiv{
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
 }
 
-#cardAssignedDate{
+#totalTimeStudiedActiveTask{
+    display: inline-block;
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
+    width: 60%;
+    padding: 2%;
 }
+
+#dateLabel{
+    display: inline-block;
+    width: 40%;
+    padding: 2%;
+}
+
+#timeLabel{
+    display: inline-block;
+    width: 40%;
+    padding: 2%;
+
+}
+
+#cardAssignedDate{
+    display: inline-block;
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+    box-sizing: border-box;
+    width: 60%;
+    padding: 2%;
+}
+
 
 #closeTaskModal{
     display: block;
@@ -1283,9 +1311,13 @@ input:focus {outline:0;}
 
 #doneRuzoDiv{
     position: absolute;
-    bottom: 0px;
-    right: 0px;
-    background-color: plum;
+    bottom: 0;
+    right:0;
+    height: 50%;
+    width: 50%;
+    z-index: 10;
+    overflow: hidden;
+    display: none;
 }
 
 #doneCircle{
@@ -1298,7 +1330,6 @@ input:focus {outline:0;}
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    overflow: hidden;
 
     /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
     /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
@@ -1316,17 +1347,17 @@ input:focus {outline:0;}
 }
 
 #doneMessageCircle{
+    position: absolute;
     bottom: 72px;
     right: 136px;
     height: 0px;
     width: 0px;
     background-color: #add;
-    position: absolute;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     display: none;
-    overflow: hidden;
+
 }
 
 #bodyDoneRuzo{
@@ -1334,7 +1365,6 @@ input:focus {outline:0;}
     bottom: -5px;
     right: -20px;
     height: 250px;
-    overflow: hidden;
 }
 
 #eyesOpenMouthClosedDone{
@@ -1343,7 +1373,6 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     -webkit-transform:rotate(-10deg);
-    overflow: hidden;
 }
 
 
@@ -1353,7 +1382,6 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     -webkit-transform:rotate(-10deg);
-    overflow: hidden;
 }
 
 #eyesOpenMouthOpenDone{
@@ -1362,7 +1390,7 @@ input:focus {outline:0;}
     right: -20px;
     height: 250px;
     opacity: 0;
-    overflow: hidden;
+
 
 }
 
@@ -1372,6 +1400,26 @@ input:focus {outline:0;}
     bottom: -11px;
     right: -18px;
     height: 250px;
-    overflow: hidden;
+
     /*background-color: rgba(200, 0, 0, .5);*/
 }
+
+
+/*===============================================================================================*/
+/* PROFILE PAGE */
+/*===============================================================================================*/
+
+#profilePage{
+
+    overflow: auto;
+    overflow-y: scroll;
+    position: relative;
+    height: 768px;
+    width: 100%;
+}
+
+/*#anotherDiv{*/
+    /*background-color: red;*/
+    /*width: 20%;*/
+    /*height: 1000px;*/
+/*}*/

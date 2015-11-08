@@ -12,24 +12,23 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
+  <link rel="stylesheet" href="external/cal-heatmap.css" />
   <link rel="stylesheet" href="css/progress.css">
   <link href='https://fonts.googleapis.com/css?family=Acme|Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <!--FOR REMOTE DEBUGGING ON WINDOWS-->
-  <!--<script src="http://jsconsole.com/remote.js?BF764AB8-6323-42E6-9736-26A51930D1E3"></script>-->
+  <script src="http://jsconsole.com/remote.js?17C28AED-FAD0-46C2-8784-5F4173605302"></script>
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
   <script src='external/d3.js'></script>
+  <script src="external/cal-heatmap.js"></script>
   <script src='external/fastclick.js'></script>
-  <!--TweenMax.js must appear before date.js-->
   <script src='external/TweenMax.js'></script>
-    <!--<script src='js/animations.js'></script>-->
-  <script src="external/date.js"></script>
-  <script src="external/time.js"></script>
   <script src="external/gistfile1.js"></script>
   <script src="external/Sortable.js"></script>
   <script src="external/detectMobileBrowsers.js"></script>
+  <script src='js/animations.js'></script>
   <script src="js/data.js"></script>
   <script src="js/users.js"></script>
   <script src="js/subjects.js"></script>
@@ -110,8 +109,6 @@
       <button  id="profileButton">Profile</button>
       <button  id="signoutButton">Sign out</button>
       <button  id="settingsButton">Settings</button>
-        <button onclick="animateRuzoDone()">Animate Ruzo</button>
-        <button onclick="restartRuzoDone()">Restart Ruzo</button>
     </div>
 
     <!--========================================================================================================-->
@@ -122,6 +119,10 @@
       <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
       <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
       <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+
+      <br><br><br>
+
+      <div id="cal-heatmap"></div>
     </div>
 
     <!--========================================================================================================-->
@@ -344,13 +345,18 @@
           <br>
           <textarea class="openTaskCardFormInput" id="cardDescription" name="cardDescription" type="textarea" placeholder="Write your description here."></textarea>
           <br>
-          <lable>Date:</lable>
-          <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
-          <!--<button name="submit" id="submitNewTask" type="button">Add Task</button>-->
-          <br>
-            <div id ="totalTimeStudiedActiveTask" ></div>
-          <br>
-          <!--<button type="button" id="deleteTask">DELETE TASK</button>-->
+          <div id="timeAndDateDiv">
+              <div style="white-space:nowrap">
+                  <label id="dateLabel" for="cardAssignedDate">Date:</label>
+                  <input class="openTaskCardFormInput" id="cardAssignedDate" name="cardAssignedDate" type="date" placeholder="Write task's assigned date here.">
+              </div>
+              <br>
+              <div style="white-space:nowrap">
+                  <label id="timeLabel" for="totalTimeStudiedActiveTask">Time Studied:</label>
+                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask">
+              </div>
+          </div>
+            <br>
           <img src="img/binIcon.png" class="binIconTaskcard" id="deleteTask">
           <button type="button" id="completeTask">Task Done ?</button>
         </form>
@@ -396,15 +402,15 @@
     <!--========================================================================================================-->
     <!--RUZO FOR WHEN TASK IS COMPLETE-->
     <!--========================================================================================================-->
-
-        <!--<div id="doneCircle"></span></div>-->
-        <!--<div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>-->
-        <!--<img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">-->
-        <!--<img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">-->
-        <!--<img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">-->
-        <!--<img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">-->
-        <!--<img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">-->
-
+<div id="doneRuzoDiv">
+    <div id="doneCircle"></div>
+    <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
+    <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
+    <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+    <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
+    <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
+    <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
+</div>
 
 
 
@@ -427,4 +433,4 @@
 </body>
 </html>
 
-<!--A comment-->
+<!--comment-->

@@ -1,3 +1,7 @@
+/*===================================================================================================================*/
+/* BAR CHART */
+/*===================================================================================================================*/
+
 // Constants
 BAR_CHART_WIDTH = 960;
 BAR_CHART_HEIGHT = 500;
@@ -31,37 +35,42 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
 }
 
 // generate graph for ALL of the done tasks
-function fetchAndDisplayBarGraphSinceDawnOfTime() {
+function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
     $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphSinceDawnOfTime);
+    fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function() {return true;});
 }
 
 // generate graph for tasks in last 7 days (7*24 hours)
-function fetchAndDisplayBarGraphForLast7Days() {
-    $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphForLast7Days);
+function fetchAndDisplayBarGraphForLast7Days(renewCache) {
+    $(".chart").html(""); // clear previous contents
+    fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
-        var span = new TimeSpan(Date.now() - Date.parse(taskDate));
-        return span.days <= 7;
+        // calculate number of days since taskDate.
+        // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
+        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24*7));
+        return days <= 1;
     });
 }
 
 // generate graph for tasks in last month
-function fetchAndDisplayBarGraphForLastMonth() {
+function fetchAndDisplayBarGraphForLastMonth(renewCache) {
     $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphForLastMonth);
+    fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
 
 function generateBarGraphForLastMonth(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
-        var taskAssignedDate = Date.parse(taskDate);
-        var lastMonth = Date.today().add(-1).months();
-        return taskAssignedDate < lastMonth;
+        // calculate number of days since taskDate.
+        // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
+        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
+
+        // return whether it's been less than a month
+        return days <= 31;
     });
 }
 
@@ -101,8 +110,13 @@ function drawBarGraph(data) {
         .attr("class", function(d) { return "bar " + d.colourClass;})
         .attr("x", function(d) { return x(d.subject); })
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.doneTasks); })
-        .attr("height", function(d) { return height - y(d.doneTasks); });
+        .attr("y", height)
+        .attr("height", 0)
+        .transition()
+            .delay(function(d, i) { return i * 100; })
+            .duration(1000)
+            .attr("y", function(d) { return y(d.doneTasks); })
+            .attr("height", function(d) { return height - y(d.doneTasks); });
 
     // height offset of text from top of bar
     var textOffset = 5;
@@ -113,5 +127,40 @@ function drawBarGraph(data) {
         .attr("text-anchor", "middle")
         .attr("x", function(d) { return x(d.subject) + x.rangeBand()/2; }) // we divide by 2 to put the text on the bar's centre
         .attr("y", function(d) { return y(d.doneTasks) - textOffset; })
-        .text(function(d) { return d.doneTasks; });
+        .transition()
+        .delay(function() { return 2300; })
+            .text(function(d) { return d.doneTasks; });
+}
+
+/*===================================================================================================================*/
+/* HEATMAP */
+/*===================================================================================================================*/
+
+function drawHeatmap(){
+    $('#cal-heatmap').html("");
+    fetchHeatmapData(function(heatmapSnapshot) {
+        var heatmapData = prepareHeatmapData(heatmapSnapshot);
+        var cal = new CalHeatMap();
+        cal.init({
+            itemSelector: "#cal-heatmap",
+            domain: "month",
+            subDomain: "day",
+            range: 12,
+            cellSize: 15,
+            start: new Date(2015, 8, 1),
+            data: heatmapData
+        });
+    })
+}
+
+function prepareHeatmapData(heatmapSnapshot) {
+    var dataSet = {};
+    if (heatmapSnapshot !== null) {
+        $.each(heatmapSnapshot, function(date, timeDict){
+            var timestamp = Math.round(Date.parse(date)/1000);
+            var value = timeDict.time_studied;
+            dataSet[timestamp] = value;
+        })
+    }
+    return dataSet
 }

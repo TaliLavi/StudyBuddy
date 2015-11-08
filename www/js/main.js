@@ -49,6 +49,9 @@ function preparePage() {
 
     // indicate which colours are already in use
     checkIsColourInUse();
+
+    // prepare Done Ruzo animation
+    prepareDoneRuzo();
 }
 
 
@@ -64,7 +67,10 @@ var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
 function prepareNavigation() {
     $("#profileButton").click(function(){
         switchToPage("#profilePage", "#profileButton");
-        fetchAndDisplayBarGraphSinceDawnOfTime();
+        var renewCache = true;
+        fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
+        // draw the heat-map inside the progress page (in #cal-heatmap)
+        drawHeatmap();
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
@@ -164,6 +170,7 @@ function dragTask(evt) {
     } else {
         var updatedTaskDetail = {assigned_date: newAssignedDate};
     }
+
     updateTaskDate(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
 }
 
@@ -180,21 +187,18 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
     // Append current week's days to #dayColumns
     var daysHtml = "";
     for (var i = 0; i < 7; i++) {
-        var currentDate = Date.parse(mondayOfCurrentWeek).addDays(i);
-        var currentDateFormatted = currentDate.toString('yyyy-MM-dd');
-        // date.js doesn't add the suffix for a days (e.g. 16th, 1st), so I made use of the getOrdinal() methos.
-        //var suffix = currentDate.getOrdinal();
-        var spacePlaceHolder = currentDate.toString('dxxx MMM');
-        var currentDateTitle = spacePlaceHolder.replace("xxx", " ");
+        var currentDate = new Date(mondayOfCurrentWeek);
+        currentDate.setDate(currentDate.getDate() + i)
+        var currentDateTitle = formatDate(currentDate, 'd MMM');
+        var currentDay = formatDate(currentDate, 'ddd');
 
-        var currentDay = currentDate.toString('ddd');
         // Append day
         daysHtml += '<div class="col dayColumn">' +
             '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
             '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
             '<button class="addTaskFromCalendar needsclick" onclick="openAddTaskDialog(\'' +
-            currentDateFormatted + '\');">Add a task...</button>' +
-            '<ul class="sortable-task-list dayList" id="' + currentDateFormatted + '"></ul>' +
+            formatDate(currentDate) + '\');">Add a task...</button>' +
+            '<ul class="sortable-task-list dayList" id="' + formatDate(currentDate) + '"></ul>' +
             '</div>';
     }
 
@@ -207,9 +211,9 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
 }
 
 function prepareCalendar() {
-    var mondayOfPrevWeek = startOfWeek(Date.today().toString('yyyy-MM-dd'), -7);
-    var mondayOfCurrentWeek = startOfWeek(Date.today().toString('yyyy-MM-dd'));
-    var mondayOfNextWeek = startOfWeek(Date.today().toString('yyyy-MM-dd'), 7);
+    var mondayOfPrevWeek = startOfWeek(new Date(), -7);
+    var mondayOfCurrentWeek = startOfWeek(new Date());
+    var mondayOfNextWeek = startOfWeek(new Date(), 7);
 
     $('#calendarWrapper').append(createHtmlForWeekOf(mondayOfPrevWeek));
     $('#calendarWrapper').append(createHtmlForWeekOf(mondayOfCurrentWeek));
@@ -235,11 +239,12 @@ function prepareCalendar() {
 
 function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
-    if (taskDetails.title.length> 30){
+    if (taskDetails.title.length> 25){
         //console.log("The tile has more than 30 characters");
         $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
     } else {
         $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
+
     }
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
@@ -316,7 +321,7 @@ function showTaskModal(subjectId, isDone) {
 }
 
 function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
-    $('#totalTimeStudiedActiveTask').text('');
+    $('#totalTimeStudiedActiveTask').val('');
     var hours = Math.floor(totalSecondsStudied/3600);
     var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
     var hoursString = "";
@@ -351,7 +356,9 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task so far.");
+            $('#totalTimeStudiedActiveTask').val(hoursString + (and? "and " : "") + minutesString);
+        } else {
+            $('#totalTimeStudiedActiveTask').val("No time yet!");
         }
     }
 }
@@ -484,8 +491,59 @@ function openAddSubjectDialog(){
     // Set the new onclick handler
     $('#submitNewSubject').on("click", createSubject);
 
-
-
     setCloseWhenClickingOutside($('#addSubjectModal'));
 }
-//
+
+//Helper functions:
+// GET THE DATE FOR MONDAY OF DATE'S WEEK
+function startOfWeek(dateString, offsetDays) {
+    if (isNaN(Date.parse(dateString))) {
+        return 'no_assigned_date';
+    }
+
+    var date = new Date(dateString);
+
+    if (offsetDays !== undefined) {
+        date.setDate(date.getDate() + offsetDays);
+    }
+
+    // go to this/previous monday (getDay() of monday is 1)
+    var daysSinceMonday = (date.getDay()+7-1)%7;
+    date.setDate(date.getDate() - daysSinceMonday);
+
+    return formatDate(date);
+}
+
+// Poor-man's (library-less) date formatter. Default is YYYY-MM-DD
+function formatDate(dateString, formatString) {
+    var date = new Date(dateString);
+    var dd = date.getDate();
+    if (dd < 10) {dd = "0" + dd};
+    var mm = date.getMonth() + 1; //Months are zero based
+    if (mm < 10) {mm = "0" + mm};
+    var yyyy = date.getFullYear();
+
+    var shortMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    var shortDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+    if (formatString === "yyyy-mm-dd" || formatString === undefined) {
+        return yyyy + "-" + mm + "-" + dd;
+    }
+    if (formatString === "ddd") {
+        return shortDays[date.getDay()];
+    }
+    if (formatString === "d MMM") {
+        return date.getDate() + " " + shortMonths[date.getMonth()];
+    }
+
+    console.error("Unknown formatString passed to formatDate:", formatString);
+}
+
+function formatTime(seconds) {
+    var ss = seconds%60;
+    if (ss < 10) {ss = "0" + ss};
+    var mm = Math.floor(seconds/60);
+    if (mm < 10) {mm = "0" + mm};
+
+    return mm + ":" + ss;
+}

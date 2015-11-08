@@ -1,6 +1,11 @@
 //GLOBAL VARIABLES
 var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
 var LOGGED_IN_UID = null;
+var dataCache = {
+    sessionTimes: null,
+    barChart: null
+}
+
 
 // Do this on errors from firebase
 function firebaseErrorFrom(funcName) {
@@ -317,6 +322,7 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
     var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once('value', function(subjectSnapshot) {
         newTaskRef.once('value', function(updatedTask)  {
+            console.log('updatedTask.val() in updateTask() is:', updatedTask.val())
             postUpdateCallback(subjectId, subjectSnapshot.val(), taskId, originalTaskDetails, updatedTask.val());
         }, firebaseErrorFrom('updateTask'));
     }, firebaseErrorFrom('updateTask'));
@@ -331,7 +337,7 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
     if (newWeekDate === oldWeekDate) {
         oldTaskRef.update(updatedDate);
         oldTaskRef.once('value', function(updatedTask)  {
-            postUpdateCallback(taskId, updatedTask.val());
+            postUpdateCallback(subjectId, taskId, updatedTask.val());
         }, firebaseErrorFrom('updateTask'));
     } else { // since we need to change the week, we need to move the task to a new location in the database
         oldTaskRef.once('value', function(snapshot)  {
@@ -340,6 +346,7 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
             var combinedTaskDict = $.extend(oldTaskDict, updatedDate);
             newTaskRef.update(combinedTaskDict);
             oldTaskRef.remove();
+            postUpdateCallback(subjectId, taskId, combinedTaskDict);
         }, firebaseErrorFrom('updateTask'));
     }
 }
@@ -357,11 +364,16 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 
 // MOVE TASK TO DONE
-function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
+function moveTaskToDone(subjectId, taskId, originalDate) {
+    var today = formatDate(new Date());
+    var currentWeekMonday = startOfWeek(today);
     var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
     var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
+        // update task's assigned date to be today's
+        var taskDetails = snapshot.val();
+        taskDetails.assigned_date = today;
+        newRef.set(taskDetails);
         oldRef.remove();
     }, firebaseErrorFrom('moveTaskToDone'));
 }
@@ -371,23 +383,20 @@ function moveTaskToDone(subjectId, taskId, originalDate, currentWeekMonday) {
 //=====================================================================
 
 function fetchTimeIntervals(callback) {
-    if (cachedSessionTimes !== null) {
-        callback(cachedSessionTimes);
-        workSessionLength = cachedSessionTimes.study_session;
+    if (dataCache.sessionTimes !== null) {
+        callback(dataCache.sessionTimes);
     } else {
         var timeIntervalsRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
         timeIntervalsRef.once("value", function (snapshot) {
             var sessionTimes = snapshot.val()
-            cachedSessionTimes = {
+            dataCache.sessionTimes = {
                 study_session: sessionTimes.study_session_seconds,
                 short_break: sessionTimes.short_break_seconds,
                 long_break: sessionTimes.long_break_seconds
             }
-            callback(cachedSessionTimes);
-            workSessionLength = cachedSessionTimes.study_session;
-        });
+            callback(dataCache.sessionTimes);
+        }, firebaseErrorFrom('fetchTimeIntervals'));
     }
-
 }
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {
@@ -404,8 +413,8 @@ function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
 }
 
 function incrementNumOfBreaksForDate() {
-    var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var tasksBreakRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/number_of_breaks');
+    var todaysDate = formatDate(new Date());
+    var tasksBreakRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
         tasksBreakRef.set(newNum);
@@ -430,8 +439,8 @@ function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStu
 }
 
 function updateTimeStudiedForDate(additionalTimeStudied) {
-    var todaysDate = Date.today().toString('yyyy-MM-dd');
-    var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/heatmap_dates/' + todaysDate + '/' + getLoggedInUser() + '/time_studied');
+    var todaysDate = formatDate(new Date());
+    var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/time_studied');
     totalSecondsStudiedPerDateRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
         totalSecondsStudiedPerDateRef.set(newTotalTime);
@@ -451,14 +460,33 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
 //=====================================================================
 
 // RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
-function fetchAllDoneTasks(callback) {
-    var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
-    doneTasksRef.once("value", function(doneTasksSnapshot) {
-        if (doneTasksSnapshot.val() !== null) {
-            var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
-            subjectRef.once("value", function(subjectsSnapshot) {
-                callback(subjectsSnapshot.val(), doneTasksSnapshot.val());
-            }, firebaseErrorFrom('fetchAllDoneTasks'));
-        }
-    }, firebaseErrorFrom('fetchAllDoneTasks'));
+function fetchAllDoneTasks(callback, renewCache) {
+    if (renewCache === undefined) {
+        renewCache = false;
+    }
+    if (!renewCache && dataCache.barChart !== null) {
+        callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
+    } else {
+        var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
+        doneTasksRef.once("value", function(doneTasksSnapshot) {
+            if (doneTasksSnapshot.val() !== null) {
+                var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+                subjectRef.once("value", function(subjectsSnapshot) {
+                    dataCache.barChart = {
+                        subjects: subjectsSnapshot.val(),
+                        doneTasks: doneTasksSnapshot.val()
+                    }
+                    callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
+                }, firebaseErrorFrom('fetchAllDoneTasks'));
+            }
+        }, firebaseErrorFrom('fetchAllDoneTasks'));
+    }
+}
+
+
+function fetchHeatmapData(callback) {
+    var heatmapRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser());
+    heatmapRef.once("value", function(heatmapSnapshot) {
+        callback(heatmapSnapshot.val());
+    }, firebaseErrorFrom('fetchHeatmapData'))
 }

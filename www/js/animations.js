@@ -1,9 +1,6 @@
 var ruzoDoneTimeline = new TimelineMax({paused:true});
 
-
-
-function animateRuzoDone() {
-
+function prepareDoneRuzo() {
     ruzoDoneTimeline.to("#eyesClosedMouthClosedDone",0, {
         opacity:0
     }, "+=.5") ;
@@ -11,7 +8,6 @@ function animateRuzoDone() {
     ruzoDoneTimeline.to("#eyesOpenMouthClosedDone", 1, {
         rotation    :   "0",
     }) ;
-
 
     ruzoDoneTimeline.to("#eyesClosedMouthClosedDone", 1, {
         rotation    :   "0",
@@ -33,7 +29,7 @@ function animateRuzoDone() {
         height          :   220,
         width           :   220,
         ease            :   Back.easeOut.config(2), y: 0,
-        display         :   "table",
+        display         :   "table"
     }, "-=1.10");
 
     ruzoDoneTimeline.to("#tailDoneRuzo2", 2, {
@@ -44,10 +40,16 @@ function animateRuzoDone() {
         ease            :   Back.easeOut.config(1), y: 0
     }, "-=1") ;
 
-    console.log("ruzoDoneTimeline should be prepared");
-    ruzoDoneTimeline.play();
+    ruzoDoneTimeline.to("#doneRuzoDiv", 0, {
+            display         :   "none"
+        }
+    )
+
+    //console.log("ruzoDoneTimeline should be prepared");
 }
 
-function restartRuzoDone(){
-    ruzoDoneTimeline.restart();
+function playRuzoDone() {
+    ruzoDoneTimeline.pause(0);
+    $('#doneRuzoDiv').css('display', 'block');
+    ruzoDoneTimeline.play();
 }
