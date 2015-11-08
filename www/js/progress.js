@@ -36,7 +36,7 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
 
 // generate graph for ALL of the done tasks
 function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
-    $(".chart").text(""); // clear previous contents
+    $(".chart").html(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
@@ -52,17 +52,18 @@ function generateBarGraphForLast7Days(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
         // calculate number of days since taskDate.
         // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
-        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24*7));
-        return days <= 1;
+        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
+
+        // return whether it's been less than a week
+        return days <= 7;
     });
 }
 
-// generate graph for tasks in last month
+// generate graph for tasks in last month (30 days)
 function fetchAndDisplayBarGraphForLastMonth(renewCache) {
-    $(".chart").text(""); // clear previous contents
+    $(".chart").html(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
-
 function generateBarGraphForLastMonth(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
         // calculate number of days since taskDate.
@@ -70,7 +71,7 @@ function generateBarGraphForLastMonth(subjects, doneTasks) {
         var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
 
         // return whether it's been less than a month
-        return days <= 31;
+        return days <= 30;
     });
 }
 
@@ -152,22 +153,6 @@ function drawHeatmap(){
         });
     })
 }
-
-var dataSet = {};
-
-$(document).ready(function(){
-    cal.init({
-        domain: "month",
-        subDomain: "day",
-        range: 12,
-        cellSize: 15,
-        start: new Date(2015, 8, 1),
-        data: dataSet,
-        subDomainTextFormat: "%d"
-    });
-    fetchHeatmapData(prepareHeatmapData);
-});
-
 
 function prepareHeatmapData(heatmapSnapshot) {
     var dataSet = {};
