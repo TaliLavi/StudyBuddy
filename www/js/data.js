@@ -360,7 +360,7 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
 
 // MOVE TASK TO DONE
 function moveTaskToDone(subjectId, taskId, originalDate) {
-    var today = Date.today().toString('yyyy-MM-dd');
+    var today = formatDate(new Date());
     var currentWeekMonday = startOfWeek(today);
     var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + originalDate + '/' + taskId);
     var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + currentWeekMonday + '/' + taskId);
@@ -411,7 +411,7 @@ function incrementNumOfBreaksForTask(subjectId, weekDate, taskId) {
 }
 
 function incrementNumOfBreaksForDate() {
-    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    var todaysDate = formatDate(new Date());
     var tasksBreakRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/number_of_breaks');
     tasksBreakRef.once("value", function(snapshot) {
         var newNum = snapshot.val() + 1;
@@ -437,7 +437,7 @@ function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStu
 }
 
 function updateTimeStudiedForDate(additionalTimeStudied) {
-    var todaysDate = Date.today().toString('yyyy-MM-dd');
+    var todaysDate = formatDate(new Date());
     var totalSecondsStudiedPerDateRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + '/' + todaysDate + '/time_studied');
     totalSecondsStudiedPerDateRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;

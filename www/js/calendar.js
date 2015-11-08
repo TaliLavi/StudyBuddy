@@ -51,23 +51,12 @@ function prepareCalendarSlider() {
 function createCalendarHeading() {
 
     // extract the displayed week's monday from the week's id.
-    var displayedmonday = Date.parse($('.week:nth-child(2)>div').attr('id').slice('week'.length));
+    var displayedmonday = new Date($('.week:nth-child(2)>div').attr('id').slice('week'.length));
+    var currentWeekMonday = startOfWeek(new Date());
 
-    // get this week's monday
-    if (Date.today().is().monday()) {
-        // if today happens to be a Monday, save it as this week's monday
-        var currentWeekMonday = Date.today();
-    } else {
-        // else, go to last monday
-        var currentWeekMonday = Date.today().last().monday();
-    }
-
-    // instantiate a TimeSpan object
-    var span = new TimeSpan(displayedmonday - currentWeekMonday);
     // get number of weeks between displayed week and current week.
     // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
-    var numOfWeeks = Math.round(span.days / 7);
-
+    var numOfWeeks = Math.round((Date.parse(displayedmonday) - Date.parse(currentWeekMonday)) / (1000*60*60*24*7));
 
     if (numOfWeeks === 0) {
         $('#weekHeadingOnCalendar').text('THIS WEEK');

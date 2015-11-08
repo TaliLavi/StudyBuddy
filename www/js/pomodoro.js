@@ -100,7 +100,7 @@ function setTimer(subjectId, weekDate, taskId) {
                     return false;
                     // if play pressed
                 } else if (!$('#playPauseButton').hasClass('notPlaying')) {
-                    var remainingTimeFormatted = (new Date).clearTime().addSeconds(remainingTime).toString('mm:ss');
+                    var remainingTimeFormatted = formatTime(remainingTime);
                     $('#timerDisplay').text(remainingTimeFormatted);
                     return true;
                     // if pause pressed

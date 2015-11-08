@@ -45,7 +45,7 @@ function prepareDoneRuzo() {
         }
     )
 
-    console.log("ruzoDoneTimeline should be prepared");
+    //console.log("ruzoDoneTimeline should be prepared");
 }
 
 function playRuzoDone() {

@@ -1,22 +1,3 @@
-// GET THE DATE FOR MONDAY OF DATE'S WEEK
-// TODO: verify that date is written in an acceptable form (I know '06-Sep-2015' and '09-06-2015' are good).
-function startOfWeek(dateString, offsetDays) {
-    var date = Date.parse(dateString);
-    if (date === null) {
-        return 'no_assigned_date';
-    }
-    if (offsetDays !== undefined) {
-        date.addDays(offsetDays);
-    }
-    if (date.is().monday()) {
-        // if the assigned date happens to be a Monday, grab it
-        return date.toString('yyyy-MM-dd');
-    }
-    // else, grab the date for that week's Monday
-    return date.prev().monday().toString('yyyy-MM-dd');
-}
-
-
 // CREATE NEW TASK
 function createTask() {
     // create a new task only if a title was written and a subject was chosen
@@ -97,7 +78,7 @@ function updateTaskFields(subjectId, taskId, taskData){
     if (taskData.assigned_date === "") {
         cardAssignedDate = "Set a date";
     } else {
-        cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
+        cardAssignedDate = formatDate(taskData.assigned_date, 'd MMM');
     }
     $('#todoAssignedDateFor' + taskId).text(cardAssignedDate);
 
@@ -140,8 +121,6 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
     }
     //create html for done task in the calendar
     if (isDone !== undefined) {
-        console.log('taskData.assigned_date in createCardTaskHtml() is:', taskData.assigned_date);
-        console.log('taskDate in createCardTaskHtml() is:', taskDate);
         var taskHtml = '<li data-subjectId="' + subjectKey + '" data-taskId="' + taskKey + '" data-task-date="' + taskDate + '">' +
                             '<div class ="cardTask ' + subjectKey + ' ' + subjectDict.colour_scheme + ' mainColour doneTask">' +
                                 '<span class="cardText">' + taskData.title + '</span>' +
@@ -174,7 +153,7 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     if (taskData.assigned_date === "") {
         var cardAssignedDate = "Set a date";
     } else {
-        var cardAssignedDate = Date.parse(taskData.assigned_date).toString('d MMM');
+        var cardAssignedDate = formatDate(taskData.assigned_date, 'd MMM');
     }
 
     var choppedTaskTitle = threeDots(taskData.title, 28);
@@ -296,8 +275,8 @@ function displayTasksInBottomPanel(subjectKey, subjectDict, tasksDict) {
 
 function displayTasksInCalendar(subjectKey, subjectDict, tasksDict) {
     if (tasksDict !== null) {
-        var thisWeeksMonday = Date.parse('last monday');
-        var nextWeeksMonday = Date.parse('next monday');
+        var thisWeeksMonday = startOfWeek(new Date());
+        var nextWeeksMonday = startOfWeek(new Date(), 7);
         // append tasks to the calendar
         $.each(tasksDict, function(taskKey, taskData){
             // checks whether there is an assigned date, and if so, whether it is currently displayed in the DOM
@@ -338,7 +317,7 @@ function removeCardFromDOM(taskId) {
 }
 
 function markAsDone(subjectId, originalDate, taskId) {
-    var today = Date.today().toString('yyyy-MM-dd');
+    var today = formatDate(new Date());
 
     // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
     $('#unassignedTasksList li[data-taskid="' + taskId + '"]').prependTo('#' + today);

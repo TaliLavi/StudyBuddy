@@ -50,8 +50,10 @@ function fetchAndDisplayBarGraphForLast7Days() {
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
-        var span = new TimeSpan(Date.now() - Date.parse(taskDate));
-        return span.days <= 7;
+        // calculate number of days since taskDate.
+        // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
+        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24*7));
+        return days <= 1;
     });
 }
 
@@ -63,9 +65,12 @@ function fetchAndDisplayBarGraphForLastMonth() {
 
 function generateBarGraphForLastMonth(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
-        var taskAssignedDate = Date.parse(taskDate);
-        var lastMonth = Date.today().add(-1).months();
-        return taskAssignedDate < lastMonth;
+        // calculate number of days since taskDate.
+        // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
+        var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
+
+        // return whether it's been less than a month
+        return days <= 31;
     });
 }
 
@@ -142,17 +147,11 @@ function drawHeatmap(){
     })
 }
 
-function convertToEpoch(time) {
-    var d = Date.parse(time);
-    d.addMinutes(d.getTimezoneOffset() * -1);
-    return Math.round(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds()) / 1000);
-};
-
 function prepareHeatmapData(heatmapSnapshot) {
     var dataSet = {};
     if (heatmapSnapshot !== null) {
         $.each(heatmapSnapshot, function(date, timeDict){
-            var timestamp = convertToEpoch(date);
+            var timestamp = Date.parse(date);
             var value = timeDict.time_studied;
             dataSet[timestamp] = value;
         })
