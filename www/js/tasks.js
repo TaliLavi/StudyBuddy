@@ -189,7 +189,6 @@ function setClickForTodoTask(subjectKey, taskKey, taskData, isDone) {
 
 // APPEND NEWLY CREATED OR UPDATED TASK TO CALENDAR OR FOOTER
 function appendCard(subjectId, subjectData, taskKey, taskData) {
-    console.log('taskData.assigned_date in appendCard() is:', appendCard);
     // IF TASK IS UNASSIGNED, APPEND IT TO THE FOOTER
     if (taskData.assigned_date === "") {
         var subjectDiv = '#unassignedTasksList';

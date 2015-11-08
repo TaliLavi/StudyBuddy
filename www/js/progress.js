@@ -151,7 +151,7 @@ function prepareHeatmapData(heatmapSnapshot) {
     var dataSet = {};
     if (heatmapSnapshot !== null) {
         $.each(heatmapSnapshot, function(date, timeDict){
-            var timestamp = Date.parse(date);
+            var timestamp = Math.round(Date.parse(date)/1000);
             var value = timeDict.time_studied;
             dataSet[timestamp] = value;
         })
