@@ -36,6 +36,9 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
 
 // generate graph for ALL of the done tasks
 function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
+    $("#dawnTimeButton").css("backgroundColor", "#31A9A8");
+    $("#lastWeekButton").css("backgroundColor", "rgb(149,202,173)");
+    $("#lastMonthButton").css("backgroundColor", "rgb(149,202,173)");
     $(".chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
@@ -45,6 +48,9 @@ function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
 
 // generate graph for tasks in last 7 days (7*24 hours)
 function fetchAndDisplayBarGraphForLast7Days(renewCache) {
+    $("#dawnTimeButton").css("backgroundColor", "rgb(149,202,173)");
+    $("#lastWeekButton").css("backgroundColor", "#31A9A8");
+    $("#lastMonthButton").css("backgroundColor", "rgb(149,202,173)");
     $(".chart").html(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
@@ -59,6 +65,9 @@ function generateBarGraphForLast7Days(subjects, doneTasks) {
 
 // generate graph for tasks in last month
 function fetchAndDisplayBarGraphForLastMonth(renewCache) {
+    $("#dawnTimeButton").css("backgroundColor", "rgb(149,202,173)");
+    $("#lastWeekButton").css("backgroundColor", "rgb(149,202,173)");
+    $("#lastMonthButton").css("backgroundColor", "#31A9A8");
     $(".chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
@@ -143,12 +152,16 @@ function drawHeatmap(){
         var cal = new CalHeatMap();
         cal.init({
             itemSelector: "#cal-heatmap",
-            domain: "month",
+            domain: "year",
             subDomain: "day",
-            range: 12,
-            cellSize: 15,
+            range: 1,
+            cellSize: 10,
             start: new Date(2015, 8, 1),
-            data: heatmapData
+            data: heatmapData,
+            cellRadius: 10,
+            cellPadding: 5,
+            highlight: "now",
+            displayLegend: false
         });
     })
 }

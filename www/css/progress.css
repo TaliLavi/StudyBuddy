@@ -24,7 +24,52 @@
 .bar-text{
     font-family: 'Acme', sans-serif;
     font-size: 1.5em;
-    text-transform: uppercase;
-    color: red;
-    background-color: #31A9A8;
+    fill: #607A93;
 }
+
+.chart {
+    display: block;
+    margin: auto;
+    /*height: 300px;*/
+}
+
+#subjectsRecordSection{
+    background-color: #c4e4ea;
+}
+
+
+.barChartHeading{
+    font-family: acme, sans-serif;
+    color: #607A93;
+    font-weight: 400;
+    font-size: 2.5em;
+    text-align:center;
+    display: inline;
+}
+
+#barHeadingDiv{
+    display: block;
+    Margin: auto;
+    width: 900px;
+    padding: 3%;
+}
+
+.barChartToggle{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 140px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    margin-left: 12px;
+    float: right;
+}
+
+/*.tick text{*/
+    /*fill: white;*/
+    /*font-size: 1em;*/
+    /*margin-top: -5px;*/
+/*}*/

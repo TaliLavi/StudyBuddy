@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <!--FOR REMOTE DEBUGGING ON WINDOWS-->
-  <script src="http://jsconsole.com/remote.js?17C28AED-FAD0-46C2-8784-5F4173605302"></script>
+  <!--<script src="http://jsconsole.com/remote.js?17C28AED-FAD0-46C2-8784-5F4173605302"></script>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
   <script src='external/d3.js'></script>
@@ -114,10 +114,6 @@
             <img  class="navIcon" src="img/settingsIcon.png">
             <span>Settings</span>
         </button>
-
-
-
-     
       <!--<button  id="signoutButton">Sign out</button>-->
       <!--<button  id="settingsButton">Settings</button>-->
     </div>
@@ -126,14 +122,20 @@
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
     <div id="profilePage">
-      <svg class="chart"></svg>
-      <button onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">Since dawn of time</button>
-      <button onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
-      <button onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+        <div id="subjectsRecordSection">
+            <div id="barHeadingDiv">
+                <div class="barChartHeading">TASKS COMPLETED</div>
+                <button id="dawnTimeButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphSinceDawnOfTime()">All time</button>
+                <button id="lastMonthButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphForLastMonth()">Last month</button>
+                <button id="lastWeekButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
+            </div>
 
-      <br><br><br>
-
-      <div id="cal-heatmap"></div>
+            <svg class="chart"></svg>
+            <p id="subjectsThisWeekMessage">Great job with Maths this week Sarah!</p>
+        </div>
+        <div id="heatmapSection">
+            <div id="cal-heatmap"></div>
+        </div>
     </div>
 
     <!--========================================================================================================-->
