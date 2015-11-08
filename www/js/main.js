@@ -201,7 +201,7 @@ function createHtmlForWeekOf(mondayOfCurrentWeek) {
         daysHtml += '<div class="col dayColumn">' +
             '<div class="dayDateDiv"><span class="dayHeadingOnCalendar">' + currentDay + '</span>' +
             '<span class="dateOnCalendarDay">' + currentDateTitle +'</span></div>' +
-            '<button class="addTaskFromCalendar" onclick="openAddTaskDialog(\'' +
+            '<button class="addTaskFromCalendar needsclick" onclick="openAddTaskDialog(\'' +
             formatDate(currentDate) + '\');">Add a task...</button>' +
             '<ul class="sortable-task-list dayList" id="' + formatDate(currentDate) + '"></ul>' +
             '</div>';
