@@ -36,7 +36,7 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
 
 // generate graph for ALL of the done tasks
 function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
-    $(".chart").html(""); // clear previous contents
+    $(".chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
@@ -45,7 +45,7 @@ function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
 
 // generate graph for tasks in last 7 days (7*24 hours)
 function fetchAndDisplayBarGraphForLast7Days(renewCache) {
-    $(".chart").html(""); // clear previous contents
+    $(".chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
@@ -61,7 +61,7 @@ function generateBarGraphForLast7Days(subjects, doneTasks) {
 
 // generate graph for tasks in last month (30 days)
 function fetchAndDisplayBarGraphForLastMonth(renewCache) {
-    $(".chart").html(""); // clear previous contents
+    $(".chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
 function generateBarGraphForLastMonth(subjects, doneTasks) {
