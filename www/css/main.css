@@ -288,6 +288,8 @@ input:focus {outline:0;}
 /*===================================================================================================================*/
 /*This class needs to apply to the calendar page, the nav bar and the status bar whenever a task card is opened on calendar page*/
 .frostedGlass {
+    /*Adding webkit transform to force hardware acceleration to improve performance.*/
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-filter: blur(15px);
 }
 
@@ -1436,9 +1438,3 @@ input:focus {outline:0;}
     /*width: 20%;*/
     /*height: 1000px;*/
 /*}*/
-
-
-#testingModal {
-    width: 500px;
-    height: 350px;
-}

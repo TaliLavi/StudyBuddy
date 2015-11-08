@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!--<link rel='stylesheet prefetch' href='lang=en'>-->
   <!--FOR REMOTE DEBUGGING ON WINDOWS-->
-  <script src="http://jsconsole.com/remote.js?066CA534-2CE3-4E1E-964E-A56FDDBA2BF1"></script>
+  <!--<script src="http://jsconsole.com/remote.js?066CA534-2CE3-4E1E-964E-A56FDDBA2BF1"></script>-->
   <script src="external/firebase2.2.7.js"></script>
   <script src='external/jquery.js'></script>
   <script src='external/d3.js'></script>
@@ -183,7 +183,6 @@
       <div id="subjectsPanel">
         <div id="mySubjectsTitle">My Subjects</div>
         <button id="addSubjectButton" onclick="openAddSubjectDialog();">Add a subject...</button>
-        <button type="button" onclick="openEmptyModal();">Open Empty Module</button>
         <div id="subjectsList"></div>
       </div>
       <div id="tasksPerSubject" class="theme1Colour10b">
@@ -336,17 +335,6 @@
                 <button name="submit" id="submitNewTask" type="button">Add Task</button>
             </form>
         </div>
-    </div>
-  </div>
-
-
-  <!--========================================================================================================-->
-  <!--TESTING DIALOG (MODAL WINDOW)-->
-  <!--========================================================================================================-->
-  <div id="testingModalBG" class="modal-bg">
-    <div id="testingModal" class="modal">
-      <!--<span class="closeX" onclick="closeModalWindow();">x</span>-->
-      <div>Some content</div>
     </div>
   </div>
 
