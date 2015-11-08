@@ -133,6 +133,12 @@ function editSubjectName(subjectId) {
         changeSubjectName(subjectId, newName);
         // change data attribute to new name
         $('#subjectNameTitle' + subjectId).data('subject-name', newName);
+        // change subject title on subject area
+        $('#subjectNameTitle' + subjectId).val(newName);
+        // change subject name in subjects left panel
+        $('#subjectName' + subjectId).text(newName);
+        // change subject name in the "add new task" drop down menu
+        $('#subjectInput option[value="'+ subjectId + '"]').text(newName);
     }
 }
 
