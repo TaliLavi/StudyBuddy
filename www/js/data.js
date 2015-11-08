@@ -1,6 +1,11 @@
 //GLOBAL VARIABLES
 var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
 var LOGGED_IN_UID = null;
+var dataCache = {
+    sessionTimes: null,
+    barChart: null
+}
+
 
 // Do this on errors from firebase
 function firebaseErrorFrom(funcName) {
@@ -378,23 +383,20 @@ function moveTaskToDone(subjectId, taskId, originalDate) {
 //=====================================================================
 
 function fetchTimeIntervals(callback) {
-    if (cachedSessionTimes !== null) {
-        callback(cachedSessionTimes);
-        workSessionLength = cachedSessionTimes.study_session;
+    if (dataCache.sessionTimes !== null) {
+        callback(dataCache.sessionTimes);
     } else {
         var timeIntervalsRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
         timeIntervalsRef.once("value", function (snapshot) {
             var sessionTimes = snapshot.val()
-            cachedSessionTimes = {
+            dataCache.sessionTimes = {
                 study_session: sessionTimes.study_session_seconds,
                 short_break: sessionTimes.short_break_seconds,
                 long_break: sessionTimes.long_break_seconds
             }
-            callback(cachedSessionTimes);
-            workSessionLength = cachedSessionTimes.study_session;
-        });
+            callback(dataCache.sessionTimes);
+        }, firebaseErrorFrom('fetchTimeIntervals'));
     }
-
 }
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {
@@ -458,16 +460,27 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
 //=====================================================================
 
 // RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
-function fetchAllDoneTasks(callback) {
-    var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
-    doneTasksRef.once("value", function(doneTasksSnapshot) {
-        if (doneTasksSnapshot.val() !== null) {
-            var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
-            subjectRef.once("value", function(subjectsSnapshot) {
-                callback(subjectsSnapshot.val(), doneTasksSnapshot.val());
-            }, firebaseErrorFrom('fetchAllDoneTasks'));
-        }
-    }, firebaseErrorFrom('fetchAllDoneTasks'));
+function fetchAllDoneTasks(callback, renewCache) {
+    if (renewCache === undefined) {
+        renewCache = false;
+    }
+    if (!renewCache && dataCache.barChart !== null) {
+        callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
+    } else {
+        var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
+        doneTasksRef.once("value", function(doneTasksSnapshot) {
+            if (doneTasksSnapshot.val() !== null) {
+                var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+                subjectRef.once("value", function(subjectsSnapshot) {
+                    dataCache.barChart = {
+                        subjects: subjectsSnapshot.val(),
+                        doneTasks: doneTasksSnapshot.val()
+                    }
+                    callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
+                }, firebaseErrorFrom('fetchAllDoneTasks'));
+            }
+        }, firebaseErrorFrom('fetchAllDoneTasks'));
+    }
 }
 
 
@@ -475,5 +488,5 @@ function fetchHeatmapData(callback) {
     var heatmapRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser());
     heatmapRef.once("value", function(heatmapSnapshot) {
         callback(heatmapSnapshot.val());
-    })
+    }, firebaseErrorFrom('fetchHeatmapData'))
 }

@@ -35,18 +35,18 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
 }
 
 // generate graph for ALL of the done tasks
-function fetchAndDisplayBarGraphSinceDawnOfTime() {
+function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
     $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphSinceDawnOfTime);
+    fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function() {return true;});
 }
 
 // generate graph for tasks in last 7 days (7*24 hours)
-function fetchAndDisplayBarGraphForLast7Days() {
+function fetchAndDisplayBarGraphForLast7Days(renewCache) {
     $(".chart").html(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphForLast7Days);
+    fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
     generateBarGraph(subjects, doneTasks, function(taskDate) {
@@ -58,9 +58,9 @@ function generateBarGraphForLast7Days(subjects, doneTasks) {
 }
 
 // generate graph for tasks in last month
-function fetchAndDisplayBarGraphForLastMonth() {
+function fetchAndDisplayBarGraphForLastMonth(renewCache) {
     $(".chart").text(""); // clear previous contents
-    fetchAllDoneTasks(generateBarGraphForLastMonth);
+    fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
 
 function generateBarGraphForLastMonth(subjects, doneTasks) {
@@ -110,8 +110,13 @@ function drawBarGraph(data) {
         .attr("class", function(d) { return "bar " + d.colourClass;})
         .attr("x", function(d) { return x(d.subject); })
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.doneTasks); })
-        .attr("height", function(d) { return height - y(d.doneTasks); });
+        .attr("y", height)
+        .attr("height", 0)
+        .transition()
+            .delay(function(d, i) { return i * 100; })
+            .duration(1000)
+            .attr("y", function(d) { return y(d.doneTasks); })
+            .attr("height", function(d) { return height - y(d.doneTasks); });
 
     // height offset of text from top of bar
     var textOffset = 5;
@@ -122,7 +127,9 @@ function drawBarGraph(data) {
         .attr("text-anchor", "middle")
         .attr("x", function(d) { return x(d.subject) + x.rangeBand()/2; }) // we divide by 2 to put the text on the bar's centre
         .attr("y", function(d) { return y(d.doneTasks) - textOffset; })
-        .text(function(d) { return d.doneTasks; });
+        .transition()
+        .delay(function() { return 2300; })
+            .text(function(d) { return d.doneTasks; });
 }
 
 /*===================================================================================================================*/
@@ -141,8 +148,7 @@ function drawHeatmap(){
             range: 12,
             cellSize: 15,
             start: new Date(2015, 8, 1),
-            data: heatmapData,
-            subDomainTextFormat: "%d"
+            data: heatmapData
         });
     })
 }

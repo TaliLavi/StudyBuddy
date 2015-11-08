@@ -67,7 +67,8 @@ var buttonIds = ["#calendarButton", "#subjectsButton", "#profileButton"];
 function prepareNavigation() {
     $("#profileButton").click(function(){
         switchToPage("#profilePage", "#profileButton");
-        fetchAndDisplayBarGraphSinceDawnOfTime();
+        var renewCache = true;
+        fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
         // draw the heat-map inside the progress page (in #cal-heatmap)
         drawHeatmap();
     });
