@@ -13,3 +13,18 @@
 .pink {
     fill: pink;
 }
+
+#chartContainer{
+    background-color: plum;
+    display: block;
+    Margin: auto;
+    width: 80%;
+}
+
+.bar-text{
+    font-family: 'Acme', sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: red;
+    background-color: #31A9A8;
+}

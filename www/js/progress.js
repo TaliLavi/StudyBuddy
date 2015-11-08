@@ -153,6 +153,22 @@ function drawHeatmap(){
     })
 }
 
+var dataSet = {};
+
+$(document).ready(function(){
+    cal.init({
+        domain: "month",
+        subDomain: "day",
+        range: 12,
+        cellSize: 15,
+        start: new Date(2015, 8, 1),
+        data: dataSet,
+        subDomainTextFormat: "%d"
+    });
+    fetchHeatmapData(prepareHeatmapData);
+});
+
+
 function prepareHeatmapData(heatmapSnapshot) {
     var dataSet = {};
     if (heatmapSnapshot !== null) {

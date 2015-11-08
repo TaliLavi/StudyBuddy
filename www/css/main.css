@@ -104,6 +104,12 @@ input, textarea {
     display: none;
 }
 
+#progressHighlight{
+    top: 15px;
+    margin-left: 177px;
+    display: none;
+}
+
 #profileButton{
     float: right;
 
@@ -1414,7 +1420,7 @@ input:focus {outline:0;}
     overflow: auto;
     overflow-y: scroll;
     position: relative;
-    height: 768px;
+    height: 2008px;
     width: 100%;
 }
 
