@@ -7,15 +7,6 @@
     width: 100%;
 }
 
-#subjectsThisWeekMessage{
-    padding: 30px;
-    font-family: Acme, sans-serif;
-    text-transform: uppercase;
-    font-size: 1.5em;
-    width: 900px;
-    display: block;
-    margin: auto;
-}
 
 
 .axis {
@@ -93,9 +84,15 @@
     color: #607A93;
     font-weight: 400;
     text-align:center;
-    font-size: 1em;
-    display: inline;
+    font-size: 1.5em;
+    display: block;
+    margin: auto;
+    padding: 30px;
+
+    /*text-transform: uppercase;*/
 }
+
+
 
 .progressHeading{
     display: block;
