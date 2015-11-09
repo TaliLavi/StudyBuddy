@@ -154,14 +154,17 @@ function drawHeatmap(){
         var cal = new CalHeatMap();
         cal.init({
             itemSelector: "#cal-heatmap",
-            domain: "year",
+            domain: "month",
+            domainGutter: 1,
+            domainMargin: 0,
             subDomain: "day",
-            range: 1,
-            cellSize: 15,
-            //start: new Date(2015, 8, 1),
+            range: 12,
+            cellSize: 12,
+            start: new Date(2015, 8, 1),
             data: heatmapData,
             cellRadius: 2,
-            displayLegend: false,
+            domainDynamicDimension: false,
+            displayLegend: false
         });
     })
 }
