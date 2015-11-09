@@ -165,3 +165,46 @@
 .span_1_of_12 {
     width: 6.866%;
 }
+
+.legendSquare{
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.legendText{
+    display: inline-block;
+    color: #607A93;
+    font-size: .8em;
+    margin-right: 5px;
+}
+
+#myHeatmapLegend{
+    width: 900px;
+    display: block;
+    margin: auto;
+    padding: 10px;
+
+}
+
+#square1{
+    background-color: #A9CFA7;
+}
+
+#square2{
+    background-color: #86C7A3;
+}
+
+#square3{
+    background-color: #3EC099;
+}
+
+#square4{
+    background-color: #37A294;
+}
+
+#square5{
+    background-color: #1E7D8A;
+}
