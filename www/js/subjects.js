@@ -68,11 +68,10 @@ function displayActiveSubjects(allSubjectsDict) {
                 '</div>'
             );
 
-            // clicking enter while on #bulkText triggers #bulkSubmit
+            // clicking enter while on #bulkText creates a new task without the need of clicking #bulkSubmit
             $(function(){
                 $('#bulkTextFor' + subjectKey).keyup(function(e){
                     if (e.keyCode === 13) {
-                        //do stuff
                         createTaskFromSubjectPage(subjectKey);
                     }
                 });
