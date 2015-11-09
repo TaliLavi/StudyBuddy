@@ -1417,18 +1417,6 @@ input:focus {outline:0;}
 /* PROFILE PAGE */
 /*===============================================================================================*/
 
-#profilePage{
-
-    overflow: auto;
-    overflow-y: scroll;
-    position: relative;
-    height: 668px;
-    width: 100%;
-}
-
-#subjectsThisWeekMessage{
-    padding-bottom: 100px;
-}
 
 
 

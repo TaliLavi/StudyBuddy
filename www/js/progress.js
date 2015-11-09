@@ -4,7 +4,7 @@
 
 // Constants
 BAR_CHART_WIDTH = 960;
-BAR_CHART_HEIGHT = 500;
+BAR_CHART_HEIGHT = 300;
 BAR_CHART_MARGIN_TOP = 50;
 BAR_CHART_MARGIN_BOTTOM = 30;
 BAR_CHART_MARGIN_RIGHT = 20;
@@ -157,13 +157,11 @@ function drawHeatmap(){
             domain: "year",
             subDomain: "day",
             range: 1,
-            cellSize: 10,
-            start: new Date(2015, 8, 1),
+            cellSize: 15,
+            //start: new Date(2015, 8, 1),
             data: heatmapData,
-            cellRadius: 10,
-            cellPadding: 5,
-            highlight: "now",
-            displayLegend: false
+            cellRadius: 2,
+            displayLegend: false,
         });
     })
 }

@@ -1,25 +1,25 @@
 /* Cal-HeatMap CSS */
 
-
+#cal-heatmap{
+	height:110px;
+}
 
 .cal-heatmap-container {
 	display: block;
 	margin: auto;
 	margin-top: 3%;
-	background-color: plum;
 }
 
 .cal-heatmap-container .graph
 {
 	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
-	height: 100px;
+	height: 90px;
 
 }
 
 .cal-heatmap-container .graph-label
 {
-	fill: white;
-	font-size: 10px
+	display: none;
 }
 
 .cal-heatmap-container .graph, .cal-heatmap-container .graph-legend rect {
@@ -28,7 +28,7 @@
 
 .cal-heatmap-container .graph-rect
 {
-	fill: #bcdbe1;
+	fill: #A0AFBE;
 
 }
 
@@ -56,54 +56,54 @@
 
 .q0
 {
-	background-color: #fff;
-	fill: #fff;
-	stroke: #ededed
+	background-color: #A0AFBE;
+	fill: #A0AFBE;
+	/*stroke: #ededed*/
 }
 
 
 .cal-heatmap-container .q1
 {
-	background-color: #dae289;
-	fill: #dae289;
-	stroke: #dae289;
-	stroke-width: 1px;
+	background-color: #A9CFA7;
+	fill: #A9CFA7;
+	/*stroke: #BDECBB;*/
+	/*stroke-width: 1px;*/
 }
 
 .cal-heatmap-container .q2
 {
-	background-color: #cedb9c;
-	fill: #9cc069;
-	stroke: #9cc069;
-	stroke-width: 1.3px;
+	background-color: #86C7A3;
+	fill: #86C7A3;
+	/*stroke: #86C7A3;*/
+	/*stroke-width: 1.3px;*/
 }
 
 
 .cal-heatmap-container .q3
 {
-	background-color: #b5cf6b;
-	fill: #669d45;
-	stroke: #669d45;
-	stroke-width: 2.6px;
+	background-color: #3EC099;
+	fill: #3EC099;
+	/*stroke: #3EC099;*/
+	/*stroke-width: 2.6px;*/
 }
 
 
 .cal-heatmap-container .q4
 {
-	background-color: #637939;
-	fill: #637939;
-	stroke: #637939;
-	stroke-width: 3px;
+	background-color: #37A294;
+	fill: #37A294;
+	/*stroke: #319789;*/
+	/*stroke-width: 3px;*/
 }
 
 
 
 .cal-heatmap-container .q5
 {
-	background-color: #8ecaa7;
-	fill: #8ecaa7;
-	stroke:#8ecaa7;
-	stroke-width: 4px;
+	background-color: #1E7D8A;
+	fill: #1E7D8A;
+	/*stroke:#1E7D8A;*/
+	/*stroke-width: 4px;*/
 }
 
 
