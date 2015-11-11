@@ -77,6 +77,15 @@ function displayActiveSubjects(allSubjectsDict) {
                 });
             });
 
+            // clicking enter while on #subjectNameTitle sets blur for the element
+            $(function(){
+                $('#subjectNameTitle' + subjectKey).keyup(function(e){
+                    if (e.keyCode === 13) {
+                        $('#subjectNameTitle' + subjectKey).blur();
+                    }
+                });
+            });
+
             // edit subject's name on input field's blur
             $('.subjectHeaderOnSubjectPage').blur(function(){
                 editSubjectName(subjectKey);
@@ -158,8 +167,6 @@ function editSubjectName(subjectId) {
 function focusOnTitle(subjectId) {
     // focus on title's input field
     $('#subjectNameTitle' + subjectId).focus();
-    // Select input field contents
-    //$('#subjectNameTitle' + subjectId).select();
 }
 
 
