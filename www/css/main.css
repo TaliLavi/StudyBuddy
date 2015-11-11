@@ -920,11 +920,6 @@ input:focus {outline:0;}
 
 }
 
-#defaultSubjectAreaMessage {
-    text-align: center;
-    background-color: #BCDBE1;
-}
-
 .subjectName {
     padding: 15px;
     border-bottom: 1.5px solid #BCDBE1;

@@ -127,6 +127,10 @@ function displayActiveSubjects(allSubjectsDict) {
             }
         });
 
+        //Set default subject on subject page to be the first subject.
+        // We're running this inside the callback to make sure subjects DOM elements have been prepared.
+        var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
+        viewSubjectArea(firstSubjectKey);
 
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
