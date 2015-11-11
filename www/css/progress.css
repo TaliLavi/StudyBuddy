@@ -137,7 +137,7 @@
     clear: both;
     padding: 0px;
     margin: 0px;
-    width: 900px;
+    width: 1020px;
     display: block;
     margin: auto;
 }
@@ -147,9 +147,9 @@
     display: block;
     float:left;
     margin: 1% 0 1% 1.6%;
-    text-align: center;
     color: #607A93;
 }
+
 .colMonth:first-child { margin-left: 0; }
 
 /*  GROUPING  */

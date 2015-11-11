@@ -354,7 +354,7 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         if (totalSecondsStudied === null) {
             $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task. I knew you could do it!");
+            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task.");
         }
     } else {
         if (totalSecondsStudied !== null) {

@@ -344,7 +344,7 @@ input:focus {outline:0;}
 
 /*This is the modal window for the task (with timer)*/
 #taskModal{
-    width:58%;
+    width:700px;
     height: 400px;
 }
 
@@ -361,6 +361,7 @@ input:focus {outline:0;}
     height:100%;
     width: 50%;
     background-color: whitesmoke;
+    overflow: hidden;
 }
 
 #taskCardForm {
@@ -1409,15 +1410,64 @@ input:focus {outline:0;}
 
 
 /*===============================================================================================*/
-/* PROFILE PAGE */
+/* RUZO ON DONE TASK CARD */
 /*===============================================================================================*/
 
+#bodyTaskCardRuzo{
+    width: 158px;
+    left: 105px;
+    top: 210px;
+    position: absolute;
+}
 
+#headTaskCardRuzo{
+    width: 112px;
+    left: 144px;
+    top: 140px;
+    position: absolute;
+}
 
+#tailTaskCardRuzo{
+    width: 150px;
+    left: 27px;
+    top: 194px;
+    position: absolute;
+    -ms-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg);
+    transform: rotate(7deg);
+}
 
+#circleOnDoneTask{
+    width: 300px;
+    height: 300px;
+    top: 120px;
+    left: 24px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .25);
+}
 
-/*#anotherDiv{*/
-    /*background-color: red;*/
-    /*width: 20%;*/
-    /*height: 1000px;*/
-/*}*/
+#doneTaskInfo {
+    background-color: #95CAAD;
+    height: 400px;
+}
+
+#totalTimeStudiedDoneTask{
+    color: white;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#taskCompleteHeading{
+    color: white;
+    /*opacity: .6;*/
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    display: block;
+    margin: auto;
+    padding-top: 44px;
+    text-align: center;
+}
