@@ -146,6 +146,10 @@
             <div id="timeStudyingHeading" >TIME STUDIED</div>
             <div id="cal-heatmap"></div>
             <div class="sectionMonth groupMonth">
+                <div class="colMonth span_1_of_12">Sep</div>
+                <div class="colMonth span_1_of_12">Oct</div>
+                <div class="colMonth span_1_of_12">Nov</div>
+                <div class="colMonth span_1_of_12">Dec</div>
                 <div class="colMonth span_1_of_12">Jan</div>
                 <div class="colMonth span_1_of_12">Feb</div>
                 <div class="colMonth span_1_of_12">Mar</div>
@@ -154,10 +158,6 @@
                 <div class="colMonth span_1_of_12">Jun</div>
                 <div class="colMonth span_1_of_12">Jul</div>
                 <div class="colMonth span_1_of_12">Aug</div>
-                <div class="colMonth span_1_of_12">Sep</div>
-                <div class="colMonth span_1_of_12">Oct</div>
-                <div class="colMonth span_1_of_12">Nov</div>
-                <div class="colMonth span_1_of_12">Dec</div>
             </div>
             <div id="myHeatmapLegend">
                 <div id="square1" class="legendSquare"></div><div class="legendText"> > 25 mins</div>
@@ -219,9 +219,7 @@
         <button id="addSubjectButton" onclick="openAddSubjectDialog();" class="needsclick">Add a subject...</button>
         <div id="subjectsList"></div>
       </div>
-      <div id="tasksPerSubject" class="theme1Colour10b">
-        <div class="subjectArea" id="defaultSubjectAreaMessage">Nothing here but butterflies</div>
-      </div>
+      <div id="tasksPerSubject" class="theme1Colour10b"></div>
     </div>
 
   </div>
@@ -236,7 +234,7 @@
             <p class ="modalHeading">New Subject</p>
         </div>
         <div id="addSubjectContentDiv">
-            <form id="addSubjectForm">
+            <form id="addSubjectForm" onkeypress="return event.keyCode != 13;">
                 <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
                 <p id="chooseColour">Choose a colour...</p>
                 <div id="colourPaletteAddSubject">
@@ -400,12 +398,12 @@
               <br>
               <div style="white-space:nowrap">
                   <label id="timeLabel" for="totalTimeStudiedActiveTask">Time Studied:</label>
-                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask">
+                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask" disabled="disabled">
               </div>
           </div>
             <br>
           <img src="img/binIcon.png" class="binIconTaskcard" id="deleteTask">
-          <button type="button" id="completeTask">Task Done ?</button>
+          <button type="button" id="completeTask">Mark as Done</button>
         </form>
       </div>
 
@@ -439,7 +437,12 @@
         </div>
 
         <div id="doneTaskInfo">
-          <div id ="totalTimeStudiedDoneTask"></div>
+            <div id="circleOnDoneTask"></div>
+            <img src="img/bodyTaskCardRuzo.png" id="bodyTaskCardRuzo">
+            <img src="img/tailTaskCardRuzo.png" id="tailTaskCardRuzo">
+            <img src="img/headTaskCardRuzo.png" id="headTaskCardRuzo">
+            <span id="taskCompleteHeading">TASK IS DONE! &nbsp;YAY!</span>
+            <div id ="totalTimeStudiedDoneTask"></div>
         </div>
 
       </div>
@@ -479,3 +482,6 @@
 </div>
 </body>
 </html>
+
+
+<!--main.js lines 306 - 316 commented out for development (the lines that show pomodoro and hide done message)-->

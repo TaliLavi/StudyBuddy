@@ -77,6 +77,9 @@ function displayActiveSubjects(allSubjectsDict) {
                 });
             });
 
+            // clicking enter while on #subjectNameTitle sets blur for the element
+            blurOnEnter($('#subjectNameTitle' + subjectKey));
+
             // edit subject's name on input field's blur
             $('.subjectHeaderOnSubjectPage').blur(function(){
                 editSubjectName(subjectKey);
@@ -127,6 +130,10 @@ function displayActiveSubjects(allSubjectsDict) {
             }
         });
 
+        //Set default subject on subject page to be the first subject.
+        // We're running this inside the callback to make sure subjects DOM elements have been prepared.
+        var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
+        viewSubjectArea(firstSubjectKey);
 
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
@@ -154,8 +161,6 @@ function editSubjectName(subjectId) {
 function focusOnTitle(subjectId) {
     // focus on title's input field
     $('#subjectNameTitle' + subjectId).focus();
-    // Select input field contents
-    //$('#subjectNameTitle' + subjectId).select();
 }
 
 

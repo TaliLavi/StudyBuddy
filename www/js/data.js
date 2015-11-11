@@ -359,6 +359,7 @@ function moveTaskToDeleted(subjectId, weekDate, taskId) {
         newRef.set(snapshot.val());
         oldRef.remove();
         removeCardFromDOM(taskId);
+        removeToDoTaskFromDOM(taskId);
     }, firebaseErrorFrom('moveTaskToDeleted'));
 }
 

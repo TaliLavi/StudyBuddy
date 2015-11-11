@@ -35,9 +35,6 @@ function preparePage() {
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
 
-    // show the default message in the subjects page
-    $('#defaultSubjectAreaMessage').show();
-
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(displayActiveSubjects);
 
@@ -52,6 +49,8 @@ function preparePage() {
 
     // prepare Done Ruzo animation
     prepareDoneRuzo();
+
+    blurOnEnter($('#titleInput'));
 }
 
 
@@ -181,6 +180,14 @@ function dragTask(evt) {
 
 function inTheAir(evt) {
     //add stuff if needed.
+}
+
+function blurOnEnter(element) {
+    element.keyup(function(event){
+        if (event.keyCode === 13) {
+            element.blur();
+        }
+    });
 }
 
 
@@ -357,7 +364,7 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         if (totalSecondsStudied === null) {
             $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You've spent " + hoursString + (and? "and " : "") + minutesString + "on this task. I knew you could do it!");
+            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task.");
         }
     } else {
         if (totalSecondsStudied !== null) {
