@@ -49,6 +49,8 @@ function preparePage() {
 
     // prepare Done Ruzo animation
     prepareDoneRuzo();
+
+    blurOnEnter($('#titleInput'));
 }
 
 
@@ -178,6 +180,14 @@ function dragTask(evt) {
 
 function inTheAir(evt) {
     //add stuff if needed.
+}
+
+function blurOnEnter(element) {
+    element.keyup(function(event){
+        if (event.keyCode === 13) {
+            element.blur();
+        }
+    });
 }
 
 

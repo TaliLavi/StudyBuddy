@@ -234,7 +234,7 @@
             <p class ="modalHeading">New Subject</p>
         </div>
         <div id="addSubjectContentDiv">
-            <form id="addSubjectForm">
+            <form id="addSubjectForm" onkeypress="return event.keyCode != 13;">
                 <input id="nameInput" class="inputField" name="subjectName" type="textbox" placeholder="Subject name here." required>
                 <p id="chooseColour">Choose a colour...</p>
                 <div id="colourPaletteAddSubject">
@@ -398,7 +398,7 @@
               <br>
               <div style="white-space:nowrap">
                   <label id="timeLabel" for="totalTimeStudiedActiveTask">Time Studied:</label>
-                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask">
+                  <input class="openTaskCardFormInput" type="text" id ="totalTimeStudiedActiveTask" disabled="disabled">
               </div>
           </div>
             <br>
