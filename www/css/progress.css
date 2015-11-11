@@ -38,7 +38,7 @@
     fill: #607A93;
 }
 
-.chart {
+#chart {
     display: block;
     margin: auto;
     /*height: 300px;*/

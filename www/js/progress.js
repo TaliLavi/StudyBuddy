@@ -3,8 +3,6 @@
 /*===================================================================================================================*/
 
 // Constants
-BAR_CHART_WIDTH = 960;
-BAR_CHART_HEIGHT = 300;
 BAR_CHART_MARGIN_TOP = 50;
 BAR_CHART_MARGIN_BOTTOM = 30;
 BAR_CHART_MARGIN_RIGHT = 20;
@@ -39,7 +37,7 @@ function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
     $("#dawnTimeButton").css("backgroundColor", "#31A9A8");
     $("#lastWeekButton").css("backgroundColor", "rgb(149,202,173)");
     $("#lastMonthButton").css("backgroundColor", "rgb(149,202,173)");
-    $(".chart").text(""); // clear previous contents
+    $("#chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
@@ -48,11 +46,11 @@ function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
 
 // generate graph for tasks in last 7 days (7*24 hours)
 function fetchAndDisplayBarGraphForLast7Days(renewCache) {
-    $(".chart").text(""); // clear previous contents
+    $("#chart").text(""); // clear previous contents
     $("#dawnTimeButton").css("backgroundColor", "rgb(149,202,173)");
     $("#lastWeekButton").css("backgroundColor", "#31A9A8");
     $("#lastMonthButton").css("backgroundColor", "rgb(149,202,173)");
-    $(".chart").html(""); // clear previous contents
+    $("#chart").html(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
@@ -71,7 +69,7 @@ function fetchAndDisplayBarGraphForLastMonth(renewCache) {
     $("#dawnTimeButton").css("backgroundColor", "rgb(149,202,173)");
     $("#lastWeekButton").css("backgroundColor", "rgb(149,202,173)");
     $("#lastMonthButton").css("backgroundColor", "#31A9A8");
-    $(".chart").text(""); // clear previous contents
+    $("#chart").text(""); // clear previous contents
     fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
 function generateBarGraphForLastMonth(subjects, doneTasks) {
@@ -88,8 +86,8 @@ function generateBarGraphForLastMonth(subjects, doneTasks) {
 function drawBarGraph(data) {
     var margin = {top: BAR_CHART_MARGIN_TOP, bottom: BAR_CHART_MARGIN_BOTTOM,
                   left: BAR_CHART_MARGIN_LEFT, right: BAR_CHART_MARGIN_RIGHT},
-        width = BAR_CHART_WIDTH - margin.left - margin.right,
-        height = BAR_CHART_HEIGHT - margin.top - margin.bottom;
+        width = $('#chart').attr('width') - margin.left - margin.right,
+        height = $('#chart').attr('height') - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -101,7 +99,7 @@ function drawBarGraph(data) {
         .scale(x)
         .orient("bottom");
 
-    var svg = d3.select(".chart")
+    var svg = d3.select("#chart")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")

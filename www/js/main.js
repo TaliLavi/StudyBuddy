@@ -93,18 +93,29 @@ function prepareNavigation() {
     switchToPage("#calendarPage", "#calendarButton");
 }
 
+function goToLogin() {
+    var suppressError = true;
+    if (getLoggedInUser(suppressError)) {
+        preparePage();
+    } else {
+        displayLogin();
+    }
+}
 
-function hideAppContent() {
+function displayLogin() {
     $('#appPages').hide();
     $('#signUpPage').hide();
+    $('#logInPage').show();
 }
 
 function showSignUp() {
+    $('#appPages').hide();
     $('#logInPage').hide();
     $('#signUpPage').show();
 }
 
 function showLogIn() {
+    $('#appPages').hide();
     $('#signUpPage').hide();
     $('#logInPage').show();
 }
