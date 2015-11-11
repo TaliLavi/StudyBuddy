@@ -311,8 +311,14 @@ function whetherDateIsDisplayed(dateString, thisWeeksMonday, nextWeeksMonday) {
 }
 
 function removeCardFromDOM(taskId) {
-    // get task by its data attribute and remove it from the DOM
+    // get card task by its data attribute and remove it from the DOM
     $('li[data-taskid="' + taskId + '"]').remove();
+}
+
+function removeToDoTaskFromDOM(taskId) {
+    // get todotask and the <br> tag which is after it and remove them from the DOM
+    $('#todoTaskFor' + taskId).next("br").remove();
+    $('#todoTaskFor' + taskId).remove();
 }
 
 function markAsDone(subjectId, originalDate, taskId) {
