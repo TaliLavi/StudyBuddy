@@ -54,7 +54,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" size="'+ boxLength +'"  value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
-                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour needsclick" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
                     '<img src="img/binIcon.png" class="binIcon">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
@@ -96,6 +96,7 @@ function displayActiveSubjects(allSubjectsDict) {
             );
 
             $('.editColour[data-subjectid="' + subjectKey + '"]').click(function () {
+                console.log('editColour was clicked');
                 // if this click will make #colourPalette visible:
                 if ($('#colourPalette').is(':hidden')) {
                     // select this subject's colour by default
@@ -126,39 +127,6 @@ function displayActiveSubjects(allSubjectsDict) {
             });
         })
 
-        //$('.editColour').click(function () {
-        //    var subjectId = $(this).data('subjectid');
-        //    // if this click will make #colourPalette visible:
-        //    if ($('#colourPalette').is(':hidden')) {
-        //        // select this subject's colour by default
-        //        var subjectColour = $(this).data('colour-scheme');
-        //        var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
-        //        subjectColourDiv.addClass('chosenColour');
-        //        // position colour palette menu next to the editColour button
-        //        var offset = $(this).offset();
-        //        var positionEditColour = $('.editColour').offset().left;
-        //        //console.log(positionEditColour);
-        //        var leftPositionPalette = positionEditColour - 110;
-        //        $('#colourPalette').css('left', leftPositionPalette);
-        //        $('#colourPalette').css('top',offset.top + 80);
-        //
-        //        setCloseWhenClickingOutside($('#colourPalette'));
-        //
-        //        $('#changeColourButton').on("click", function(){
-        //            changeSubjectColour(subjectId);
-        //        });
-        //
-        //        // display #colourPalette
-        //        $('#colourPalette').show();
-        //    // if this click will make #colourPalette hidden:
-        //    } else {
-        //        // hide and clear colourPalette
-        //        $('.colourMessage').text('');
-        //        $('.colourOption').removeClass('chosenColour');
-        //        // hide #colourPalette
-        //        $('#colourPalette').hide();
-        //    }
-        //});
 
         //Set default subject on subject page to be the first subject.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
@@ -180,7 +148,6 @@ function editSubjectName(subjectId) {
         // change data attribute to new name
         $('#subjectNameTitle' + subjectId).data('subject-name', newName);
         // change subject title on subject area
-        console.log(newName.length);
         $('#subjectNameTitle' + subjectId).attr('size', newName.length+2);
         //$('#subjectNameTitle').css( "size", newName.length+2);
         $('#subjectNameTitle' + subjectId).val(newName);
@@ -207,7 +174,7 @@ function hideColourPalette() {
     // Clear old onclick handler
     $('#changeColourButton').off("click");
     // hide and clear colourPalette
-    $('#colourPalette').hide().css("height", 210);
+    $('#colourPalette').hide();
     $('.colourMessage').text('');
     $('.colourOption').removeClass('chosenColour');
 }
