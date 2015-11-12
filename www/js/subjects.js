@@ -48,7 +48,7 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.colour_scheme + '" ' +
                 'onclick="viewSubjectArea(\'' + subjectKey + '\')">' + subjectData.name + '</div>'
             );
-            var boxLength = (subjectData.name.length)+1;
+            var boxLength = (subjectData.name.length)+2;
             // In subjects page, create a subjectArea for each subject. This is where tasks for that subject would eventually appear.
             $('#tasksPerSubject').append(
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
@@ -150,6 +150,9 @@ function editSubjectName(subjectId) {
         // change data attribute to new name
         $('#subjectNameTitle' + subjectId).data('subject-name', newName);
         // change subject title on subject area
+        console.log(newName.length);
+        $('#subjectNameTitle' + subjectId).attr('size', newName.length+2);
+        //$('#subjectNameTitle').css( "size", newName.length+2);
         $('#subjectNameTitle' + subjectId).val(newName);
         // change subject name in subjects left panel
         $('#subjectName' + subjectId).text(newName);

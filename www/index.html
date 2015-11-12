@@ -47,7 +47,7 @@
   <!--========================================================================================================-->
   <!--SIGNUP PAGE-->
   <!--========================================================================================================-->
-  <div id="signUpPage">
+  <div id="signUpPage" style="display:none;">
     <form>
       <h2>Create a new acount</h2>
       <h3>Start studying the smart way</h3>
@@ -67,7 +67,7 @@
   <!--LOGIN PAGE-->
   <!--========================================================================================================-->
 
-  <div id="logInPage">
+  <div id="logInPage" style="display:none;">
     <form>
       <h2>LogIn</h2>
       <h3>Welcome back!</h3>
@@ -114,16 +114,14 @@
             <img  class="navIcon" src="img/settingsIcon.png">
             <span>Settings</span>
         </button>
-      <!--<button  id="signoutButton">Sign out</button>-->
-      <!--<button  id="settingsButton">Settings</button>-->
+      <button  id="signoutButton" onclick="signOut()">Sign out</button>
+      <!--<button onclick="playRuzoDone()">Play Done Ruzo</button>-->
     </div>
 
     <!--========================================================================================================-->
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
-    <div id="profilePage">
-
-
+    <div id="profilePage" style="display:none;">>
 
         <div id="subjectsRecordSection">
             <div id="barHeadingDiv">
@@ -133,7 +131,7 @@
                 <button id="lastWeekButton" class="barChartToggle" onclick="fetchAndDisplayBarGraphForLast7Days()">Last 7 days</button>
             </div>
 
-            <svg class="chart"></svg>
+            <svg id="chart" height="300" width="960"></svg>
             <!--<p class = "progressPageMessage" id="tasksThisWeekMessage">You've completed x tasks this week!</p>-->
             <p class = "progressPageMessage" id="subjectsThisWeekMessage">Great job with English this week!</p>
             <!--<p class = "progressPageMessage" id="subjectsThisMonthMessage">You've been working hard on English.</p>-->
@@ -176,7 +174,7 @@
     <!--CALENDAR PAGE-->
     <!--========================================================================================================-->
 
-    <div id="calendarPage">
+    <div id="calendarPage" style="display:none;">
       <div id="calendarControls">
         <input type="image" src="img/leftArrow.png" id="control_prev" class="calendarControls"/>
         <p class="calendarControls" id="weekHeadingOnCalendar">THIS WEEK</p>
@@ -213,9 +211,9 @@
     <!--========================================================================================================-->
     <!--SUBJECT PAGE-->
     <!--========================================================================================================-->
-    <div id="subjectsPage">
+    <div id="subjectsPage" style="display:none;">
       <div id="subjectsPanel">
-        <div id="mySubjectsTitle">My Subjects</div>
+        <!--<div id="mySubjectsTitle">My Subjects</div>-->
         <button id="addSubjectButton" onclick="openAddSubjectDialog();" class="needsclick">Add a subject...</button>
         <div id="subjectsList"></div>
       </div>
@@ -230,7 +228,7 @@
   <div id="addSubjectModalBG" class="modal-bg">
     <div id="addSubjectModal" class="modal">
         <div id="addSubjectHeadingDiv">
-            <span class="closeX" onclick="closeModalWindow();">x</span>
+            <span class="closeX" onclick="closeModalWindow();">X</span>
             <p class ="modalHeading">New Subject</p>
         </div>
         <div id="addSubjectContentDiv">
@@ -349,7 +347,7 @@
   <div id="addTaskModalBG" class="modal-bg">
     <div id="addTaskModal" class="modal">
         <div id="addTaskCardHeadingDiv">
-            <span class="closeX" onclick="closeModalWindow();">x</span>
+            <span class="closeX" onclick="closeModalWindow();">X</span>
             <p class ="modalHeading">Add a Task</p>
         </div>
         <div id="addTaskCardContentDiv">
@@ -408,7 +406,7 @@
       </div>
 
       <div id="rightSideTaskCard">
-        <span class="closeX" id="closeTaskModal">x</span>
+        <span class="closeX" id="closeTaskModal">X</span>
 
         <div id ="pomodoroDiv" data-task-id = 'empty'>
           <img src="img/backHourglass.png" id="backHourglass">
@@ -437,11 +435,8 @@
         </div>
 
         <div id="doneTaskInfo">
-            <div id="circleOnDoneTask"></div>
-            <img src="img/bodyTaskCardRuzo.png" id="bodyTaskCardRuzo">
-            <img src="img/tailTaskCardRuzo.png" id="tailTaskCardRuzo">
-            <img src="img/headTaskCardRuzo.png" id="headTaskCardRuzo">
-            <span id="taskCompleteHeading">TASK IS DONE! &nbsp;YAY!</span>
+            <span class="closeX" id="closeTaskModalDone">X</span>
+            <div><img src="img/jobDoneSign.png" id="jobDoneSign"></div>
             <div id ="totalTimeStudiedDoneTask"></div>
         </div>
 
@@ -452,15 +447,17 @@
     <!--========================================================================================================-->
     <!--RUZO FOR WHEN TASK IS COMPLETE-->
     <!--========================================================================================================-->
-<div id="doneRuzoDiv">
-    <div id="doneCircle"></div>
-    <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
-    <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
-    <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
-    <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
-    <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
-    <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
-</div>
+  <div id="doneRuzoDiv">
+      <div id="doneCircle"></div>
+      <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
+      <div id="doneRuzoFox">
+          <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
+          <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+          <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
+          <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
+          <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
+      </div>
+  </div>
 
 
 
@@ -471,17 +468,9 @@
   </audio>
 
   <script>
-    // TODO: Before publishing:
-    // Change the next line from preparePage to hideAppContent.
-    // Also, delete the line after that, which manually assigns a specific uid to LOGGED_IN_UID
-    // Also, change "Rules" in firebase.
-    document.addEventListener('deviceready', preparePage);
-    LOGGED_IN_UID = "d81360f7-4eec-4e64-afd7-27859337eb60";
+    document.addEventListener('deviceready', goToLogin);
   </script>
 
 </div>
 </body>
 </html>
-
-
-<!--main.js lines 306 - 316 commented out for development (the lines that show pomodoro and hide done message)-->

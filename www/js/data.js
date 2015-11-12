@@ -1,6 +1,5 @@
 //GLOBAL VARIABLES
 var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
-var LOGGED_IN_UID = null;
 var dataCache = {
     sessionTimes: null,
     barChart: null
@@ -34,8 +33,7 @@ function signUpUser(firstName, lastName, email, password) {
                 $('#signUpEmailErrorMessage').text('The specified email address is already in use.');
             }
         } else {
-            LOGGED_IN_UID = userData.uid;
-            createUser(firstName, lastName, email, password, LOGGED_IN_UID);
+            createUser(firstName, lastName, email, password, getLoggedInUser());
         }
     });
 }
@@ -43,10 +41,11 @@ function signUpUser(firstName, lastName, email, password) {
 // Log in existing user
 function logInUser(email, password, signUpCallback) {
     var ref = FIREBASE_REF;
+
     ref.authWithPassword({
         email    : email,
         password : password
-    }, function(error, authData) {
+    }, function(error) {
         if (error) {
             console.error("Error logging-in user:", error);
             console.error("Login Failed!", error);
@@ -60,24 +59,40 @@ function logInUser(email, password, signUpCallback) {
                 $('#logInPasswordErrorMessage').text('Oops, wrong password.');
             }
         } else {
-            LOGGED_IN_UID = authData.uid;
             if (signUpCallback !== undefined) {
                 signUpCallback();
             }
-            preparePage();
+            // attach an event handler to sign out, in case of session timeout
+            ref.offAuth(AuthChangeHandler);
+            ref.onAuth(AuthChangeHandler);
+            goToLogin();
         }
     });
 }
 
 // GET THE CURRENT LOGGED-IN USER
-function getLoggedInUser() {
-    if (LOGGED_IN_UID !== null) {
-        return LOGGED_IN_UID;
+function getLoggedInUser(suppressError) {
+    var alreadyAuthenticated = FIREBASE_REF.getAuth();
+    if (alreadyAuthenticated) {
+        return alreadyAuthenticated.uid;
     } else {
-        console.error("No user logged in.");
+        if (!suppressError) {
+            console.error("No user logged in.");
+        }
     }
 }
 
+function signOut() {
+    FIREBASE_REF.unauth();
+    location.reload();
+}
+
+// We use this to sign the user out of the ui, if authentication expired
+function AuthChangeHandler(uid) {
+    if (uid === null) {
+        signOut()
+    }
+}
 
 //=====================================================================
 //                              USERS

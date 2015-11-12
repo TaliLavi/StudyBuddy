@@ -11,6 +11,7 @@
     -moz-touch-callout: none;
     -ms-touch-callout: none;
     touch-callout: none;
+    background-color: red;
     /*prevents the grey highlight when anything is tapped on the iPad*/
     -webkit-tap-highlight-color: transparent;
 }
@@ -59,7 +60,9 @@ input, textarea {
 #navBar {
     height: 80px;
     background-color: #1B9BAE;
-
+    position: relative;
+    display: block;
+    overflow: hidden;
 }
 
 .navButton{
@@ -75,15 +78,18 @@ input, textarea {
     line-height: 1.6;
     font-weight: 300;
     z-index: 2;
+    overflow: hidden;
 }
 
 .navIcon{
     height: 40px;
     width: 40px;
     z-index: 2;
+    overflow: hidden;
 }
 
 .iconHighlight{
+    top: -5px;
     height: 90px;
     width: 90px;
     background-color: white;
@@ -91,23 +97,24 @@ input, textarea {
     border-radius: 50%;
     position: absolute;
     z-index: 0;
+    overflow: hidden;
 }
 
 #weekHighlight{
-    top: 15px;
     margin-left: 88px;
+    overflow: hidden;
 }
 
 #subjectsHighlight{
-    top: 15px;
     margin-left: 0;
     display: none;
+    overflow: hidden;
 }
 
 #progressHighlight{
-    top: 15px;
     margin-left: 177px;
     display: none;
+    overflow: hidden;
 }
 
 #profileButton{
@@ -870,12 +877,12 @@ input:focus {outline:0;}
     list-style-type: none;
 }
 
-#mySubjectsTitle {
-    color: white;
-    text-align: center;
-    background-color: #95CAAD;
-    padding: 20px;
-}
+/*#mySubjectsTitle {*/
+    /*color: white;*/
+    /*text-align: center;*/
+    /*background-color: #95CAAD;*/
+    /*padding: 20px;*/
+/*}*/
 
 .subjectHeaderOnSubjectPage {
     display: inline-block;
@@ -919,6 +926,7 @@ input:focus {outline:0;}
     -webkit-overflow-scrolling: touch;
     height: 550px;
 
+
 }
 
 .subjectName {
@@ -931,20 +939,23 @@ input:focus {outline:0;}
 }
 
 #addSubjectButton {
-    color: #607A93;
+    color: white;
     border: none;
-    font-size: 1em;
-    height: 50px;
-    background-color: rgba(255,255,255,0.4);
+    font-size: 1.2em;
+    height: 70px;
     width: 100%;
     text-align: center;
-    border-bottom: 1.5px solid #BCDBE1;
+    background-color: #95CAAD;
+    -webkit-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
+    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
+    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
 }
+
 .completedTasksButton{
     display: block;
     background-color: transparent;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: 250px;
     margin: auto;
     margin-bottom: 50px;
@@ -1413,39 +1424,6 @@ input:focus {outline:0;}
 /* RUZO ON DONE TASK CARD */
 /*===============================================================================================*/
 
-#bodyTaskCardRuzo{
-    width: 158px;
-    left: 105px;
-    top: 210px;
-    position: absolute;
-}
-
-#headTaskCardRuzo{
-    width: 112px;
-    left: 144px;
-    top: 140px;
-    position: absolute;
-}
-
-#tailTaskCardRuzo{
-    width: 150px;
-    left: 27px;
-    top: 194px;
-    position: absolute;
-    -ms-transform: rotate(7deg);
-    -webkit-transform: rotate(7deg);
-    transform: rotate(7deg);
-}
-
-#circleOnDoneTask{
-    width: 300px;
-    height: 300px;
-    top: 120px;
-    left: 24px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, .25);
-}
 
 #doneTaskInfo {
     background-color: #95CAAD;
@@ -1457,17 +1435,17 @@ input:focus {outline:0;}
     display: block;
     margin: auto;
     text-align: center;
-    padding: 10px;
+    padding-top: 50px;
+    line-height: 1.8em;
+    width: 70%;
+    line-height: 1.8em;
 }
 
-#taskCompleteHeading{
-    color: white;
-    /*opacity: .6;*/
-    font-family: Acme, sans-serif;
-    text-transform: uppercase;
-    font-size: 1.5em;
+
+#jobDoneSign{
+    height: 164px;
+    width:256px;
     display: block;
     margin: auto;
-    padding-top: 44px;
-    text-align: center;
+    padding-top: 90px;
 }

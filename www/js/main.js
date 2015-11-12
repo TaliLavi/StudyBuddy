@@ -51,6 +51,7 @@ function preparePage() {
     prepareDoneRuzo();
 
     blurOnEnter($('#titleInput'));
+    blurOnEnter($('#titleInput'));
 }
 
 
@@ -93,18 +94,34 @@ function prepareNavigation() {
     switchToPage("#calendarPage", "#calendarButton");
 }
 
+function goToLogin() {
+    // when clicking enter while on password field, if email field isn't empty, attempt to login
+    executeOnEnter($('#logInPasswordInput'), prepareLogIn);
+    // when clicking enter while on password field, if email field isn't empty, attempt to signup
+    executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
 
-function hideAppContent() {
+    var suppressError = true;
+    if (getLoggedInUser(suppressError)) {
+        preparePage();
+    } else {
+        displayLogin();
+    }
+}
+
+function displayLogin() {
     $('#appPages').hide();
     $('#signUpPage').hide();
+    $('#logInPage').show();
 }
 
 function showSignUp() {
+    $('#appPages').hide();
     $('#logInPage').hide();
     $('#signUpPage').show();
 }
 
 function showLogIn() {
+    $('#appPages').hide();
     $('#signUpPage').hide();
     $('#logInPage').show();
 }
@@ -186,6 +203,14 @@ function blurOnEnter(element) {
     element.keyup(function(event){
         if (event.keyCode === 13) {
             element.blur();
+        }
+    });
+}
+
+function executeOnEnter(element, callback) {
+    element.keyup(function(event){
+        if (event.keyCode === 13) {
+            callback();
         }
     });
 }
@@ -364,7 +389,7 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         if (totalSecondsStudied === null) {
             $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task.");
+            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task. Good work!");
         }
     } else {
         if (totalSecondsStudied !== null) {
