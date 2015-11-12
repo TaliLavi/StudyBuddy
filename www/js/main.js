@@ -508,6 +508,18 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
     });
 }
 
+// set event handler for closing the areYouSureModal modal when user clicks outside modal.
+function setCloseWhenClickingOutsideForAreYouSureModal() {
+    var eventType = isMobile()? "touchend" : "mouseup";
+    $(document).off(eventType);
+    $(document).on(eventType, function (event) {
+        // if the target of the click isn't the modal window, nor a descendant of the modal window
+        if (!$('#areYouSureModal').is(event.target) && $('#areYouSureModal').has(event.target).length === 0) {
+            closeModalWindow();
+        }
+    });
+}
+
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
@@ -591,10 +603,13 @@ function formatTime(seconds) {
 //===========================================================================================================
 
 function displayAreYouSureModal(subjectId){
+    // set event handler for closing the modal when user clicks outside modal
+    setCloseWhenClickingOutsideForAreYouSureModal();
     $('#confirmDeleteSubjectButton').off('click');
     // set click event for confirmation button
     $('#confirmDeleteSubjectButton').on('click', function() {
-        deleteSubjectAndTasks(subjectId)
+        deleteSubjectAndTasks(subjectId);
+        closeModalWindow();
     });
     //Makes the modal window display
     $('#areYouSureModal').css('display','block');
@@ -603,14 +618,4 @@ function displayAreYouSureModal(subjectId){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
-}
-
-function closeAreYouSureModal(){
-    //Makes the modal window display
-    $('#areYouSureModal').css('display','none');
-    //Fades in the greyed-out background
-    $('#areYouSureModalBG').hide();
-    $('#iPadStatusBar').removeClass('frostedGlass');
-    $('#subjectsPage').removeClass('frostedGlass');
-    $('#navBar').removeClass('frostedGlass');
 }
