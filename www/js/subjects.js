@@ -162,6 +162,15 @@ function focusOnTitle(subjectId) {
     $('#subjectNameTitle' + subjectId).focus();
 }
 
+function removeSubjectFromDOM(subjectId) {
+    // Switch to the subject area of the first subject, so as to avoid displaying an empty subject area upon deletion.
+    var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
+    viewSubjectArea(firstSubjectKey);
+
+    $('#subjectName' + subjectId).remove();
+    $('#subjectArea' + subjectId).remove();
+    $('#subject' + subjectId).remove();
+}
 
 function hideColourPalette() {
     // prevent document from continueing to listen to clicks outside the modal container.
@@ -190,7 +199,9 @@ function viewSubjectArea(subjectKey) {
 
 
 function deleteSubjectAndTasks(subjectId) {
-    // delete subject
+    // remove subject title and subject area from the DOM
+    removeSubjectFromDOM(subjectId);
+    // move subject to the deleted area in the DB
     deleteSubject(subjectId);
     // delete all of the subject's active tasks
     deleteTasksPerSubject(subjectId, moveTaskToDeleted);
