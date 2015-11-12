@@ -753,6 +753,40 @@ input:focus {outline:0;}
     right: 0px;
 }
 
+/*===================================================================================================================*/
+/* ARE YOU SURE MODAL WINDOW FOR DELETE SUBJECT */
+/*===================================================================================================================*/
+
+#areYouSureModal{
+    top: 50%;
+    width: 400px;
+    height: 250px;
+}
+
+#areYouSureHeadingDiv{
+    background-color: #C9304D;
+    width: 100%;
+    height: 65px;
+    text-align: center;
+}
+
+#areYouSureHeading{
+    font-family: Acme, sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    opacity: .5;
+    color: white;
+    line-height: 65px;
+}
+
+#areYouSureMessage{
+    color: #607A93;
+    line-height: 1.75em;
+    font-size: .95em;
+    text-align: center;
+}
+
+
 /*===============================================================================================*/
 /* SORTABLE DAYS */
 /*===============================================================================================*/

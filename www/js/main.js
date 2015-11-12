@@ -584,3 +584,28 @@ function formatTime(seconds) {
 
     return mm + ":" + ss;
 }
+
+
+//===========================================================================================================
+// ARE YOU SURE MODAL FOR DELETING A SUBJECT
+//===========================================================================================================
+
+function displayAreYouSureModal(){
+    //Makes the modal window display
+    $('#areYouSureModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#areYouSureModalBG').show();
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
+}
+
+function closeAreYouSureModal(){
+    //Makes the modal window display
+    $('#areYouSureModal').css('display','none');
+    //Fades in the greyed-out background
+    $('#areYouSureModalBG').hide();
+    $('#iPadStatusBar').removeClass('frostedGlass');
+    $('#subjectsPage').removeClass('frostedGlass');
+    $('#navBar').removeClass('frostedGlass');
+}
