@@ -55,7 +55,7 @@ function displayActiveSubjects(allSubjectsDict) {
                     '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" size="'+ boxLength +'"  value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour needsclick" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<img src="img/binIcon.png" class="binIcon" onclick="displayAreYouSureModal()">'+
+                    '<img src="img/binIcon.png" class="binIcon" onclick="displayAreYouSureModal(\'' + subjectKey + '\')">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input id="bulkTextFor' + subjectKey + '" class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '" maxlength="45">' +
@@ -96,7 +96,6 @@ function displayActiveSubjects(allSubjectsDict) {
             );
 
             $('.editColour[data-subjectid="' + subjectKey + '"]').click(function () {
-                console.log('editColour was clicked');
                 // if this click will make #colourPalette visible:
                 if ($('#colourPalette').is(':hidden')) {
                     // select this subject's colour by default
@@ -187,6 +186,14 @@ function viewSubjectArea(subjectKey) {
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
+}
+
+
+function deleteSubjectAndTasks(subjectId) {
+    // delete subject
+    deleteSubject(subjectId);
+    // delete all of the subject's active tasks
+    deleteTasksPerSubject(subjectId, moveTaskToDeleted);
 }
 
 function setSubjectColour(clickedColour) {

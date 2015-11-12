@@ -366,6 +366,20 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
     }
 }
 
+function deleteTasksPerSubject(subjectId, callback) {
+    var doneTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId);
+    doneTasksPerSubjectRef.once("value", function(weeks) {
+        if (weeks.val() !== null) {
+            weeks.forEach(function(week) {
+                week.forEach(function(task) {
+                    callback(subjectId, week.key(), task.key());
+                })
+            });
+        }
+    }, firebaseErrorFrom('deleteTasksPerSubject'));
+}
+
+
 // MOVE TASK TO DELETED
 function moveTaskToDeleted(subjectId, weekDate, taskId) {
     var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);

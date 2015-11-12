@@ -590,7 +590,12 @@ function formatTime(seconds) {
 // ARE YOU SURE MODAL FOR DELETING A SUBJECT
 //===========================================================================================================
 
-function displayAreYouSureModal(){
+function displayAreYouSureModal(subjectId){
+    $('#confirmDeleteSubjectButton').off('click');
+    // set click event for confirmation button
+    $('#confirmDeleteSubjectButton').on('click', function() {
+        deleteSubjectAndTasks(subjectId)
+    });
     //Makes the modal window display
     $('#areYouSureModal').css('display','block');
     //Fades in the greyed-out background
