@@ -1070,8 +1070,6 @@ input:focus {outline:0;}
 #colourPalette {
     position: absolute;
     width: 180px;
-    right: 1.5%;
-    top: 28%;
     height: 210px;
     background-color: #ffffff;
     display: none;

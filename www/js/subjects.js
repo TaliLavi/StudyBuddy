@@ -94,41 +94,71 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#taskSubject').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             );
+
+            $('.editColour[data-subjectid="' + subjectKey + '"]').click(function () {
+                // if this click will make #colourPalette visible:
+                if ($('#colourPalette').is(':hidden')) {
+                    // select this subject's colour by default
+                    var subjectColour = $(this).data('colour-scheme');
+                    var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
+                    subjectColourDiv.addClass('chosenColour');
+                    // position colour palette menu next to the editColour button
+                    var colourPickerOffset = $('.editColour[data-subjectid="' + subjectKey + '"]').offset();
+                    $('#colourPalette').css('left', colourPickerOffset.left - 110);
+                    $('#colourPalette').css('top',colourPickerOffset.top + 70);
+
+                    setCloseWhenClickingOutside($('#colourPalette'));
+
+                    $('#changeColourButton').on("click", function(){
+                        changeSubjectColour(subjectKey);
+                    });
+
+                    // display #colourPalette
+                    $('#colourPalette').show();
+                    // if this click will make #colourPalette hidden:
+                } else {
+                    // hide and clear colourPalette
+                    $('.colourMessage').text('');
+                    $('.colourOption').removeClass('chosenColour');
+                    // hide #colourPalette
+                    $('#colourPalette').hide();
+                }
+            });
         })
 
-        $('.editColour').click(function () {
-            var subjectId = $(this).data('subjectid');
-            // if this click will make #colourPalette visible:
-            if ($('#colourPalette').is(':hidden')) {
-                // select this subject's colour by default
-                var subjectColour = $(this).data('colour-scheme');
-                var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
-                subjectColourDiv.addClass('chosenColour');
-                // position colour palette menu next to the editColour button
-                //var offset = $(this).offset();
-                //var positionEditColour = $('.editColour').offset().left;
-                ////console.log(positionEditColour);
-                //var leftPositionPalette = positionEditColour - 110;
-                //$('#colourPalette').css('left', leftPositionPalette);
-                //$('#colourPalette').css('top',offset.top + 80);
-
-                setCloseWhenClickingOutside($('#colourPalette'));
-
-                $('#changeColourButton').on("click", function(){
-                    changeSubjectColour(subjectId);
-                });
-
-                // display #colourPalette
-                $('#colourPalette').show();
-            // if this click will make #colourPalette hidden:
-            } else {
-                // hide and clear colourPalette
-                $('.colourMessage').text('');
-                $('.colourOption').removeClass('chosenColour');
-                // hide #colourPalette
-                $('#colourPalette').hide();
-            }
-        });
+        //$('.editColour').click(function () {
+        //    var subjectId = $(this).data('subjectid');
+        //    // if this click will make #colourPalette visible:
+        //    if ($('#colourPalette').is(':hidden')) {
+        //        // select this subject's colour by default
+        //        var subjectColour = $(this).data('colour-scheme');
+        //        var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
+        //        subjectColourDiv.addClass('chosenColour');
+        //        // position colour palette menu next to the editColour button
+        //        var offset = $(this).offset();
+        //        var positionEditColour = $('.editColour').offset().left;
+        //        //console.log(positionEditColour);
+        //        var leftPositionPalette = positionEditColour - 110;
+        //        $('#colourPalette').css('left', leftPositionPalette);
+        //        $('#colourPalette').css('top',offset.top + 80);
+        //
+        //        setCloseWhenClickingOutside($('#colourPalette'));
+        //
+        //        $('#changeColourButton').on("click", function(){
+        //            changeSubjectColour(subjectId);
+        //        });
+        //
+        //        // display #colourPalette
+        //        $('#colourPalette').show();
+        //    // if this click will make #colourPalette hidden:
+        //    } else {
+        //        // hide and clear colourPalette
+        //        $('.colourMessage').text('');
+        //        $('.colourOption').removeClass('chosenColour');
+        //        // hide #colourPalette
+        //        $('#colourPalette').hide();
+        //    }
+        //});
 
         //Set default subject on subject page to be the first subject.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
