@@ -51,6 +51,7 @@ function preparePage() {
     prepareDoneRuzo();
 
     blurOnEnter($('#titleInput'));
+    blurOnEnter($('#titleInput'));
 }
 
 
@@ -94,6 +95,11 @@ function prepareNavigation() {
 }
 
 function goToLogin() {
+    // when clicking enter while on password field, if email field isn't empty, attempt to login
+    executeOnEnter($('#logInPasswordInput'), prepareLogIn);
+    // when clicking enter while on password field, if email field isn't empty, attempt to signup
+    executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
+
     var suppressError = true;
     if (getLoggedInUser(suppressError)) {
         preparePage();
@@ -197,6 +203,14 @@ function blurOnEnter(element) {
     element.keyup(function(event){
         if (event.keyCode === 13) {
             element.blur();
+        }
+    });
+}
+
+function executeOnEnter(element, callback) {
+    element.keyup(function(event){
+        if (event.keyCode === 13) {
+            callback();
         }
     });
 }
