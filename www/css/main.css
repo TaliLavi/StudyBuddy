@@ -1,25 +1,26 @@
 *{
     font-family: Raleway, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
     /*prevents selection of text for copying and pasting it*/
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
     /*prevent element popout (for disabling appearance of magnifying glass on long press)*/
-    -webkit-touch-callout: none;
-    -moz-touch-callout: none;
-    -ms-touch-callout: none;
-    touch-callout: none;
+    -webkit-touch-callout: none !important;
+    -moz-touch-callout: none !important;
+    -ms-touch-callout: none !important;
+    touch-callout: none !important;
     /*prevents the grey highlight when anything is tapped on the iPad*/
     -webkit-tap-highlight-color: transparent;
+
+
 }
 
 /*html {*/
 /*height: 100%;*/
 /*box-sizing: border-box;*/
 /*-moz-box-sizing: border-box;*/
-
 
 /*}*/
 
@@ -326,11 +327,12 @@ input:focus {outline:0;}
     display: block;
     position: absolute;
     color: white;
-    opacity: .5;
+    opacity: .3;
     font-weight: 300;
     font-size: 2em;
-    right: 10px;
-    top: 0;
+    right: 0px;
+    top: -5px;
+    padding: 14px;
 }
 
 .modalHeading{
@@ -486,8 +488,8 @@ input:focus {outline:0;}
     color: lightgray;
     font-weight: 300;
     font-size: 2em;
-    right: 10px;
-    top: 0px;
+    right: 0px;
+    top: -5px;
 }
 
 
