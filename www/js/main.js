@@ -283,6 +283,9 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
         $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
 
     }
+
+    $('#timeStudiedWrapper').show();
+
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
@@ -310,6 +313,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
 
     if (isDone) {
+        $('#timeStudiedWrapper').hide();
         // prevent user from changing assigned date
         $('#cardAssignedDate').attr('disabled', true);
         $('#closeTaskModal').on("click", closeModalWindow);
