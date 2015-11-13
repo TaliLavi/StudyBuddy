@@ -213,7 +213,7 @@ function deleteSubjectAndTasks(subjectId) {
     // move subject to the deleted area in the DB
     deleteSubject(subjectId);
     // delete all of the subject's active tasks
-    deleteTasksPerSubject(subjectId, moveTaskToDeleted);
+    deleteTasksPerSubject(subjectId);
 }
 
 function setSubjectColour(clickedColour) {

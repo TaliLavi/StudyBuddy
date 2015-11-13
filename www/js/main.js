@@ -295,7 +295,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     // Clear old onclick handlers and set new ones
     $('#deleteTask').off("click");
-    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveTaskToDeleted);});
+    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
     $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, markAsDone);});
     $('#playPauseButton').off("click");
@@ -479,7 +479,7 @@ function closeTaskModal(subjectId, weekDate, taskId, originalTaskDetails, callba
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
-    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+    // else, if a callback func (such as moveActiveTaskToDeleted) was passed, execute it
     } else {
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId, originalTaskDetails);
