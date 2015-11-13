@@ -170,6 +170,9 @@ function removeSubjectFromDOM(subjectId) {
     $('#subjectName' + subjectId).remove();
     $('#subjectArea' + subjectId).remove();
     $('#subject' + subjectId).remove();
+    // Switch to view all tasks in the footer, just do that if the footer was filtered for the deleted subject it
+    // wouldn't look empty after deletion.
+    filterTasksInFooter('allUnassigendTasks');
 }
 
 function hideColourPalette() {
