@@ -303,6 +303,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').off("click");
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
+    $('#closeTaskModalDone').off("click");
 
     //console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
@@ -312,7 +313,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     if (isDone) {
         // prevent user from changing assigned date
         $('#cardAssignedDate').attr('disabled', true);
-        $('#closeTaskModal').on("click", closeModalWindow);
+        $('#closeTaskModalDone').on("click", closeModalWindow);
         // set event handler for closing the modal when user clicks outside modal
         setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
     } else {
