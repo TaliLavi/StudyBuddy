@@ -92,7 +92,6 @@
 
     <div id="navBar">
 
-
       <div class="iconHighlight" id="subjectsHighlight"></div>
       <button id="subjectsButton" class="navButton">
         <img class="navIcon" src="img/subjectsIcon.png">
@@ -111,10 +110,10 @@
             <span>Progress</span>
         </button>
 
-        <button id="settingsButton" class="navButton">
-            <img  class="navIcon" src="img/settingsIcon.png">
-            <span>Settings</span>
-        </button>
+        <!--<button id="settingsButton" class="navButton">-->
+            <!--<img  class="navIcon" src="img/settingsIcon.png">-->
+            <!--<span>Settings</span>-->
+        <!--</button>-->
       <button  id="signoutButton" onclick="signOut()">Sign out</button>
       <!--<button onclick="playRuzoDone()">Play Done Ruzo</button>-->
     </div>
@@ -122,7 +121,7 @@
     <!--========================================================================================================-->
     <!--PROFILE PAGE-->
     <!--========================================================================================================-->
-    <div id="profilePage" style="display:none;">>
+    <div id="profilePage" style="display:none;">
 
         <div id="subjectsRecordSection">
             <div id="barHeadingDiv">
@@ -466,10 +465,10 @@
 
     <div id="areYouSureModalBG" class="modal-bg">
         <div id="areYouSureModal" class="modal">
-            <div id="areYouSureHeadingDiv"> <span id="areYouSureHeading">Are You Sure?</span></div>
-            <span id="areYouSureMessage">Deleting this subject will also delete all of the tasks for this subject.</span>
+            <div id="areYouSureHeadingDiv"> <span id="areYouSureHeading">Danger Zone!</span></div>
+            <span id="areYouSureMessage"> Are you sure? If you delete this subject, all of the tasks that belong to it will also be deleted. </span>
             <button id="noDeleteButton" onclick="closeAreYouSureModal()">Cancel</button>
-            <button id="yesDeleteButton">I'm Sure!</button>
+            <button id="yesDeleteButton">I'm sure!</button>
         </div>
     </div>
 
