@@ -14,13 +14,12 @@ function createSubject() {
     // CLOSE THE ADD SUBJECT DIALOG
     closeModalWindow();
 
-
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveSubjects(displayActiveSubjects);
+    fetchActiveSubjects(true, displayActiveSubjects);
 }
 
 // DISPLAY SUBJECTS INFORMATION
-function displayActiveSubjects(allSubjectsDict) {
+function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
 
     // Clear current display of subjects
     $('#subjectFilters').text('');
@@ -127,10 +126,17 @@ function displayActiveSubjects(allSubjectsDict) {
         })
 
 
-        //Set default subject on subject page to be the first subject.
-        // We're running this inside the callback to make sure subjects DOM elements have been prepared.
-        var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
-        viewSubjectArea(firstSubjectKey);
+
+        if (isNewSubjectJustCreated) {
+            // if a new subject was just now created, display it's subject area.
+            var lastSubjectKey = $('#subjectsList').children().last().attr('id').slice('subjectName'.length);
+            viewSubjectArea(lastSubjectKey);
+        } else {
+            //Set default subject on subject page to be the first subject.
+            // We're running this inside the callback to make sure subjects DOM elements have been prepared.
+            var firstSubjectKey = $('#subjectsList').children().first().attr('id').slice('subjectName'.length);
+            viewSubjectArea(firstSubjectKey);
+        }
 
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
@@ -228,7 +234,7 @@ function setSubjectColour(clickedColour) {
 
 // RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
 function checkIsColourInUse() {
-    fetchActiveSubjects(function(subjectsDict) {
+    fetchActiveSubjects(false, function(subjectsDict) {
         if (subjectsDict !== null) {
             // we're creating an object instead of an array for easier lookup
             var colourSchemesDict = {};

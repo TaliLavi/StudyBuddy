@@ -36,7 +36,7 @@ function preparePage() {
     $('#tasksDiv').hide();
 
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-    fetchActiveSubjects(displayActiveSubjects);
+    fetchActiveSubjects(false, displayActiveSubjects);
 
     // fetch and append all unassigned active tasks to footer
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)

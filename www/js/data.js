@@ -146,10 +146,10 @@ function pushNewSubject(name, colour_scheme, is_deleted) {
 };
 
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL SUBJECTS' INFORMATION UPON REQUEST
-function fetchActiveSubjects(callback) {
+function fetchActiveSubjects(isNewSubjectJustCreated, callback) {
     var subjectsRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
     subjectsRef.once("value", function(snapshot) {
-        callback(snapshot.val());
+        callback(snapshot.val(), isNewSubjectJustCreated);
     }, firebaseErrorFrom('fetchActiveSubjects'));
 }
 
