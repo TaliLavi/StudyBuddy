@@ -123,12 +123,17 @@ input, textarea {
 
 #signoutButton{
     float: right;
-
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: .8em;
+    padding: 5px;
 }
 
 #settingsButton{
     float: right;
 }
+
 
 /*===================================================================================================================*/
 /* HEADINGS & CONTROLS */
@@ -762,7 +767,7 @@ input:focus {outline:0;}
 }
 
 #areYouSureHeadingDiv{
-    background-color: #C9304D;
+    background-color: rgb(149,202,173);
     width: 100%;
     height: 65px;
     text-align: center;
@@ -781,7 +786,40 @@ input:focus {outline:0;}
     color: #607A93;
     line-height: 1.75em;
     font-size: .95em;
-    text-align: center;
+    width: 80%;
+    /* background-color: bisque; */
+    display: block;
+    margin: auto;
+    margin-top: 34px;
+    margin-bottom: 14px;
+}
+
+#confirmDeleteSubjectButton{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 140px;
+    height: 35px;
+    background-color: #BC6771;
+    font-size: 1em;
+    margin-right: 10%;
+    float: right;
+}
+
+
+#noDeleteButton{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 140px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    margin-left: 10%;
 }
 
 
