@@ -54,7 +54,7 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
                     '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" size="'+ boxLength +'"  value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
                     '<div class="editColour ' + subjectData.colour_scheme + ' mainColour needsclick" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<img src="img/binIcon.png" class="binIcon" onclick="displayAreYouSureModal(\'' + subjectKey + '\')">'+
+                    '<img src="img/binIcon.png" class="binIcon needsclick" onclick="displayAreYouSureModal(\'' + subjectKey + '\')">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input id="bulkTextFor' + subjectKey + '" class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '" maxlength="45">' +
@@ -213,7 +213,7 @@ function deleteSubjectAndTasks(subjectId) {
     // move subject to the deleted area in the DB
     deleteSubject(subjectId);
     // delete all of the subject's active tasks
-    deleteTasksPerSubject(subjectId, moveTaskToDeleted);
+    deleteTasksPerSubject(subjectId);
 }
 
 function setSubjectColour(clickedColour) {
