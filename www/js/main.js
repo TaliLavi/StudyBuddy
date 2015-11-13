@@ -36,7 +36,7 @@ function preparePage() {
     $('#tasksDiv').hide();
 
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
-    fetchActiveSubjects(displayActiveSubjects);
+    fetchActiveSubjects(false, displayActiveSubjects);
 
     // fetch and append all unassigned active tasks to footer
     fetchAllUnassignedActiveTasks(displayTasksInBottomPanel)
@@ -295,7 +295,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     // Clear old onclick handlers and set new ones
     $('#deleteTask').off("click");
-    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveTaskToDeleted);});
+    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
     $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, markAsDone);});
     $('#playPauseButton').off("click");
@@ -479,7 +479,7 @@ function closeTaskModal(subjectId, weekDate, taskId, originalTaskDetails, callba
     // if timer is currently not stopped (meaning it's either playing or paused), stop the timer.
     if (!$('#stopButton').hasClass('stopped')) {
         stopTimer(subjectId, weekDate, taskId, callback);
-    // else, if a callback func (such as moveTaskToDeleted) was passed, execute it
+    // else, if a callback func (such as moveActiveTaskToDeleted) was passed, execute it
     } else {
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId, originalTaskDetails);
@@ -504,6 +504,18 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
             } else {
                 closeModalWindow();
             }
+        }
+    });
+}
+
+// set event handler for closing the areYouSureModal modal when user clicks outside modal.
+function setCloseWhenClickingOutsideForAreYouSureModal() {
+    var eventType = isMobile()? "touchend" : "mouseup";
+    $(document).off(eventType);
+    $(document).on(eventType, function (event) {
+        // if the target of the click isn't the modal window, nor a descendant of the modal window
+        if (!$('#areYouSureModal').is(event.target) && $('#areYouSureModal').has(event.target).length === 0) {
+            closeModalWindow();
         }
     });
 }
@@ -583,4 +595,27 @@ function formatTime(seconds) {
     if (mm < 10) {mm = "0" + mm};
 
     return mm + ":" + ss;
+}
+
+
+//===========================================================================================================
+// ARE YOU SURE MODAL FOR DELETING A SUBJECT
+//===========================================================================================================
+
+function displayAreYouSureModal(subjectId){
+    // set event handler for closing the modal when user clicks outside modal
+    setCloseWhenClickingOutsideForAreYouSureModal();
+    $('#confirmDeleteSubjectButton').off('click');
+    // set click event for confirmation button
+    $('#confirmDeleteSubjectButton').on('click', function() {
+        deleteSubjectAndTasks(subjectId);
+        closeModalWindow();
+    });
+    //Makes the modal window display
+    $('#areYouSureModal').css('display','block');
+    //Fades in the greyed-out background
+    $('#areYouSureModalBG').show();
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
 }

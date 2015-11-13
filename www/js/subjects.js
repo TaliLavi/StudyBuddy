@@ -14,13 +14,12 @@ function createSubject() {
     // CLOSE THE ADD SUBJECT DIALOG
     closeModalWindow();
 
-
     // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveSubjects(displayActiveSubjects);
+    fetchActiveSubjects(true, displayActiveSubjects);
 }
 
 // DISPLAY SUBJECTS INFORMATION
-function displayActiveSubjects(allSubjectsDict) {
+function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
 
     // Clear current display of subjects
     $('#subjectFilters').text('');
@@ -54,8 +53,8 @@ function displayActiveSubjects(allSubjectsDict) {
                 '<div class="subjectArea secondaryColour ' + subjectData.colour_scheme + '" id="subjectArea' + subjectKey + '">' +
                     '<input id="subjectNameTitle' + subjectKey + '" class="subjectHeaderOnSubjectPage" size="'+ boxLength +'"  value="' + subjectData.name + '" data-subject-name="' + subjectData.name + '">' +
                     '<p class ="tasksHeaderOnSubjectPage">Tasks</p>'+
-                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
-                    '<img src="img/binIcon.png" class="binIcon">'+
+                    '<div class="editColour ' + subjectData.colour_scheme + ' mainColour needsclick" data-subjectid="' + subjectKey + '" data-colour-scheme="' + subjectData.colour_scheme + '"></div>' +
+                    '<img src="img/binIcon.png" class="binIcon" onclick="displayAreYouSureModal(\'' + subjectKey + '\')">'+
                     '<img src="img/pencilIcon.png" class="pencilIcon" onclick="focusOnTitle(\'' + subjectKey + '\')">'+
                     '<div class="bulkWrapper">' +
                         '<input id="bulkTextFor' + subjectKey + '" class="bulkText" type="textbox" placeholder="Add a new task..." data-subjectid="' + subjectKey + '" maxlength="45">' +
@@ -94,46 +93,50 @@ function displayActiveSubjects(allSubjectsDict) {
             $('#taskSubject').append(
                 '<option value="' + subjectKey + '">' + subjectData.name +'</option>'
             );
+
+            $('.editColour[data-subjectid="' + subjectKey + '"]').click(function () {
+                // if this click will make #colourPalette visible:
+                if ($('#colourPalette').is(':hidden')) {
+                    // select this subject's colour by default
+                    var subjectColour = $(this).data('colour-scheme');
+                    var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
+                    subjectColourDiv.addClass('chosenColour');
+                    // position colour palette menu next to the editColour button
+                    var colourPickerOffset = $('.editColour[data-subjectid="' + subjectKey + '"]').offset();
+                    $('#colourPalette').css('left', colourPickerOffset.left - 110);
+                    $('#colourPalette').css('top',colourPickerOffset.top + 70);
+
+                    setCloseWhenClickingOutside($('#colourPalette'));
+
+                    $('#changeColourButton').on("click", function(){
+                        changeSubjectColour(subjectKey);
+                    });
+
+                    // display #colourPalette
+                    $('#colourPalette').show();
+                    // if this click will make #colourPalette hidden:
+                } else {
+                    // hide and clear colourPalette
+                    $('.colourMessage').text('');
+                    $('.colourOption').removeClass('chosenColour');
+                    // hide #colourPalette
+                    $('#colourPalette').hide();
+                }
+            });
         })
 
-        $('.editColour').click(function () {
-            var subjectId = $(this).data('subjectid');
-            // if this click will make #colourPalette visible:
-            if ($('#colourPalette').is(':hidden')) {
-                // select this subject's colour by default
-                var subjectColour = $(this).data('colour-scheme');
-                var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
-                subjectColourDiv.addClass('chosenColour');
-                // position colour palette menu next to the editColour button
-                //var offset = $(this).offset();
-                //var positionEditColour = $('.editColour').offset().left;
-                ////console.log(positionEditColour);
-                //var leftPositionPalette = positionEditColour - 110;
-                //$('#colourPalette').css('left', leftPositionPalette);
-                //$('#colourPalette').css('top',offset.top + 80);
 
-                setCloseWhenClickingOutside($('#colourPalette'));
 
-                $('#changeColourButton').on("click", function(){
-                    changeSubjectColour(subjectId);
-                });
-
-                // display #colourPalette
-                $('#colourPalette').show();
-            // if this click will make #colourPalette hidden:
-            } else {
-                // hide and clear colourPalette
-                $('.colourMessage').text('');
-                $('.colourOption').removeClass('chosenColour');
-                // hide #colourPalette
-                $('#colourPalette').hide();
-            }
-        });
-
-        //Set default subject on subject page to be the first subject.
-        // We're running this inside the callback to make sure subjects DOM elements have been prepared.
-        var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
-        viewSubjectArea(firstSubjectKey);
+        if (isNewSubjectJustCreated) {
+            // if a new subject was just now created, display it's subject area.
+            var lastSubjectKey = $('#subjectsList').children().last().attr('id').slice('subjectName'.length);
+            viewSubjectArea(lastSubjectKey);
+        } else {
+            //Set default subject on subject page to be the first subject.
+            // We're running this inside the callback to make sure subjects DOM elements have been prepared.
+            var firstSubjectKey = $('#subjectsList').children().first().attr('id').slice('subjectName'.length);
+            viewSubjectArea(firstSubjectKey);
+        }
 
         // fetch and append all active tasks.
         // We're running this inside the callback to make sure subjects DOM elements have been prepared.
@@ -150,7 +153,6 @@ function editSubjectName(subjectId) {
         // change data attribute to new name
         $('#subjectNameTitle' + subjectId).data('subject-name', newName);
         // change subject title on subject area
-        console.log(newName.length);
         $('#subjectNameTitle' + subjectId).attr('size', newName.length+2);
         //$('#subjectNameTitle').css( "size", newName.length+2);
         $('#subjectNameTitle' + subjectId).val(newName);
@@ -166,6 +168,18 @@ function focusOnTitle(subjectId) {
     $('#subjectNameTitle' + subjectId).focus();
 }
 
+function removeSubjectFromDOM(subjectId) {
+    // Switch to the subject area of the first subject, so as to avoid displaying an empty subject area upon deletion.
+    var firstSubjectKey = $('#subjectsList:first>div').attr('id').slice('subjectName'.length);
+    viewSubjectArea(firstSubjectKey);
+
+    $('#subjectName' + subjectId).remove();
+    $('#subjectArea' + subjectId).remove();
+    $('#subject' + subjectId).remove();
+    // Switch to view all tasks in the footer, just do that if the footer was filtered for the deleted subject it
+    // wouldn't look empty after deletion.
+    filterTasksInFooter('allUnassigendTasks');
+}
 
 function hideColourPalette() {
     // prevent document from continueing to listen to clicks outside the modal container.
@@ -177,7 +191,7 @@ function hideColourPalette() {
     // Clear old onclick handler
     $('#changeColourButton').off("click");
     // hide and clear colourPalette
-    $('#colourPalette').hide().css("height", 210);
+    $('#colourPalette').hide();
     $('.colourMessage').text('');
     $('.colourOption').removeClass('chosenColour');
 }
@@ -190,6 +204,16 @@ function viewSubjectArea(subjectKey) {
 
     $('.subjectArea').hide();
     $('#subjectArea' + subjectKey).show();
+}
+
+
+function deleteSubjectAndTasks(subjectId) {
+    // remove subject title and subject area from the DOM
+    removeSubjectFromDOM(subjectId);
+    // move subject to the deleted area in the DB
+    deleteSubject(subjectId);
+    // delete all of the subject's active tasks
+    deleteTasksPerSubject(subjectId);
 }
 
 function setSubjectColour(clickedColour) {
@@ -210,7 +234,7 @@ function setSubjectColour(clickedColour) {
 
 // RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
 function checkIsColourInUse() {
-    fetchActiveSubjects(function(subjectsDict) {
+    fetchActiveSubjects(false, function(subjectsDict) {
         if (subjectsDict !== null) {
             // we're creating an object instead of an array for easier lookup
             var colourSchemesDict = {};
