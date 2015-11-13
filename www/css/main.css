@@ -794,7 +794,7 @@ input:focus {outline:0;}
     margin-bottom: 14px;
 }
 
-#yesDeleteButton{
+#confirmDeleteSubjectButton{
     color: white;
     border: none;
     font-family: acme;
