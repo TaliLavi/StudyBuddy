@@ -22,7 +22,6 @@ function createTaskFromSubjectPage(subjectId) {
     var taskTitle = $('.bulkText').filter('[data-subjectid="' + subjectId + '"]').val();
     // create a new task only if a title was written
     if (taskTitle) {
-        console.log(taskTitle);
         var taskDescription = "";
         var now = $.now();
 
@@ -316,9 +315,13 @@ function removeCardFromDOM(taskId) {
 }
 
 function removeToDoTaskFromDOM(taskId) {
-    // get todotask and the <br> tag which is after it and remove them from the DOM
-    $('#todoTaskFor' + taskId).next("br").remove();
-    $('#todoTaskFor' + taskId).remove();
+    // we are checking to see whether the todotask exists in the DOM, because there is in some cases a chance for a
+    // risk condition with removeSubjectFromDOM().
+    if ($('#todoTaskFor' + taskId)) {
+        // get todotask and the <br> tag which is after it and remove them from the DOM
+        $('#todoTaskFor' + taskId).next("br").remove();
+        $('#todoTaskFor' + taskId).remove();
+    }
 }
 
 function markAsDone(subjectId, originalDate, taskId) {

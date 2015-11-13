@@ -75,7 +75,6 @@
       <div class="errorMessage" id="logInEmailErrorMessage"></div>
       <input type="password" placeholder="Password" id="logInPasswordInput">
       <div class="errorMessage" id="logInPasswordErrorMessage"></div>
-      <button type="button">Forgot password?</button>
       <input type="button" value="Login" onclick="prepareLogIn()">
       <button type="button" onclick="showSignUp()">Create a new account</button>
     </form>
@@ -465,10 +464,10 @@
 
     <div id="areYouSureModalBG" class="modal-bg">
         <div id="areYouSureModal" class="modal">
-            <div id="areYouSureHeadingDiv"> <span id="areYouSureHeading">Danger Zone!</span></div>
-            <span id="areYouSureMessage"> Are you sure? If you delete this subject, all of the tasks that belong to it will also be deleted. </span>
-            <button id="noDeleteButton" onclick="closeAreYouSureModal()">Cancel</button>
-            <button id="yesDeleteButton">I'm sure!</button>
+            <div id="areYouSureHeadingDiv"> <span id="areYouSureHeading">Are You Sure?</span></div>
+            <span id="areYouSureMessage">Deleting this subject will also delete all of the tasks for this subject.</span>
+            <button id="noDeleteButton" onclick="closeModalWindow()">Cancel</button>
+            <button id="confirmDeleteSubjectButton">I'm Sure!</button>
         </div>
     </div>
 
