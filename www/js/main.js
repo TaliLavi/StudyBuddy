@@ -474,6 +474,9 @@ function closeModalWindow() {
     $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
+
+    // ******************** FOR SETTINGS MENU ********************
+    $('#settingsMenu').hide();
 }
 
 
@@ -505,7 +508,7 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
             // if the modal window we're closing is the colour picker widget
             } else if (modalWindow[0].id === "colourPalette") {
                 hideColourPalette();
-            // if the modal window we're closing is either the Add Task or the Add Subject modals
+            // if the modal window we're closing is either the Add Task, Add Subject, or settings modals
             } else {
                 closeModalWindow();
             }
@@ -525,6 +528,26 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
     });
 }
 
+function showSettingsMenu() {
+    // if this click will make #settingsMenu visible:
+    if ($('#settingsMenu').is(':hidden')) {
+
+        // position colour palette menu next to the editColour button
+        var buttonOffset = $('#settingsButton').offset();
+        $('#settingsMenu').css('left', buttonOffset.left - 130);
+        $('#settingsMenu').css('top',buttonOffset.top + 70);
+
+        setCloseWhenClickingOutside($('#settingsMenu'));
+
+        // display #settingsMenu
+        $('#settingsMenu').show();
+
+    // if this click will make #settingsMenu hidden:
+    } else {
+        // hide #settingsMenu
+        $('#settingsMenu').hide();
+    }
+}
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT

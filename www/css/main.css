@@ -1151,7 +1151,7 @@ input:focus {outline:0;}
     box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
 }
 
-#point {
+.point {
     position: absolute;
     top: -25px;
     left: 93px;
@@ -1311,7 +1311,15 @@ input:focus {outline:0;}
     opacity:1;
 }
 
-
+#settingsMenu {
+    position: absolute;
+    width: 180px;
+    height: 210px;
+    background-color: #ffffff;
+    display: none;
+    padding: 10px;
+    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
+}
 
 
 /*==================================================================================================*/

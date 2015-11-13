@@ -509,6 +509,12 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
     }, firebaseErrorFrom('fetchTimeStudiedForTask'));
 }
 
+// UPDATE TIME INTERVAL FOR TIMER
+function updateTimeInterval(typeOfInterval, value) {
+    var timeIntervalRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser() + '/' + typeOfInterval);
+    timeIntervalRef.set(value);
+}
+
 //=====================================================================
 //                              STATS
 //=====================================================================
