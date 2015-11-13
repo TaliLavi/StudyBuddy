@@ -5,19 +5,20 @@ function prepareSignUp() {
     var email = $('#signUpEmailInput').val();
     var password = $('#signUpPasswordInput').val();
     var confirmedPassword = $('#confirmPasswordInput').val();
+    $('#signUpEmailErrorMessage').text('');
+    $('#signUpPasswordErrorMessage').text('');
 
     if (password !== confirmedPassword) {
         $('#signUpPasswordErrorMessage').text('The passwords must be identical.');
     } else {
-        // CLEAR ERROR MESSAGE FIELDS
-        $('#signUpPasswordInput').val('');
-        $('#confirmPasswordInput').val('');
-        $('#signUpEmailErrorMessage').text('');
-        $('#signUpPasswordErrorMessage').text('');
-        signUpUser(firstName, lastName, email, password);
+        // password has to have a minimum of 6 characters
+        if ($('#confirmPasswordInput').val().length >= 6) {
+            signUpUser(firstName, lastName, email, password, clearPasswordFields);
+        } else {
+            $('#signUpPasswordErrorMessage').text('The password must have at least 6 characters.');
+        }
     }
 }
-
 
 function prepareLogIn() {
     // GET FIELD VALUES
@@ -32,6 +33,10 @@ function prepareLogIn() {
     logInUser(email, password);
 }
 
+function clearPasswordFields() {
+    $('#signUpPasswordInput').val('');
+    $('#confirmPasswordInput').val('');
+}
 
 // CREATE NEW USER
 function createUser(firstName, lastName, email, password, uid) {
