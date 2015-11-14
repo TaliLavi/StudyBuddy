@@ -34,7 +34,7 @@ function signUpUser(firstName, lastName, email, password, callback) {
             }
         } else {
             callback();
-            createUser(firstName, lastName, email, password, getLoggedInUser());
+            createUser(firstName, lastName, email, password, userData.uid);
         }
     });
 }
