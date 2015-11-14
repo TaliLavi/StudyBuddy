@@ -44,6 +44,9 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
+    // display time intervals in the Settings menu
+    fetchTimeIntervals(displayTimeIntervals);
+
     // indicate which colours are already in use
     checkIsColourInUse();
 
@@ -646,4 +649,17 @@ function displayAreYouSureModal(subjectId){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+function changeTimeIntervals() {
+    var workSession = $('#workIntervalInput').val();
+    var shortBreak = $('#shortBreakIntervalInput').val();
+    var longBreak = $('#longBreakIntervalInput').val();
+    updateTimeIntervals(workSession, shortBreak, longBreak);
+}
+
+function displayTimeIntervals(sessionTimes) {
+    $('#workIntervalInput').val(sessionTimes.study_session);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break);
 }

@@ -440,6 +440,16 @@ function fetchTimeIntervals(callback) {
     }
 }
 
+// UPDATE TIME INTERVALS FOR TIMER
+function updateTimeIntervals(workSession, shortBreak, longBreak) {
+    var timeIntervalRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
+    timeIntervalRef.update({
+        "study_session_seconds": workSession,
+        "short_break_seconds": shortBreak,
+        "long_break_seconds": longBreak
+    });
+}
+
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {
     incrementNumOfBreaksForTask(subjectId, weekDate, taskId);
     incrementNumOfBreaksForDate();
@@ -494,12 +504,6 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
         var totalTimeStudied = snapshot.val();
         callback(totalTimeStudied, isDone);
     }, firebaseErrorFrom('fetchTimeStudiedForTask'));
-}
-
-// UPDATE TIME INTERVAL FOR TIMER
-function updateTimeInterval(typeOfInterval, value) {
-    var timeIntervalRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser() + '/' + typeOfInterval);
-    timeIntervalRef.set(value);
 }
 
 //=====================================================================
