@@ -367,55 +367,42 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
     }
 }
 
-function deleteTasksPerSubject(subjectId) {
-    var activeTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId);
+// DELETE TASKS WHICH ARE EITHER DONE OR ACTIVE FOR SUBJECT
+function deletesTasksOfStatusPerSubject(subjectId, status) {
+    var activeTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + status + '/' + subjectId);
     activeTasksPerSubjectRef.once("value", function(weeks) {
         if (weeks.val() !== null) {
             weeks.forEach(function(week) {
                 week.forEach(function(task) {
-                    moveActiveTaskToDeleted(subjectId, week.key(), task.key());
+                    moveTaskToDeleted(subjectId, week.key(), task.key(), status);
                 })
             });
         }
-    }, firebaseErrorFrom('deleteTasksPerSubject'));
+    }, firebaseErrorFrom('deletesTasksOfStatusPerSubject'));
+}
 
-    var doneTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId);
-    doneTasksPerSubjectRef.once("value", function(weeks) {
-        if (weeks.val() !== null) {
-            weeks.forEach(function(week) {
-                week.forEach(function(task) {
-                    moveDoneTaskToDeleted(subjectId, week.key(), task.key());
-                })
-            });
-        }
-    }, firebaseErrorFrom('deleteTasksPerSubject'));
+// DELETE ALL ACTIVE AND DONE TASKS FOR SUBJECT
+function deleteTasksPerSubject(subjectId) {
+    deletesTasksOfStatusPerSubject(subjectId, 'active');
+    deletesTasksOfStatusPerSubject(subjectId, 'done');
 }
 
 
 // MOVE ACTIVE TASK TO DELETED
 function moveActiveTaskToDeleted(subjectId, weekDate, taskId) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+    moveTaskToDeleted(subjectId, weekDate, taskId, 'active');
+}
+
+function moveTaskToDeleted(subjectId, weekDate, taskId, status) {
+    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + status + '/' + subjectId + '/' + weekDate + '/' + taskId);
     var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
         removeCardFromDOM(taskId);
         removeToDoTaskFromDOM(taskId);
-    }, firebaseErrorFrom('moveActiveTaskToDeleted'));
+    }, firebaseErrorFrom('moveTaskToDeleted'));
 }
-
-// MOVE DONE TASK TO DELETED
-function moveDoneTaskToDeleted(subjectId, weekDate, taskId) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
-    var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
-    oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
-        oldRef.remove();
-        removeCardFromDOM(taskId);
-        removeToDoTaskFromDOM(taskId);
-    }, firebaseErrorFrom('moveActiveTaskToDeleted'));
-}
-
 
 // MOVE TASK TO DONE
 function moveTaskToDone(subjectId, taskId, originalDate) {
