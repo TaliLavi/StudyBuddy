@@ -114,7 +114,7 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
                     $('#colourPalette').css('left', colourPickerOffset.left - 110);
                     $('#colourPalette').css('top',colourPickerOffset.top + 70);
 
-                    setCloseWhenClickingOutside($('#colourPalette'));
+                    setCloseWhenClickingOutside($('#colourPalette, .editColour[data-subjectid="' + subjectKey + '"]'), hideColourPalette);
 
                     $('#changeColourButton').on("click", function(){
                         changeSubjectColour(subjectKey);
