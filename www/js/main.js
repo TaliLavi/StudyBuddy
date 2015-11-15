@@ -77,6 +77,7 @@ function prepareNavigation() {
         fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
         // draw the heat-map inside the progress page (in #cal-heatmap)
         drawHeatmap();
+        fetchHeatmapData(currentStreak);
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
