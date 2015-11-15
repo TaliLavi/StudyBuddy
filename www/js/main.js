@@ -44,6 +44,9 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
+    // display time intervals in the Settings menu
+    fetchTimeIntervals(displayTimeIntervals);
+
     // indicate which colours are already in use
     checkIsColourInUse();
 
@@ -74,6 +77,7 @@ function prepareNavigation() {
         fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
         // draw the heat-map inside the progress page (in #cal-heatmap)
         drawHeatmap();
+        fetchHeatmapData(currentStreak);
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
@@ -474,6 +478,9 @@ function closeModalWindow() {
     $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
+
+    // ******************** FOR SETTINGS MENU ********************
+    $('#settingsMenu').hide();
 }
 
 
@@ -505,7 +512,7 @@ function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, t
             // if the modal window we're closing is the colour picker widget
             } else if (modalWindow[0].id === "colourPalette") {
                 hideColourPalette();
-            // if the modal window we're closing is either the Add Task or the Add Subject modals
+            // if the modal window we're closing is either the Add Task, Add Subject, or settings modals
             } else {
                 closeModalWindow();
             }
@@ -525,6 +532,26 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
     });
 }
 
+function showSettingsMenu() {
+    // if this click will make #settingsMenu visible:
+    if ($('#settingsMenu').is(':hidden')) {
+
+        // position colour palette menu next to the editColour button
+        var buttonOffset = $('#settingsButton').offset();
+        $('#settingsMenu').css('left', buttonOffset.left - 130);
+        $('#settingsMenu').css('top',buttonOffset.top + 70);
+
+        setCloseWhenClickingOutside($('#settingsMenu'));
+
+        // display #settingsMenu
+        $('#settingsMenu').show();
+
+    // if this click will make #settingsMenu hidden:
+    } else {
+        // hide #settingsMenu
+        $('#settingsMenu').hide();
+    }
+}
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
@@ -623,4 +650,17 @@ function displayAreYouSureModal(subjectId){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+function changeTimeIntervals() {
+    var workSession = $('#workIntervalInput').val();
+    var shortBreak = $('#shortBreakIntervalInput').val();
+    var longBreak = $('#longBreakIntervalInput').val();
+    updateTimeIntervals(workSession, shortBreak, longBreak);
+}
+
+function displayTimeIntervals(sessionTimes) {
+    $('#workIntervalInput').val(sessionTimes.study_session);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break);
 }
