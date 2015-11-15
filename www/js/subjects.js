@@ -104,6 +104,7 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
             $('.editColour[data-subjectid="' + subjectKey + '"]').click(function () {
                 // if this click will make #colourPalette visible:
                 if ($('#colourPalette').is(':hidden')) {
+                    markUsedColours();
                     // select this subject's colour by default
                     var subjectColour = $(this).data('colour-scheme');
                     var subjectColourDiv = $("#colourPalette").find('[data-colour-scheme="' + subjectColour + '"]');
@@ -240,7 +241,7 @@ function setSubjectColour(clickedColour) {
 }
 
 // RETRIEVE ALL SUBJECTS' COLOUR-SCHEMES
-function checkIsColourInUse() {
+function markUsedColours() {
     fetchActiveSubjects(false, function(subjectsDict) {
         if (subjectsDict !== null) {
             // we're creating an object instead of an array for easier lookup
@@ -256,6 +257,8 @@ function checkIsColourInUse() {
                     $(this).addClass('usedColour');
                     var subjectName = (colourSchemesDict[colour]);
                     $(this).data('subject-name', subjectName);
+                } else {
+                    $(this).removeClass('usedColour');
                 }
             });
         }

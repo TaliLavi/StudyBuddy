@@ -49,9 +49,6 @@ function preparePage() {
     // display time intervals in the Settings menu
     fetchTimeIntervals(displayTimeIntervals);
 
-    // indicate which colours are already in use
-    checkIsColourInUse();
-
     // prepare Done Ruzo animation
     prepareDoneRuzo();
 
@@ -560,6 +557,9 @@ function showSettingsMenu() {
 //===========================================================================================================
 
 function openAddSubjectDialog(){
+    // indicate which colours are already in use
+    markUsedColours();
+
     $('#submitNewSubject').text("Add Subject");
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
