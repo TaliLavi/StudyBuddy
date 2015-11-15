@@ -178,3 +178,32 @@ function prepareHeatmapData(heatmapSnapshot) {
     }
     return dataSet
 }
+
+function isConsecutiveDays(firstDay, secondDay) {
+    var firstDayParsed = Date.parse(firstDay);
+    var secondDayParsed = Date.parse(secondDay);
+
+    var dayDurationInEpochTime = 86400000;
+    return secondDayParsed - firstDayParsed <= dayDurationInEpochTime;
+}
+
+function currentStreak(heatmapSnapshot) {
+    var previousDate;
+    var longestStreak = 0;
+    var currentStreak = 1;
+
+    $.each(heatmapSnapshot, function(date){
+        if (isConsecutiveDays(previousDate, date)) {
+            currentStreak += 1;
+            if (currentStreak > longestStreak) {
+                longestStreak = currentStreak;
+            }
+        } else {
+            currentStreak = 1;
+        }
+
+        previousDate = date;
+    });
+    $('#currentStreak').text('current streak is: ' + currentStreak);
+    $('#longestStreak').text('longest streak is: ' + longestStreak);
+}

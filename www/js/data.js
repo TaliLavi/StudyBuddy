@@ -18,7 +18,7 @@ function firebaseErrorFrom(funcName) {
 //=====================================================================
 
 // Sign up a new user
-function signUpUser(firstName, lastName, email, password, callback) {
+function signUpUser(firstName, lastName, email, password) {
     var ref = FIREBASE_REF;
     ref.createUser({
         email: email,
@@ -27,14 +27,13 @@ function signUpUser(firstName, lastName, email, password, callback) {
         if (error) {
             console.error("Error creating user:", error);
             if (error.code === "INVALID_EMAIL"){
-                $('#signUpEmailErrorMessage').text('This does not look like a valid email address.');
+                $('#signUpEmailErrorMessage').text("Oops! This doesn't look like an email address.");
             }
             if (error.code === "EMAIL_TAKEN"){
-                $('#signUpEmailErrorMessage').text('The specified email address is already in use.');
+                $('#signUpEmailErrorMessage').text('This email address is already in use.');
             }
         } else {
-            callback();
-            createUser(firstName, lastName, email, password, getLoggedInUser());
+            createUser(firstName, lastName, email, password, userData.uid);
         }
     });
 }
@@ -54,7 +53,7 @@ function logInUser(email, password, signUpCallback) {
                 $('#logInEmailErrorMessage').text('The specified user does not exist.');
             }
             if (error.code === "INVALID_EMAIL"){
-                $('#logInEmailErrorMessage').text('This does not look like a valid email address.');
+                $('#logInEmailErrorMessage').text("Oops! This isn't an email address.");
             }
             if (error.code === "INVALID_PASSWORD"){
                 $('#logInPasswordErrorMessage').text('Oops, wrong password.');
@@ -367,55 +366,42 @@ function updateTaskDate(subjectId, taskId, oldWeekDate, updatedDate, postUpdateC
     }
 }
 
-function deleteTasksPerSubject(subjectId) {
-    var activeTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId);
+// DELETE TASKS WHICH ARE EITHER DONE OR ACTIVE FOR SUBJECT
+function deletesTasksOfStatusPerSubject(subjectId, status) {
+    var activeTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + status + '/' + subjectId);
     activeTasksPerSubjectRef.once("value", function(weeks) {
         if (weeks.val() !== null) {
             weeks.forEach(function(week) {
                 week.forEach(function(task) {
-                    moveActiveTaskToDeleted(subjectId, week.key(), task.key());
+                    moveTaskToDeleted(subjectId, week.key(), task.key(), status);
                 })
             });
         }
-    }, firebaseErrorFrom('deleteTasksPerSubject'));
+    }, firebaseErrorFrom('deletesTasksOfStatusPerSubject'));
+}
 
-    var doneTasksPerSubjectRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId);
-    doneTasksPerSubjectRef.once("value", function(weeks) {
-        if (weeks.val() !== null) {
-            weeks.forEach(function(week) {
-                week.forEach(function(task) {
-                    moveDoneTaskToDeleted(subjectId, week.key(), task.key());
-                })
-            });
-        }
-    }, firebaseErrorFrom('deleteTasksPerSubject'));
+// DELETE ALL ACTIVE AND DONE TASKS FOR SUBJECT
+function deleteTasksPerSubject(subjectId) {
+    deletesTasksOfStatusPerSubject(subjectId, 'active');
+    deletesTasksOfStatusPerSubject(subjectId, 'done');
 }
 
 
 // MOVE ACTIVE TASK TO DELETED
 function moveActiveTaskToDeleted(subjectId, weekDate, taskId) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId);
+    moveTaskToDeleted(subjectId, weekDate, taskId, 'active');
+}
+
+function moveTaskToDeleted(subjectId, weekDate, taskId, status) {
+    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + status + '/' + subjectId + '/' + weekDate + '/' + taskId);
     var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
     oldRef.once('value', function(snapshot)  {
         newRef.set(snapshot.val());
         oldRef.remove();
         removeCardFromDOM(taskId);
         removeToDoTaskFromDOM(taskId);
-    }, firebaseErrorFrom('moveActiveTaskToDeleted'));
+    }, firebaseErrorFrom('moveTaskToDeleted'));
 }
-
-// MOVE DONE TASK TO DELETED
-function moveDoneTaskToDeleted(subjectId, weekDate, taskId) {
-    var oldRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done/' + subjectId + '/' + weekDate + '/' + taskId);
-    var newRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/deleted/' + subjectId + '/' + weekDate + '/' + taskId);
-    oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
-        oldRef.remove();
-        removeCardFromDOM(taskId);
-        removeToDoTaskFromDOM(taskId);
-    }, firebaseErrorFrom('moveActiveTaskToDeleted'));
-}
-
 
 // MOVE TASK TO DONE
 function moveTaskToDone(subjectId, taskId, originalDate) {
@@ -451,6 +437,16 @@ function fetchTimeIntervals(callback) {
             callback(dataCache.sessionTimes);
         }, firebaseErrorFrom('fetchTimeIntervals'));
     }
+}
+
+// UPDATE TIME INTERVALS FOR TIMER
+function updateTimeIntervals(workSession, shortBreak, longBreak) {
+    var timeIntervalRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
+    timeIntervalRef.update({
+        "study_session_seconds": workSession,
+        "short_break_seconds": shortBreak,
+        "long_break_seconds": longBreak
+    });
 }
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {

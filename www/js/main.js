@@ -22,6 +22,8 @@ function preparePage() {
         }
     );
 
+    $('#navBar').show();
+
     timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
@@ -44,14 +46,20 @@ function preparePage() {
     // pre-cache session times for pomodoro timer
     fetchTimeIntervals(function(){});
 
-    // indicate which colours are already in use
-    checkIsColourInUse();
+    // display time intervals in the Settings menu
+    fetchTimeIntervals(displayTimeIntervals);
 
     // prepare Done Ruzo animation
     prepareDoneRuzo();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
+
+    //// FOR TESTING, DELETE WHEN DONE TESTING
+    //$('#settingsMenu').on("click", function(){
+    //        console.log('touchend detected');
+    //    }
+    //);
 }
 
 
@@ -74,6 +82,7 @@ function prepareNavigation() {
         fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
         // draw the heat-map inside the progress page (in #cal-heatmap)
         drawHeatmap();
+        fetchHeatmapData(currentStreak);
     });
     $("#calendarButton").click(function(){
         switchToPage("#calendarPage", "#calendarButton");
@@ -283,6 +292,9 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
         $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
 
     }
+
+    $('#timeStudiedWrapper').show();
+
     $('#taskSubject').val(subjectId);
     $('#cardTitle').val(taskDetails.title);
     $('#cardDescription').val(taskDetails.description);
@@ -303,6 +315,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#stopButton').off("click");
     $('#stopButton').on("click", function(){stopTimer(subjectId, weekDate, taskId);});
     $('#closeTaskModal').off("click");
+    $('#closeTaskModalDone').off("click");
 
     //console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
@@ -310,19 +323,27 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
 
     if (isDone) {
+        $('#timeStudiedWrapper').hide();
         // prevent user from changing assigned date
         $('#cardAssignedDate').attr('disabled', true);
-        $('#closeTaskModal').on("click", closeModalWindow);
+        $('#closeTaskModalDone').on("click", closeModalWindow);
         // set event handler for closing the modal when user clicks outside modal
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
+        setCloseWhenClickingOutside($('#taskModal'), function() {closeTaskModal(subjectId, weekDate, taskId, taskDetails);});
     } else {
         // enable user to edit assigned date
         $('#cardAssignedDate').attr('disabled', false);
         $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
         // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);});
+        setCloseWhenClickingOutside($('#taskModal'), function() {
+            closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails);
+        });
     }
+}
 
+function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
+    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
+        submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
+    });
 }
 
 function showTaskModal(subjectId, isDone) {
@@ -406,9 +427,9 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
 var dayList;
 
 
-function openAddTaskDialog(data){
+function openAddTaskDialog(date){
     //Automatically fill the assigned date
-    $('#assignedDateInput').val(data);
+    $('#assignedDateInput').val(date);
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
     $('#calendarPage').addClass('frostedGlass');
@@ -421,7 +442,7 @@ function openAddTaskDialog(data){
     // Set the new onclick handler
     $('#submitNewTask').on("click", createTask);
 
-    setCloseWhenClickingOutside($('#addTaskModal'));
+    setCloseWhenClickingOutside($('#addTaskModal'), closeModalWindow);
 }
 
 
@@ -469,6 +490,9 @@ function closeModalWindow() {
     $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
+
+    // ******************** FOR SETTINGS MENU ********************
+    $('#settingsMenu').hide();
 }
 
 
@@ -488,22 +512,13 @@ function closeTaskModal(subjectId, weekDate, taskId, originalTaskDetails, callba
 }
 
 // set event handler for closing the modal when user clicks outside modal.
-function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, taskDetails, callback) {
+function setCloseWhenClickingOutside(modalWindow, callback) {
     var eventType = isMobile()? "touchend" : "mouseup";
     $(document).off(eventType);
     $(document).on(eventType, function (event) {
         // if the target of the click isn't the modal window, nor a descendant of the modal window
         if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
-            // if the modal window we're closing is the task modal
-            if ($('#taskModal').hasClass('displayed')) {
-                closeTaskModal(subjectId, weekDate, taskId, taskDetails, callback);
-            // if the modal window we're closing is the colour picker widget
-            } else if (modalWindow[0].id === "colourPalette") {
-                hideColourPalette();
-            // if the modal window we're closing is either the Add Task or the Add Subject modals
-            } else {
-                closeModalWindow();
-            }
+            callback();
         }
     });
 }
@@ -520,12 +535,27 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
     });
 }
 
+function showSettingsMenu() {
+    if ($('#settingsMenu').css('display') === 'none') {
+        // position colour palette menu next to the editColour button
+        var buttonOffset = $('#settingsButton').offset();
+        $('#settingsMenu').css('left', buttonOffset.left - 130);
+        $('#settingsMenu').css('top',buttonOffset.top + 70);
+        setCloseWhenClickingOutside($('#settingsMenu, #settingsButton'), closeModalWindow);
+        $('#settingsMenu').show();
+    } else {
+        $('#settingsMenu').hide();
+    }
+}
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
 //===========================================================================================================
 
 function openAddSubjectDialog(){
+    // indicate which colours are already in use
+    markUsedColours();
+
     $('#submitNewSubject').text("Add Subject");
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
@@ -540,7 +570,7 @@ function openAddSubjectDialog(){
     // Set the new onclick handler
     $('#submitNewSubject').on("click", createSubject);
 
-    setCloseWhenClickingOutside($('#addSubjectModal'));
+    setCloseWhenClickingOutside($('#addSubjectModal'), closeModalWindow);
 }
 
 //Helper functions:
@@ -618,4 +648,17 @@ function displayAreYouSureModal(subjectId){
     $('#iPadStatusBar').addClass('frostedGlass');
     $('#subjectsPage').addClass('frostedGlass');
     $('#navBar').addClass('frostedGlass');
+}
+
+function changeTimeIntervals() {
+    var workSession = $('#workIntervalInput').val();
+    var shortBreak = $('#shortBreakIntervalInput').val();
+    var longBreak = $('#longBreakIntervalInput').val();
+    updateTimeIntervals(workSession, shortBreak, longBreak);
+}
+
+function displayTimeIntervals(sessionTimes) {
+    $('#workIntervalInput').val(sessionTimes.study_session);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break);
 }
