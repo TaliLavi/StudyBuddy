@@ -8,14 +8,21 @@ function createSubject() {
     // SET DEFAULT VALUES
     var is_deleted = 0;
 
-    // PUSH THEM TO DB
-    pushNewSubject(name, colour_scheme, is_deleted);
+    if (name !== "" && colour_scheme !== undefined) {
+        // PUSH THEM TO DB
+        pushNewSubject(name, colour_scheme, is_deleted);
+        // CLOSE THE ADD SUBJECT DIALOG
+        closeModalWindow();
+        // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
+        fetchActiveSubjects(true, displayActiveSubjects);
+    } else if (name !== "") {
+        $('.colourMessage').text("Please select a colour for your new subject.");
+    } else if (colour_scheme !== undefined) {
+        $('.colourMessage').text("Better name your subject first!");
+    } else {
+        $('.colourMessage').text("Give your subject a name and choose a colour for it.");
+    }
 
-    // CLOSE THE ADD SUBJECT DIALOG
-    closeModalWindow();
-
-    // REFRESH SUBJECTS DISPLAY TO INCLUDE THE ONE THAT WAS JUST CREATED
-    fetchActiveSubjects(true, displayActiveSubjects);
 }
 
 // DISPLAY SUBJECTS INFORMATION
