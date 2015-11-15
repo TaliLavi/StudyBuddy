@@ -22,7 +22,6 @@ function preparePage() {
         }
     );
 
-    $('#iPadStatusBar').show();
     $('#navBar').show();
 
     timeAppWasLoaded = $.now();
