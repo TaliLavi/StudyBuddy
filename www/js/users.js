@@ -13,7 +13,7 @@ function prepareSignUp() {
     } else {
         // password has to have a minimum of 6 characters
         if ($('#confirmPasswordInput').val().length >= 6) {
-            signUpUser(firstName, lastName, email, password, clearPasswordFields);
+            signUpUser(firstName, lastName, email, password);
         } else {
             $('#signUpPasswordErrorMessage').text('The password must have at least 6 characters.');
         }
@@ -25,17 +25,11 @@ function prepareLogIn() {
     var email = $('#logInEmailInput').val();
     var password = $('#logInPasswordInput').val();
 
-    // CLEAR INPUT FIELDS
-    $('#logInPasswordInput').val('');
+    // CLEAR ERROR MESSAGES
     $('#logInEmailErrorMessage').text('');
     $('#logInPasswordErrorMessage').text('');
 
     logInUser(email, password);
-}
-
-function clearPasswordFields() {
-    $('#signUpPasswordInput').val('');
-    $('#confirmPasswordInput').val('');
 }
 
 // CREATE NEW USER
