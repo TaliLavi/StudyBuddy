@@ -27,10 +27,10 @@ function signUpUser(firstName, lastName, email, password, callback) {
         if (error) {
             console.error("Error creating user:", error);
             if (error.code === "INVALID_EMAIL"){
-                $('#signUpEmailErrorMessage').text('This does not look like a valid email address.');
+                $('#signUpEmailErrorMessage').text("Oops! This doesn't look like an email address.");
             }
             if (error.code === "EMAIL_TAKEN"){
-                $('#signUpEmailErrorMessage').text('The specified email address is already in use.');
+                $('#signUpEmailErrorMessage').text('This email address is already in use.');
             }
         } else {
             callback();
@@ -54,7 +54,7 @@ function logInUser(email, password, signUpCallback) {
                 $('#logInEmailErrorMessage').text('The specified user does not exist.');
             }
             if (error.code === "INVALID_EMAIL"){
-                $('#logInEmailErrorMessage').text('This does not look like a valid email address.');
+                $('#logInEmailErrorMessage').text("Oops! This isn't an email address.");
             }
             if (error.code === "INVALID_PASSWORD"){
                 $('#logInPasswordErrorMessage').text('Oops, wrong password.');
