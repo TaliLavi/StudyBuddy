@@ -145,7 +145,7 @@ input, textarea {
      position: absolute;
      top: -136px;
     left: 75px;
- }
+}
 
 #logInEmailErrorMessage {
     position: absolute;
@@ -218,23 +218,65 @@ input, textarea {
 
 }
 
-margin-top: 5px;
+#ruzoLogo{
+    width: 140px;
+    height: 100px;
+    position: absolute;
+    top: -100px;
+    left: -28px;
+}
 
-/*#lastNameInput{*/
-    /*margin-bottom: 15px;*/
-/*}*/
+#ruzoTagline{
+    width: 155px;
+    height: 42px;
+    position: absolute;
+    top: -52px;
+    left: 122px;
+}
 
-/*#signUpEmailInput{*/
-    /*margin-bottom: 15px;*/
-/*}*/
+#headSignUpRuzo{
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    left: 510px;
+    top: 114px;
+}
 
-/*#signUpPasswordInput{*/
-    /*margin-bottom: 15px;*/
-/*}*/
+#headSignUpRuzoClosed{
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    left: 510px;
+    top: 114px;
+}
 
-/*#confirmPasswordInput{*/
-    /*margin-bottom: 15px;*/
-/*}*/
+
+#bodySignUpRuzo{
+    position: absolute;
+    height: 160px;
+    width: 142px;
+    left: 530px;
+    top: 182px;
+}
+
+#tailSignUpRuzo{
+    position: absolute;
+    height: 213px;
+    width: 88px;
+    left: 600px;
+    top: 128px;
+}
+
+#loginRuzoShadow{
+    width: 140px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #428B96;
+    position: absolute;
+    bottom: -40px;
+    right: -104px;
+}
+
 
 
 /*===================================================================================================================*/
@@ -1679,7 +1721,6 @@ input:focus {outline:0;}
 
 
 }
-
 
 #tailDoneRuzo2{
     position: absolute;
