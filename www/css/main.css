@@ -183,6 +183,38 @@ input, textarea {
 }
 
 /*===================================================================================================================*/
+/* SIGN UP PAGE */
+/*===================================================================================================================*/
+
+#signUpPage{
+    background-color: #1B9BAE;
+    height: 100vh;
+}
+
+#signUpForm{
+    display: block;
+    margin: auto;
+    background-color: #E9ECEF;
+    width: 426px;
+    height: 198px;
+    position: absolute;
+    margin: -99px 0 0 -214px;
+    top: 50%;
+    left: 50%;
+}
+
+#signUpForm input{
+    background-color: white;
+    border: none;
+    width: 310px;
+    height: 30px;
+    display: block;
+    margin: auto;
+    font-size: .9em;
+    color: #607A93;
+}
+
+/*===================================================================================================================*/
 /* NAV BAR, STATUS BAR AND ICONS */
 /*===================================================================================================================*/
 
