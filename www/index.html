@@ -52,15 +52,15 @@
       <form id="signUpForm">
       <!--<h2>Create a new acount</h2>-->
       <!--<h3>Start studying the smart way</h3>-->
-      <input type="text" placeholder="First name" id="firstNameInput"><br>
-      <input type="text" placeholder="Last Name" id="lastNameInput"><br>
-      <input type="email" placeholder="email" id="signUpEmailInput"><br>
+      <input type="text" placeholder="Username" id="firstNameInput">
+      <!--<input type="text" placeholder="Last Name" id="lastNameInput">-->
+      <input type="email" placeholder="Email" id="signUpEmailInput">
       <div class="errorMessage" id="signUpEmailErrorMessage"></div>
       <input type="password" placeholder="Password" id="signUpPasswordInput">
-      <input type="password" placeholder="confirmPassword" id="confirmPasswordInput">
+      <input type="password" placeholder="Confirm Password" id="confirmPasswordInput">
       <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
-      <input type="button" value="Get Started" onclick="prepareSignUp()">
-      <button type="button" onclick="showLogIn()">Already have an account?</button>
+      <button class="loginSignUpButton" type="button" onclick="prepareSignUp()">Sign Up</button>
+      <button class="toggleSignLog" type="button" onclick="showLogIn()">Already have an account?</button>
     </form>
   </div>
 
@@ -77,8 +77,8 @@
             <div class="errorMessage" id="logInEmailErrorMessage"></div>
             <input type="password" placeholder="Password" id="logInPasswordInput">
             <div class="errorMessage" id="logInPasswordErrorMessage"></div>
-            <button  id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
-            <button  id="switchToSignUpButton" type="button" onclick="showSignUp()">Sign Up</button>
+            <button  class="loginSignUpButton" id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
+            <button  class="toggleSignLog" type="button" onclick="showSignUp()">Sign Up</button>
         </form>
   </div>
 
