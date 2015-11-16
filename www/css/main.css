@@ -136,6 +136,7 @@ input, textarea {
     position: absolute;
     top: -20px;
     left: -10px;
+    /*background-color: plum;*/
 }
 
 
@@ -144,6 +145,14 @@ input, textarea {
      height: 145px;
      position: absolute;
      top: -136px;
+    left: 75px;
+}
+
+#headLoginRuzoClosed{
+    width: 146px;
+    height: 145px;
+    position: absolute;
+    top: -136px;
     left: 75px;
 }
 

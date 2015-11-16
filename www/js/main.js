@@ -52,6 +52,7 @@ function preparePage() {
     // prepare Done Ruzo animation
     prepareDoneRuzo();
 
+
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
 
@@ -104,6 +105,7 @@ function prepareNavigation() {
 }
 
 function goToLogin() {
+    prepareLoginRuzo();
     // when clicking enter while on password field, if email field isn't empty, attempt to login
     executeOnEnter($('#logInPasswordInput'), prepareLogIn);
     // when clicking enter while on password field, if email field isn't empty, attempt to signup

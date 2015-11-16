@@ -76,11 +76,12 @@
       <img src="img/backLoginRuzo.png" id="backLoginRuzo">
       <img src="img/neckLoginRuzo.png" id="neckLoginRuzo">
         <form id="loginForm">
+            <img src="img/headLoginRuzoClosed.png" id="headLoginRuzoClosed">
             <img src="img/headLoginRuzo.png" id="headLoginRuzo">
             <img src="img/tailLoginRuzo.png" id="tailLoginRuzo">
             <input type="email" placeholder="Email" id="logInEmailInput"><br>
             <div class="errorMessage" id="logInEmailErrorMessage"></div>
-            <input type="password" placeholder="Password" id="logInPasswordInput">
+            <input type="password" placeholder="Password" id="logInPasswordInput" onfocus="playRuzoLoginHide()" onblur="playRuzoLoginShow()">
             <div class="errorMessage" id="logInPasswordErrorMessage"></div>
             <button  class="loginSignUpButton" id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
             <button  class="toggleSignLog" type="button" onclick="showSignUp()">Sign Up</button>
