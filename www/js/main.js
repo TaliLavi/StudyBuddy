@@ -49,14 +49,17 @@ function preparePage() {
     // display time intervals in the Settings menu
     fetchTimeIntervals(displayTimeIntervals);
 
-    // indicate which colours are already in use
-    checkIsColourInUse();
-
     // prepare Done Ruzo animation
     prepareDoneRuzo();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
+
+    //// FOR TESTING, DELETE WHEN DONE TESTING
+    //$('#settingsMenu').on("click", function(){
+    //        console.log('touchend detected');
+    //    }
+    //);
 }
 
 
@@ -325,15 +328,22 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
         $('#cardAssignedDate').attr('disabled', true);
         $('#closeTaskModalDone').on("click", closeModalWindow);
         // set event handler for closing the modal when user clicks outside modal
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails);
+        setCloseWhenClickingOutside($('#taskModal'), function() {closeTaskModal(subjectId, weekDate, taskId, taskDetails);});
     } else {
         // enable user to edit assigned date
         $('#cardAssignedDate').attr('disabled', false);
         $('#closeTaskModal').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);})});
         // set event handler for closing the modal when user clicks outside modal, and submit the task changes when closing the modal window
-        setCloseWhenClickingOutside($('#taskModal'), subjectId, weekDate, taskId, taskDetails, function(){submitTaskChanges(subjectId, weekDate, taskId, taskDetails);});
+        setCloseWhenClickingOutside($('#taskModal'), function() {
+            closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails);
+        });
     }
+}
 
+function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
+    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
+        submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
+    });
 }
 
 function showTaskModal(subjectId, isDone) {
@@ -417,9 +427,9 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
 var dayList;
 
 
-function openAddTaskDialog(data){
+function openAddTaskDialog(date){
     //Automatically fill the assigned date
-    $('#assignedDateInput').val(data);
+    $('#assignedDateInput').val(date);
     //Makes the modal window display
     $('#addTaskModal').css('display','block');
     $('#calendarPage').addClass('frostedGlass');
@@ -432,7 +442,7 @@ function openAddTaskDialog(data){
     // Set the new onclick handler
     $('#submitNewTask').on("click", createTask);
 
-    setCloseWhenClickingOutside($('#addTaskModal'));
+    setCloseWhenClickingOutside($('#addTaskModal'), closeModalWindow);
 }
 
 
@@ -502,22 +512,13 @@ function closeTaskModal(subjectId, weekDate, taskId, originalTaskDetails, callba
 }
 
 // set event handler for closing the modal when user clicks outside modal.
-function setCloseWhenClickingOutside(modalWindow, subjectId, weekDate, taskId, taskDetails, callback) {
+function setCloseWhenClickingOutside(modalWindow, callback) {
     var eventType = isMobile()? "touchend" : "mouseup";
     $(document).off(eventType);
     $(document).on(eventType, function (event) {
         // if the target of the click isn't the modal window, nor a descendant of the modal window
         if (!modalWindow.is(event.target) && modalWindow.has(event.target).length === 0) {
-            // if the modal window we're closing is the task modal
-            if ($('#taskModal').hasClass('displayed')) {
-                closeTaskModal(subjectId, weekDate, taskId, taskDetails, callback);
-            // if the modal window we're closing is the colour picker widget
-            } else if (modalWindow[0].id === "colourPalette") {
-                hideColourPalette();
-            // if the modal window we're closing is either the Add Task, Add Subject, or settings modals
-            } else {
-                closeModalWindow();
-            }
+            callback();
         }
     });
 }
@@ -535,22 +536,14 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
 }
 
 function showSettingsMenu() {
-    // if this click will make #settingsMenu visible:
-    if ($('#settingsMenu').is(':hidden')) {
-
+    if ($('#settingsMenu').css('display') === 'none') {
         // position colour palette menu next to the editColour button
         var buttonOffset = $('#settingsButton').offset();
         $('#settingsMenu').css('left', buttonOffset.left - 130);
         $('#settingsMenu').css('top',buttonOffset.top + 70);
-
-        setCloseWhenClickingOutside($('#settingsMenu'));
-
-        // display #settingsMenu
+        setCloseWhenClickingOutside($('#settingsMenu, #settingsButton'), closeModalWindow);
         $('#settingsMenu').show();
-
-    // if this click will make #settingsMenu hidden:
     } else {
-        // hide #settingsMenu
         $('#settingsMenu').hide();
     }
 }
@@ -560,6 +553,9 @@ function showSettingsMenu() {
 //===========================================================================================================
 
 function openAddSubjectDialog(){
+    // indicate which colours are already in use
+    markUsedColours();
+
     $('#submitNewSubject').text("Add Subject");
     //Makes the modal window display
     $('#addSubjectModal').css('display','block');
@@ -574,7 +570,7 @@ function openAddSubjectDialog(){
     // Set the new onclick handler
     $('#submitNewSubject').on("click", createSubject);
 
-    setCloseWhenClickingOutside($('#addSubjectModal'));
+    setCloseWhenClickingOutside($('#addSubjectModal'), closeModalWindow);
 }
 
 //Helper functions:

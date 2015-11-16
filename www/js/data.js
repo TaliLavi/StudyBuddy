@@ -18,7 +18,7 @@ function firebaseErrorFrom(funcName) {
 //=====================================================================
 
 // Sign up a new user
-function signUpUser(firstName, lastName, email, password, callback) {
+function signUpUser(firstName, lastName, email, password) {
     var ref = FIREBASE_REF;
     ref.createUser({
         email: email,
@@ -33,7 +33,6 @@ function signUpUser(firstName, lastName, email, password, callback) {
                 $('#signUpEmailErrorMessage').text('This email address is already in use.');
             }
         } else {
-            callback();
             createUser(firstName, lastName, email, password, userData.uid);
         }
     });

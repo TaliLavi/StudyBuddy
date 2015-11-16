@@ -26,8 +26,10 @@ function prepareCalendarSlider() {
         applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
         fetchTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_next').attr('disabled', true);
+        $('#control_prev').attr('disabled', true);
         moveSlide(1, function() {
             $('#control_next').attr('disabled', false);
+            $('#control_prev').attr('disabled', false);
         });
         createCalendarHeading();
     });//end of next click function
@@ -41,8 +43,10 @@ function prepareCalendarSlider() {
         applySortable("#week" + mondayOfNewWeek + " .sortable-task-list");
         fetchTasksByWeek(mondayOfNewWeek, displayTasksForWeekAndSubject);
         $('#control_prev').attr('disabled', true);
+        $('#control_next').attr('disabled', true);
         moveSlide(-1, function() {
             $('#control_prev').attr('disabled', false);
+            $('#control_next').attr('disabled', false);
         });
         createCalendarHeading();
     });//end of prev click function
