@@ -87,6 +87,7 @@ function prepareLoginRuzo(){
 }
 
 function playRuzoLoginHide() {
+    console.log("This is inside the function playRuzoLoginHide");
     ruzoLoginTimeline.play();
 }
 

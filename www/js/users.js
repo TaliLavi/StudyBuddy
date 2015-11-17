@@ -1,7 +1,8 @@
 function prepareSignUp() {
     // GET FIELD VALUES
     var firstName = $('#firstNameInput').val();
-    var lastName = $('#lastNameInput').val();
+    //var lastName = $('#lastNameInput').val();
+    var lastName= "";
     var email = $('#signUpEmailInput').val();
     var password = $('#signUpPasswordInput').val();
     var confirmedPassword = $('#confirmPasswordInput').val();
@@ -21,6 +22,10 @@ function prepareSignUp() {
 }
 
 function prepareLogIn() {
+
+    // RUZO UNCOVERS EYES
+    playRuzoLoginShow();
+
     // GET FIELD VALUES
     var email = $('#logInEmailInput').val();
     var password = $('#logInPasswordInput').val();
