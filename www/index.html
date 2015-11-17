@@ -55,10 +55,10 @@
       <input type="text" placeholder="Username" id="firstNameInput">
       <!--<input type="text" placeholder="Last Name" id="lastNameInput">-->
       <input type="email" placeholder="Email" id="signUpEmailInput">
-      <div class="errorMessage" id="signUpEmailErrorMessage"></div>
+      <div id="signUpEmailErrorTriangle"><div class="errorMessage" id="signUpEmailErrorMessage"></div></div>
       <input type="password" placeholder="Password" id="signUpPasswordInput">
       <input type="password" placeholder="Confirm Password" id="confirmPasswordInput">
-      <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
+      <div id="signUpPasswordErrorTriangle"><div class="errorMessage" id="signUpPasswordErrorMessage"></div></div>
       <button class="loginSignUpButton" type="button" onclick="prepareSignUp()">Sign Up</button>
       <button class="toggleSignLog" type="button" onclick="showLogIn()">Already have an account?</button>
       <div id="loginRuzoShadow"></div>
@@ -80,9 +80,9 @@
             <img src="img/headLoginRuzo.png" id="headLoginRuzo">
             <img src="img/tailLoginRuzo.png" id="tailLoginRuzo">
             <input type="email" placeholder="Email" id="logInEmailInput"><br>
-            <div class="errorMessage" id="logInEmailErrorMessage"></div>
+            <div id="loginEmailErrorTriangle"><div class="errorMessage" id="logInEmailErrorMessage"></div></div>
             <input type="password" placeholder="Password" id="logInPasswordInput" onfocus="playRuzoLoginHide()" onblur="playRuzoLoginShow()">
-            <div class="errorMessage" id="logInPasswordErrorMessage"></div>
+            <div id="loginPasswordErrorTriangle"><div class="errorMessage" id="logInPasswordErrorMessage"></div></div>
             <button  class="loginSignUpButton" id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
             <button  class="toggleSignLog" type="button" onclick="showSignUp()">Sign Up</button>
         </form>
@@ -457,11 +457,11 @@
       <div id="doneCircle"></div>
       <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
       <div id="doneRuzoFox">
-          <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
-          <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
-          <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
-          <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
-          <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
+          <img src="img/AbodyDoneRuzo.png" id="bodyDoneRuzo">
+          <img src="img/AeyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+          <img src="img/AeyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
+          <img src="img/AeyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
+          <img src="img/AtailDoneRuzo2.png" id="tailDoneRuzo2">
       </div>
   </div>
 

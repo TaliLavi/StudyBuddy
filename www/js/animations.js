@@ -7,10 +7,12 @@ function prepareDoneRuzo() {
 
     ruzoDoneTimeline.to("#eyesOpenMouthClosedDone", 1, {
         rotation    :   "0",
+        transformOrigin :   "50% 50%",
     }) ;
 
     ruzoDoneTimeline.to("#eyesClosedMouthClosedDone", 1, {
         rotation    :   "0",
+        transformOrigin :   "50% 50%",
     }, "-=1") ;
 
     ruzoDoneTimeline.to("#eyesOpenMouthOpenDone",0, {

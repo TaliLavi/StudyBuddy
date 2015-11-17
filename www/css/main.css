@@ -165,10 +165,22 @@ input, textarea {
     font-size: .8em;
     color: #BC6771;
     background-color: white;
-    right: -195px;
-    top: 48px;
+    right: -231px;
+    top: -16px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+#loginEmailErrorTriangle{
+    position: absolute;
+    right: 8px;
+    top: 38px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
 }
 
 #logInPasswordErrorMessage{
@@ -180,10 +192,23 @@ input, textarea {
     font-size: .8em;
     color: #BC6771;
     background-color: white;
-    right: -139px;
-    top: 87px;
+    right: -175px;
+    top: -16px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+
+#loginPasswordErrorTriangle{
+    position: absolute;
+    right: 8px;
+    top: 94px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
 }
 
 /*===================================================================================================================*/
@@ -284,6 +309,64 @@ input, textarea {
     position: absolute;
     bottom: -40px;
     right: -104px;
+}
+
+#signUpEmailErrorTriangle{
+    position: absolute;
+    right: 120px;
+    top: 93px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    z-index: 2;
+    display: none;
+}
+
+#signUpPasswordErrorTriangle{
+    position: absolute;
+    right: 120px;
+    top: 208px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    z-index: 2;
+    display: none;
+}
+
+#signUpEmailErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -304px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 2;
+}
+
+#signUpPasswordErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -310px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 2;
 }
 
 
@@ -1667,6 +1750,11 @@ input:focus {outline:0;}
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 
     /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
     /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
@@ -1694,6 +1782,11 @@ input:focus {outline:0;}
     -webkit-border-radius: 50%;
     border-radius: 50%;
     display: none;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 
 }
 
@@ -1701,42 +1794,60 @@ input:focus {outline:0;}
     position: absolute;
     bottom: -5px;
     right: -20px;
-    height: 250px;
+    height: 239px;
 }
 
 #eyesOpenMouthClosedDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 160px;
+    right: 64px;
+    height: 160px;
     -webkit-transform:rotate(-10deg);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 
 #eyesClosedMouthClosedDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 160px;
+    right: 64px;
+    height: 163px;
     -webkit-transform:rotate(-10deg);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #eyesOpenMouthOpenDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 154px;
+    right: 64px;
+    height: 166px;
     opacity: 0;
-
-
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #tailDoneRuzo2{
     position: absolute;
-    bottom: -11px;
-    right: -18px;
-    height: 250px;
-
+    bottom: -18px;
+    right: -26px;
+    height: 128px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    /*display: none;*/
     /*background-color: rgba(200, 0, 0, .5);*/
 }
 
