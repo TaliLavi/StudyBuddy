@@ -556,7 +556,6 @@ function showSettingsMenu() {
         $('#backButtonSettings').css("display", "none");
         $('#settingsMenu').show();
     } else {
-
         $('#settingsMenu').hide();
     }
 }
@@ -586,6 +585,73 @@ function backToSettings(){
     $('#studySessionSettings').css("display", "none");
     $('#backButtonSettings').css("display", "none");
     changeTimeIntervals();
+}
+
+function increaseStudySessionLength(){
+    var studySessInput = parseInt($('#workIntervalInput').val());
+    $('#workIntervalInput').val(studySessInput +1);
+    changeTimeIntervals();
+}
+
+function decreaseStudySessionLength(){
+    var studySessInput = parseInt($('#workIntervalInput').val());
+    if(studySessInput>=2){
+        $('#workIntervalInput').val(studySessInput -1);
+        changeTimeIntervals();
+    } else{
+        $('#workIntervalInput').val(studySessInput);
+    }
+}
+
+function increaseShortBreakLength(){
+    var shortBreakInput = parseInt($('#shortBreakIntervalInput').val());
+    $('#shortBreakIntervalInput').val(shortBreakInput + 1);
+    changeTimeIntervals();
+}
+
+function decreaseShortBreakLength(){
+    var shortBreakInput = parseInt($('#shortBreakIntervalInput').val());
+    if(shortBreakInput>=2){
+        $('#shortBreakIntervalInput').val(shortBreakInput - 1);
+        changeTimeIntervals();
+    }else{
+        $('#shortBreakIntervalInput').val(shortBreakInput);
+    }
+}
+
+function increaseLongBreakLength(){
+    var longBreakInput = parseInt($('#longBreakIntervalInput').val());
+    $('#longBreakIntervalInput').val(longBreakInput + 1);
+    changeTimeIntervals();
+}
+
+function decreaseLongBreakLength(){
+    var longBreakInput = parseInt($('#longBreakIntervalInput').val());
+    if(longBreakInput>=2){
+        $('#longBreakIntervalInput').val(longBreakInput - 1);
+        changeTimeIntervals();
+    } else {
+        $('#longBreakIntervalInput').val(longBreakInput);
+    }
+}
+
+function changeTimeIntervals() {
+    var workSession = $('#workIntervalInput').val();
+    var shortBreak = $('#shortBreakIntervalInput').val();
+    var longBreak = $('#longBreakIntervalInput').val();
+    $('#studySessionLengthDisplay').html(workSession + " minutes");
+    $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
+    $('#longBreakLengthDisplay').html(longBreak + " minutes");
+    updateTimeIntervals(workSession, shortBreak, longBreak);
+}
+
+function displayTimeIntervals(sessionTimes) {
+    $('#studySessionLengthDisplay').html(sessionTimes.study_session + " minutes");
+    $('#shortBreakLengthDisplay').html(sessionTimes.short_break + " minutes");
+    $('#longBreakLengthDisplay').html(sessionTimes.long_break + " minutes");
+    $('#workIntervalInput').val(sessionTimes.study_session);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break);
 }
 
 
@@ -691,15 +757,3 @@ function displayAreYouSureModal(subjectId){
     $('#navBar').addClass('frostedGlass');
 }
 
-function changeTimeIntervals() {
-    var workSession = $('#workIntervalInput').val();
-    var shortBreak = $('#shortBreakIntervalInput').val();
-    var longBreak = $('#longBreakIntervalInput').val();
-    updateTimeIntervals(workSession, shortBreak, longBreak);
-}
-
-function displayTimeIntervals(sessionTimes) {
-    $('#workIntervalInput').val(sessionTimes.study_session);
-    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
-    $('#longBreakIntervalInput').val(sessionTimes.long_break);
-}
