@@ -13,6 +13,14 @@
     touch-callout: none;
     /*prevents the grey highlight when anything is tapped on the iPad*/
     -webkit-tap-highlight-color: transparent;
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 /*html {*/
@@ -1831,7 +1839,7 @@ input:focus {outline:0;}
 .timeIntervalInput {
     font-size: 2em;
     font-family: Raleway, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-    width: 108%;
+    width: 100%;
     color: #1B9BAE;
     border: none;
     text-align: center;
