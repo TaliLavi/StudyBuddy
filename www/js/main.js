@@ -537,18 +537,57 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
     });
 }
 
+//===========================================================================================================
+// SETTINGS MENU
+//===========================================================================================================
+
+
 function showSettingsMenu() {
     if ($('#settingsMenu').css('display') === 'none') {
         // position colour palette menu next to the editColour button
         var buttonOffset = $('#settingsButton').offset();
-        $('#settingsMenu').css('left', buttonOffset.left - 130);
-        $('#settingsMenu').css('top',buttonOffset.top + 70);
+        $('#settingsMenu').css('left', buttonOffset.left - 136);
+        $('#settingsMenu').css('top',buttonOffset.top + 98);
         setCloseWhenClickingOutside($('#settingsMenu, #settingsButton'), closeModalWindow);
+        $('#settingsButtons').css("display", "block");
+        $('#longBreakSettings').css("display", "none");
+        $('#shortBreakSettings').css("display", "none");
+        $('#studySessionSettings').css("display", "none");
+        $('#backButtonSettings').css("display", "none");
         $('#settingsMenu').show();
     } else {
+
         $('#settingsMenu').hide();
     }
 }
+
+function openStudySessionSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#studySessionSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function openShortBreakSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#shortBreakSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function openLongBreakSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#longBreakSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function backToSettings(){
+    $('#settingsButtons').css("display", "block");
+    $('#longBreakSettings').css("display", "none");
+    $('#shortBreakSettings').css("display", "none");
+    $('#studySessionSettings').css("display", "none");
+    $('#backButtonSettings').css("display", "none");
+    changeTimeIntervals();
+}
+
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT

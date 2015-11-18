@@ -118,7 +118,7 @@
             <img  class="navIcon" src="img/settingsIcon.png">
             <span>Settings</span>
         </button>
-      <button  id="signoutButton" onclick="signOut()">Sign out</button>
+
       <!--<button onclick="playRuzoDone()">Play Done Ruzo</button>-->
     </div>
 
@@ -483,26 +483,37 @@
   <!--========================================================================================================-->
 
   <div id="settingsMenu">
-    <div class="point"></div>
-
-    <form>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="workInterval" for="workIntervalInput">Work Session:</label>
-        <input id="workIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="shortBreakInterval" for="shortBreakIntervalInput">Short Break:</label>
-        <input id ="shortBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="longBreakInterval" for="longBreakIntervalInput">Long Break:</label>
-        <input id ="longBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-    </form>
-
+    <div class="point" id="settingsPoint"></div>
+    <div id="mainSettingsHeader">
+        <div id="backButtonSettings" onclick="backToSettings()"><span id="backText">Settings</span></div>
+    </div>
+        <div id="settingsButtons">
+            <button  id="openStudySessionSettings" onclick="openStudySessionSettings()"><span class="settingsLengthHeading">Study session length</span><br><span id="studySessionLengthDisplay">25 mins</span></button>
+            <button  id="openShortBreakSettings" onclick="openShortBreakSettings()"><span class="settingsLengthHeading">Short break length</span><br><span id="shortBreakLengthDisplay">5 mins</span></button>
+            <button  id="openLongBreakSettings" onclick="openLongBreakSettings()"><span class="settingsLengthHeading">Long break length</span><br><span id="longBreakLengthDisplay">15 mins</span></button>
+            <button  id="signoutButton" onclick="signOut()">Sign out</button>
+        </div>
+        <div id="studySessionSettings">
+            <div class="insideSettingsText">Study session</div><br>
+            <div class="arrowUp" onclick="increaseStudySessionLength()"></div>
+            <input class="timeIntervalInput" id="workIntervalInput" type="number" onblur="changeTimeIntervals()">
+            <div class="arrowDown"onclick="decreaseStudySessionLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
+        <div id="shortBreakSettings">
+            <div class="insideSettingsText">Short break</div><br>
+            <div class="arrowUp" onclick="increaseShortBreakLength()"></div>
+            <input  class="timeIntervalInput" id ="shortBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
+            <div class="arrowDown" onclick="decreaseShortBreakLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
+        <div id="longBreakSettings">
+            <div class="insideSettingsText">Long break</div><br>
+            <div class="arrowUp" onclick="increaseLongBreakLength()"></div>
+            <input  class="timeIntervalInput" id ="longBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
+            <div class="arrowDown" onclick="decreaseLongBreakLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
   </div>
 
 
