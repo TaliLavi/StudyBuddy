@@ -1839,7 +1839,9 @@ input:focus {outline:0;}
 .timeIntervalInput {
     font-size: 2em;
     font-family: Raleway, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-    width: 100%;
+    width: 80%;
+    display:block;
+    margin: auto;
     color: #1B9BAE;
     border: none;
     text-align: center;
