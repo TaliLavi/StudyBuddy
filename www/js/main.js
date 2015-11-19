@@ -466,9 +466,9 @@ function closeModalWindow() {
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');
     $('#subjectsPage').removeClass('frostedGlass');
-    //Fade out the greyed background
+    //Hide the greyed background
     $('.modal-bg').hide();
-    //Fade out the modal window
+    //Hide the modal window
     $('.modal').hide();
 
     // Clear input fields
@@ -540,7 +540,6 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
 //===========================================================================================================
 // SETTINGS MENU
 //===========================================================================================================
-
 
 function showSettingsMenu() {
     if ($('#settingsMenu').css('display') === 'none') {
