@@ -49,7 +49,7 @@
     <allow-intent href="mailto:*"/>
     <allow-intent href="geo:*"/>
 
-    <icon src="ruzoIcon128.png"/>
+    <icon src="ruzoIcon256Red.png"/>
      <icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
      <icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi"/>
      <icon src="www/res/icon/android/ruzoIcon72.png" gap:platform="android" gap:qualifier="hdpi"/>
