@@ -639,7 +639,29 @@ function changeTimeIntervals() {
     var workSession = $('#workIntervalInput').val();
     var shortBreak = $('#shortBreakIntervalInput').val();
     var longBreak = $('#longBreakIntervalInput').val();
-    $('#studySessionLengthDisplay').html(workSession + " minutes");
+
+    if(isNaN(workSession)|| workSession<=1){            //If the user enters something that's not a number, or that's less than one
+        workSession = 1                                 //Make workSession eqaul to one
+        $('#workIntervalInput').val(workSession);       //and display this in the input field
+    }else{                                              //Otherwise
+        workSession = workSession;                      //Make workSession be what it originally was (the user's input)
+    }
+
+    if(isNaN(shortBreak)|| shortBreak<=1){              //Same logic as above
+        shortBreak = 1;
+        $('#shortBreakIntervalInput').val(shortBreak);
+    }else{
+        shortBreak = shortBreak;
+    }
+
+    if(isNaN(longBreak)|| longBreak<=1){                //Same logic as above
+        longBreak = 1;
+        $('#longBreakIntervalInput').val(longBreak);
+    }else{
+        longBreak = longBreak;
+    }
+
+    $('#studySessionLengthDisplay').html(workSession + " minutes");     //Changes the html on the settings menu to reflect the new times
     $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
     $('#longBreakLengthDisplay').html(longBreak + " minutes");
     updateTimeIntervals(workSession, shortBreak, longBreak);
