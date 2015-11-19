@@ -65,8 +65,8 @@
     <!--<icon src="www/res/icon/ios/ruzoIcon180.png" gap:platform="ios" width="180" height="180"/>-->
     <!--<icon src="www/res/icon/ios/ruzoIcon60.png" gap:platform="ios" width="60" height="60"/>-->
     <!--<icon src="www/res/icon/ios/ruzoIcon120.png" gap:platform="ios" width="120" height="120"/>-->
-    <!--<icon src="www/res/icon/ios/ruzoIcon76.png" gap:platform="ios" width="76" height="76"/>-->
-    <!--<icon src="www/res/icon/ios/ruzoIcon152.png" gap:platform="ios" width="152" height="152"/>-->
+    <icon src="www/res/icon/ios/ruzoIcon76.png" gap:platform="ios" width="76" height="76"/>
+    <icon src="www/res/icon/ios/ruzoIcon152.png" gap:platform="ios" width="152" height="152"/>
     <!--<icon src="www/res/icon/ios/ruzoIcon40.png" gap:platform="ios" width="40" height="40"/>-->
     <!--<icon src="www/res/icon/ios/ruzoIcon80.png" gap:platform="ios" width="80" height="80"/>-->
     <!--<icon src="www/res/icon/ios/ruzoIcon57.png" gap:platform="ios" width="57" height="57"/>-->
