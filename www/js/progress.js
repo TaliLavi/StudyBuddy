@@ -204,6 +204,6 @@ function currentStreak(heatmapSnapshot) {
 
         previousDate = date;
     });
-    $('#currentStreak').text('current streak is: ' + currentStreak);
-    $('#longestStreak').text('longest streak is: ' + longestStreak);
+    //$('#currentStreak').text('current streak is: ' + currentStreak);
+    //$('#longestStreak').text('longest streak is: ' + longestStreak);
 }
