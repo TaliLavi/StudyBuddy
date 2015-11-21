@@ -452,6 +452,8 @@ function updateTimeIntervals(workSession, shortBreak, longBreak) {
         "short_break_seconds": shortBreak,
         "long_break_seconds": longBreak
     });
+    // invalidate the cache
+    dataCache.sessionTimes = null;
 }
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {
