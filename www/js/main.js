@@ -115,11 +115,19 @@ function showProgressPage() {
     // display adaptive feedback for the heatmap
     fetchHeatmapData(function(heatmapSnapshot) {
 
-        // choose randomly which feedback to display
-        if (Math.random() > 0.5) {
-            findBestMonth(heatmapSnapshot);
+        var timestring = isBestMonth(heatmapSnapshot);
+
+        if (timestring !== undefined) {
+            $('#heatmapMessage').text('This is your best month so far, with ' + timestring + ' studied.');
         } else {
-            findBestWeekDay(heatmapSnapshot);
+            // choose randomly which feedback to display
+            if (Math.random() > 0.5) {
+                timestring = timeThisMonth(heatmapSnapshot);
+                $('#heatmapMessage').text('You studied ' + timestring + ' since the start of this month.');
+            } else {
+                var bestDay = findBestWeekDay(heatmapSnapshot);
+                $('#heatmapMessage').text('Looks like ' + bestDay + ' is normally your most productive day.');
+            }
         }
     });
 }
@@ -390,10 +398,9 @@ function showTaskModal(subjectId, isDone) {
     $('#navBar').addClass('frostedGlass');
 }
 
-function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
-    $('#totalTimeStudiedActiveTask').val('');
-    var hours = Math.floor(totalSecondsStudied/3600);
-    var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
+function formatTimeString(totalSeconds) {
+    var hours = Math.floor(totalSeconds/3600);
+    var minutes = Math.ceil((totalSeconds - hours*3600)/60);
     var hoursString = "";
     var minutesString = "";
 
@@ -418,15 +425,24 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         and = false;
     }
 
+    var timeString = hoursString + (and? "and " : "") + minutesString
+
+    return timeString;
+}
+
+function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
+    $('#totalTimeStudiedActiveTask').val('');
+    var timeString = formatTimeString(totalSecondsStudied);
+
     if (isDone) {
         if (totalSecondsStudied === null) {
             $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task. Good work!");
+            $('#totalTimeStudiedDoneTask').text("You spent " + timeString + "on this task. Good work!");
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').val(hoursString + (and? "and " : "") + minutesString);
+            $('#totalTimeStudiedActiveTask').val(timeString);
         } else {
             $('#totalTimeStudiedActiveTask').val("No time yet!");
         }
