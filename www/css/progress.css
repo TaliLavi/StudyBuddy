@@ -56,6 +56,7 @@
     font-size: 2.5em;
     text-align:center;
     display: inline;
+    cursor: default;
 }
 
 #barHeadingDiv{
@@ -63,6 +64,7 @@
     Margin: auto;
     width: 900px;
     padding: 3%;
+    cursor: default;
 }
 
 .barChartToggle{
@@ -77,6 +79,7 @@
     font-size: 1em;
     margin-left: 12px;
     float: right;
+    cursor: pointer;
 }
 
 .progressPageMessage{
@@ -88,6 +91,7 @@
     display: block;
     margin: auto;
     padding: 30px;
+    cursor: default;
 
     /*text-transform: uppercase;*/
 }
@@ -101,6 +105,7 @@
     padding: 3%;
     text-align:center;
     display: inline;
+    cursor: default;
 }
 
 /*.tick text{*/
@@ -125,6 +130,7 @@
     width: 900px;
     display: block;
     margin:auto;
+    cursor: default;
 }
 
 #heatmapSection{
@@ -176,6 +182,7 @@
     color: #607A93;
     font-size: .8em;
     margin-right: 5px;
+    cursor: default;
 }
 
 #myHeatmapLegend{

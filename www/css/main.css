@@ -13,14 +13,20 @@
     touch-callout: none;
     /*prevents the grey highlight when anything is tapped on the iPad*/
     -webkit-tap-highlight-color: transparent;
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 /*html {*/
 /*height: 100%;*/
 /*box-sizing: border-box;*/
 /*-moz-box-sizing: border-box;*/
-
-
 /*}*/
 
 
@@ -70,29 +76,25 @@ input, textarea {
     background-color: white;
     border: none;
     width: 310px;
-    height: 30px;
+    height: 40px;
     float: right;
     margin-right: 42px;
     text-indent: 35px;
     font-size: .9em;
     color: #607A93;
+    margin-bottom: 15px;
 }
-
 
 
 #logInEmailInput{
-    margin-top: 46px;
+    margin-top: 30px;
 }
 
 
-#logInPasswordInput{
-    margin-top: 8px;
-}
 
-
-#switchToSignUpButton{
+.toggleSignLog{
     font-size: 1em;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-right: 15px;
     background-color: transparent;
     height: 35px;
@@ -100,8 +102,7 @@ input, textarea {
     color: rgb(149,202,173);
     float: right;
 }
-
-#loginButton{
+.loginSignUpButton{
     float: right;
     margin-right: 42px;
     color: white;
@@ -113,7 +114,7 @@ input, textarea {
     width: 85px;
     background-color: rgb(149,202,173);
     font-size: 1em;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 
@@ -141,6 +142,7 @@ input, textarea {
     position: absolute;
     top: -20px;
     left: -10px;
+    /*background-color: plum;*/
 }
 
 
@@ -150,7 +152,15 @@ input, textarea {
      position: absolute;
      top: -136px;
     left: 75px;
- }
+}
+
+#headLoginRuzoClosed{
+    width: 146px;
+    height: 145px;
+    position: absolute;
+    top: -136px;
+    left: 75px;
+}
 
 #logInEmailErrorMessage {
     position: absolute;
@@ -161,10 +171,22 @@ input, textarea {
     font-size: .8em;
     color: #BC6771;
     background-color: white;
-    right: -195px;
-    top: 48px;
+    right: -231px;
+    top: -16px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+#loginEmailErrorTriangle{
+    position: absolute;
+    right: 8px;
+    top: 38px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
 }
 
 #logInPasswordErrorMessage{
@@ -176,11 +198,184 @@ input, textarea {
     font-size: .8em;
     color: #BC6771;
     background-color: white;
-    right: -139px;
-    top: 87px;
+    right: -175px;
+    top: -16px;
     padding-right: 10px;
     padding-left: 10px;
 }
+
+
+#loginPasswordErrorTriangle{
+    position: absolute;
+    right: 8px;
+    top: 94px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
+}
+
+/*===================================================================================================================*/
+/* SIGN UP PAGE */
+/*===================================================================================================================*/
+
+#signUpPage{
+    background-color: #1B9BAE;
+    height: 100vh;
+}
+
+#signUpForm{
+    display: block;
+    margin: auto;
+    background-color: #E9ECEF;
+    width: 560px;
+    height: 320px;
+    position: absolute;
+    margin: -160px 0 0 -280px;
+    top: 50%;
+    left: 50%;
+}
+
+
+#signUpForm input{
+    background-color: white;
+    border: none;
+    width: 475px;
+    height: 40px;
+    display: block;
+    margin-bottom: 15px;
+    font-size: .9em;
+    color: #607A93;
+    text-indent: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#firstNameInput{
+    margin-top: 30px;
+
+}
+
+#ruzoLogo{
+    width: 140px;
+    height: 100px;
+    position: absolute;
+    top: -100px;
+    left: -28px;
+}
+
+#ruzoTagline{
+    width: 155px;
+    height: 42px;
+    position: absolute;
+    top: -52px;
+    left: 122px;
+}
+
+#headSignUpRuzo{
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    left: 510px;
+    top: 114px;
+}
+
+#headSignUpRuzoClosed{
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    left: 510px;
+    top: 114px;
+}
+
+
+#bodySignUpRuzo{
+    position: absolute;
+    height: 160px;
+    width: 142px;
+    left: 530px;
+    top: 182px;
+}
+
+#tailSignUpRuzo{
+    position: absolute;
+    height: 213px;
+    width: 88px;
+    left: 600px;
+    top: 128px;
+}
+
+#loginRuzoShadow{
+    width: 140px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #428B96;
+    position: absolute;
+    bottom: -40px;
+    right: -104px;
+}
+
+#signUpEmailErrorTriangle{
+    position: absolute;
+    right: 120px;
+    top: 93px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    z-index: 2;
+    display: none;
+}
+
+#signUpPasswordErrorTriangle{
+    position: absolute;
+    right: 120px;
+    top: 208px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    z-index: 2;
+    display: none;
+}
+
+#signUpEmailErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -304px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 2;
+}
+
+#signUpPasswordErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -310px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 2;
+}
+
+
 
 /*===================================================================================================================*/
 /* NAV BAR, STATUS BAR AND ICONS */
@@ -215,6 +410,7 @@ input, textarea {
     font-weight: 300;
     z-index: 2;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .navIcon{
@@ -222,6 +418,7 @@ input, textarea {
     width: 40px;
     z-index: 2;
     overflow: hidden;
+
 }
 
 .iconHighlight{
@@ -258,14 +455,6 @@ input, textarea {
 
 }
 
-#signoutButton{
-    float: right;
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: .8em;
-    padding: 5px;
-}
 
 #settingsButton{
     float: right;
@@ -318,6 +507,7 @@ input:focus {outline:0;}
     width: 100%;
     text-align: left;
     margin-bottom: -5px;
+    cursor: pointer;
 }
 
 #weekHeadingOnCalendar{
@@ -327,6 +517,7 @@ input:focus {outline:0;}
     font-size: 2em;
     text-align:center;
     display: inline;
+    cursor: default;
 }
 
 .dayHeadingOnCalendar{
@@ -351,6 +542,7 @@ input:focus {outline:0;}
     width: 100%;
     background-color: #31A9A8;
     padding: 3%;
+    cursor: default;
 }
 
 
@@ -473,6 +665,7 @@ input:focus {outline:0;}
     font-size: 2em;
     right: 10px;
     top: 0;
+    cursor: pointer;
 }
 
 .modalHeading{
@@ -484,6 +677,7 @@ input:focus {outline:0;}
     font-size: 2em;
     margin-left: 10%;
     margin-top: 4%;
+    cursor: default;
 }
 
 /*===================================================================================================================*/
@@ -621,6 +815,7 @@ input:focus {outline:0;}
     box-sizing: border-box;
     width: 60%;
     padding: 2%;
+    cursor: pointer;
 }
 
 
@@ -632,6 +827,7 @@ input:focus {outline:0;}
     font-size: 2em;
     right: 10px;
     top: 0px;
+    cursor: pointer;
 }
 
 
@@ -751,6 +947,7 @@ input:focus {outline:0;}
     border-radius: 0;
     background: url(../img/dropDownArrow.png) no-repeat right rgba(255,255,255,.3);
     background-size: 30px 30px;
+    cursor: pointer;
 }
 
 
@@ -789,6 +986,7 @@ input:focus {outline:0;}
     -webkit-appearance: none;
     height: 30px;
     width: 50%;
+    cursor: pointer;
 }
 
 
@@ -805,6 +1003,11 @@ input:focus {outline:0;}
     margin-bottom: 20px;
     margin-right: 6px;
     float: right;
+    cursor: pointer;
+}
+
+#submitNewTask:hover{
+    opacity: .6;
 }
 
 .inputField::-webkit-input-placeholder {
@@ -1159,6 +1362,13 @@ input:focus {outline:0;}
     -webkit-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
     -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
     box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
+    cursor: pointer;
+}
+
+#addSubjectButton:hover{
+    -webkit-box-shadow: -1px 13px 21px -10px rgba(151, 137, 151, 0.4);
+    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.40);
+    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.40);
 }
 
 .completedTasksButton{
@@ -1448,15 +1658,215 @@ input:focus {outline:0;}
     opacity:1;
 }
 
+
+
+/*==================================================================================================*/
+/* SETTINGS MENU */
+/*==================================================================================================*/
+
+
+#settingsPoint{
+    left: 150px;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid #95CAAD;
+}
+
+#mainSettingsHeader{
+    background-color: #95CAAD;
+    height: 40px;
+    color: white;
+    font-family: acme, sans-serif;
+    font-size: 1em;
+    line-height: 40px;
+    padding-left: 10px;
+    letter-spacing: 1.5px;
+}
+
+
 #settingsMenu {
+    box-sizing: border-box;
     position: absolute;
-    width: 180px;
-    height: 210px;
-    background-color: #ffffff;
+    width: 200px;
+    height: 280px;
+    background-color: white;
     display: none;
-    padding: 10px;
     box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
 }
+
+#settingsButtons{
+   display: block;
+}
+
+/*#settingsForm input{*/
+    /*font-size: .8em;*/
+    /*opacity: .6;*/
+    /*width: 2em;*/
+    /*color: white;*/
+    /*background-color: transparent;*/
+    /*border: none;*/
+/*}*/
+
+/*.minutesLabel{*/
+    /*font-size: .8em;*/
+    /*opacity: .6;*/
+    /*color: white;*/
+/*}*/
+/*.settingsLabel{*/
+    /*color: white;*/
+    /*font-size: .9em;*/
+
+/*}*/
+
+#openStudySessionSettings{
+    padding: 10px;
+    width: 100%;
+    border: none;
+    color: #1B9BAE;
+    font-size: .9em;
+    background-color: transparent;
+    height: 60px;
+    text-align: left;
+    line-height: 1.2em;
+}
+
+
+#openShortBreakSettings{
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-top: solid 1px #95CAAD;
+    color: #1B9BAE;
+    font-size: .9em;
+    background-color: transparent;
+    height: 60px;
+    text-align: left;
+    line-height: 1.2em;
+}
+
+#openLongBreakSettings{
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-top: solid 1px #95CAAD;
+    color: #1B9BAE;
+    font-size: .9em;
+    background-color: transparent;
+    height: 60px;
+    text-align: left;
+    line-height: 1.2em;
+}
+
+#studySessionLengthDisplay{
+    color: #95CAAD;
+    font-size: .85em;
+}
+
+#shortBreakLengthDisplay{
+    color: #95CAAD;
+    font-size: .85em;
+}
+
+#longBreakLengthDisplay{
+    color: #95CAAD;
+    font-size: .85em;
+}
+
+#signoutButton{
+    background-color: transparent;
+    border: none;
+    border-top: solid 1px #95CAAD;
+    color: #1B9BAE;
+    font-size: .9em;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+#backButtonSettings{
+    display: none;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+}
+
+#backText {
+    color: white;
+    position: absolute;
+    left: 24px;
+    top: -18px;
+    opacity: .8;
+    font-size: .9em;
+    cursor: pointer;
+}
+
+#studySessionSettings{
+    width: 80%;
+    display: none;
+    margin: auto;
+    margin-top: 15%;
+}
+
+#shortBreakSettings{
+    width: 80%;
+    display: none;
+    margin: auto;
+    margin-top: 15%;
+}
+
+#longBreakSettings{
+    width: 80%;
+    display: none;
+    margin: auto;
+    margin-top: 15%;
+}
+
+.insideSettingsText{
+    color: #1B9BAE;
+    width: 100%;
+    text-align: center;
+}
+
+.timeIntervalInput {
+    font-size: 2em;
+    font-family: Raleway, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+    width: 80%;
+    display:block;
+    margin: auto;
+    color: #1B9BAE;
+    border: none;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.arrowUp {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #95CAAD;
+    display: block;
+    margin: auto;
+}
+
+.arrowDown {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #95CAAD;
+    display: block;
+    margin: auto;
+}
+
 
 
 /*==================================================================================================*/
@@ -1561,6 +1971,11 @@ input:focus {outline:0;}
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 
     /*-webkit-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
     /*-moz-box-shadow: 0px 0px 44px 8px rgba(1,1,1,.10);*/
@@ -1588,6 +2003,11 @@ input:focus {outline:0;}
     -webkit-border-radius: 50%;
     border-radius: 50%;
     display: none;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 
 }
 
@@ -1595,43 +2015,60 @@ input:focus {outline:0;}
     position: absolute;
     bottom: -5px;
     right: -20px;
-    height: 250px;
+    height: 239px;
 }
 
 #eyesOpenMouthClosedDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 160px;
+    right: 64px;
+    height: 160px;
     -webkit-transform:rotate(-10deg);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 
 #eyesClosedMouthClosedDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 160px;
+    right: 64px;
+    height: 163px;
     -webkit-transform:rotate(-10deg);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #eyesOpenMouthOpenDone{
     position: absolute;
-    bottom: -5px;
-    right: -20px;
-    height: 250px;
+    bottom: 154px;
+    right: 64px;
+    height: 166px;
     opacity: 0;
-
-
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
-
 
 #tailDoneRuzo2{
     position: absolute;
-    bottom: -11px;
-    right: -18px;
-    height: 250px;
-
+    bottom: -18px;
+    right: -26px;
+    height: 128px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    /*display: none;*/
     /*background-color: rgba(200, 0, 0, .5);*/
 }
 
@@ -1655,6 +2092,7 @@ input:focus {outline:0;}
     line-height: 1.8em;
     width: 70%;
     line-height: 1.8em;
+    cursor: default;
 }
 
 

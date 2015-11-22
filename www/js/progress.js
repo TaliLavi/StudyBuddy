@@ -179,12 +179,12 @@ function prepareHeatmapData(heatmapSnapshot) {
     return dataSet
 }
 
-function isConsecutiveDays(firstDay, secondDay) {
-    var firstDayParsed = Date.parse(firstDay);
-    var secondDayParsed = Date.parse(secondDay);
+function isConsecutiveDays(date1, date2) {
+    date1 = new Date(date1);
+    date2 = new Date(date2);
 
     var dayDurationInEpochTime = 86400000;
-    return secondDayParsed - firstDayParsed <= dayDurationInEpochTime;
+    return date2 - date1 <= dayDurationInEpochTime;
 }
 
 function currentStreak(heatmapSnapshot) {
@@ -204,6 +204,53 @@ function currentStreak(heatmapSnapshot) {
 
         previousDate = date;
     });
-    $('#currentStreak').text('current streak is: ' + currentStreak);
-    $('#longestStreak').text('longest streak is: ' + longestStreak);
+    //$('#currentStreak').text('current streak is: ' + currentStreak);
+    //$('#longestStreak').text('longest streak is: ' + longestStreak);
+}
+
+function isSameMonth(date1, date2) {
+    date1 = new Date(date1);
+    date2 = new Date(date2);
+
+    return (date1.getFullYear() === date2.getFullYear()) && (date1.getMonth() === date2.getMonth())
+}
+
+function findBestMonth(heatmapSnapshot) {
+    var previousDate = new Date("1900-01-01");
+    var bestDate = previousDate;
+
+    var mostTimeStudiedInMonth = 0;
+    var timeStudiedThisMonth = 0;
+
+    $.each(heatmapSnapshot, function(date){
+        if (isSameMonth(previousDate, date)) {
+            timeStudiedThisMonth += 1;
+            if (timeStudiedThisMonth > mostTimeStudiedInMonth) {
+                mostTimeStudiedInMonth = timeStudiedThisMonth;
+                bestDate = date;
+            }
+        } else {
+            timeStudiedThisMonth = 0;
+        }
+
+        previousDate = date;
+    });
+
+    if (timeStudiedThisMonth >= mostTimeStudiedInMonth) {
+        $('#heatmapMessage').text('This is your best month so far, with ' + timeStudiedThisMonth + ' minutes studied.');
+    } else {
+        //$('#heatmapMessage').text('Your best month was ' + formatDate(bestDate, "Month yyyy") + ' when you studied ' +
+        //    mostTimeStudiedInMonth + ' minutes, compared to ' + timeStudiedThisMonth + ' minutes studied this month.');
+        $('#heatmapMessage').text('You studied ' + timeStudiedThisMonth + ' minutes since the start of this month.');
+    }
+}
+
+function findBestWeekDay(heatmapSnapshot) {
+    var timesPerWeekDay = [0, 0, 0, 0, 0, 0, 0];
+    $.each(heatmapSnapshot, function(date){
+        var formattedDate = new Date(date)
+        timesPerWeekDay[formattedDate.getDay()] += 1;
+    });
+    var bestDayNum = timesPerWeekDay.indexOf(Math.max.apply(Math, timesPerWeekDay));
+    $('#heatmapMessage').text('Looks like ' + formatWeekDay(bestDayNum) + ' is normally your most productive day.');
 }

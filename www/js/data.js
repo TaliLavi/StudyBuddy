@@ -28,9 +28,11 @@ function signUpUser(firstName, lastName, email, password) {
             console.error("Error creating user:", error);
             if (error.code === "INVALID_EMAIL"){
                 $('#signUpEmailErrorMessage').text("Oops! This doesn't look like an email address.");
+                $('#signUpEmailErrorTriangle').show();
             }
             if (error.code === "EMAIL_TAKEN"){
                 $('#signUpEmailErrorMessage').text('This email address is already in use.');
+                $('#signUpEmailErrorTriangle').show();
             }
         } else {
             createUser(firstName, lastName, email, password, userData.uid);
@@ -51,12 +53,15 @@ function logInUser(email, password, signUpCallback) {
             console.error("Login Failed!", error);
             if (error.code === "INVALID_USER"){
                 $('#logInEmailErrorMessage').text('The specified user does not exist.');
+                $('#loginEmailErrorTriangle').show();
             }
             if (error.code === "INVALID_EMAIL"){
                 $('#logInEmailErrorMessage').text("Oops! This isn't an email address.");
+                $('#loginEmailErrorTriangle').show();
             }
             if (error.code === "INVALID_PASSWORD"){
                 $('#logInPasswordErrorMessage').text('Oops, wrong password.');
+                $('#loginPasswordErrorTriangle').show();
             }
         } else {
             if (signUpCallback !== undefined) {
@@ -447,6 +452,8 @@ function updateTimeIntervals(workSession, shortBreak, longBreak) {
         "short_break_seconds": shortBreak,
         "long_break_seconds": longBreak
     });
+    // invalidate the cache
+    dataCache.sessionTimes = null;
 }
 
 function incrementNumOfBreaks(subjectId, weekDate, taskId) {

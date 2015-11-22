@@ -8,7 +8,6 @@
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />-->
   <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
   <title>Study Buddy</title>
-
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
   <link rel="stylesheet" href="css/subjectsBottomPanel.css">
@@ -49,19 +48,24 @@
   <!--========================================================================================================-->
   <div class="iPadStatusBar"></div>
   <div id="signUpPage" style="display:none;">
-    <form>
-      <h2>Create a new acount</h2>
-      <h3>Start studying the smart way</h3>
-      <input type="text" placeholder="First name" id="firstNameInput"><br>
-      <input type="text" placeholder="Last Name" id="lastNameInput"><br>
-      <input type="email" placeholder="email" id="signUpEmailInput"><br>
-      <div class="errorMessage" id="signUpEmailErrorMessage"></div>
+      <form id="signUpForm">
+      <img src="img/ruzoLogo.png" id="ruzoLogo">
+      <img src="img/ruzoTagline.png" id="ruzoTagline">
+      <input type="text" placeholder="Username" id="firstNameInput">
+      <!--<input type="text" placeholder="Last Name" id="lastNameInput">-->
+      <input type="email" placeholder="Email" id="signUpEmailInput">
+      <div id="signUpEmailErrorTriangle"><div class="errorMessage" id="signUpEmailErrorMessage"></div></div>
       <input type="password" placeholder="Password" id="signUpPasswordInput">
-      <input type="password" placeholder="confirmPassword" id="confirmPasswordInput">
-      <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
-      <input type="button" value="Get Started" onclick="prepareSignUp()">
-      <button type="button" onclick="showLogIn()">Already have an account?</button>
-    </form>
+      <input type="password" placeholder="Confirm Password" id="confirmPasswordInput">
+      <div id="signUpPasswordErrorTriangle"><div class="errorMessage" id="signUpPasswordErrorMessage"></div></div>
+      <button class="loginSignUpButton" type="button" onclick="prepareSignUp()">Sign Up</button>
+      <button class="toggleSignLog" type="button" onclick="showLogIn()">Already have an account?</button>
+      <div id="loginRuzoShadow"></div>
+      <img src="img/AbodyDoneRuzo.png" id="bodySignUpRuzo">
+      <img src="img/headLoginRuzoClosed.png" id="headSignUpRuzoClosed">
+      <img src="img/headLoginRuzo.png" id="headSignUpRuzo">
+      <img src="img/AtailDoneRuzo.png" id="tailSignUpRuzo">
+      </form>
   </div>
 
   <!--========================================================================================================-->
@@ -71,14 +75,15 @@
       <img src="img/backLoginRuzo.png" id="backLoginRuzo">
       <img src="img/neckLoginRuzo.png" id="neckLoginRuzo">
         <form id="loginForm">
+            <img src="img/headLoginRuzoClosed.png" id="headLoginRuzoClosed">
             <img src="img/headLoginRuzo.png" id="headLoginRuzo">
             <img src="img/tailLoginRuzo.png" id="tailLoginRuzo">
             <input type="email" placeholder="Email" id="logInEmailInput"><br>
-            <div class="errorMessage" id="logInEmailErrorMessage"></div>
-            <input type="password" placeholder="Password" id="logInPasswordInput">
-            <div class="errorMessage" id="logInPasswordErrorMessage"></div>
-            <button  id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
-            <button  id="switchToSignUpButton" type="button" onclick="showSignUp()">Sign Up</button>
+            <div id="loginEmailErrorTriangle"><div class="errorMessage" id="logInEmailErrorMessage"></div></div>
+            <input type="password" placeholder="Password" id="logInPasswordInput" onfocus="playRuzoLoginHide()" onblur="playRuzoLoginShow()">
+            <div id="loginPasswordErrorTriangle"><div class="errorMessage" id="logInPasswordErrorMessage"></div></div>
+            <button  class="loginSignUpButton" id="loginButton" type="button" onclick="prepareLogIn()">Login</button>
+            <button  class="toggleSignLog" type="button" onclick="showSignUp()">Sign Up</button>
         </form>
   </div>
 
@@ -91,19 +96,19 @@
     <div id="navBar" style="display:none;">
 
       <div class="iconHighlight" id="subjectsHighlight"></div>
-      <button id="subjectsButton" class="navButton">
+      <button id="subjectsButton" class="navButton" onclick="showSubjectsPage()">
         <img class="navIcon" src="img/subjectsIcon.png">
         <span>Subjects</span>
       </button>
 
       <div class="iconHighlight" id="weekHighlight"></div>
-      <button id="calendarButton" class="navButton">
+      <button id="calendarButton" class="navButton" onclick="showCalendarPage()">
         <img  class="navIcon" src="img/weekIcon.png">
         <span>Week</span>
       </button>
 
       <div class="iconHighlight" id="progressHighlight"></div>
-        <button id="progressButton" class="navButton">
+        <button id="progressButton" class="navButton" onclick="showProgressPage()">
             <img  class="navIcon" src="img/progressIcon.png">
             <span>Progress</span>
         </button>
@@ -112,7 +117,7 @@
             <img  class="navIcon" src="img/settingsIcon.png">
             <span>Settings</span>
         </button>
-      <button  id="signoutButton" onclick="signOut()">Sign out</button>
+
       <!--<button onclick="playRuzoDone()">Play Done Ruzo</button>-->
     </div>
 
@@ -121,8 +126,8 @@
     <!--========================================================================================================-->
     <div id="profilePage" style="display:none;">
 
-      <div id="currentStreak"></div>
-      <div id="longestStreak"></div>
+      <!--<div id="currentStreak"></div>-->
+      <!--<div id="longestStreak"></div>-->
 
       <div id="subjectsRecordSection">
         <div id="barHeadingDiv">
@@ -165,7 +170,7 @@
           <div class="legendSquare" id="square4"></div><div class="legendText"> > 4 hrs</div>
           <div class="legendSquare" id="square5"></div><div class="legendText"> > 5 hrs</div>
         </div>
-        <p class = "progressPageMessage" id="heatmapMessage">It looks like Tuesday is normally your most productive day.</p>
+        <p class = "progressPageMessage" id="heatmapMessage"></p>
       </div>
 
     </div>
@@ -451,11 +456,11 @@
       <div id="doneCircle"></div>
       <div id="doneMessageCircle"><span id="taskDoneMessage">Great<br>Job!</span></div>
       <div id="doneRuzoFox">
-          <img src="img/bodyDoneRuzo.png" id="bodyDoneRuzo">
-          <img src="img/eyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
-          <img src="img/eyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
-          <img src="img/eyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
-          <img src="img/tailDoneRuzo2.png" id="tailDoneRuzo2">
+          <img src="img/AbodyDoneRuzo.png" id="bodyDoneRuzo">
+          <img src="img/AeyesOpenMouthClosedDone.png" id="eyesOpenMouthClosedDone">
+          <img src="img/AeyesClosedMouthClosedDone.png" id="eyesClosedMouthClosedDone">
+          <img src="img/AeyesOpenMouthOpenDone.png" id="eyesOpenMouthOpenDone">
+          <img src="img/AtailDoneRuzo2.png" id="tailDoneRuzo2">
       </div>
   </div>
 
@@ -477,26 +482,37 @@
   <!--========================================================================================================-->
 
   <div id="settingsMenu">
-    <div class="point"></div>
-
-    <form>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="workInterval" for="workIntervalInput">Work Session:</label>
-        <input id="workIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="shortBreakInterval" for="shortBreakIntervalInput">Short Break:</label>
-        <input id ="shortBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-      <br>
-      <div style="white-space:nowrap">
-        <label id="longBreakInterval" for="longBreakIntervalInput">Long Break:</label>
-        <input id ="longBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
-      </div>
-    </form>
-
+    <div class="point" id="settingsPoint"></div>
+    <div id="mainSettingsHeader">
+        <div id="backButtonSettings" onclick="backToSettings()"><span id="backText">Settings</span></div>
+    </div>
+        <div id="settingsButtons">
+            <button  id="openStudySessionSettings" onclick="openStudySessionSettings()"><span class="settingsLengthHeading">Study session length</span><br><span id="studySessionLengthDisplay">25 mins</span></button>
+            <button  id="openShortBreakSettings" onclick="openShortBreakSettings()"><span class="settingsLengthHeading">Short break length</span><br><span id="shortBreakLengthDisplay">5 mins</span></button>
+            <button  id="openLongBreakSettings" onclick="openLongBreakSettings()"><span class="settingsLengthHeading">Long break length</span><br><span id="longBreakLengthDisplay">15 mins</span></button>
+            <button  id="signoutButton" onclick="signOut()">Sign out</button>
+        </div>
+        <div id="studySessionSettings">
+            <div class="insideSettingsText">Study session</div><br>
+            <div class="arrowUp" onclick="increaseStudySessionLength()"></div>
+            <input class="timeIntervalInput" id="workIntervalInput" type="number" onblur="changeTimeIntervals()">
+            <div class="arrowDown"onclick="decreaseStudySessionLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
+        <div id="shortBreakSettings">
+            <div class="insideSettingsText">Short break</div><br>
+            <div class="arrowUp" onclick="increaseShortBreakLength()"></div>
+            <input  class="timeIntervalInput" id ="shortBreakIntervalInput" type="number" onblur="changeTimeIntervals()">
+            <div class="arrowDown" onclick="decreaseShortBreakLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
+        <div id="longBreakSettings">
+            <div class="insideSettingsText">Long break</div><br>
+            <div class="arrowUp" onclick="increaseLongBreakLength()"></div>
+            <input type="number" class="timeIntervalInput" id ="longBreakIntervalInput" onblur="changeTimeIntervals()">
+            <div class="arrowDown" onclick="decreaseLongBreakLength()"></div><br>
+            <div class="insideSettingsText">minutes</div>
+        </div>
   </div>
 
 

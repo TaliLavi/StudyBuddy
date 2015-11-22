@@ -52,6 +52,7 @@ function preparePage() {
     // prepare Done Ruzo animation
     prepareDoneRuzo();
 
+
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
 
@@ -70,40 +71,69 @@ function preparePage() {
 // show and hide different pages
 var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
 var buttonIds = ["#calendarButton", "#subjectsButton", "#progressButton"];
+var highlightIds = ["#weekHighlight", "#subjectsHighlight", "#progressHighlight"];
 
+function switchToPage(pageId, buttonId, highlightId) {
+    // hide all pages
+    pageIds.forEach(function(id){
+        $(id).hide();
+    })
+    // enable all nav buttons
+    buttonIds.forEach(function(id){
+        $(id).prop("disabled", false);
+    })
+    // hide all highlights
+    highlightIds.forEach(function(id){
+        $(id).hide();
+    })
+    // only show current page
+    $(pageId).show();
+    // only disable current nav button
+    $(buttonId).prop("disabled", true);
+    // only show current highlight
+    $(highlightId).show();
+}
+
+function showSubjectsPage() {
+    switchToPage("#subjectsPage", "#subjectsButton", "#subjectsHighlight");
+}
+
+function showCalendarPage() {
+    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+}
+
+function showProgressPage() {
+    switchToPage("#profilePage", "#progressButton", "#progressHighlight");
+
+    var renewCache = true;
+    fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
+    // draw the heat-map inside the progress page (in #cal-heatmap)
+    drawHeatmap();
+
+    fetchHeatmapData(currentStreak);
+
+    // display adaptive feedback for the heatmap
+    fetchHeatmapData(function(heatmapSnapshot) {
+
+        // choose randomly which feedback to display
+        if (Math.random() > 0.5) {
+            findBestMonth(heatmapSnapshot);
+        } else {
+            findBestWeekDay(heatmapSnapshot);
+        }
+    });
+}
 
 function prepareNavigation() {
-    $("#progressButton").click(function(){
-        switchToPage("#profilePage", "#progressButton");
-        $('#subjectsHighlight').hide();
-        $('#weekHighlight').hide();
-        $('#progressHighlight').show();
-        var renewCache = true;
-        fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
-        // draw the heat-map inside the progress page (in #cal-heatmap)
-        drawHeatmap();
-        fetchHeatmapData(currentStreak);
-    });
-    $("#calendarButton").click(function(){
-        switchToPage("#calendarPage", "#calendarButton");
-        $('#subjectsHighlight').hide();
-        $('#progressHighlight').hide();
-        $('#weekHighlight').show();
-    });
-    $("#subjectsButton").click(function(){
-        switchToPage("#subjectsPage", "#subjectsButton");
-        $('#progressHighlight').hide();
-        $('#subjectsHighlight').show();
-        $('#weekHighlight').hide();
-    });
-    // hide signup & login pages, reveal app pages and start the app on the calendar page
+     // hide signup & login pages, reveal app pages and start the app on the calendar page
     $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
-    switchToPage("#calendarPage", "#calendarButton");
+    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
 }
 
 function goToLogin() {
+    prepareLoginRuzo();
     // when clicking enter while on password field, if email field isn't empty, attempt to login
     executeOnEnter($('#logInPasswordInput'), prepareLogIn);
     // when clicking enter while on password field, if email field isn't empty, attempt to signup
@@ -134,24 +164,6 @@ function showLogIn() {
     $('#signUpPage').hide();
     $('#logInPage').show();
 }
-
-
-function switchToPage(pageId, buttonId) {
-
-    // hide all pages
-    pageIds.forEach(function(id){
-        $(id).hide();
-    })
-    // enable all nav buttons
-    buttonIds.forEach(function(id){
-        $(id).prop("disabled", false);
-    })
-    // only show current page
-    $(pageId).show();
-    // only disable current nav button
-    $(buttonId).prop("disabled", true);
-}
-
 
 //Make these things happen each time the page finishes loading
 function isMobile() {
@@ -464,9 +476,9 @@ function closeModalWindow() {
     $('#iPadStatusBar').removeClass('frostedGlass');
     $('#navBar').removeClass('frostedGlass');
     $('#subjectsPage').removeClass('frostedGlass');
-    //Fade out the greyed background
+    //Hide the greyed background
     $('.modal-bg').hide();
-    //Fade out the modal window
+    //Hide the modal window
     $('.modal').hide();
 
     // Clear input fields
@@ -535,18 +547,144 @@ function setCloseWhenClickingOutsideForAreYouSureModal() {
     });
 }
 
+//===========================================================================================================
+// SETTINGS MENU
+//===========================================================================================================
+
 function showSettingsMenu() {
     if ($('#settingsMenu').css('display') === 'none') {
         // position colour palette menu next to the editColour button
         var buttonOffset = $('#settingsButton').offset();
-        $('#settingsMenu').css('left', buttonOffset.left - 130);
-        $('#settingsMenu').css('top',buttonOffset.top + 70);
+        $('#settingsMenu').css('left', buttonOffset.left - 136);
+        $('#settingsMenu').css('top',buttonOffset.top + 98);
         setCloseWhenClickingOutside($('#settingsMenu, #settingsButton'), closeModalWindow);
+        $('#settingsButtons').css("display", "block");
+        $('#longBreakSettings').css("display", "none");
+        $('#shortBreakSettings').css("display", "none");
+        $('#studySessionSettings').css("display", "none");
+        $('#backButtonSettings').css("display", "none");
         $('#settingsMenu').show();
     } else {
         $('#settingsMenu').hide();
     }
 }
+
+function openStudySessionSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#studySessionSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function openShortBreakSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#shortBreakSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function openLongBreakSettings(){
+    $('#settingsButtons').css("display", "none");
+    $('#longBreakSettings').css("display", "block");
+    $('#backButtonSettings').css("display", "block");
+}
+
+function backToSettings(){
+    $('#settingsButtons').css("display", "block");
+    $('#longBreakSettings').css("display", "none");
+    $('#shortBreakSettings').css("display", "none");
+    $('#studySessionSettings').css("display", "none");
+    $('#backButtonSettings').css("display", "none");
+    changeTimeIntervals();
+}
+
+function increaseStudySessionLength(){
+    var studySessInput = parseInt($('#workIntervalInput').val());
+    $('#workIntervalInput').val(studySessInput +1);
+    changeTimeIntervals();
+}
+
+function decreaseStudySessionLength(){
+    var studySessInput = parseInt($('#workIntervalInput').val());
+    if(studySessInput>=2){
+        $('#workIntervalInput').val(studySessInput -1);
+        changeTimeIntervals();
+    } else{
+        $('#workIntervalInput').val(studySessInput);
+    }
+}
+
+function increaseShortBreakLength(){
+    var shortBreakInput = parseInt($('#shortBreakIntervalInput').val());
+    $('#shortBreakIntervalInput').val(shortBreakInput + 1);
+    changeTimeIntervals();
+}
+
+function decreaseShortBreakLength(){
+    var shortBreakInput = parseInt($('#shortBreakIntervalInput').val());
+    if(shortBreakInput>=2){
+        $('#shortBreakIntervalInput').val(shortBreakInput - 1);
+        changeTimeIntervals();
+    }else{
+        $('#shortBreakIntervalInput').val(shortBreakInput);
+    }
+}
+
+function increaseLongBreakLength(){
+    var longBreakInput = parseInt($('#longBreakIntervalInput').val());
+    $('#longBreakIntervalInput').val(longBreakInput + 1);
+    changeTimeIntervals();
+}
+
+function decreaseLongBreakLength(){
+    var longBreakInput = parseInt($('#longBreakIntervalInput').val());
+    if(longBreakInput>=2){
+        $('#longBreakIntervalInput').val(longBreakInput - 1);
+        changeTimeIntervals();
+    } else {
+        $('#longBreakIntervalInput').val(longBreakInput);
+    }
+}
+
+function changeTimeIntervals() {
+    var workSession = $('#workIntervalInput').val();
+    var shortBreak = $('#shortBreakIntervalInput').val();
+    var longBreak = $('#longBreakIntervalInput').val();
+
+    if(isNaN(workSession)|| workSession<=1){            //If the user enters something that's not a number, or that's less than one
+        workSession = 1                                 //Make workSession eqaul to one
+        $('#workIntervalInput').val(workSession);       //and display this in the input field
+    }else{                                              //Otherwise
+        workSession = workSession;                      //Make workSession be what it originally was (the user's input)
+    }
+
+    if(isNaN(shortBreak)|| shortBreak<=1){              //Same logic as above
+        shortBreak = 1;
+        $('#shortBreakIntervalInput').val(shortBreak);
+    }else{
+        shortBreak = shortBreak;
+    }
+
+    if(isNaN(longBreak)|| longBreak<=1){                //Same logic as above
+        longBreak = 1;
+        $('#longBreakIntervalInput').val(longBreak);
+    }else{
+        longBreak = longBreak;
+    }
+
+    $('#studySessionLengthDisplay').html(workSession + " minutes");     //Changes the html on the settings menu to reflect the new times
+    $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
+    $('#longBreakLengthDisplay').html(longBreak + " minutes");
+    updateTimeIntervals(workSession, shortBreak, longBreak);
+}
+
+function displayTimeIntervals(sessionTimes) {
+    $('#studySessionLengthDisplay').html(sessionTimes.study_session + " minutes");
+    $('#shortBreakLengthDisplay').html(sessionTimes.short_break + " minutes");
+    $('#longBreakLengthDisplay').html(sessionTimes.long_break + " minutes");
+    $('#workIntervalInput').val(sessionTimes.study_session);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break);
+}
+
 
 //===========================================================================================================
 // CREATE A NEW SUBJECT
@@ -573,60 +711,6 @@ function openAddSubjectDialog(){
     setCloseWhenClickingOutside($('#addSubjectModal'), closeModalWindow);
 }
 
-//Helper functions:
-// GET THE DATE FOR MONDAY OF DATE'S WEEK
-function startOfWeek(dateString, offsetDays) {
-    if (isNaN(Date.parse(dateString))) {
-        return 'no_assigned_date';
-    }
-
-    var date = new Date(dateString);
-
-    if (offsetDays !== undefined) {
-        date.setDate(date.getDate() + offsetDays);
-    }
-
-    // go to this/previous monday (getDay() of monday is 1)
-    var daysSinceMonday = (date.getDay()+7-1)%7;
-    date.setDate(date.getDate() - daysSinceMonday);
-
-    return formatDate(date);
-}
-
-// Poor-man's (library-less) date formatter. Default is YYYY-MM-DD
-function formatDate(dateString, formatString) {
-    var date = new Date(dateString);
-    var dd = date.getDate();
-    if (dd < 10) {dd = "0" + dd};
-    var mm = date.getMonth() + 1; //Months are zero based
-    if (mm < 10) {mm = "0" + mm};
-    var yyyy = date.getFullYear();
-
-    var shortMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var shortDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-
-    if (formatString === "yyyy-mm-dd" || formatString === undefined) {
-        return yyyy + "-" + mm + "-" + dd;
-    }
-    if (formatString === "ddd") {
-        return shortDays[date.getDay()];
-    }
-    if (formatString === "d MMM") {
-        return date.getDate() + " " + shortMonths[date.getMonth()];
-    }
-
-    console.error("Unknown formatString passed to formatDate:", formatString);
-}
-
-function formatTime(seconds) {
-    var ss = seconds%60;
-    if (ss < 10) {ss = "0" + ss};
-    var mm = Math.floor(seconds/60);
-    if (mm < 10) {mm = "0" + mm};
-
-    return mm + ":" + ss;
-}
-
 
 //===========================================================================================================
 // ARE YOU SURE MODAL FOR DELETING A SUBJECT
@@ -650,15 +734,3 @@ function displayAreYouSureModal(subjectId){
     $('#navBar').addClass('frostedGlass');
 }
 
-function changeTimeIntervals() {
-    var workSession = $('#workIntervalInput').val();
-    var shortBreak = $('#shortBreakIntervalInput').val();
-    var longBreak = $('#longBreakIntervalInput').val();
-    updateTimeIntervals(workSession, shortBreak, longBreak);
-}
-
-function displayTimeIntervals(sessionTimes) {
-    $('#workIntervalInput').val(sessionTimes.study_session);
-    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
-    $('#longBreakIntervalInput').val(sessionTimes.long_break);
-}
