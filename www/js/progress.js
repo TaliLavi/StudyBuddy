@@ -30,6 +30,7 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
         graphData.push({subject: subjectName, doneTasks: doneTasks, colourClass: colourclass});
     });
     drawBarGraph(graphData);
+    bestSubjectsFeedback(graphData);
 }
 
 // generate graph for ALL of the done tasks
@@ -81,6 +82,18 @@ function generateBarGraphForLastMonth(subjects, doneTasks) {
         // return whether it's been less than a month
         return days <= 30;
     });
+}
+
+// find subject with biggest number of done tasks
+function bestSubjectsFeedback(subjectsDict) {
+
+    var max = {};
+    for (var i = 0; i < subjectsDict.length; i++) {
+        if (subjectsDict[i].doneTasks > (max.doneTasks || 0))
+            max = subjectsDict[i];
+    };
+
+    $('#subjectsThisWeekMessage').text('Great job with ' + max.subject + '!');
 }
 
 function drawBarGraph(data) {
