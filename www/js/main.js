@@ -49,9 +49,11 @@ function preparePage() {
     // display time intervals in the Settings menu
     fetchTimeIntervals(displayTimeIntervals);
 
-    // prepare Done Ruzo animation
+    // prepare Ruzo animations
     prepareDoneRuzo();
-
+    prepareSwitchToShortBreakTL();
+    prepareSwitchToLongBreakTL();
+    prepareSwitchToWorkTL();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));

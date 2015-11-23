@@ -47,6 +47,7 @@
     right: 0;
     top: 65%;
     font-size: 2em;
+    color: #1B9BAE;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -179,6 +180,60 @@
     position: absolute;
 }
 
+/*//////////////////////////////////RUZOS FOR BREAKS/////////////////////////////////////////////////////////*/
+/*#bigCircleBreakRuzo{*/
+    /*height: 10px;*/
+    /*width: 10px;*/
+    /*display: block;*/
+    /*border-radius: 50%;*/
+    /*position: absolute;*/
+    /*background-color: whitesmoke;*/
+    /*right: 0px;*/
+    /*bottom: 0px;*/
+/*}*/
+
+#circleBehindBreakRuzo{
+    height: 0;
+    width: 0;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #B0DFD5;
+    left:0;
+    right:0;
+    top: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#drinkRuzo{
+    display: none;
+    position: absolute;
+    height: 176px;
+    width: 232px;
+    left:52px;
+    top: 105px;
+}
+
+#snoozeRuzo{
+    display: none;
+    position: absolute;
+    width: 251px;
+    height: 204px;
+    top: 80px;
+    left: 58px;
+}
+
+#haveABreakText{
+    font-family: 'Acme', sans-serif;
+    display: none;
+    color: #1B9BAE;
+    position: absolute;
+    top: 26px;
+    font-size: 2.2em;
+    left: 61px;
+}
+
 #sleepingRuzo {
     width: 70%;
     left:0;
@@ -200,7 +255,6 @@
     position: absolute;
     top: 70px;
 }
-
 
 #workBreakContainer {
     background-color: plum;

@@ -753,12 +753,12 @@ input:focus {outline:0;}
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     wrap: soft;
-    font-size: .9em;
+    font-size: .95em;
     line-height: 1.75em;
     resize:none;
     overflow:scroll;
     min-height: 84px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1%;
     /*max-height: 200px;*/
 }
@@ -791,20 +791,23 @@ input:focus {outline:0;}
     box-sizing: border-box;
     width: 60%;
     padding: 2%;
+    font-size: .85em;
 }
 
 #dateLabel{
     display: inline-block;
-    width: 40%;
+    width: 30%;
     padding: 2%;
     color: rgba(255, 255, 255, .6);
+    font-size: .85em;
 }
 
 #timeLabel{
     display: inline-block;
-    width: 40%;
+    width: 30%;
     padding: 2%;
     color: rgba(255, 255, 255, .6);
+    font-size: .85em;
 
 }
 
@@ -816,6 +819,7 @@ input:focus {outline:0;}
     width: 60%;
     padding: 2%;
     cursor: pointer;
+    font-size: .85em;
 }
 
 

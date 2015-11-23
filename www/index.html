@@ -411,40 +411,45 @@
       </div>
 
       <div id="rightSideTaskCard">
-        <span class="closeX" id="closeTaskModal">X</span>
+            <span class="closeX" id="closeTaskModal">X</span>
 
-        <div id ="pomodoroDiv" data-task-id = 'empty'>
-          <img src="img/backHourglass.png" id="backHourglass">
-          <div id="topContainer">
-            <div id="topTriangleWork"></div>
-          </div>
-          <div id="bottomContainer">
-            <br><br>
-            <div id="bottomTriangleWork"></div>
-          </div>
-          <img src="img/frontHourglass.png" id="frontHourglass">
-          <img src="img/sleepingRuzo.png" id="sleepingRuzo">
-          <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
-          <p id="timerDisplay">00:00</p>
-          <br/>
-          <div id="timerButtons">
-            <!--<input type="image" src="img/playIcon.png" id="playPauseButton" class="notPlaying">-->
-            <button type="button" id="playPauseButton" class="notPlaying">Start</button>
-            <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
-            <!--<input type="image" src="img/stopIcon.png" id="stopButton" class="stopped">-->
-          </div>
+            <div id ="pomodoroDiv" data-task-id = 'empty'>
+                <img src="img/backHourglass.png" id="backHourglass">
+                <div id="topContainer">
+                    <div id="topTriangleWork"></div>
+                </div>
+                <div id="bottomContainer">
+                    <br><br>
+                    <div id="bottomTriangleWork"></div>
+                </div>
+                <img src="img/frontHourglass.png" id="frontHourglass">
+                <!--<div id = "bigCircleBreakRuzo"></div>-->
+                <div id="haveABreakText">HAVE A BREAK !</div>
+                <div id = "circleBehindBreakRuzo"></div>
+                <img src="img/sleepingRuzo.png" id="sleepingRuzo">
+                <img src="img/sleepingRuzoLong.png" id="sleepingRuzoPurple">
+                <img src="img/drinkRuzo.png"   id="drinkRuzo">
+                <img src="img/snoozeRuzo.png"   id="snoozeRuzo">
+                <!--<img src="img/rugRuzo.png"   id="rugRuzo">  -->
 
-          <audio id="tone">
-            <source src="pomodoroTone.mp3" type="audio/mpeg">
-          </audio>
-        </div>
 
-        <div id="doneTaskInfo">
-            <span class="closeX" id="closeTaskModalDone">X</span>
-            <div><img src="img/jobDoneSign.png" id="jobDoneSign"></div>
-            <div id ="totalTimeStudiedDoneTask"></div>
-        </div>
+                <p id="timerDisplay">00:00</p>
+                <br/>
+                <div id="timerButtons">
+                    <button type="button" id="playPauseButton" class="notPlaying">Start</button>
+                    <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
+                </div>
 
+                <audio id="tone">
+                    <source src="pomodoroTone.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <div id="doneTaskInfo">
+                <span class="closeX" id="closeTaskModalDone">X</span>
+                <div><img src="img/jobDoneSign.png" id="jobDoneSign"></div>
+                <div id ="totalTimeStudiedDoneTask"></div>
+            </div>
       </div>
     </div>
   </div>
@@ -530,4 +535,3 @@
 </body>
 </html>
 
-<!--A comment-->

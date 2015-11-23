@@ -2,12 +2,11 @@
 
     overflow: auto;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     position: relative;
     height: 668px;
     width: 100%;
 }
-
-
 
 .axis {
     font: 10px sans-serif;
