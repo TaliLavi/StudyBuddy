@@ -12,7 +12,7 @@ var numOfStudySessions = 0;
 var workTL = new TimelineMax({paused:true});
 
 function prepareHourGlass() {
-    workTL.clear();
+    workTL.clear();   //Clears anything that was on the timeline incase it is being rebuilt after timer settings changed.
     fetchTimeIntervals(function(sessionTimes) {
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
@@ -29,26 +29,6 @@ function prepareHourGlass() {
         workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*4);      //at zero
     });
 }
-//
-//function updateHourGlassTL(){
-//    workTL.clear();
-//    fetchTimeIntervals(function(sessionTimes) {
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //10 mins left
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //5 mins left
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*16), {borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)", ease: Power0.easeNone});      //1 min left
-//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)", ease: Power0.easeNone});             //at zero
-//        ////
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session);     //20 mins left
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"30px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*80);     //15 mins left
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"45px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*60);     //10 mins left
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*40);     //5 mins let
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*16), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"70px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*16);      //1 min left
-//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*4);      //at zero
-//    });
-//}
-
 
 //===============================================================================================================================
 //POMODORO TIMER
