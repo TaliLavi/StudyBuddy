@@ -53,7 +53,6 @@ function preparePage() {
     prepareDoneRuzo();
     prepareSwitchToShortBreakTL();
     prepareSwitchToLongBreakTL();
-    prepareSwitchToWorkTL();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
@@ -183,7 +182,6 @@ function isMobile() {
 function applySortable(selector) {
     var sortableOptions = {
         group: "tasks",
-        //animation: 1000,
         ghostClass: "sortable-ghost",
         onStart: inTheAir,
         onAdd: dragTask,
