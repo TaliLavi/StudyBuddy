@@ -294,53 +294,15 @@ function prepareSwitchToShortBreakTL(){
         display  : "block",
     }, "-=.5")
 
+    switchToShortBreakTL.to( "#drinkRuzo", .4, {
+        scale   : ".85",
+    }, "-=.5")
+
     switchToShortBreakTL.to( "#haveABreakText", 0, {
         display  : "block",
-    })
+    }, "-=.5")
 
 }// end of prepareSwitchToShortBreakTL
-
-//===============================================================================================================================
-//Switch to working animation
-//===============================================================================================================================
-
-
-//var switchToWorkTL = new TimelineMax({paused:true});
-
-//function prepareSwitchToWorkTL(){
-//
-//    switchToWorkTL.to( "#drinkRuzo", 0, {
-//        display  : "none",
-//    })
-//
-//    switchToWorkTL.to( "#snoozeRuzo", 0, {
-//        display  : "none",
-//    })
-//
-//    switchToWorkTL.to( "#haveABreakText", 0, {
-//        display  : "none",
-//    })
-//
-//    switchToWorkTL.to( "#circleBehindBreakRuzo",0, {
-//        display  : "none",
-//    } )
-//
-//    switchToWorkTL.to ("#frontHourglass", 0, {
-//        display  : "block",
-//    })
-//
-//    switchToWorkTL.to ("#backHourglass", 0, {
-//        display  : "block",
-//    })
-//
-//    switchToWorkTL.to ("#bottomContainer", 0, {
-//        display  : "block",
-//    })
-//
-//    switchToWorkTL.to ("#topContainer", 0, {
-//        display  : "block",
-//    })
-//}// end of prepareSwitchToWorkTL
 
 //===============================================================================================================================
 //Switch to long break animation
@@ -371,7 +333,10 @@ function prepareSwitchToLongBreakTL(){
     })
 
     switchToLongBreakTL.to( "#circleBehindBreakRuzo", 0, {
-        display  : "block",
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
+        display  : "block"
     })
 
     switchToLongBreakTL.to( "#circleBehindBreakRuzo", 1, {
@@ -384,10 +349,14 @@ function prepareSwitchToLongBreakTL(){
 
     switchToLongBreakTL.to( "#snoozeRuzo", 0, {
         display  : "block",
-    })
+    }, "-=.5")
+
+    switchToLongBreakTL.to( "#snoozeRuzo", .4, {
+        scale   : ".85",
+    }, "-=.5")
 
     switchToLongBreakTL.to( "#haveABreakText", 0, {
         display  : "block",
-    })
+    }, "-=.5")
 
 }//end of function prepareSwitchToLongBreakTL
