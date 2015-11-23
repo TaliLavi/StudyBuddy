@@ -233,6 +233,20 @@
     transform: translate3d(0,0,0);
 }
 
+#rugRuzo{
+    display: none;
+    position: absolute;
+    width: 282px;
+    height: 225px;
+    top: 74px;
+    left: 22px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
 #haveABreakText{
     font-family: 'Acme', sans-serif;
     display: none;
