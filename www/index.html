@@ -96,19 +96,19 @@
     <div id="navBar" style="display:none;">
 
       <div class="iconHighlight" id="subjectsHighlight"></div>
-      <button id="subjectsButton" class="navButton">
+      <button id="subjectsButton" class="navButton" onclick="showSubjectsPage()">
         <img class="navIcon" src="img/subjectsIcon.png">
         <span>Subjects</span>
       </button>
 
       <div class="iconHighlight" id="weekHighlight"></div>
-      <button id="calendarButton" class="navButton">
+      <button id="calendarButton" class="navButton" onclick="showCalendarPage()">
         <img  class="navIcon" src="img/weekIcon.png">
         <span>Week</span>
       </button>
 
       <div class="iconHighlight" id="progressHighlight"></div>
-        <button id="progressButton" class="navButton">
+        <button id="progressButton" class="navButton" onclick="showProgressPage()">
             <img  class="navIcon" src="img/progressIcon.png">
             <span>Progress</span>
         </button>
@@ -139,7 +139,7 @@
 
         <svg id="chart" height="300" width="960"></svg>
         <!--<p class = "progressPageMessage" id="tasksThisWeekMessage">You've completed x tasks this week!</p>-->
-        <p class = "progressPageMessage" id="subjectsThisWeekMessage">Great job with English this week!</p>
+        <p class = "progressPageMessage" id="subjectsThisWeekMessage"></p>
         <!--<p class = "progressPageMessage" id="subjectsThisMonthMessage">You've been working hard on English.</p>-->
         <!--<p class = "progressPageMessage" id="tasksThisMonthMessage">You've completed x tasks this month!</p>-->
         <!--<p class = "progressPageMessage" id="tasksAllTimeMessage">You've completed x tasks in total!</p>-->
@@ -170,7 +170,7 @@
           <div class="legendSquare" id="square4"></div><div class="legendText"> > 4 hrs</div>
           <div class="legendSquare" id="square5"></div><div class="legendText"> > 5 hrs</div>
         </div>
-        <p class = "progressPageMessage" id="heatmapMessage">It looks like Tuesday is normally your most productive day.</p>
+        <p class = "progressPageMessage" id="heatmapMessage"></p>
       </div>
 
     </div>

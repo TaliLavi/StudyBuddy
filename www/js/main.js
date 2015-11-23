@@ -73,37 +73,73 @@ function preparePage() {
 // show and hide different pages
 var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
 var buttonIds = ["#calendarButton", "#subjectsButton", "#progressButton"];
+var highlightIds = ["#weekHighlight", "#subjectsHighlight", "#progressHighlight"];
 
+function switchToPage(pageId, buttonId, highlightId) {
+    // hide all pages
+    pageIds.forEach(function(id){
+        $(id).hide();
+    })
+    // enable all nav buttons
+    buttonIds.forEach(function(id){
+        $(id).prop("disabled", false);
+    })
+    // hide all highlights
+    highlightIds.forEach(function(id){
+        $(id).hide();
+    })
+    // only show current page
+    $(pageId).show();
+    // only disable current nav button
+    $(buttonId).prop("disabled", true);
+    // only show current highlight
+    $(highlightId).show();
+}
+
+function showSubjectsPage() {
+    switchToPage("#subjectsPage", "#subjectsButton", "#subjectsHighlight");
+}
+
+function showCalendarPage() {
+    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+}
+
+function showProgressPage() {
+    switchToPage("#profilePage", "#progressButton", "#progressHighlight");
+
+    var renewCache = true;
+    fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
+    // draw the heat-map inside the progress page (in #cal-heatmap)
+    drawHeatmap();
+
+    fetchHeatmapData(currentStreak);
+
+    // display adaptive feedback for the heatmap
+    fetchHeatmapData(function(heatmapSnapshot) {
+
+        var timestring = isBestMonth(heatmapSnapshot);
+
+        if (timestring !== undefined) {
+            $('#heatmapMessage').text('This is your best month so far, with ' + timestring + ' studied.');
+        } else {
+            // choose randomly which feedback to display
+            if (Math.random() > 0.5) {
+                timestring = timeThisMonth(heatmapSnapshot);
+                $('#heatmapMessage').text('You studied ' + timestring + ' since the start of this month.');
+            } else {
+                var bestDay = findBestWeekDay(heatmapSnapshot);
+                $('#heatmapMessage').text('Looks like ' + bestDay + ' is normally your most productive day.');
+            }
+        }
+    });
+}
 
 function prepareNavigation() {
-    $("#progressButton").click(function(){
-        switchToPage("#profilePage", "#progressButton");
-        $('#subjectsHighlight').hide();
-        $('#weekHighlight').hide();
-        $('#progressHighlight').show();
-        var renewCache = true;
-        fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
-        // draw the heat-map inside the progress page (in #cal-heatmap)
-        drawHeatmap();
-        fetchHeatmapData(currentStreak);
-    });
-    $("#calendarButton").click(function(){
-        switchToPage("#calendarPage", "#calendarButton");
-        $('#subjectsHighlight').hide();
-        $('#progressHighlight').hide();
-        $('#weekHighlight').show();
-    });
-    $("#subjectsButton").click(function(){
-        switchToPage("#subjectsPage", "#subjectsButton");
-        $('#progressHighlight').hide();
-        $('#subjectsHighlight').show();
-        $('#weekHighlight').hide();
-    });
-    // hide signup & login pages, reveal app pages and start the app on the calendar page
+     // hide signup & login pages, reveal app pages and start the app on the calendar page
     $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
-    switchToPage("#calendarPage", "#calendarButton");
+    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
 }
 
 function goToLogin() {
@@ -138,24 +174,6 @@ function showLogIn() {
     $('#signUpPage').hide();
     $('#logInPage').show();
 }
-
-
-function switchToPage(pageId, buttonId) {
-
-    // hide all pages
-    pageIds.forEach(function(id){
-        $(id).hide();
-    })
-    // enable all nav buttons
-    buttonIds.forEach(function(id){
-        $(id).prop("disabled", false);
-    })
-    // only show current page
-    $(pageId).show();
-    // only disable current nav button
-    $(buttonId).prop("disabled", true);
-}
-
 
 //Make these things happen each time the page finishes loading
 function isMobile() {
@@ -382,10 +400,9 @@ function showTaskModal(subjectId, isDone) {
     $('#navBar').addClass('frostedGlass');
 }
 
-function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
-    $('#totalTimeStudiedActiveTask').val('');
-    var hours = Math.floor(totalSecondsStudied/3600);
-    var minutes = Math.ceil((totalSecondsStudied - hours*3600)/60);
+function formatTimeString(totalSeconds) {
+    var hours = Math.floor(totalSeconds/3600);
+    var minutes = Math.ceil((totalSeconds - hours*3600)/60);
     var hoursString = "";
     var minutesString = "";
 
@@ -410,15 +427,24 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
         and = false;
     }
 
+    var timeString = hoursString + (and? "and " : "") + minutesString
+
+    return timeString;
+}
+
+function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
+    $('#totalTimeStudiedActiveTask').val('');
+    var timeString = formatTimeString(totalSecondsStudied);
+
     if (isDone) {
         if (totalSecondsStudied === null) {
             $('#totalTimeStudiedDoneTask').text("Well done on completing this task!");
         } else {
-            $('#totalTimeStudiedDoneTask').text("You spent " + hoursString + (and? "and " : "") + minutesString + "on this task. Good work!");
+            $('#totalTimeStudiedDoneTask').text("You spent " + timeString + "on this task. Good work!");
         }
     } else {
         if (totalSecondsStudied !== null) {
-            $('#totalTimeStudiedActiveTask').val(hoursString + (and? "and " : "") + minutesString);
+            $('#totalTimeStudiedActiveTask').val(timeString);
         } else {
             $('#totalTimeStudiedActiveTask').val("No time yet!");
         }
@@ -701,60 +727,6 @@ function openAddSubjectDialog(){
     $('#submitNewSubject').on("click", createSubject);
 
     setCloseWhenClickingOutside($('#addSubjectModal'), closeModalWindow);
-}
-
-//Helper functions:
-// GET THE DATE FOR MONDAY OF DATE'S WEEK
-function startOfWeek(dateString, offsetDays) {
-    if (isNaN(Date.parse(dateString))) {
-        return 'no_assigned_date';
-    }
-
-    var date = new Date(dateString);
-
-    if (offsetDays !== undefined) {
-        date.setDate(date.getDate() + offsetDays);
-    }
-
-    // go to this/previous monday (getDay() of monday is 1)
-    var daysSinceMonday = (date.getDay()+7-1)%7;
-    date.setDate(date.getDate() - daysSinceMonday);
-
-    return formatDate(date);
-}
-
-// Poor-man's (library-less) date formatter. Default is YYYY-MM-DD
-function formatDate(dateString, formatString) {
-    var date = new Date(dateString);
-    var dd = date.getDate();
-    if (dd < 10) {dd = "0" + dd};
-    var mm = date.getMonth() + 1; //Months are zero based
-    if (mm < 10) {mm = "0" + mm};
-    var yyyy = date.getFullYear();
-
-    var shortMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var shortDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-
-    if (formatString === "yyyy-mm-dd" || formatString === undefined) {
-        return yyyy + "-" + mm + "-" + dd;
-    }
-    if (formatString === "ddd") {
-        return shortDays[date.getDay()];
-    }
-    if (formatString === "d MMM") {
-        return date.getDate() + " " + shortMonths[date.getMonth()];
-    }
-
-    console.error("Unknown formatString passed to formatDate:", formatString);
-}
-
-function formatTime(seconds) {
-    var ss = seconds%60;
-    if (ss < 10) {ss = "0" + ss};
-    var mm = Math.floor(seconds/60);
-    if (mm < 10) {mm = "0" + mm};
-
-    return mm + ":" + ss;
 }
 
 

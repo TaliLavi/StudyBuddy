@@ -92,3 +92,65 @@ function getLeftMarginWrapper(){
     return parsedMarginLeft;
 }
 
+
+// Date helper functions:
+// GET THE DATE FOR MONDAY OF DATE'S WEEK
+function startOfWeek(dateString, offsetDays) {
+    if (isNaN(Date.parse(dateString))) {
+        return 'no_assigned_date';
+    }
+
+    var date = new Date(dateString);
+
+    if (offsetDays !== undefined) {
+        date.setDate(date.getDate() + offsetDays);
+    }
+
+    // go to this/previous monday (getDay() of monday is 1)
+    var daysSinceMonday = (date.getDay()+7-1)%7;
+    date.setDate(date.getDate() - daysSinceMonday);
+
+    return formatDate(date);
+}
+
+// Poor-man's (library-less) date formatter. Default is YYYY-MM-DD
+function formatDate(dateString, formatString) {
+    var date = new Date(dateString);
+    var dd = date.getDate();
+    if (dd < 10) {dd = "0" + dd};
+    var mm = date.getMonth() + 1; //Months are zero based
+    if (mm < 10) {mm = "0" + mm};
+    var yyyy = date.getFullYear();
+
+    var shortMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    var longMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var shortDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+    if (formatString === "yyyy-mm-dd" || formatString === undefined) {
+        return yyyy + "-" + mm + "-" + dd;
+    }
+    if (formatString === "ddd") {
+        return shortDays[date.getDay()];
+    }
+    if (formatString === "d MMM") {
+        return date.getDate() + " " + shortMonths[date.getMonth()];
+    }
+    if (formatString === "Month yyyy") {
+        return longMonths[date.getMonth()] + " " + yyyy;
+    }
+    console.error("Unknown formatString passed to formatDate:", formatString);
+}
+
+function formatWeekDay(weekDayNum) {
+    var weekdays =  ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return weekdays[weekDayNum];
+}
+
+function formatTime(seconds) {
+    var ss = seconds%60;
+    if (ss < 10) {ss = "0" + ss};
+    var mm = Math.floor(seconds/60);
+    if (mm < 10) {mm = "0" + mm};
+
+    return mm + ":" + ss;
+}
