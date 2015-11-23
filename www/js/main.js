@@ -692,6 +692,7 @@ function changeTimeIntervals() {
     $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
     $('#longBreakLengthDisplay').html(longBreak + " minutes");
     updateTimeIntervals(workSession, shortBreak, longBreak);
+    prepareHourGlass();
 }
 
 function displayTimeIntervals(sessionTimes) {

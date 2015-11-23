@@ -12,6 +12,7 @@ var numOfStudySessions = 0;
 var workTL = new TimelineMax({paused:true});
 
 function prepareHourGlass() {
+    workTL.clear();
     fetchTimeIntervals(function(sessionTimes) {
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
@@ -28,6 +29,26 @@ function prepareHourGlass() {
         workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*4);      //at zero
     });
 }
+//
+//function updateHourGlassTL(){
+//    workTL.clear();
+//    fetchTimeIntervals(function(sessionTimes) {
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"27px solid rgba(0,0,0,0)", borderRight:"27px solid rgba(0,0,0,0)", borderTop:"41px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //10 mins left
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"17px solid rgba(0,0,0,0)", borderRight:"17px solid rgba(0,0,0,0)", borderTop:"27px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //5 mins left
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*16), {borderLeft:"6px solid rgba(0,0,0,0)", borderRight:"6px solid rgba(0,0,0,0)", borderTop:"10px solid rgba(149,202,173,1)", ease: Power0.easeNone});      //1 min left
+//        workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"0px solid rgba(0,0,0,0)", borderRight:"0px solid rgba(0,0,0,0)", borderTop:"0px solid rgba(149,202,173,1)", ease: Power0.easeNone});             //at zero
+//        ////
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"30px solid rgba(0,0,0,0)", borderRight:"30px solid rgba(0,0,0,0)", borderBottom:"15px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session);     //20 mins left
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderBottom:"30px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*80);     //15 mins left
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"40px solid rgba(0,0,0,0)", borderRight:"40px solid rgba(0,0,0,0)", borderbottom:"45px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*60);     //10 mins left
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"45px solid rgba(0,0,0,0)", borderRight:"45px solid rgba(0,0,0,0)", borderBottom:"60px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*40);     //5 mins let
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*16), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"70px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*16);      //1 min left
+//        workTL.to($('#bottomTriangleWork'), (sessionTimes.study_session/100*4), {borderLeft:"50px solid rgba(0,0,0,0)", borderRight:"50px solid rgba(0,0,0,0)", borderBottom:"75px solid rgba(149,202,173,1)", ease: Power0.easeNone}, "-="+sessionTimes.study_session/100*4);      //at zero
+//    });
+//}
+
 
 //===============================================================================================================================
 //POMODORO TIMER
@@ -145,12 +166,7 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             // change to short_break
             sessionType = 'short_break';
             switchToShortBreakTL.play(0);
-            //$('#sleepingRuzo').css('display','block');
-            //$('#sleepingRuzoPurple').css('display','none');
-            //$('#bottomContainer').css('display','none');
-            //$('#topContainer').css('display','none');
-            //$('#backHourglass').css('display','none');
-            //$('#frontHourglass').css('display','none');
+            $('#playPauseButton').prop('disabled', true);
             workTL.pause(0);
             // switch to long_break
         } else {
@@ -159,12 +175,7 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             // reset count of study sessions
             numOfStudySessions = 0;
             switchToLongBreakTL.play(0);
-            //$('#sleepingRuzoPurple').css('display','block');
-            //$('#sleepingRuzo').css('display','none');
-            //$('#backHourglass').css('display','none');
-            //$('#frontHourglass').css('display','none');
-            //$('#bottomContainer').css('display','none');
-            //$('#topContainer').css('display','none');
+            $('#playPauseButton').prop('disabled', true);
             workTL.pause(0);
         }
 
@@ -180,13 +191,16 @@ function switchToNextSession(subjectId, weekDate, taskId) {
 
         // change to study_session
         sessionType = 'study_session';
-        switchToWorkTL.play(0);
-        //$('#bottomContainer').css('display','block');
-        //$('#topContainer').css('display','block');
-        //$('#backHourglass').css('display','block');
-        //$('#frontHourglass').css('display','block');
-        //$('#sleepingRuzoPurple').css('display','none');
-        //$('#sleepingRuzo').css('display','none');
+        //switchToWorkTL.play(0);
+        $("#circleBehindBreakRuzo").css('display','none');
+        $("#snoozeRuzo").css('display','none');
+        $("#drinkRuzo").css('display','none');
+        $("#haveABreakText").css('display','none');
+        $('#bottomContainer').css('display','block');
+        $('#topContainer').css('display','block');
+        $('#frontHourglass').css('display','block');
+        $('#backHourglass').css('display','block');
+        $('#playPauseButton').prop('disabled', false);
         workTL.play();
     }
     setTimer(subjectId, weekDate, taskId);
@@ -208,8 +222,8 @@ function togglePlayPause() {
 
 function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
+    $('#playPauseButton').prop('disabled', false);
     $('#stopButton').addClass('stopped');
-    // stop animation
     workTL.pause(0);
 
     $("#circleBehindBreakRuzo").css('display','none');
@@ -284,6 +298,10 @@ function prepareSwitchToShortBreakTL(){
         display  : "none",
     })
 
+    switchToShortBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        display  : "block",
+    })
+
     switchToShortBreakTL.to( "#circleBehindBreakRuzo", 1, {
         backgroundColor   : "#B0DFD5",
         height  : "288px",
@@ -294,7 +312,7 @@ function prepareSwitchToShortBreakTL(){
 
     switchToShortBreakTL.to( "#drinkRuzo", 0, {
         display  : "block",
-    })
+    }, "-=.5")
 
     switchToShortBreakTL.to( "#haveABreakText", 0, {
         display  : "block",
@@ -307,45 +325,42 @@ function prepareSwitchToShortBreakTL(){
 //===============================================================================================================================
 
 
-var switchToWorkTL = new TimelineMax({paused:true});
+//var switchToWorkTL = new TimelineMax({paused:true});
 
-function prepareSwitchToWorkTL(){
-
-    switchToWorkTL.to( "#drinkRuzo", 0, {
-        display  : "none",
-    })
-
-    switchToWorkTL.to( "#snoozeRuzo", 0, {
-        display  : "none",
-    })
-
-    switchToWorkTL.to( "#haveABreakText", 0, {
-        display  : "none",
-    })
-
-    switchToWorkTL.to( "#circleBehindBreakRuzo",.5, {
-        height  : "0px",
-        width   : "0px",
-        top     : "200px",
-        ease    :   Back.easeIn.config(.5), y: 0
-    } )
-
-    switchToWorkTL.to ("#frontHourglass", 0, {
-        display  : "block",
-    })
-
-    switchToWorkTL.to ("#backHourglass", 0, {
-        display  : "block",
-    })
-
-    switchToWorkTL.to ("#bottomContainer", 0, {
-        display  : "block",
-    })
-
-    switchToWorkTL.to ("#topContainer", 0, {
-        display  : "block",
-    })
-}// end of prepareSwitchToWorkTL
+//function prepareSwitchToWorkTL(){
+//
+//    switchToWorkTL.to( "#drinkRuzo", 0, {
+//        display  : "none",
+//    })
+//
+//    switchToWorkTL.to( "#snoozeRuzo", 0, {
+//        display  : "none",
+//    })
+//
+//    switchToWorkTL.to( "#haveABreakText", 0, {
+//        display  : "none",
+//    })
+//
+//    switchToWorkTL.to( "#circleBehindBreakRuzo",0, {
+//        display  : "none",
+//    } )
+//
+//    switchToWorkTL.to ("#frontHourglass", 0, {
+//        display  : "block",
+//    })
+//
+//    switchToWorkTL.to ("#backHourglass", 0, {
+//        display  : "block",
+//    })
+//
+//    switchToWorkTL.to ("#bottomContainer", 0, {
+//        display  : "block",
+//    })
+//
+//    switchToWorkTL.to ("#topContainer", 0, {
+//        display  : "block",
+//    })
+//}// end of prepareSwitchToWorkTL
 
 //===============================================================================================================================
 //Switch to long break animation
@@ -373,6 +388,10 @@ function prepareSwitchToLongBreakTL(){
 
     switchToLongBreakTL.to( "#drinkRuzo", 0, {
         display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        display  : "block",
     })
 
     switchToLongBreakTL.to( "#circleBehindBreakRuzo", 1, {

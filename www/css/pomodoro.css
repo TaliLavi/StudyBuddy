@@ -81,7 +81,7 @@
 }
 
 #stopButton:disabled{
-    background-color: rgba(149,202,173, .6);
+    background-color: lightgrey;
 }
 
 #playPauseButton{
@@ -96,6 +96,10 @@
     font-size: 1em;
     margin-bottom: 20px;
     margin-right: 6px;
+}
+
+#playPauseButton:disabled{
+    background-color: lightgrey;
 }
 
 #minsDiv {
@@ -181,16 +185,6 @@
 }
 
 /*//////////////////////////////////RUZOS FOR BREAKS/////////////////////////////////////////////////////////*/
-/*#bigCircleBreakRuzo{*/
-    /*height: 10px;*/
-    /*width: 10px;*/
-    /*display: block;*/
-    /*border-radius: 50%;*/
-    /*position: absolute;*/
-    /*background-color: whitesmoke;*/
-    /*right: 0px;*/
-    /*bottom: 0px;*/
-/*}*/
 
 #circleBehindBreakRuzo{
     height: 0;
@@ -204,6 +198,11 @@
     top: 50%;
     margin-left:auto;
     margin-right:auto;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #drinkRuzo{
@@ -213,6 +212,11 @@
     width: 232px;
     left:52px;
     top: 105px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #snoozeRuzo{
@@ -222,6 +226,11 @@
     height: 204px;
     top: 80px;
     left: 58px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 #haveABreakText{
@@ -232,32 +241,11 @@
     top: 26px;
     font-size: 2.2em;
     left: 61px;
-}
-
-#sleepingRuzo {
-    width: 70%;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
-    display: none;
-    position: absolute;
-    top: 70px;
-}
-
-#sleepingRuzoPurple {
-    width: 70%;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
-    display: none;
-    position: absolute;
-    top: 70px;
-}
-
-#workBreakContainer {
-    background-color: plum;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 
