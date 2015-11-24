@@ -711,6 +711,48 @@ input:focus {outline:0;}
     overflow: hidden;
 }
 
+#deleteTaskModal{
+    height: 100px;
+    width: 250px;
+    background-color: white;
+    position: absolute;
+    left: -16%;
+}
+
+#deleteTaskText{
+    font-size: .9em;
+    color: #607A93;
+    margin: 5px;
+}
+
+#noDeleteTaskButton{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    margin-left: 20px;
+    float: left;
+}
+
+#confirmDeleteTaskButton{
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 35px;
+    background-color: #BC6771;
+    font-size: 1em;
+    margin-right: 20px;
+    float: right;
+}
+
 #taskCardForm {
     position: absolute;
     height: 70%;

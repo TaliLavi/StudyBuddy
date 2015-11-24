@@ -404,7 +404,7 @@
         </form>
       </div>
 
-      <div id="rightSideTaskCard">
+        <div id="rightSideTaskCard">
             <span class="closeX" id="closeTaskModal">X</span>
 
             <div id ="pomodoroDiv" data-task-id = 'empty'>
@@ -422,15 +422,12 @@
                 <img src="img/drinkRuzo.png"   id="drinkRuzo">
                 <img src="img/snoozeRuzo.png"   id="snoozeRuzo">
                 <img src="img/rugRuzo.png"   id="rugRuzo">
-
-
                 <p id="timerDisplay">00:00</p>
                 <br/>
                 <div id="timerButtons">
                     <button type="button" id="playPauseButton" class="notPlaying">Start</button>
                     <button type="button" id="stopButton" class="stopped" disabled>Stop</button>
                 </div>
-
                 <audio id="tone">
                     <source src="pomodoroTone.mp3" type="audio/mpeg">
                 </audio>
@@ -441,7 +438,15 @@
                 <div><img src="img/jobDoneSign.png" id="jobDoneSign"></div>
                 <div id ="totalTimeStudiedDoneTask"></div>
             </div>
-      </div>
+        </div>
+
+        <div id="deleteTaskModal">
+            <span id="deleteTaskText">Are you sure you want to delete this task?</span>
+            <button id="noDeleteTaskButton" onclick="">Cancel</button>
+            <button id="confirmDeleteTaskButton">I'm Sure!</button>
+        </div>
+
+
     </div>
   </div>
 
@@ -472,6 +477,7 @@
           <button id="confirmDeleteSubjectButton">I'm Sure!</button>
       </div>
   </div>
+
 
   <!--========================================================================================================-->
   <!--SETTINGS MENU-->
