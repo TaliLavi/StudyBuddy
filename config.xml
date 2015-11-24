@@ -72,7 +72,7 @@
 
      <icon src="www/res/icon/windows-phone/icon-48.png" gap:platform="winphone"/>
      <icon src="www/res/icon/windows-phone/icon-173-tile.png" gap:platform="winphone" gap:role="background"/>
-    
+
 
     <gap:splash src="www/res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi"/>
     <gap:splash src="www/res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="port-mdpi"/>
@@ -83,10 +83,10 @@
     <gap:splash src="www/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960"/>
     <gap:splash src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136"/>
 
-    <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
-    <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
-    <gap:splash src="www/res/screen/ios/screen-ipad-portrait-2x.png" gap:platform="ios" width="1536" height="2048"/>
-    <gap:splash src="www/res/screen/ios/screen-ipad-landscape-2x.png" gap:platform="ios" width="2048" height="1536"/>
+    <gap:splash src="res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
+    <gap:splash src="res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
+    <gap:splash src="res/screen/ios/screen-ipad-portrait-2x.png" gap:platform="ios" width="1536" height="2048"/>
+    <gap:splash src="res/screen/ios/screen-ipad-landscape-2x.png" gap:platform="ios" width="2048" height="1536"/>
 
     <!--<splash src="www/res/screen/ios/screen-ipad-portrait.png" platform="ios" width="768" height="1024" />-->
     <!--<splash src="www/res/screen/ios/screen-ipad-landscape.png" platform="ios" width="1024" height="768" />-->
