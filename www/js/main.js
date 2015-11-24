@@ -58,6 +58,14 @@ function preparePage() {
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
 
+    ////find what the hight of the screen is to set the modals to the correct height
+    //var windowHeight = $( window ).height();
+    //var topMargin = ((windowHeight/2)-200).toString();
+    //topMargin = topMargin+"px";
+    //console.log(topMargin);
+    //$('taskModal').css("marginTop", topMargin);
+
+
     //// FOR TESTING, DELETE WHEN DONE TESTING
     //$('#settingsMenu').on("click", function(){
     //        console.log('touchend detected');

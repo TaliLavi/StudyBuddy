@@ -651,7 +651,7 @@ input:focus {outline:0;}
     z-index: 1;
     margin-left: auto;
     margin-right:auto;
-    margin-top: 10%;
+    /*margin-top: 18%;*/
     box-shadow: 0 0 100px 0 rgba(0,0,0,0.4);
 }
 
@@ -688,6 +688,11 @@ input:focus {outline:0;}
 #taskModal{
     width:700px;
     height: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -200px;
 }
 
 #leftSideTaskCard {
@@ -892,6 +897,11 @@ input:focus {outline:0;}
 #addTaskModal{
     width: 58%;
     height:400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -29%;
+    margin-top: -200px;
 }
 
 
@@ -1037,6 +1047,11 @@ input:focus {outline:0;}
 #addSubjectModal{
     width: 40%;
     height:460px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -20%;
+    margin-top: -230px;
 }
 
 #addSubjectHeadingDiv{
@@ -1107,9 +1122,13 @@ input:focus {outline:0;}
 /*===================================================================================================================*/
 
 #areYouSureModal{
-    top: 50%;
     width: 400px;
     height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -125px;
 }
 
 #areYouSureHeadingDiv{
