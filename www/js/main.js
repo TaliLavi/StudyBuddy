@@ -23,7 +23,7 @@ function preparePage() {
     );
 
     $('#navBar').show();
-
+    navigator.splashscreen.hide();
     timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
