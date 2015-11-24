@@ -37,6 +37,7 @@ function preparePage() {
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
 
+
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(false, displayActiveSubjects);
 
@@ -53,7 +54,6 @@ function preparePage() {
     prepareDoneRuzo();
     prepareSwitchToShortBreakTL();
     prepareSwitchToLongBreakTL();
-    prepareSwitchToSecondShortBreakTL();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));

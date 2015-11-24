@@ -348,6 +348,9 @@ function filterTasksInFooter(subjectKey) {
     $('#unassignedMessage').hide();
     if (subjectKey === "allUnassigendTasks") {
         $("#unassignedTasksList li").show();
+        $('.subject').css("background", "transparent").css("color", "#607A93");
+        $('#allUnassigendTasks').css("background", "rgb(149,202,173)").css("color", "white");
+
     } else {
         // select all footer <li>s which do not belong to this subject, and hide them
         $('#unassignedTasksList li:not([data-subjectid="' + subjectKey + '"])').hide();
@@ -357,6 +360,8 @@ function filterTasksInFooter(subjectKey) {
         if ($('#unassignedTasksList li[data-subjectid="' + subjectKey + '"]').length === 0) {
             $('#unassignedMessage').show();
         }
+        $('.subject').css("background", "transparent").css("color", "#607A93");
+        $('#subject'+ subjectKey).css("background", "rgb(149,202,173)").css("color","rgb(255,255,255)");
     }
 }
 
