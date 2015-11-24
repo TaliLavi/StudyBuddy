@@ -88,7 +88,7 @@
     <gap:splash src="www/res/screen/ios/splash.png" gap:platform="ios" width="2048" height="1536"/>
 
     <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
-
+    <gap:splash src="splash.png"/>
 
     <platform name="android">
         <allow-intent href="market:*"/>
