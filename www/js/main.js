@@ -151,6 +151,7 @@ function prepareNavigation() {
 }
 
 function goToLogin() {
+    navigator.splashscreen.hide();
     prepareLoginRuzo();
     // when clicking enter while on password field, if email field isn't empty, attempt to login
     executeOnEnter($('#logInPasswordInput'), prepareLogIn);
