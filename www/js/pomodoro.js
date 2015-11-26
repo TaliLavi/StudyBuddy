@@ -118,9 +118,12 @@ function playPauseTimer(subjectId, weekDate, taskId) {
     if ($('#playPauseButton').hasClass('notPlaying')) {
         // start animation
         workTL.play();
-        console.log("Don't go to sleep!");
-        window.plugins.insomnia.keepAwake();
-        console.log("Not going to sleep!");
+
+        if(isMobile()){
+            console.log("Don't go to sleep!");
+            window.plugins.insomnia.keepAwake();
+            console.log("Not going to sleep!");
+        }
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
         $('#stopButton').removeClass('stopped');
@@ -131,9 +134,12 @@ function playPauseTimer(subjectId, weekDate, taskId) {
     } else {
         // pause animation
         workTL.pause();
-        console.log("It's okay you can relax");
-        window.plugins.insomnia.allowSleepAgain();
-        console.log("Relaxing again");
+        if(isMobile()){
+            console.log("It's okay you can relax");
+            window.plugins.insomnia.allowSleepAgain();
+            console.log("Relaxing again");
+        }
+
         togglePlayPause();
     }
 }
@@ -222,10 +228,11 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#playPauseButton').prop('disabled', false);
     $('#stopButton').addClass('stopped');
     workTL.pause(0);
-    console.log("It's okay you can relax");
-    window.plugins.insomnia.allowSleepAgain();
-    console.log("Relaxing again");
-
+    if(isMobile()){
+        console.log("It's okay you can relax");
+        window.plugins.insomnia.allowSleepAgain();
+        console.log("Relaxing again");
+    }
     $("#circleBehindBreakRuzo").css('display','none');
     $("#snoozeRuzo").css('display','none');
     $("#drinkRuzo").css('display','none');
