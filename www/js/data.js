@@ -448,9 +448,9 @@ function fetchTimeIntervals(callback) {
 function updateTimeIntervals(workSession, shortBreak, longBreak) {
     var timeIntervalRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser());
     timeIntervalRef.update({
-        "study_session_seconds": workSession,
-        "short_break_seconds": shortBreak,
-        "long_break_seconds": longBreak
+        "study_session_seconds": parseInt(workSession),
+        "short_break_seconds": parseInt(shortBreak),
+        "long_break_seconds": parseInt(longBreak)
     });
     // invalidate the cache
     dataCache.sessionTimes = null;
@@ -484,10 +484,24 @@ function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
     updateTimeStudiedForDate(timeToLog);
 }
 
+//function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
+//    var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
+//    totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
+//        var newTotalTime = snapshot.val() + additionalTimeStudied;
+//        totalSecondsStudiedPerTaskRef.set(newTotalTime);
+//        if (callback !== undefined) {
+//            callback(subjectId, weekDate, taskId);
+//        }
+//    }, firebaseErrorFrom('updateTimeStudiedForTask'));
+//}
+
 function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
     var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
+        console.log("Original time : " + snapshot.val());
+        console.log("Additional time : " +additionalTimeStudied);
+        console.log("New time : " + newTotalTime);
         totalSecondsStudiedPerTaskRef.set(newTotalTime);
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId);
