@@ -337,7 +337,11 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     // Clear old onclick handlers and set new ones
     $('#deleteTask').off("click");
-    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
+    $('#deleteTask').on("click", function(){displayAreYouSureDeleteTask();});
+    $('#confirmDeleteTaskButton').off("click");
+    $('#confirmDeleteTaskButton').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
+    $('#noDeleteTaskButton').off("click");
+    $('#noDeleteTaskButton').on("click", function(){hideAreYouSureDeleteTask();});
     $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, markAsDone);});
     $('#playPauseButton').off("click");
@@ -761,3 +765,18 @@ function displayAreYouSureModal(subjectId){
     $('#navBar').addClass('frostedGlass');
 }
 
+//===========================================================================================================
+// ARE YOU SURE MODAL FOR DELETING A TASK
+//===========================================================================================================
+
+function displayAreYouSureDeleteTask(){
+    //Makes the modal window display
+    $('#deleteTaskModal').css('display','block');
+    //Fades in the greyed-out background
+}
+
+function hideAreYouSureDeleteTask(){
+    //Makes the modal window display
+    $('#deleteTaskModal').css('display','none');
+    //Fades in the greyed-out background
+}

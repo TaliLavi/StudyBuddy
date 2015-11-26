@@ -712,20 +712,24 @@ input:focus {outline:0;}
 }
 
 #deleteTaskModal{
+    display: none;
     height: 100px;
     width: 250px;
     background-color: white;
     position: absolute;
-    left: -16%;
+    left: -86px;
+    bottom: -112px;
 }
 
 #deleteTaskText{
     font-size: .9em;
     color: #607A93;
-    margin: 5px;
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
 #noDeleteTaskButton{
+    position: absolute;
     color: white;
     border: none;
     font-family: acme;
@@ -735,11 +739,12 @@ input:focus {outline:0;}
     height: 35px;
     background-color: rgb(149,202,173);
     font-size: 1em;
-    margin-left: 20px;
-    float: left;
+    bottom: 12px;
+    left: 20px;
 }
 
 #confirmDeleteTaskButton{
+    position: absolute;
     color: white;
     border: none;
     font-family: acme;
@@ -749,8 +754,8 @@ input:focus {outline:0;}
     height: 35px;
     background-color: #BC6771;
     font-size: 1em;
-    margin-right: 20px;
-    float: right;
+    bottom: 12px;
+    right: 20px;
 }
 
 #taskCardForm {
