@@ -54,6 +54,7 @@ function preparePage() {
     prepareDoneRuzo();
     prepareSwitchToShortBreakTL();
     prepareSwitchToLongBreakTL();
+    prepareSwitchToSecondShortBreakTL();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));

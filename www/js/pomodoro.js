@@ -295,6 +295,9 @@ function prepareSwitchToShortBreakTL(){
     })
 
     switchToShortBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
         display  : "block",
     })
 
@@ -353,6 +356,9 @@ function prepareSwitchToSecondShortBreakTL(){
     })
 
     switchToSecondShortBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
         display  : "block",
     })
 
