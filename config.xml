@@ -15,17 +15,18 @@
     <preference name="ios-statusbarstyle" value="black-opaque"/>
     <preference name="detect-data-types" value="true"/>
     <preference name="exit-on-suspend" value="true"/>
-    <preference name="show-splash-screen-spinner" value="true"/>
+    <preference name="show-splash-screen-spinner" value="false"/>
     <preference name="autoHideSplashScreen" value="false"/>
     <preference name="auto-hide-splash-screen" value="true"/>
     <preference name="SplashScreen" value="screen"/>
     <preference name="FadeSplashScreen" value="false"/>
-    <preference name="SplashScreenDelay" value="10000"/>
+    <!--<preference name="SplashScreenDelay" value="10000"/>-->
     <preference name="disable-cursor" value="false"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="android-installLocation" value="auto"/>
     <preference name="DisallowOverscroll" value="true" />
 
+    <plugin name="nl.x-services.plugins.insomnia" source="pgb" spec="4.0.1" />
     <gap:plugin name="org.apache.cordova.battery-status" version="0.2.11"/>
     <gap:plugin name="org.apache.cordova.camera" version="0.3.2"/>
     <gap:plugin name="org.apache.cordova.console" version="0.2.11"/>
@@ -44,7 +45,7 @@
     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12"/>
     <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4"/>
     <gap:plugin name="org.apache.cordova.vibration" version="0.3.11"/>
-    <gap:plugin name="nl.x-services.plugins.insomnia" />
+
 
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
