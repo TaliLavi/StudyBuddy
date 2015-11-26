@@ -20,7 +20,7 @@
     <preference name="auto-hide-splash-screen" value="false"/>
     <preference name="SplashScreen" value="screen"/>
     <preference name="FadeSplashScreen" value="false"/>
-    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashScreenDelay" value="10000"/>
     <preference name="disable-cursor" value="false"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="android-installLocation" value="auto"/>
