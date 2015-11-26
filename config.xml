@@ -44,6 +44,7 @@
     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12"/>
     <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4"/>
     <gap:plugin name="org.apache.cordova.vibration" version="0.3.11"/>
+    <gap:plugin name="nl.x-services.plugins.insomnia" />
 
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
