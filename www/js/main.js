@@ -163,7 +163,7 @@ function goToLogin() {
     if (getLoggedInUser(suppressError)) {
         preparePage();
     } else {
-        displayLogin();
+        showSignUp();
     }
 }
 
