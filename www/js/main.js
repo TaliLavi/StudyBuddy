@@ -72,6 +72,7 @@ function preparePage() {
     //        console.log('touchend detected');
     //    }
     //);
+
 }
 
 
@@ -152,25 +153,23 @@ function prepareNavigation() {
 }
 
 function goToLogin() {
-    //navigator.splashscreen.hide();
-    prepareLoginRuzo();
-    // when clicking enter while on password field, if email field isn't empty, attempt to login
-    executeOnEnter($('#logInPasswordInput'), prepareLogIn);
-    // when clicking enter while on password field, if email field isn't empty, attempt to signup
-    executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
-
-    var suppressError = true;
-    if (getLoggedInUser(suppressError)) {
-        preparePage();
+    if(navigator.onLine === false){
+        $('#noInternetPage').css("display", "block");
     } else {
-        showSignUp();
-    }
-}
+        //navigator.splashscreen.hide();
+        prepareLoginRuzo();
+        // when clicking enter while on password field, if email field isn't empty, attempt to login
+        executeOnEnter($('#logInPasswordInput'), prepareLogIn);
+        // when clicking enter while on password field, if email field isn't empty, attempt to signup
+        executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
 
-function displayLogin() {
-    $('#appPages').hide();
-    $('#signUpPage').hide();
-    $('#logInPage').show();
+        var suppressError = true;
+        if (getLoggedInUser(suppressError)) {
+            preparePage();
+        } else {
+            showSignUp();
+        }
+    }
 }
 
 function showSignUp() {
@@ -780,4 +779,16 @@ function hideAreYouSureDeleteTask(){
     //Makes the modal window display
     $('#deleteTaskModal').css('display','none');
     //Fades in the greyed-out background
+}
+
+//===========================================================================================================
+// WARNING FOR IF THERE'S NO INTERNET
+//===========================================================================================================
+
+function showNoInternetModal(){
+    $('#noInternetModal').css('display','block');
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
 }
