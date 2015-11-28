@@ -8,10 +8,10 @@ BAR_CHART_MARGIN_BOTTOM = 30;
 BAR_CHART_MARGIN_RIGHT = 20;
 BAR_CHART_MARGIN_LEFT = 20;
 
-function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
+function tasksPerSubject(doneTasks, subjects, dateFilterCallback) {
     var graphData = [];
     var tasks = doneTasks;
-    $.each(subjects, function(subjectId, subjectDict) {
+    $.each(subjects, function (subjectId, subjectDict) {
         var subjectName = subjectDict.name;
         var colourclass = subjectDict.colour_scheme;
         var weeks = tasks[subjectId];
@@ -29,8 +29,7 @@ function generateBarGraph(subjects, doneTasks, dateFilterCallback) {
         }
         graphData.push({subject: subjectName, doneTasks: doneTasks, colourClass: colourclass});
     });
-    drawBarGraph(graphData);
-    bestSubjectsFeedback(graphData);
+    return graphData;
 }
 
 // generate graph for ALL of the done tasks
@@ -42,7 +41,41 @@ function fetchAndDisplayBarGraphSinceDawnOfTime(renewCache) {
     fetchAllDoneTasks(generateBarGraphSinceDawnOfTime, renewCache);
 }
 function generateBarGraphSinceDawnOfTime(subjects, doneTasks) {
-    generateBarGraph(subjects, doneTasks, function() {return true;});
+    var subjectsHistogram = tasksPerSubject(doneTasks, subjects, function() {return true;});
+    drawBarGraph(subjectsHistogram);
+
+    var maxTasks = mostTasksPerSubject(subjectsHistogram);
+    if (maxTasks === 0) {
+        $('#doneTasksMessage').text("You haven't completed any tasks yet. Like, ever. Get working.");
+    } else {
+        var bestSubjects = subjectsWithThisManyTasks(subjectsHistogram, maxTasks);
+        if (bestSubjects.length === 1) {
+            $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + "!");
+        } else {
+            var bestSubjectsString = bestSubjects.slice(0,-1).join(", ") + " and " + bestSubjects.slice(-1)[0];
+            $('#doneTasksMessage').text("Well done on " + bestSubjectsString + "!");
+        }
+    }
+}
+
+function mostTasksPerSubject(subjectsHistogram) {
+    var maxTasks = 0;
+    subjectsHistogram.forEach(function(subjectDict) {
+       if (subjectDict.doneTasks > maxTasks) {
+           maxTasks = subjectDict.doneTasks;
+       }
+    });
+    return maxTasks;
+}
+
+function subjectsWithThisManyTasks(subjectsHistogram, taskNum) {
+    var subjectNames = [];
+    subjectsHistogram.forEach(function(subjectDict) {
+        if (subjectDict.doneTasks === taskNum) {
+            subjectNames.push(subjectDict.subject);
+        }
+    });
+    return subjectNames;
 }
 
 // generate graph for tasks in last 7 days (7*24 hours)
@@ -55,7 +88,7 @@ function fetchAndDisplayBarGraphForLast7Days(renewCache) {
     fetchAllDoneTasks(generateBarGraphForLast7Days, renewCache);
 }
 function generateBarGraphForLast7Days(subjects, doneTasks) {
-    generateBarGraph(subjects, doneTasks, function(taskDate) {
+    var graphData = tasksPerSubject(doneTasks, subjects, function(taskDate) {
         // calculate number of days since taskDate.
         // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
         var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
@@ -63,6 +96,7 @@ function generateBarGraphForLast7Days(subjects, doneTasks) {
         // return whether it's been less than a week
         return days <= 7;
     });
+    drawBarGraph(graphData);
 }
 
 // generate graph for tasks in last month (30 days)
@@ -74,7 +108,7 @@ function fetchAndDisplayBarGraphForLastMonth(renewCache) {
     fetchAllDoneTasks(generateBarGraphForLastMonth, renewCache);
 }
 function generateBarGraphForLastMonth(subjects, doneTasks) {
-    generateBarGraph(subjects, doneTasks, function(taskDate) {
+    var graphData = tasksPerSubject(doneTasks, subjects, function(taskDate) {
         // calculate number of days since taskDate.
         // rounding to overcome timezone differences, which otherwise result in getting decimal numbers.
         var days = Math.round((new Date() - new Date(taskDate)) / (1000*60*60*24));
@@ -82,18 +116,7 @@ function generateBarGraphForLastMonth(subjects, doneTasks) {
         // return whether it's been less than a month
         return days <= 30;
     });
-}
-
-// find subject with biggest number of done tasks
-function bestSubjectsFeedback(subjectsDict) {
-
-    var max = {};
-    for (var i = 0; i < subjectsDict.length; i++) {
-        if (subjectsDict[i].doneTasks > (max.doneTasks || 0))
-            max = subjectsDict[i];
-    };
-
-    $('#subjectsThisWeekMessage').text('Great job with ' + max.subject + '!');
+    drawBarGraph(graphData);
 }
 
 function drawBarGraph(data) {
@@ -150,7 +173,7 @@ function drawBarGraph(data) {
         .attr("x", function(d) { return x(d.subject) + x.rangeBand()/2; }) // we divide by 2 to put the text on the bar's centre
         .attr("y", function(d) { return y(d.doneTasks) - textOffset; })
         .transition()
-        .delay(function() { return 2300; })
+        .delay(function() { return 1800; })
             .text(function(d) { return d.doneTasks; });
 }
 
@@ -224,8 +247,8 @@ function currentStreak(heatmapSnapshot) {
 
         previousDate = date;
     });
-    //$('#currentStreak').text('current streak is: ' + currentStreak);
-    //$('#longestStreak').text('longest streak is: ' + longestStreak);
+    $('#currentStreak').text('current streak is: ' + currentStreak);
+    $('#longestStreak').text('longest streak is: ' + longestStreak);
 }
 
 function isBestMonth(heatmapSnapshot) {

@@ -153,26 +153,72 @@
       "2015-11-09" : {
         "number_of_breaks" : 7,
         "time_studied" : 131
+      },
+      "2015-11-13" : {
+        "number_of_breaks" : 1,
+        "time_studied" : 20
+      },
+      "2015-11-22" : {
+        "number_of_breaks" : 7,
+        "time_studied" : 33
+      },
+      "2015-11-23" : {
+        "number_of_breaks" : 140,
+        "time_studied" : 20
+      },
+      "2015-11-24" : {
+        "number_of_breaks" : 1,
+        "time_studied" : 55
+      },
+      "2015-11-26" : {
+        "number_of_breaks" : 42,
+        "time_studied" : 22
+      },
+      "2015-11-28" : {
+        "number_of_breaks" : 12,
+        "time_studied" : 70
       }
     }
   },
   "Subjects" : {
     "active" : {
+      "2898546f-490f-4283-86aa-7c63d573b43a" : {
+        "-K3L6Z5hDkbUy8nkL_ZS" : {
+          "colour_scheme" : "theme1Colour5",
+          "is_deleted" : 0,
+          "name" : "Subject 1"
+        },
+        "-K3L6bogRzPyU974X9rL" : {
+          "colour_scheme" : "theme1Colour11",
+          "is_deleted" : 0,
+          "name" : "Subject 2"
+        },
+        "-K3L6eXNO1qN587xlUvW" : {
+          "colour_scheme" : "theme1Colour7",
+          "is_deleted" : 0,
+          "name" : "Subject 3"
+        },
+        "-K3LC23IdA-pZHVafUyy" : {
+          "colour_scheme" : "theme1Colour1",
+          "is_deleted" : 0,
+          "name" : "Subject 4"
+        }
+      },
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "colour_scheme" : "theme1Colour6",
+          "colour_scheme" : "theme1Colour9",
           "is_deleted" : 0,
           "name" : "English"
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
-          "colour_scheme" : "theme1Colour12",
+          "colour_scheme" : "theme1Colour8",
           "is_deleted" : 0,
           "name" : "Irish"
         },
         "-JwHLrcSu27GO-8-F9_i" : {
-          "colour_scheme" : "theme1Colour11",
+          "colour_scheme" : "theme1Colour6",
           "is_deleted" : 0,
-          "name" : "BioLogy"
+          "name" : "Biology"
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
           "colour_scheme" : "theme1Colour1",
@@ -180,24 +226,44 @@
           "name" : "Spanish"
         },
         "-K0VyDLOSRualpn_m1-Q" : {
-          "colour_scheme" : "theme1Colour11",
+          "colour_scheme" : "theme1Colour12",
           "is_deleted" : 0,
           "name" : "History"
         },
         "-K0Vz6iD4kXN-lpH-q4I" : {
-          "colour_scheme" : "theme1Colour7",
+          "colour_scheme" : "theme1Colour4",
           "is_deleted" : 0,
           "name" : "Geography"
         },
         "-K0VzRdyEJHr6XpWfwzH" : {
-          "colour_scheme" : "theme1Colour9",
+          "colour_scheme" : "theme1Colour10",
           "is_deleted" : 0,
           "name" : "Art"
         },
         "-K0Vznfvhox8u52L9IeM" : {
-          "colour_scheme" : "theme1Colour3",
+          "colour_scheme" : "theme1Colour5",
           "is_deleted" : 0,
           "name" : "Maths"
+        },
+        "-K3pPWsLrbhEHhVFgkNJ" : {
+          "colour_scheme" : "theme1Colour11",
+          "is_deleted" : 0,
+          "name" : "French"
+        }
+      }
+    },
+    "deleted" : {
+      "2898546f-490f-4283-86aa-7c63d573b43a" : {
+        "-K3L77joGlhppeauCQOx" : {
+          "colour_scheme" : "theme1Colour8",
+          "is_deleted" : 0,
+          "name" : "Subject 4"
+        }
+      },
+      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
+        "-JsqSRl7pQAo-Z7I4185" : {
+          "is_deleted" : 1,
+          "name" : "English"
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
           "colour_scheme" : "theme1Colour12",
@@ -208,37 +274,250 @@
           "colour_scheme" : "theme1Colour7",
           "is_deleted" : 0,
           "name" : "Music"
-        }
-      }
-    },
-    "deleted" : {
-      "d81360f7-4eec-4e64-afd7-27859337eb60" : {
-        "-JsqSRl7pQAo-Z7I4185" : {
-          "is_deleted" : 1,
-          "name" : "English"
         },
         "-K2wYWyBq3mt2XXMIEol" : {
           "colour_scheme" : "theme1Colour4",
           "is_deleted" : 0,
           "name" : "Fake subject"
+        },
+        "-K2xwIsorO_3EaqdepvF" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : "Soon to be deleted subject"
+        },
+        "-K2y0t1_37J4_eEiOCVb" : {
+          "colour_scheme" : "theme1Colour10",
+          "is_deleted" : 0,
+          "name" : "Smurfs"
+        },
+        "-K2y2bxrvu_iHwd98_vf" : {
+          "colour_scheme" : "theme1Colour11",
+          "is_deleted" : 0,
+          "name" : "Just a silly subject"
+        },
+        "-K30HFs45pdFHPRZHv30" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : "hi"
+        },
+        "-K30OvZaRRpgQ5KWLqoR" : {
+          "colour_scheme" : "theme1Colour4",
+          "is_deleted" : 0,
+          "name" : "New subject"
+        },
+        "-K30PDCUhCwEz74Yrvja" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : "ehehrtht"
+        },
+        "-K30QUZ9L02mgNFwdyf4" : {
+          "colour_scheme" : "theme1Colour5",
+          "is_deleted" : 0,
+          "name" : "djdtjdy"
+        },
+        "-K30TdwEA4S_WXHNYqzY" : {
+          "colour_scheme" : "theme1Colour4",
+          "is_deleted" : 0,
+          "name" : "Newest subject"
+        },
+        "-K30Vbf7XZSgowbJ9HIM" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : "afadsf"
+        },
+        "-K30VgXXqmnRc6DeYy27" : {
+          "colour_scheme" : "theme1Colour5",
+          "is_deleted" : 0,
+          "name" : "agadsag"
+        },
+        "-K35MpCQfkzGb06VRHfa" : {
+          "colour_scheme" : "theme1Colour11",
+          "is_deleted" : 0,
+          "name" : "silly subject"
+        },
+        "-K3A8XT1uxdMpRz9ZI9c" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : ""
+        },
+        "-K3A9ujH5bOICGpDzBWl" : {
+          "colour_scheme" : "theme1Colour3",
+          "is_deleted" : 0,
+          "name" : "asdas"
+        },
+        "-K4EbiFAJRmj2Ng4muRf" : {
+          "colour_scheme" : "theme1Colour11",
+          "is_deleted" : 0,
+          "name" : "Quantum mechanics"
         }
       }
     }
   },
   "Tasks" : {
+    "2898546f-490f-4283-86aa-7c63d573b43a" : {
+      "active" : {
+        "-K3L6Z5hDkbUy8nkL_ZS" : {
+          "2015-11-16" : {
+            "-K3L7aIs8ZkxZ-HWdQpQ" : {
+              "assigned_date" : "2015-11-16",
+              "creation_date" : 1447775331647,
+              "description" : "Each task card contains the task or topic that you have set for yourself, like writing an essay, or learning a set of verbs.",
+              "status_change_date" : 1447775331647,
+              "title" : "Click this task card!"
+            },
+            "-K3LExasbHcluptY_S4h" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447777262083,
+              "description" : "Just long-press and drag to move tasks from day to day on your weekly plan. ",
+              "status_change_date" : 1447777262083,
+              "title" : "Drag me around!"
+            }
+          },
+          "no_assigned_date" : {
+            "-K3LFg64yrOTrRd23Yb1" : {
+              "assigned_date" : "",
+              "creation_date" : 1447777452560,
+              "description" : "You can add tasks in the subjects area that you don't want to put on the timetable yet. They appear in the \"Schedule Me\" drawer.",
+              "status_change_date" : 1447777452560,
+              "title" : "This is a task for later!"
+            }
+          }
+        },
+        "-K3L6bogRzPyU974X9rL" : {
+          "2015-11-16" : {
+            "-K3L7pe_GKTzdKaTKIjd" : {
+              "assigned_date" : "2015-11-18",
+              "creation_date" : 1447775394543,
+              "description" : "When you want to start doing a task, just tap the start button to start the study timer. Stay focused, you're on the clock!",
+              "status_change_date" : 1447775394543,
+              "title" : "Studying a task"
+            },
+            "-K3LApgZ8cv8Cu58F63t" : {
+              "assigned_date" : "2015-11-16",
+              "creation_date" : 1447776181103,
+              "description" : "Tasks are colour-coded according to their subject. You can create your own list of subjects on the subjects page.",
+              "status_change_date" : 1447776181103,
+              "title" : "And the next one..."
+            },
+            "-K3LHPYekpZ6xqel3iH8" : {
+              "assigned_date" : "2015-11-21",
+              "creation_date" : 1447777904948,
+              "description" : "You can make a list of all your subjects in the subject area. You can delete our example ones - or just change the names!",
+              "status_change_date" : 1447777904948,
+              "title" : "Add your own subjects"
+            }
+          },
+          "no_assigned_date" : {
+            "-K3LG0MxGlx-rGWgNNGN" : {
+              "assigned_date" : "",
+              "creation_date" : 1447777539656,
+              "description" : "So it appears in the 'Schedule Me' drawer at the bottom of the weekly plan.",
+              "status_change_date" : 1447777539656,
+              "title" : "This task isn't scheduled yet"
+            }
+          }
+        },
+        "-K3L6eXNO1qN587xlUvW" : {
+          "2015-11-16" : {
+            "-K3LANW8AfqdzCPIbC9j" : {
+              "assigned_date" : "2015-11-16",
+              "creation_date" : 1447776061588,
+              "description" : "Organising your study into tasks like this helps you to know exactly what you want to have achieved by the end of your study.",
+              "status_change_date" : 1447776061588,
+              "title" : "And this one..."
+            },
+            "-K3LCZooatcSET3LXDkT" : {
+              "assigned_date" : "2015-11-20",
+              "creation_date" : 1447776636285,
+              "description" : "You can use the subject page to make a list of everything you need to cover so that you don't miss a thing!",
+              "status_change_date" : 1447776636285,
+              "title" : "Big test coming up?"
+            }
+          },
+          "no_assigned_date" : {
+            "-K3LG3qoOWKuCN1dWSxm" : {
+              "assigned_date" : "",
+              "creation_date" : 1447777553919,
+              "description" : "",
+              "status_change_date" : 1447777553919,
+              "title" : "I'll do this one another day"
+            }
+          }
+        },
+        "-K3LC23IdA-pZHVafUyy" : {
+          "2015-11-16" : {
+            "-K3LCReWpF7uVke4GoR0" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1447776602860,
+              "description" : "The progress page keeps track of how many tasks you have done, so that you can look back and feel proud!",
+              "status_change_date" : 1447776602860,
+              "title" : "Track your achievements!"
+            },
+            "-K3LGhgLQcGXX-GRL1mf" : {
+              "assigned_date" : "2015-11-19",
+              "creation_date" : 1447777721185,
+              "description" : "In there are all the tasks you have created without a date - all ready to be dragged onto your timetable!",
+              "status_change_date" : 1447777721185,
+              "title" : "Click on 'Schedule Me' down below!"
+            },
+            "-K3LH9EVSgPDI5VgAAZu" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447777838122,
+              "description" : "Tasks can be added directly to your weekly planner by clicking 'Add a task' on any of the days. ",
+              "status_change_date" : 1447777838122,
+              "title" : "Adding a task"
+            }
+          }
+        }
+      },
+      "deleted" : {
+        "-K3L6eXNO1qN587xlUvW" : {
+          "2015-11-16" : {
+            "-K3LAthaluHE2nhiWdJk" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447776197553,
+              "description" : "Tasks can be added directly to your weekly planner by clicking 'Add a task' on any of the days. ",
+              "status_change_date" : 1447776197553,
+              "title" : "Adding a Task "
+            },
+            "-K3LEqgJM97o69NaHSkA" : {
+              "assigned_date" : "2015-11-20",
+              "creation_date" : 1447777233759,
+              "description" : "",
+              "status_change_date" : 1447777233759,
+              "title" : "Drag me around!"
+            }
+          }
+        },
+        "-K3LC23IdA-pZHVafUyy" : {
+          "2015-11-16" : {
+            "-K3LC7XFSqfzCpAepm1R" : {
+              "assigned_date" : "2015-11-20",
+              "creation_date" : 1447776520410,
+              "description" : "",
+              "status_change_date" : 1447776520410,
+              "title" : "The 'Schedule Me' drawer"
+            }
+          }
+        }
+      },
+      "done" : {
+        "-K3L6Z5hDkbUy8nkL_ZS" : {
+          "2015-11-16" : {
+            "-K3LBBpNqnJR6ls9Hc3X" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447776275875,
+              "description" : "When you're finished studying a task, just click the 'Mark as Done' button below. Try it now and see what happens!",
+              "status_change_date" : 1447776275875,
+              "title" : "Finished a task?"
+            }
+          }
+        }
+      }
+    },
     "d81360f7-4eec-4e64-afd7-27859337eb60" : {
       "active" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "2015-08-31" : {
-            "-K2hMYM9-ZhFZITHlfrj" : {
-              "assigned_date" : "2015-09-02",
-              "creation_date" : 1447091385913,
-              "description" : "",
-              "status_change_date" : 1447091385913,
-              "title" : "English Task",
-              "total_seconds_studied" : 20
-            }
-          },
           "2015-09-28" : {
             "-K-KhAApSaTRajl5AbVt" : {
               "assigned_date" : "2015-09-28",
@@ -284,6 +563,17 @@
               "title" : "Sylvia Plath: Elm"
             }
           },
+          "2015-11-23" : {
+            "-K3nvxkMMSF50291jNcc" : {
+              "assigned_date" : "2015-11-26",
+              "creation_date" : 1448275336275,
+              "description" : "",
+              "number_of_breaks" : 178,
+              "status_change_date" : 1448275336275,
+              "title" : "The Catcher in the Rye",
+              "total_seconds_studied" : 118
+            }
+          },
           "no_assigned_date" : {
             "-JswZwQ4MdeW8LI0xR9b" : {
               "assigned_date" : "",
@@ -293,13 +583,6 @@
               "status_change_date" : 1435535395743,
               "title" : "Write Short Story",
               "total_seconds_studied" : 113
-            },
-            "-K2nx2ZuzkFWw-Ui959j" : {
-              "assigned_date" : "",
-              "creation_date" : 1447201911848,
-              "description" : "",
-              "status_change_date" : 1447201911848,
-              "title" : "Hi there"
             }
           }
         },
@@ -418,10 +701,30 @@
               "assigned_date" : "2015-11-15",
               "creation_date" : 1442307284703,
               "description" : "Diagram of hip, knee and ankle joints, learn and label names of bones.",
-              "number_of_breaks" : 3,
+              "number_of_breaks" : 5,
               "status_change_date" : 1442307284703,
               "title" : "Learn lower limb anatomy",
-              "total_seconds_studied" : 40
+              "total_seconds_studied" : 0
+            }
+          },
+          "2015-11-16" : {
+            "-K3itUj6vnkERNaK3hN7" : {
+              "assigned_date" : "2015-11-18",
+              "creation_date" : 1448190802962,
+              "description" : "Draw diagram",
+              "number_of_breaks" : 7,
+              "status_change_date" : 1448190802962,
+              "title" : "The Circulatory System",
+              "total_seconds_studied" : 0
+            }
+          },
+          "2015-11-23" : {
+            "-K4Ear17LvgQwrHTCJ3K" : {
+              "assigned_date" : "2015-11-27",
+              "creation_date" : 1448739566505,
+              "description" : "Make it a big frog.",
+              "status_change_date" : 1448739566505,
+              "title" : "Dissect a frog."
             }
           }
         },
@@ -435,45 +738,26 @@
               "title" : "Learn new Spanish verbs"
             }
           },
-          "2015-08-31" : {
-            "-K2hMduHmLO68JO7GDBv" : {
-              "assigned_date" : "2015-09-03",
-              "creation_date" : 1447091412741,
-              "description" : "",
-              "status_change_date" : 1447091412741,
-              "title" : "Spanish",
-              "total_seconds_studied" : 40
-            }
-          },
-          "2015-09-14" : {
-            "-K2hNDXjGJ7MkqVu_vzm" : {
-              "assigned_date" : "2015-09-16",
-              "creation_date" : 1447091562786,
-              "description" : "",
-              "status_change_date" : 1447091562786,
-              "title" : "Spanish",
-              "total_seconds_studied" : 35
-            }
-          },
-          "2015-09-21" : {
-            "-Jzfoa0WasP0S6p1lgEn" : {
-              "assigned_date" : "2015-09-21",
-              "creation_date" : 1442770477123,
-              "description" : "",
-              "status_change_date" : 1442770477123,
-              "title" : "New Spanish task",
-              "total_seconds_studied" : 29
-            }
-          },
           "2015-11-09" : {
             "-K-KfeGpjq1Y7c3gQ4lf" : {
               "assigned_date" : "2015-11-11",
               "creation_date" : 1443472780117,
-              "description" : "This is the description. iujdifn fasjddf jdf jasd fjsdkfj asdfj dsfjsd gjdhfgjhsdfjg ldfj kadjf fdadsfdsfd safdsadffadsfasfsafasfsdfsafsdfasadfdsafsafsdfsfsfsfsfsfsafsdasdfsafsadfdsfsfsadf jadhf jk :)",
-              "number_of_breaks" : 7,
+              "description" : "Past and present tense.\n",
+              "number_of_breaks" : 8,
               "status_change_date" : 1443472780117,
               "title" : "Practise Spanish verbs",
-              "total_seconds_studied" : 1069
+              "total_seconds_studied" : 0
+            }
+          },
+          "no_assigned_date" : {
+            "-K3nwotvhuoeoi2CJQEy" : {
+              "assigned_date" : "",
+              "creation_date" : 1448275562169,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1448275562169,
+              "title" : "Irregular verbs in conditional tense",
+              "total_seconds_studied" : 0
             }
           }
         },
@@ -518,15 +802,23 @@
               "total_seconds_studied" : 50
             }
           },
-          "2015-11-09" : {
+          "no_assigned_date" : {
             "-K0W2SKmzwuNMl_hqu7g" : {
-              "assigned_date" : "2015-11-13",
+              "assigned_date" : "",
               "creation_date" : 1444737308106,
               "description" : "",
               "number_of_breaks" : 1,
               "status_change_date" : 1444737308106,
               "title" : "Essay on Impact of Columbus on native people",
               "total_seconds_studied" : 11
+            },
+            "-K3nwu-CQVOdhHhW-HEr" : {
+              "assigned_date" : "",
+              "creation_date" : 1448275583052,
+              "description" : "",
+              "status_change_date" : 1448275583052,
+              "title" : "Results of the Ulster Plantation",
+              "total_seconds_studied" : 0
             }
           }
         },
@@ -551,15 +843,42 @@
               "total_seconds_studied" : 25
             }
           },
+          "2015-11-09" : {
+            "-K30sH3FTstlG62JOVzs" : {
+              "assigned_date" : "2015-11-13",
+              "creation_date" : 1447435510096,
+              "description" : "",
+              "number_of_breaks" : 1,
+              "status_change_date" : 1447435510096,
+              "title" : "Tectonic Plates",
+              "total_seconds_studied" : 0
+            }
+          },
           "2015-11-16" : {
-            "-K0W3FSdXTAvdxc1UnHS" : {
-              "assigned_date" : "2015-11-21",
-              "creation_date" : 1444737517506,
-              "description" : "Does this work? jhh dfkjakdfjadhf jasdhfjahdfj sdjfjkadhf ajkdh adjgadhgsdfsjkahd adhjad j gh. End\n",
+            "-K3itdKMg3dTrsznuVoJ" : {
+              "assigned_date" : "2015-11-20",
+              "creation_date" : 1448190842275,
+              "description" : "Write 2 paragraphs with diagram for each",
+              "status_change_date" : 1448190842275,
+              "title" : "Formation  of ox-bow lakes"
+            }
+          },
+          "no_assigned_date" : {
+            "-K3nx9Jw_UGr0CIQTkfx" : {
+              "assigned_date" : "",
+              "creation_date" : 1448275649916,
+              "description" : "",
               "number_of_breaks" : 2,
-              "status_change_date" : 1444737517506,
-              "title" : "And this   sdfsdfs dfsd sfsdfsdfsf?",
-              "total_seconds_studied" : 34
+              "status_change_date" : 1448275649916,
+              "title" : "Capitals of Europe ",
+              "total_seconds_studied" : 0
+            },
+            "-K3pqBto11FpXBh2CSoV" : {
+              "assigned_date" : "",
+              "creation_date" : 1448307382010,
+              "description" : "",
+              "status_change_date" : 1448307382010,
+              "title" : "Geography task"
             }
           }
         },
@@ -584,13 +903,15 @@
               "total_seconds_studied" : 551
             }
           },
-          "2015-11-09" : {
-            "-K2hGIhrLIyib758klub" : {
-              "assigned_date" : "2015-11-10",
-              "creation_date" : 1447089751743,
+          "2015-11-23" : {
+            "-K3nwCnUtUWKtGXPW_ag" : {
+              "assigned_date" : "2015-11-24",
+              "creation_date" : 1448275402013,
               "description" : "",
-              "status_change_date" : 1447089751743,
-              "title" : "Prep sheet for poster"
+              "number_of_breaks" : 11,
+              "status_change_date" : 1448275402013,
+              "title" : "Do 55 prep drawings for ceramic sculpture.",
+              "total_seconds_studied" : 68
             }
           },
           "no_assigned_date" : {
@@ -601,6 +922,13 @@
               "status_change_date" : 1444737262977,
               "title" : "Write about design process.",
               "total_seconds_studied" : 2
+            },
+            "-K2hGIhrLIyib758klub" : {
+              "assigned_date" : "",
+              "creation_date" : 1447089751743,
+              "description" : "",
+              "status_change_date" : 1447089751743,
+              "title" : "Prep sheet for poster"
             }
           }
         },
@@ -623,54 +951,27 @@
               "title" : "Differential equations",
               "total_seconds_studied" : 3
             }
-          }
-        },
-        "-K0W-ApiAGnfxbpUw0Nv" : {
-          "2015-09-07" : {
-            "-K2h2xRzgAvwx2jdbAbE" : {
-              "assigned_date" : "2015-09-09",
-              "creation_date" : 1447086252579,
-              "description" : "",
-              "status_change_date" : 1447086252579,
-              "title" : "Trying with enter",
-              "total_seconds_studied" : 30
-            },
-            "-K2h2zT9_NfY6cmv_iSF" : {
-              "assigned_date" : "2015-09-09",
-              "creation_date" : 1447086260846,
-              "description" : "",
-              "status_change_date" : 1447086260846,
-              "title" : "Another one",
-              "total_seconds_studied" : 30
-            }
           },
-          "2015-09-14" : {
-            "-K2hNBRcSqwtsyHBF6K7" : {
-              "assigned_date" : "2015-09-18",
-              "creation_date" : 1447091554201,
+          "2015-11-23" : {
+            "-K3nxNdokA5PdZ42zqNW" : {
+              "assigned_date" : "2015-11-28",
+              "creation_date" : 1448275708596,
               "description" : "",
-              "status_change_date" : 1447091554201,
-              "title" : "Business"
-            }
-          },
-          "2015-11-09" : {
-            "-K2hHA3LsJJ5VQe_SlSZ" : {
-              "assigned_date" : "2015-11-14",
-              "creation_date" : 1447089978292,
-              "description" : "",
-              "status_change_date" : 1447089978292,
-              "title" : "Industrial relations act 1990"
+              "number_of_breaks" : 3,
+              "status_change_date" : 1448275708596,
+              "title" : "Co-ordinate geometry : Distance Formula",
+              "total_seconds_studied" : 11
             }
           }
         },
-        "-K2hqb04PA0W2A5XT-8B" : {
+        "-K3pPWsLrbhEHhVFgkNJ" : {
           "no_assigned_date" : {
-            "-K2qHYs7oZH4iZUVet_T" : {
+            "-K3pP_fvQGsEyX1ofWwW" : {
               "assigned_date" : "",
-              "creation_date" : 1447241076065,
+              "creation_date" : 1448300141329,
               "description" : "",
-              "status_change_date" : 1447241076065,
-              "title" : "Random task"
+              "status_change_date" : 1448300141329,
+              "title" : "Les Mis"
             }
           }
         }
@@ -722,6 +1023,13 @@
             }
           },
           "no_assigned_date" : {
+            "-K2nx2ZuzkFWw-Ui959j" : {
+              "assigned_date" : "",
+              "creation_date" : 1447201911848,
+              "description" : "",
+              "status_change_date" : 1447201911848,
+              "title" : "Hi there"
+            },
             "-K2nx86rH2ytcjS3m525" : {
               "assigned_date" : "",
               "creation_date" : 1447201934567,
@@ -782,6 +1090,22 @@
               "description" : "",
               "status_change_date" : 1446822817471,
               "title" : "hjgkjvghkjghvhkgjhvghfgkjhvchgkjbvgcygvghfgjk"
+            }
+          },
+          "2015-11-23" : {
+            "-K3nwUgY9kkX940ntp-f" : {
+              "assigned_date" : "2015-11-26",
+              "creation_date" : 1448275475298,
+              "description" : "",
+              "status_change_date" : 1448275475298,
+              "title" : "Teach trí thine"
+            },
+            "-K43DWxN0DWa90MwTED_" : {
+              "assigned_date" : "2015-11-27",
+              "creation_date" : 1448548638610,
+              "description" : "",
+              "status_change_date" : 1448548638610,
+              "title" : "To delete"
             }
           },
           "no_assigned_date" : {
@@ -858,6 +1182,24 @@
               "title" : "Diagram of the heart",
               "total_seconds_studied" : 10
             }
+          },
+          "2015-11-16" : {
+            "-K3Lezo7qgYT1fEEqBeV" : {
+              "assigned_date" : "2015-11-18",
+              "creation_date" : 1447784349000,
+              "description" : "",
+              "status_change_date" : 1447784349000,
+              "title" : "A biology Task"
+            }
+          },
+          "2015-11-23" : {
+            "-K43FF9AMLcjorfJzRaz" : {
+              "assigned_date" : "2015-11-26",
+              "creation_date" : 1448549089989,
+              "description" : "",
+              "status_change_date" : 1448549089989,
+              "title" : "To delete"
+            }
           }
         },
         "-JzBMKMb4hSVJXdpdKKt" : {
@@ -930,6 +1272,26 @@
               "status_change_date" : 1447091475673,
               "title" : "Geography"
             }
+          },
+          "2015-11-02" : {
+            "-K4Eb2NQRFEVInHrqc0p" : {
+              "assigned_date" : "2015-11-06",
+              "creation_date" : 1448739617085,
+              "description" : "",
+              "status_change_date" : 1448739617085,
+              "title" : "sfgfdsg"
+            }
+          },
+          "2015-11-16" : {
+            "-K0W3FSdXTAvdxc1UnHS" : {
+              "assigned_date" : "2015-11-21",
+              "creation_date" : 1444737517506,
+              "description" : "Does this work? jhh dfkjakdfjadhf jasdhfjahdfj sdjfjkadhf ajkdh adjgadhgsdfsjkahd adhjad j gh. End\n",
+              "number_of_breaks" : 2,
+              "status_change_date" : 1444737517506,
+              "title" : "And this   sdfsdfs dfsd sfsdfsdfsf?",
+              "total_seconds_studied" : 34
+            }
           }
         },
         "-K0VzRdyEJHr6XpWfwzH" : {
@@ -973,6 +1335,33 @@
           }
         },
         "-K0W-ApiAGnfxbpUw0Nv" : {
+          "2015-09-07" : {
+            "-K2h2xRzgAvwx2jdbAbE" : {
+              "assigned_date" : "2015-09-09",
+              "creation_date" : 1447086252579,
+              "description" : "",
+              "status_change_date" : 1447086252579,
+              "title" : "Trying with enter",
+              "total_seconds_studied" : 30
+            },
+            "-K2h2zT9_NfY6cmv_iSF" : {
+              "assigned_date" : "2015-09-09",
+              "creation_date" : 1447086260846,
+              "description" : "",
+              "status_change_date" : 1447086260846,
+              "title" : "Another one",
+              "total_seconds_studied" : 30
+            }
+          },
+          "2015-09-14" : {
+            "-K2hNBRcSqwtsyHBF6K7" : {
+              "assigned_date" : "2015-09-18",
+              "creation_date" : 1447091554201,
+              "description" : "",
+              "status_change_date" : 1447091554201,
+              "title" : "Business"
+            }
+          },
           "2015-10-19" : {
             "-K0W3f7KP-oOqI20dAyz" : {
               "assigned_date" : "2015-10-20",
@@ -1002,6 +1391,29 @@
               "total_seconds_studied" : 32
             }
           },
+          "2015-11-09" : {
+            "-K2hHA3LsJJ5VQe_SlSZ" : {
+              "assigned_date" : "2015-11-14",
+              "creation_date" : 1447089978292,
+              "description" : "",
+              "status_change_date" : 1447089978292,
+              "title" : "Industrial relations act 1990"
+            },
+            "-K2xmEtYDpdGDhMEwYyL" : {
+              "assigned_date" : "2015-11-11",
+              "creation_date" : 1447366822973,
+              "description" : "",
+              "status_change_date" : 1447366822973,
+              "title" : "random"
+            },
+            "-K2xowc1qYHTokmJj8xX" : {
+              "assigned_date" : "2015-11-13",
+              "creation_date" : 1447367530461,
+              "description" : "",
+              "status_change_date" : 1447367530461,
+              "title" : "I am going to delete this task"
+            }
+          },
           "no_assigned_date" : {
             "-K0W3dA6wLscJ5FQektF" : {
               "assigned_date" : "",
@@ -1009,6 +1421,20 @@
               "description" : "",
               "status_change_date" : 1444737618720,
               "title" : "Formal Letter"
+            },
+            "-K2xmFtbyGoB57kiubne" : {
+              "assigned_date" : "",
+              "creation_date" : 1447366827074,
+              "description" : "",
+              "status_change_date" : 1447366827074,
+              "title" : "randomer"
+            },
+            "-K2xoxldlZIvAkC5AXcf" : {
+              "assigned_date" : "",
+              "creation_date" : 1447367535172,
+              "description" : "",
+              "status_change_date" : 1447367535172,
+              "title" : "task to be deleted"
             }
           }
         },
@@ -1031,6 +1457,13 @@
               "description" : "",
               "status_change_date" : 1447099536299,
               "title" : "Do"
+            },
+            "-K2xsMfQiGdpnnZ3s2GS" : {
+              "assigned_date" : "2015-11-11",
+              "creation_date" : 1447368427667,
+              "description" : "",
+              "status_change_date" : 1447368427667,
+              "title" : "here is a task"
             }
           },
           "no_assigned_date" : {
@@ -1047,6 +1480,262 @@
               "description" : "",
               "status_change_date" : 1447099537523,
               "title" : "Read"
+            },
+            "-K2qHYs7oZH4iZUVet_T" : {
+              "assigned_date" : "",
+              "creation_date" : 1447241076065,
+              "description" : "",
+              "status_change_date" : 1447241076065,
+              "title" : "Random task"
+            },
+            "-K2xsNZlTPKlG7ThsKWW" : {
+              "assigned_date" : "",
+              "creation_date" : 1447368431339,
+              "description" : "",
+              "status_change_date" : 1447368431339,
+              "title" : "here is another task"
+            }
+          }
+        },
+        "-K2xwIsorO_3EaqdepvF" : {
+          "no_assigned_date" : {
+            "-K2xwK1dQkliRb2hXA0s" : {
+              "assigned_date" : "",
+              "creation_date" : 1447369465424,
+              "description" : "",
+              "status_change_date" : 1447369465424,
+              "title" : "sfsdf"
+            },
+            "-K2xwKF8R0JB1cBOSE2n" : {
+              "assigned_date" : "",
+              "creation_date" : 1447369466289,
+              "description" : "",
+              "status_change_date" : 1447369466289,
+              "title" : "sfdf"
+            },
+            "-K2xwKZ9TisleMqUy9B-" : {
+              "assigned_date" : "",
+              "creation_date" : 1447369467569,
+              "description" : "",
+              "status_change_date" : 1447369467569,
+              "title" : "dggs"
+            }
+          }
+        },
+        "-K2y0t1_37J4_eEiOCVb" : {
+          "no_assigned_date" : {
+            "-K2y0v5b_-34rtnQHuft" : {
+              "assigned_date" : "",
+              "creation_date" : 1447370932026,
+              "description" : "",
+              "status_change_date" : 1447370932026,
+              "title" : "Blue"
+            },
+            "-K2y0vP8yy3RQK6YHpvl" : {
+              "assigned_date" : "",
+              "creation_date" : 1447370933276,
+              "description" : "",
+              "status_change_date" : 1447370933276,
+              "title" : "Bli"
+            },
+            "-K2y0vhFJgNptrN0Lzmv" : {
+              "assigned_date" : "",
+              "creation_date" : 1447370934499,
+              "description" : "",
+              "status_change_date" : 1447370934499,
+              "title" : "Blah"
+            }
+          }
+        },
+        "-K2y2bxrvu_iHwd98_vf" : {
+          "2015-11-09" : {
+            "-K2y2d6_BNVCRC5xvcS0" : {
+              "assigned_date" : "2015-11-13",
+              "creation_date" : 1447371382632,
+              "description" : "",
+              "status_change_date" : 1447371382632,
+              "title" : "adfwerewr"
+            }
+          },
+          "no_assigned_date" : {
+            "-K2y2cpp-bfGs40eZrIm" : {
+              "assigned_date" : "",
+              "creation_date" : 1447371381496,
+              "description" : "",
+              "status_change_date" : 1447371381496,
+              "title" : "agfg"
+            },
+            "-K2y2dUpAqx_I-auivkw" : {
+              "assigned_date" : "",
+              "creation_date" : 1447371384183,
+              "description" : "",
+              "status_change_date" : 1447371384183,
+              "title" : "jkl.yil.io"
+            }
+          }
+        },
+        "-K30HFs45pdFHPRZHv30" : {
+          "no_assigned_date" : {
+            "-K30HGZQ5RNsAdKMnrqx" : {
+              "assigned_date" : "",
+              "creation_date" : 1447425551095,
+              "description" : "",
+              "status_change_date" : 1447425551095,
+              "title" : "sdgfdsgdsgsdf"
+            },
+            "-K30HGpQlh1sRsZhUHg_" : {
+              "assigned_date" : "",
+              "creation_date" : 1447425552184,
+              "description" : "",
+              "status_change_date" : 1447425552184,
+              "title" : "sddsggg"
+            },
+            "-K30HH3S25LEb2o-MGvT" : {
+              "assigned_date" : "",
+              "creation_date" : 1447425553146,
+              "description" : "",
+              "status_change_date" : 1447425553146,
+              "title" : "sdfgsfdg"
+            }
+          }
+        },
+        "-K30OvZaRRpgQ5KWLqoR" : {
+          "no_assigned_date" : {
+            "-K30P6ofsg76X6RqbC-t" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427608297,
+              "description" : "",
+              "status_change_date" : 1447427608297,
+              "title" : "fadsfdsaf"
+            },
+            "-K30P6zSER8n-YUo-E_C" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427608987,
+              "description" : "",
+              "status_change_date" : 1447427608987,
+              "title" : "adsfsadfdsf"
+            },
+            "-K30P7AmK_8kM642jlUM" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427609775,
+              "description" : "",
+              "status_change_date" : 1447427609775,
+              "title" : "adsfafdsdsf"
+            }
+          }
+        },
+        "-K30PDCUhCwEz74Yrvja" : {
+          "no_assigned_date" : {
+            "-K30PDrLdP4wCg9QvlvE" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427637131,
+              "description" : "",
+              "status_change_date" : 1447427637131,
+              "title" : "wgrgw"
+            },
+            "-K30PDzc4qVqdU6LwxRi" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427637662,
+              "description" : "",
+              "status_change_date" : 1447427637662,
+              "title" : "gwrgrew"
+            },
+            "-K30PE6Cu9PJ3H4GOEYO" : {
+              "assigned_date" : "",
+              "creation_date" : 1447427638147,
+              "description" : "",
+              "status_change_date" : 1447427638147,
+              "title" : "wegrewg"
+            }
+          }
+        },
+        "-K30VgXXqmnRc6DeYy27" : {
+          "2015-11-09" : {
+            "-K30j-rRQ53jU3y8AG9F" : {
+              "assigned_date" : "2015-11-10",
+              "creation_date" : 1447433084713,
+              "description" : "",
+              "status_change_date" : 1447433084713,
+              "title" : "affdaf"
+            },
+            "-K30j3rXa3ERzQ5vgJjz" : {
+              "assigned_date" : "2015-11-13",
+              "creation_date" : 1447433101102,
+              "description" : "",
+              "status_change_date" : 1447433101102,
+              "title" : "asdfsfdafa"
+            },
+            "-K30jO2sRFLAzheouqob" : {
+              "assigned_date" : "2015-11-13",
+              "creation_date" : 1447433183813,
+              "description" : "",
+              "status_change_date" : 1447433183813,
+              "title" : "asfsadfadsf"
+            }
+          },
+          "no_assigned_date" : {
+            "-K30j-KWWcL_zvZGJNYc" : {
+              "assigned_date" : "",
+              "creation_date" : 1447433082542,
+              "description" : "",
+              "status_change_date" : 1447433082542,
+              "title" : "dfsafdsafdsafaf"
+            },
+            "-K30j01fG_Zxxz76m_EE" : {
+              "assigned_date" : "",
+              "creation_date" : 1447433085431,
+              "description" : "",
+              "status_change_date" : 1447433085431,
+              "title" : "afafds"
+            }
+          }
+        },
+        "-K35MpCQfkzGb06VRHfa" : {
+          "2015-11-09" : {
+            "-K35Mq3Ay2gu3WdKJFpd" : {
+              "assigned_date" : "2015-11-14",
+              "creation_date" : 1447510893018,
+              "description" : "",
+              "status_change_date" : 1447510893018,
+              "title" : "sfsdfgss"
+            }
+          },
+          "no_assigned_date" : {
+            "-K35MpsQY91iZtwKglO2" : {
+              "assigned_date" : "",
+              "creation_date" : 1447510892266,
+              "description" : "",
+              "status_change_date" : 1447510892266,
+              "title" : "sfds"
+            },
+            "-K35MqEQHpMgqHckbag9" : {
+              "assigned_date" : "",
+              "creation_date" : 1447510893738,
+              "description" : "",
+              "status_change_date" : 1447510893738,
+              "title" : "dfsdf"
+            }
+          }
+        },
+        "-K3pPWsLrbhEHhVFgkNJ" : {
+          "2015-11-23" : {
+            "-K4EckvyMRLkrIvJPJRQ" : {
+              "assigned_date" : "2015-11-25",
+              "creation_date" : 1448740065814,
+              "description" : "",
+              "status_change_date" : 1448740065814,
+              "title" : "ooh la la"
+            }
+          }
+        },
+        "-K4EbiFAJRmj2Ng4muRf" : {
+          "no_assigned_date" : {
+            "-K4Ebm4vBL1TXPXvwWV4" : {
+              "assigned_date" : "",
+              "creation_date" : 1448739808412,
+              "description" : "",
+              "status_change_date" : 1448739808412,
+              "title" : "sfgdfggdfgdfgdsfrar"
             }
           }
         }
@@ -1145,6 +1834,39 @@
               "status_change_date" : 1445811346011,
               "title" : "Unassigned English task blah"
             }
+          },
+          "2015-11-16" : {
+            "-K2hMYM9-ZhFZITHlfrj" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1447091385913,
+              "description" : "",
+              "status_change_date" : 1447091385913,
+              "title" : "English Task",
+              "total_seconds_studied" : 20
+            },
+            "-K3LO3vBBznerysaQSmj" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447779651352,
+              "description" : "",
+              "status_change_date" : 1447779651352,
+              "title" : "An English Task"
+            },
+            "-K3LaDsCgAnGzh8hzDgn" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447783101925,
+              "description" : "",
+              "status_change_date" : 1447783101925,
+              "title" : "Testing done ruzo"
+            },
+            "-K3dotxyakvoPGNepTiC" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1448105713515,
+              "description" : "",
+              "number_of_breaks" : 7,
+              "status_change_date" : 1448105713515,
+              "title" : "A task",
+              "total_seconds_studied" : 0
+            }
           }
         },
         "-JsrUPQNfTDGEn-1yXZ9" : {
@@ -1230,15 +1952,6 @@
               "title" : "Excellent task",
               "total_seconds_studied" : 2
             }
-          },
-          "no_assigned_date" : {
-            "-K-cMfH1X9_EPxhMogIs" : {
-              "assigned_date" : "",
-              "creation_date" : 1443786306224,
-              "description" : "",
-              "status_change_date" : 1443786306224,
-              "title" : "Tiny"
-            }
           }
         },
         "-JwHLrcSu27GO-8-F9_i" : {
@@ -1267,6 +1980,15 @@
               "status_change_date" : 1446213268911,
               "title" : "Energy Transfer Reactions\n",
               "total_seconds_studied" : 20
+            }
+          },
+          "2015-11-23" : {
+            "-K3nwaRGOeoMHGtWI-37" : {
+              "assigned_date" : "2015-11-23",
+              "creation_date" : 1448275502928,
+              "description" : "",
+              "status_change_date" : 1448275502928,
+              "title" : "The Skeletal System : bones of the arm"
             }
           }
         },
@@ -1314,6 +2036,39 @@
               "title" : "My cool Spanish task",
               "total_seconds_studied" : 49
             }
+          },
+          "2015-11-16" : {
+            "-Jzfoa0WasP0S6p1lgEn" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1442770477123,
+              "description" : "",
+              "status_change_date" : 1442770477123,
+              "title" : "New Spanish task",
+              "total_seconds_studied" : 29
+            },
+            "-K2hMduHmLO68JO7GDBv" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1447091412741,
+              "description" : "",
+              "status_change_date" : 1447091412741,
+              "title" : "Spanish",
+              "total_seconds_studied" : 40
+            },
+            "-K2hNDXjGJ7MkqVu_vzm" : {
+              "assigned_date" : "2015-11-22",
+              "creation_date" : 1447091562786,
+              "description" : "",
+              "status_change_date" : 1447091562786,
+              "title" : "Spanish",
+              "total_seconds_studied" : 35
+            },
+            "-K3LaLQEe4R1G8AkTQvD" : {
+              "assigned_date" : "2015-11-17",
+              "creation_date" : 1447783132851,
+              "description" : "",
+              "status_change_date" : 1447783132851,
+              "title" : "Testing Ruzo again"
+            }
           }
         },
         "-K0VyDLOSRualpn_m1-Q" : {
@@ -1353,6 +2108,15 @@
               "description" : "And take notes\n",
               "status_change_date" : 1447080611702,
               "title" : "Read Chapter 7"
+            }
+          },
+          "2015-11-16" : {
+            "-K3Vtzr9UguJsESSkbwq" : {
+              "assigned_date" : "2015-11-19",
+              "creation_date" : 1447956053508,
+              "description" : "",
+              "status_change_date" : 1447956053508,
+              "title" : "Neolithic monuments"
             }
           }
         },
@@ -1424,72 +2188,27 @@
               "total_seconds_studied" : 47
             }
           }
-        },
-        "-K0W-ApiAGnfxbpUw0Nv" : {
-          "2015-10-26" : {
-            "-K0W3kBUrxtIK-fBsZFC" : {
-              "assigned_date" : "2015-10-27",
-              "creation_date" : 1444737647480,
-              "description" : "",
-              "number_of_breaks" : 3,
-              "status_change_date" : 1444737647480,
-              "title" : "Letter of Complaint",
-              "total_seconds_studied" : 48
-            },
-            "-K1Wc7E4WEF7nKGvCHQ5" : {
-              "assigned_date" : "",
-              "creation_date" : 1445820661846,
-              "description" : "",
-              "status_change_date" : 1445820661846,
-              "title" : "Business task"
-            }
-          },
-          "2015-11-02" : {
-            "-K0W4GCIMSYE3jMzZXDk" : {
-              "assigned_date" : "2015-11-07",
-              "creation_date" : 1444737782699,
-              "description" : "",
-              "status_change_date" : 1444737782699,
-              "title" : "Very Important Stuff"
-            }
-          }
-        }
-      }
-    },
-    "undefined" : {
-      "active" : {
-        "-K0VyDLOSRualpn_m1-Q" : {
-          "2015-11-09" : {
-            "-K2giRu1pyd4qPbGOKd8" : {
-              "assigned_date" : "2015-11-09"
-            }
-          }
         }
       }
     }
   },
   "Users" : {
     "active" : {
-      "-JsqE8CQ9Dg7LE0OKQ2P" : {
-        "long_break_minutes" : "10",
-        "short_break_minutes" : "5",
-        "study_session_minutes" : "25"
-      },
-      "3a888fe0-9687-40f7-9e49-ec230a446155" : {
-        "email" : "tali@lavi.fm",
-        "first_name" : "ta",
-        "last_name" : "sd",
-        "long_break_seconds" : 900,
-        "short_break_seconds" : 300,
-        "study_session_seconds" : 1500
+      "2898546f-490f-4283-86aa-7c63d573b43a" : {
+        "email" : "tommy@hotmail.com",
+        "first_name" : "Tommy",
+        "last_name" : "",
+        "long_break_minutes" : 15,
+        "short_break_minutes" : 5,
+        "study_session_minutes" : 25
       },
       "d81360f7-4eec-4e64-afd7-27859337eb60" : {
         "email" : "studybuddy1app@gmail.com",
         "first_name" : "Alice",
         "last_name" : "Wonderland",
-        "long_break_seconds" : 7,
-        "short_break_seconds" : 3,
-        "study_session_seconds" : 20
+        "long_break_seconds" : 6,
+        "short_break_seconds" : 5,
+        "study_session_seconds" : 5
       }
     }
   }
