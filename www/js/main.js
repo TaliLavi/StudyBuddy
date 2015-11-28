@@ -80,41 +80,38 @@ function preparePage() {
 //===========================================================================================================
 
 // show and hide different pages
-var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
-var buttonIds = ["#calendarButton", "#subjectsButton", "#progressButton"];
-var highlightIds = ["#weekHighlight", "#subjectsHighlight", "#progressHighlight"];
+function switchToPage(pageName) {
+    var pageIds = {
+        "calendar": {"pageId": "#calendarPage", "highlightId": "#weekHighlight", "buttonId": "#calendarButton"},
+        "subjects": {"pageId": "#subjectsPage", "highlightId": "#subjectsHighlight", "buttonId": "#subjectsButton"},
+        "progress": {"pageId": "#profilePage", "highlightId": "#progressHighlight", "buttonId": "#progressButton"}
+    }
 
-function switchToPage(pageId, buttonId, highlightId) {
-    // hide all pages
-    pageIds.forEach(function(id){
-        $(id).hide();
-    })
-    // enable all nav buttons
-    buttonIds.forEach(function(id){
-        $(id).prop("disabled", false);
-    })
-    // hide all highlights
-    highlightIds.forEach(function(id){
-        $(id).hide();
-    })
+    // hide everything
+    $.each(pageIds, function(pageName, pageDict){
+        $(pageDict.pageId).hide();
+        $(pageDict.highlightId).hide();
+        $(pageDict.buttonId).prop("disabled", false);
+    });
+
     // only show current page
-    $(pageId).show();
-    // only disable current nav button
-    $(buttonId).prop("disabled", true);
+    $(pageIds[pageName].pageId).show();
     // only show current highlight
-    $(highlightId).show();
+    $(pageIds[pageName].highlightId).show();
+    // only disable current nav button
+    $(pageIds[pageName].buttonId).prop("disabled", true);
 }
 
 function showSubjectsPage() {
-    switchToPage("#subjectsPage", "#subjectsButton", "#subjectsHighlight");
+    switchToPage("subjects");
 }
 
 function showCalendarPage() {
-    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+    switchToPage("calendar");
 }
 
 function showProgressPage() {
-    switchToPage("#profilePage", "#progressButton", "#progressHighlight");
+    switchToPage("progress");
 
     var renewCache = true;
     fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
@@ -148,7 +145,7 @@ function prepareNavigation() {
     $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
-    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+    switchToPage("calendar");
 }
 
 function goToLogin() {
