@@ -37,7 +37,6 @@ function preparePage() {
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
 
-
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(false, displayActiveSubjects);
 
@@ -532,6 +531,7 @@ function closeModalWindow() {
     $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
+    hideAreYouSureDeleteTask();
 
     // ******************** FOR SETTINGS MENU ********************
     $('#settingsMenu').hide();
