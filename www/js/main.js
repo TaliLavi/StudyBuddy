@@ -23,7 +23,7 @@ function preparePage() {
     );
 
     $('#navBar').show();
-
+    //navigator.splashscreen.hide();
     timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
@@ -49,18 +49,29 @@ function preparePage() {
     // display time intervals in the Settings menu
     fetchTimeIntervals(displayTimeIntervals);
 
-    // prepare Done Ruzo animation
+    // prepare Ruzo animations
     prepareDoneRuzo();
-
+    prepareSwitchToShortBreakTL();
+    prepareSwitchToLongBreakTL();
+    prepareSwitchToSecondShortBreakTL();
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
+
+    ////find what the hight of the screen is to set the modals to the correct height
+    //var windowHeight = $( window ).height();
+    //var topMargin = ((windowHeight/2)-200).toString();
+    //topMargin = topMargin+"px";
+    //console.log(topMargin);
+    //$('taskModal').css("marginTop", topMargin);
+
 
     //// FOR TESTING, DELETE WHEN DONE TESTING
     //$('#settingsMenu').on("click", function(){
     //        console.log('touchend detected');
     //    }
     //);
+
 }
 
 
@@ -69,44 +80,41 @@ function preparePage() {
 //===========================================================================================================
 
 // show and hide different pages
-var pageIds = ["#calendarPage", "#subjectsPage", "#profilePage"];
-var buttonIds = ["#calendarButton", "#subjectsButton", "#progressButton"];
-var highlightIds = ["#weekHighlight", "#subjectsHighlight", "#progressHighlight"];
+function switchToPage(selectedPageName) {
+    var pageIds = {
+        "calendar": {"pageId": "#calendarPage", "highlightId": "#weekHighlight", "buttonId": "#calendarButton"},
+        "subjects": {"pageId": "#subjectsPage", "highlightId": "#subjectsHighlight", "buttonId": "#subjectsButton"},
+        "progress": {"pageId": "#profilePage", "highlightId": "#progressHighlight", "buttonId": "#progressButton"}
+    }
 
-function switchToPage(pageId, buttonId, highlightId) {
-    // hide all pages
-    pageIds.forEach(function(id){
-        $(id).hide();
-    })
-    // enable all nav buttons
-    buttonIds.forEach(function(id){
-        $(id).prop("disabled", false);
-    })
-    // hide all highlights
-    highlightIds.forEach(function(id){
-        $(id).hide();
-    })
+    // hide everything
+    $.each(pageIds, function(pageName, pageDict){
+        $(pageDict.pageId).hide();
+        $(pageDict.highlightId).hide();
+        $(pageDict.buttonId).prop("disabled", false);
+    });
+
     // only show current page
-    $(pageId).show();
-    // only disable current nav button
-    $(buttonId).prop("disabled", true);
+    $(pageIds[selectedPageName].pageId).show();
     // only show current highlight
-    $(highlightId).show();
+    $(pageIds[selectedPageName].highlightId).show();
+    // only disable current nav button
+    $(pageIds[selectedPageName].buttonId).prop("disabled", true);
 }
 
 function showSubjectsPage() {
-    switchToPage("#subjectsPage", "#subjectsButton", "#subjectsHighlight");
+    switchToPage("subjects");
 }
 
 function showCalendarPage() {
-    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+    switchToPage("calendar");
 }
 
 function showProgressPage() {
-    switchToPage("#profilePage", "#progressButton", "#progressHighlight");
+    switchToPage("progress");
 
     var renewCache = true;
-    fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
+    fetchAndDisplayProgressForLast7Days(renewCache);
     // draw the heat-map inside the progress page (in #cal-heatmap)
     drawHeatmap();
 
@@ -137,28 +145,27 @@ function prepareNavigation() {
     $('#signUpPage').hide();
     $('#logInPage').hide();
     $('#appPages').show();
-    switchToPage("#calendarPage", "#calendarButton", "#weekHighlight");
+    switchToPage("calendar");
 }
 
 function goToLogin() {
-    prepareLoginRuzo();
-    // when clicking enter while on password field, if email field isn't empty, attempt to login
-    executeOnEnter($('#logInPasswordInput'), prepareLogIn);
-    // when clicking enter while on password field, if email field isn't empty, attempt to signup
-    executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
-
-    var suppressError = true;
-    if (getLoggedInUser(suppressError)) {
-        preparePage();
+    if(navigator.onLine === false){
+        $('#noInternetPage').css("display", "block");
     } else {
-        displayLogin();
-    }
-}
+        //navigator.splashscreen.hide();
+        prepareLoginRuzo();
+        // when clicking enter while on password field, if email field isn't empty, attempt to login
+        executeOnEnter($('#logInPasswordInput'), prepareLogIn);
+        // when clicking enter while on password field, if email field isn't empty, attempt to signup
+        executeOnEnter($('#confirmPasswordInput'), prepareSignUp);
 
-function displayLogin() {
-    $('#appPages').hide();
-    $('#signUpPage').hide();
-    $('#logInPage').show();
+        var suppressError = true;
+        if (getLoggedInUser(suppressError)) {
+            preparePage();
+        } else {
+            showSignUp();
+        }
+    }
 }
 
 function showSignUp() {
@@ -181,7 +188,6 @@ function isMobile() {
 function applySortable(selector) {
     var sortableOptions = {
         group: "tasks",
-        //animation: 1000,
         ghostClass: "sortable-ghost",
         onStart: inTheAir,
         onAdd: dragTask,
@@ -327,7 +333,11 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     // Clear old onclick handlers and set new ones
     $('#deleteTask').off("click");
-    $('#deleteTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
+    $('#deleteTask').on("click", function(){displayAreYouSureDeleteTask();});
+    $('#confirmDeleteTaskButton').off("click");
+    $('#confirmDeleteTaskButton').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, moveActiveTaskToDeleted);});
+    $('#noDeleteTaskButton').off("click");
+    $('#noDeleteTaskButton').on("click", function(){hideAreYouSureDeleteTask();});
     $('#completeTask').off("click");
     $('#completeTask').on("click", function(){closeTaskModal(subjectId, weekDate, taskId, taskDetails, markAsDone);});
     $('#playPauseButton').off("click");
@@ -518,6 +528,7 @@ function closeModalWindow() {
     $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').removeClass();
     $('#taskCardHeadingDiv').addClass('mainColour');
     $('#leftSideTaskCard').addClass('secondaryColour');
+    hideAreYouSureDeleteTask();
 
     // ******************** FOR SETTINGS MENU ********************
     $('#settingsMenu').hide();
@@ -690,6 +701,7 @@ function changeTimeIntervals() {
     $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
     $('#longBreakLengthDisplay').html(longBreak + " minutes");
     updateTimeIntervals(workSession, shortBreak, longBreak);
+    prepareHourGlass();
 }
 
 function displayTimeIntervals(sessionTimes) {
@@ -750,3 +762,30 @@ function displayAreYouSureModal(subjectId){
     $('#navBar').addClass('frostedGlass');
 }
 
+//===========================================================================================================
+// ARE YOU SURE MODAL FOR DELETING A TASK
+//===========================================================================================================
+
+function displayAreYouSureDeleteTask(){
+    //Makes the modal window display
+    $('#deleteTaskModal').css('display','block');
+    //Fades in the greyed-out background
+}
+
+function hideAreYouSureDeleteTask(){
+    //Makes the modal window display
+    $('#deleteTaskModal').css('display','none');
+    //Fades in the greyed-out background
+}
+
+//===========================================================================================================
+// WARNING FOR IF THERE'S NO INTERNET
+//===========================================================================================================
+
+function showNoInternetModal(){
+    $('#noInternetModal').css('display','block');
+    $('#calendarPage').addClass('frostedGlass');
+    $('#iPadStatusBar').addClass('frostedGlass');
+    $('#subjectsPage').addClass('frostedGlass');
+    $('#navBar').addClass('frostedGlass');
+}

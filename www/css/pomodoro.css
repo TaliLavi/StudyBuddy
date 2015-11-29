@@ -47,6 +47,7 @@
     right: 0;
     top: 65%;
     font-size: 2em;
+    color: #1B9BAE;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -80,7 +81,7 @@
 }
 
 #stopButton:disabled{
-    background-color: rgba(149,202,173, .6);
+    background-color: lightgrey;
 }
 
 #playPauseButton{
@@ -95,6 +96,10 @@
     font-size: 1em;
     margin-bottom: 20px;
     margin-right: 6px;
+}
+
+#playPauseButton:disabled{
+    background-color: lightgrey;
 }
 
 #minsDiv {
@@ -179,31 +184,82 @@
     position: absolute;
 }
 
-#sleepingRuzo {
-    width: 70%;
+/*//////////////////////////////////RUZOS FOR BREAKS/////////////////////////////////////////////////////////*/
+
+#circleBehindBreakRuzo{
+    height: 0;
+    width: 0;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #B0DFD5;
     left:0;
     right:0;
+    top: 50%;
     margin-left:auto;
     margin-right:auto;
-    display: none;
-    position: absolute;
-    top: 70px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
-#sleepingRuzoPurple {
-    width: 70%;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
+#drinkRuzo{
     display: none;
     position: absolute;
-    top: 70px;
+    height: 176px;
+    width: 232px;
+    left:52px;
+    top: 105px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
+#snoozeRuzo{
+    display: none;
+    position: absolute;
+    width: 251px;
+    height: 204px;
+    top: 80px;
+    left: 58px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
 
-#workBreakContainer {
-    background-color: plum;
+#rugRuzo{
+    display: none;
+    position: absolute;
+    width: 282px;
+    height: 225px;
+    top: 74px;
+    left: 22px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+#haveABreakText{
+    font-family: 'Acme', sans-serif;
+    display: none;
+    color: #1B9BAE;
+    position: absolute;
+    top: 26px;
+    font-size: 2.2em;
+    left: 61px;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 

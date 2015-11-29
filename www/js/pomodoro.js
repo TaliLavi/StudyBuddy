@@ -11,9 +11,8 @@ var numOfStudySessions = 0;
 //var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
 var workTL = new TimelineMax({paused:true});
 
-workTL.yoyo( false ); //sets yoyo to false
-
 function prepareHourGlass() {
+    workTL.clear();   //Clears anything that was on the timeline incase it is being rebuilt after timer settings changed.
     fetchTimeIntervals(function(sessionTimes) {
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"44px solid rgba(0,0,0,0)", borderRight:"44px solid rgba(0,0,0,0)", borderTop:"66px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //20 mins left
         workTL.to($('#topTriangleWork'), (sessionTimes.study_session/100*20), {borderLeft:"36px solid rgba(0,0,0,0)", borderRight:"36px solid rgba(0,0,0,0)", borderTop:"55px solid rgba(149,202,173,1)", ease: Power0.easeNone});     //15 mins left
@@ -119,6 +118,12 @@ function playPauseTimer(subjectId, weekDate, taskId) {
     if ($('#playPauseButton').hasClass('notPlaying')) {
         // start animation
         workTL.play();
+
+        if(isMobile()){
+            console.log("Don't go to sleep!");
+            window.plugins.insomnia.keepAwake();
+            console.log("Not going to sleep!");
+        }
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
         $('#stopButton').removeClass('stopped');
@@ -129,6 +134,12 @@ function playPauseTimer(subjectId, weekDate, taskId) {
     } else {
         // pause animation
         workTL.pause();
+        if(isMobile()){
+            console.log("It's okay you can relax");
+            window.plugins.insomnia.allowSleepAgain();
+            console.log("Relaxing again");
+        }
+
         togglePlayPause();
     }
 }
@@ -146,10 +157,18 @@ function switchToNextSession(subjectId, weekDate, taskId) {
         if (numOfStudySessions < 4) {
             // change to short_break
             sessionType = 'short_break';
-            $('#sleepingRuzo').css('display','block');
-            $('#sleepingRuzoPurple').css('display','none');
-            $('#bottomContainer').css('display','none');
-            $('#topContainer').css('display','none');
+
+            var randomNumber = Math.floor(Math.random() * 101);
+            console.log(randomNumber);
+            if(randomNumber>=50){
+                console.log("Playing Drinking Ruzo");
+                switchToShortBreakTL.play(0);
+            }else{
+                console.log("Playing Rug Ruzo");
+                switchToSecondShortBreakTL.play(0);
+            }
+
+            $('#playPauseButton').prop('disabled', true);
             workTL.pause(0);
             // switch to long_break
         } else {
@@ -157,10 +176,8 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             sessionType = 'long_break';
             // reset count of study sessions
             numOfStudySessions = 0;
-            $('#sleepingRuzoPurple').css('display','block');
-            $('#sleepingRuzo').css('display','none');
-            $('#bottomContainer').css('display','none');
-            $('#topContainer').css('display','none');
+            switchToLongBreakTL.play(0);
+            $('#playPauseButton').prop('disabled', true);
             workTL.pause(0);
         }
 
@@ -176,10 +193,17 @@ function switchToNextSession(subjectId, weekDate, taskId) {
 
         // change to study_session
         sessionType = 'study_session';
+        //switchToWorkTL.play(0);
+        $("#circleBehindBreakRuzo").css('display','none');
+        $("#snoozeRuzo").css('display','none');
+        $("#drinkRuzo").css('display','none');
+        $("#rugRuzo").css('display','none');
+        $("#haveABreakText").css('display','none');
         $('#bottomContainer').css('display','block');
         $('#topContainer').css('display','block');
-        $('#sleepingRuzoPurple').css('display','none');
-        $('#sleepingRuzo').css('display','none');
+        $('#frontHourglass').css('display','block');
+        $('#backHourglass').css('display','block');
+        $('#playPauseButton').prop('disabled', false);
         workTL.play();
     }
     setTimer(subjectId, weekDate, taskId);
@@ -201,13 +225,23 @@ function togglePlayPause() {
 
 function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').prop('disabled', true);
+    $('#playPauseButton').prop('disabled', false);
     $('#stopButton').addClass('stopped');
-    // stop animation
     workTL.pause(0);
-    $('#sleepingRuzoPurple').css('display','none');
-    $('#sleepingRuzo').css('display','none');
+    if(isMobile()){
+        console.log("It's okay you can relax");
+        window.plugins.insomnia.allowSleepAgain();
+        console.log("Relaxing again");
+    }
+    $("#circleBehindBreakRuzo").css('display','none');
+    $("#snoozeRuzo").css('display','none');
+    $("#drinkRuzo").css('display','none');
+    $("#rugRuzo").css('display','none');
+    $("#haveABreakText").css('display','none');
     $('#bottomContainer').css('display','block');
     $('#topContainer').css('display','block');
+    $('#frontHourglass').css('display','block');
+    $('#backHourglass').css('display','block');
 
     //If stopped on a break get rid of ruzo.
 
@@ -243,3 +277,186 @@ $(".play-button").click(function() {
 });
 
 
+
+//===============================================================================================================================
+//Switch to short break animation
+//===============================================================================================================================
+
+var switchToShortBreakTL = new TimelineMax({paused:true});
+
+function prepareSwitchToShortBreakTL(){
+
+    switchToShortBreakTL.to( "#frontHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#backHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#bottomContainer", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#topContainer", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#snoozeRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#rugRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToShortBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
+        display  : "block",
+    })
+
+    switchToShortBreakTL.to( "#circleBehindBreakRuzo", 1, {
+        backgroundColor   : "#A5DBCE",
+        height  : "288px",
+        width   : "288px",
+        top     : "70px",
+        ease    :   Back.easeOut.config(1), y: 0
+    } )
+
+    switchToShortBreakTL.to( "#drinkRuzo", 0, {
+        display  : "block",
+    }, "-=.5")
+
+    switchToShortBreakTL.to( "#drinkRuzo", .4, {
+        scale   : ".85",
+    }, "-=.5")
+
+    switchToShortBreakTL.to( "#haveABreakText", 0, {
+        display  : "block",
+    }, "-=.5")
+
+}// end of prepareSwitchToShortBreakTL
+
+//===============================================================================================================================
+//Switch to short break animation B
+//==============================================================================================================================
+
+var switchToSecondShortBreakTL = new TimelineMax({paused:true});
+
+function prepareSwitchToSecondShortBreakTL(){
+
+    switchToSecondShortBreakTL.to( "#frontHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#backHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#bottomContainer", 0, {
+        display  : "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#topContainer", 0, {
+        display: "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#snoozeRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#drinkRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToSecondShortBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
+        display  : "block",
+    })
+
+    switchToSecondShortBreakTL.to("#circleBehindBreakRuzo", 1, {
+        backgroundColor   : "#B9DDDD",
+        height  : "288px",
+        width   : "288px",
+        top     : "70px",
+        ease    :   Back.easeOut.config(1), y: 0
+    } )
+
+
+    switchToSecondShortBreakTL.to( "#rugRuzo", 0, {
+        display  : "block",
+    }, "-=.5")
+
+    switchToSecondShortBreakTL.to( "#rugRuzo", .4, {
+        scale   : ".85",
+    }, "-=.5")
+
+    switchToSecondShortBreakTL.to( "#haveABreakText", 0, {
+        display  : "block",
+    }, "-=.5")
+
+}// end of prepareSwitchToSecondShortBreakTL
+//===============================================================================================================================
+//Switch to long break animation
+//===============================================================================================================================
+
+var switchToLongBreakTL = new TimelineMax({paused:true});
+
+function prepareSwitchToLongBreakTL(){
+
+    switchToLongBreakTL.to( "#frontHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#backHourglass", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#bottomContainer", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#topContainer", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#drinkRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#rugRuzo", 0, {
+        display  : "none",
+    })
+
+    switchToLongBreakTL.to( "#circleBehindBreakRuzo", 0, {
+        height   : "0px",
+        width    : "0px",
+        top      :  "200px",
+        display  : "block"
+    })
+
+    switchToLongBreakTL.to( "#circleBehindBreakRuzo", 1, {
+        backgroundColor   : "#B0CADF",
+        height  : "288px",
+        width   : "288px",
+        top     : "70px",
+        ease    :   Back.easeOut.config(1), y: 0
+    } )
+
+    switchToLongBreakTL.to( "#snoozeRuzo", 0, {
+        display  : "block",
+    }, "-=.5")
+
+    switchToLongBreakTL.to( "#snoozeRuzo", .4, {
+        scale   : ".85",
+    }, "-=.5")
+
+    switchToLongBreakTL.to( "#haveABreakText", 0, {
+        display  : "block",
+    }, "-=.5")
+
+}//end of function prepareSwitchToLongBreakTL

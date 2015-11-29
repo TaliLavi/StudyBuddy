@@ -37,8 +37,7 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
 
     // Populate Subjects Page with subjects and tasks.
     if (allSubjectsDict !== null) {
-        $('#subjectFilters').append('<button class="subject" id="allUnassigendTasks" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
-
+        $('#subjectFilters').append('<button class="subject" id="allUnassigendTasks" style="color:white; background-color:rgb(149,202,173);" onclick="filterTasksInFooter(\'allUnassigendTasks\')">All</button>');
         $.each(allSubjectsDict, function(subjectKey, subjectData){
             // Populate Subject Footer with subjects names.
             var button_id = "subject" + subjectKey;

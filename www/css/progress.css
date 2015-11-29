@@ -2,12 +2,11 @@
 
     overflow: auto;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     position: relative;
     height: 668px;
     width: 100%;
 }
-
-
 
 .axis {
     font: 10px sans-serif;
@@ -47,7 +46,6 @@
 #subjectsRecordSection{
     background-color: whitesmoke;
 }
-
 
 .barChartHeading{
     font-family: acme, sans-serif;
@@ -95,8 +93,6 @@
 
     /*text-transform: uppercase;*/
 }
-
-
 
 .progressHeading{
     display: block;
@@ -211,4 +207,12 @@
 
 #square5{
     background-color: #1E7D8A;
+}
+
+.selectedBarGraphButton{
+    background-color: #31A9A8;
+}
+
+.unSelectedBarGraphButton{
+    background-color: rgb(149,202,173);
 }

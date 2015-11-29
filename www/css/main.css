@@ -64,7 +64,7 @@ input, textarea {
     margin: auto;
     background-color: #E9ECEF;
     width: 426px;
-    height: 198px;
+    height: 210px;
     position: absolute;
     margin: -99px 0 0 -214px;
     top: 50%;
@@ -90,8 +90,6 @@ input, textarea {
     margin-top: 30px;
 }
 
-
-
 .toggleSignLog{
     font-size: 1em;
     margin-top: 5px;
@@ -111,7 +109,7 @@ input, textarea {
     text-transform: uppercase;
     border-radius: 5px;
     height: 35px;
-    width: 85px;
+    width: 100px;
     background-color: rgb(149,202,173);
     font-size: 1em;
     margin-top: 5px;
@@ -231,7 +229,7 @@ input, textarea {
     margin: auto;
     background-color: #E9ECEF;
     width: 560px;
-    height: 320px;
+    height: 335px;
     position: absolute;
     margin: -160px 0 0 -280px;
     top: 50%;
@@ -651,7 +649,7 @@ input:focus {outline:0;}
     z-index: 1;
     margin-left: auto;
     margin-right:auto;
-    margin-top: 10%;
+    /*margin-top: 18%;*/
     box-shadow: 0 0 100px 0 rgba(0,0,0,0.4);
 }
 
@@ -688,6 +686,11 @@ input:focus {outline:0;}
 #taskModal{
     width:700px;
     height: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -200px;
 }
 
 #leftSideTaskCard {
@@ -704,6 +707,53 @@ input:focus {outline:0;}
     width: 50%;
     background-color: whitesmoke;
     overflow: hidden;
+}
+
+#deleteTaskModal{
+    display: none;
+    height: 100px;
+    width: 250px;
+    background-color: white;
+    position: absolute;
+    left: -86px;
+    bottom: -112px;
+}
+
+#deleteTaskText{
+    font-size: .9em;
+    color: #607A93;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+#noDeleteTaskButton{
+    position: absolute;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(149,202,173);
+    font-size: 1em;
+    bottom: 12px;
+    left: 20px;
+}
+
+#confirmDeleteTaskButton{
+    position: absolute;
+    color: white;
+    border: none;
+    font-family: acme;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 35px;
+    background-color: #BC6771;
+    font-size: 1em;
+    bottom: 12px;
+    right: 20px;
 }
 
 #taskCardForm {
@@ -753,12 +803,12 @@ input:focus {outline:0;}
     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
     box-sizing: border-box;
     wrap: soft;
-    font-size: .9em;
+    font-size: .95em;
     line-height: 1.75em;
     resize:none;
     overflow:scroll;
     min-height: 84px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1%;
     /*max-height: 200px;*/
 }
@@ -791,20 +841,23 @@ input:focus {outline:0;}
     box-sizing: border-box;
     width: 60%;
     padding: 2%;
+    font-size: .85em;
 }
 
 #dateLabel{
     display: inline-block;
-    width: 40%;
+    width: 30%;
     padding: 2%;
     color: rgba(255, 255, 255, .6);
+    font-size: .85em;
 }
 
 #timeLabel{
     display: inline-block;
-    width: 40%;
+    width: 30%;
     padding: 2%;
     color: rgba(255, 255, 255, .6);
+    font-size: .85em;
 
 }
 
@@ -816,6 +869,7 @@ input:focus {outline:0;}
     width: 60%;
     padding: 2%;
     cursor: pointer;
+    font-size: .85em;
 }
 
 
@@ -888,6 +942,11 @@ input:focus {outline:0;}
 #addTaskModal{
     width: 58%;
     height:400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -29%;
+    margin-top: -200px;
 }
 
 
@@ -1033,6 +1092,11 @@ input:focus {outline:0;}
 #addSubjectModal{
     width: 40%;
     height:460px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -20%;
+    margin-top: -230px;
 }
 
 #addSubjectHeadingDiv{
@@ -1103,9 +1167,13 @@ input:focus {outline:0;}
 /*===================================================================================================================*/
 
 #areYouSureModal{
-    top: 50%;
     width: 400px;
     height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -125px;
 }
 
 #areYouSureHeadingDiv{
@@ -1164,7 +1232,61 @@ input:focus {outline:0;}
     margin-left: 10%;
 }
 
+/*===============================================================================================*/
+/* NO INTERNET MODAL */
+/*===============================================================================================*/
 
+#noInternetModal{
+    display: none;
+    background-color: #1B9BAE;
+    width: 400px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -125px;
+}
+
+.noInternetRuzo{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 251px;
+    height: 204px;
+    margin-top: 15px;
+}
+
+.noInternetMesssage{
+    color: white;
+    width: 80%;
+    display: block;
+    margin: auto;
+    position: absolute;
+    line-height: 1.5em;
+    bottom: 15px;
+    left: 0;
+    right:0;
+    text-align: center;
+}
+
+#noInternetPage{
+    height: 100vh;
+    width: 100%;
+    background-color: #1B9BAE;
+    z-index: 10;
+    position: fixed;
+}
+
+#noInternetPageRuzo{
+    top: 50%;
+    margin-top: -150px;
+}
+
+#noInternetPageMessage{
+    top: 50%;
+    margin-top: 120px;
+}
 /*===============================================================================================*/
 /* SORTABLE DAYS */
 /*===============================================================================================*/
@@ -1359,16 +1481,17 @@ input:focus {outline:0;}
     width: 100%;
     text-align: center;
     background-color: #95CAAD;
-    -webkit-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
-    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
-    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.30);
+    -webkit-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    -moz-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     cursor: pointer;
+    position: relative;
 }
 
 #addSubjectButton:hover{
-    -webkit-box-shadow: -1px 13px 21px -10px rgba(151, 137, 151, 0.4);
-    -moz-box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.40);
-    box-shadow: -1px 13px 21px -10px rgba(163,148,163,0.40);
+    -webkit-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    -moz-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
 }
 
 .completedTasksButton{
@@ -1875,8 +1998,8 @@ input:focus {outline:0;}
 
 .theme1Colour1 {color: #F4A460; fill: #F4A460;} /*text and bar fill colour*/
 .theme1Colour1.mainColour {background-color: #F4A460;}
-.theme1Colour1.secondaryColour {background-color: #EEC58F;}
-.theme1Colour1.active {background-color: #EEC58F;} /*active subject button colour*/
+.theme1Colour1.secondaryColour {background-color: #F9BF81;}
+.theme1Colour1.active {background-color: #F9BF81;} /*active subject button colour*/
 .theme1Colour1.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
 .theme1Colour2 {color: #F3742B; fill: #F3742B;} /*text and bar fill colour*/
@@ -1917,20 +2040,20 @@ input:focus {outline:0;}
 
 .theme1Colour8 {color: #607A93; fill: #607A93;}  /*text and bar fill colour*/
 .theme1Colour8.mainColour {background-color: #607A93;}
-.theme1Colour8.secondaryColour {background-color: #baccd9;}
-.theme1Colour8.active {background-color: #baccd9;} /*active subject button colour*/
+.theme1Colour8.secondaryColour {background-color: #99BED3;}
+.theme1Colour8.active {background-color: #99BED3;} /*active subject button colour*/
 .theme1Colour8.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour9 {color: #A0AFBE; fill: #A0AFBE;} /*text and bar fill colour*/
+.theme1Colour9 {color: #7B9FB6; fill: #A0AFBE;} /*text and bar fill colour*/
 .theme1Colour9.mainColour {background-color: #A0AFBE;}
-.theme1Colour9.secondaryColour {background-color: #C6D2DD;}
-.theme1Colour9.active {background-color: #C6D2DD;} /*active subject button colour*/
+.theme1Colour9.secondaryColour {background-color: #B1C5D2;}
+.theme1Colour9.active {background-color: #B1C5D2;} /*active subject button colour*/
 .theme1Colour9.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
-.theme1Colour10 {color: #7EC6D5; fill: #7EC6D5;} /*text and bar fill colour*/
+.theme1Colour10 {color: #5DB0BC; fill: #7EC6D5;} /*text and bar fill colour*/
 .theme1Colour10.mainColour {background-color: #7EC6D5;}
-.theme1Colour10.secondaryColour {background-color: #BCDBE1;}
-.theme1Colour10.active {background-color: #BCDBE1;} /*active subject button colour*/
+.theme1Colour10.secondaryColour {background-color: #8ED4DE;}
+.theme1Colour10.active {background-color: #8ED4DE;} /*active subject button colour*/
 .theme1Colour10.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
 .theme1Colour11 {color: #31A9A8; fill: #31A9A8;} /*text and bar fill colour*/
@@ -1941,8 +2064,8 @@ input:focus {outline:0;}
 
 .theme1Colour12 {color: #1E7D8A; fill: #1E7D8A;} /*text and bar fill colour*/
 .theme1Colour12.mainColour {background-color: #1E7D8A;}
-.theme1Colour12.secondaryColour {background-color: #97C7CD;}
-.theme1Colour12.active {background-color: #97C7CD;} /*active subject button colour*/
+.theme1Colour12.secondaryColour {background-color: #6CBBC2;}
+.theme1Colour12.active {background-color: #6CBBC2;} /*active subject button colour*/
 .theme1Colour12.expanded {color: #FFFFFF;} /*text colour for titles of expanded tasks*/
 
 
