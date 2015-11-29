@@ -18,7 +18,7 @@ function firebaseErrorFrom(funcName) {
 //=====================================================================
 
 // Sign up a new user
-function signUpUser(firstName, lastName, email, password) {
+function signUpUser(username, email, password) {
     var ref = FIREBASE_REF;
     ref.createUser({
         email: email,
@@ -35,7 +35,7 @@ function signUpUser(firstName, lastName, email, password) {
                 $('#signUpEmailErrorTriangle').show();
             }
         } else {
-            createUser(firstName, lastName, email, password, userData.uid);
+            createUser(username, email, password, userData.uid);
         }
     });
 }
