@@ -80,7 +80,7 @@ function preparePage() {
 //===========================================================================================================
 
 // show and hide different pages
-function switchToPage(pageName) {
+function switchToPage(selectedPageName) {
     var pageIds = {
         "calendar": {"pageId": "#calendarPage", "highlightId": "#weekHighlight", "buttonId": "#calendarButton"},
         "subjects": {"pageId": "#subjectsPage", "highlightId": "#subjectsHighlight", "buttonId": "#subjectsButton"},
@@ -95,11 +95,11 @@ function switchToPage(pageName) {
     });
 
     // only show current page
-    $(pageIds[pageName].pageId).show();
+    $(pageIds[selectedPageName].pageId).show();
     // only show current highlight
-    $(pageIds[pageName].highlightId).show();
+    $(pageIds[selectedPageName].highlightId).show();
     // only disable current nav button
-    $(pageIds[pageName].buttonId).prop("disabled", true);
+    $(pageIds[selectedPageName].buttonId).prop("disabled", true);
 }
 
 function showSubjectsPage() {
@@ -114,7 +114,7 @@ function showProgressPage() {
     switchToPage("progress");
 
     var renewCache = true;
-    fetchAndDisplayBarGraphSinceDawnOfTime(renewCache);
+    fetchAndDisplayProgressForLast7Days(renewCache);
     // draw the heat-map inside the progress page (in #cal-heatmap)
     drawHeatmap();
 
