@@ -64,13 +64,15 @@ function logInUser(email, password, signUpCallback) {
                 $('#loginPasswordErrorTriangle').show();
             }
         } else {
-            if (signUpCallback !== undefined) {
-                signUpCallback();
-            }
             // attach an event handler to sign out, in case of session timeout
             ref.offAuth(AuthChangeHandler);
             ref.onAuth(AuthChangeHandler);
-            goToLogin();
+
+            if (signUpCallback !== undefined) {
+                signUpCallback(goToLogin);
+            } else {
+                goToLogin();
+            }
         }
     });
 }
@@ -95,7 +97,7 @@ function signOut() {
 // We use this to sign the user out of the ui, if authentication expired
 function AuthChangeHandler(uid) {
     if (uid === null) {
-        signOut()
+        signOut();
     }
 }
 
@@ -105,26 +107,17 @@ function AuthChangeHandler(uid) {
 
 // ADD NEW USER TO THE DB
 function saveNewUser(newUser, uid, callback) {
-    // CREATE A REFERENCE TO FIREBASE
+    // CREATE REFERENCES TO FIREBASE
     var newUserRef = FIREBASE_REF.child('/Users/active/' + uid);
+    var onboardingSubjectsRef = FIREBASE_REF.child('/Subjects/active/' + uid);
+    var onboardingTasksRef = FIREBASE_REF.child('/Tasks/' + uid);
 
-    //SAVE USER DATA TO FIREBASE
-    newUserRef.set(newUser, function (error) {
-        if (error !== null) {
-            callback();
-        }
+    //SAVE USER AND ONBOARDING DATA TO FIREBASE
+    newUserRef.set(newUser, function() {
+        onboardingSubjectsRef.set(getOnboardingSubjects(), function() {
+            onboardingTasksRef.set(getOnboardingTasks(), callback);
+        });
     });
-}
-
-// MOVE USER TO DELETED
-// TODO: decide how this works with the authentication functions
-function deleteUser(userUID) {
-    var oldRef = FIREBASE_REF.child('/Users/active/' + userUID);
-    var newRef = FIREBASE_REF.child('/Users/deleted/' + userUID);
-    oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
-        oldRef.remove();
-    }, firebaseErrorFrom('deleteUser'));
 }
 
 

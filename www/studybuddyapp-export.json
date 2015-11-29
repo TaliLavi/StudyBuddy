@@ -1106,6 +1106,13 @@
               "description" : "",
               "status_change_date" : 1448548638610,
               "title" : "To delete"
+            },
+            "-K4FM7_rhQD3RuLCHhZe" : {
+              "assigned_date" : "2015-11-25",
+              "creation_date" : 1448752221091,
+              "description" : "",
+              "status_change_date" : 1448752221091,
+              "title" : "afadsff"
             }
           },
           "no_assigned_date" : {
@@ -1742,50 +1749,6 @@
       },
       "done" : {
         "-JsrUKsdGw5JkFwpLNqD" : {
-          "2015-08-31" : {
-            "-JuWIwyljjjpEDpak4dx" : {
-              "assigned_date" : "2015-08-31",
-              "creation_date" : 1437225441552,
-              "description" : "ddddd",
-              "number_of_breaks" : 9,
-              "status_change_date" : 1437225441552,
-              "title" : "Another English task",
-              "total_seconds_studied" : 161
-            }
-          },
-          "2015-09-07" : {
-            "-JylWZciyj2l--yjvL99" : {
-              "assigned_date" : "2015-09-12",
-              "creation_date" : 1441792412184,
-              "description" : "",
-              "status_change_date" : 1441792412184,
-              "title" : "Read something"
-            },
-            "-JylWp90v0pimRlSjV4O" : {
-              "assigned_date" : "2015-09-07",
-              "creation_date" : 1441792479851,
-              "description" : "",
-              "status_change_date" : 1441792479851,
-              "title" : "English Essay",
-              "total_seconds_studied" : 3
-            },
-            "-JylWp90v0pimRlSjV99" : {
-              "assigned_date" : "2015-09-07",
-              "creation_date" : 1441792479851,
-              "description" : "",
-              "status_change_date" : 1441792479851,
-              "title" : "Write an English essay"
-            }
-          },
-          "2015-09-14" : {
-            "-JzfOH-jnoUqac1j1emP" : {
-              "assigned_date" : "2015-09-19",
-              "creation_date" : 1442763317412,
-              "description" : "",
-              "status_change_date" : 1442763317412,
-              "title" : "Again testing"
-            }
-          },
           "2015-09-28" : {
             "-K-KgUWFlSgx_ZHDTC99" : {
               "assigned_date" : "2015-09-28",

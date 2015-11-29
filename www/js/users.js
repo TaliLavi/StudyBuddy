@@ -56,7 +56,7 @@ function createUser(firstName, lastName, email, password, uid) {
     };
 
     // LOG-IN THE USER, AND AFTERWARDS PUSH THEM TO DB
-    logInUser(email, password, function() {
-        saveNewUser(newUser, uid);
+    logInUser(email, password, function(callback) {
+        saveNewUser(newUser, uid, callback);
     });
 };
