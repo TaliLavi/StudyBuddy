@@ -347,7 +347,7 @@ function isSameMonth(date1, date2) {
 
 function currentStreak(heatmapSnapshot) {
     var previousDate;
-    var longestStreak = 0;
+    var longestStreak = 1;
     var currentStreak = 1;
 
     $.each(heatmapSnapshot, function(date){
@@ -363,7 +363,12 @@ function currentStreak(heatmapSnapshot) {
         previousDate = date;
     });
     $('#currentStreak').text(currentStreak);
-    $('#longestStreak').text(longestStreak);
+
+    if (currentStreak === longestStreak) {
+        $('#streakMessage').text('Well done, that\'s a new record!');
+    } else {
+        $('#streakMessage').text('Keep it up, ' + dataCache.username + '! Your longest ever study streak is ' + longestStreak + ' days.');
+    }
 }
 
 function isBestMonth(heatmapSnapshot) {

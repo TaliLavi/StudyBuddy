@@ -2,7 +2,8 @@
 var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
 var dataCache = {
     sessionTimes: null,
-    barChart: null
+    barChart: null,
+    username: null
 }
 
 
@@ -120,6 +121,18 @@ function saveNewUser(newUser, uid, callback) {
     });
 }
 
+function fetchUsername(heatmapSnapshot) {
+    if (dataCache.username !== null) {
+        currentStreak(dataCache.username)
+    } else {
+        var usernameRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser() + '/username');
+        usernameRef.once("value", function(snapshot) {
+            var usernameInfo = snapshot.val();
+            dataCache.username = usernameInfo;
+            currentStreak(heatmapSnapshot);
+        }, firebaseErrorFrom('fetchUsername'));
+    }
+}
 
 //=====================================================================
 //                              SUBJECTS

@@ -84,7 +84,7 @@ function showProgressPage() {
     // draw the heat-map inside the progress page (in #cal-heatmap)
     drawHeatmap();
 
-    fetchHeatmapData(currentStreak);
+    fetchHeatmapData(fetchUsername);
 
     // display adaptive feedback for the heatmap
     fetchHeatmapData(function(heatmapSnapshot) {
