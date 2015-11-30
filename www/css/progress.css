@@ -8,6 +8,73 @@
     width: 100%;
 }
 
+#streakSection{
+    background-color: #d1d7dd;
+    height: 135px;
+    width: 960px;
+    display: block;
+    margin: auto;
+}
+
+#streakHeadingDiv{
+    font-family: acme, sans-serif;
+    display: inline-block;
+}
+
+#streakHeadingText{
+    font-family: acme, sans-serif;
+    display: inline-block;
+    color: #1B9BAE;
+    font-size: 2.5em;
+    padding-top: 23px;
+    margin-left: 30px;
+}
+
+#currentStreak{
+    font-family: acme, sans-serif;
+    font-size: 2.5em;
+    font-size: 1.8em;
+    display: inline-block;
+    margin-left: 21px;
+    margin-top: 10px;
+}
+
+#dayStreak{
+    margin-left: 55px;
+    font-family: 'Acme', sans-serif;
+}
+
+#firstStars{
+    margin-left: -32px;
+    margin-top: 13px;
+}
+
+
+.streakStars{
+    position: absolute;
+    display: inline-block;
+    height: 104px;
+    width: 96px;
+}
+
+#secondStars{
+    -moz-transform:rotate(150deg);
+    -webkit-transform:rotate(150deg);
+    -o-transform:rotate(150deg);
+    -ms-transform:rotate(150deg);
+    margin-top: -14px;
+    margin-left: -45px;
+}
+
+#streakMessage{
+    color: #607A93;
+    font-weight: 400;
+    font-size: 1.2em;
+    display: inline;
+    cursor: default;
+}
+
+
 .axis {
     font: 10px sans-serif;
 }
