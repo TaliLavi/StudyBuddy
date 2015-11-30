@@ -61,8 +61,6 @@ function prepareDoneRuzo() {
             display         :   "none"
         }
     )
-
-    //console.log("ruzoDoneTimeline should be prepared");
 }
 
 function playRuzoDone() {
@@ -85,7 +83,6 @@ function prepareLoginRuzo(){
         transformOrigin :   "50% 20%",
         ease            :   Power3.easeInOut, y: 0
     })
-
 }
 
 function playRuzoLoginHide() {
