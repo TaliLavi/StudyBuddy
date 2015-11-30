@@ -3,7 +3,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    /*z-index: 10000;*/
 }
 
 #footer {
@@ -108,8 +107,6 @@ button:focus {outline:0;}
     padding-right: 10px;
     padding-left: 10px;
 }
-
-
 
 #unassignedTasksList li {
     display: inline-block;

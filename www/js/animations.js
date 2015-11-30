@@ -19,7 +19,6 @@ function prepareDoneRuzo() {
         opacity:1
     }) ;
 
-
     ruzoDoneTimeline.to("#doneCircle", 1, {
         height          :   400,
         width           :   400,
@@ -61,8 +60,6 @@ function prepareDoneRuzo() {
             display         :   "none"
         }
     )
-
-    //console.log("ruzoDoneTimeline should be prepared");
 }
 
 function playRuzoDone() {
@@ -70,7 +67,6 @@ function playRuzoDone() {
     $('#doneRuzoDiv').css('display', 'block');
     ruzoDoneTimeline.play();
 }
-
 
 var ruzoLoginTimeline = new TimelineMax({paused:true });
 
@@ -85,11 +81,9 @@ function prepareLoginRuzo(){
         transformOrigin :   "50% 20%",
         ease            :   Power3.easeInOut, y: 0
     })
-
 }
 
 function playRuzoLoginHide() {
-    console.log("This is inside the function playRuzoLoginHide");
     ruzoLoginTimeline.play();
 }
 

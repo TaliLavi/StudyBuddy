@@ -75,7 +75,6 @@ function createCalendarHeading() {
     }
 }
 
-
 function getLeftPositionWrapper(){
     var element = document.getElementById("calendarWrapper");
     var style = window.getComputedStyle(element);
@@ -91,7 +90,6 @@ function getLeftMarginWrapper(){
     var parsedMarginLeft = parseInt(marginLeft);                //Parse into a number
     return parsedMarginLeft;
 }
-
 
 // Date helper functions:
 // GET THE DATE FOR MONDAY OF DATE'S WEEK

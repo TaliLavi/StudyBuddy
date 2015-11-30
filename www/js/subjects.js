@@ -47,7 +47,6 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
                 subjectData.name + '</button>'
             );
 
-
             // In subjects page, create a button (div) for each subject
             $('#subjectsList').append(
                 '<div id="subjectName' + subjectKey + '" class="subjectName ' + subjectData.colour_scheme + '" ' +
@@ -121,7 +120,7 @@ function displayActiveSubjects(allSubjectsDict, isNewSubjectJustCreated) {
 
                     // display #colourPalette
                     $('#colourPalette').show();
-                    // if this click will make #colourPalette hidden:
+                // if this click will make #colourPalette hidden:
                 } else {
                     // hide and clear colourPalette
                     $('.colourMessage').text('');
@@ -263,7 +262,6 @@ function markUsedColours() {
         }
     });
 }
-
 
 function changeSubjectColour(subjectId) {
     var newColour = $('.chosenColour').data('colour-scheme');

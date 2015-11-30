@@ -1,1 +1,1 @@
-# StudyBuddy
+# Ruzo
