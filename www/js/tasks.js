@@ -85,7 +85,6 @@ function updateTaskFields(subjectId, taskId, taskData){
 }
 
 function updateTaskFieldsAndMoveCard(subjectId, subjectData, taskId, originalTask, updatedTask){
-    console.log('updatedTask in updateTaskFieldsAndMoveCard() is:', updatedTask)
     updateTaskFields(subjectId, taskId, updatedTask);
     // remove and append task in the DOM only if the task's date was changed
     if (originalTask.assigned_date !== updatedTask.assigned_date) {
@@ -133,7 +132,6 @@ function createCardTaskHtml(subjectKey, subjectDict, taskKey, taskData, isDone) 
                             '</div>' +
                         '</li>';
     }
-
     return taskHtml;
 }
 
@@ -144,7 +142,6 @@ function setClickForCardTask(subjectKey, taskKey) {
         var startOfRelevantWeek = startOfWeek($('li[data-taskid="' + taskKey + '"]').data('task-date'));
         var isDone = $('.sortable-task-list').find('li[data-taskid="' + taskKey + '"] > div').hasClass('doneTask');
         fetchSingleTask(subjectKey, startOfRelevantWeek, taskKey, isDone, fillInTaskDetails);
-        timeCardWasClicked = $.now();
     });
 }
 
@@ -154,7 +151,6 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
     } else {
         var cardAssignedDate = formatDate(taskData.assigned_date, 'd MMM');
     }
-
     var choppedTaskTitle = threeDots(taskData.title, 28);
     var choppedTaskDesc = threeDots(taskData.description, 38);
 
@@ -164,7 +160,6 @@ function createTodoTaskHtml(subjectKey, subjectDict, taskKey, taskData) {
         '<span id="todoAssignedDateFor' + taskKey + '" class=" todoDate ' + subjectDict.colour_scheme + '">' + cardAssignedDate +'</span>'+
         '</div>' +
         '<br/>';
-
     return taskHtml;
 }
 
@@ -298,8 +293,6 @@ function displayTasksForWeekAndSubject(subjectKey, subjectDict, tasksDict, isDon
                 createAndAppendTaskElement('#'+ taskData.assigned_date, subjectKey, subjectDict, taskKey, taskData);
             })
         }
-        timeCardsAppearOnCalendar = $.now();
-        //console.log('It took ' + (timeCardsAppearOnCalendar-timeAppWasLoaded) + ' millisecond from opening the app for the cards to appear in the calendar.');
     }
 }
 

@@ -1,8 +1,3 @@
-var timeAppWasLoaded;
-var timeCardsAppearOnCalendar;
-
-var timeCardWasClicked;
-var timeColoursGotDisplayedInTaskModal;
 
 function preparePage() {
      //Instantiate FastClick on the body, for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
@@ -12,7 +7,6 @@ function preparePage() {
 
     $('#navBar').show();
     //navigator.splashscreen.hide();
-    timeAppWasLoaded = $.now();
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
@@ -45,9 +39,7 @@ function preparePage() {
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
-
 }
-
 
 //===========================================================================================================
 //NAVIGATION PANEL
@@ -163,7 +155,6 @@ function applySortable(selector) {
     var sortableOptions = {
         group: "tasks",
         ghostClass: "sortable-ghost",
-        onStart: inTheAir,
         onAdd: dragTask,
         onChoose: pickupCard,
         forceFallback: true,
@@ -182,7 +173,6 @@ function applySortable(selector) {
 function pickupCard() {
     navigator.vibrate(100);
     // NEXT LINE IS FOR TESTING, DELETE WHEN DONE TESTING
-    console.log('Sortable: Delay is over, card is effectively picked up and should be movable now');
     playPop();
 }
 
@@ -204,10 +194,6 @@ function dragTask(evt) {
     updateTaskDate(subjectId, taskId, oldWeekDate, updatedTaskDetail, updateTaskFields);
 }
 
-function inTheAir(evt) {
-    //add stuff if needed.
-}
-
 function blurOnEnter(element) {
     element.keyup(function(event){
         if (event.keyCode === 13) {
@@ -223,7 +209,6 @@ function executeOnEnter(element, callback) {
         }
     });
 }
-
 
 //===========================================================================================================
 //CREATE CALENDAR
@@ -286,11 +271,9 @@ function prepareCalendar() {
 function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 
     if (taskDetails.title.length> 25){
-        //console.log("The tile has more than 30 characters");
         $('#cardTitle').css("line-height", "1.4em").css("margin-bottom", "10px");
     } else {
         $('#cardTitle').css("margin-bottom", "0px").css("line-height", ".8em");
-
     }
 
     $('#timeStudiedWrapper').show();
@@ -321,7 +304,6 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
     $('#closeTaskModal').off("click");
     $('#closeTaskModalDone').off("click");
 
-    //console.log("This is the last thing that happens in fillInTaskDetails before the showTaskModal function is called.");
     showTaskModal(subjectId, isDone);
 
     fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, displayTimeStudiedForTask);
@@ -354,8 +336,6 @@ function showTaskModal(subjectId, isDone) {
     // change heading's background to main colour, and left side's background to secondary colour
     fetchAnActiveSubject(subjectId, function(subjectDict) {
         $('#taskCardHeadingDiv, #leftSideTaskCard, #completeTask').addClass(subjectDict.colour_scheme);
-        timeColoursGotDisplayedInTaskModal = $.now();
-        console.log('It took ' + (timeColoursGotDisplayedInTaskModal-timeCardWasClicked) + ' millisecond from clicking the on card for the colours to appear.');
     });
 
 
@@ -437,7 +417,6 @@ function displayTimeStudiedForTask(totalSecondsStudied, isDone) {
 //CREATE A TASK CARD
 //===========================================================================================================
 var dayList;
-
 
 function openAddTaskDialog(date){
     //Automatically fill the assigned date
@@ -752,14 +731,3 @@ function hideAreYouSureDeleteTask(){
     //Fades in the greyed-out background
 }
 
-//===========================================================================================================
-// WARNING FOR IF THERE'S NO INTERNET
-//===========================================================================================================
-
-function showNoInternetModal(){
-    $('#noInternetModal').css('display','block');
-    $('#calendarPage').addClass('frostedGlass');
-    $('#iPadStatusBar').addClass('frostedGlass');
-    $('#subjectsPage').addClass('frostedGlass');
-    $('#navBar').addClass('frostedGlass');
-}

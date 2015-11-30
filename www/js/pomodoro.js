@@ -8,7 +8,6 @@ var numOfStudySessions = 0;
 //Hourglass animation
 //===============================================================================================================================
 
-//var hourGlassTL = new TimelineMax({ paused:true, autoRemoveChildren:true, smoothChildTiming: true});
 var workTL = new TimelineMax({paused:true});
 
 function prepareHourGlass() {
@@ -81,7 +80,6 @@ function convertDisplayedTimeToSeconds() {
     return totalSeconds;
 }
 
-
 function setTimer(subjectId, weekDate, taskId) {
     getSessionDuration(function(duration) {
         timer(
@@ -112,7 +110,6 @@ function setTimer(subjectId, weekDate, taskId) {
     })
 }
 
-
 function playPauseTimer(subjectId, weekDate, taskId) {
     // play timer
     if ($('#playPauseButton').hasClass('notPlaying')) {
@@ -120,9 +117,7 @@ function playPauseTimer(subjectId, weekDate, taskId) {
         workTL.play();
 
         if(isMobile()){
-            console.log("Don't go to sleep!");
             window.plugins.insomnia.keepAwake();
-            console.log("Not going to sleep!");
         }
         togglePlayPause();
         $('#stopButton').prop('disabled', false);
@@ -135,9 +130,7 @@ function playPauseTimer(subjectId, weekDate, taskId) {
         // pause animation
         workTL.pause();
         if(isMobile()){
-            console.log("It's okay you can relax");
             window.plugins.insomnia.allowSleepAgain();
-            console.log("Relaxing again");
         }
 
         togglePlayPause();
@@ -159,12 +152,9 @@ function switchToNextSession(subjectId, weekDate, taskId) {
             sessionType = 'short_break';
 
             var randomNumber = Math.floor(Math.random() * 101);
-            console.log(randomNumber);
             if(randomNumber>=50){
-                console.log("Playing Drinking Ruzo");
                 switchToShortBreakTL.play(0);
             }else{
-                console.log("Playing Rug Ruzo");
                 switchToSecondShortBreakTL.play(0);
             }
 
@@ -193,7 +183,6 @@ function switchToNextSession(subjectId, weekDate, taskId) {
 
         // change to study_session
         sessionType = 'study_session';
-        //switchToWorkTL.play(0);
         $("#circleBehindBreakRuzo").css('display','none');
         $("#snoozeRuzo").css('display','none');
         $("#drinkRuzo").css('display','none');
@@ -229,9 +218,7 @@ function stopTimer(subjectId, weekDate, taskId, callback) {
     $('#stopButton').addClass('stopped');
     workTL.pause(0);
     if(isMobile()){
-        console.log("It's okay you can relax");
         window.plugins.insomnia.allowSleepAgain();
-        console.log("Relaxing again");
     }
     $("#circleBehindBreakRuzo").css('display','none');
     $("#snoozeRuzo").css('display','none');
