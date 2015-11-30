@@ -1,5 +1,5 @@
 #profilePage{
-
+    background-color: #d1d7dd;
     overflow: auto;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -26,7 +26,7 @@
     display: inline-block;
     color: #1B9BAE;
     font-size: 2.5em;
-    padding-top: 23px;
+    padding-top: 16px;
     margin-left: 30px;
 }
 
@@ -40,8 +40,8 @@
 }
 
 #dayStreak{
-    margin-left: 55px;
     font-family: 'Acme', sans-serif;
+    padding: 10px;
 }
 
 #firstStars{
@@ -53,8 +53,8 @@
 .streakStars{
     position: absolute;
     display: inline-block;
-    height: 104px;
-    width: 96px;
+    height: 84px;
+    width: 77px;
 }
 
 #secondStars{
@@ -62,8 +62,8 @@
     -webkit-transform:rotate(150deg);
     -o-transform:rotate(150deg);
     -ms-transform:rotate(150deg);
-    margin-top: -14px;
-    margin-left: -45px;
+    margin-top: 6px;
+    margin-left: -32px;
 }
 
 #streakMessage{
@@ -72,6 +72,7 @@
     font-size: 1.2em;
     display: inline;
     cursor: default;
+    margin-left: 50px;
 }
 
 
@@ -151,14 +152,12 @@
     width:900px;
     color: #607A93;
     font-weight: 400;
-    text-align:center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     display: block;
     margin: auto;
     padding: 30px;
     cursor: default;
-
-    /*text-transform: uppercase;*/
+    line-height: 1.6em;
 }
 
 .progressHeading{
@@ -206,7 +205,7 @@
     clear: both;
     padding: 0px;
     margin: 0px;
-    width: 1020px;
+    width: 910px;
     display: block;
     margin: auto;
 }
@@ -230,6 +229,7 @@
 
 .span_1_of_12 {
     width: 6.866%;
+    text-align: center;
 }
 
 .legendSquare{

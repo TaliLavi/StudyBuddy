@@ -308,11 +308,11 @@ function drawHeatmap(){
             domainMargin: 0,
             subDomain: "day",
             range: 12,
-            cellSize: 12,
+            cellSize: 12.5,
             start: new Date(2015, 8, 1),
             data: heatmapData,
             cellRadius: 2,
-            domainDynamicDimension: false,
+            //domainDynamicDimension: false,
             displayLegend: false
         });
     })
