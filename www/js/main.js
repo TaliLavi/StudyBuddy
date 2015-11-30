@@ -653,17 +653,17 @@ function changeTimeIntervals() {
     $('#studySessionLengthDisplay').html(workSession + " minutes");     //Changes the html on the settings menu to reflect the new times
     $('#shortBreakLengthDisplay').html(shortBreak + " minutes");
     $('#longBreakLengthDisplay').html(longBreak + " minutes");
-    updateTimeIntervals(workSession, shortBreak, longBreak);
+    updateTimeIntervals(workSession*60, shortBreak*60, longBreak*60);
     prepareHourGlass();
 }
 
 function displayTimeIntervals(sessionTimes) {
-    $('#studySessionLengthDisplay').html(sessionTimes.study_session + " minutes");
-    $('#shortBreakLengthDisplay').html(sessionTimes.short_break + " minutes");
-    $('#longBreakLengthDisplay').html(sessionTimes.long_break + " minutes");
-    $('#workIntervalInput').val(sessionTimes.study_session);
-    $('#shortBreakIntervalInput').val(sessionTimes.short_break);
-    $('#longBreakIntervalInput').val(sessionTimes.long_break);
+    $('#studySessionLengthDisplay').html(sessionTimes.study_session/60 + " minutes");
+    $('#shortBreakLengthDisplay').html(sessionTimes.short_break/60 + " minutes");
+    $('#longBreakLengthDisplay').html(sessionTimes.long_break/60 + " minutes");
+    $('#workIntervalInput').val(sessionTimes.study_session/60);
+    $('#shortBreakIntervalInput').val(sessionTimes.short_break/60);
+    $('#longBreakIntervalInput').val(sessionTimes.long_break/60);
 }
 
 
