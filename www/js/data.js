@@ -282,7 +282,6 @@ function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
     }, firebaseErrorFrom('fetchTasksByWeek'));
 }
 
-
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS
 function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
     var activeTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active');
@@ -303,7 +302,6 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
     }, firebaseErrorFrom('fetchAllUnassignedActiveTasks'));
 }
 
-
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
 function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
     var taskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
@@ -311,7 +309,6 @@ function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
         callback(subjectId, taskId, snapshot.val(), isDone);
     }, firebaseErrorFrom('fetchSingleTask'));
 }
-
 
 function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updatedTaskDetail, postUpdateCallback) {
     var newWeekDate = startOfWeek(updatedTaskDetail.assigned_date);
@@ -383,7 +380,6 @@ function deleteTasksPerSubject(subjectId) {
     deletesTasksOfStatusPerSubject(subjectId, 'active');
     deletesTasksOfStatusPerSubject(subjectId, 'done');
 }
-
 
 // MOVE ACTIVE TASK TO DELETED
 function moveActiveTaskToDeleted(subjectId, weekDate, taskId) {
@@ -471,22 +467,10 @@ function incrementNumOfBreaksForDate() {
     }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
 }
 
-
 function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
     updateTimeStudiedForTask(subjectId, weekDate, taskId, timeToLog, callback);
     updateTimeStudiedForDate(timeToLog);
 }
-
-//function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
-//    var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
-//    totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
-//        var newTotalTime = snapshot.val() + additionalTimeStudied;
-//        totalSecondsStudiedPerTaskRef.set(newTotalTime);
-//        if (callback !== undefined) {
-//            callback(subjectId, weekDate, taskId);
-//        }
-//    }, firebaseErrorFrom('updateTimeStudiedForTask'));
-//}
 
 function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
     var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
@@ -524,6 +508,7 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
 //=====================================================================
 
 // RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
+// if renewcache set to true, go to the database. Otherwise, use cached data.
 function fetchAllDoneTasks(callback, renewCache) {
     if (renewCache === undefined) {
         renewCache = false;
