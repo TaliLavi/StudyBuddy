@@ -47,9 +47,9 @@ function createUser(username, email, password, uid) {
         username: username,
         email: email,
         // SET DEFAULT TIME INTERVALS
-        study_session_minutes: 25,
-        short_break_minutes: 5,
-        long_break_minutes: 15
+        study_session_seconds: 1500,
+        short_break_seconds: 300,
+        long_break_seconds: 900
     };
 
     // LOG-IN THE USER, AND AFTERWARDS PUSH THEM TO DB
