@@ -1,8 +1,6 @@
 function prepareSignUp() {
     // GET FIELD VALUES
-    var firstName = $('#firstNameInput').val();
-    //var lastName = $('#lastNameInput').val();
-    var lastName= "";
+    var username = $('#usernameInput').val();
     var email = $('#signUpEmailInput').val();
     var password = $('#signUpPasswordInput').val();
     var confirmedPassword = $('#confirmPasswordInput').val();
@@ -17,7 +15,7 @@ function prepareSignUp() {
     } else {
         // password has to have a minimum of 6 characters
         if ($('#confirmPasswordInput').val().length >= 6) {
-            signUpUser(firstName, lastName, email, password);
+            signUpUser(username, email, password);
         } else {
             $('#signUpPasswordErrorMessage').text('The password must have at least 6 characters.');
             $('#signUpPasswordErrorTriangle').show();
@@ -44,10 +42,9 @@ function prepareLogIn() {
 }
 
 // CREATE NEW USER
-function createUser(firstName, lastName, email, password, uid) {
+function createUser(username, email, password, uid) {
     var newUser = {
-        first_name: firstName,
-        last_name: lastName,
+        username: username,
         email: email,
         // SET DEFAULT TIME INTERVALS
         study_session_minutes: 25,
@@ -56,7 +53,7 @@ function createUser(firstName, lastName, email, password, uid) {
     };
 
     // LOG-IN THE USER, AND AFTERWARDS PUSH THEM TO DB
-    logInUser(email, password, function() {
-        saveNewUser(newUser, uid);
+    logInUser(email, password, function(callback) {
+        saveNewUser(newUser, uid, callback);
     });
 };

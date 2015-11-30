@@ -18,7 +18,7 @@ function firebaseErrorFrom(funcName) {
 //=====================================================================
 
 // Sign up a new user
-function signUpUser(firstName, lastName, email, password) {
+function signUpUser(username, email, password) {
     var ref = FIREBASE_REF;
     ref.createUser({
         email: email,
@@ -35,7 +35,7 @@ function signUpUser(firstName, lastName, email, password) {
                 $('#signUpEmailErrorTriangle').show();
             }
         } else {
-            createUser(firstName, lastName, email, password, userData.uid);
+            createUser(username, email, password, userData.uid);
         }
     });
 }
@@ -64,13 +64,15 @@ function logInUser(email, password, signUpCallback) {
                 $('#loginPasswordErrorTriangle').show();
             }
         } else {
-            if (signUpCallback !== undefined) {
-                signUpCallback();
-            }
             // attach an event handler to sign out, in case of session timeout
             ref.offAuth(AuthChangeHandler);
             ref.onAuth(AuthChangeHandler);
-            goToLogin();
+
+            if (signUpCallback !== undefined) {
+                signUpCallback(goToLogin);
+            } else {
+                goToLogin();
+            }
         }
     });
 }
@@ -95,7 +97,7 @@ function signOut() {
 // We use this to sign the user out of the ui, if authentication expired
 function AuthChangeHandler(uid) {
     if (uid === null) {
-        signOut()
+        signOut();
     }
 }
 
@@ -105,26 +107,17 @@ function AuthChangeHandler(uid) {
 
 // ADD NEW USER TO THE DB
 function saveNewUser(newUser, uid, callback) {
-    // CREATE A REFERENCE TO FIREBASE
+    // CREATE REFERENCES TO FIREBASE
     var newUserRef = FIREBASE_REF.child('/Users/active/' + uid);
+    var onboardingSubjectsRef = FIREBASE_REF.child('/Subjects/active/' + uid);
+    var onboardingTasksRef = FIREBASE_REF.child('/Tasks/' + uid);
 
-    //SAVE USER DATA TO FIREBASE
-    newUserRef.set(newUser, function (error) {
-        if (error !== null) {
-            callback();
-        }
+    //SAVE USER AND ONBOARDING DATA TO FIREBASE
+    newUserRef.set(newUser, function() {
+        onboardingSubjectsRef.set(getOnboardingSubjects(), function() {
+            onboardingTasksRef.set(getOnboardingTasks(), callback);
+        });
     });
-}
-
-// MOVE USER TO DELETED
-// TODO: decide how this works with the authentication functions
-function deleteUser(userUID) {
-    var oldRef = FIREBASE_REF.child('/Users/active/' + userUID);
-    var newRef = FIREBASE_REF.child('/Users/deleted/' + userUID);
-    oldRef.once('value', function(snapshot)  {
-        newRef.set(snapshot.val());
-        oldRef.remove();
-    }, firebaseErrorFrom('deleteUser'));
 }
 
 
@@ -289,7 +282,6 @@ function fetchTasksByWeek(startOfWeek, perSubjectCallback) {
     }, firebaseErrorFrom('fetchTasksByWeek'));
 }
 
-
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON ALL UNASSIGNED TASKS
 function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
     var activeTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active');
@@ -310,7 +302,6 @@ function fetchAllUnassignedActiveTasks(perUnassignedSubjectCallback) {
     }, firebaseErrorFrom('fetchAllUnassignedActiveTasks'));
 }
 
-
 // RETRIEVE AND RUNS CALLBACK FUNCTION ON A SINGLE TASK
 function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
     var taskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/' + (isDone? "done" : "active") + '/' + subjectId + '/' + weekDate + '/' + taskId);
@@ -318,7 +309,6 @@ function fetchSingleTask(subjectId, weekDate, taskId, isDone, callback) {
         callback(subjectId, taskId, snapshot.val(), isDone);
     }, firebaseErrorFrom('fetchSingleTask'));
 }
-
 
 function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updatedTaskDetail, postUpdateCallback) {
     var newWeekDate = startOfWeek(updatedTaskDetail.assigned_date);
@@ -390,7 +380,6 @@ function deleteTasksPerSubject(subjectId) {
     deletesTasksOfStatusPerSubject(subjectId, 'active');
     deletesTasksOfStatusPerSubject(subjectId, 'done');
 }
-
 
 // MOVE ACTIVE TASK TO DELETED
 function moveActiveTaskToDeleted(subjectId, weekDate, taskId) {
@@ -478,22 +467,10 @@ function incrementNumOfBreaksForDate() {
     }, firebaseErrorFrom('incrementNumOfBreaksForDate'));
 }
 
-
 function updateTimeStudied(subjectId, weekDate, taskId, timeToLog, callback) {
     updateTimeStudiedForTask(subjectId, weekDate, taskId, timeToLog, callback);
     updateTimeStudiedForDate(timeToLog);
 }
-
-//function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
-//    var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
-//    totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
-//        var newTotalTime = snapshot.val() + additionalTimeStudied;
-//        totalSecondsStudiedPerTaskRef.set(newTotalTime);
-//        if (callback !== undefined) {
-//            callback(subjectId, weekDate, taskId);
-//        }
-//    }, firebaseErrorFrom('updateTimeStudiedForTask'));
-//}
 
 function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStudied, callback) {
     var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
@@ -531,6 +508,7 @@ function fetchTimeStudiedForTask(subjectId, weekDate, taskId, isDone, callback) 
 //=====================================================================
 
 // RETRIEVE ALL DONE TASKS AND SUBJECTS AND RUN CALLBACK FUNCTION
+// if renewcache set to true, go to the database. Otherwise, use cached data.
 function fetchAllDoneTasks(callback, renewCache) {
     if (renewCache === undefined) {
         renewCache = false;
