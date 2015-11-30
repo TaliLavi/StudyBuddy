@@ -123,7 +123,7 @@ function saveNewUser(newUser, uid, callback) {
 
 function fetchUsername(heatmapSnapshot) {
     if (dataCache.username !== null) {
-        currentStreak(dataCache.username)
+        currentStreak(heatmapSnapshot);
     } else {
         var usernameRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser() + '/username');
         usernameRef.once("value", function(snapshot) {
