@@ -2,7 +2,8 @@
 var FIREBASE_REF = new Firebase("https://studybuddyapp.firebaseio.com");
 var dataCache = {
     sessionTimes: null,
-    barChart: null
+    barChart: null,
+    username: null
 }
 
 
@@ -120,6 +121,18 @@ function saveNewUser(newUser, uid, callback) {
     });
 }
 
+function fetchUsername(heatmapSnapshot) {
+    if (dataCache.username !== null) {
+        currentStreak(dataCache.username)
+    } else {
+        var usernameRef = FIREBASE_REF.child('/Users/active/' + getLoggedInUser() + '/username');
+        usernameRef.once("value", function(snapshot) {
+            var usernameInfo = snapshot.val();
+            dataCache.username = usernameInfo;
+            currentStreak(heatmapSnapshot);
+        }, firebaseErrorFrom('fetchUsername'));
+    }
+}
 
 //=====================================================================
 //                              SUBJECTS
@@ -332,7 +345,6 @@ function updateTask(subjectId, taskId, oldWeekDate, originalTaskDetails, updated
     var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser() + '/' + subjectId);
     subjectRef.once('value', function(subjectSnapshot) {
         newTaskRef.once('value', function(updatedTask)  {
-            console.log('updatedTask.val() in updateTask() is:', updatedTask.val())
             postUpdateCallback(subjectId, subjectSnapshot.val(), taskId, originalTaskDetails, updatedTask.val());
         }, firebaseErrorFrom('updateTask'));
     }, firebaseErrorFrom('updateTask'));
@@ -476,9 +488,6 @@ function updateTimeStudiedForTask(subjectId, weekDate, taskId, additionalTimeStu
     var totalSecondsStudiedPerTaskRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/active/' + subjectId + '/' + weekDate + '/' + taskId + '/total_seconds_studied');
     totalSecondsStudiedPerTaskRef.once("value", function(snapshot) {
         var newTotalTime = snapshot.val() + additionalTimeStudied;
-        console.log("Original time : " + snapshot.val());
-        console.log("Additional time : " +additionalTimeStudied);
-        console.log("New time : " + newTotalTime);
         totalSecondsStudiedPerTaskRef.set(newTotalTime);
         if (callback !== undefined) {
             callback(subjectId, weekDate, taskId);

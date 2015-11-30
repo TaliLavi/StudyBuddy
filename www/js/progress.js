@@ -308,11 +308,11 @@ function drawHeatmap(){
             domainMargin: 0,
             subDomain: "day",
             range: 12,
-            cellSize: 12,
+            cellSize: 12.5,
             start: new Date(2015, 8, 1),
             data: heatmapData,
             cellRadius: 2,
-            domainDynamicDimension: false,
+            //domainDynamicDimension: false,
             displayLegend: false
         });
     })
@@ -347,7 +347,7 @@ function isSameMonth(date1, date2) {
 
 function currentStreak(heatmapSnapshot) {
     var previousDate;
-    var longestStreak = 0;
+    var longestStreak = 1;
     var currentStreak = 1;
 
     $.each(heatmapSnapshot, function(date){
@@ -362,8 +362,13 @@ function currentStreak(heatmapSnapshot) {
 
         previousDate = date;
     });
-    $('#currentStreak').text('current streak is: ' + currentStreak);
-    $('#longestStreak').text('longest streak is: ' + longestStreak);
+    $('#currentStreak').text(currentStreak);
+
+    if (currentStreak === longestStreak) {
+        $('#streakMessage').text('Well done, that\'s a new record!');
+    } else {
+        $('#streakMessage').text('Keep it up, ' + dataCache.username + '! Your longest ever study streak is ' + longestStreak + ' days.');
+    }
 }
 
 function isBestMonth(heatmapSnapshot) {
