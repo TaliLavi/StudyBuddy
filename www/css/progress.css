@@ -284,3 +284,13 @@
 .unSelectedBarGraphButton{
     background-color: rgb(149,202,173);
 }
+
+#dayInitials{
+    width: 10px;
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    left: 160px;
+    top: 780px;
+    color: #607A93;
+}
