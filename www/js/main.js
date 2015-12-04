@@ -6,7 +6,7 @@ function preparePage() {
     });
 
     $('#navBar').show();
-    //navigator.splashscreen.hide();
+
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
@@ -18,7 +18,8 @@ function preparePage() {
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
-
+    navigator.splashscreen.hide();
+    alert("splash screen hidden");
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(false, displayActiveSubjects);
 
