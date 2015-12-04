@@ -17,7 +17,7 @@
     <preference name="exit-on-suspend" value="true"/>
     <preference name="show-splash-screen-spinner" value="false"/>
     <preference name="autoHideSplashScreen" value="false"/>
-    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreen" value="CDVSplashScreen"/>
     <preference name="FadeSplashScreen" value="true"/>
     <preference name="FadeSplashScreenDuration" value="1.0" />
     <!--<preference name="SplashScreenDelay" value="10000"/>-->

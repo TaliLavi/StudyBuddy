@@ -18,10 +18,8 @@ function preparePage() {
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
-    setTimeout(function(){
-        navigator.splashscreen.hide();
-    }, 2000);
-    console.log("This is after splash screen is hidden");
+
+
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(false, displayActiveSubjects);
 
@@ -42,6 +40,10 @@ function preparePage() {
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
+    //setTimeout(function(){
+    //    navigator.splashscreen.hide();
+    //}, 2000);
+    //console.log("This is after splash screen is hidden");
 }
 
 //===========================================================================================================
