@@ -97,7 +97,7 @@ function showProgressPage() {
             // choose randomly which feedback to display
             if (Math.random() > 0.5) {
                 timestring = timeThisMonth(heatmapSnapshot);
-                $('#heatmapMessage').text('You studied ' + timestring + ' since the start of this month.');
+                $('#heatmapMessage').text('You\'ve spent ' + timestring + ' studying since the start of this month.');
             } else {
                 var bestDay = findBestWeekDay(heatmapSnapshot);
                 $('#heatmapMessage').text('Looks like ' + bestDay + ' is normally your most productive day.');
