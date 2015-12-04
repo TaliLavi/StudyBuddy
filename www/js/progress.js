@@ -175,7 +175,7 @@ function fetchAndDisplayProgressForLast7Days(renewCache) {
                     } else if (untouchedSubjects.length >= subjectsHistogramThisWeek.length/2) {
                         $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but you should really start paying attention to other subjects as well");
                     } else {
-                        $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but you haven't put any effort yet into some of the other subjects this week.");
+                        $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but you haven't yet put any effort into some of your other subjects this week.");
                     }
                 } else {
                     $('#doneTasksMessage').text("Well done on " + arrayToPrettyList(bestSubjects) + "!");
@@ -203,11 +203,11 @@ function fetchAndDisplayProgressForLastMonth(renewCache) {
             } else if (sumTasksThisMonth > sumTasksLastMonth){
                 $('#doneTasksMessage').text("Awesome, you've completed " + (sumTasksThisMonth - sumTasksLastMonth) + " more tasks this month than last month. Keep up the great work!");
             } else if (sumTasksThisMonth === sumTasksLastMonth){
-                $('#doneTasksMessage').text("You've completed the same number of tasks this month as last month (" + sumTasksThisMonth + "). Great consistency!");
+                $('#doneTasksMessage').text("You've completed the same number of tasks this month as last month (" + sumTasksThisMonth + "). Why not try for one more?");
             } else if (sumTasksThisMonth === sumTasksLastMonth - 1){
-                $('#doneTasksMessage').text("If you just complete one more task, you'll do as good as you did last month. You can do it!");
+                $('#doneTasksMessage').text("If you just complete one more task, you'll do as well as last month. Go for it!");
             } else{
-                $('#doneTasksMessage').text("You're lagging behind last month's effort by " + (sumTasksLastMonth - sumTasksThisMonth) + " tasks. Work harder, it's worth it.");
+                $('#doneTasksMessage').text("You're lagging behind last month's effort by " + (sumTasksLastMonth - sumTasksThisMonth) + " tasks. Work a little harder, it'll be worth it.");
             }
         } else {
             // best subjects feedback
@@ -224,7 +224,7 @@ function fetchAndDisplayProgressForLastMonth(renewCache) {
                         $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but you haven't put any effort into "
                                                     + arrayToPrettyList(untouchedSubjects) + ". Perhaps you should spread the love around.");
                     } else { // more than 3 untouched subjects
-                        $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but you should really start paying attention to other subjects as well");
+                        $('#doneTasksMessage').text("Well done on " + bestSubjects[0] + ", but don't forget to pay attention to your other subjects too");
                     }
                 } else {
                     $('#doneTasksMessage').text("Well done on " + arrayToPrettyList(bestSubjects) + "!");
