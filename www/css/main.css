@@ -309,7 +309,7 @@ input, textarea {
 #signUpEmailErrorTriangle{
     position: absolute;
     right: 120px;
-    top: 93px;
+    top: 100px;
     width: 0;
     height: 0;
     border-top: 1em solid transparent;
@@ -322,7 +322,7 @@ input, textarea {
 #signUpPasswordErrorTriangle{
     position: absolute;
     right: 120px;
-    top: 208px;
+    top: 225px;
     width: 0;
     height: 0;
     border-top: 1em solid transparent;
@@ -1069,6 +1069,61 @@ input:focus {outline:0;}
 
 .inputField:-ms-input-placeholder {
     color: rgba(96, 122, 147, 0.5);
+}
+
+
+#newTaskSubjectErrorTriangle{
+    position: absolute;
+    right: 200px;
+    top: 28px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
+}
+
+#newTaskSubjectErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -175px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#newTaskTitleErrorTriangle{
+    position: absolute;
+    right: 200px;
+    top: 82px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
+}
+
+#newTaskTitleErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -175px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 /*===================================================================================================================*/
