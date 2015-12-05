@@ -622,14 +622,19 @@ input:focus {outline:0;}
 
 /*This is the close(x) button*/
 .closeX{
+    height:30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
     display: block;
     position: absolute;
-    color: white;
-    opacity: .5;
+    color: #95CAAD;
+    background-color: white;
     font-weight: 300;
     font-size: 2em;
     right: 10px;
-    top: 0;
+    top: 10px;
     cursor: pointer;
 }
 
@@ -837,14 +842,11 @@ input:focus {outline:0;}
 
 
 #closeTaskModal{
-    display: block;
-    position: absolute;
-    color: lightgray;
+    color: white;
+    background-color: #95CAAD;
     font-weight: 300;
-    font-size: 2em;
-    right: 10px;
-    top: 0px;
-    cursor: pointer;
+    font-size: 1.5em;
+
 }
 
 
