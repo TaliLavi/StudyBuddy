@@ -1101,7 +1101,7 @@ input:focus {outline:0;}
 
 #newTaskTitleErrorTriangle{
     position: absolute;
-    right: -158px;
+    right: 200px;
     top: 82px;
     width: 0;
     height: 0;
