@@ -40,10 +40,6 @@ function preparePage() {
 
     blurOnEnter($('#titleInput'));
     blurOnEnter($('#titleInput'));
-    //setTimeout(function(){
-    //    navigator.splashscreen.hide();
-    //}, 2000);
-    //console.log("This is after splash screen is hidden");
 }
 
 //===========================================================================================================
@@ -123,7 +119,6 @@ function goToLogin() {
     if(navigator.onLine === false){
         $('#noInternetPage').css("display", "block");
     } else {
-        //navigator.splashscreen.hide();
         prepareLoginRuzo();
         // when clicking enter while on password field, if email field isn't empty, attempt to login
         executeOnEnter($('#logInPasswordInput'), prepareLogIn);
