@@ -373,21 +373,20 @@ function currentStreak(heatmapSnapshot) {
 
 function isBestMonth(heatmapSnapshot) {
     var previousDate = new Date("1900-01-01");
-    var bestDate = previousDate;
     var mostTimeStudiedInMonth = 0;
     var timeStudiedThisMonth = 0;
     $.each(heatmapSnapshot, function(dateKey, dateData){
         if (isSameMonth(previousDate, dateKey)) {
             timeStudiedThisMonth += dateData.time_studied;
-            if (timeStudiedThisMonth > mostTimeStudiedInMonth) {
-                mostTimeStudiedInMonth = timeStudiedThisMonth;
-                bestDate = dateKey;
-            }
         } else {
-            timeStudiedThisMonth = 0;
+            timeStudiedThisMonth = dateData.time_studied;
+        }
+        if (timeStudiedThisMonth > mostTimeStudiedInMonth) {
+            mostTimeStudiedInMonth = timeStudiedThisMonth;
         }
         previousDate = dateKey;
     });
+
     if (timeStudiedThisMonth >= mostTimeStudiedInMonth) {
         var timestring = formatTimeString(timeStudiedThisMonth);
         return timestring;
