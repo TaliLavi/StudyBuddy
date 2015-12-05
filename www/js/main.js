@@ -327,7 +327,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 }
 
 function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
-    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
+    (subjectId, weekDate, taskId, taskDetails,  function(){
         submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
     });
 }
@@ -470,11 +470,15 @@ function closeModalWindow() {
     $('.colourOption').removeClass('chosenColour');
 
     // ******************** FOR ADD TASK MODAL ********************
+    $("#newTaskTitleErrorTriangle").hide();
+    $("#newTaskSubjectErrorTriangle").hide();
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
         // Reset select value to default
         return this.defaultSelected;
     });
+
+
 
     // ******************** FOR TASK MODAL ********************
     // remove all classes from #taskCardHeadingDiv & #leftSideTaskCard and then restore the the ones needed for future colour change
