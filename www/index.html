@@ -50,11 +50,18 @@
       <img src="img/ruzoLogo.png" id="ruzoLogo">
       <img src="img/ruzoTagline.png" id="ruzoTagline">
       <input type="text" placeholder="Username" id="usernameInput">
+      <div id="signUpUsernameErrorTriangle">
+        <div class="errorMessage" id="signUpUsernameErrorMessage"></div>
+      </div>
       <input type="email" placeholder="Email" id="signUpEmailInput">
-      <div id="signUpEmailErrorTriangle"><div class="errorMessage" id="signUpEmailErrorMessage"></div></div>
+      <div id="signUpEmailErrorTriangle">
+        <div class="errorMessage" id="signUpEmailErrorMessage"></div>
+      </div>
       <input type="password" placeholder="Password" id="signUpPasswordInput">
       <input type="password" placeholder="Confirm Password" id="confirmPasswordInput">
-      <div id="signUpPasswordErrorTriangle"><div class="errorMessage" id="signUpPasswordErrorMessage"></div></div>
+      <div id="signUpPasswordErrorTriangle">
+        <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
+      </div>
       <button class="loginSignUpButton" type="button" onclick="prepareSignUp()">Sign Up</button>
       <button class="toggleSignLog" type="button" onclick="showLogIn()">Already have an account?</button>
       <div id="loginRuzoShadow"></div>

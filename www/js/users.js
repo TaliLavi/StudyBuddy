@@ -8,17 +8,23 @@ function prepareSignUp() {
     $('#signUpPasswordErrorMessage').text('');
     $('#signUpEmailErrorTriangle').hide();
     $('#signUpPasswordErrorTriangle').hide();
+    $('#signUpUsernameErrorTriangle').hide();
 
-    if (password !== confirmedPassword) {
-        $('#signUpPasswordErrorMessage').text('The passwords must be identical.');
-        $('#signUpPasswordErrorTriangle').show();
+    if ($('#usernameInput').val() === "") {
+        $('#signUpUsernameErrorMessage').text('Please type a username');
+        $('#signUpUsernameErrorTriangle').show();
     } else {
-        // password has to have a minimum of 6 characters
-        if ($('#confirmPasswordInput').val().length >= 6) {
-            signUpUser(username, email, password);
-        } else {
-            $('#signUpPasswordErrorMessage').text('The password must have at least 6 characters.');
+        if (password !== confirmedPassword) {
+            $('#signUpPasswordErrorMessage').text('The passwords must be identical.');
             $('#signUpPasswordErrorTriangle').show();
+        } else {
+            // password has to have a minimum of 6 characters
+            if ($('#confirmPasswordInput').val().length >= 6) {
+                signUpUser(username, email, password);
+            } else {
+                $('#signUpPasswordErrorMessage').text('The password must have at least 6 characters.');
+                $('#signUpPasswordErrorTriangle').show();
+            }
         }
     }
 }
