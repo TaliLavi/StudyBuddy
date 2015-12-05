@@ -14,6 +14,10 @@ function createTask() {
         var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
         // PUSH THEM TO DB
         saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
+    } else if($('#subjectInput').val() === null) {
+        $('#newTaskSubjectErrorMessage').text('Please choose a subject');
+    } else if(!$('#titleInput').val()) {
+        $('#newTaskTitleErrorMessage').text('Give your task a title');
     }
 }
 
