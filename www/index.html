@@ -6,7 +6,7 @@
   <meta name="msapplication-tap-highlight" content="no" />
   <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />-->
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width"/>
   <title>Study Buddy</title>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pomodoro.css">
@@ -49,12 +49,19 @@
       <form id="signUpForm">
       <img src="img/ruzoLogo.png" id="ruzoLogo">
       <img src="img/ruzoTagline.png" id="ruzoTagline">
-      <input type="text" placeholder="Username" id="usernameInput">
+      <input type="text" placeholder="First Name" id="usernameInput">
+      <div id="signUpUsernameErrorTriangle">
+        <div class="errorMessage" id="signUpUsernameErrorMessage"></div>
+      </div>
       <input type="email" placeholder="Email" id="signUpEmailInput">
-      <div id="signUpEmailErrorTriangle"><div class="errorMessage" id="signUpEmailErrorMessage"></div></div>
+      <div id="signUpEmailErrorTriangle">
+          <div class="errorMessage" id="signUpEmailErrorMessage"></div>
+      </div>
       <input type="password" placeholder="Password" id="signUpPasswordInput">
       <input type="password" placeholder="Confirm Password" id="confirmPasswordInput">
-      <div id="signUpPasswordErrorTriangle"><div class="errorMessage" id="signUpPasswordErrorMessage"></div></div>
+      <div id="signUpPasswordErrorTriangle">
+        <div class="errorMessage" id="signUpPasswordErrorMessage"></div>
+      </div>
       <button class="loginSignUpButton" type="button" onclick="prepareSignUp()">Sign Up</button>
       <button class="toggleSignLog" type="button" onclick="showLogIn()">Already have an account?</button>
       <div id="loginRuzoShadow"></div>
@@ -158,22 +165,29 @@
 
       <div id="heatmapSection">
 
-        <div id="timeStudyingHeading" >TIME STUDIED</div>
-        <div id="cal-heatmap"></div>
-        <div class="sectionMonth groupMonth">
-          <div class="colMonth span_1_of_12">Sep</div>
-          <div class="colMonth span_1_of_12">Oct</div>
-          <div class="colMonth span_1_of_12">Nov</div>
-          <div class="colMonth span_1_of_12">Dec</div>
-          <div class="colMonth span_1_of_12">Jan</div>
-          <div class="colMonth span_1_of_12">Feb</div>
-          <div class="colMonth span_1_of_12">Mar</div>
-          <div class="colMonth span_1_of_12">Apr</div>
-          <div class="colMonth span_1_of_12">May</div>
-          <div class="colMonth span_1_of_12">Jun</div>
-          <div class="colMonth span_1_of_12">Jul</div>
-          <div class="colMonth span_1_of_12">Aug</div>
+        <div id="timeStudyingHeading">TIME STUDIED
+            <div id="dayInitials">
+                M<br>T<br>W<br>T<br>F<br>S<br>S<br>
+            </div>
         </div>
+
+        <div id="cal-heatmap">
+            <div class="sectionMonth groupMonth">
+              <div class="colMonth span_1_of_12">Sep</div>
+              <div class="colMonth span_1_of_12">Oct</div>
+              <div class="colMonth span_1_of_12">Nov</div>
+              <div class="colMonth span_1_of_12">Dec</div>
+              <div class="colMonth span_1_of_12">Jan</div>
+              <div class="colMonth span_1_of_12">Feb</div>
+              <div class="colMonth span_1_of_12">Mar</div>
+              <div class="colMonth span_1_of_12">Apr</div>
+              <div class="colMonth span_1_of_12">May</div>
+              <div class="colMonth span_1_of_12">Jun</div>
+              <div class="colMonth span_1_of_12">Jul</div>
+              <div class="colMonth span_1_of_12">Aug</div>
+            </div>
+        </div>
+
         <div id="myHeatmapLegend">
           <div id="square1" class="legendSquare"></div><div class="legendText"> > 25 mins</div>
           <div id="square2" class="legendSquare"></div><div class="legendText"> > 1 hr</div>
@@ -375,6 +389,18 @@
                 <br>
                 <input id="assignedDateInput" class="inputField" name="assignedDateInput" type="date" placeholder="e.g.: 06-Sep-2015" required>
                 <br>
+                <div id="newTaskSubjectErrorTriangle">
+                  <div class="errorMessage" id="newTaskSubjectErrorMessage">
+                    Please choose a subject
+                  </div>
+                </div>
+                <br>
+                <div id="newTaskTitleErrorTriangle">
+                  <div class="errorMessage" id="newTaskTitleErrorMessage">
+                    Give your task a title
+                  </div>
+                </div>
+              <br>
                 <button name="submit" id="submitNewTask" type="button">Add Task</button>
             </form>
         </div>
@@ -504,7 +530,7 @@
             <button  id="openStudySessionSettings" onclick="openStudySessionSettings()"><span class="settingsLengthHeading">Study session length</span><br><span id="studySessionLengthDisplay">25 mins</span></button>
             <button  id="openShortBreakSettings" onclick="openShortBreakSettings()"><span class="settingsLengthHeading">Short break length</span><br><span id="shortBreakLengthDisplay">5 mins</span></button>
             <button  id="openLongBreakSettings" onclick="openLongBreakSettings()"><span class="settingsLengthHeading">Long break length</span><br><span id="longBreakLengthDisplay">15 mins</span></button>
-            <button  id="signoutButton" onclick="signOut()">Sign out</button>
+            <button  id="signoutButton" onclick="signOut()"><img src="img/lockIcon.png" id="lockIcon"><span>Sign out</span></button>
         </div>
         <div id="studySessionSettings">
             <div class="insideSettingsText">Study session</div><br>

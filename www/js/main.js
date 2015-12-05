@@ -6,7 +6,7 @@ function preparePage() {
     });
 
     $('#navBar').show();
-    //navigator.splashscreen.hide();
+
     prepareCalendar();
     prepareCalendarSlider();
     // set nav buttons
@@ -18,6 +18,7 @@ function preparePage() {
     });
     // hide tasksDiv in the bottom panel
     $('#tasksDiv').hide();
+
 
     // RETRIEVE AND DISPLAY ALL SUBJECTS INFORMATION INSTANTLY WHEN PAGE FINISHES LOADING
     fetchActiveSubjects(false, displayActiveSubjects);
@@ -97,7 +98,7 @@ function showProgressPage() {
             // choose randomly which feedback to display
             if (Math.random() > 0.5) {
                 timestring = timeThisMonth(heatmapSnapshot);
-                $('#heatmapMessage').text('You studied ' + timestring + ' since the start of this month.');
+                $('#heatmapMessage').text('You\'ve spent ' + timestring + ' studying since the start of this month.');
             } else {
                 var bestDay = findBestWeekDay(heatmapSnapshot);
                 $('#heatmapMessage').text('Looks like ' + bestDay + ' is normally your most productive day.');
@@ -118,7 +119,6 @@ function goToLogin() {
     if(navigator.onLine === false){
         $('#noInternetPage').css("display", "block");
     } else {
-        //navigator.splashscreen.hide();
         prepareLoginRuzo();
         // when clicking enter while on password field, if email field isn't empty, attempt to login
         executeOnEnter($('#logInPasswordInput'), prepareLogIn);
@@ -327,7 +327,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 }
 
 function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
-    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
+    (subjectId, weekDate, taskId, taskDetails,  function(){
         submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
     });
 }
@@ -470,11 +470,15 @@ function closeModalWindow() {
     $('.colourOption').removeClass('chosenColour');
 
     // ******************** FOR ADD TASK MODAL ********************
+    $("#newTaskTitleErrorTriangle").hide();
+    $("#newTaskSubjectErrorTriangle").hide();
     // Reset select value to default
     $('#subjectInput option').prop('selected', function() {
         // Reset select value to default
         return this.defaultSelected;
     });
+
+
 
     // ******************** FOR TASK MODAL ********************
     // remove all classes from #taskCardHeadingDiv & #leftSideTaskCard and then restore the the ones needed for future colour change

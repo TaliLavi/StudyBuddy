@@ -309,7 +309,7 @@ input, textarea {
 #signUpEmailErrorTriangle{
     position: absolute;
     right: 120px;
-    top: 93px;
+    top: 100px;
     width: 0;
     height: 0;
     border-top: 1em solid transparent;
@@ -322,7 +322,7 @@ input, textarea {
 #signUpPasswordErrorTriangle{
     position: absolute;
     right: 120px;
-    top: 208px;
+    top: 225px;
     width: 0;
     height: 0;
     border-top: 1em solid transparent;
@@ -330,6 +330,35 @@ input, textarea {
     border-right: 1em solid #BC6771;
     z-index: 2;
     display: none;
+}
+
+#signUpUsernameErrorTriangle{
+    position: absolute;
+    right: 120px;
+    top: 36px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    z-index: 2;
+    display: none;
+}
+
+#signUpUsernameErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .8em;
+    color: #BC6771;
+    background-color: white;
+    right: -179px;
+    top: -16px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 2;
 }
 
 #signUpEmailErrorMessage{
@@ -357,7 +386,7 @@ input, textarea {
     font-size: .8em;
     color: #BC6771;
     background-color: white;
-    right: -310px;
+    right: -234px;
     top: -16px;
     padding-right: 10px;
     padding-left: 10px;
@@ -622,14 +651,19 @@ input:focus {outline:0;}
 
 /*This is the close(x) button*/
 .closeX{
+    height:30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
     display: block;
     position: absolute;
-    color: white;
-    opacity: .5;
+    color: #95CAAD;
+    background-color: white;
     font-weight: 300;
     font-size: 2em;
     right: 10px;
-    top: 0;
+    top: 10px;
     cursor: pointer;
 }
 
@@ -837,14 +871,11 @@ input:focus {outline:0;}
 
 
 #closeTaskModal{
-    display: block;
-    position: absolute;
-    color: lightgray;
+    color: white;
+    background-color: #95CAAD;
     font-weight: 300;
-    font-size: 2em;
-    right: 10px;
-    top: 0px;
-    cursor: pointer;
+    font-size: 1.5em;
+
 }
 
 
@@ -1038,6 +1069,61 @@ input:focus {outline:0;}
 
 .inputField:-ms-input-placeholder {
     color: rgba(96, 122, 147, 0.5);
+}
+
+
+#newTaskSubjectErrorTriangle{
+    position: absolute;
+    right: 200px;
+    top: 26px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
+}
+
+#newTaskSubjectErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .9em;
+    color: #BC6771;
+    background-color: white;
+    right: -194px;
+    top: -18px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#newTaskTitleErrorTriangle{
+    position: absolute;
+    right: -158px;
+    top: 82px;
+    width: 0;
+    height: 0;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+    border-right: 1em solid #BC6771;
+    display: none;
+}
+
+#newTaskTitleErrorMessage{
+    position: absolute;
+    line-height: 2.5em;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: inline-block;
+    font-size: .9em;
+    color: #BC6771;
+    background-color: white;
+    right: -167px;
+    top: -18px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 /*===================================================================================================================*/
@@ -1729,7 +1815,7 @@ input:focus {outline:0;}
     box-sizing: border-box;
     position: absolute;
     width: 200px;
-    height: 280px;
+    height: 264px;
     background-color: white;
     display: none;
     box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.4);
@@ -1793,16 +1879,24 @@ input:focus {outline:0;}
 }
 
 #signoutButton{
-    background-color: transparent;
+    background-color: #48AFBE;
     border: none;
-    border-top: solid 1px #95CAAD;
-    color: #1B9BAE;
-    font-size: .9em;
-    padding: 10px;
     width: 100%;
-    height: 60px;
+    height: 44px;
     text-align: left;
     text-indent: 5px;
+}
+
+#lockIcon{
+    height: 16px;
+    width: 12px;
+}
+
+#signoutButton span{
+    color: white;
+    font-size: 1.3em;
+    line-height: 44px;
+    margin-left: 8px;
 }
 
 #backButtonSettings{

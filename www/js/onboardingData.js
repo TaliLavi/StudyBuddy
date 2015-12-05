@@ -155,10 +155,10 @@ function getOnboardingTasks() {
     var onboardingTasksTemplate = JSON.stringify(ONBOARDING_TASKS);
     var weekStart = new Date(startOfWeek(new Date()));
     return JSON.parse(onboardingTasksTemplate.replace(/\$MONDAY/g,    formatDate(weekStart))
-                                             .replace(/\$TUESDAY/g,   formatDate(new Date().setDate(weekStart.getDate() + 1)))
-                                             .replace(/\$WEDNESDAY/g, formatDate(new Date().setDate(weekStart.getDate() + 2)))
-                                             .replace(/\$THURSDAY/g,  formatDate(new Date().setDate(weekStart.getDate() + 3)))
-                                             .replace(/\$FRIDAY/g,    formatDate(new Date().setDate(weekStart.getDate() + 4)))
-                                             .replace(/\$SATURDAY/g,  formatDate(new Date().setDate(weekStart.getDate() + 5)))
-                                             .replace(/\$SUNDAY/g,    formatDate(new Date().setDate(weekStart.getDate() + 6))));
+                                             .replace(/\$TUESDAY/g,   formatDate(new Date(weekStart).setDate(weekStart.getDate() + 1)))
+                                             .replace(/\$WEDNESDAY/g, formatDate(new Date(weekStart).setDate(weekStart.getDate() + 2)))
+                                             .replace(/\$THURSDAY/g,  formatDate(new Date(weekStart).setDate(weekStart.getDate() + 3)))
+                                             .replace(/\$FRIDAY/g,    formatDate(new Date(weekStart).setDate(weekStart.getDate() + 4)))
+                                             .replace(/\$SATURDAY/g,  formatDate(new Date(weekStart).setDate(weekStart.getDate() + 5)))
+                                             .replace(/\$SUNDAY/g,    formatDate(new Date(weekStart).setDate(weekStart.getDate() + 6))));
 }

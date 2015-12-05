@@ -55,3 +55,5 @@ plugins/
 www/cordova.js
 www/cordova_plugins.js
 
+.DS_Store
+

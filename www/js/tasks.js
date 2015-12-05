@@ -1,5 +1,9 @@
 // CREATE NEW TASK
 function createTask() {
+    // hide error messages
+    $('#newTaskSubjectErrorTriangle').hide();
+    $('#newTaskTitleErrorTriangle').hide();
+
     // create a new task only if a title was written and a subject was chosen
     if ($('#titleInput').val() && $('#subjectInput').val() !== null) {
         var subjectId = $('#subjectInput').val();
@@ -14,6 +18,10 @@ function createTask() {
         var mondayOfRelevantWeek = startOfWeek(newTask.assigned_date);
         // PUSH THEM TO DB
         saveNewTask(subjectId, mondayOfRelevantWeek, newTask, postCreateTask);
+    } else if($('#subjectInput').val() === null) {
+        $('#newTaskSubjectErrorTriangle').show();
+    } else if(!$('#titleInput').val()) {
+        $('#newTaskTitleErrorTriangle').show();
     }
 }
 

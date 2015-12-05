@@ -27,7 +27,7 @@
     color: #1B9BAE;
     font-size: 2.5em;
     padding-top: 16px;
-    margin-left: 30px;
+    margin-left: 56px;
     width: 100%;
 }
 
@@ -185,6 +185,7 @@
 }
 
 #timeStudyingHeading{
+    position: relative;
     font-family: acme, sans-serif;
     padding-top: 3%;
     color: #607A93;
@@ -283,4 +284,14 @@
 
 .unSelectedBarGraphButton{
     background-color: rgb(149,202,173);
+}
+
+#dayInitials{
+    width: 10px;
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    left: -22px;
+    top: 118px;
+    color: #607A93;
 }
