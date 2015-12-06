@@ -527,16 +527,14 @@ function fetchAllDoneTasks(callback, renewCache) {
     } else {
         var doneTasksRef = FIREBASE_REF.child('/Tasks/' + getLoggedInUser() + '/done');
         doneTasksRef.once("value", function(doneTasksSnapshot) {
-            if (doneTasksSnapshot.val() !== null) {
-                var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
-                subjectRef.once("value", function(subjectsSnapshot) {
-                    dataCache.barChart = {
-                        subjects: subjectsSnapshot.val(),
-                        doneTasks: doneTasksSnapshot.val()
-                    }
-                    callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
-                }, firebaseErrorFrom('fetchAllDoneTasks'));
-            }
+            var subjectRef = FIREBASE_REF.child('/Subjects/active/' + getLoggedInUser());
+            subjectRef.once("value", function(subjectsSnapshot) {
+                dataCache.barChart = {
+                    subjects: subjectsSnapshot.val(),
+                    doneTasks: doneTasksSnapshot.val()
+                }
+                callback(dataCache.barChart.subjects, dataCache.barChart.doneTasks);
+            }, firebaseErrorFrom('fetchAllDoneTasks'));
         }, firebaseErrorFrom('fetchAllDoneTasks'));
     }
 }

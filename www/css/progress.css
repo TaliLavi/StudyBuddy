@@ -12,7 +12,7 @@
     background-color: #d1d7dd;
     height: 135px;
     width: 960px;
-    display: none;
+    display: block;
     margin: auto;
 }
 
@@ -153,6 +153,7 @@
     width:900px;
     color: #607A93;
     font-weight: 400;
+    text-align:center;
     font-size: 1.2em;
     display: block;
     margin: auto;
