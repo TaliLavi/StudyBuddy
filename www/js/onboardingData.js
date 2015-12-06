@@ -2,22 +2,22 @@ ONBOARDING_SUBJECTS = {
     "-K3L6Z5hDkbUy8nkL_ZS" : {
         "colour_scheme" : "theme1Colour5",
         "is_deleted" : 0,
-        "name" : "Subject 1"
+        "name" : "Introduction"
     },
     "-K3L6bogRzPyU974X9rL" : {
-        "colour_scheme" : "theme1Colour11",
-        "is_deleted" : 0,
-        "name" : "Subject 2"
-    },
-    "-K3L6eXNO1qN587xlUvW" : {
         "colour_scheme" : "theme1Colour7",
         "is_deleted" : 0,
-        "name" : "Subject 3"
+        "name" : "Your Tasks"
+    },
+    "-K3L6eXNO1qN587xlUvW" : {
+        "colour_scheme" : "theme1Colour11",
+        "is_deleted" : 0,
+        "name" : "Your Subjects"
     },
     "-K3LC23IdA-pZHVafUyy" : {
         "colour_scheme" : "theme1Colour1",
         "is_deleted" : 0,
-        "name" : "Subject 4"
+        "name" : "Your Progress"
     }
 };
 
@@ -28,32 +28,25 @@ ONBOARDING_TASKS = {
                 "-K3L7aIs8ZkxZ-HWdQpQ" : {
                     "assigned_date" : "$MONDAY",
                     "creation_date" : 1447775331647,
-                    "description" : "Each task card contains the task or topic that you have set for yourself, like writing an essay, or learning a set of verbs.",
+                    "description" : "Welcome, friend :) . Here is your first tip: organise your study into tasks like this one to help you plan your study.",
                     "status_change_date" : 1447775331647,
-                    "title" : "Click this task card!"
-                },
-                "-K3LExasbHcluptY_S4h" : {
-                    "assigned_date" : "$TUESDAY",
-                    "creation_date" : 1447777262083,
-                    "description" : "Just long-press and drag to move tasks from day to day on your weekly plan. ",
-                    "status_change_date" : 1447777262083,
-                    "title" : "Drag me around!"
+                    "title" : "Click me!"
                 },
                 "-K3LBBpNqnJR6ls9Hc3X" : {
                     "assigned_date" : "$TUESDAY",
                     "creation_date" : 1447776275875,
-                    "description" : "When you're finished studying a task, just click the 'Mark as Done' button below. Try it now and see what happens!",
+                    "description" : "In there are all the tasks you have created without a date - all ready to be dragged onto your timetable!",
                     "status_change_date" : 1447776275875,
-                    "title" : "Finished a task?"
+                    "title" : "Click on 'Schedule Me' under the calendar!"
                 }
             },
             "no_assigned_date" : {
                 "-K3LFg64yrOTrRd23Yb1" : {
                     "assigned_date" : "",
                     "creation_date" : 1447777452560,
-                    "description" : "You can add tasks in the subjects area that you don't want to put on the timetable yet. They appear in the \"Schedule Me\" drawer.",
+                    "description" : "This task is waiting to be scheduled. Go ahead, drag it onto the calendar!",
                     "status_change_date" : 1447777452560,
-                    "title" : "This is a task for later!"
+                    "title" : "This is a task for later"
                 }
             }
         },
@@ -62,59 +55,34 @@ ONBOARDING_TASKS = {
                 "-K3L7pe_GKTzdKaTKIjd" : {
                     "assigned_date" : "$WEDNESDAY",
                     "creation_date" : 1447775394543,
-                    "description" : "When you want to start doing a task, just tap the start button to start the study timer. Stay focused, you're on the clock!",
+                    "description" : "When you want to study a task, start its timer. You'll have a 25 minutes study session, followed by a 5 minutes break.",
                     "status_change_date" : 1447775394543,
                     "title" : "Studying a task"
                 },
-                "-K3LApgZ8cv8Cu58F63t" : {
-                    "assigned_date" : "$MONDAY",
-                    "creation_date" : 1447776181103,
-                    "description" : "Tasks are colour-coded according to their subject. You can create your own list of subjects on the subjects page.",
-                    "status_change_date" : 1447776181103,
-                    "title" : "And the next one..."
-                },
                 "-K3LHPYekpZ6xqel3iH8" : {
-                    "assigned_date" : "$SATURDAY",
+                    "assigned_date" : "$THURSDAY",
                     "creation_date" : 1447777904948,
-                    "description" : "You can make a list of all your subjects in the subject area. You can delete our example ones - or just change the names!",
+                    "description" : "When you're finished studying a task, just click the 'Mark as Done' button below. Try it now and see what happens!",
                     "status_change_date" : 1447777904948,
-                    "title" : "Add your own subjects"
-                }
-            },
-            "no_assigned_date" : {
-                "-K3LG0MxGlx-rGWgNNGN" : {
-                    "assigned_date" : "",
-                    "creation_date" : 1447777539656,
-                    "description" : "So it appears in the 'Schedule Me' drawer at the bottom of the weekly plan.",
-                    "status_change_date" : 1447777539656,
-                    "title" : "This task isn't scheduled yet"
+                    "title" : "Finished a task?"
                 }
             }
         },
         "-K3L6eXNO1qN587xlUvW" : {
             "$MONDAY" : {
                 "-K3LANW8AfqdzCPIbC9j" : {
-                    "assigned_date" : "$MONDAY",
+                    "assigned_date" : "$FRIDAY",
                     "creation_date" : 1447776061588,
-                    "description" : "Organising your study into tasks like this helps you to know exactly what you want to have achieved by the end of your study.",
+                    "description" : "You can list all of your subjects in the subjects area. You can delete our example ones, or just change the names!",
                     "status_change_date" : 1447776061588,
-                    "title" : "And this one..."
+                    "title" : "Add your own subjects"
                 },
                 "-K3LCZooatcSET3LXDkT" : {
-                    "assigned_date" : "$FRIDAY",
+                    "assigned_date" : "$SATURDAY",
                     "creation_date" : 1447776636285,
-                    "description" : "You can use the subject page to make a list of everything you need to cover so that you don't miss a thing!",
+                    "description" : "You can use the subject area to make a list of everything you need to cover so that you don't miss a thing!",
                     "status_change_date" : 1447776636285,
                     "title" : "Big test coming up?"
-                }
-            },
-            "no_assigned_date" : {
-                "-K3LG3qoOWKuCN1dWSxm" : {
-                    "assigned_date" : "",
-                    "creation_date" : 1447777553919,
-                    "description" : "",
-                    "status_change_date" : 1447777553919,
-                    "title" : "I'll do this one another day"
                 }
             }
         },
@@ -123,23 +91,9 @@ ONBOARDING_TASKS = {
                 "-K3LCReWpF7uVke4GoR0" : {
                     "assigned_date" : "$SUNDAY",
                     "creation_date" : 1447776602860,
-                    "description" : "The progress page keeps track of how many tasks you have done, so that you can look back and feel proud!",
+                    "description" : "The progress area keeps track of how many tasks you have done, so that you can look back and feel proud!",
                     "status_change_date" : 1447776602860,
                     "title" : "Track your achievements!"
-                },
-                "-K3LGhgLQcGXX-GRL1mf" : {
-                    "assigned_date" : "$THURSDAY",
-                    "creation_date" : 1447777721185,
-                    "description" : "In there are all the tasks you have created without a date - all ready to be dragged onto your timetable!",
-                    "status_change_date" : 1447777721185,
-                    "title" : "Click on 'Schedule Me' down below!"
-                },
-                "-K3LH9EVSgPDI5VgAAZu" : {
-                    "assigned_date" : "$TUESDAY",
-                    "creation_date" : 1447777838122,
-                    "description" : "Tasks can be added directly to your weekly planner by clicking 'Add a task' on any of the days. ",
-                    "status_change_date" : 1447777838122,
-                    "title" : "Adding a task"
                 }
             }
         }
