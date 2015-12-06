@@ -349,15 +349,18 @@ function currentStreak(heatmapSnapshot) {
     var previousDate;
     var longestStreak = 1;
     var currentStreak = 1;
+    var inRecordStreak = true;
 
     $.each(heatmapSnapshot, function(date){
         if (isConsecutiveDays(previousDate, date)) {
             currentStreak += 1;
             if (currentStreak > longestStreak) {
                 longestStreak = currentStreak;
+                inRecordStreak = true;
             }
         } else {
             currentStreak = 1;
+            inRecordStreak = false;
         }
 
         previousDate = date;
@@ -365,7 +368,11 @@ function currentStreak(heatmapSnapshot) {
     $('#currentStreak').text(currentStreak);
 
     if (currentStreak === longestStreak) {
-        $('#streakMessage').text('Well done, that\'s a new record!');
+        if (inRecordStreak) {
+            $('#streakMessage').text('Well done, that\'s a new record!');
+        } else {
+            $('#streakMessage').text('That\'s your personal best.');
+        }
     } else {
         $('#streakMessage').text('Keep it up, ' + dataCache.username + '! Your longest ever study streak is ' + longestStreak + ' days.');
     }

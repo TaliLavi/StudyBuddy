@@ -81,7 +81,7 @@ function showProgressPage() {
     switchToPage("progress");
 
     var renewCache = true;
-    fetchAndDisplayProgressForLast7Days(renewCache);
+    fetchAndDisplayProgressSinceDawnOfTime(renewCache);
     // draw the heat-map inside the progress page (in #cal-heatmap)
     drawHeatmap();
 
