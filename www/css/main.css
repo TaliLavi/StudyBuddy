@@ -1488,6 +1488,7 @@ input:focus {outline:0;}
 .subjectName {
     padding: 15px;
     border-bottom: 1.5px solid #BCDBE1;
+    text-transform: capitalize;
 }
 
 .subjectName:last-child {
