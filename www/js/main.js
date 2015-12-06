@@ -327,7 +327,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 }
 
 function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
-    (subjectId, weekDate, taskId, taskDetails,  function(){
+    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
         submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
     });
 }
