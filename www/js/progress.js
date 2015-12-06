@@ -324,7 +324,7 @@ function drawHeatmap(){
             start: new Date(2015, 8, 1),
             data: heatmapData,
             cellRadius: 2,
-            //domainDynamicDimension: false,
+            itemName: ["second", "seconds"],
             displayLegend: false
         });
     })
