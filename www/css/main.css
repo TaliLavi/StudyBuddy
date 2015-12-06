@@ -1507,6 +1507,7 @@ input:focus {outline:0;}
     -webkit-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     -moz-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    border-radius: 1px;
     cursor: pointer;
     position: relative;
 }
