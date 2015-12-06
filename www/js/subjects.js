@@ -164,6 +164,8 @@ function editSubjectName(subjectId) {
         $('#subjectNameTitle' + subjectId).val(newName);
         // change subject name in subjects left panel
         $('#subjectName' + subjectId).text(newName);
+        // change subject name in footer
+        $('#subject' + subjectId).text(newName);
         // change subject name in the "add new task" drop down menu
         $('#subjectInput option[value="'+ subjectId + '"]').text(newName);
     }
