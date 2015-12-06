@@ -132,8 +132,8 @@ var CalHeatMap = function() {
 		// LEGEND
 		// ================================================
 
-		// Threshold for the legend
-		legend: [10, 20, 30, 40],
+		// Threshold for the legend [25mins, 1hr, 2hrs, 3hrs]
+		legend: [1500, 3600, 7200, 10800],
 
 		// Whether to display the legend
 		displayLegend: true,
