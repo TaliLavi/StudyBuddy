@@ -153,10 +153,10 @@
 
       <div id="subjectsRecordSection">
         <div id="barHeadingDiv">
-            <div class="barChartHeading">TASKS COMPLETED</div>
-            <button id="dawnTimeButton" class="barChartToggle" onclick="fetchAndDisplayProgressSinceDawnOfTime()">All time</button>
-            <button id="lastMonthButton" class="barChartToggle" onclick="fetchAndDisplayProgressForLastMonth()">Last month</button>
-            <button id="lastWeekButton" class="barChartToggle" onclick="fetchAndDisplayProgressForLast7Days()">Last 7 days</button>
+          <div class="barChartHeading">TASKS COMPLETED</div>
+          <button id="lastWeekButton" class="barChartToggle" onclick="fetchAndDisplayProgressForLast7Days()">Last 7 days</button>
+          <button id="lastMonthButton" class="barChartToggle" onclick="fetchAndDisplayProgressForLastMonth()">Last 30 days</button>
+          <button id="dawnTimeButton" class="barChartToggle" onclick="fetchAndDisplayProgressSinceDawnOfTime()">All time</button>
         </div>
 
         <svg id="chart" height="300" width="960"></svg>
@@ -172,7 +172,9 @@
         </div>
 
         <div id="cal-heatmap">
-            <div class="sectionMonth groupMonth">
+        </div>
+
+          <div class="sectionMonth groupMonth">
               <div class="colMonth span_1_of_12">Sep</div>
               <div class="colMonth span_1_of_12">Oct</div>
               <div class="colMonth span_1_of_12">Nov</div>
@@ -185,15 +187,14 @@
               <div class="colMonth span_1_of_12">Jun</div>
               <div class="colMonth span_1_of_12">Jul</div>
               <div class="colMonth span_1_of_12">Aug</div>
-            </div>
-        </div>
+          </div>
 
         <div id="myHeatmapLegend">
-          <div id="square1" class="legendSquare"></div><div class="legendText"> > 25 mins</div>
-          <div id="square2" class="legendSquare"></div><div class="legendText"> > 1 hr</div>
-          <div class="legendSquare" id="square3"></div><div class="legendText"> > 2 hrs</div>
-          <div class="legendSquare" id="square4"></div><div class="legendText"> > 4 hrs</div>
-          <div class="legendSquare" id="square5"></div><div class="legendText"> > 5 hrs</div>
+          <div id="square1" class="legendSquare"></div><div class="legendText"> > 0 mins</div>
+          <div id="square2" class="legendSquare"></div><div class="legendText"> > 25 mins</div>
+          <div class="legendSquare" id="square3"></div><div class="legendText"> > 1 hr</div>
+          <div class="legendSquare" id="square4"></div><div class="legendText"> > 2 hrs</div>
+          <div class="legendSquare" id="square5"></div><div class="legendText"> > 3 hrs</div>
         </div>
         <p class = "progressPageMessage" id="heatmapMessage"></p>
       </div>
@@ -243,7 +244,7 @@
     <!--========================================================================================================-->
     <div id="subjectsPage" style="display:none;">
       <div id="subjectsPanel">
-        <button id="addSubjectButton" onclick="openAddSubjectDialog();" class="needsclick">Add a subject...</button>
+        <button id="addSubjectButton" onclick="openAddSubjectDialog();" class="needsclick"><img src="img/circlePlus.png" id="circlePlus">Add a subject...</button>
         <div id="subjectsList"></div>
       </div>
       <div id="tasksPerSubject" class="theme1Colour10b"></div>
@@ -397,7 +398,7 @@
                 <br>
                 <div id="newTaskTitleErrorTriangle">
                   <div class="errorMessage" id="newTaskTitleErrorMessage">
-                    Give your task a title
+                    Please give your task a title
                   </div>
                 </div>
               <br>

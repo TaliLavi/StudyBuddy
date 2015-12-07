@@ -325,13 +325,16 @@ function removeToDoTaskFromDOM(taskId) {
     }
 }
 
-function markAsDone(subjectId, originalDate, taskId) {
+function markAsDone(subjectId, originalWeek, taskId, originalTaskDetails) {
     var today = formatDate(new Date());
 
-    // if in footer, prepend to calendar for today (this will automatically also remove the task from footer)
-    $('#unassignedTasksList li[data-taskid="' + taskId + '"]').prependTo('#' + today);
-    // change card's task-date data attribute
-    $('li[data-taskid="' + taskId + '"]').data('task-date', today);
+    // if in footer, change assigned_date to be today
+    if (originalWeek === "no_assigned_date") {
+        // prepend to calendar for today (this will automatically also remove the task from footer)
+        $('#unassignedTasksList li[data-taskid="' + taskId + '"]').prependTo('#' + today);
+        // change card's task-date data attribute
+        $('li[data-taskid="' + taskId + '"]').data('task-date', today);
+    }
 
     // apply class doneTask
     $('.dayList li[data-taskid="' + taskId + '"] div').addClass("doneTask");
@@ -341,7 +344,7 @@ function markAsDone(subjectId, originalDate, taskId) {
     $('.todoWrapper div[data-taskid="' + taskId + '"]').remove();
 
     playRuzoDone();
-    moveTaskToDone(subjectId, taskId, originalDate);
+    moveTaskToDone(subjectId, taskId, originalWeek, originalTaskDetails.assigned_date);
 }
 
 

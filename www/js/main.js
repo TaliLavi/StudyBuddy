@@ -77,19 +77,10 @@ function showCalendarPage() {
     switchToPage("calendar");
 }
 
-function showProgressPage() {
-    switchToPage("progress");
+// display adaptive feedback for the heatmap
+function displayHeatMapTagline(heatmapSnapshot) {
 
-    var renewCache = true;
-    fetchAndDisplayProgressForLast7Days(renewCache);
-    // draw the heat-map inside the progress page (in #cal-heatmap)
-    drawHeatmap();
-
-    fetchHeatmapData(fetchUsername);
-
-    // display adaptive feedback for the heatmap
-    fetchHeatmapData(function(heatmapSnapshot) {
-
+    if (heatmapSnapshot) {
         var timestring = isBestMonth(heatmapSnapshot);
 
         if (timestring !== undefined) {
@@ -104,7 +95,23 @@ function showProgressPage() {
                 $('#heatmapMessage').text('Looks like ' + bestDay + ' is normally your most productive day.');
             }
         }
-    });
+    }
+    else {
+        $('#heatmapMessage').text('No studied time logged yet.');
+    }
+};
+
+function showProgressPage() {
+    switchToPage("progress");
+
+    var renewCache = true;
+    fetchAndDisplayProgressSinceDawnOfTime(renewCache);
+    // draw the heat-map inside the progress page (in #cal-heatmap)
+    drawHeatmap();
+
+    fetchHeatmapData(fetchUsername);
+
+    fetchHeatmapData(displayHeatMapTagline);
 }
 
 function prepareNavigation() {
@@ -327,7 +334,7 @@ function fillInTaskDetails(subjectId, taskId, taskDetails, isDone) {
 }
 
 function closeTaskModalAndSubmit(subjectId, weekDate, taskId, taskDetails){
-    (subjectId, weekDate, taskId, taskDetails,  function(){
+    closeTaskModal(subjectId, weekDate, taskId, taskDetails,  function(){
         submitTaskChanges(subjectId, weekDate, taskId, taskDetails);
     });
 }

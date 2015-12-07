@@ -1101,7 +1101,7 @@ input:focus {outline:0;}
 
 #newTaskTitleErrorTriangle{
     position: absolute;
-    right: -158px;
+    right: 200px;
     top: 82px;
     width: 0;
     height: 0;
@@ -1488,6 +1488,7 @@ input:focus {outline:0;}
 .subjectName {
     padding: 15px;
     border-bottom: 1.5px solid #BCDBE1;
+    text-transform: capitalize;
 }
 
 .subjectName:last-child {
@@ -1499,12 +1500,14 @@ input:focus {outline:0;}
     border: none;
     font-size: 1.2em;
     height: 70px;
+    line-height: 70px;
     width: 100%;
     text-align: center;
     background-color: #95CAAD;
     -webkit-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     -moz-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+    border-radius: 1px;
     cursor: pointer;
     position: relative;
 }
@@ -1513,6 +1516,14 @@ input:focus {outline:0;}
     -webkit-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     -moz-box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
     box-shadow: -1px 13px 21px -10px rgba(154, 140, 154, 0.4);
+}
+
+#circlePlus{
+    height: 30px;
+    width: 30px;
+    margin-bottom: -7px;
+    margin-left: -14px;
+    padding-right: 7px;
 }
 
 .completedTasksButton{
@@ -1888,8 +1899,9 @@ input:focus {outline:0;}
 }
 
 #lockIcon{
-    height: 16px;
-    width: 12px;
+    height: 18px;
+    width: 15px;
+    margin-bottom: -3px;
 }
 
 #signoutButton span{

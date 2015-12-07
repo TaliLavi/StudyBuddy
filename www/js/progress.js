@@ -106,7 +106,11 @@ function tasksPerSubject(doneTasks, subjects, dateFilterCallback) {
 function fetchAndDisplayProgressSinceDawnOfTime(renewCache) {
     switchToBarGraphRange("dawnTime");
     fetchAllDoneTasks(function(subjects, doneTasks) {
-        var subjectsHistogram = tasksPerSubject(doneTasks, subjects, function() {return true;});
+        var doneTasksData = doneTasks;
+        if (doneTasks === null) {
+            doneTasksData = {};
+        };
+        var subjectsHistogram = tasksPerSubject(doneTasksData, subjects, function() {return true;});
         drawBarGraph(subjectsHistogram);
 
         var maxTasks = mostTasksPerSubject(subjectsHistogram);
@@ -144,8 +148,12 @@ function weekDegreeOfAwesomeness(tasksDone) {
 function fetchAndDisplayProgressForLast7Days(renewCache) {
     switchToBarGraphRange("lastWeek");
     fetchAllDoneTasks(function(subjects, doneTasks) {
-        var subjectsHistogramThisWeek = tasksPerSubject(doneTasks, subjects, filterForPastDays(0, 7));
-        var subjectsHistogramLastWeek = tasksPerSubject(doneTasks, subjects, filterForPastDays(8, 14));
+        var doneTasksData = doneTasks;
+        if (doneTasks === null) {
+            doneTasksData = {};
+        };
+        var subjectsHistogramThisWeek = tasksPerSubject(doneTasksData, subjects, filterForPastDays(0, 7));
+        var subjectsHistogramLastWeek = tasksPerSubject(doneTasksData, subjects, filterForPastDays(8, 14));
         drawBarGraph(subjectsHistogramThisWeek);
 
         // choose randomly which feedback to display
@@ -189,8 +197,12 @@ function fetchAndDisplayProgressForLast7Days(renewCache) {
 function fetchAndDisplayProgressForLastMonth(renewCache) {
     switchToBarGraphRange("lastMonth");
     fetchAllDoneTasks(function(subjects, doneTasks) {
-        var subjectsHistogramThisMonth = tasksPerSubject(doneTasks, subjects, filterForPastDays(0, 30));
-        var subjectsHistogramLastMonth = tasksPerSubject(doneTasks, subjects, filterForPastDays(31, 60));
+        var doneTasksData = doneTasks;
+        if (doneTasks === null) {
+            doneTasksData = {};
+        };
+        var subjectsHistogramThisMonth = tasksPerSubject(doneTasksData, subjects, filterForPastDays(0, 30));
+        var subjectsHistogramLastMonth = tasksPerSubject(doneTasksData, subjects, filterForPastDays(31, 60));
         drawBarGraph(subjectsHistogramThisMonth);
 
         // choose randomly which feedback to display
@@ -312,10 +324,17 @@ function drawHeatmap(){
             start: new Date(2015, 8, 1),
             data: heatmapData,
             cellRadius: 2,
-            //domainDynamicDimension: false,
+            itemName: ["second", "seconds"],
             displayLegend: false
         });
     })
+    if (isMobile()) {
+        //show the days of the week initials
+        $('#dayInitials').css("display", "block");
+    } else {
+        //hide the day of the week initials
+        $('#dayInitials').css("display", "none");
+    }
 }
 
 function prepareHeatmapData(heatmapSnapshot) {
@@ -346,29 +365,40 @@ function isSameMonth(date1, date2) {
 }
 
 function currentStreak(heatmapSnapshot) {
-    var previousDate;
-    var longestStreak = 1;
-    var currentStreak = 1;
+    if (heatmapSnapshot !== null) {
+        var previousDate;
+        var longestStreak = 1;
+        var currentStreak = 1;
+        var inRecordStreak = true;
 
-    $.each(heatmapSnapshot, function(date){
-        if (isConsecutiveDays(previousDate, date)) {
-            currentStreak += 1;
-            if (currentStreak > longestStreak) {
-                longestStreak = currentStreak;
+        $.each(heatmapSnapshot, function(date){
+            if (isConsecutiveDays(previousDate, date)) {
+                currentStreak += 1;
+                if (currentStreak > longestStreak) {
+                    longestStreak = currentStreak;
+                    inRecordStreak = true;
+                }
+            } else {
+                currentStreak = 1;
+                inRecordStreak = false;
+            }
+
+            previousDate = date;
+        });
+        $('#currentStreak').text(currentStreak);
+
+        if (currentStreak === longestStreak) {
+            if (inRecordStreak) {
+                $('#streakMessage').text('Well done, that\'s a new record!');
+            } else {
+                $('#streakMessage').text('That\'s your personal best');
             }
         } else {
-            currentStreak = 1;
+            $('#streakMessage').text('Keep it up, ' + dataCache.username + '! Your longest ever study streak is ' + longestStreak + ' days.');
         }
 
-        previousDate = date;
-    });
-    $('#currentStreak').text(currentStreak);
-
-    if (currentStreak === longestStreak) {
-        $('#streakMessage').text('Well done, that\'s a new record!');
-    } else {
-        $('#streakMessage').text('Keep it up, ' + dataCache.username + '! Your longest ever study streak is ' + longestStreak + ' days.');
-    }
+        $('#streakSection').show();
+    };
 }
 
 function isBestMonth(heatmapSnapshot) {
