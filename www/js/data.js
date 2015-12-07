@@ -548,18 +548,4 @@ function fetchHeatmapData(callback) {
 }
 
 
-////////////////////////////////////////////Function for populating heatmap////////////////////////////////////////
-//////////////////////////////////////////////TO BE DELETED////////////////////////////////////////////////////////
 
-
-function doctorHeatmap(date, time){
-    var subjectRef = FIREBASE_REF.child('/Heatmap/' + getLoggedInUser() + "/" + date);
-    subjectRef.update({
-        "time_studied": time
-    });
-}
-
-
-doctorHeatmap('2015-12-05', 10000);
-
-//[1500, 3600, 7200, 10800]
