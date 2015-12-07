@@ -328,6 +328,13 @@ function drawHeatmap(){
             displayLegend: false
         });
     })
+    if (isMobile()) {
+        //show the days of the week initials
+        $('#dayInitials').css("display", "block");
+    } else {
+        //hide the day of the week initials
+        $('#dayInitials').css("display", "none");
+    }
 }
 
 function prepareHeatmapData(heatmapSnapshot) {
